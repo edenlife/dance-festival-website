@@ -1,0 +1,90 @@
+@import '../../style.scss';
+
+.container {
+  width: 100%;
+  &--footer {
+    background-color: color(eden-neutral-7);
+    background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611340416/eden-website-v2/footer-bg1_okumin.svg'),
+      url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611340416/eden-website-v2/footer-bg2_ccimi0.svg');
+    background-position: bottom left, bottom right;
+    background-repeat: no-repeat;
+  }
+}
+
+.footer {
+  &__top {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 16px;
+    background-color: color(eden-primary-200);
+    width: 83%;
+    margin: 0 auto 0 auto;
+    z-index: 99;
+    height: 400px;
+    position: relative;
+    z-index: 2;
+
+    &-title {
+      h3 {
+        line-height: 62px;
+        @include font-size(7xl);
+        @include font-weight(bold);
+        color: color(eden-neutral-1);
+      }
+      p {
+        line-height: 28px;
+        @include font-size(xl);
+        color: color(eden-neutral-1);
+        margin: $gap + 2 0 $gap * 3.6 0;
+      }
+    }
+    &-link {
+      display: flex;
+      gap: $gap * 2.6;
+    }
+    &-img {
+    }
+  }
+  &__bottom {
+    width: 83%;
+    margin: -193px auto 0 auto;
+    padding: $gap * 36 0 $gap * 4.8 0;
+    display: flex;
+    justify-content: space-between;
+
+    &-title {
+    }
+    &-social {
+      margin-bottom: $gap * 2.7;
+      display: flex;
+      align-items: center;
+      gap: $gap * 2.1;
+    }
+    &-mission {
+      margin: $gap * 2.4 0 $gap * 6.7 0;
+      @include font-size(base);
+      line-height: 24px;
+      color: color(eden-neutral-2);
+    }
+    &-copywright {
+      @include font-size(base);
+      line-height: 24px;
+      color: color(eden-neutral-1);
+    }
+    &-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: $gap * 10;
+      ul {
+        li {
+          list-style: none;
+          @include font-size(base);
+          line-height: 24px;
+          color: color(eden-neutral-1);
+          padding-bottom: $gap * 2;
+        }
+      }
+    }
+  }
+}

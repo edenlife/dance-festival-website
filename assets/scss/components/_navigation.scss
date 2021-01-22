@@ -1,0 +1,75 @@
+@import '../../style.scss';
+
+.container {
+  background-color: #fff9f5;
+  width: 100%;
+}
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 83%;
+  padding: $gap * 2.6 0;
+  margin: 0 auto;
+  background-color: #fff9f5;
+  &__logo {
+  }
+  &__menu {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: $gap * 6;
+    &-item {
+      line-height: 24px;
+      @include font-size(base);
+      color: color(eden-neutral-1);
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        color: color(eden-primary);
+      }
+    }
+    &-service {
+      .btn {
+        line-height: 24px;
+        @include font-size(base);
+        color: color(eden-neutral-1);
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          color: color(eden-primary);
+        }
+      }
+      .service {
+        display: none;
+        &__list {
+          &-item {
+          }
+        }
+      }
+    }
+    &-link {
+      background-color: color(eden-primary);
+      color: color(eden-neutral-7);
+      padding: $gap * 1.4 $gap * 3.2;
+      border-radius: 4px;
+      line-height: 20px;
+      &:hover {
+        box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
+        background-color: color(eden-primary-250);
+        color: color(eden-neutral-7);
+      }
+      &:active {
+        background-image: radial-gradient(
+          circle at center right,
+          rgba(0, 141, 64, 0.1) 50%,
+          #008d40 50%
+        );
+      }
+    }
+  }
+  @include respond(xxl) {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  // @include font-size(9xl);
+  // @include font-family(pt-serif);
+}

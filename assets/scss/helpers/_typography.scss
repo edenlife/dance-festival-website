@@ -1,0 +1,58 @@
+/* PT Serif @font-face kit */
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap');
+
+/* CerebriSans @font-face kit */
+@font-face {
+  font-family: 'Cerebri Sans';
+  font-style: light;
+  font-weight: 300;
+  src: url(~@/assets/fonts/CerebriSans-Light.eot) format('embedded-opentype'),
+    url(~@/assets/fonts/CerebriSans-Light.woff2) format('woff2'),
+    url(~@/assets/fonts/CerebriSans-Light.woff) format('woff'),
+    url(~@/assets/fonts/CerebriSans-Light.ttf) format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cerebri Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(~@/assets/fonts/CerebriSans-Regular.eot) format('embedded-opentype'),
+    url(~@/assets/fonts/CerebriSans-Regular.woff2) format('woff2'),
+    url(~@/assets/fonts/CerebriSans-Regular.woff) format('woff'),
+    url(~@/assets/fonts/CerebriSans-Regular.ttf) format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cerebri Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url(~@/assets/fonts/CerebriSans-Medium.eot) format('embedded-opentype'),
+    url(~@/assets/fonts/CerebriSans-Medium.woff2) format('woff2'),
+    url(~@/assets/fonts/CerebriSans-Medium.woff) format('woff'),
+    url(~@/assets/fonts/CerebriSans-Medium.ttf) format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cerebri Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url(~@/assets/fonts/CerebriSans-SemiBold.eot) format('embedded-opentype'),
+    url(~@/assets/fonts/CerebriSans-SemiBold.woff2) format('woff2'),
+    url(~@/assets/fonts/CerebriSans-SemiBold.woff) format('woff'),
+    url(~@/assets/fonts/CerebriSans-SemiBold.ttf) format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cerebri Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url(~@/assets/fonts/CerebriSans-Bold.eot) format('embedded-opentype'),
+    url(~@/assets/fonts/CerebriSans-Bold.woff2) format('woff2'),
+    url(~@/assets/fonts/CerebriSans-Bold.woff) format('woff'),
+    url(~@/assets/fonts/CerebriSans-Bold.ttf) format('truetype');
+  font-display: swap;
+}

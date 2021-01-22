@@ -1,0 +1,43 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Cerebri Sans', Times, serif;
+  font-size: 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  font-family: 'Cerebri Sans';
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+button {
+  font-family: 'Cerebri Sans';
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'PT Serif', serif;
+}

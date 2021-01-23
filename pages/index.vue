@@ -216,12 +216,7 @@
         </div>
 
         <div class="customers__testimonials">
-          <div
-            v-for="(item, i) in testimonials"
-            :key="i"
-            class="card"
-            :class="item.title"
-          >
+          <div v-for="(item, i) in testimonialsList" :key="i" class="card">
             <div class="card__title">
               <img
                 :src="require(`~/assets/images/customer-${item.image}.png`)"
@@ -230,7 +225,7 @@
               />
               <div class="">
                 <p class="card__title-name">{{ item.name }}</p>
-                <p class="card__title-handle">{{ item.handle }}</p>
+                <p class="card__title-handle">@{{ item.handle }}</p>
               </div>
             </div>
             <p class="card__description" v-html="item.description"></p>
@@ -491,6 +486,7 @@
 </template>
 
 <script>
+import testimonials from '~/static/testimonials'
 export default {
   components: {
     Footer: () => import('~/components/Footer.vue'),
@@ -500,73 +496,11 @@ export default {
       services: 'Laundry day',
       service: 'laundry',
       exploreService: '',
-      testimonials: [
-        {
-          title: 'one',
-          name: 'Scot',
-          image: 'scot',
-          description:
-            'Eden is becoming the best part of my Saturdays. Fresh food!',
-          handle: '@Scothinks',
-        },
-        {
-          title: 'two',
-          name: 'Eyitemi Egbejule',
-          image: 'eyitemi',
-          description:
-            'With all the chaos that is Lagos, @ouredenlife helps to improve your life expectancy and reduce your stress levels. <br><br> 💯 Recommend',
-          handle: '@eeyitemi',
-        },
-        {
-          title: 'three',
-          name: 'Jinchūriki of the Spirit.',
-          image: 'eyitemi',
-          description:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam, ea. Eius, ex dolore nam vero illum voluptates veniam, libero numquam eaque quidem in possimus omnis ipsa fugiat, blanditiis ipsum cum.',
-          handle: '@ms_nicelegs',
-        },
-        {
-          title: 'four',
-          name: 'Eyitemi Egbejule',
-          image: 'eyitemi',
-          description: 'With all the chaos that is Lagos, ',
-          handle: '@eeyitemi',
-        },
-        {
-          title: 'five',
-          name: 'Eyitemi Egbejule',
-          image: 'eyitemi',
-          description:
-            'With all the chaos that is Lagos, @ouredenlife helps to improve your life expectancy and reduce your stress',
-          handle: '@eeyitemi',
-        },
-        {
-          title: 'six',
-          name: 'Eyitemi Egbejule',
-          image: 'eyitemi',
-          description:
-            'With all the chaos that is Lagos, @ouredenlife helps to improve your life expectancy and reduce your stress levels. <br><br> 💯 Recommend',
-          handle: '@eeyitemi',
-        },
-        {
-          title: 'seven',
-          name: 'Eyitemi Egbejule',
-          image: 'eyitemi',
-          description:
-            'With all the chaos that is Lagos, @ouredenlife helps to improve your life expectancy and reduce your stress levels. <br><br> 💯 Recommend',
-          handle: '@eeyitemi',
-        },
-        {
-          title: 'eight',
-          name: 'Eyitemi Egbejule',
-          image: 'eyitemi',
-          description:
-            'With all the chaos that is Lagos, @ouredenlife helps to improve your life expectancy and reduce your stress levels. <br><br> 💯 Recommend',
-          handle: '@eeyitemi',
-        },
-      ],
+      testimonialsList: testimonials,
     }
   },
+  mounted() {},
+  methods: {},
 }
 </script>
 

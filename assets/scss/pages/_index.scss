@@ -45,16 +45,12 @@
   align-items: center;
   &__title {
     color: color(eden-neutral-1);
-    flex: 0 0 40%;
+    flex: 0 0 45%;
     h1 {
       line-height: 70px;
       @include font-size(8xl);
       @include font-family(pt-serif);
       @include font-weight(bold);
-    }
-    span {
-      color: color(eden-purple-200);
-      box-shadow: inset 0 -23px 0 #e5e9fc;
     }
     p {
       margin: $gap * 3.6 0 $gap * 4 0;
@@ -89,6 +85,9 @@
       }
     }
     &-link {
+      display: flex;
+      align-items: center;
+      gap: $gap + 2;
       line-height: 29px;
       @include font-size(lg);
       color: color(eden-primary);
@@ -463,6 +462,7 @@
     }
   }
   &__description {
+    flex: 0 0 50%;
     &-item {
       color: color(eden-neutral-1);
       p {

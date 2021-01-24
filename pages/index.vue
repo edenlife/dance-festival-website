@@ -4,7 +4,11 @@
       <header class="hero">
         <div class="hero__title">
           <h1>
-            Say Goodbye to <br /><span>{{ services }}</span> <br />forever
+            Say Goodbye to <br /><span
+              :style="getServiceColor(services[0].value)"
+              >{{ services[0].title }}</span
+            >
+            <br />forever
           </h1>
           <p>
             We take care of your chores, so you can get more out of life. It's
@@ -15,6 +19,26 @@
               Start Your Eden Life
             </button>
             <button type="button" class="hero__button-link">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  opacity="0.1"
+                  width="32"
+                  height="32"
+                  rx="16"
+                  fill="#03A84E"
+                />
+                <path
+                  d="M12.6667 11.8317C12.6667 11.0405 13.5419 10.5627 14.2074 10.9905L20.6915 15.1588C21.3038 15.5525 21.3038 16.4475 20.6915 16.8412L14.2074 21.0095C13.5419 21.4373 12.6667 20.9595 12.6667 20.1683V11.8317Z"
+                  fill="#03A84E"
+                />
+              </svg>
+
               Watch the video
             </button>
           </div>
@@ -26,7 +50,7 @@
             class="hero__img-bg1"
           />
           <img
-            :src="require(`~/assets/images/hero-${service}.svg`)"
+            :src="require(`~/assets/images/hero-${services[0].value}.svg`)"
             alt="laundry"
             class="hero__img-bg2"
           />
@@ -292,28 +316,62 @@
           <div class="questions__description-item">
             <div class="questions__description-title">
               <h5>What is Eden?</h5>
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 22 22"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+              <button
+                type="button"
+                class="expand"
+                @click.prevent="expandQuestion('one')"
               >
-                <path
-                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
-                  stroke="#21312A"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M7 11H15"
-                  stroke="#21312A"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+                <svg
+                  v-if="questions.includes('one')"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M7 11H15"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <svg
+                  v-else
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M12 8V16"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8 12H16"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
             </div>
-            <p>
+            <p v-if="questions.includes('one')">
               Easy. We're bringing the convenience of room service to homes
               across Africa – but starting with Lagos. Home tasks are routine
               activities that should be outsourced, so you can focus on the
@@ -326,128 +384,347 @@
           <div class="questions__description-item">
             <div class="questions__description-title">
               <h5>A laundry service, cleaning service or food service?</h5>
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 22 22"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+              <button
+                type="button"
+                class="expand"
+                @click.prevent="expandQuestion('two')"
               >
-                <path
-                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
-                  stroke="#21312A"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
+                <svg
+                  v-if="questions.includes('two')"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
 
-                <path
-                  d="M7 11H15"
-                  stroke="#21312A"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+                  <path
+                    d="M7 11H15"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <svg
+                  v-else
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M12 8V16"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8 12H16"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
             </div>
+            <p v-if="questions.includes('two')">
+              Easy. We're bringing the convenience of room service to homes
+              across Africa – but starting with Lagos. Home tasks are routine
+              activities that should be outsourced, so you can focus on the
+              things with the most impact in your life. It could be making time
+              for work that matters, or for enjoyment. You deserve to live well
+              without the extra effort. Some people call us the Concierge of
+              Comfort – they're correct.
+            </p>
           </div>
           <div class="questions__description-item">
             <div class="questions__description-title">
               <h5>How does it work?</h5>
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 22 22"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+              <button
+                type="button"
+                class="expand"
+                @click.prevent="expandQuestion('three')"
               >
-                <path
-                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
-                  stroke="#21312A"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M7 11H15"
-                  stroke="#21312A"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+                <svg
+                  v-if="questions.includes('three')"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+
+                  <path
+                    d="M7 11H15"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <svg
+                  v-else
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M12 8V16"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8 12H16"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
             </div>
+            <p v-if="questions.includes('three')">
+              Easy. We're bringing the convenience of room service to homes
+              across Africa – but starting with Lagos. Home tasks are routine
+              activities that should be outsourced, so you can focus on the
+              things with the most impact in your life. It could be making time
+              for work that matters, or for enjoyment. You deserve to live well
+              without the extra effort. Some people call us the Concierge of
+              Comfort – they're correct.
+            </p>
           </div>
           <div class="questions__description-item">
             <div class="questions__description-title">
               <h5>Who are Gardeners?</h5>
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 22 22"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+              <button
+                type="button"
+                class="expand"
+                @click.prevent="expandQuestion('four')"
               >
-                <path
-                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
-                  stroke="#21312A"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M7 11H15"
-                  stroke="#21312A"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+                <svg
+                  v-if="questions.includes('four')"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+
+                  <path
+                    d="M7 11H15"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <svg
+                  v-else
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M12 8V16"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8 12H16"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
             </div>
+            <p v-if="questions.includes('four')">
+              Easy. We're bringing the convenience of room service to homes
+              across Africa – but starting with Lagos. Home tasks are routine
+              activities that should be outsourced, so you can focus on the
+              things with the most impact in your life. It could be making time
+              for work that matters, or for enjoyment. You deserve to live well
+              without the extra effort. Some people call us the Concierge of
+              Comfort – they're correct.
+            </p>
           </div>
           <div class="questions__description-item">
             <div class="questions__description-title">
               <h5>How much are they good for?</h5>
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 22 22"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+              <button
+                type="button"
+                class="expand"
+                @click.prevent="expandQuestion('five')"
               >
-                <path
-                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
-                  stroke="#21312A"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M7 11H15"
-                  stroke="#21312A"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+                <svg
+                  v-if="questions.includes('five')"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+
+                  <path
+                    d="M7 11H15"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <svg
+                  v-else
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M12 8V16"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8 12H16"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
             </div>
+            <p v-if="questions.includes('five')">
+              Easy. We're bringing the convenience of room service to homes
+              across Africa – but starting with Lagos. Home tasks are routine
+              activities that should be outsourced, so you can focus on the
+              things with the most impact in your life. It could be making time
+              for work that matters, or for enjoyment. You deserve to live well
+              without the extra effort. Some people call us the Concierge of
+              Comfort – they're correct.
+            </p>
           </div>
           <div class="questions__description-item">
             <div class="questions__description-title">
               <h5>Does my Gardener service me alone?</h5>
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 22 22"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+              <button
+                type="button"
+                class="expand"
+                @click.prevent="expandQuestion('six')"
               >
-                <path
-                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
-                  stroke="#21312A"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M7 11H15"
-                  stroke="#21312A"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+                <svg
+                  v-if="questions.includes('six')"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+
+                  <path
+                    d="M7 11H15"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <svg
+                  v-else
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M12 8V16"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8 12H16"
+                    stroke="#21312A"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
             </div>
+            <p v-if="questions.includes('six')">
+              Easy. We're bringing the convenience of room service to homes
+              across Africa – but starting with Lagos. Home tasks are routine
+              activities that should be outsourced, so you can focus on the
+              things with the most impact in your life. It could be making time
+              for work that matters, or for enjoyment. You deserve to live well
+              without the extra effort. Some people call us the Concierge of
+              Comfort – they're correct.
+            </p>
           </div>
         </div>
       </section>
@@ -493,14 +770,67 @@ export default {
   },
   data() {
     return {
-      services: 'Laundry day',
-      service: 'laundry',
+      services: [
+        { title: 'Housecleaning', value: 'cleaning' },
+        { title: 'Laundry day', value: 'laundry' },
+        { title: 'Long cooking hours', value: 'food' },
+        { title: 'Market runs', value: 'gift' },
+      ],
       exploreService: '',
       testimonialsList: testimonials,
+      questions: ['one'],
     }
   },
-  mounted() {},
-  methods: {},
+  mounted() {
+    window.setInterval(() => {
+      this.changeService()
+    }, 2500)
+  },
+  methods: {
+    changeService() {
+      const first = this.services.shift()
+      this.services = this.services.concat(first)
+    },
+    getServiceColor(service) {
+      switch (service) {
+        case 'cleaning':
+          return {
+            color: '#FF9D00',
+            'box-shadow': 'inset 0 -23px 0 #FFE6D6',
+          }
+        case 'food':
+          return {
+            color: '#03A84E',
+            'box-shadow': 'inset 0 -23px 0 #C9F8DE',
+          }
+        case 'laundry':
+          return {
+            color: '#a0b0fe',
+            'box-shadow': 'inset 0 -23px 0 #e5e9fc',
+          }
+        case 'gift':
+          return {
+            color: '#00C0EA',
+            'box-shadow': 'inset 0 -23px 0 #D1F2FA',
+          }
+        default:
+          return {
+            color: '#03A84E',
+            'box-shadow': 'inset 0 -23px 0 #C9F8DE',
+          }
+      }
+    },
+    expandQuestion(item) {
+      console.log(item)
+      this.questions.length && this.questions.includes(item)
+        ? (this.questions = this.questions.filter((o1) => o1 !== item))
+        : this.questions.push(item)
+
+      //  this.selectedFilter = this.selectedFilter.filter(
+      //   val => !this.stateFilter.includes(val)
+      // );
+    },
+  },
 }
 </script>
 

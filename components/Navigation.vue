@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div id="navigation-container" class="container">
     <nav id="navigation-top" class="navigation">
       <nuxt-link :to="{ path: '/' }" class="navigation__logo">
         <img
@@ -73,6 +73,19 @@
 <script>
 export default {
   name: 'Navigation',
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  methods: {
+    handleScroll() {
+      if (window.scrollY > 20) {
+        document.querySelector('#navigation-container').className =
+          'container scroll'
+      } else {
+        document.querySelector('#navigation-container').className = 'container'
+      }
+    },
+  },
 }
 </script>
 

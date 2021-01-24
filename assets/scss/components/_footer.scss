@@ -45,6 +45,10 @@
     }
     &-img {
     }
+    @include respond(xxl) {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
   }
   &__bottom {
     width: 83%;
@@ -85,6 +89,10 @@
           padding-bottom: $gap * 2;
         }
       }
+    }
+    @include respond(xxl) {
+      max-width: 1440px;
+      margin: -193px auto 0 auto;
     }
   }
 }

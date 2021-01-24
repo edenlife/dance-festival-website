@@ -4,6 +4,7 @@
   width: 100%;
   &--hero {
     background-color: #fff9f5;
+    margin-top: 100px;
   }
   &--services {
     background: color(eden-neutral-7)
@@ -108,6 +109,10 @@
       bottom: 10%;
     }
   }
+  @include respond(xxl) {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
 }
 
 .services {
@@ -116,7 +121,6 @@
   width: 83%;
   margin: 0 auto;
   padding: $gap * 6.8 0;
-  // background-color: color(eden-neutral-7);
   gap: $gap * 12;
 
   &__title {
@@ -254,6 +258,10 @@
       }
     }
   }
+  @include respond(xxl) {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
 }
 
 .video {
@@ -272,11 +280,26 @@
   }
   &__item {
     //TO DO: add overlay
-    img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
+    background: black;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+    background-image: linear-gradient(
+        178.06deg,
+        rgba(33, 49, 42, 0) -2.37%,
+        rgba(33, 49, 42, 0.6) 113.57%
+      ),
+      url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611319513/eden-website-v2/video-thumbnail_crnwew.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+  }
+  @include respond(xxl) {
+    max-width: 1440px;
+    margin: 0 auto;
   }
 }
 
@@ -376,6 +399,14 @@
         grid-row: 4 / 7;
       }
     }
+    @include respond(xxl) {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+  }
+  @include respond(xxl) {
+    max-width: 1440px;
+    margin: 0 auto;
   }
 }
 
@@ -487,6 +518,10 @@
       }
     }
   }
+  @include respond(xxl) {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
 }
 
 .press {
@@ -512,5 +547,9 @@
     align-items: center;
     a {
     }
+  }
+  @include respond(xxl) {
+    max-width: 1440px;
+    margin: 0 auto;
   }
 }

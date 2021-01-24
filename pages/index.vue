@@ -198,12 +198,7 @@
         <div class="video__title">
           <h3>Why Eden?</h3>
         </div>
-        <div class="video__item">
-          <img
-            src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611319513/eden-website-v2/video-thumbnail_crnwew.png"
-            alt="why eden"
-          />
-        </div>
+        <div class="video__item"></div>
       </section>
     </div>
 

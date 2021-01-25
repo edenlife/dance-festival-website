@@ -4,10 +4,10 @@
       <header class="hero">
         <div class="hero__title">
           <h1>
-            Say Goodbye to <br /><span
-              :style="getServiceColor(services[0].value)"
-              >{{ services[0].title }}</span
-            >
+            Say Goodbye to <br />
+            <span :style="getServiceColor(services[0].value)">{{
+              services[0].title
+            }}</span>
             <br />forever
           </h1>
           <p>
@@ -271,13 +271,54 @@
                 placeholder="Enter your email"
               />
               <div class="form__input-item">
-                <input
-                  id=""
-                  type="email"
-                  name=""
-                  placeholder="Select your city"
+                <div
                   class="select"
-                />
+                  :data-value="bound_fields.city"
+                  :data-list="cities"
+                >
+                  <div class="selector" @click="toggle()">
+                    <div class="label">
+                      <span
+                        :class="{
+                          placeholder: cityName === 'Select your city',
+                        }"
+                        >{{ cityName }}</span
+                      >
+                    </div>
+                    <svg
+                      class="arrow"
+                      :class="{ expanded: visible }"
+                      width="10"
+                      height="6"
+                      viewBox="0 0 10 6"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1 1L5 5L9 1"
+                        stroke="#93A29B"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+
+                    <div :class="{ hidden: !visible, visible }">
+                      <transition name="slide-fade">
+                        <ul>
+                          <li
+                            v-for="city in cities"
+                            :key="city.id"
+                            :class="{ current: city.id === bound_fields.city }"
+                            :value="city.name"
+                            @click="select(city)"
+                          >
+                            {{ city.name }}
+                          </li>
+                        </ul>
+                      </transition>
+                    </div>
+                  </div>
+                </div>
                 <button type="button" class="form__input-btn">
                   <svg
                     width="24"
@@ -366,15 +407,17 @@
                 </svg>
               </button>
             </div>
-            <p v-if="questions.includes('one')">
-              Easy. We're bringing the convenience of room service to homes
-              across Africa – but starting with Lagos. Home tasks are routine
-              activities that should be outsourced, so you can focus on the
-              things with the most impact in your life. It could be making time
-              for work that matters, or for enjoyment. You deserve to live well
-              without the extra effort. Some people call us the Concierge of
-              Comfort – they're correct.
-            </p>
+            <transition name="slide-fade">
+              <p v-if="questions.includes('one')">
+                Easy. We're bringing the convenience of room service to homes
+                across Africa – but starting with Lagos. Home tasks are routine
+                activities that should be outsourced, so you can focus on the
+                things with the most impact in your life. It could be making
+                time for work that matters, or for enjoyment. You deserve to
+                live well without the extra effort. Some people call us the
+                Concierge of Comfort – they're correct.
+              </p>
+            </transition>
           </div>
           <div class="questions__description-item">
             <div class="questions__description-title">
@@ -435,15 +478,17 @@
                 </svg>
               </button>
             </div>
-            <p v-if="questions.includes('two')">
-              Easy. We're bringing the convenience of room service to homes
-              across Africa – but starting with Lagos. Home tasks are routine
-              activities that should be outsourced, so you can focus on the
-              things with the most impact in your life. It could be making time
-              for work that matters, or for enjoyment. You deserve to live well
-              without the extra effort. Some people call us the Concierge of
-              Comfort – they're correct.
-            </p>
+            <transition name="slide-fade">
+              <p v-if="questions.includes('two')">
+                Easy. We're bringing the convenience of room service to homes
+                across Africa – but starting with Lagos. Home tasks are routine
+                activities that should be outsourced, so you can focus on the
+                things with the most impact in your life. It could be making
+                time for work that matters, or for enjoyment. You deserve to
+                live well without the extra effort. Some people call us the
+                Concierge of Comfort – they're correct.
+              </p>
+            </transition>
           </div>
           <div class="questions__description-item">
             <div class="questions__description-title">
@@ -504,15 +549,17 @@
                 </svg>
               </button>
             </div>
-            <p v-if="questions.includes('three')">
-              Easy. We're bringing the convenience of room service to homes
-              across Africa – but starting with Lagos. Home tasks are routine
-              activities that should be outsourced, so you can focus on the
-              things with the most impact in your life. It could be making time
-              for work that matters, or for enjoyment. You deserve to live well
-              without the extra effort. Some people call us the Concierge of
-              Comfort – they're correct.
-            </p>
+            <transition name="slide-fade">
+              <p v-if="questions.includes('three')">
+                Easy. We're bringing the convenience of room service to homes
+                across Africa – but starting with Lagos. Home tasks are routine
+                activities that should be outsourced, so you can focus on the
+                things with the most impact in your life. It could be making
+                time for work that matters, or for enjoyment. You deserve to
+                live well without the extra effort. Some people call us the
+                Concierge of Comfort – they're correct.
+              </p>
+            </transition>
           </div>
           <div class="questions__description-item">
             <div class="questions__description-title">
@@ -573,15 +620,17 @@
                 </svg>
               </button>
             </div>
-            <p v-if="questions.includes('four')">
-              Easy. We're bringing the convenience of room service to homes
-              across Africa – but starting with Lagos. Home tasks are routine
-              activities that should be outsourced, so you can focus on the
-              things with the most impact in your life. It could be making time
-              for work that matters, or for enjoyment. You deserve to live well
-              without the extra effort. Some people call us the Concierge of
-              Comfort – they're correct.
-            </p>
+            <transition name="slide-fade">
+              <p v-if="questions.includes('four')">
+                Easy. We're bringing the convenience of room service to homes
+                across Africa – but starting with Lagos. Home tasks are routine
+                activities that should be outsourced, so you can focus on the
+                things with the most impact in your life. It could be making
+                time for work that matters, or for enjoyment. You deserve to
+                live well without the extra effort. Some people call us the
+                Concierge of Comfort – they're correct.
+              </p>
+            </transition>
           </div>
           <div class="questions__description-item">
             <div class="questions__description-title">
@@ -642,15 +691,17 @@
                 </svg>
               </button>
             </div>
-            <p v-if="questions.includes('five')">
-              Easy. We're bringing the convenience of room service to homes
-              across Africa – but starting with Lagos. Home tasks are routine
-              activities that should be outsourced, so you can focus on the
-              things with the most impact in your life. It could be making time
-              for work that matters, or for enjoyment. You deserve to live well
-              without the extra effort. Some people call us the Concierge of
-              Comfort – they're correct.
-            </p>
+            <transition name="slide-fade">
+              <p v-if="questions.includes('five')">
+                Easy. We're bringing the convenience of room service to homes
+                across Africa – but starting with Lagos. Home tasks are routine
+                activities that should be outsourced, so you can focus on the
+                things with the most impact in your life. It could be making
+                time for work that matters, or for enjoyment. You deserve to
+                live well without the extra effort. Some people call us the
+                Concierge of Comfort – they're correct.
+              </p>
+            </transition>
           </div>
           <div class="questions__description-item">
             <div class="questions__description-title">
@@ -711,15 +762,17 @@
                 </svg>
               </button>
             </div>
-            <p v-if="questions.includes('six')">
-              Easy. We're bringing the convenience of room service to homes
-              across Africa – but starting with Lagos. Home tasks are routine
-              activities that should be outsourced, so you can focus on the
-              things with the most impact in your life. It could be making time
-              for work that matters, or for enjoyment. You deserve to live well
-              without the extra effort. Some people call us the Concierge of
-              Comfort – they're correct.
-            </p>
+            <transition name="slide-fade">
+              <p v-if="questions.includes('six')">
+                Easy. We're bringing the convenience of room service to homes
+                across Africa – but starting with Lagos. Home tasks are routine
+                activities that should be outsourced, so you can focus on the
+                things with the most impact in your life. It could be making
+                time for work that matters, or for enjoyment. You deserve to
+                live well without the extra effort. Some people call us the
+                Concierge of Comfort – they're correct.
+              </p>
+            </transition>
           </div>
         </div>
       </section>
@@ -769,6 +822,38 @@ export default {
       exploreService: '',
       testimonialsList: testimonials,
       questions: ['one'],
+      cities: [
+        {
+          name: 'Abuja',
+          id: 'abuja',
+        },
+        {
+          name: 'Lagos',
+          id: 'lagos',
+        },
+        {
+          name: 'Port Harcourt',
+          id: 'port-harcourt',
+        },
+        {
+          name: 'Ibadan',
+          id: 'ibadan',
+        },
+        {
+          name: 'Calabar',
+          id: 'calabar',
+        },
+        {
+          name: 'Kaduna',
+          id: 'kaduna',
+        },
+      ],
+      visible: false,
+      bound_fields: {
+        email: null,
+        city: null,
+      },
+      cityName: 'Select your city',
     }
   },
   mounted() {
@@ -780,6 +865,13 @@ export default {
     changeService() {
       const first = this.services.shift()
       this.services = this.services.concat(first)
+    },
+    toggle() {
+      this.visible = !this.visible
+    },
+    select(option) {
+      this.bound_fields.city = option.id
+      this.cityName = option.name
     },
     getServiceColor(service) {
       switch (service) {
@@ -814,10 +906,6 @@ export default {
       this.questions.length && this.questions.includes(item)
         ? (this.questions = this.questions.filter((o1) => o1 !== item))
         : this.questions.push(item)
-
-      //  this.selectedFilter = this.selectedFilter.filter(
-      //   val => !this.stateFilter.includes(val)
-      // );
     },
   },
 }

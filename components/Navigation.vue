@@ -313,9 +313,9 @@ export default {
           return {
             'background-color': '#ffffff',
           }
-        case '/faqs':
+        case '/faq':
           return {
-            'background-color': '#E5E5E5',
+            'background-color': '#F7FDFF',
           }
         default:
           return {

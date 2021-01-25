@@ -71,7 +71,7 @@
             </a>
           </div>
           <p class="footer__bottom-copywright">
-            2021 Eden Life Inc. All Rights Reserved.
+            {{ new Date().getFullYear() }} Eden Life Inc. All Rights Reserved.
           </p>
         </div>
 
@@ -129,7 +129,7 @@
               </nuxt-link>
             </li>
             <li>
-              <nuxt-link :to="{ path: '/contact' }" class="footer__bottom-logo">
+              <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
                 Contact us
               </nuxt-link>
             </li>

@@ -33,7 +33,7 @@
       line-height: 24px;
       @include font-size(base);
       color: color(eden-neutral-1);
-      transition: all 0.3s ease-in-out;
+      transition: all 0.4s ease-in-out;
       &:hover {
         color: color(eden-primary);
       }
@@ -43,15 +43,96 @@
         line-height: 24px;
         @include font-size(base);
         color: color(eden-neutral-1);
-        transition: all 0.3s ease-in-out;
+        transition: all 0.4s ease-in-out;
+        display: flex;
+        align-items: center;
+        gap: $gap - 2;
+        svg {
+          stroke: color(eden-neutral-1);
+          transition: all 0.4s ease-in-out;
+        }
         &:hover {
           color: color(eden-primary);
+          svg {
+            stroke: color(eden-primary);
+          }
         }
       }
       .service {
-        display: none;
+        width: 490px;
+        background-color: color(eden-neutral-7);
+        box-shadow: 0px 4px 16px rgba(121, 139, 131, 0.161);
+        border-radius: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        top: 96px;
+        right: 140px;
+        &__title {
+          flex: 0 0 55%;
+          padding: $gap + 6 0 $gap + 6 $gap * 3.2;
+
+          h3 {
+            margin-bottom: $gap + 2;
+            @include font-size(lg);
+            @include font-weight(bold);
+            color: color(eden-neutral-1);
+            line-height: 26px;
+          }
+          p {
+            width: 95%;
+            @include font-size(base);
+            line-height: 24px;
+            color: color(eden-neutral-2);
+          }
+        }
         &__list {
+          flex: 0 0 40%;
+          background-color: rgba(228, 232, 230, 0.4);
+          padding: $gap + 6 0;
+          border-radius: 0px 16px 16px 0px;
+          li {
+            list-style: none;
+            padding: $gap + 6 $gap * 3.2;
+            transition: all 0.4s ease-out;
+            color: color(eden-neutral-1);
+            svg {
+              transition: all 0.4s ease-out;
+            }
+            &:hover {
+              color: color(eden-neutral-1);
+              &.food {
+                background-color: rgba(3, 168, 78, 0.1);
+              }
+              &.laundry {
+                background-color: rgba(229, 233, 252, 0.8);
+              }
+              &.cleaning {
+                background-color: rgba(255, 243, 235, 0.8);
+              }
+              &.gifting {
+                background-color: color(eden-blue-100);
+              }
+            }
+          }
           &-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: $gap + 2;
+            span {
+              @include font-size(xl);
+            }
+            h5 {
+              @include font-size(base);
+              @include font-family(cerebri);
+              @include font-weight(medium);
+              line-height: 24px;
+            }
+            svg {
+              margin-left: auto;
+            }
           }
         }
       }
@@ -80,4 +161,12 @@
     max-width: 1440px;
     margin: 0 auto;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }

@@ -69,7 +69,7 @@
       background-color: color(eden-primary);
       color: color(eden-neutral-7);
       border-radius: 4px;
-      transition: all 0.3s ease-in-out;
+      transition: all 0.4s ease-in-out;
       padding: $gap * 2 $gap * 3.2;
 
       &:hover {
@@ -157,7 +157,7 @@
         border-radius: 40px;
         padding: $gap - 2 0;
         width: fit-content;
-        transition: all 0.3s ease-in;
+        transition: all 0.4s ease-in-out;
         svg {
           margin-left: $gap - 1;
         }
@@ -201,7 +201,7 @@
       margin-right: $gap - 2;
       margin-bottom: $gap - 2;
       align-self: flex-end;
-      transition: all 0.3s ease-in-out;
+      transition: all 0.4s ease-in-out;
       border-top-left-radius: 8px;
       border-bottom-right-radius: 8px;
       width: 65%;
@@ -392,7 +392,7 @@
       &:nth-child(7) {
         grid-column: 1;
         grid-row: 3.5 / 5;
-        margin-top: -30px;
+        margin-top: -35px;
       }
       &:nth-child(8) {
         grid-column: 2;

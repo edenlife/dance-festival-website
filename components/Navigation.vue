@@ -15,44 +15,255 @@
         </li>
         <li>
           <div class="navigation__menu-item navigation__menu-service">
-            <button type="button" class="btn">Services</button>
-            <div class="service">
-              <div>Eden Services</div>
-              <ul class="service__list">
-                <li>
-                  <nuxt-link
-                    :to="{ path: '/service/food' }"
-                    class="service__list-item"
+            <button
+              type="button"
+              class="btn"
+              @mouseenter.stop="showService = true"
+            >
+              <span>Services</span>
+              <svg
+                width="10"
+                height="6"
+                viewBox="0 0 10 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 1L5 5L9 1"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+            <transition name="fade">
+              <div
+                v-if="showService"
+                class="service"
+                @mouseleave.stop="showService = false"
+              >
+                <div class="service__title">
+                  <h3>Eden Services</h3>
+                  <p>
+                    Cancelling & Pausing any time is as easy as clicking a
+                    button
+                  </p>
+                </div>
+                <ul class="service__list">
+                  <li
+                    :class="{ food: service === 'food' }"
+                    @mouseenter.stop="service = 'food'"
+                    @mouseleave.stop="service = ''"
                   >
-                    Food
-                  </nuxt-link>
-                </li>
-                <li>
-                  <nuxt-link
-                    :to="{ path: '/service/food' }"
-                    class="service__list-item"
+                    <nuxt-link
+                      :to="{ path: '/service/food' }"
+                      class="service__list-item"
+                    >
+                      <span>🥘</span>
+                      <h5>Food</h5>
+                      <svg
+                        v-if="service === 'food'"
+                        width="15"
+                        height="10"
+                        viewBox="0 0 15 10"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 5L13 5"
+                          stroke="#03A84E"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M10 9L14 5L10 1"
+                          stroke="#03A84E"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <svg
+                        v-else
+                        width="6"
+                        height="10"
+                        viewBox="0 0 6 10"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 9L5 5L1 1"
+                          stroke="#798B83"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </nuxt-link>
+                  </li>
+                  <li
+                    :class="{ laundry: service === 'laundry' }"
+                    @mouseenter.stop="service = 'laundry'"
+                    @mouseleave.stop="service = ''"
                   >
-                    Laundry
-                  </nuxt-link>
-                </li>
-                <li>
-                  <nuxt-link
-                    :to="{ path: '/service/food' }"
-                    class="service__list-item"
+                    <nuxt-link
+                      :to="{ path: '/service/food' }"
+                      class="service__list-item"
+                    >
+                      <span>🧺</span>
+                      <h5>Laundry</h5>
+                      <svg
+                        v-if="service === 'laundry'"
+                        width="15"
+                        height="10"
+                        viewBox="0 0 15 10"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 5L13 5"
+                          stroke="#7189FF"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M10 9L14 5L10 1"
+                          stroke="#7189FF"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+
+                      <svg
+                        v-else
+                        width="6"
+                        height="10"
+                        viewBox="0 0 6 10"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 9L5 5L1 1"
+                          stroke="#798B83"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </nuxt-link>
+                  </li>
+                  <li
+                    :class="{ cleaning: service === 'cleaning' }"
+                    @mouseenter.stop="service = 'cleaning'"
+                    @mouseleave.stop="service = ''"
                   >
-                    Cleaning
-                  </nuxt-link>
-                </li>
-                <li>
-                  <nuxt-link
-                    :to="{ path: '/service/food' }"
-                    class="service__list-item"
+                    <nuxt-link
+                      :to="{ path: '/service/food' }"
+                      class="service__list-item"
+                    >
+                      <span>🏠</span>
+                      <h5>Cleaning</h5>
+                      <svg
+                        v-if="service === 'cleaning'"
+                        width="15"
+                        height="10"
+                        viewBox="0 0 15 10"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 5L13 5"
+                          stroke="#FF9D00"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M10 9L14 5L10 1"
+                          stroke="#FF9D00"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+
+                      <svg
+                        v-else
+                        width="6"
+                        height="10"
+                        viewBox="0 0 6 10"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 9L5 5L1 1"
+                          stroke="#798B83"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </nuxt-link>
+                  </li>
+                  <li
+                    :class="{ gifting: service === 'gifting' }"
+                    @mouseenter.stop="service = 'gifting'"
+                    @mouseleave.stop="service = ''"
                   >
-                    Gifting
-                  </nuxt-link>
-                </li>
-              </ul>
-            </div>
+                    <nuxt-link
+                      :to="{ path: '/service/food' }"
+                      class="service__list-item"
+                    >
+                      <span>🎁</span>
+                      <h5>Gifting</h5>
+                      <svg
+                        v-if="service === 'gifting'"
+                        width="15"
+                        height="10"
+                        viewBox="0 0 15 10"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 5L13 5"
+                          stroke="#46C9E5"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M10 9L14 5L10 1"
+                          stroke="#46C9E5"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+
+                      <svg
+                        v-else
+                        width="6"
+                        height="10"
+                        viewBox="0 0 6 10"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 9L5 5L1 1"
+                          stroke="#798B83"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </nuxt-link>
+                  </li>
+                </ul>
+              </div>
+            </transition>
           </div>
         </li>
         <li>
@@ -73,6 +284,12 @@
 <script>
 export default {
   name: 'Navigation',
+  data() {
+    return {
+      service: '',
+      showService: false,
+    }
+  },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
   },

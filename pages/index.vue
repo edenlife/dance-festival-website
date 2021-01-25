@@ -752,17 +752,12 @@
         </div>
       </section>
     </div>
-
-    <Footer />
   </div>
 </template>
 
 <script>
 import testimonials from '~/static/testimonials'
 export default {
-  components: {
-    Footer: () => import('~/components/Footer.vue'),
-  },
   data() {
     return {
       services: [
@@ -779,7 +774,7 @@ export default {
   mounted() {
     window.setInterval(() => {
       this.changeService()
-    }, 2500)
+    }, 2000)
   },
   methods: {
     changeService() {
@@ -816,7 +811,6 @@ export default {
       }
     },
     expandQuestion(item) {
-      console.log(item)
       this.questions.length && this.questions.includes(item)
         ? (this.questions = this.questions.filter((o1) => o1 !== item))
         : this.questions.push(item)

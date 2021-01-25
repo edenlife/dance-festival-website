@@ -45,7 +45,7 @@
         </div>
         <div class="hero__img">
           <img
-            src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611303384/eden-website-v2/hero-phone_hmfvpb.svg"
+            src="https://res.cloudinary.com/eden-life-inc/image/upload/q_auto/v1611303384/eden-website-v2/hero-phone_hmfvpb.svg"
             alt="phone"
             class="hero__img-bg1"
           />

@@ -304,6 +304,7 @@ export default {
     },
     getColor() {
       const path = this.$nuxt.$route.path
+      console.log(path)
       switch (path) {
         case '/':
           return {

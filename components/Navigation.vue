@@ -304,17 +304,16 @@ export default {
     },
     getColor() {
       const path = this.$nuxt.$route.path
-      console.log(path)
       switch (path) {
         case '/':
           return {
             'background-color': '#fff9f5',
           }
-        case '/contact':
+        case '/contact/':
           return {
             'background-color': '#ffffff',
           }
-        case '/faq':
+        case '/faq/':
           return {
             'background-color': '#F7FDFF',
           }

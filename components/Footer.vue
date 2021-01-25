@@ -26,7 +26,7 @@
         </div>
       </div>
       <img
-        src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611337863/eden-website-v2/footer-phone_xeixqy.svg"
+        src="https://res.cloudinary.com/eden-life-inc/image/upload/q_auto/v1611337863/eden-website-v2/footer-phone_xeixqy.svg"
         alt="phone"
         class="footer__top-image"
       />

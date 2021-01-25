@@ -67,6 +67,20 @@
         position: absolute;
         top: 96px;
         right: 140px;
+        &::after {
+          position: absolute;
+          top: -2%;
+          left: 30%;
+          border-left: 10px solid #ffffff;
+          border-top: 10px solid transparent;
+          content: ' ';
+          font-size: 0;
+          line-height: 0;
+          width: 0;
+          -webkit-transform: rotate(135deg);
+          -ms-transform: rotate(135deg);
+          transform: rotate(135deg);
+        }
         &__title {
           flex: 0 0 55%;
           padding: $gap + 6 0 $gap + 6 $gap * 3.2;

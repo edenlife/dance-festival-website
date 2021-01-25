@@ -129,7 +129,7 @@
               </nuxt-link>
             </li>
             <li>
-              <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+              <nuxt-link :to="{ path: '/contact' }" class="footer__bottom-logo">
                 Contact us
               </nuxt-link>
             </li>

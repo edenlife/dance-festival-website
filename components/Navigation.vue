@@ -1,5 +1,5 @@
 <template>
-  <div id="navigation-container" class="container">
+  <div id="navigation-container" class="container" :style="getColor()">
     <nav id="navigation-top" class="navigation">
       <nuxt-link :to="{ path: '/' }" class="navigation__logo">
         <img
@@ -300,6 +300,27 @@ export default {
           'container scroll'
       } else {
         document.querySelector('#navigation-container').className = 'container'
+      }
+    },
+    getColor() {
+      const path = this.$nuxt.$route.path
+      switch (path) {
+        case '/':
+          return {
+            'background-color': '#fff9f5',
+          }
+        case '/contact':
+          return {
+            'background-color': '#ffffff',
+          }
+        case '/faqs':
+          return {
+            'background-color': '#E5E5E5',
+          }
+        default:
+          return {
+            'background-color': '#fff9f5',
+          }
       }
     },
   },

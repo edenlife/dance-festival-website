@@ -74,7 +74,9 @@
             <h5>Food</h5>
             <p>Your chef-cooked meals, delivered to you. Daily or weekly.</p>
             <nuxt-link :to="{ path: '/' }" class="btn">
-              {{ exploreService === 'food' ? 'Explore' : '' }}
+              {{
+                exploreService === 'food' || setExploreService ? 'Explore' : ''
+              }}
               <svg
                 width="14"
                 height="10"
@@ -107,7 +109,11 @@
               hours or less.
             </p>
             <nuxt-link :to="{ path: '/' }" class="btn">
-              {{ exploreService === 'laundry' ? 'Explore' : '' }}
+              {{
+                exploreService === 'laundry' || setExploreService
+                  ? 'Explore'
+                  : ''
+              }}
               <svg
                 width="14"
                 height="10"
@@ -137,7 +143,11 @@
             <h5>Home Cleaning</h5>
             <p>Professional cleaning at your doorstep. Up to thrice a week.</p>
             <nuxt-link :to="{ path: '/' }" class="btn">
-              {{ exploreService === 'cleaning' ? 'Explore' : '' }}
+              {{
+                exploreService === 'cleaning' || setExploreService
+                  ? 'Explore'
+                  : ''
+              }}
               <svg
                 width="14"
                 height="10"
@@ -167,7 +177,11 @@
             <h5>Gifting</h5>
             <p>Professional cleaning at your doorstep. Up to thrice a week.</p>
             <nuxt-link :to="{ path: '/' }" class="btn">
-              {{ exploreService === 'gifting' ? 'Explore' : '' }}
+              {{
+                exploreService === 'gifting' || setExploreService
+                  ? 'Explore'
+                  : ''
+              }}
 
               <svg
                 width="14"
@@ -917,14 +931,32 @@ export default {
         city: null,
       },
       cityName: 'Select your city',
+      setExploreService: false,
+      window: {
+        width: 0,
+        height: 0,
+      },
     }
   },
   mounted() {
     window.setInterval(() => {
       this.changeService()
     }, 2000)
+
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize()
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.handleResize)
   },
   methods: {
+    handleResize() {
+      this.window.width = window.innerWidth
+      this.window.height = window.innerHeight
+      if (this.window.width < '768') {
+        this.setExploreService = true
+      } else this.setExploreService = false
+    },
     changeService() {
       const first = this.services.shift()
       this.services = this.services.concat(first)

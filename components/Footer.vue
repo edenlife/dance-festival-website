@@ -97,7 +97,7 @@
                 <p>Other</p>
               </li>
               <li>
-                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+                <nuxt-link :to="{ path: '/faq' }" class="footer__bottom-logo">
                   FAQs
                 </nuxt-link>
               </li>
@@ -107,13 +107,16 @@
                 </nuxt-link>
               </li>
               <li>
-                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+                <nuxt-link
+                  :to="{ path: '/contact_us' }"
+                  class="footer__bottom-logo"
+                >
                   Contact us
                 </nuxt-link>
               </li>
               <li>
                 <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
-                  Terms & Conditions
+                  Terms &amp; Conditions
                 </nuxt-link>
               </li>
             </ul>
@@ -193,7 +196,7 @@
 
           <ul>
             <li>
-              <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+              <nuxt-link :to="{ path: '/faq' }" class="footer__bottom-logo">
                 FAQs
               </nuxt-link>
             </li>
@@ -203,13 +206,16 @@
               </nuxt-link>
             </li>
             <li>
-              <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+              <nuxt-link
+                :to="{ path: '/contact_us' }"
+                class="footer__bottom-logo"
+              >
                 Contact us
               </nuxt-link>
             </li>
             <li>
               <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
-                Terms & Conditions
+                Terms &amp; Conditions
               </nuxt-link>
             </li>
           </ul>

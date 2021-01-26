@@ -277,6 +277,19 @@
           >
         </li>
       </ul>
+      <button class="navigation__btn" type="button">
+        <svg
+          width="24"
+          height="17"
+          viewBox="0 0 24 17"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="14" height="3" rx="1.5" fill="#21312A" />
+          <rect y="7" width="24" height="3" rx="1.5" fill="#21312A" />
+          <rect y="14" width="20" height="3" rx="1.5" fill="#21312A" />
+        </svg>
+      </button>
     </nav>
   </div>
 </template>

@@ -8,6 +8,9 @@
       url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611340416/eden-website-v2/footer-bg2_ccimi0.svg');
     background-position: bottom left, bottom right;
     background-repeat: no-repeat;
+    @include respond(md) {
+      background: none;
+    }
   }
 }
 
@@ -43,7 +46,37 @@
       display: flex;
       gap: $gap * 2.6;
     }
-    &-img {
+    &-image {
+    }
+    @include respond(md) {
+      flex-direction: column;
+      width: 90%;
+      height: unset;
+      &-image {
+        height: 313px;
+        order: -1;
+        margin-top: -$gap * 5;
+      }
+
+      &-title {
+        text-align: center;
+        margin-top: $gap * 3.2;
+        h3 {
+          line-height: 42px;
+          @include font-size(4xl);
+        }
+        p {
+          line-height: 29px;
+          @include font-size(lg);
+          width: 80%;
+          margin: $gap + 2 auto $gap * 4 auto;
+        }
+      }
+      &-link {
+        flex-direction: column;
+        gap: $gap + 7;
+        margin-bottom: $gap * 6.5;
+      }
     }
     @include respond(xxl) {
       max-width: 1440px;
@@ -77,6 +110,9 @@
       color: color(eden-neutral-1);
     }
     &-nav {
+      &.mobile {
+        display: none;
+      }
       display: flex;
       justify-content: space-between;
       gap: $gap * 10;
@@ -87,6 +123,36 @@
           line-height: 24px;
           color: color(eden-neutral-1);
           padding-bottom: $gap * 2;
+        }
+      }
+    }
+
+    @include respond(md) {
+      flex-direction: column;
+      margin: 0 auto 0 auto;
+      padding: $gap * 8 0 $gap * 4.8 0;
+      &-nav {
+        display: none;
+        &.mobile {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0;
+
+          ul {
+            flex: 0 0 40%;
+            margin-bottom: $gap * 5.9;
+            &:last-child {
+              flex: 0 0 50%;
+            }
+            li {
+              p {
+                @include font-size(base);
+                @include font-weight(semi-bold);
+                line-height: 24px;
+                color: color(eden-neutral-1);
+              }
+            }
+          }
         }
       }
     }

@@ -44,6 +44,80 @@
             10x-ing the quality of life<br />
             on the continent.
           </p>
+          <div class="footer__bottom-nav mobile">
+            <ul>
+              <li>
+                <p>Services</p>
+              </li>
+              <li>
+                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+                  Food
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+                  Cleaning
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+                  Laundry
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+                  Gifting
+                </nuxt-link>
+              </li>
+            </ul>
+
+            <ul>
+              <li>
+                <p>Company</p>
+              </li>
+              <li>
+                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+                  About Us
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+                  Companies
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+                  Pricing
+                </nuxt-link>
+              </li>
+            </ul>
+
+            <ul>
+              <li>
+                <p>Other</p>
+              </li>
+              <li>
+                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+                  FAQs
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+                  Blog
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+                  Contact us
+                </nuxt-link>
+              </li>
+              <li>
+                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+                  Terms & Conditions
+                </nuxt-link>
+              </li>
+            </ul>
+          </div>
           <div class="footer__bottom-social">
             <a href="https://" target="_blank">
               <img

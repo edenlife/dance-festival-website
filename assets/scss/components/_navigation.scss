@@ -169,6 +169,17 @@
       }
     }
   }
+  &__btn {
+    display: none;
+  }
+  @include respond(md) {
+    &__btn {
+      display: block;
+    }
+    &__menu {
+      display: none;
+    }
+  }
   @include respond(xxl) {
     max-width: 1440px;
     margin: 0 auto;

@@ -26,6 +26,22 @@
       @include font-size(lg);
       @include font-weight(light);
     }
+
+    @include respond(md) {
+      margin: $gap * 18 auto $gap * 2.9 auto;
+      width: 90%;
+      h1 {
+        @include font-size(5xl);
+        line-height: 47px;
+      }
+      p {
+        width: 80%;
+      }
+    }
+    @include respond(xxl) {
+      max-width: 1440px;
+      margin: $gap * 18 auto $gap * 2.9 auto;
+    }
   }
 
   &__inquires {
@@ -94,6 +110,15 @@
         margin-top: auto;
       }
     }
+
+    @include respond(md) {
+      flex-direction: column;
+      justify-content: center;
+    }
+    @include respond(xxl) {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
   }
 
   &__office {
@@ -149,6 +174,30 @@
         object-fit: cover;
         border-radius: 0 8px 8px 0;
       }
+    }
+
+    @include respond(md) {
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: none;
+      width: 90%;
+      &-address {
+        border-radius: 0px 0 8px 8px;
+        text-align: center;
+        padding: $gap * 2.4 $gap * 2.4 $gap * 4 $gap * 2.4;
+      }
+      &-members {
+        order: -1;
+        height: 182px;
+        img {
+          border-radius: 8px 8px 0px 0;
+        }
+      }
+    }
+
+    @include respond(xxl) {
+      max-width: 1440px;
+      margin: $gap * 12 auto $gap * 20 auto;
     }
   }
 }

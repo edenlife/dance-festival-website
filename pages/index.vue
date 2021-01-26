@@ -775,6 +775,69 @@
             </transition>
           </div>
         </div>
+
+        <div class="questions__title-form mobile">
+          <p>Not in Lagos?</p>
+          <p>
+            We're coming to your city. Be the first to know when we touch down.
+          </p>
+          <div class="form__input">
+            <input id="" type="email" name="" placeholder="Enter your email" />
+            <div class="form__input-item">
+              <div
+                class="select"
+                :data-value="bound_fields.city"
+                :data-list="cities"
+              >
+                <div class="selector" @click="toggle()">
+                  <div class="label">
+                    <span
+                      :class="{
+                        placeholder: cityName === 'Select your city',
+                      }"
+                      >{{ cityName }}</span
+                    >
+                  </div>
+                  <svg
+                    class="arrow"
+                    :class="{ expanded: visible }"
+                    width="10"
+                    height="6"
+                    viewBox="0 0 10 6"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 1L5 5L9 1"
+                      stroke="#93A29B"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+
+                  <div :class="{ hidden: !visible, visible }">
+                    <transition name="slide-fade">
+                      <ul>
+                        <li
+                          v-for="city in cities"
+                          :key="city.id"
+                          :class="{ current: city.id === bound_fields.city }"
+                          :value="city.name"
+                          @click="select(city)"
+                        >
+                          {{ city.name }}
+                        </li>
+                      </ul>
+                    </transition>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="form__input-btn">
+                Send Message
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
 

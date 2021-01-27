@@ -322,11 +322,11 @@ export default {
           return {
             'background-color': '#fff9f5',
           }
-        case '/contact/':
+        case '/contact_us':
           return {
             'background-color': '#ffffff',
           }
-        case '/faq/':
+        case '/faq':
           return {
             'background-color': '#F7FDFF',
           }

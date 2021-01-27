@@ -18,7 +18,7 @@ export default [
     image: 'goddess',
     description: `My baby makes breakfast every weekend, it’s so cute and I enjoy it  because the guy sabi cook wella more than me 🤣🤣🤣. <br><br>
 
-    We have an <span style="color:#03A84E"> @ouredenlife </span> subscription for food, so we get meals weekly, but weekends are his  days to whip up something nice for us. So much love it Smiling face with 3 hearts`,
+    We have an <span style="color:#03A84E"> @ouredenlife </span> subscription for food, so we get meals weekly, but weekends are his  days to whip up something nice for us. So much love it 🥰`,
     handle: 'jemimahh__',
   },
   {

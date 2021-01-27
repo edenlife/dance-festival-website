@@ -20,7 +20,7 @@
       display: flex;
       justify-content: space-around;
       border-bottom: 1px solid #e4e8e6;
-      padding: 0 $gap * 15;
+      padding: 0 $gap * 20;
 
       a {
         color: color(eden-neutral-4);
@@ -74,28 +74,48 @@
   }
 
   &__body {
-    width: 60%;
+    width: 55%;
     margin: 0 auto $gap * 20 auto;
-    h2 {
-      @include font-size(lg);
-      @include font-weight(bold);
-      line-height: 29px;
-      text-transform: uppercase;
-      color: red;
-      // color: color(eden-neutral-1);
-    }
     .content {
-      &__title,
-      h2 {
-        @include font-size(lg);
+      &__title {
+        @include font-size(xl);
+        @include font-family(cerebri);
         @include font-weight(bold);
-        line-height: 29px;
+        line-height: 32px;
         text-transform: uppercase;
         color: color(eden-neutral-1);
+        padding-bottom: $gap * 2.4;
+        padding-top: $gap * 5.6;
       }
+      &__text {
+        @include font-size(lg);
+        @include font-family(cerebri);
+        @include font-weight(light);
+        line-height: 29px;
+        color: color(eden-neutral-1);
+        a {
+          color: color(eden-green-primary);
+        }
+      }
+    }
+    .pt-0 {
+      padding-top: 0;
+    }
+    .small_bold_font {
+      @include font-weight(bold);
     }
     @include respond(md) {
       width: 90%;
+      .content {
+        &__title {
+          @include font-size(lg);
+          line-height: 29px;
+        }
+        &__text {
+          @include font-size(base);
+          line-height: 24px;
+        }
+      }
     }
   }
 }

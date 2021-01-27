@@ -82,6 +82,20 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/assets/scss/pages/_termsandconditions.scss';
+</style>
+
+<style lang="scss" scoped>
+.slide-fade-enter-active {
+  transition: all 1s ease;
+}
+.slide-fade-leave-active {
+  opacity: 1;
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateY(300px);
+  opacity: 0;
+}
 </style>

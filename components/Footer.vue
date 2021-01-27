@@ -146,7 +146,10 @@
               </nuxt-link>
             </li>
             <li>
-              <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+              <nuxt-link
+                :to="{ path: '/terms_and_conditions' }"
+                class="footer__bottom-logo"
+              >
                 Terms &amp; Conditions
               </nuxt-link>
             </li>

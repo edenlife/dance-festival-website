@@ -317,27 +317,26 @@ export default {
     },
     getColor() {
       const path = this.$nuxt.$route.path
-      switch (path) {
-        case '/':
-          return {
-            'background-color': '#fff9f5',
-          }
-        case '/contact_us':
-          return {
-            'background-color': '#ffffff',
-          }
-        case '/faq':
-          return {
-            'background-color': '#F7FDFF',
-          }
-        case '/food':
-          return {
-            'background-color': '#F6FFFA',
-          }
-        default:
-          return {
-            'background-color': '#fff9f5',
-          }
+      if (path === '/') {
+        return {
+          'background-color': '#fff9f5',
+        }
+      } else if (path.includes('contact_us')) {
+        return {
+          'background-color': '#ffffff',
+        }
+      } else if (path.includes('faq')) {
+        return {
+          'background-color': '#F7FDFF',
+        }
+      } else if (path.includes('food')) {
+        return {
+          'background-color': '#F6FFFA',
+        }
+      } else if (path.includes('terms_and_condition')) {
+        return {
+          'background-color': '#ffffff',
+        }
       }
     },
   },

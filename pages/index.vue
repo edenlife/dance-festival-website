@@ -4,7 +4,7 @@
       <header class="hero">
         <div class="hero__title">
           <h1>
-            Say Goodbye to <br />
+            Say goodbye to <br />
             <span :style="getServiceColor(services[0].value)">{{
               services[0].title
             }}</span>
@@ -175,7 +175,10 @@
           >
             <h3>🎁</h3>
             <h5>Gifting</h5>
-            <p>Professional cleaning at your doorstep. Up to thrice a week.</p>
+            <p>
+              Gift cards and gift boxes for every occasion, right at your
+              fingertips.
+            </p>
             <nuxt-link :to="{ path: '/' }" class="btn">
               {{
                 exploreService === 'gifting' || setExploreService
@@ -251,11 +254,12 @@
         <div class="customers__testimonials">
           <div v-for="(item, i) in testimonialsList" :key="i" class="card">
             <div class="card__title">
-              <img
-                :src="require(`~/assets/images/customer-${item.image}.png`)"
-                :alt="item.name"
-                class="card__title-img"
-              />
+              <div class="card__title-img">
+                <img
+                  :src="require(`~/assets/images/customer-${item.image}.png`)"
+                  :alt="item.name"
+                />
+              </div>
               <div class="">
                 <p class="card__title-name">{{ item.name }}</p>
                 <p class="card__title-handle">@{{ item.handle }}</p>
@@ -891,10 +895,10 @@ export default {
   data() {
     return {
       services: [
-        { title: 'Housecleaning', value: 'cleaning' },
-        { title: 'Laundry day', value: 'laundry' },
-        { title: 'Long cooking hours', value: 'food' },
-        { title: 'Market runs', value: 'gift' },
+        { title: 'housecleaning', value: 'cleaning' },
+        { title: 'laundry day', value: 'laundry' },
+        { title: 'long cooking hours', value: 'food' },
+        { title: 'market runs', value: 'gift' },
       ],
       exploreService: '',
       testimonialsList: testimonials,

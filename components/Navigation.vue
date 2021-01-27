@@ -330,6 +330,10 @@ export default {
           return {
             'background-color': '#F7FDFF',
           }
+        case '/food':
+          return {
+            'background-color': '#F6FFFA',
+          }
         default:
           return {
             'background-color': '#fff9f5',

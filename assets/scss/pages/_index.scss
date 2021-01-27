@@ -71,7 +71,6 @@
     h1 {
       line-height: 70px;
       @include font-size(8xl);
-      @include font-family(pt-serif);
       @include font-weight(bold);
     }
     p {
@@ -87,7 +86,7 @@
     &-solid {
       line-height: 23px;
       @include font-size(lg);
-      background-color: color(eden-primary);
+      background-color: color(eden-green-primary);
       color: color(eden-neutral-7);
       border-radius: 4px;
       transition: all 0.4s ease-in-out;
@@ -95,7 +94,7 @@
 
       &:hover {
         box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
-        background-color: color(eden-primary-250);
+        background-color: color(eden-green-250);
         color: color(eden-neutral-7);
       }
       &:active {
@@ -112,7 +111,7 @@
       gap: $gap + 2;
       line-height: 29px;
       @include font-size(lg);
-      color: color(eden-primary);
+      color: color(eden-green-primary);
     }
   }
   &__img {
@@ -184,7 +183,6 @@
     color: color(eden-neutral-1);
     margin-top: $gap * 5.2;
     h3 {
-      @include font-family(pt-serif);
       @include font-size(5xl);
       line-height: 47px;
       @include font-weight(bold);
@@ -267,7 +265,7 @@
       align-items: center;
     }
     &-food {
-      background-color: color(eden-primary-50);
+      background-color: color(eden-green-quinary);
       .services__type-bg {
         box-shadow: 8px 8px 0px#a2f0c5;
       }
@@ -390,7 +388,6 @@
   &__title {
     h3 {
       color: color(eden-neutral-1);
-      @include font-family(pt-serif);
       @include font-size(5xl);
       line-height: 47px;
       @include font-weight(bold);
@@ -450,7 +447,6 @@
     margin-bottom: $gap * 8.4;
     h3 {
       color: color(eden-neutral-1);
-      @include font-family(pt-serif);
       @include font-size(6xl);
       line-height: 63px;
       @include font-weight(bold);
@@ -480,7 +476,14 @@
         align-items: center;
         margin-bottom: $gap + 6;
         &-img {
-          border-radius: 50%;
+          width: 68px;
+          height: 68px;
+          img {
+            border-radius: 50%;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+          }
         }
         &-name {
           margin-bottom: 4px;
@@ -490,7 +493,7 @@
         &-handle {
           line-height: 21px;
           @include font-size(sm);
-          color: color(eden-primary);
+          color: color(eden-green-primary);
         }
       }
       &__description {
@@ -629,7 +632,6 @@
     display: flex;
     flex-direction: column;
     h3 {
-      @include font-family(pt-serif);
       @include font-size(6xl);
       line-height: 55px;
       @include font-weight(bold);
@@ -766,7 +768,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          background-color: color(eden-primary);
+          background-color: color(eden-green-primary);
           border-radius: 4px;
           padding: $gap + 3 $gap + 6 $gap + 3 $gap + 6;
         }
@@ -792,7 +794,6 @@
       padding: $gap * 2.4 0;
 
       h5 {
-        @include font-family(pt-serif);
         @include font-weight(bold);
         line-height: 26px;
         @include font-size(xl);
@@ -894,7 +895,6 @@
     margin-bottom: $gap * 4;
     h3 {
       line-height: 42px;
-      @include font-family(pt-serif);
       @include font-size(4xl);
       @include font-weight(bold);
       color: color(eden-neutral-1);

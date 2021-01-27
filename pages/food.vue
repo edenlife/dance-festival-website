@@ -10,8 +10,8 @@
           <p>
             A food subscription on Eden Life gets you delicious meals prepared
             by our team of chefs.
-          </p>
-          <p>
+            <br />
+            <br />
             No market runs. No prep-time. No delivery fees. Just heat and eat.
           </p>
           <div class="hero__button">
@@ -107,6 +107,25 @@
             </div>
             <p class="card__description" v-html="item.description"></p>
           </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="container--plan">
+      <section class="plan">
+        <div class="plan__title">
+          <h3>
+            The Food Plans:<br />
+            Don't Stress.<br />
+            Just Eat.
+          </h3>
+          <p>
+            Enjoy all the deliciousness of healthy food, right on time, with
+            none of the stress.
+          </p>
+          <ul>
+            <li></li>
+          </ul>
         </div>
       </section>
     </div>

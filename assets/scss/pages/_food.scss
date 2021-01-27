@@ -44,16 +44,14 @@
       @include font-family(pt-serif);
       @include font-weight(bold);
       span {
-        text-decoration: underline;
         color: color(eden-green-primary);
-        // border-bottom: 3px solid color(eden-green-primary);
+        box-shadow: inset 0 -23px 0 #c9f8de;
       }
     }
     p {
-      margin: $gap * 3.6 0 $gap * 4 0;
+      margin: $gap * 3.2 0 $gap * 4 0;
       line-height: 29px;
       @include font-size(lg);
-      @include font-weight(light);
       width: 80%;
     }
   }

@@ -44,83 +44,7 @@
             10x-ing the quality of life<br />
             on the continent.
           </p>
-          <div class="footer__bottom-nav mobile">
-            <ul>
-              <li>
-                <p>Services</p>
-              </li>
-              <li>
-                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
-                  Food
-                </nuxt-link>
-              </li>
-              <li>
-                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
-                  Cleaning
-                </nuxt-link>
-              </li>
-              <li>
-                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
-                  Laundry
-                </nuxt-link>
-              </li>
-              <li>
-                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
-                  Gifting
-                </nuxt-link>
-              </li>
-            </ul>
 
-            <ul>
-              <li>
-                <p>Company</p>
-              </li>
-              <li>
-                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
-                  About Us
-                </nuxt-link>
-              </li>
-              <li>
-                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
-                  Companies
-                </nuxt-link>
-              </li>
-              <li>
-                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
-                  Pricing
-                </nuxt-link>
-              </li>
-            </ul>
-
-            <ul>
-              <li>
-                <p>Other</p>
-              </li>
-              <li>
-                <nuxt-link :to="{ path: '/faq' }" class="footer__bottom-logo">
-                  FAQs
-                </nuxt-link>
-              </li>
-              <li>
-                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
-                  Blog
-                </nuxt-link>
-              </li>
-              <li>
-                <nuxt-link
-                  :to="{ path: '/contact_us' }"
-                  class="footer__bottom-logo"
-                >
-                  Contact us
-                </nuxt-link>
-              </li>
-              <li>
-                <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
-                  Terms &amp; Conditions
-                </nuxt-link>
-              </li>
-            </ul>
-          </div>
           <div class="footer__bottom-social">
             <a href="https://" target="_blank">
               <img
@@ -151,9 +75,11 @@
             {{ new Date().getFullYear() }} Eden Life Inc. All Rights Reserved.
           </p>
         </div>
-
         <div class="footer__bottom-nav">
           <ul>
+            <li>
+              <p>Company</p>
+            </li>
             <li>
               <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
                 About Us
@@ -172,6 +98,9 @@
           </ul>
 
           <ul>
+            <li>
+              <p>Services</p>
+            </li>
             <li>
               <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
                 Food
@@ -195,6 +124,9 @@
           </ul>
 
           <ul>
+            <li>
+              <p>Other</p>
+            </li>
             <li>
               <nuxt-link :to="{ path: '/faq' }" class="footer__bottom-logo">
                 FAQs
@@ -220,6 +152,36 @@
             </li>
           </ul>
         </div>
+
+        <div class="footer__bottom-social mobile">
+          <a href="https://" target="_blank">
+            <img
+              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341806/eden-website-v2/twitter_pxdich.svg"
+              alt="twitter"
+            />
+          </a>
+          <a href="https://" target="_blank">
+            <img
+              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341806/eden-website-v2/instagram_erb6q6.svg"
+              alt="instagram"
+            />
+          </a>
+          <a href="https://" target="_blank">
+            <img
+              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341806/eden-website-v2/facebook_cqsjdf.svg"
+              alt="facebook"
+            />
+          </a>
+          <a href="https://" target="_blank">
+            <img
+              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341816/eden-website-v2/linkedin_utcbna.svg"
+              alt="linkedin"
+            />
+          </a>
+        </div>
+        <p class="footer__bottom-copywright mobile">
+          {{ new Date().getFullYear() }} Eden Life Inc. All Rights Reserved.
+        </p>
       </footer>
     </div>
   </div>

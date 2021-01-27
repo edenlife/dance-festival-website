@@ -124,8 +124,272 @@
             none of the stress.
           </p>
           <ul>
-            <li></li>
+            <li>
+              <h5 class="icon icon--one">👀</h5>
+              <div class="icon--text">
+                <h5>No hidden payments.</h5>
+                <p>Yessir.</p>
+              </div>
+            </li>
+            <li>
+              <h5 class="icon icon--two">🚛</h5>
+              <div class="icon--text">
+                <h5>No hidden delivery fees.</h5>
+                <p>100%</p>
+              </div>
+            </li>
+            <li>
+              <h5 class="icon icon--three">👼</h5>
+              <div class="icon--text">
+                <h5>Cancel anytime.</h5>
+                <p>On God!</p>
+              </div>
+            </li>
           </ul>
+        </div>
+
+        <div class="plan__price">
+          <ul>
+            <li
+              :class="{ active: period === 'weekly' }"
+              @click.prevent="period = 'weekly'"
+            >
+              <span> Daily Delivery </span>
+              <svg
+                v-if="period === 'weekly'"
+                width="6"
+                height="6"
+                viewBox="0 0 6 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="3" cy="3" r="3" fill="#61DB98" />
+              </svg>
+            </li>
+            <li
+              :class="{ active: period === 'monthly' }"
+              @click.prevent="period = 'monthly'"
+            >
+              <span> Weekly delivery </span>
+              <svg
+                v-if="period === 'monthly'"
+                width="6"
+                height="6"
+                viewBox="0 0 6 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="3" cy="3" r="3" fill="#61DB98" />
+              </svg>
+            </li>
+          </ul>
+          <transition name="slide-fade">
+            <div v-if="period === 'weekly'" class="plan__price-weekly">
+              <div>
+                <img
+                  src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611757237/eden-website-v2/food-image1_cppzzn.png"
+                  alt="Meal"
+                />
+              </div>
+              <div class="plan__price-item">
+                <p>How many meals do you want to eat daily?</p>
+                <div class="btn--group">
+                  <button
+                    class="btn--item minus"
+                    @click="decreaseOrder('weekly')"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5 12H19"
+                        stroke="#21312A"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  <input
+                    id=""
+                    v-model="weekly"
+                    type="text"
+                    name=""
+                    placeholder="0"
+                  />
+                  <button
+                    class="btn--item plus"
+                    @click="increaseOrder('weekly')"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 5V19"
+                        stroke="#21312A"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M5 12H19"
+                        stroke="#21312A"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="plan__price-bottom">
+                <h5>
+                  <span class="price">Price </span>
+                  <span class="icon">👉 </span> NGN 36,000.00
+                </h5>
+                <p>Weekly</p>
+              </div>
+            </div>
+          </transition>
+          <transition name="slide-fade">
+            <div v-if="period === 'monthly'" class="plan__price-monthly">
+              <div class="plan__price-item">
+                <p>How many meals do you want to eat weekly?</p>
+                <div class="btn--group">
+                  <button
+                    class="btn--item minus"
+                    @click="decreaseOrder('weekly')"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5 12H19"
+                        stroke="#21312A"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  <input
+                    id=""
+                    v-model="weekly"
+                    type="text"
+                    name=""
+                    placeholder="0"
+                  />
+                  <button
+                    class="btn--item plus"
+                    @click="increaseOrder('weekly')"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 5V19"
+                        stroke="#21312A"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M5 12H19"
+                        stroke="#21312A"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="plan__price-item">
+                <p>
+                  Should all your food delivered be once or twice in a week?
+                </p>
+                <div class="btn--group">
+                  <button
+                    class="btn--item minus"
+                    @click="decreaseOrder('weekly')"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5 12H19"
+                        stroke="#21312A"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  <input
+                    id=""
+                    v-model="weekly"
+                    type="text"
+                    name=""
+                    placeholder="0"
+                  />
+                  <button
+                    class="btn--item plus"
+                    @click="increaseOrder('weekly')"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 5V19"
+                        stroke="#21312A"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M5 12H19"
+                        stroke="#21312A"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="plan__price-bottom">
+                <h5>
+                  <span class="price">Price </span>
+                  <span class="icon">👉 </span> NGN 96,000.00
+                </h5>
+                <p>Monthly</p>
+              </div>
+            </div>
+          </transition>
         </div>
       </section>
     </div>
@@ -321,7 +585,32 @@ export default {
       setExploreService: false,
       exploreService: '',
       messageList: foodMessages,
+      weekly: 1,
+      weekly_price: null,
+      period: 'weekly',
     }
+  },
+  watch: {
+    weekly(val) {
+      const weeklyDefault = 24500
+      this.weekly_price = weeklyDefault * val
+    },
+  },
+  methods: {
+    increaseOrder(order) {
+      if (order === 'weekly') {
+        this.weekly++
+        const weeklyDefault = 24500
+        this.weekly_price = weeklyDefault * this.weekly
+      }
+    },
+    decreaseOrder(order) {
+      if (order === 'weekly' && this.weekly > 1) {
+        this.weekly--
+        const weeklyDefault = 24500
+        this.weekly_price = this.weekly - weeklyDefault
+      }
+    },
   },
 }
 </script>

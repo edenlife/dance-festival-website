@@ -333,6 +333,10 @@ export default {
         return {
           'background-color': '#F6FFFA',
         }
+      } else if (path.includes('laundry')) {
+        return {
+          'background-color': '#F7F8FE',
+        }
       } else if (path.includes('terms_and_condition')) {
         return {
           'background-color': '#ffffff',

@@ -4,15 +4,13 @@
       <header class="hero">
         <div class="hero__title">
           <h1>
-            Enjoy <span> Pasta</span> <br />
-            Ready in 5 minutes
+            Save your <span> Time</span> <br />
+            Clean clothes on repeat.
           </h1>
           <p>
-            A food subscription on Eden Life gets you delicious meals prepared
-            by our team of chefs.
-            <br />
-            <br />
-            No market runs. No prep-time. No delivery fees. Just heat and eat.
+            Getting an Eden Life laundry plan means we'll pick up your dirty
+            laundry and bring back your clean clothes, folded or ironed, within
+            48 hours.
           </p>
           <div class="hero__button">
             <button type="button" class="hero__button-solid">
@@ -83,23 +81,23 @@
               <div class="one">
                 <h5>Choose your plan</h5>
                 <p>
-                  Sign-up on the Eden Life app. Then choose the meals you want
-                  from our menu for the week, select how often you'd like your
-                  meals, and pay.
+                  Sign-up on the Eden Life app. Choose the number of laundry
+                  bags you need cleaned. Select how often you'd like us to do
+                  your laundry in a month, and pay.
                 </p>
               </div>
               <div class="two">
-                <h5>We get cookin'</h5>
+                <h5>We pickup and clean</h5>
                 <p>
-                  Our team of expert chefs take it from here, preparing your
-                  culinary fantasies with the freshest ingredients.
+                  We come over to your home/office and pick up your dirty
+                  laundry. Then we wash, dry, and press to perfection.
                 </p>
               </div>
               <div class="three">
                 <h5>We deliver!</h5>
                 <p>
-                  Food is ready and on it's way to you. You can eat immediately
-                  or freeze for later. Oh...and no extra delivery charge!
+                  That's it. Your fresh clothes are ready and on their way to
+                  you. All within 48 hrs.
                 </p>
               </div>
               <button type="button" class="btn">Get the app</button>
@@ -111,45 +109,13 @@
       </section>
     </div>
 
-    <div class="container--menu">
-      <section class="menu">
-        <div class="menu__title">
-          <h3>Next week’s menu</h3>
-          <p>12 Nov 2021 - 19 Nov 2021</p>
-        </div>
-        <nav class="menu__nav">
-          <nuxt-link
-            v-for="(tab, index) in tabs"
-            :key="index"
-            :to="{ path: `/food#${tab.id}` }"
-            @click.prevent="activeTabIndex = index"
-          >
-            <p :class="`${activeTabIndex === index ? 'active' : ''}`">
-              {{ tab.title }}
-            </p>
-            <svg
-              v-if="activeTabIndex === index"
-              width="6"
-              height="6"
-              viewBox="0 0 6 6"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="3" cy="3" r="3" fill="#61DB98" />
-            </svg>
-          </nuxt-link>
-        </nav>
-        <div class="menu__list"></div>
-      </section>
-    </div>
-
     <div class="container--wall">
       <section class="wall">
         <div class="wall__title">
-          <h3>The wall of 💚</h3>
+          <h3>💚 notes <br />cos’ errbody <br />loves us</h3>
         </div>
         <div class="wall__messages">
-          <div v-for="(item, i) in messageList" :key="i" class="card">
+          <div v-for="(item, i) in LaundryMessage" :key="i" class="card">
             <div class="card__title">
               <div class="card__title-img">
                 <img
@@ -173,13 +139,13 @@
       <section class="plan">
         <div class="plan__title">
           <h3>
-            The Food Plans:<br />
-            Don't Stress.<br />
-            Just Eat.
+            The Laundry Plans:<br />
+            We handle the laundry.<br />
+            You enjoy the leisure.
           </h3>
           <p>
-            Enjoy all the deliciousness of healthy food, right on time, with
-            none of the stress.
+            Each laundry bag contains up to 35 clothing items, and you can track
+            your order on the app.
           </p>
           <ul>
             <li>
@@ -212,7 +178,7 @@
               :class="{ active: period === 'weekly' }"
               @click.prevent="period = 'weekly'"
             >
-              <span> Daily Delivery </span>
+              <span> Wash, Dry & Fold</span>
               <svg
                 v-if="period === 'weekly'"
                 width="6"
@@ -228,7 +194,7 @@
               :class="{ active: period === 'monthly' }"
               @click.prevent="period = 'monthly'"
             >
-              <span> Weekly delivery </span>
+              <span> Wash, Fold & Iron </span>
               <svg
                 v-if="period === 'monthly'"
                 width="6"
@@ -460,21 +426,16 @@
         </div>
         <div class="options__service">
           <div
-            class="options__service-item options__service-laundry"
-            @mouseenter.stop="exploreService = 'laundry'"
+            class="options__service-item options__service-food"
+            @mouseenter.stop="exploreService = 'food'"
             @mouseleave.stop="exploreService = ''"
           >
             <h3>🧺</h3>
-            <h5>Laundry</h5>
-            <p>
-              Your clothes, picked up, laundered and delivered to you in 48
-              hours or less.
-            </p>
+            <h5>Food</h5>
+            <p>Your chef-cooked meals, delivered to you. Daily or weekly.</p>
             <nuxt-link :to="{ path: '/' }" class="btn">
               {{
-                exploreService === 'laundry' || setExploreService
-                  ? 'Explore'
-                  : ''
+                exploreService === 'food' || setExploreService ? 'Explore' : ''
               }}
               <svg
                 width="14"
@@ -484,15 +445,15 @@
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M8.85625 0.673433C8.61719 0.907808 8.61719 1.29687 8.85156 1.53593L11.7016 4.39062H0.854688C0.521875 4.39062 0.25 4.6625 0.25 5C0.25 5.3375 0.521875 5.60937 0.854688 5.60937H11.6969L8.84687 8.46406C8.6125 8.70312 8.61719 9.0875 8.85156 9.32656C9.09062 9.56093 9.47031 9.56094 9.70937 9.32187L13.5719 5.43125C13.6234 5.375 13.6656 5.31406 13.6984 5.23906C13.7312 5.16406 13.7453 5.08437 13.7453 5.00468C13.7453 4.84531 13.6844 4.69531 13.5719 4.57812L9.70937 0.687496C9.47969 0.443746 9.09531 0.439058 8.85625 0.673433Z"
-                  fill="#7189FF"
+                  d="M8.85625 0.673555C8.61719 0.90793 8.61719 1.29699 8.85156 1.53606L11.7016 4.39074H0.854688C0.521875 4.39074 0.25 4.66262 0.25 5.00012C0.25 5.33762 0.521875 5.60949 0.854688 5.60949H11.6969L8.84687 8.46418C8.6125 8.70324 8.61719 9.08762 8.85156 9.32668C9.09062 9.56106 9.47031 9.56106 9.70937 9.32199L13.5719 5.43137C13.6234 5.37512 13.6656 5.31418 13.6984 5.23918C13.7312 5.16418 13.7453 5.08449 13.7453 5.00481C13.7453 4.84543 13.6844 4.69543 13.5719 4.57824L9.70937 0.687618C9.47969 0.443868 9.09531 0.43918 8.85625 0.673555Z"
+                  fill="#106A39"
                 />
               </svg>
             </nuxt-link>
             <div class="options__service-bg">
               <img
-                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611306544/eden-website-v2/laundry-img1_ijsx4k.png"
-                alt="laundry"
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611318743/eden-website-v2/food-img1_ls530a.png"
+                alt="food"
               />
             </div>
           </div>
@@ -575,84 +536,40 @@
 </template>
 
 <script>
-import foodMessages from '~/static/foodMessages'
-
 export default {
-  beforeRouteEnter(to, from, next) {
-    const tab = to.hash.replace('#', '')
-    next((vm) => {
-      vm.activeTabIndex = 0
-      vm.tabs.forEach((item, index) => {
-        if (item.id === tab) {
-          vm.activeTabIndex = index
-        }
-      })
-    })
-  },
-  beforeRouteUpdate(to, from, next) {
-    const tab = to.hash.replace('#', '')
-    this.activeTabIndex = 0
-    this.tabs.forEach((item, index) => {
-      if (item.id === tab) {
-        this.activeTabIndex = index
-      }
-    })
-    next()
-  },
   data() {
     return {
-      activeTabIndex: null,
-      tabs: [
+      LaundryMessage: [
         {
-          id: '',
-          title: 'Continental Breakfast',
+          name: 'justin irabor',
+          image: 'justin',
+          description: `Under normal circumstances (since I'm always at home), it would make sense for me to wear as few clothes as possible and change them as sparingly as possible.<br><br>
+          But I don't live under normal circumstances. I have an 
+          <span style="color:#03A84E"> @ouredenlife </span>laundry subscription.`,
+          handle: 'LifeOfMogwai',
         },
         {
-          id: 'healthy-salad',
-          title: 'Healthy Salad',
+          name: 'Tolu Ajiboye',
+          image: 'tolu',
+          description: `Bruh the actual worst. I haven’t done my own laundry in years. It’s even so stress-free now that I use <span style="color:#03A84E"> @ouredenlife </span>. I literally just put every single item into my laundry bag and they come pick it up and drop it back.`,
+          handle: 'Yesmina_T',
         },
         {
-          id: 'noodles-pasta',
-          title: 'Noodles & Pasta',
+          name: 'Timi Ajiboye',
+          image: 'timi',
+          description: `Things “just working” with little input from me, makes me happy. I really like my laundry process now (<span style="color:#03A84E"> @ouredenlife </span> is a big part of that)`,
+          handle: 'timigod',
         },
         {
-          id: 'rice',
-          title: 'Rice',
-        },
-        {
-          id: 'sauces',
-          title: 'Sauces',
-        },
-        {
-          id: 'seafood-chinese',
-          title: 'Seafood and Chinese',
-        },
-        {
-          id: 'sides',
-          title: 'Sides',
-        },
-        {
-          id: 'Soups',
-          title: 'soups',
-        },
-        {
-          id: 'Swallow',
-          title: 'swallow',
+          name: 'Ash.',
+          image: 'ash',
+          description: `<span style="color:#03A84E"> @ouredenlife </span>'s laundry service is excellent! 👏🏾👏🏾👏🏾 10/10 will recommend.`,
+          handle: 'hey_ashiwel',
         },
       ],
       setExploreService: false,
       exploreService: '',
-      messageList: foodMessages,
-      weekly: 1,
-      weekly_price: null,
-      period: 'weekly',
     }
-  },
-  watch: {
-    weekly(val) {
-      const weeklyDefault = 24500
-      this.weekly_price = weeklyDefault * val
-    },
   },
   methods: {
     increaseOrder(order) {
@@ -674,5 +591,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/pages/_food.scss';
+@import '@/assets/scss/pages/_laundry.scss';
 </style>

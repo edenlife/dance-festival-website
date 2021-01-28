@@ -277,18 +277,6 @@
       }
     }
     &-laundry {
-      background-color: color(eden-orange-50);
-      .services__type-bg {
-        box-shadow: 8px 8px 0px #ffac76;
-      }
-      &:hover {
-        .btn {
-          background-color: color(eden-orange-100);
-          padding: $gap - 2 $gap * 1.6;
-        }
-      }
-    }
-    &-cleaning {
       background-color: color(eden-purple-100);
       .services__type-bg {
         box-shadow: 8px 8px 0px #a0b0fe;
@@ -296,6 +284,18 @@
       &:hover {
         .btn {
           background-color: color(eden-purple-150);
+          padding: $gap - 2 $gap * 1.6;
+        }
+      }
+    }
+    &-cleaning {
+      background-color: color(eden-orange-50);
+      .services__type-bg {
+        box-shadow: 8px 8px 0px #ffac76;
+      }
+      &:hover {
+        .btn {
+          background-color: color(eden-orange-100);
           padding: $gap - 2 $gap * 1.6;
         }
       }

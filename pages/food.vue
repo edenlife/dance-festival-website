@@ -53,6 +53,48 @@
       </header>
     </div>
 
+    <div class="container--description">
+      <section class="description">
+        <div class="description__title">
+          <h3>How it works</h3>
+        </div>
+        <div class="description__body">
+          <div class="description__slider">
+            <div class="description__slider-timeline">
+              <span class="slide"></span>
+            </div>
+            <div class="description__slider-text">
+              <div class="one">
+                <h5>Choose your plan</h5>
+                <p>
+                  Sign-up on the Eden Life app. Then choose the meals you want
+                  from our menu for the week, select how often you'd like your
+                  meals, and pay.
+                </p>
+              </div>
+              <div class="two">
+                <h5>We get cookin'</h5>
+                <p>
+                  Our team of expert chefs take it from here, preparing your
+                  culinary fantasies with the freshest ingredients.
+                </p>
+              </div>
+              <div class="three">
+                <h5>We deliver!</h5>
+                <p>
+                  Food is ready and on it's way to you. You can eat immediately
+                  or freeze for later. Oh...and no extra delivery charge!
+                </p>
+              </div>
+              <button type="button" class="btn">Get the app</button>
+            </div>
+          </div>
+
+          <div class="description__video"></div>
+        </div>
+      </section>
+    </div>
+
     <div class="container--menu">
       <section class="menu">
         <div class="menu__title">

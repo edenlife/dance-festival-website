@@ -58,10 +58,26 @@
         <div class="description__title">
           <h3>How it works</h3>
         </div>
+
         <div class="description__body">
           <div class="description__slider">
             <div class="description__slider-timeline">
-              <span class="slide"></span>
+              <svg
+                width="28"
+                height="407"
+                viewBox="0 0 28 407"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect x="13" y="4" width="2" height="400" />
+                <path d="M13 4H15V219H13V4Z" fill="#61DB98" />
+                <circle cx="14" cy="4" r="4" fill="#03A84E" />
+                <circle opacity="0.1" cx="14" cy="216" r="14" />
+                <circle opacity="0.1" cx="14" cy="216" r="9" />
+                <circle cx="14" cy="216" r="4" />
+                <circle cx="14" cy="402" r="4" />
+              </svg>
+              <!--<span class="slide">  </span> -->
             </div>
             <div class="description__slider-text">
               <div class="one">

@@ -166,13 +166,16 @@
     gap: $gap * 3.5;
     &-timeline {
       margin-top: $gap + 5;
-      background-color: color(eden-neutral-6);
-      width: 2px;
-      height: 400px;
-      margin-left: $gap * 2;
-      position: relative;
-      z-index: 5;
-      cursor: pointer;
+      // background-color: color(eden-neutral-6);
+      // width: 2px;
+      // height: 400px;
+      // margin-left: $gap * 2;
+      // position: relative;
+      // z-index: 5;
+      // cursor: pointer;
+      svg {
+        fill: color(eden-neutral-6);
+      }
       .slide {
         height: 0%;
         width: 100%;
@@ -222,13 +225,22 @@
       .one {
       }
       .two {
+        color: color(eden-neutral-5);
       }
       .three {
+        color: color(eden-neutral-5);
       }
     }
   }
   &__video {
     flex: 0 0 50%;
+  }
+
+  @include respond(md) {
+  }
+  @include respond(xxl) {
+    max-width: 1440px;
+    margin: 0 auto;
   }
 }
 

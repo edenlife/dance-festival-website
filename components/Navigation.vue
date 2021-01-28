@@ -56,7 +56,7 @@
                     @mouseleave.stop="service = ''"
                   >
                     <nuxt-link
-                      :to="{ path: '/service/food' }"
+                      :to="{ path: '/food' }"
                       class="service__list-item"
                     >
                       <span>🥘</span>
@@ -108,7 +108,7 @@
                     @mouseleave.stop="service = ''"
                   >
                     <nuxt-link
-                      :to="{ path: '/service/food' }"
+                      :to="{ path: '/laundry' }"
                       class="service__list-item"
                     >
                       <span>🧺</span>
@@ -161,7 +161,7 @@
                     @mouseleave.stop="service = ''"
                   >
                     <nuxt-link
-                      :to="{ path: '/service/food' }"
+                      :to="{ path: '/cleaning' }"
                       class="service__list-item"
                     >
                       <span>🏠</span>
@@ -214,7 +214,7 @@
                     @mouseleave.stop="service = ''"
                   >
                     <nuxt-link
-                      :to="{ path: '/service/food' }"
+                      :to="{ path: '/gifting' }"
                       class="service__list-item"
                     >
                       <span>🎁</span>
@@ -267,7 +267,7 @@
           </div>
         </li>
         <li>
-          <nuxt-link :to="{ path: '/pricing' }" class="navigation__menu-item">
+          <nuxt-link :to="{ path: '/' }" class="navigation__menu-item">
             Pricing
           </nuxt-link>
         </li>

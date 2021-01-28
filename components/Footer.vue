@@ -81,12 +81,15 @@
               <p>Company</p>
             </li>
             <li>
-              <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+              <nuxt-link :to="{ path: '/about' }" class="footer__bottom-logo">
                 About Us
               </nuxt-link>
             </li>
             <li>
-              <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+              <nuxt-link
+                :to="{ path: '/companies' }"
+                class="footer__bottom-logo"
+              >
                 Companies
               </nuxt-link>
             </li>
@@ -102,22 +105,25 @@
               <p>Services</p>
             </li>
             <li>
-              <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+              <nuxt-link :to="{ path: '/food' }" class="footer__bottom-logo">
                 Food
               </nuxt-link>
             </li>
             <li>
-              <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+              <nuxt-link
+                :to="{ path: '/cleaning' }"
+                class="footer__bottom-logo"
+              >
                 Cleaning
               </nuxt-link>
             </li>
             <li>
-              <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+              <nuxt-link :to="{ path: '/laundry' }" class="footer__bottom-logo">
                 Laundry
               </nuxt-link>
             </li>
             <li>
-              <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+              <nuxt-link :to="{ path: '/gifting' }" class="footer__bottom-logo">
                 Gifting
               </nuxt-link>
             </li>

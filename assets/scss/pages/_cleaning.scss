@@ -695,8 +695,9 @@
           .number {
             @include font-weight(medium);
           }
-          .bag {
-            display: none;
+          &:first-child {
+            @include font-size(sm);
+            line-height: 21px;
           }
         }
         .btn {
@@ -710,9 +711,13 @@
             padding: $gap + 6;
           }
           &--freq {
-            padding: $gap + 6;
+            padding: $gap - 4 $gap + 2;
             @include font-size(sm);
             line-height: 22px;
+            &:active,
+            &:hover {
+              border: 1px solid #03a84e;
+            }
           }
         }
       }

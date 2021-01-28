@@ -341,6 +341,10 @@ export default {
         return {
           'background-color': '#FFFCFA',
         }
+      } else if (path.includes('about_us')) {
+        return {
+          'background-color': '#F7FDFF',
+        }
       } else if (path.includes('terms_and_condition')) {
         return {
           'background-color': '#ffffff',

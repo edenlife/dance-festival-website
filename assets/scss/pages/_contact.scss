@@ -94,6 +94,7 @@
         @include font-size(xl);
         line-height: 26px;
         @include font-weight(bold);
+        color: color(eden-neutral-1);
       }
       p {
         text-align: center;

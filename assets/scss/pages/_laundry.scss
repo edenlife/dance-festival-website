@@ -31,7 +31,7 @@
   &--plan {
     background-color: color(eden-green-senary);
     background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611823993/eden-website-v2/bg-8_d6l9kg.svg');
-    background-position: bottom 15% right 15%;
+    background-position: bottom 18% right 15%;
     background-repeat: no-repeat;
   }
 }
@@ -380,7 +380,7 @@
   }
 
   &__price {
-    height: 555px;
+    // height: 517px;
     flex: 0 0 50%;
     border: 1px solid #e4e8e6;
     border-radius: 8px;
@@ -392,7 +392,7 @@
       justify-content: space-around;
       align-items: flex-start;
       border-bottom: 1px solid #e4e8e6;
-      margin-bottom: $gap * 3.2;
+      margin-bottom: $gap * 4.8;
 
       li {
         list-style: none;
@@ -414,14 +414,9 @@
         }
       }
     }
-    &-weekly {
-      img {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-      }
+    &-wfd {
     }
-    &-monthly {
+    &-wfi {
       .plan__price-item {
         p {
           margin-top: $gap * 4;
@@ -442,13 +437,20 @@
         line-height: 24px;
         @include font-size(base);
         color: color(eden-neutral-1);
+        display: flex;
+        justify-content: space-between;
+        .number {
+          @include font-weight(medium);
+        }
+        .bag {
+          @include font-weight(light);
+        }
       }
       .btn {
         &--group {
           display: flex;
           justify-content: space-between;
           align-items: stretch;
-
           input {
             color: color(eden-neutral-1);
             border: none;
@@ -474,6 +476,37 @@
             border-radius: 8px 0px 0px 8px;
           }
         }
+        &--freq {
+          flex: 0 0 33.3%;
+          color: color(eden-neutral-4);
+          background-color: color(eden-neutral-7);
+          padding: $gap + 5;
+          border: 1px solid #e4e8e6;
+          cursor: pointer;
+          @include font-size(lg);
+          @include font-weight(light);
+          line-height: 29px;
+          transition: all 0.4s ease-in-out;
+
+          &:active,
+          &:hover {
+            border: 2px solid #03a84e;
+          }
+          &:nth-child(1) {
+            border-radius: 8px 0px 0px 8px;
+          }
+          &:nth-child(2) {
+            border-left: none;
+            border-right: none;
+            &:active,
+            &:hover {
+              border: 2px solid #03a84e;
+            }
+          }
+          &:nth-child(3) {
+            border-radius: 0px 8px 8px 0px;
+          }
+        }
       }
     }
 
@@ -481,7 +514,9 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      margin: $gap * 4 0;
+      margin-top: $gap * 6;
+      margin-bottom: $gap * 2.6;
+
       color: color(eden-neutral-1);
       h5 {
         @include font-family(cerebri);

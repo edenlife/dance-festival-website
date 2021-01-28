@@ -175,12 +175,12 @@
         <div class="plan__price">
           <ul>
             <li
-              :class="{ active: period === 'weekly' }"
-              @click.prevent="period = 'weekly'"
+              :class="{ active: plan === 'wdf' }"
+              @click.prevent="plan = 'wdf'"
             >
               <span> Wash, Dry & Fold</span>
               <svg
-                v-if="period === 'weekly'"
+                v-if="plan === 'wdf'"
                 width="6"
                 height="6"
                 viewBox="0 0 6 6"
@@ -191,12 +191,12 @@
               </svg>
             </li>
             <li
-              :class="{ active: period === 'monthly' }"
-              @click.prevent="period = 'monthly'"
+              :class="{ active: plan === 'wfi' }"
+              @click.prevent="plan = 'wfi'"
             >
               <span> Wash, Fold & Iron </span>
               <svg
-                v-if="period === 'monthly'"
+                v-if="plan === 'wfi'"
                 width="6"
                 height="6"
                 viewBox="0 0 6 6"
@@ -207,21 +207,16 @@
               </svg>
             </li>
           </ul>
+          <!--  -->
           <transition name="slide-fade">
-            <div v-if="period === 'weekly'" class="plan__price-weekly">
-              <div>
-                <img
-                  src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611757237/eden-website-v2/food-image1_cppzzn.png"
-                  alt="Meal"
-                />
-              </div>
+            <div v-if="plan === 'wdf'" class="plan__price-wdf">
               <div class="plan__price-item">
-                <p>How many meals do you want to eat daily?</p>
+                <p>
+                  <span class="number">Number of laundry bags</span>
+                  <span class="bag">Approx 30 items per bag</span>
+                </p>
                 <div class="btn--group">
-                  <button
-                    class="btn--item minus"
-                    @click="decreaseOrder('weekly')"
-                  >
+                  <button class="btn--item minus" @click="decreaseOrder('wdf')">
                     <svg
                       width="24"
                       height="24"
@@ -240,15 +235,12 @@
                   </button>
                   <input
                     id=""
-                    v-model="weekly"
+                    v-model="wdf"
                     type="text"
                     name=""
                     placeholder="0"
                   />
-                  <button
-                    class="btn--item plus"
-                    @click="increaseOrder('weekly')"
-                  >
+                  <button class="btn--item plus" @click="increaseOrder('wdf')">
                     <svg
                       width="24"
                       height="24"
@@ -271,6 +263,20 @@
                         stroke-linejoin="round"
                       />
                     </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="plan__price-item">
+                <p><span class="number">Frequency</span></p>
+                <div class="btn--group">
+                  <button class="btn--freq" @click="decreaseOrder('wdf')">
+                    Once a week
+                  </button>
+                  <button class="btn--freq" @click="increaseOrder('wdf')">
+                    Every 2 weeks
+                  </button>
+                  <button class="btn--freq" @click="increaseOrder('wdf')">
+                    Once a month
                   </button>
                 </div>
               </div>
@@ -279,19 +285,19 @@
                   <span class="price">Price </span>
                   <span class="icon">👉 </span> NGN 36,000.00
                 </h5>
-                <p>Weekly</p>
+                <p>Monthly</p>
               </div>
             </div>
           </transition>
           <transition name="slide-fade">
-            <div v-if="period === 'monthly'" class="plan__price-monthly">
+            <div v-if="plan === 'wfi'" class="plan__price-wdf">
               <div class="plan__price-item">
-                <p>How many meals do you want to eat weekly?</p>
+                <p>
+                  <span class="number">Number of laundry bags</span>
+                  <span class="bag">Approx 30 items per bag</span>
+                </p>
                 <div class="btn--group">
-                  <button
-                    class="btn--item minus"
-                    @click="decreaseOrder('weekly')"
-                  >
+                  <button class="btn--item minus" @click="decreaseOrder('wdf')">
                     <svg
                       width="24"
                       height="24"
@@ -310,15 +316,12 @@
                   </button>
                   <input
                     id=""
-                    v-model="weekly"
+                    v-model="wdf"
                     type="text"
                     name=""
                     placeholder="0"
                   />
-                  <button
-                    class="btn--item plus"
-                    @click="increaseOrder('weekly')"
-                  >
+                  <button class="btn--item plus" @click="increaseOrder('wdf')">
                     <svg
                       width="24"
                       height="24"
@@ -345,70 +348,23 @@
                 </div>
               </div>
               <div class="plan__price-item">
-                <p>
-                  Should all your food delivered be once or twice in a week?
-                </p>
+                <p><span class="number">Frequency</span></p>
                 <div class="btn--group">
-                  <button
-                    class="btn--item minus"
-                    @click="decreaseOrder('weekly')"
-                  >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M5 12H19"
-                        stroke="#21312A"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
+                  <button class="btn--freq" @click="decreaseOrder('wdf')">
+                    Once a week
                   </button>
-                  <input
-                    id=""
-                    v-model="weekly"
-                    type="text"
-                    name=""
-                    placeholder="0"
-                  />
-                  <button
-                    class="btn--item plus"
-                    @click="increaseOrder('weekly')"
-                  >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 5V19"
-                        stroke="#21312A"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                      <path
-                        d="M5 12H19"
-                        stroke="#21312A"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
+                  <button class="btn--freq" @click="increaseOrder('wdf')">
+                    Every 2 weeks
+                  </button>
+                  <button class="btn--freq" @click="increaseOrder('wdf')">
+                    Once a month
                   </button>
                 </div>
               </div>
               <div class="plan__price-bottom">
                 <h5>
                   <span class="price">Price </span>
-                  <span class="icon">👉 </span> NGN 96,000.00
+                  <span class="icon">👉 </span> NGN 36,000.00
                 </h5>
                 <p>Monthly</p>
               </div>
@@ -569,6 +525,9 @@ export default {
       ],
       setExploreService: false,
       exploreService: '',
+      wdf: 1,
+      wfi: 1,
+      plan: 'wdf',
     }
   },
   methods: {

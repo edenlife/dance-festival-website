@@ -4,8 +4,12 @@
       <header class="hero">
         <div class="hero__title">
           <h1>
-            Spend your energy<br />
-            <span> on Being Better</span>
+            Spend your energy on<br />
+            <span> Being Better</span>
+          </h1>
+          <h1 class="mobile">
+            Spend your energy on
+            <span> Being Better</span>
           </h1>
           <p>
             Let Eden Life handle your home's self-care routine

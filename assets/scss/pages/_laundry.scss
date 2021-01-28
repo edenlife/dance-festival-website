@@ -123,7 +123,7 @@
 
   @include respond(md) {
     flex-direction: column;
-    padding: $gap * 10 0 $gap * 22.3 0;
+    padding: $gap * 6.8 0 $gap * 22.3 0;
 
     width: 100%;
     &__title {
@@ -137,7 +137,7 @@
         line-height: 24px;
         @include font-size(base);
         margin: $gap * 2.4 auto $gap * 5.5 auto;
-        width: 90%;
+        width: 78%;
       }
     }
     &__button {

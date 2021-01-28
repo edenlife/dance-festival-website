@@ -81,7 +81,10 @@
               <p>Company</p>
             </li>
             <li>
-              <nuxt-link :to="{ path: '/about' }" class="footer__bottom-logo">
+              <nuxt-link
+                :to="{ path: '/about_us' }"
+                class="footer__bottom-logo"
+              >
                 About Us
               </nuxt-link>
             </li>

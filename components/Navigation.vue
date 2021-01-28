@@ -9,7 +9,7 @@
       </nuxt-link>
       <ul class="navigation__menu">
         <li>
-          <nuxt-link :to="{ path: '/about' }" class="navigation__menu-item">
+          <nuxt-link :to="{ path: '/about_us' }" class="navigation__menu-item">
             About Us
           </nuxt-link>
         </li>
@@ -344,6 +344,10 @@ export default {
       } else if (path.includes('about_us')) {
         return {
           'background-color': '#F7FDFF',
+        }
+      } else if (path.includes('companies')) {
+        return {
+          'background-color': '#F7F8FE',
         }
       } else if (path.includes('terms_and_condition')) {
         return {

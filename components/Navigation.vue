@@ -337,6 +337,10 @@ export default {
         return {
           'background-color': '#F7F8FE',
         }
+      } else if (path.includes('cleaning')) {
+        return {
+          'background-color': '#FFFCFA',
+        }
       } else if (path.includes('terms_and_condition')) {
         return {
           'background-color': '#ffffff',

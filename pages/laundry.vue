@@ -14,7 +14,7 @@
           </p>
           <div class="hero__button">
             <button type="button" class="hero__button-solid">
-              See our menu
+              Start Your Eden Life
             </button>
             <button type="button" class="hero__button-link">
               <svg
@@ -61,6 +61,7 @@
           <div class="description__slider">
             <div class="description__slider-timeline">
               <svg
+                class="vertical"
                 width="28"
                 height="407"
                 viewBox="0 0 28 407"
@@ -524,13 +525,31 @@ export default {
         },
       ],
       setExploreService: false,
+      window: {
+        width: 0,
+        height: 0,
+      },
       exploreService: '',
       wdf: 1,
       wfi: 1,
       plan: 'wdf',
     }
   },
+  mounted() {
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize()
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.handleResize)
+  },
   methods: {
+    handleResize() {
+      this.window.width = window.innerWidth
+      this.window.height = window.innerHeight
+      if (this.window.width < '768') {
+        this.setExploreService = true
+      } else this.setExploreService = false
+    },
     increaseOrder(order) {
       if (order === 'weekly') {
         this.weekly++

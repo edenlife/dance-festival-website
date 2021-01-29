@@ -18,6 +18,9 @@
       url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611747469/eden-website-v2/bg7_bpblhs.svg');
     background-position: top 30% right, bottom 15% left 20%;
     background-repeat: no-repeat;
+    @include respond(md) {
+      background-position: top 15% right, bottom 15% left 20%;
+    }
   }
   &--options {
     background: color(eden-neutral-7)
@@ -31,7 +34,14 @@
   }
 
   &--plan {
-    background: color(eden-green-senary);
+    background-color: color(eden-green-senary);
+    background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611834564/eden-website-v2/bg-8_d0hgzi.svg');
+    background-position: bottom 15% right 15%;
+    background-repeat: no-repeat;
+    @include respond(md) {
+      background-position: bottom 3% right 15%;
+      background-size: 30%;
+    }
   }
 }
 

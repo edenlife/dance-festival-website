@@ -50,6 +50,9 @@
       line-height: 70px;
       @include font-size(8xl);
       @include font-weight(bold);
+      &.mobile {
+        display: none;
+      }
       span {
         color: color(eden-green-primary);
         box-shadow: inset 0 -23px 0 #c9f8de;
@@ -115,6 +118,10 @@
       h1 {
         line-height: 47px;
         @include font-size(5xl);
+        display: none;
+        &.mobile {
+          display: block;
+        }
       }
       p {
         line-height: 24px;
@@ -237,6 +244,59 @@
   }
 
   @include respond(md) {
+    width: 100%;
+    padding: $gap * 6.4 0;
+
+    &__title {
+      text-align: center;
+      margin-bottom: $gap * 5.2;
+      h3 {
+        @include font-size(3xl);
+        line-height: 36px;
+      }
+    }
+    &__body {
+      flex-direction: column;
+    }
+    &__slider {
+      flex-direction: column;
+      width: 100%;
+      &-timeline {
+        .vertical {
+          display: none;
+        }
+      }
+      &-text {
+        overflow: auto;
+        display: flex;
+        justify-content: space-between;
+        gap: $gap * 4.8;
+        margin-right: $gap * 4;
+        h5 {
+          text-align: center;
+          line-height: 26px;
+          @include font-size(xl);
+          margin-bottom: $gap + 6;
+        }
+        p {
+          line-height: 24px;
+          @include font-size(base);
+          margin-bottom: 0;
+          width: 100%;
+          text-align: center;
+        }
+        .one {
+          margin-left: $gap * 4;
+        }
+
+        > * {
+          flex: 0 0 80%;
+        }
+        .btn {
+          display: none;
+        }
+      }
+    }
   }
   @include respond(xxl) {
     max-width: 1440px;
@@ -261,6 +321,7 @@
     p {
       line-height: 29px;
       @include font-size(lg);
+      @include font-weight(light);
     }
   }
   &__nav {
@@ -268,6 +329,7 @@
     justify-content: space-between;
     border-bottom: 1px solid #e4e8e6;
     margin-top: $gap * 6;
+    gap: $gap * 4;
 
     a {
       color: color(eden-neutral-4);
@@ -284,6 +346,8 @@
       p {
         transition: all 0.4s ease-in-out;
         margin-bottom: $gap - 4;
+        white-space: nowrap;
+
         &.active {
           color: color(eden-neutral-1);
         }
@@ -292,6 +356,28 @@
   }
 
   @include respond(md) {
+    width: 90%;
+    &__title {
+      h3 {
+        @include font-size(3xl);
+        line-height: 36px;
+        margin-bottom: $gap + 2;
+      }
+      p {
+        line-height: 24px;
+        @include font-size(base);
+      }
+    }
+    &__nav {
+      overflow: auto;
+      gap: $gap * 2.4;
+
+      a {
+        @include font-size(sm);
+        line-height: 21px;
+        padding-bottom: $gap * 2.2;
+      }
+    }
   }
   @include respond(xxl) {
     max-width: 1440px;
@@ -400,6 +486,27 @@
   }
 
   @include respond(md) {
+    flex-direction: column;
+    padding: $gap * 6.4 0 $gap * 8 0;
+    width: 100%;
+
+    &__title {
+      width: 100%;
+      text-align: center;
+      margin-bottom: $gap * 4.8;
+      h3 {
+        @include font-size(3xl);
+        line-height: 36px;
+      }
+    }
+    &__messages {
+      overflow: auto;
+      margin-left: $gap * 2.4;
+      .card {
+        width: 307px;
+        padding: $gap + 6 $gap + 9;
+      }
+    }
   }
   @include respond(xxl) {
     max-width: 1440px;
@@ -511,6 +618,12 @@
     }
     &-monthly {
       .plan__price-item {
+        .mobile {
+          display: none;
+        }
+        .desktop {
+          display: block;
+        }
         p {
           margin-top: $gap * 4;
           &:first-child {
@@ -609,6 +722,108 @@
   }
 
   @include respond(md) {
+    width: 90%;
+    padding: $gap * 6.4 0 $gap * 7.6 0;
+    flex-direction: column;
+    &__title {
+      width: 100%;
+      text-align: center;
+      margin-bottom: $gap * 4.8;
+      h3 {
+        @include font-size(3xl);
+        line-height: 36px;
+        margin-bottom: $gap + 2;
+      }
+      p {
+        @include font-size(base);
+        line-height: 24px;
+        margin: 0 auto;
+      }
+      ul {
+        li {
+          list-style: none;
+          margin-top: $gap * 4.8;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .icon {
+            &--text {
+              h5 {
+                margin-bottom: 8px;
+              }
+              p {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+    &__price {
+      width: 100%;
+      padding: 0 $gap * 2;
+      ul {
+        margin-bottom: $gap * 2.4;
+        @include font-size(sm);
+      }
+
+      &-monthly {
+        .plan__price-item {
+          .mobile {
+            display: block;
+          }
+          .desktop {
+            display: none;
+          }
+          p {
+            margin-top: $gap * 3.2;
+            &:first-child {
+              margin-top: $gap * 2.4;
+            }
+          }
+        }
+        .plan__price-bottom {
+          margin: $gap * 3.4 0;
+        }
+      }
+
+      &-item {
+        p {
+          // margin-top: $gap * 3.2;
+          line-height: 21px;
+          @include font-size(sm);
+          @include font-weight(medium);
+        }
+        .btn {
+          &--group {
+            input {
+              padding: $gap + 4 $gap * 2.3;
+              width: 100%;
+              @include font-size(base);
+            }
+          }
+          &--item {
+            padding: $gap + 6;
+          }
+        }
+      }
+
+      &-bottom {
+        margin: $gap * 3.4 0;
+        h5 {
+          @include font-size(lg);
+          line-height: 29px;
+          .price {
+            @include font-size(base);
+            line-height: 24px;
+          }
+        }
+        p {
+          @include font-size(base);
+          line-height: 26px;
+        }
+      }
+    }
   }
   @include respond(xxl) {
     max-width: 1440px;
@@ -755,6 +970,69 @@
   }
 
   @include respond(md) {
+    padding: $gap * 6.4 0 $gap * 20 0;
+    margin: 0 auto $gap * 4 auto;
+
+    &__title {
+      text-align: center;
+      h3 {
+        @include font-size(3xl);
+        line-height: 36px;
+      }
+      p {
+        @include font-size(base);
+        line-height: 24px;
+      }
+    }
+    &__service {
+      flex-direction: column;
+      gap: $gap * 2;
+      &-item {
+        width: 100%;
+        padding: $gap * 2.4;
+        h3 {
+          @include font-size(4xl);
+          line-height: 42px;
+        }
+        h5 {
+          @include font-size(xl);
+          line-height: 26px;
+        }
+        p {
+          margin: 0 0 $gap * 2 0;
+          @include font-size(base);
+          line-height: 24px;
+        }
+      }
+
+      &-bg {
+        display: none;
+      }
+      &-food {
+        .btn {
+          background-color: #ddfeee;
+          padding: $gap - 2 $gap * 1.6;
+        }
+      }
+      &-laundry {
+        .btn {
+          background-color: color(eden-purple-150);
+          padding: $gap - 2 $gap * 1.6;
+        }
+      }
+      &-cleaning {
+        .btn {
+          background-color: color(eden-orange-100);
+          padding: $gap - 2 $gap * 1.6;
+        }
+      }
+      &-gifting {
+        .btn {
+          background-color: #ddf5fe;
+          padding: $gap - 2 $gap * 1.6;
+        }
+      }
+    }
   }
   @include respond(xxl) {
     max-width: 1440px;

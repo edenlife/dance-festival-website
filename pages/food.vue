@@ -7,6 +7,10 @@
             Enjoy <span> Pasta</span> <br />
             Ready in 5 minutes
           </h1>
+          <h1 class="mobile">
+            Enjoy <span> Pasta</span> <br />
+            Ready in <br />5 minutes
+          </h1>
           <p>
             A food subscription on Eden Life gets you delicious meals prepared
             by our team of chefs.
@@ -63,6 +67,7 @@
           <div class="description__slider">
             <div class="description__slider-timeline">
               <svg
+                class="vertical"
                 width="28"
                 height="407"
                 viewBox="0 0 28 407"
@@ -379,8 +384,11 @@
                 </div>
               </div>
               <div class="plan__price-item">
-                <p>
+                <p class="desktop">
                   Should all your food delivered be once or twice in a week?
+                </p>
+                <p class="mobile">
+                  Should we deliver all once or twice weekly?
                 </p>
                 <div class="btn--group">
                   <button

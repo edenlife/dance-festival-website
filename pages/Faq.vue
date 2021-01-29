@@ -642,7 +642,7 @@
             <p v-if="questions.includes('nine')">
               We don't want to keep you waiting for long. If there's a service
               you want that Eden doesn't currently provide, hit us up with the
-              <strong>‘Feedback’</strong> option on your Gardener’s profile, and
+              <strong>‘Feedback’</strong>option on your Gardener’s profile, and
               we’ll log your request!
             </p>
           </transition>

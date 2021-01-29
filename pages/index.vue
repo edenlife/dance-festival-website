@@ -946,7 +946,7 @@ export default {
   mounted() {
     window.setInterval(() => {
       this.changeService()
-    }, 2000)
+    }, 2300)
 
     window.addEventListener('resize', this.handleResize)
     this.handleResize()

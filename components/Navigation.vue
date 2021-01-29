@@ -52,6 +52,7 @@
                 <ul class="service__list">
                   <li
                     :class="{ food: service === 'food' }"
+                    @click="showService = false"
                     @mouseenter.stop="service = 'food'"
                     @mouseleave.stop="service = ''"
                   >
@@ -104,6 +105,7 @@
                   </li>
                   <li
                     :class="{ laundry: service === 'laundry' }"
+                    @click="showService = false"
                     @mouseenter.stop="service = 'laundry'"
                     @mouseleave.stop="service = ''"
                   >
@@ -157,6 +159,7 @@
                   </li>
                   <li
                     :class="{ cleaning: service === 'cleaning' }"
+                    @click="showService = false"
                     @mouseenter.stop="service = 'cleaning'"
                     @mouseleave.stop="service = ''"
                   >
@@ -210,6 +213,7 @@
                   </li>
                   <li
                     :class="{ gifting: service === 'gifting' }"
+                    @click="showService = false"
                     @mouseenter.stop="service = 'gifting'"
                     @mouseleave.stop="service = ''"
                   >
@@ -277,19 +281,104 @@
           >
         </li>
       </ul>
-      <button class="navigation__btn" type="button">
-        <svg
-          width="24"
-          height="17"
-          viewBox="0 0 24 17"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect width="14" height="3" rx="1.5" fill="#21312A" />
-          <rect y="7" width="24" height="3" rx="1.5" fill="#21312A" />
-          <rect y="14" width="20" height="3" rx="1.5" fill="#21312A" />
-        </svg>
+      <button class="navigation__btn" type="button" @click="handleToggle()">
+        <div class="line line1"></div>
+        <div class="line line2"></div>
+        <div class="line line3"></div>
       </button>
+      <transition name="slide">
+        <div v-if="showNavbar" class="navigation__mobile">
+          <ul class="menu">
+            <li class="menu--list" @click.prevent="handleToggle()">
+              <nuxt-link
+                :to="{ path: '/about_us' }"
+                class="navigation__mobile-item"
+              >
+                About Us
+              </nuxt-link>
+            </li>
+            <li class="menu--list">
+              <nuxt-link
+                :to="{ path: '/about_us' }"
+                class="navigation__mobile-item service"
+              >
+                <div>Service</div>
+                <div class="service--icon" @click="serviceToggle()">
+                  <svg
+                    class="arrow"
+                    :class="{ expanded: visible }"
+                    width="10"
+                    height="6"
+                    viewBox="0 0 10 6"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 1L5 5L9 1"
+                      stroke="#21312A"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </nuxt-link>
+              <transition name="slide-fade">
+                <ul v-if="visible" class="">
+                  <li
+                    class="menu--list-item food"
+                    @click.prevent="handleToggle()"
+                  >
+                    <nuxt-link :to="{ path: '/food' }" class="">
+                      <span class="icon">🥘</span>
+                      <span>Food</span>
+                    </nuxt-link>
+                  </li>
+                  <li
+                    class="menu--list-item laundry"
+                    @click.prevent="handleToggle()"
+                  >
+                    <nuxt-link :to="{ path: '/laundry' }" class="">
+                      <span class="icon">🧺</span>
+                      <span>Laundry</span>
+                    </nuxt-link>
+                  </li>
+                  <li
+                    class="menu--list-item cleaning"
+                    @click.prevent="handleToggle()"
+                  >
+                    <nuxt-link :to="{ path: '/cleaning' }" class="">
+                      <span class="icon">🏠</span>
+                      <span>Cleaning</span>
+                    </nuxt-link>
+                  </li>
+                  <li
+                    class="menu--list-item gifting"
+                    @click.prevent="handleToggle()"
+                  >
+                    <nuxt-link :to="{ path: '/gifting' }" class="">
+                      <span class="icon">🎁</span>
+                      <span>Gifting</span>
+                    </nuxt-link>
+                  </li>
+                </ul>
+              </transition>
+            </li>
+            <li class="menu--list" @click.prevent="handleToggle()">
+              <nuxt-link :to="{ path: '/' }" class="navigation__mobile-item">
+                Pricing
+              </nuxt-link>
+            </li>
+            <li class="menu--list" @click.prevent="handleToggle()">
+              <a
+                href="https://"
+                class="navigation__mobile-item navigation__mobile-link"
+                >Get Started</a
+              >
+            </li>
+          </ul>
+        </div>
+      </transition>
     </nav>
   </div>
 </template>
@@ -301,6 +390,8 @@ export default {
     return {
       service: '',
       showService: false,
+      showNavbar: false,
+      visible: false,
     }
   },
   mounted() {
@@ -314,6 +405,14 @@ export default {
       } else {
         document.querySelector('#navigation-container').className = 'container'
       }
+    },
+    serviceToggle() {
+      this.visible = !this.visible
+    },
+    handleToggle() {
+      const toggleButton = document.querySelector('.navigation__btn')
+      toggleButton.classList.toggle('toggle')
+      this.showNavbar = !this.showNavbar
     },
     getColor() {
       const path = this.$nuxt.$route.path

@@ -151,7 +151,7 @@
                 :to="{ path: '/contact_us' }"
                 class="footer__bottom-logo"
               >
-                Contact us
+                Contact Us
               </nuxt-link>
             </li>
             <li>

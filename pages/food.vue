@@ -654,6 +654,10 @@ export default {
       weekly: 1,
       weekly_price: null,
       period: 'weekly',
+      window: {
+        width: 0,
+        height: 0,
+      },
     }
   },
   watch: {
@@ -662,7 +666,21 @@ export default {
       this.weekly_price = weeklyDefault * val
     },
   },
+  mounted() {
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize()
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.handleResize)
+  },
   methods: {
+    handleResize() {
+      this.window.width = window.innerWidth
+      this.window.height = window.innerHeight
+      if (this.window.width < '768') {
+        this.setExploreService = true
+      } else this.setExploreService = false
+    },
     increaseOrder(order) {
       if (order === 'weekly') {
         this.weekly++

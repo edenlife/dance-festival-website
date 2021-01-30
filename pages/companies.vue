@@ -165,19 +165,22 @@
 
         <div class="customers__testimonials">
           <div v-for="(item, i) in TeamMessageList" :key="i" class="card">
-            <div class="card__title">
-              <div class="card__title-img">
-                <img
-                  :src="require(`~/assets/images/customer-${item.image}.png`)"
-                  :alt="item.name"
-                />
+            <a :href="item.tweetLink" target="_blank">
+              <div class="card__title">
+                <div class="card__title-img">
+                  <img
+                    :src="require(`~/assets/images/customer-${item.image}.png`)"
+                    :alt="item.name"
+                  />
+                </div>
+                <div class="">
+                  <p class="card__title-name">{{ item.name }}</p>
+                  <p class="card__title-handle">@{{ item.handle }}</p>
+                </div>
               </div>
-              <div class="">
-                <p class="card__title-name">{{ item.name }}</p>
-                <p class="card__title-handle">@{{ item.handle }}</p>
-              </div>
-            </div>
-            <p class="card__description" v-html="item.description"></p>
+
+              <p class="card__description" v-html="item.description"></p>
+            </a>
           </div>
         </div>
 
@@ -200,12 +203,16 @@ export default {
 Cowrywise, thank you! Thank you 🤗💙 @cowrywise
 God bless you 🤧`,
           handle: '_Oyeyinka',
+          tweetLink:
+            'https://twitter.com/delectable_Oye/status/1260187344893808640?s=20',
         },
         {
           name: 'Timi Ajiboye',
           image: 'timi',
           description: `Thanks to <span style="color:#03A84E"> @ouredenlife </span>, we’re now delivering our (free) work lunch to all BuyCoins employees’ homes during this period.`,
           handle: 'timigod',
+          tweetLink:
+            'https://twitter.com/timigod/status/1240248485632409601?s=20',
         },
         {
           name: 'Michael Awonowo',
@@ -218,6 +225,8 @@ One of the few companies that my people didn’t come back to complain about the
  <br>
 They really have something good going and I’m rooting for them.`,
           handle: 'MAwonowo',
+          tweetLink:
+            'https://twitter.com/MAwonowo/status/1341345849390055424?s=20',
         },
         {
           name: 'Tech Bro',
@@ -225,6 +234,8 @@ They really have something good going and I’m rooting for them.`,
           description: `Someone can’t even sneeze in that Piggyvest office, we’ve already sent them an <span style="color:#03A84E"> @ouredenlife </span> carebox.
 That box has everything 😩😂`,
           handle: 'OdunEweniyi',
+          tweetLink:
+            'https://twitter.com/OdunEweniyi/status/1320851789206425600?s=20',
         },
         {
           name: 'Tejúmádé',
@@ -232,6 +243,8 @@ That box has everything 😩😂`,
           description: `<span style="color:#03A84E"> @ouredenlife </span> meals >>>>
 Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
           handle: 'TejuAdeyinka',
+          tweetLink:
+            'https://twitter.com/TejuAdeyinka/status/1255504942447591426?s=20',
         },
       ],
     }

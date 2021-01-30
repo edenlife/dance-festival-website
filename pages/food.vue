@@ -132,20 +132,22 @@
         </div>
         <div class="wall__messages">
           <div v-for="(item, i) in messageList" :key="i" class="card">
-            <div class="card__title">
-              <div class="card__title-img">
-                <img
-                  :src="require(`~/assets/images/customer-${item.image}.png`)"
-                  :alt="item.name"
-                />
-              </div>
+            <a :href="item.tweetLink" target="_blank">
+              <div class="card__title">
+                <div class="card__title-img">
+                  <img
+                    :src="require(`~/assets/images/customer-${item.image}.png`)"
+                    :alt="item.name"
+                  />
+                </div>
 
-              <div class="">
-                <p class="card__title-name">{{ item.name }}</p>
-                <p class="card__title-handle">@{{ item.handle }}</p>
+                <div class="">
+                  <p class="card__title-name">{{ item.name }}</p>
+                  <p class="card__title-handle">@{{ item.handle }}</p>
+                </div>
               </div>
-            </div>
-            <p class="card__description" v-html="item.description"></p>
+              <p class="card__description" v-html="item.description"></p>
+            </a>
           </div>
         </div>
       </section>

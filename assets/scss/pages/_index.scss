@@ -471,6 +471,10 @@
       background-color: color(eden-neutral-7);
       border: 1px solid rgba(228, 232, 230, 0.2);
       border-radius: 8px;
+      &:hover {
+        transform: scale(1.01);
+        transition: all 0.3s ease-in-out;
+      }
       &__title {
         display: flex;
         gap: $gap - 2;

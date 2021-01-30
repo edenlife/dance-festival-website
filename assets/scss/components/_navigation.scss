@@ -32,12 +32,16 @@
       @include font-size(base);
       color: color(eden-neutral-1);
       transition: all 0.4s ease-in-out;
+
       &:hover {
         color: color(eden-green-primary);
       }
     }
     &-service {
       position: relative;
+      &.active {
+        color: color(eden-green-primary);
+      }
       .btn {
         line-height: 24px;
         @include font-size(base);
@@ -49,6 +53,12 @@
         svg {
           stroke: color(eden-neutral-1);
           transition: all 0.4s ease-in-out;
+        }
+        &.active {
+          color: color(eden-green-primary);
+          svg {
+            stroke: color(eden-green-primary);
+          }
         }
         &:hover {
           color: color(eden-green-primary);

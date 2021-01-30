@@ -18,6 +18,7 @@
             <button
               type="button"
               class="btn"
+              :class="{ active: showService }"
               @mouseenter.stop="showService = true"
             >
               <span>Services</span>

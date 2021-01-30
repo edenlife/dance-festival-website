@@ -94,20 +94,22 @@
         </div>
         <div class="wall__messages">
           <div v-for="(item, i) in LaundryMessage" :key="i" class="card">
-            <div class="card__title">
-              <div class="card__title-img">
-                <img
-                  :src="require(`~/assets/images/customer-${item.image}.png`)"
-                  :alt="item.name"
-                />
-              </div>
+            <a :href="item.tweetLink" target="_blank">
+              <div class="card__title">
+                <div class="card__title-img">
+                  <img
+                    :src="require(`~/assets/images/customer-${item.image}.png`)"
+                    :alt="item.name"
+                  />
+                </div>
 
-              <div class="">
-                <p class="card__title-name">{{ item.name }}</p>
-                <p class="card__title-handle">@{{ item.handle }}</p>
+                <div class="">
+                  <p class="card__title-name">{{ item.name }}</p>
+                  <p class="card__title-handle">@{{ item.handle }}</p>
+                </div>
               </div>
-            </div>
-            <p class="card__description" v-html="item.description"></p>
+              <p class="card__description" v-html="item.description"></p>
+            </a>
           </div>
         </div>
       </section>
@@ -523,24 +525,32 @@ export default {
           But I don't live under normal circumstances. I have an 
           <span style="color:#03A84E"> @ouredenlife </span>laundry subscription.`,
           handle: 'LifeOfMogwai',
+          tweetLink:
+            'https://twitter.com/LifeOfMogwai/status/1274748508269154308?s=20',
         },
         {
           name: 'Tolu Ajiboye',
           image: 'tolu',
           description: `Bruh the actual worst. I haven’t done my own laundry in years. It’s even so stress-free now that I use <span style="color:#03A84E"> @ouredenlife </span>. I literally just put every single item into my laundry bag and they come pick it up and drop it back.`,
           handle: 'Yesmina_T',
+          tweetLink:
+            'https://twitter.com/Yesmina_T/status/1309270002722365441?s=20',
         },
         {
           name: 'Timi Ajiboye',
           image: 'timi',
           description: `Things “just working” with little input from me, makes me happy. I really like my laundry process now (<span style="color:#03A84E"> @ouredenlife </span> is a big part of that)`,
           handle: 'timigod',
+          tweetLink:
+            'https://twitter.com/timigod/status/1190320551837020165?s=20',
         },
         {
           name: 'Ash.',
           image: 'ash',
           description: `<span style="color:#03A84E"> @ouredenlife </span>'s laundry service is excellent! 👏🏾👏🏾👏🏾 10/10 will recommend.`,
           handle: 'hey_ashiwel',
+          tweetLink:
+            'https://twitter.com/hey_ashiwel/status/1210502785592102913?s=20',
         },
       ],
       setExploreService: false,

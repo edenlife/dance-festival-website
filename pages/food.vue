@@ -19,7 +19,11 @@
             No market runs. No prep-time. No delivery fees. Just heat and eat.
           </p>
           <div class="hero__button">
-            <button type="button" class="hero__button-solid">
+            <button
+              type="button"
+              class="hero__button-solid"
+              @click.prevent="scrollTo('menu-options')"
+            >
               See our menu
             </button>
           </div>
@@ -84,7 +88,13 @@
                   or freeze for later. Oh...and no extra delivery charge!
                 </p>
               </div>
-              <button type="button" class="btn">Get the app</button>
+              <button
+                type="button"
+                class="btn"
+                @click.prevent="scrollToApp('#get-the-app')"
+              >
+                Get the app
+              </button>
             </div>
           </div>
 
@@ -93,7 +103,7 @@
       </section>
     </div>
 
-    <div class="container--menu">
+    <div ref="menu-options" class="container--menu">
       <section class="menu">
         <div class="menu__title">
           <h3>Next week’s menu</h3>
@@ -689,6 +699,13 @@ export default {
       if (this.window.width < '768') {
         this.setExploreService = true
       } else this.setExploreService = false
+    },
+    scrollTo(ref) {
+      this.$refs[ref].scrollIntoView()
+    },
+    scrollToApp(id) {
+      const scrollToElement = document.querySelector(id)
+      scrollToElement.scrollIntoView()
     },
     increaseOrder(order) {
       if (order === 'weekly') {

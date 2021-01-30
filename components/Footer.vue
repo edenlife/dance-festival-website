@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="get-the-app" ref="get-the-app">
     <section class="footer__top">
       <div class="footer__top-title">
         <h3>Get the app!</h3>
@@ -46,25 +46,28 @@
           </p>
 
           <div class="footer__bottom-social">
-            <a href="https://" target="_blank">
+            <a href="https://twitter.com/ouredenlife" target="_blank">
               <img
                 src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341806/eden-website-v2/twitter_pxdich.svg"
                 alt="twitter"
               />
             </a>
-            <a href="https://" target="_blank">
+            <a href="https://instagram.com/ouredenlife" target="_blank">
               <img
                 src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341806/eden-website-v2/instagram_erb6q6.svg"
                 alt="instagram"
               />
             </a>
-            <a href="https://" target="_blank">
+            <a href="https://facebook.com/ouredenlife" target="_blank">
               <img
                 src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341806/eden-website-v2/facebook_cqsjdf.svg"
                 alt="facebook"
               />
             </a>
-            <a href="https://" target="_blank">
+            <a
+              href="https://www.linkedin.com/company/ouredenlife/"
+              target="_blank"
+            >
               <img
                 src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341816/eden-website-v2/linkedin_utcbna.svg"
                 alt="linkedin"
@@ -137,9 +140,13 @@
               </nuxt-link>
             </li>
             <li>
-              <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
+              <a
+                href="https://blog.ouredenlife.com"
+                target="_blank"
+                class="footer__bottom-logo"
+              >
                 Blog
-              </nuxt-link>
+              </a>
             </li>
             <li>
               <nuxt-link
@@ -161,25 +168,28 @@
         </div>
 
         <div class="footer__bottom-social mobile">
-          <a href="https://" target="_blank">
+          <a href="https://twitter.com/ouredenlife" target="_blank">
             <img
               src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341806/eden-website-v2/twitter_pxdich.svg"
               alt="twitter"
             />
           </a>
-          <a href="https://" target="_blank">
+          <a href="https://instagram.com/ouredenlife" target="_blank">
             <img
               src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341806/eden-website-v2/instagram_erb6q6.svg"
               alt="instagram"
             />
           </a>
-          <a href="https://" target="_blank">
+          <a href="https://facebook.com/ouredenlife" target="_blank">
             <img
               src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341806/eden-website-v2/facebook_cqsjdf.svg"
               alt="facebook"
             />
           </a>
-          <a href="https://" target="_blank">
+          <a
+            href="https://www.linkedin.com/company/ouredenlife/"
+            target="_blank"
+          >
             <img
               src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341816/eden-website-v2/linkedin_utcbna.svg"
               alt="linkedin"

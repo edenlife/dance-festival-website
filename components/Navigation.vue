@@ -272,7 +272,10 @@
           </div>
         </li>
         <li>
-          <a href="https://" class="navigation__menu-item navigation__menu-link"
+          <a
+            href="#"
+            class="navigation__menu-item navigation__menu-link"
+            @click.prevent="scrollTo('#get-the-app')"
             >Get Started</a
           >
         </li>
@@ -405,6 +408,10 @@ export default {
       } else {
         document.querySelector('#navigation-container').className = 'container'
       }
+    },
+    scrollTo(id) {
+      const scrollToElement = document.querySelector(id)
+      scrollToElement.scrollIntoView()
     },
     serviceToggle() {
       this.visible = !this.visible

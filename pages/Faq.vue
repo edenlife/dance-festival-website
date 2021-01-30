@@ -210,12 +210,17 @@
             <p v-if="questions.includes('three')">
               <!-- TO DO -->
               When you sign up on
-              <a href="http://" style="color: #03a84e">Eden</a>, you can
-              configure a plan that fits your needs, then you get assigned a
-              Gardener to help you manage your home. The app takes your food,
-              laundry, and home cleaning needs and turns them into tasks that
-              our Gardeners attend to on schedule. The only finger you'll be
-              lifting is the one scrolling through the app, monitoring progress.
+              <a
+                href="#"
+                style="color: #03a84e"
+                @click.prevent="scrollTo('#get-the-app')"
+                >Eden</a
+              >, you can configure a plan that fits your needs, then you get
+              assigned a Gardener to help you manage your home. The app takes
+              your food, laundry, and home cleaning needs and turns them into
+              tasks that our Gardeners attend to on schedule. The only finger
+              you'll be lifting is the one scrolling through the app, monitoring
+              progress.
             </p>
           </transition>
         </div>
@@ -574,8 +579,13 @@
           <transition name="slide-fade">
             <p v-if="questions.includes('eight')">
               <!-- TO DO -->
-              Get Started <a href="http://" style="color: #03a84e">here</a>. It
-              takes 5 minutes to set up.
+              Get Started
+              <a
+                href="#"
+                style="color: #03a84e"
+                @click.prevent="scrollTo('#get-the-app')"
+                >here</a
+              >. It takes 5 minutes to set up.
             </p>
           </transition>
         </div>
@@ -680,6 +690,10 @@ export default {
       this.questions.length && this.questions.includes(item)
         ? (this.questions = this.questions.filter((o1) => o1 !== item))
         : this.questions.push(item)
+    },
+    scrollTo(id) {
+      const scrollToElement = document.querySelector(id)
+      scrollToElement.scrollIntoView()
     },
   },
 }

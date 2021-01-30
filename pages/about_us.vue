@@ -10,7 +10,11 @@
             stress-free life.
           </p>
           <div class="hero__button">
-            <button type="button" class="hero__button-solid">
+            <button
+              type="button"
+              class="hero__button-solid"
+              @click.prevent="scrollTo('join-eden')"
+            >
               Become Humaan - Join Eden Life
             </button>
           </div>
@@ -79,7 +83,7 @@
       </section>
     </div>
 
-    <div class="container--opening">
+    <div ref="join-eden" class="container--opening">
       <section class="opening">
         <div class="opening__title">
           <h3>Join the Humaans</h3>
@@ -375,6 +379,11 @@ export default {
         },
       ],
     }
+  },
+  methods: {
+    scrollTo(ref) {
+      this.$refs[ref].scrollIntoView()
+    },
   },
 }
 </script>

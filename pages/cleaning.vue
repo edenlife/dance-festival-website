@@ -20,7 +20,11 @@
             your dishes done all through the month!
           </p>
           <div class="hero__button">
-            <button type="button" class="hero__button-solid">
+            <button
+              type="button"
+              class="hero__button-solid"
+              @click.prevent="scrollToApp('#get-the-app')"
+            >
               Sign up for a Clean home
             </button>
           </div>
@@ -87,7 +91,13 @@
                   Just come home to a speckless space.
                 </p>
               </div>
-              <button type="button" class="btn">Get the app</button>
+              <button
+                type="button"
+                class="btn"
+                @click.prevent="scrollToApp('#get-the-app')"
+              >
+                Get the app
+              </button>
             </div>
           </div>
 
@@ -598,6 +608,10 @@ export default {
   },
   methods: {
     currencyFormat,
+    scrollToApp(id) {
+      const scrollToElement = document.querySelector(id)
+      scrollToElement.scrollIntoView()
+    },
     changeText() {
       const first = this.headerText.shift()
       this.headerText = this.headerText.concat(first)

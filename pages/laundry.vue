@@ -13,7 +13,11 @@
             48 hours.
           </p>
           <div class="hero__button">
-            <button type="button" class="hero__button-solid">
+            <button
+              type="button"
+              class="hero__button-solid"
+              @click.prevent="scrollToApp('#get-the-app')"
+            >
               Start Your Eden Life
             </button>
           </div>
@@ -78,7 +82,13 @@
                   you. All within 48 hrs.
                 </p>
               </div>
-              <button type="button" class="btn">Get the app</button>
+              <button
+                type="button"
+                class="btn"
+                @click.prevent="scrollToApp('#get-the-app')"
+              >
+                Get the app
+              </button>
             </div>
           </div>
 
@@ -604,6 +614,10 @@ export default {
       if (this.window.width < '768') {
         this.setExploreService = true
       } else this.setExploreService = false
+    },
+    scrollToApp(id) {
+      const scrollToElement = document.querySelector(id)
+      scrollToElement.scrollIntoView()
     },
     increaseOrder(order) {
       if (order === 'washDry') {

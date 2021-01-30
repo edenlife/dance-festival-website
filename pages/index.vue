@@ -15,7 +15,11 @@
             what you've always dreamed of.
           </p>
           <div class="hero__button">
-            <button type="button" class="hero__button-solid">
+            <button
+              type="button"
+              class="hero__button-solid"
+              @click.prevent="scrollTo('#get-the-app')"
+            >
               Start Your Eden Life
             </button>
             <button type="button" class="hero__button-link">
@@ -574,13 +578,17 @@
               <p v-if="questions.includes('three')">
                 <!-- TO DO -->
                 When you sign up on
-                <a href="http://" style="color: #03a84e">Eden</a>, you can
-                configure a plan that fits your needs, then you get assigned a
-                Gardener to help you manage your home. The app takes your food,
-                laundry, and home cleaning needs and turns them into tasks that
-                our Gardeners attend to on schedule. The only finger you'll be
-                lifting is the one scrolling through the app, monitoring
-                progress.
+                <a
+                  href="#"
+                  style="color: #03a84e"
+                  @click.prevent="scrollTo('#get-the-app')"
+                  >Eden</a
+                >, you can configure a plan that fits your needs, then you get
+                assigned a Gardener to help you manage your home. The app takes
+                your food, laundry, and home cleaning needs and turns them into
+                tasks that our Gardeners attend to on schedule. The only finger
+                you'll be lifting is the one scrolling through the app,
+                monitoring progress.
               </p>
             </transition>
           </div>
@@ -888,12 +896,15 @@
           <a href="http://" target="_blank">
             <img :src="require(`~/assets/images/press2.svg`)" alt="press2"
           /></a>
-          <a href="http://" target="_blank">
+          <a href="https://www.future.africa/home/eden" target="_blank">
             <img
               :src="require(`~/assets/images/future-africa.svg`)"
               alt="future-africa"
           /></a>
-          <a href="http://" target="_blank">
+          <a
+            href="https://techpoint.africa/2019/09/17/eden-bettering-lives-in-african-cities/"
+            target="_blank"
+          >
             <img
               :src="require(`~/assets/images/techpoint.svg`)"
               alt="techpoint"
@@ -979,6 +990,10 @@ export default {
     changeService() {
       const first = this.services.shift()
       this.services = this.services.concat(first)
+    },
+    scrollTo(id) {
+      const scrollToElement = document.querySelector(id)
+      scrollToElement.scrollIntoView()
     },
     toggle() {
       this.visible = !this.visible

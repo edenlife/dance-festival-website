@@ -609,6 +609,12 @@
       }
     }
   }
+  @include respond(xl) {
+    &__testimonials {
+      width: 100%;
+      overflow: auto;
+    }
+  }
   @include respond(xxl) {
     max-width: 1440px;
     margin: 0 auto;
@@ -878,6 +884,9 @@
         }
       }
     }
+  }
+  @include respond(xl) {
+    gap: $gap * 10;
   }
   @include respond(xxl) {
     max-width: 1440px;

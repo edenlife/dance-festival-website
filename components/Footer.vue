@@ -96,11 +96,6 @@
                 Companies
               </nuxt-link>
             </li>
-            <li>
-              <nuxt-link :to="{ path: '/' }" class="footer__bottom-logo">
-                Pricing
-              </nuxt-link>
-            </li>
           </ul>
 
           <ul>

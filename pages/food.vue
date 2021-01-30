@@ -22,29 +22,6 @@
             <button type="button" class="hero__button-solid">
               See our menu
             </button>
-            <button type="button" class="hero__button-link">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  opacity="0.1"
-                  width="32"
-                  height="32"
-                  rx="16"
-                  fill="#03A84E"
-                />
-                <path
-                  d="M12.6667 11.8317C12.6667 11.0405 13.5419 10.5627 14.2074 10.9905L20.6915 15.1588C21.3038 15.5525 21.3038 16.4475 20.6915 16.8412L14.2074 21.0095C13.5419 21.4373 12.6667 20.9595 12.6667 20.1683V11.8317Z"
-                  fill="#03A84E"
-                />
-              </svg>
-
-              Watch the video
-            </button>
           </div>
         </div>
         <div class="hero__img">

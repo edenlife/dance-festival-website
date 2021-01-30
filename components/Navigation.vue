@@ -271,11 +271,6 @@
           </div>
         </li>
         <li>
-          <nuxt-link :to="{ path: '/' }" class="navigation__menu-item">
-            Pricing
-          </nuxt-link>
-        </li>
-        <li>
           <a href="https://" class="navigation__menu-item navigation__menu-link"
             >Get Started</a
           >
@@ -360,11 +355,6 @@
                   </li>
                 </ul>
               </transition>
-            </li>
-            <li class="menu--list" @click.prevent="handleToggle()">
-              <nuxt-link :to="{ path: '/' }" class="navigation__mobile-item">
-                Pricing
-              </nuxt-link>
             </li>
             <li class="menu--list" @click.prevent="handleToggle()">
               <a

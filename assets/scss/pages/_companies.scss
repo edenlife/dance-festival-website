@@ -537,6 +537,21 @@
       }
     }
   }
+  @include respond(xl) {
+    &__title {
+      &-image {
+        grid-template-columns: repeat(4, 80px);
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+    &__testimonials {
+      width: 100%;
+      overflow: auto;
+    }
+  }
   @include respond(xxl) {
     max-width: 1440px;
     margin: 0 auto;

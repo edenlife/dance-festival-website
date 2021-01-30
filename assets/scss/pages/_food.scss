@@ -389,6 +389,10 @@
       }
     }
   }
+  &__nav {
+    width: 100%;
+    overflow: auto;
+  }
   @include respond(xxl) {
     max-width: 1440px;
     margin: 0 auto;
@@ -516,6 +520,12 @@
         width: 307px;
         padding: $gap + 6 $gap + 9;
       }
+    }
+  }
+  @include respond(xl) {
+    &__messages {
+      width: 100%;
+      overflow: auto;
     }
   }
   @include respond(xxl) {

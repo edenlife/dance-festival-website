@@ -175,12 +175,12 @@
         <div class="plan__price">
           <ul>
             <li
-              :class="{ active: plan === 'wdf' }"
-              @click.prevent="plan = 'wdf'"
+              :class="{ active: plan === 'light' }"
+              @click.prevent="plan = 'light'"
             >
               <span> Light Cleaning</span>
               <svg
-                v-if="plan === 'wdf'"
+                v-if="plan === 'light'"
                 width="6"
                 height="6"
                 viewBox="0 0 6 6"
@@ -191,12 +191,12 @@
               </svg>
             </li>
             <li
-              :class="{ active: plan === 'wfi' }"
-              @click.prevent="plan = 'wfi'"
+              :class="{ active: plan === 'deep' }"
+              @click.prevent="plan = 'deep'"
             >
               <span> Deep Cleaning </span>
               <svg
-                v-if="plan === 'wfi'"
+                v-if="plan === 'deep'"
                 width="6"
                 height="6"
                 viewBox="0 0 6 6"
@@ -209,7 +209,7 @@
           </ul>
           <!--  -->
           <transition name="slide-fade">
-            <div v-if="plan === 'wdf'" class="plan__price-wdf">
+            <div v-if="plan === 'light'" class="plan__price-light">
               <div class="plan__price-item">
                 <p>
                   Recommended for once a week or every two weeks. This service
@@ -220,7 +220,10 @@
                   <span class="number">Number of rooms</span>
                 </p>
                 <div class="btn--group">
-                  <button class="btn--item minus" @click="decreaseOrder('wdf')">
+                  <button
+                    class="btn--item minus"
+                    @click.prevent="decreaseOrder('light')"
+                  >
                     <svg
                       width="24"
                       height="24"
@@ -239,12 +242,15 @@
                   </button>
                   <input
                     id=""
-                    v-model="wdf"
-                    type="text"
+                    v-model="light"
+                    type="number"
                     name=""
                     placeholder="0"
                   />
-                  <button class="btn--item plus" @click="increaseOrder('wdf')">
+                  <button
+                    class="btn--item plus"
+                    @click.prevent="increaseOrder('light')"
+                  >
                     <svg
                       width="24"
                       height="24"
@@ -273,13 +279,25 @@
               <div class="plan__price-item">
                 <p><span class="number">Frequency</span></p>
                 <div class="btn--group">
-                  <button class="btn--freq" @click="decreaseOrder('wdf')">
+                  <button
+                    class="btn--freq"
+                    :class="{ active: lightFrequency === 'weekly' }"
+                    @click.prevent="calculateLightFrequency('weekly')"
+                  >
                     Once a week
                   </button>
-                  <button class="btn--freq" @click="increaseOrder('wdf')">
+                  <button
+                    class="btn--freq"
+                    :class="{ active: lightFrequency === 'bi-weekly' }"
+                    @click.prevent="calculateLightFrequency('bi-weekly')"
+                  >
                     Every 2 weeks
                   </button>
-                  <button class="btn--freq" @click="increaseOrder('wdf')">
+                  <button
+                    class="btn--freq"
+                    :class="{ active: lightFrequency === 'monthly' }"
+                    @click.prevent="calculateLightFrequency('monthly')"
+                  >
                     Once a month
                   </button>
                 </div>
@@ -287,14 +305,15 @@
               <div class="plan__price-bottom">
                 <h5>
                   <span class="price">Price </span>
-                  <span class="icon">👉 </span> NGN 36,000.00
+                  <span class="icon">👉 </span> NGN
+                  {{ currencyFormat(totalLightPrice) }}
                 </h5>
                 <p>Monthly</p>
               </div>
             </div>
           </transition>
           <transition name="slide-fade">
-            <div v-if="plan === 'wfi'" class="plan__price-wdf">
+            <div v-if="plan === 'deep'" class="plan__price-light">
               <div class="plan__price-item">
                 <p>
                   Recommended for once a week or every two weeks. This service
@@ -305,7 +324,10 @@
                   <span class="number">Number of rooms</span>
                 </p>
                 <div class="btn--group">
-                  <button class="btn--item minus" @click="decreaseOrder('wdf')">
+                  <button
+                    class="btn--item minus"
+                    @click.prevent="decreaseOrder('deep')"
+                  >
                     <svg
                       width="24"
                       height="24"
@@ -324,12 +346,15 @@
                   </button>
                   <input
                     id=""
-                    v-model="wdf"
-                    type="text"
+                    v-model="deep"
+                    type="number"
                     name=""
                     placeholder="0"
                   />
-                  <button class="btn--item plus" @click="increaseOrder('wdf')">
+                  <button
+                    class="btn--item plus"
+                    @click.prevent="increaseOrder('deep')"
+                  >
                     <svg
                       width="24"
                       height="24"
@@ -358,13 +383,25 @@
               <div class="plan__price-item">
                 <p><span class="number">Frequency</span></p>
                 <div class="btn--group">
-                  <button class="btn--freq" @click="decreaseOrder('wdf')">
+                  <button
+                    class="btn--freq"
+                    :class="{ active: deepFrequency === 'weekly' }"
+                    @click.prevent="calculateDeepFrequency('weekly')"
+                  >
                     Once a week
                   </button>
-                  <button class="btn--freq" @click="increaseOrder('wdf')">
+                  <button
+                    class="btn--freq"
+                    :class="{ active: deepFrequency === 'bi-weekly' }"
+                    @click.prevent="calculateDeepFrequency('bi-weekly')"
+                  >
                     Every 2 weeks
                   </button>
-                  <button class="btn--freq" @click="increaseOrder('wdf')">
+                  <button
+                    class="btn--freq"
+                    :class="{ active: deepFrequency === 'monthly' }"
+                    @click.prevent="calculateDeepFrequency('monthly')"
+                  >
                     Once a month
                   </button>
                 </div>
@@ -372,7 +409,8 @@
               <div class="plan__price-bottom">
                 <h5>
                   <span class="price">Price </span>
-                  <span class="icon">👉 </span> NGN 36,000.00
+                  <span class="icon">👉 </span> NGN
+                  {{ currencyFormat(totalDeepPrice) }}
                 </h5>
                 <p>Monthly</p>
               </div>
@@ -397,7 +435,7 @@
             <h3>🧺</h3>
             <h5>Food</h5>
             <p>Your chef-cooked meals, delivered to you. Daily or weekly.</p>
-            <nuxt-link :to="{ path: '/' }" class="btn">
+            <nuxt-link :to="{ path: '/food' }" class="btn">
               {{
                 exploreService === 'food' || setExploreService ? 'Explore' : ''
               }}
@@ -432,7 +470,7 @@
               Your clothes, picked up, laundered and delivered to you in 48
               hours or less.
             </p>
-            <nuxt-link :to="{ path: '/' }" class="btn">
+            <nuxt-link :to="{ path: '/laundry' }" class="btn">
               {{
                 exploreService === 'laundry' || setExploreService
                   ? 'Explore'
@@ -469,7 +507,7 @@
               Gift cards and gift boxes for every occasion, right at your
               fingertips.
             </p>
-            <nuxt-link :to="{ path: '/' }" class="btn">
+            <nuxt-link :to="{ path: '/gifting' }" class="btn">
               {{
                 exploreService === 'gifting' || setExploreService
                   ? 'Explore'
@@ -503,6 +541,9 @@
 </template>
 
 <script>
+import { pricing } from '~/static/pricing'
+import { currencyFormat } from '~/static/functions'
+
 export default {
   data() {
     return {
@@ -538,19 +579,38 @@ export default {
         width: 0,
         height: 0,
       },
-      wdf: 1,
-      wfi: 1,
-      plan: 'wdf',
+      light: 1,
+      deep: 1,
+      plan: 'light',
+      lightFrequency: 'weekly',
+      deepFrequency: 'weekly',
+      totalLightPrice: null,
+      totalDeepPrice: null,
     }
   },
   mounted() {
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
+    this.totalLightPrice = pricing({
+      cleaning: {
+        item: 'light-cleaning',
+        frequency: this.lightFrequency,
+        qty: this.light,
+      },
+    })
+    this.totalDeepPrice = pricing({
+      cleaning: {
+        item: 'fumigation',
+        frequency: this.deepFrequency,
+        qty: this.deep,
+      },
+    })
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
   },
   methods: {
+    currencyFormat,
     handleResize() {
       this.window.width = window.innerWidth
       this.window.height = window.innerHeight
@@ -558,20 +618,72 @@ export default {
         this.setExploreService = true
       } else this.setExploreService = false
     },
-  },
-  increaseOrder(order) {
-    if (order === 'weekly') {
-      this.weekly++
-      const weeklyDefault = 24500
-      this.weekly_price = weeklyDefault * this.weekly
-    }
-  },
-  decreaseOrder(order) {
-    if (order === 'weekly' && this.weekly > 1) {
-      this.weekly--
-      const weeklyDefault = 24500
-      this.weekly_price = this.weekly - weeklyDefault
-    }
+    increaseOrder(order) {
+      if (order === 'light') {
+        this.light++
+        this.totalLightPrice = pricing({
+          cleaning: {
+            item: 'light-cleaning',
+            frequency: this.lightFrequency,
+            qty: this.light,
+          },
+        })
+      }
+
+      if (order === 'deep') {
+        this.deep++
+        this.totalDeepPrice = pricing({
+          cleaning: {
+            item: 'fumigation',
+            frequency: this.deepFrequency,
+            qty: this.deep,
+          },
+        })
+      }
+    },
+    decreaseOrder(order) {
+      if (order === 'light' && this.light > 1) {
+        this.light--
+        this.totalLightPrice = pricing({
+          cleaning: {
+            item: 'light-cleaning',
+            frequency: this.lightFrequency,
+            qty: this.light,
+          },
+        })
+      }
+
+      if (order === 'deep' && this.deep > 1) {
+        this.deep--
+        this.totalDeepPrice = pricing({
+          cleaning: {
+            item: 'fumigation',
+            frequency: this.deepFrequency,
+            qty: this.deep,
+          },
+        })
+      }
+    },
+    calculateLightFrequency(freq) {
+      this.lightFrequency = freq
+      this.totalLightPrice = pricing({
+        cleaning: {
+          item: 'light-cleaning',
+          frequency: this.lightFrequency,
+          qty: this.light,
+        },
+      })
+    },
+    calculateDeepFrequency(freq) {
+      this.deepFrequency = freq
+      this.totalDeepPrice = pricing({
+        cleaning: {
+          item: 'fumigation',
+          frequency: this.deepFrequency,
+          qty: this.deep,
+        },
+      })
+    },
   },
 }
 </script>

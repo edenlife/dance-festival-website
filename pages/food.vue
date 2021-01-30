@@ -259,7 +259,7 @@
                 <div class="btn--group">
                   <button
                     class="btn--item minus"
-                    @click="decreaseOrder('weekly')"
+                    @click.prevent="decreaseOrder('weekly')"
                   >
                     <svg
                       width="24"
@@ -279,14 +279,14 @@
                   </button>
                   <input
                     id=""
-                    v-model="weekly"
-                    type="text"
+                    v-model="mealsPerDay"
+                    type="number"
                     name=""
                     placeholder="0"
                   />
                   <button
                     class="btn--item plus"
-                    @click="increaseOrder('weekly')"
+                    @click.prevent="increaseOrder('weekly')"
                   >
                     <svg
                       width="24"
@@ -316,9 +316,10 @@
               <div class="plan__price-bottom">
                 <h5>
                   <span class="price">Price </span>
-                  <span class="icon">👉 </span> NGN 36,000.00
+                  <span class="icon">👉 </span> NGN
+                  {{ currencyFormat(totalDailyPrice) }}
                 </h5>
-                <p>Weekly</p>
+                <p>Monthly</p>
               </div>
             </div>
           </transition>
@@ -329,7 +330,7 @@
                 <div class="btn--group">
                   <button
                     class="btn--item minus"
-                    @click="decreaseOrder('weekly')"
+                    @click.prevent="decreaseOrder('monthly')"
                   >
                     <svg
                       width="24"
@@ -349,14 +350,14 @@
                   </button>
                   <input
                     id=""
-                    v-model="weekly"
-                    type="text"
+                    v-model="mealsPerWeek"
+                    type="number"
                     name=""
                     placeholder="0"
                   />
                   <button
                     class="btn--item plus"
-                    @click="increaseOrder('weekly')"
+                    @click.prevent="increaseOrder('monthly')"
                   >
                     <svg
                       width="24"
@@ -393,7 +394,7 @@
                 <div class="btn--group">
                   <button
                     class="btn--item minus"
-                    @click="decreaseOrder('weekly')"
+                    @click.prevent="decreaseFrequency()"
                   >
                     <svg
                       width="24"
@@ -413,14 +414,15 @@
                   </button>
                   <input
                     id=""
-                    v-model="weekly"
-                    type="text"
+                    v-model="deliveryPerWeek"
+                    type="number"
                     name=""
                     placeholder="0"
+                    max="2"
                   />
                   <button
                     class="btn--item plus"
-                    @click="increaseOrder('weekly')"
+                    @click.prevent="increaseFrequency()"
                   >
                     <svg
                       width="24"
@@ -450,7 +452,8 @@
               <div class="plan__price-bottom">
                 <h5>
                   <span class="price">Price </span>
-                  <span class="icon">👉 </span> NGN 96,000.00
+                  <span class="icon">👉 </span> NGN
+                  {{ currencyFormat(totalWeeklyPrice) }}
                 </h5>
                 <p>Monthly</p>
               </div>
@@ -478,7 +481,7 @@
               Your clothes, picked up, laundered and delivered to you in 48
               hours or less.
             </p>
-            <nuxt-link :to="{ path: '/' }" class="btn">
+            <nuxt-link :to="{ path: '/laundry' }" class="btn">
               {{
                 exploreService === 'laundry' || setExploreService
                   ? 'Explore'
@@ -512,7 +515,7 @@
             <h3>🏠</h3>
             <h5>Home Cleaning</h5>
             <p>Professional cleaning at your doorstep. Up to thrice a week.</p>
-            <nuxt-link :to="{ path: '/' }" class="btn">
+            <nuxt-link :to="{ path: '/cleaning' }" class="btn">
               {{
                 exploreService === 'cleaning' || setExploreService
                   ? 'Explore'
@@ -549,7 +552,7 @@
               Gift cards and gift boxes for every occasion, right at your
               fingertips.
             </p>
-            <nuxt-link :to="{ path: '/' }" class="btn">
+            <nuxt-link :to="{ path: '/gifting' }" class="btn">
               {{
                 exploreService === 'gifting' || setExploreService
                   ? 'Explore'
@@ -584,6 +587,8 @@
 
 <script>
 import foodMessages from '~/static/foodMessages'
+import { pricing } from '~/static/pricing'
+import { currencyFormat } from '~/static/functions'
 
 export default {
   beforeRouteEnter(to, from, next) {
@@ -651,8 +656,11 @@ export default {
       setExploreService: false,
       exploreService: '',
       messageList: foodMessages,
-      weekly: 1,
-      weekly_price: null,
+      mealsPerDay: 1,
+      mealsPerWeek: 10,
+      deliveryPerWeek: 1,
+      totalDailyPrice: null,
+      totalWeeklyPrice: null,
       period: 'weekly',
       window: {
         width: 0,
@@ -660,6 +668,7 @@ export default {
       },
     }
   },
+
   watch: {
     weekly(val) {
       const weeklyDefault = 24500
@@ -669,11 +678,18 @@ export default {
   mounted() {
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
+    this.totalDailyPrice = pricing({
+      meal: { item: null, frequency: 'daily', qty: this.mealsPerDay },
+    })
+    this.totalWeeklyPrice = pricing({
+      meal: { item: null, frequency: 'weekly', qty: this.mealsPerWeek },
+    })
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
   },
   methods: {
+    currencyFormat,
     handleResize() {
       this.window.width = window.innerWidth
       this.window.height = window.innerHeight
@@ -683,16 +699,50 @@ export default {
     },
     increaseOrder(order) {
       if (order === 'weekly') {
-        this.weekly++
-        const weeklyDefault = 24500
-        this.weekly_price = weeklyDefault * this.weekly
+        this.mealsPerDay++
+        this.totalDailyPrice = pricing({
+          meal: { item: null, frequency: 'daily', qty: this.mealsPerDay },
+        })
+      }
+      if (order === 'monthly') {
+        this.mealsPerWeek++
+        const freq = this.deliveryPerWeek === 1 ? 'weekly' : 'weekly-twodays'
+        this.totalWeeklyPrice = pricing({
+          meal: { item: null, frequency: freq, qty: this.mealsPerWeek },
+        })
       }
     },
     decreaseOrder(order) {
-      if (order === 'weekly' && this.weekly > 1) {
-        this.weekly--
-        const weeklyDefault = 24500
-        this.weekly_price = this.weekly - weeklyDefault
+      if (order === 'weekly' && this.mealsPerDay > 1) {
+        this.mealsPerDay--
+        this.totalDailyPrice = pricing({
+          meal: { item: null, frequency: 'daily', qty: this.mealsPerDay },
+        })
+      }
+      if (order === 'monthly' && this.mealsPerWeek > 1) {
+        this.mealsPerWeek--
+        const freq = this.deliveryPerWeek === 1 ? 'weekly' : 'weekly-twodays'
+        this.totalWeeklyPrice = pricing({
+          meal: { item: null, frequency: freq, qty: this.mealsPerWeek },
+        })
+      }
+    },
+    increaseFrequency() {
+      if (this.deliveryPerWeek < 2) {
+        this.deliveryPerWeek++
+        const freq = this.deliveryPerWeek === 1 ? 'weekly' : 'weekly-twodays'
+        this.totalWeeklyPrice = pricing({
+          meal: { item: null, frequency: freq, qty: this.mealsPerWeek },
+        })
+      }
+    },
+    decreaseFrequency() {
+      if (this.deliveryPerWeek > 1) {
+        this.deliveryPerWeek--
+        const freq = this.deliveryPerWeek === 1 ? 'weekly' : 'weekly-twodays'
+        this.totalWeeklyPrice = pricing({
+          meal: { item: null, frequency: freq, qty: this.mealsPerWeek },
+        })
       }
     },
   },

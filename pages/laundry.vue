@@ -176,12 +176,12 @@
         <div class="plan__price">
           <ul>
             <li
-              :class="{ active: plan === 'wdf' }"
-              @click.prevent="plan = 'wdf'"
+              :class="{ active: plan === 'washDry' }"
+              @click.prevent="plan = 'washDry'"
             >
               <span> Wash, Dry & Fold</span>
               <svg
-                v-if="plan === 'wdf'"
+                v-if="plan === 'washDry'"
                 width="6"
                 height="6"
                 viewBox="0 0 6 6"
@@ -192,12 +192,12 @@
               </svg>
             </li>
             <li
-              :class="{ active: plan === 'wfi' }"
-              @click.prevent="plan = 'wfi'"
+              :class="{ active: plan === 'washIron' }"
+              @click.prevent="plan = 'washIron'"
             >
               <span> Wash, Fold & Iron </span>
               <svg
-                v-if="plan === 'wfi'"
+                v-if="plan === 'washIron'"
                 width="6"
                 height="6"
                 viewBox="0 0 6 6"
@@ -210,14 +210,17 @@
           </ul>
           <!--  -->
           <transition name="slide-fade">
-            <div v-if="plan === 'wdf'" class="plan__price-wdf">
+            <div v-if="plan === 'washDry'" class="plan__price-washDry">
               <div class="plan__price-item">
                 <p>
                   <span class="number">Number of laundry bags</span>
                   <span class="bag">Approx 30 items per bag</span>
                 </p>
                 <div class="btn--group">
-                  <button class="btn--item minus" @click="decreaseOrder('wdf')">
+                  <button
+                    class="btn--item minus"
+                    @click.prevent="decreaseOrder('washDry')"
+                  >
                     <svg
                       width="24"
                       height="24"
@@ -236,12 +239,15 @@
                   </button>
                   <input
                     id=""
-                    v-model="wdf"
-                    type="text"
+                    v-model="washDry"
+                    type="number"
                     name=""
                     placeholder="0"
                   />
-                  <button class="btn--item plus" @click="increaseOrder('wdf')">
+                  <button
+                    class="btn--item plus"
+                    @click.prevent="increaseOrder('washDry')"
+                  >
                     <svg
                       width="24"
                       height="24"
@@ -270,13 +276,25 @@
               <div class="plan__price-item">
                 <p><span class="number">Frequency</span></p>
                 <div class="btn--group">
-                  <button class="btn--freq" @click="decreaseOrder('wdf')">
+                  <button
+                    class="btn--freq"
+                    :class="{ active: washDryFrequency === 'weekly' }"
+                    @click.prevent="laundryDryFrequency('weekly')"
+                  >
                     Once a week
                   </button>
-                  <button class="btn--freq" @click="increaseOrder('wdf')">
+                  <button
+                    class="btn--freq"
+                    :class="{ active: washDryFrequency === 'bi-weekly' }"
+                    @click.prevent="laundryDryFrequency('bi-weekly')"
+                  >
                     Every 2 weeks
                   </button>
-                  <button class="btn--freq" @click="increaseOrder('wdf')">
+                  <button
+                    class="btn--freq"
+                    :class="{ active: washDryFrequency === 'monthly' }"
+                    @click.prevent="laundryDryFrequency('monthly')"
+                  >
                     Once a month
                   </button>
                 </div>
@@ -284,21 +302,25 @@
               <div class="plan__price-bottom">
                 <h5>
                   <span class="price">Price </span>
-                  <span class="icon">👉 </span> NGN 36,000.00
+                  <span class="icon">👉 </span> NGN
+                  {{ currencyFormat(totalWashDryPrice) }}
                 </h5>
                 <p>Monthly</p>
               </div>
             </div>
           </transition>
           <transition name="slide-fade">
-            <div v-if="plan === 'wfi'" class="plan__price-wdf">
+            <div v-if="plan === 'washIron'" class="plan__price-washDry">
               <div class="plan__price-item">
                 <p>
                   <span class="number">Number of laundry bags</span>
                   <span class="bag">Approx 30 items per bag</span>
                 </p>
                 <div class="btn--group">
-                  <button class="btn--item minus" @click="decreaseOrder('wdf')">
+                  <button
+                    class="btn--item minus"
+                    @click.prevent="decreaseOrder('washIron')"
+                  >
                     <svg
                       width="24"
                       height="24"
@@ -317,12 +339,15 @@
                   </button>
                   <input
                     id=""
-                    v-model="wdf"
-                    type="text"
+                    v-model="washIron"
+                    type="number"
                     name=""
                     placeholder="0"
                   />
-                  <button class="btn--item plus" @click="increaseOrder('wdf')">
+                  <button
+                    class="btn--item plus"
+                    @click.prevent="increaseOrder('washIron')"
+                  >
                     <svg
                       width="24"
                       height="24"
@@ -351,13 +376,25 @@
               <div class="plan__price-item">
                 <p><span class="number">Frequency</span></p>
                 <div class="btn--group">
-                  <button class="btn--freq" @click="decreaseOrder('wdf')">
+                  <button
+                    :class="{ active: washIronFrequency === 'weekly' }"
+                    class="btn--freq"
+                    @click.prevent="laundryIronFrequency('weekly')"
+                  >
                     Once a week
                   </button>
-                  <button class="btn--freq" @click="increaseOrder('wdf')">
+                  <button
+                    class="btn--freq"
+                    :class="{ active: washIronFrequency === 'bi-weekly' }"
+                    @click.prevent="laundryIronFrequency('bi-weekly')"
+                  >
                     Every 2 weeks
                   </button>
-                  <button class="btn--freq" @click="increaseOrder('wdf')">
+                  <button
+                    class="btn--freq"
+                    :class="{ active: washIronFrequency === 'monthly' }"
+                    @click.prevent="laundryIronFrequency('monthly')"
+                  >
                     Once a month
                   </button>
                 </div>
@@ -365,7 +402,8 @@
               <div class="plan__price-bottom">
                 <h5>
                   <span class="price">Price </span>
-                  <span class="icon">👉 </span> NGN 36,000.00
+                  <span class="icon">👉 </span>
+                  {{ currencyFormat(totalWashIronPrice) }}
                 </h5>
                 <p>Monthly</p>
               </div>
@@ -390,7 +428,7 @@
             <h3>🧺</h3>
             <h5>Food</h5>
             <p>Your chef-cooked meals, delivered to you. Daily or weekly.</p>
-            <nuxt-link :to="{ path: '/' }" class="btn">
+            <nuxt-link :to="{ path: '/food' }" class="btn">
               {{
                 exploreService === 'food' || setExploreService ? 'Explore' : ''
               }}
@@ -422,7 +460,7 @@
             <h3>🏠</h3>
             <h5>Home Cleaning</h5>
             <p>Professional cleaning at your doorstep. Up to thrice a week.</p>
-            <nuxt-link :to="{ path: '/' }" class="btn">
+            <nuxt-link :to="{ path: '/cleaning' }" class="btn">
               {{
                 exploreService === 'cleaning' || setExploreService
                   ? 'Explore'
@@ -459,7 +497,7 @@
               Gift cards and gift boxes for every occasion, right at your
               fingertips.
             </p>
-            <nuxt-link :to="{ path: '/' }" class="btn">
+            <nuxt-link :to="{ path: '/gifting' }" class="btn">
               {{
                 exploreService === 'gifting' || setExploreService
                   ? 'Explore'
@@ -493,6 +531,9 @@
 </template>
 
 <script>
+import { pricing } from '~/static/pricing'
+import { currencyFormat } from '~/static/functions'
+
 export default {
   data() {
     return {
@@ -530,19 +571,38 @@ export default {
         height: 0,
       },
       exploreService: '',
-      wdf: 1,
-      wfi: 1,
-      plan: 'wdf',
+      washDry: 1,
+      washIron: 1,
+      washDryFrequency: 'weekly',
+      washIronFrequency: 'weekly',
+      plan: 'washDry',
+      totalWashDryPrice: null,
+      totalWashIronPrice: null,
     }
   },
   mounted() {
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
+    this.totalWashDryPrice = pricing({
+      laundry: {
+        item: 'wash-and-fold',
+        frequency: this.washDryFrequency,
+        qty: this.washDry,
+      },
+    })
+    this.totalWashIronPrice = pricing({
+      laundry: {
+        item: 'wash-and-iron',
+        frequency: this.washIronFrequency,
+        qty: this.washIron,
+      },
+    })
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
   },
   methods: {
+    currencyFormat,
     handleResize() {
       this.window.width = window.innerWidth
       this.window.height = window.innerHeight
@@ -551,18 +611,70 @@ export default {
       } else this.setExploreService = false
     },
     increaseOrder(order) {
-      if (order === 'weekly') {
-        this.weekly++
-        const weeklyDefault = 24500
-        this.weekly_price = weeklyDefault * this.weekly
+      if (order === 'washDry') {
+        this.washDry++
+        this.totalWashDryPrice = pricing({
+          laundry: {
+            item: 'wash-and-fold',
+            frequency: this.washDryFrequency,
+            qty: this.washDry,
+          },
+        })
+      }
+
+      if (order === 'washIron') {
+        this.washIron++
+        this.totalWashIronPrice = pricing({
+          laundry: {
+            item: 'wash-and-iron',
+            frequency: this.washIronFrequency,
+            qty: this.washIron,
+          },
+        })
       }
     },
     decreaseOrder(order) {
-      if (order === 'weekly' && this.weekly > 1) {
-        this.weekly--
-        const weeklyDefault = 24500
-        this.weekly_price = this.weekly - weeklyDefault
+      if (order === 'washDry' && this.washDry > 1) {
+        this.washDry--
+        this.totalWashDryPrice = pricing({
+          laundry: {
+            item: 'wash-and-fold',
+            frequency: this.washDryFrequency,
+            qty: this.washDry,
+          },
+        })
       }
+
+      if (order === 'washIron' && this.washIron > 1) {
+        this.washIron--
+        this.totalWashIronPrice = pricing({
+          laundry: {
+            item: 'wash-and-iron',
+            frequency: this.washIronFrequency,
+            qty: this.washIron,
+          },
+        })
+      }
+    },
+    laundryDryFrequency(freq) {
+      this.washDryFrequency = freq
+      this.totalWashDryPrice = pricing({
+        laundry: {
+          item: 'wash-and-fold',
+          frequency: this.washDryFrequency,
+          qty: this.washDry,
+        },
+      })
+    },
+    laundryIronFrequency(freq) {
+      this.washIronFrequency = freq
+      this.totalWashIronPrice = pricing({
+        laundry: {
+          item: 'wash-and-iron',
+          frequency: this.washIronFrequency,
+          qty: this.washIron,
+        },
+      })
     },
   },
 }

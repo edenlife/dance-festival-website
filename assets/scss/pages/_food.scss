@@ -671,6 +671,11 @@
             text-align: center;
             @include font-size(lg);
           }
+          input[type='number']::-webkit-inner-spin-button,
+          input[type='number']::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
         }
         &--item {
           color: color(eden-neutral-1);

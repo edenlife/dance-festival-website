@@ -73,7 +73,7 @@
             <h3>🥘</h3>
             <h5>Food</h5>
             <p>Your chef-cooked meals, delivered to you. Daily or weekly.</p>
-            <nuxt-link :to="{ path: '/' }" class="btn">
+            <nuxt-link :to="{ path: '/food' }" class="btn">
               {{
                 exploreService === 'food' || setExploreService ? 'Explore' : ''
               }}
@@ -108,7 +108,7 @@
               Your clothes, picked up, laundered and delivered to you in 48
               hours or less.
             </p>
-            <nuxt-link :to="{ path: '/' }" class="btn">
+            <nuxt-link :to="{ path: '/laundry' }" class="btn">
               {{
                 exploreService === 'laundry' || setExploreService
                   ? 'Explore'
@@ -142,7 +142,7 @@
             <h3>🏠</h3>
             <h5>Home Cleaning</h5>
             <p>Professional cleaning at your doorstep. Up to thrice a week.</p>
-            <nuxt-link :to="{ path: '/' }" class="btn">
+            <nuxt-link :to="{ path: '/cleaning' }" class="btn">
               {{
                 exploreService === 'cleaning' || setExploreService
                   ? 'Explore'
@@ -180,7 +180,7 @@
               Gift cards and gift boxes for every occasion, right at your
               fingertips.
             </p>
-            <nuxt-link :to="{ path: '/' }" class="btn">
+            <nuxt-link :to="{ path: '/gifting' }" class="btn">
               {{
                 exploreService === 'gifting' || setExploreService
                   ? 'Explore'

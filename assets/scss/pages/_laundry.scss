@@ -505,9 +505,9 @@
         }
       }
     }
-    &-wfd {
+    &-washDry {
     }
-    &-wfi {
+    &-washIron {
       .plan__price-item {
         p {
           margin-top: $gap * 4;
@@ -553,6 +553,11 @@
             text-align: center;
             @include font-size(lg);
           }
+          input[type='number']::-webkit-inner-spin-button,
+          input[type='number']::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
         }
         &--item {
           color: color(eden-neutral-1);
@@ -578,7 +583,10 @@
           @include font-weight(light);
           line-height: 29px;
           transition: all 0.4s ease-in-out;
-
+          &.active {
+            border: 2px solid #03a84e;
+            color: color(eden-neutral-1);
+          }
           &:active,
           &:hover {
             border: 2px solid #03a84e;
@@ -589,6 +597,9 @@
           &:nth-child(2) {
             border-left: none;
             border-right: none;
+            &.active {
+              border: 2px solid #03a84e;
+            }
             &:active,
             &:hover {
               border: 2px solid #03a84e;
@@ -693,9 +704,9 @@
         margin-bottom: $gap * 2.4;
         @include font-size(sm);
       }
-      &-wfd {
+      &-washDry {
       }
-      &-wfi {
+      &-washIron {
         .plan__price-item {
           p {
             margin-top: $gap * 4;

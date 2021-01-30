@@ -298,10 +298,7 @@
               </nuxt-link>
             </li>
             <li class="menu--list">
-              <nuxt-link
-                :to="{ path: '/about_us' }"
-                class="navigation__mobile-item service"
-              >
+              <div class="navigation__mobile-item service">
                 <div>Service</div>
                 <div class="service--icon" @click="serviceToggle()">
                   <svg
@@ -322,7 +319,7 @@
                     />
                   </svg>
                 </div>
-              </nuxt-link>
+              </div>
               <transition name="slide-fade">
                 <ul v-if="visible" class="">
                   <li
@@ -392,12 +389,24 @@ export default {
       showService: false,
       showNavbar: false,
       visible: false,
+      window: {
+        width: 0,
+        height: 0,
+      },
     }
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('resize', this.handleResize)
   },
   methods: {
+    handleResize() {
+      this.window.width = window.innerWidth
+      this.window.height = window.innerHeight
+      if (this.showNavbar && this.window.width > '768') {
+        this.handleToggle()
+      }
+    },
     handleScroll() {
       if (window.scrollY > 20) {
         document.querySelector('#navigation-container').className =

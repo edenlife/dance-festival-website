@@ -429,8 +429,8 @@
         list-style: none;
         margin-top: $gap * 4.2;
         display: flex;
-        gap: $gap * 2.8;
         .icon {
+          margin-right: $gap * 2.8;
           border-radius: 8px;
           padding: $gap - 2 $gap + 2;
           line-height: 31px;
@@ -797,9 +797,12 @@
   &__service {
     display: flex;
     justify-content: space-between;
-    gap: $gap * 2.4;
     color: color(eden-neutral-1);
     &-item {
+      &:first-child {
+        margin-left: 0px;
+      }
+      margin-left: $gap * 2.4;
       flex: 0 0 33%;
       border-radius: 8px;
       padding: $gap * 2.4 0 0 $gap * 3.2;

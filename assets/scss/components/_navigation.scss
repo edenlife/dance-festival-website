@@ -26,13 +26,13 @@
     list-style: none;
     display: flex;
     justify-content: space-between;
-    gap: $gap * 6;
+
     &-item {
+      margin-left: $gap * 6;
       line-height: 24px;
       @include font-size(base);
       color: color(eden-neutral-1);
       transition: all 0.4s ease-in-out;
-
       &:hover {
         color: color(eden-green-primary);
       }
@@ -49,10 +49,11 @@
         transition: all 0.4s ease-in-out;
         display: flex;
         align-items: center;
-        gap: $gap - 2;
+
         svg {
           stroke: color(eden-neutral-1);
           transition: all 0.4s ease-in-out;
+          margin-left: $gap - 2;
         }
         &.active {
           color: color(eden-green-primary);

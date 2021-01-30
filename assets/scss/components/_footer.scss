@@ -44,7 +44,11 @@
     }
     &-link {
       display: flex;
-      gap: $gap * 2.6;
+      a {
+        &:first-child {
+          margin-right: $gap * 2.6;
+        }
+      }
     }
     &-image {
     }
@@ -96,7 +100,12 @@
       margin-bottom: $gap * 2.7;
       display: flex;
       align-items: center;
-      gap: $gap * 2.1;
+      a {
+        &:first-child {
+          margin-left: 0;
+        }
+        margin-left: $gap * 2.1;
+      }
       &.mobile {
         display: none;
       }
@@ -118,8 +127,11 @@
     &-nav {
       display: flex;
       justify-content: space-between;
-      gap: $gap * 14;
       ul {
+        &:first-child {
+          margin-left: 0;
+        }
+        margin-left: $gap * 14;
         li {
           list-style: none;
           @include font-size(base);

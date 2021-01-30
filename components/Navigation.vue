@@ -362,8 +362,9 @@
             </li>
             <li class="menu--list" @click.prevent="handleToggle()">
               <a
-                href="https://"
+                href="#"
                 class="navigation__mobile-item navigation__mobile-link"
+                @click.prevent="scrollTo('#get-the-app')"
                 >Get Started</a
               >
             </li>

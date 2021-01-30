@@ -775,6 +775,8 @@
           flex-direction: column;
           align-items: center;
           .icon {
+            margin-right: 0;
+            margin-bottom: $gap * 2.4;
             &--text {
               h5 {
                 margin-bottom: 8px;
@@ -1018,8 +1020,9 @@
     }
     &__service {
       flex-direction: column;
-      gap: $gap * 2;
       &-item {
+        margin-left: 0px;
+        margin-bottom: $gap * 2;
         width: 100%;
         padding: $gap * 2.4;
         h3 {

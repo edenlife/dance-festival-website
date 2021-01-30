@@ -160,6 +160,7 @@
       flex-direction: column;
       margin: 0 auto;
       &-link {
+        margin-left: 0;
         margin-top: $gap * 3.2;
         align-self: center;
       }
@@ -549,7 +550,7 @@
   }
   @include respond(md) {
     padding: $gap * 6 0 $gap * 6 0;
-    width: 100%;
+    width: 90%;
 
     &__title {
       flex-direction: column;
@@ -572,7 +573,7 @@
       gap: $gap * 2.3 $gap + 2;
       overflow: auto;
       grid-template-columns: repeat(4, 1fr);
-      margin-left: $gap * 2.4;
+      // margin-left: $gap * 2.4;
 
       .card {
         width: 307px;

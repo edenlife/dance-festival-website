@@ -430,10 +430,10 @@
       }
       &__title {
         display: flex;
-        gap: $gap - 2;
         align-items: center;
         margin-bottom: $gap + 6;
         &-img {
+          margin-right: $gap - 2;
           width: 68px;
           height: 68px;
           img {

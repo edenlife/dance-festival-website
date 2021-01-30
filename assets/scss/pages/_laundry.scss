@@ -407,7 +407,6 @@
   }
   @include respond(xl) {
     &__messages {
-      width: 100%;
       overflow: auto;
     }
   }

@@ -537,7 +537,7 @@
       }
     }
   }
-  @include respond(xl) {
+  @media only screen and (min-width: 48em) and (max-width: 75em) {
     &__title {
       &-image {
         grid-template-columns: repeat(4, 80px);
@@ -548,7 +548,6 @@
       }
     }
     &__testimonials {
-      width: 100%;
       overflow: auto;
     }
   }

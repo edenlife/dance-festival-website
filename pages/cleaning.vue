@@ -5,11 +5,11 @@
         <div class="hero__title">
           <h1>
             Spend your energy on<br />
-            <span> Being Better</span>
+            <span> {{ headerText[0] }}</span>
           </h1>
           <h1 class="mobile">
             Spend your energy on
-            <span> Being Better</span>
+            <span> {{ headerText[0] }}</span>
           </h1>
           <p>
             Let Eden Life handle your home's self-care routine
@@ -524,6 +524,13 @@ import { currencyFormat } from '~/static/functions'
 export default {
   data() {
     return {
+      headerText: [
+        'Love',
+        'Family',
+        'Having Fun',
+        'Working Out',
+        'Being Better',
+      ],
       cleaningMessage: [
         {
           name: 'Joshua',
@@ -566,6 +573,9 @@ export default {
     }
   },
   mounted() {
+    window.setInterval(() => {
+      this.changeText()
+    }, 2300)
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
     this.totalLightPrice = pricing({
@@ -588,6 +598,10 @@ export default {
   },
   methods: {
     currencyFormat,
+    changeText() {
+      const first = this.headerText.shift()
+      this.headerText = this.headerText.concat(first)
+    },
     handleResize() {
       this.window.width = window.innerWidth
       this.window.height = window.innerHeight

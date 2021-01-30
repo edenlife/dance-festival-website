@@ -4,7 +4,7 @@
       <header class="hero">
         <div class="hero__title">
           <h1>
-            Save your <span> Time</span> <br />
+            Save your <span> {{ headerText[0] }}</span> <br />
             Clean clothes on repeat.
           </h1>
           <p>
@@ -514,6 +514,7 @@ import { currencyFormat } from '~/static/functions'
 export default {
   data() {
     return {
+      headerText: ['Time', 'Energy', 'Money'],
       LaundryMessage: [
         {
           name: 'justin irabor',
@@ -558,6 +559,9 @@ export default {
     }
   },
   mounted() {
+    window.setInterval(() => {
+      this.changeText()
+    }, 2300)
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
     this.totalWashDryPrice = pricing({
@@ -580,6 +584,10 @@ export default {
   },
   methods: {
     currencyFormat,
+    changeText() {
+      const first = this.headerText.shift()
+      this.headerText = this.headerText.concat(first)
+    },
     handleResize() {
       this.window.width = window.innerWidth
       this.window.height = window.innerHeight

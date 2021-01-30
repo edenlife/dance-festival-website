@@ -4,11 +4,11 @@
       <header class="hero">
         <div class="hero__title">
           <h1>
-            Enjoy <span> Pasta</span> <br />
+            Enjoy <span> {{ headerText[0] }}</span> <br />
             Ready in 5 minutes
           </h1>
           <h1 class="mobile">
-            Enjoy <span> Pasta</span> <br />
+            Enjoy <span> {{ headerText[0] }}</span> <br />
             Ready in <br />5 minutes
           </h1>
           <p>
@@ -591,6 +591,13 @@ export default {
   },
   data() {
     return {
+      headerText: [
+        'Perfect Pasta',
+        'Spicy Soups',
+        'Gorgeous Gizdodo',
+        'Peppery Porridge',
+        'Savory Seafood',
+      ],
       activeTabIndex: null,
       tabs: [
         {
@@ -653,6 +660,9 @@ export default {
     },
   },
   mounted() {
+    window.setInterval(() => {
+      this.changeText()
+    }, 2300)
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
     this.totalDailyPrice = pricing({
@@ -667,6 +677,10 @@ export default {
   },
   methods: {
     currencyFormat,
+    changeText() {
+      const first = this.headerText.shift()
+      this.headerText = this.headerText.concat(first)
+    },
     handleResize() {
       this.window.width = window.innerWidth
       this.window.height = window.innerHeight

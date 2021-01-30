@@ -4,10 +4,10 @@
       <header class="hero">
         <div class="hero__title">
           <h1 class="">
-            The Perfect Perk <br />for <span> Rockstar Companies</span>
+            The Perfect Perk <br />for <span> {{ headerText[0] }}</span>
           </h1>
           <h1 class="mobile">
-            The Perfect Perk for <span> Rockstar Companies</span>
+            The Perfect Perk for <span> {{ headerText[0] }}</span>
           </h1>
           <p>
             CEO, Hiring manager or Team Lead? Eden is the best way to reward
@@ -191,6 +191,7 @@
 export default {
   data() {
     return {
+      headerText: ['Rockstar Companies', 'Thoughtful Teams'],
       TeamMessageList: [
         {
           name: 'Oyechukwu 😎',
@@ -234,6 +235,17 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
         },
       ],
     }
+  },
+  mounted() {
+    window.setInterval(() => {
+      this.changeText()
+    }, 2300)
+  },
+  methods: {
+    changeText() {
+      const first = this.headerText.shift()
+      this.headerText = this.headerText.concat(first)
+    },
   },
 }
 </script>

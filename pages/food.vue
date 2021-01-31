@@ -103,35 +103,97 @@
       </section>
     </div>
 
-    <div ref="menu-options" class="container--menu">
+    <div id="menu-options" ref="menu-options" class="container--menu">
       <section class="menu">
         <div class="menu__title">
           <h3>Next week’s menu</h3>
           <p>12 Nov 2021 - 19 Nov 2021</p>
         </div>
         <nav class="menu__nav">
-          <nuxt-link
-            v-for="(tab, index) in tabs"
-            :key="index"
-            :to="{ path: `/food#${tab.id}` }"
-            @click.prevent="activeTabIndex = index"
+          <carousel
+            class="carousel-container"
+            :nav="false"
+            :dots="false"
+            :loop="false"
+            :responsive="{
+              0: {
+                items: 1,
+              },
+              600: {
+                items: 3,
+              },
+            }"
           >
-            <p :class="`${activeTabIndex === index ? 'active' : ''}`">
-              {{ tab.title }}
-            </p>
-            <svg
-              v-if="activeTabIndex === index"
-              width="6"
-              height="6"
-              viewBox="0 0 6 6"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+            <template slot="prev"
+              ><span class="prev">
+                <svg
+                  width="6"
+                  height="10"
+                  viewBox="0 0 6 10"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 1L5 5L1 9"
+                    stroke="#61DB98"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg> </span
+            ></template>
+
+            <div
+              v-for="(tab, index) in tabs"
+              :key="index"
+              class="menu__nav-item"
+              @click.prevent="activeTabIndex = index"
             >
-              <circle cx="3" cy="3" r="3" fill="#61DB98" />
-            </svg>
-          </nuxt-link>
+              <p :class="`${activeTabIndex === index ? 'active' : ''}`">
+                {{ tab.title }}
+              </p>
+              <svg
+                v-if="activeTabIndex === index"
+                width="6"
+                height="6"
+                viewBox="0 0 6 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="3" cy="3" r="3" fill="#61DB98" />
+              </svg>
+            </div>
+
+            <template slot="next">
+              <span class="next">
+                <svg
+                  width="6"
+                  height="10"
+                  viewBox="0 0 6 10"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 1L5 5L1 9"
+                    stroke="#61DB98"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg> </span
+            ></template>
+          </carousel>
         </nav>
-        <div class="menu__list"></div>
+        <div class="menu__list">
+          <figure v-for="(item, i) in foodMenu" :key="i">
+            <div class="menu__list-img">
+              <img :src="item.image" :alt="item.name" />
+            </div>
+            <figcaption>
+              <p>
+                {{ item.name }}
+              </p>
+            </figcaption>
+          </figure>
+        </div>
       </section>
     </div>
 
@@ -575,11 +637,15 @@
 </template>
 
 <script>
+import Carousel from 'vue-owl-carousel'
 import foodMessages from '~/static/foodMessages'
 import { pricing } from '~/static/pricing'
 import { currencyFormat } from '~/static/functions'
 
 export default {
+  components: {
+    Carousel,
+  },
   beforeRouteEnter(to, from, next) {
     const tab = to.hash.replace('#', '')
     next((vm) => {
@@ -649,6 +715,38 @@ export default {
           title: 'swallow',
         },
       ],
+      foodMenu: [
+        {
+          image:
+            'https://res.cloudinary.com/eden-life-inc/image/upload/v1612083303/eden-website-v2/menu-coleslaw_s7wn0t.png',
+          name: 'Food',
+        },
+        {
+          image:
+            'https://res.cloudinary.com/eden-life-inc/image/upload/v1612083303/eden-website-v2/menu-coleslaw_s7wn0t.png',
+          name: 'Food',
+        },
+        {
+          image:
+            'https://res.cloudinary.com/eden-life-inc/image/upload/v1612083303/eden-website-v2/menu-coleslaw_s7wn0t.png',
+          name: 'Food',
+        },
+        {
+          image:
+            'https://res.cloudinary.com/eden-life-inc/image/upload/v1612083303/eden-website-v2/menu-coleslaw_s7wn0t.png',
+          name: 'Food',
+        },
+        {
+          image:
+            'https://res.cloudinary.com/eden-life-inc/image/upload/v1612083303/eden-website-v2/menu-coleslaw_s7wn0t.png',
+          name: 'Food',
+        },
+        {
+          image:
+            'https://res.cloudinary.com/eden-life-inc/image/upload/v1612083303/eden-website-v2/menu-coleslaw_s7wn0t.png',
+          name: 'Food',
+        },
+      ],
       setExploreService: false,
       exploreService: '',
       messageList: foodMessages,
@@ -699,6 +797,11 @@ export default {
       if (this.window.width < '768') {
         this.setExploreService = true
       } else this.setExploreService = false
+    },
+    scrollToMenu() {
+      // this.activeTabIndex = id
+      const scrollToElement = document.querySelector('#menu-options')
+      scrollToElement.scrollIntoView()
     },
     scrollTo(ref) {
       this.$refs[ref].scrollIntoView()

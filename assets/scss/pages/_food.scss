@@ -335,17 +335,46 @@
     }
   }
   &__nav {
+    overflow: hidden;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #e4e8e6;
-    margin-top: $gap * 6;
-    gap: $gap * 4;
+    margin-top: $gap * 5;
+    position: relative;
 
-    a {
+    .carousel-container {
+      display: flex;
+      .prev,
+      .next {
+        z-index: 100;
+        border: 0.5px solid #e4e8e6;
+        padding: 8px 10px;
+        border-radius: 4px;
+        position: absolute;
+        background-color: color(eden-neutral-7);
+        bottom: 15px;
+        cursor: pointer;
+      }
+      .prev {
+        transform: rotate(180deg);
+        left: 0;
+      }
+      .next {
+        right: 0;
+      }
+    }
+
+    &-item {
+      &:first-child {
+        margin-left: 0;
+      }
+      cursor: pointer;
+      padding-top: $gap;
+      margin-left: $gap * 4;
       color: color(eden-neutral-4);
       @include font-size(base);
       line-height: 24px;
-      padding-bottom: $gap * 2.4;
+      padding-bottom: $gap + 2;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -364,7 +393,46 @@
       }
     }
   }
+  &__list {
+    margin-top: $gap * 6;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $gap * 6 $gap * 5;
+    padding-bottom: $gap * 5;
+    figure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    &-img {
+      height: 260px;
+      width: 260px;
+      padding: $gap * 4 $gap + 8;
+      background-color: #eeeeee;
+      border-radius: 8px;
 
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+    figcaption {
+      margin-top: $gap + 3;
+      p {
+        text-align: center;
+        line-height: 29px;
+        @include font-size(lg);
+        @include font-weight(light);
+        color: color(eden-neutral-1);
+      }
+    }
+  }
+  @include respond(xl) {
+    &__list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
   @include respond(md) {
     width: 90%;
     &__title {
@@ -379,19 +447,33 @@
       }
     }
     &__nav {
-      overflow: auto;
-      gap: $gap * 2.4;
-
       a {
+        &:first-child {
+          margin-left: 0;
+        }
+        margin-left: $gap * 2.4;
         @include font-size(sm);
         line-height: 21px;
         padding-bottom: $gap * 2.2;
       }
     }
-  }
-  &__nav {
-    width: 100%;
-    overflow: auto;
+    &__list {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $gap * 4.8 $gap + 6;
+      padding-bottom: 0;
+
+      &-img {
+        height: 156px;
+        width: 156px;
+        padding: $gap * 2.7 $gap + 4;
+      }
+      figcaption {
+        p {
+          line-height: 24px;
+          @include font-size(base);
+        }
+      }
+    }
   }
   @include respond(xxl) {
     max-width: 1440px;

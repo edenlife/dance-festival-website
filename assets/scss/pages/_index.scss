@@ -401,28 +401,19 @@
   }
   &__item {
     //TO DO: add overlay
-    background: black;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 600px;
-    background-image: linear-gradient(
-        178.06deg,
-        rgba(33, 49, 42, 0) -2.37%,
-        rgba(33, 49, 42, 0.6) 113.57%
-      ),
-      url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611319513/eden-website-v2/video-thumbnail_crnwew.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 8px;
-    // .show--frame {
-    //   visibility: hidden;
-    // }
-    // .hide--frame {
-    //   visibility: visible;
-    // }
+    video {
+      width: 100% !important;
+      height: auto !important;
+    }
   }
 
   @include respond(md) {

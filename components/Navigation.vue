@@ -376,6 +376,8 @@
 </template>
 
 <script>
+import { scrollToApp } from '~/static/functions'
+
 export default {
   name: 'Navigation',
   data() {
@@ -411,8 +413,7 @@ export default {
       }
     },
     scrollTo(id) {
-      const scrollToElement = document.querySelector(id)
-      scrollToElement.scrollIntoView()
+      scrollToApp(id)
     },
     serviceToggle() {
       this.visible = !this.visible

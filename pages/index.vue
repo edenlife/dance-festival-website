@@ -576,7 +576,6 @@
             </div>
             <transition name="slide-fade">
               <p v-if="questions.includes('three')">
-                <!-- TO DO -->
                 When you sign up on
                 <a
                   href="#"
@@ -917,6 +916,8 @@
 
 <script>
 import testimonials from '~/static/testimonials'
+import { scrollToApp } from '~/static/functions'
+
 export default {
   data() {
     return {
@@ -980,6 +981,9 @@ export default {
     window.removeEventListener('resize', this.handleResize)
   },
   methods: {
+    scrollTo(id) {
+      scrollToApp(id)
+    },
     handleResize() {
       this.window.width = window.innerWidth
       this.window.height = window.innerHeight
@@ -1031,47 +1035,6 @@ export default {
       this.questions.length && this.questions.includes(item)
         ? (this.questions = this.questions.filter((o1) => o1 !== item))
         : this.questions.push(item)
-    },
-    scrollTo(id) {
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera
-      // Windows Phone must come first because its UA also contains "Android"
-      if (/windows phone/i.test(userAgent)) {
-        const scrollToElement = document.querySelector(id)
-        scrollToElement.scrollIntoView()
-      }
-
-      if (/android/i.test(userAgent)) {
-        window.open(
-          ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`
-        )
-      }
-
-      // iOS detection from: http://stackoverflow.com/a/9039885/177710
-      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        window.open(`https://apps.apple.com/us/app/eden-life/id1482373755?ls=1`)
-      }
-
-      // const scrollToElement = document.querySelector(id)
-      // scrollToElement.scrollIntoView()
-    },
-    getMobileOperatingSystem() {
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera
-
-      // Windows Phone must come first because its UA also contains "Android"
-      if (/windows phone/i.test(userAgent)) {
-        return 'Windows Phone'
-      }
-
-      if (/android/i.test(userAgent)) {
-        return 'Android'
-      }
-
-      // iOS detection from: http://stackoverflow.com/a/9039885/177710
-      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        return 'iOS'
-      }
-
-      return 'unknown'
     },
   },
 }

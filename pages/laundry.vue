@@ -16,7 +16,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="scrollToApp('#get-the-app')"
+              @click.prevent="scrollToFooter('#get-the-app')"
             >
               Start Your Eden Life
             </button>
@@ -85,7 +85,7 @@
               <button
                 type="button"
                 class="btn"
-                @click.prevent="scrollToApp('#get-the-app')"
+                @click.prevent="scrollToFooter('#get-the-app')"
               >
                 Get the app
               </button>
@@ -521,7 +521,7 @@
 
 <script>
 import { pricing } from '~/static/pricing'
-import { currencyFormat } from '~/static/functions'
+import { currencyFormat, scrollToApp } from '~/static/functions'
 
 export default {
   data() {
@@ -615,9 +615,8 @@ export default {
         this.setExploreService = true
       } else this.setExploreService = false
     },
-    scrollToApp(id) {
-      const scrollToElement = document.querySelector(id)
-      scrollToElement.scrollIntoView()
+    scrollToFooter(id) {
+      scrollToApp(id)
     },
     increaseOrder(order) {
       if (order === 'washDry') {

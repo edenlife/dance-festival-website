@@ -31,7 +31,7 @@
           For customer support, log in to your Eden app to chat directly with
           your Gardener.
         </p>
-        <a href="#" @click.prevent="scrollToApp('#get-the-app')"
+        <a href="#" @click.prevent="scrollToFooter('#get-the-app')"
           >Download the Eden App</a
         >
       </div>
@@ -65,11 +65,12 @@
 </template>
 
 <script>
+import { scrollToApp } from '~/static/functions'
+
 export default {
   methods: {
-    scrollToApp(id) {
-      const scrollToElement = document.querySelector(id)
-      scrollToElement.scrollIntoView()
+    scrollToFooter(id) {
+      scrollToApp(id)
     },
   },
 }

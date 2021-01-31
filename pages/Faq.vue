@@ -208,7 +208,6 @@
           </div>
           <transition name="slide-fade">
             <p v-if="questions.includes('three')">
-              <!-- TO DO -->
               When you sign up on
               <a
                 href="#"
@@ -578,7 +577,6 @@
           </div>
           <transition name="slide-fade">
             <p v-if="questions.includes('eight')">
-              <!-- TO DO -->
               Get Started
               <a
                 href="#"
@@ -679,6 +677,8 @@
 </template>
 
 <script>
+import { scrollToApp } from '~/static/functions'
+
 export default {
   data() {
     return {
@@ -692,8 +692,7 @@ export default {
         : this.questions.push(item)
     },
     scrollTo(id) {
-      const scrollToElement = document.querySelector(id)
-      scrollToElement.scrollIntoView()
+      scrollToApp(id)
     },
   },
 }

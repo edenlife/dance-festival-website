@@ -91,7 +91,7 @@
               <button
                 type="button"
                 class="btn"
-                @click.prevent="scrollToApp('#get-the-app')"
+                @click.prevent="scrollToFooter('#get-the-app')"
               >
                 Get the app
               </button>
@@ -640,7 +640,7 @@
 import Carousel from 'vue-owl-carousel'
 import foodMessages from '~/static/foodMessages'
 import { pricing } from '~/static/pricing'
-import { currencyFormat } from '~/static/functions'
+import { currencyFormat, scrollToApp } from '~/static/functions'
 
 export default {
   components: {
@@ -806,9 +806,8 @@ export default {
     scrollTo(ref) {
       this.$refs[ref].scrollIntoView()
     },
-    scrollToApp(id) {
-      const scrollToElement = document.querySelector(id)
-      scrollToElement.scrollIntoView()
+    scrollToFooter(id) {
+      scrollToApp(id)
     },
     increaseOrder(order) {
       if (order === 'weekly') {

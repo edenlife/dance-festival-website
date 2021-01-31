@@ -23,7 +23,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="scrollToApp('#get-the-app')"
+              @click.prevent="scrollToFooter('#get-the-app')"
             >
               Sign up for a Clean home
             </button>
@@ -94,7 +94,7 @@
               <button
                 type="button"
                 class="btn"
-                @click.prevent="scrollToApp('#get-the-app')"
+                @click.prevent="scrollToFooter('#get-the-app')"
               >
                 Get the app
               </button>
@@ -529,7 +529,7 @@
 
 <script>
 import { pricing } from '~/static/pricing'
-import { currencyFormat } from '~/static/functions'
+import { currencyFormat, scrollToApp } from '~/static/functions'
 
 export default {
   data() {
@@ -608,9 +608,8 @@ export default {
   },
   methods: {
     currencyFormat,
-    scrollToApp(id) {
-      const scrollToElement = document.querySelector(id)
-      scrollToElement.scrollIntoView()
+    scrollToFooter(id) {
+      scrollToApp(id)
     },
     changeText() {
       const first = this.headerText.shift()

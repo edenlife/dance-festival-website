@@ -17,7 +17,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="scrollToApp('#get-the-app')"
+              @click.prevent="scrollToFooter('#get-the-app')"
             >
               Get Eden
             </button>
@@ -193,7 +193,7 @@
         <button
           type="button"
           class="btn"
-          @click.prevent="scrollToApp('#get-the-app')"
+          @click.prevent="scrollToFooter('#get-the-app')"
         >
           Get the Perfect Perk
         </button>
@@ -203,6 +203,8 @@
 </template>
 
 <script>
+import { scrollToApp } from '~/static/functions'
+
 export default {
   data() {
     return {
@@ -271,9 +273,8 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
       const first = this.headerText.shift()
       this.headerText = this.headerText.concat(first)
     },
-    scrollToApp(id) {
-      const scrollToElement = document.querySelector(id)
-      scrollToElement.scrollIntoView()
+    scrollToFooter(id) {
+      scrollToApp(id)
     },
   },
 }

@@ -5,3 +5,26 @@ export const formatNumber = (number) => {
 export const currencyFormat = (number) => {
   return number ? number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') : 0
 }
+
+export const scrollToApp = (id) => {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera
+  // Windows Phone must come first because its UA also contains "Android"
+  if (/windows phone/i.test(userAgent)) {
+    const scrollToElement = document.querySelector(id)
+    scrollToElement.scrollIntoView()
+  }
+
+  if (/android/i.test(userAgent)) {
+    window.open(
+      ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`
+    )
+  }
+
+  // iOS detection from: http://stackoverflow.com/a/9039885/177710
+  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    window.open(`https://apps.apple.com/us/app/eden-life/id1482373755?ls=1`)
+  }
+
+  const scrollToElement = document.querySelector(id)
+  scrollToElement.scrollIntoView()
+}

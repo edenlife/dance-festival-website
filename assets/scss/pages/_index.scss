@@ -417,6 +417,12 @@
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 8px;
+    // .show--frame {
+    //   visibility: hidden;
+    // }
+    // .hide--frame {
+    //   visibility: visible;
+    // }
   }
 
   @include respond(md) {

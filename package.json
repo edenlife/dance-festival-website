@@ -18,7 +18,8 @@
     "nuxt": "^2.14.12",
     "sass": "^1.32.5",
     "sass-loader": "^10.1.1",
-    "vue-owl-carousel": "^2.0.3"
+    "vue-owl-carousel": "^2.0.3",
+    "vue-video-player": "^5.0.2"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^5.0.0",

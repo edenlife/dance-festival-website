@@ -220,7 +220,33 @@
         <div class="video__title">
           <h3>Why Eden?</h3>
         </div>
-        <div class="video__item"></div>
+        <div class="video__item" @click.prevent="showFrame = !showFrame">
+          <!-- <div class="show--frame" :class="{ 'hide--frame': showFrame }">
+            <iframe
+              width="800"
+              height="600"
+              :src="`https://www.youtube.com/embed/dD6i5eqrRRo?${autoPlayMute}`"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            >
+            </iframe>
+          </div> -->
+          <video
+            :src="`https://www.youtube.com/embed/dD6i5eqrRRo?${autoPlayMute}`"
+            poster="https://res.cloudinary.com/eden-life-inc/image/upload/v1611319513/eden-website-v2/video-thumbnail_crnwew.png"
+            controls
+            height="600"
+            width="800"
+          />
+          <!-- <video-player
+            ref="videoPlayer"
+            class="vjs-custom-skin"
+            :options="playerOptions"
+            :playsinline="true"
+          >
+          </video-player> -->
+        </div>
       </section>
     </div>
 
@@ -921,6 +947,7 @@ import { scrollToApp } from '~/static/functions'
 export default {
   data() {
     return {
+      showFrame: false,
       services: [
         { title: 'housecleaning', value: 'cleaning' },
         { title: 'laundry day', value: 'laundry' },
@@ -967,6 +994,7 @@ export default {
         width: 0,
         height: 0,
       },
+      autoPlayMute: '',
     }
   },
   mounted() {

@@ -7,6 +7,16 @@
     margin-top: 100px;
   }
 
+  &--description {
+    background-color: #f6fffa;
+    @include respond(md) {
+      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611834564/eden-website-v2/bg-8_d0hgzi.svg');
+      background-repeat: no-repeat;
+      background-position: top 22% right 25%;
+      background-size: 30%;
+    }
+  }
+
   &--team {
     background-color: #fffcfa;
   }
@@ -244,6 +254,192 @@
           margin-bottom: 0;
           @include font-size(base);
           line-height: 24px;
+        }
+      }
+    }
+  }
+  @include respond(xxl) {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}
+
+.description {
+  margin: 0 auto;
+  width: 83%;
+  padding: $gap * 6 0 0 0;
+  &__title {
+    color: color(eden-neutral-1);
+    margin-bottom: $gap * 6;
+    h3 {
+      @include font-size(6xl);
+      line-height: 55px;
+      @include font-weight(bold);
+    }
+  }
+  &__body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__slider {
+    flex: 0 0 50%;
+    display: flex;
+    gap: $gap * 3.5;
+    &-timeline {
+      margin-top: $gap + 5;
+      // background-color: color(eden-neutral-6);
+      // width: 2px;
+      // height: 400px;
+      // margin-left: $gap * 2;
+      // position: relative;
+      // z-index: 5;
+      // cursor: pointer;
+      svg {
+        fill: color(eden-neutral-6);
+      }
+      .horizontal {
+        display: none;
+      }
+      .slide {
+        height: 0%;
+        width: 100%;
+        background-color: color(eden-green-secondary);
+        position: relative;
+        display: block;
+        transition: 0.08s height;
+      }
+    }
+    &-text {
+      color: color(eden-neutral-1);
+      padding-bottom: $gap * 9.8;
+      h5 {
+        line-height: 31px;
+        @include font-size(2xl);
+        @include font-weight(bold);
+        margin-bottom: $gap * 6.4;
+      }
+
+      .one {
+        color: color(eden-neutral-5);
+      }
+      .two {
+        color: color(eden-neutral-5);
+      }
+      .three {
+        // color: color(eden-neutral-5);
+      }
+      .four {
+        color: color(eden-neutral-5);
+      }
+      .five {
+        color: color(eden-neutral-5);
+      }
+    }
+    .btn {
+      line-height: 23px;
+      @include font-size(lg);
+      background-color: color(eden-green-primary);
+      color: color(eden-neutral-7);
+      border-radius: 4px;
+      transition: all 0.4s ease-in-out;
+      padding: $gap + 6 $gap * 3.2;
+      &--mobile {
+        display: none;
+      }
+      &:hover {
+        box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
+        background-color: color(eden-green-250);
+        color: color(eden-neutral-7);
+      }
+      &:active {
+        background-image: radial-gradient(
+          circle at center right,
+          rgba(0, 141, 64, 0.1) 50%,
+          #008d40 50%
+        );
+      }
+    }
+  }
+  &__video {
+    flex: 0 0 50%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  @include respond(md) {
+    width: 100%;
+    padding: $gap * 6.4 0;
+
+    &__title {
+      text-align: center;
+      margin-bottom: $gap * 5.2;
+      h3 {
+        @include font-size(3xl);
+        line-height: 36px;
+      }
+    }
+    &__body {
+      flex-direction: column;
+    }
+    &__slider {
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      &-timeline {
+        margin-top: $gap * 5;
+        .vertical {
+          display: none;
+        }
+        .horizontal {
+          display: block;
+        }
+      }
+      &-text {
+        overflow: auto;
+        display: flex;
+        justify-content: space-between;
+        gap: $gap * 4.8;
+        margin-right: $gap * 4;
+        padding-bottom: 0;
+        h5 {
+          text-align: center;
+          line-height: 26px;
+          @include font-size(xl);
+          margin-bottom: $gap + 6;
+        }
+        .one {
+          margin-left: $gap * 4;
+        }
+
+        > * {
+          flex: 0 0 80%;
+        }
+      }
+      .btn {
+        display: none;
+        &--mobile {
+          align-self: center;
+          display: block;
+          line-height: 23px;
+          @include font-size(lg);
+          background-color: color(eden-green-primary);
+          color: color(eden-neutral-7);
+          border-radius: 4px;
+          transition: all 0.4s ease-in-out;
+          padding: $gap + 6 $gap * 3.2;
+        }
+      }
+    }
+    &__video {
+      order: -1;
+      &-item {
+        width: 166px;
+        height: 399px;
+        img {
+          width: 100%;
+          height: auto;
+          object-fit: cover;
         }
       }
     }

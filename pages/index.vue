@@ -22,7 +22,11 @@
             >
               Start Your Eden Life
             </button>
-            <button type="button" class="hero__button-link">
+            <button
+              type="button"
+              class="hero__button-link"
+              @click.prevent="scrollToVideo('watch-the-video')"
+            >
               <svg
                 width="32"
                 height="32"
@@ -215,7 +219,7 @@
       </section>
     </div>
 
-    <div class="container--video">
+    <div ref="watch-the-video" class="container--video">
       <section class="video">
         <div class="video__title">
           <h3>Why Eden?</h3>
@@ -586,7 +590,7 @@
                 <a
                   href="#"
                   style="color: #03a84e"
-                  @click.prevent="scrollTo('#get-the-app')"
+                  @click.prevent="Video('#get-the-app')"
                   >Eden</a
                 >, you can configure a plan that fits your needs, then you get
                 assigned a Gardener to help you manage your home. The app takes
@@ -991,6 +995,9 @@ export default {
   methods: {
     scrollTo(id) {
       scrollToApp(id)
+    },
+    scrollToVideo(ref) {
+      this.$refs[ref].scrollIntoView()
     },
     handleResize() {
       this.window.width = window.innerWidth

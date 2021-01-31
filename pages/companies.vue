@@ -128,6 +128,160 @@
         </div>
       </section>
     </div>
+    <div class="container--description">
+      <section class="description">
+        <div class="description__title">
+          <h3>How it works</h3>
+        </div>
+
+        <div class="description__body">
+          <div class="description__slider">
+            <div class="description__slider-timeline">
+              <svg
+                class="vertical"
+                width="28"
+                height="370"
+                viewBox="0 0 28 370"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect x="13" y="4" width="2" height="361" fill="#E4E8E6" />
+                <path d="M13 4H15V194H13V4Z" fill="#61DB98" />
+                <circle cx="14" cy="4" r="4" fill="#03A84E" />
+                <circle cx="14" cy="99" r="4" fill="#03A84E" />
+                <circle opacity="0.1" cx="14" cy="191" r="14" fill="#03A84E" />
+                <circle opacity="0.1" cx="14" cy="191" r="9" fill="#03A84E" />
+                <circle cx="14" cy="191" r="4" fill="#03A84E" />
+                <circle
+                  cx="14"
+                  cy="278"
+                  r="4"
+                  fill="#E4E8E6"
+                  stroke="#F9FDFF"
+                />
+                <circle
+                  cx="14"
+                  cy="365"
+                  r="4"
+                  fill="#E4E8E6"
+                  stroke="#F9FDFF"
+                />
+              </svg>
+              <svg
+                class="horizontal"
+                width="329"
+                height="28"
+                viewBox="0 0 329 28"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="0.999512"
+                  y="15.3431"
+                  width="1.9977"
+                  height="325"
+                  transform="rotate(-90 0.999512 15.3431)"
+                  fill="#E4E8E6"
+                />
+                <ellipse
+                  cx="324"
+                  cy="14.3443"
+                  rx="4"
+                  ry="3.9954"
+                  fill="#E4E8E6"
+                  stroke="#FFFCFA"
+                />
+                <ellipse
+                  cx="244"
+                  cy="14.3443"
+                  rx="4"
+                  ry="3.9954"
+                  fill="#E4E8E6"
+                  stroke="#FFFCFA"
+                />
+                <path
+                  d="M4.99951 15.22V13.2223H165V15.22H4.99951Z"
+                  fill="#61DB98"
+                />
+                <ellipse
+                  rx="3.9954"
+                  ry="4"
+                  transform="matrix(-0.00115437 -0.999999 0.999999 -0.00115172 4.9949 14.3396)"
+                  fill="#03A84E"
+                />
+                <ellipse
+                  rx="3.9954"
+                  ry="4"
+                  transform="matrix(-0.00115437 -0.999999 0.999999 -0.00115172 84.9954 14.3397)"
+                  fill="#03A84E"
+                />
+                <ellipse
+                  opacity="0.1"
+                  rx="13.9839"
+                  ry="14"
+                  transform="matrix(-0.00115437 -0.999999 0.999999 -0.00115172 164.026 14)"
+                  fill="#03A84E"
+                />
+                <ellipse
+                  opacity="0.1"
+                  rx="8.98964"
+                  ry="9"
+                  transform="matrix(-0.00115437 -0.999999 0.999999 -0.00115172 164.026 14)"
+                  fill="#03A84E"
+                />
+                <ellipse
+                  rx="3.9954"
+                  ry="4"
+                  transform="matrix(-0.00115437 -0.999999 0.999999 -0.00115172 163.995 14)"
+                  fill="#03A84E"
+                />
+              </svg>
+
+              <!--<span class="slide">  </span> -->
+            </div>
+            <div class="description__slider-text">
+              <div class="one">
+                <h5>Fill the form on this page</h5>
+              </div>
+              <div class="two">
+                <h5>You get an Eden plan for your team</h5>
+              </div>
+              <div class="three">
+                <h5>We'll set up your team's accounts</h5>
+              </div>
+              <div class="four">
+                <h5>Every team member gets personalized service</h5>
+              </div>
+              <div class="five">
+                <h5>You monitor/evaluate team satisfaction. (Coming soon)</h5>
+              </div>
+              <button
+                type="button"
+                class="btn"
+                @click.prevent="scrollToFooter('#get-the-app')"
+              >
+                Get Eden
+              </button>
+            </div>
+            <button
+              type="button"
+              class="btn--mobile"
+              @click.prevent="scrollToFooter('#get-the-app')"
+            >
+              Get Eden
+            </button>
+          </div>
+
+          <div class="description__video">
+            <img
+              src="https://res.cloudinary.com/eden-life-inc/image/upload/q_auto/v1612102569/eden-website-v2/phone5_tmmyjw.svg"
+              alt="phone"
+              class="description__video-item"
+            />
+          </div>
+        </div>
+      </section>
+    </div>
 
     <div class="container--customers">
       <section class="customers">

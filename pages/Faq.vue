@@ -709,9 +709,12 @@ export default {
   },
   methods: {
     expandQuestion(item) {
-      this.questions.length && this.questions.includes(item)
-        ? (this.questions = this.questions.filter((o1) => o1 !== item))
-        : this.questions.push(item)
+      if (this.questions.length) {
+        this.questions.pop()
+        this.questions.push(item)
+      } else {
+        this.questions.push(item)
+      }
     },
     submitForm() {
       mixpanelTrackEvent('Feedback form')

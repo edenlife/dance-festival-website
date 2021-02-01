@@ -106,7 +106,7 @@
     <div id="menu-options" ref="menu-options" class="container--menu">
       <section class="menu">
         <div class="menu__title">
-          <h3>Next week’s menu</h3>
+          <h3>This week’s menu</h3>
           <p>{{ firstDateFormat }} - {{ lastDateFormat }}</p>
         </div>
         <!-- <nav class="menu__nav">
@@ -828,9 +828,9 @@ export default {
       const lastDay = new Date(curr.setDate(last))
       this.lastDateFormat = formatDate('dd MMM yyyy', lastDay)
       this.firstDateFormat = formatDate('dd MMM yyyy', first)
-      const dateData = moment(curr).format('DD-MM-YYYY')
+      const dateData = moment(new Date()).format('DD-MM-YYYY')
       fetch(
-        `https://api-staging.edenlife.ng/api/v2/meal/items/all?current_date=${dateData}`
+        `https://api.edenlife.ng/api/v2/meal/items/all?current_date=${dateData}`
       )
         .then((res) => res.json())
         .then((meals) => {

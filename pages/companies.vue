@@ -151,7 +151,7 @@
                 <svg
                   class="two"
                   width="2"
-                  height="90"
+                  height="85"
                   viewBox="0 0 2 190"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +166,7 @@
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <circle cx="4" cy="4" r="4" fill="#03A84E" />
+                  <circle cx="4" cy="4" r="4" />
                 </svg>
                 <svg
                   class="four"
@@ -186,7 +186,7 @@
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <circle cx="4" cy="4" r="4" fill="#03A84E" />
+                  <circle cx="4" cy="4" r="4" />
                 </svg>
                 <svg
                   class="six"
@@ -206,7 +206,7 @@
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <circle cx="4" cy="4" r="4" fill="#03A84E" />
+                  <circle cx="4" cy="4" r="4" />
                 </svg>
                 <svg
                   class="eight"
@@ -226,7 +226,7 @@
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <circle cx="4" cy="4" r="4" fill="#03A84E" />
+                  <circle cx="4" cy="4" r="4" />
                 </svg>
               </div>
               <!-- <span class="vertical"></span> -->

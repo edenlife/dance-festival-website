@@ -1086,10 +1086,6 @@ export default {
           name: 'Abuja',
           id: 'abuja',
         },
-        {
-          name: 'Port Harcourt',
-          id: 'port-harcourt',
-        },
       ],
       visible: false,
       bound_fields: {

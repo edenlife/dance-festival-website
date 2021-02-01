@@ -184,7 +184,13 @@
         </nav> -->
         <div id="load-more" class="menu__list">
           <figure v-for="(item, i) in newWeekMeal" :key="i">
-            <div class="menu__list-img">
+            <div v-if="item.image_url === null" class="menu__list-img fallback">
+              <img
+                :src="require(`~/assets/images/food-fallback.png`)"
+                :alt="item.name"
+              />
+            </div>
+            <div v-else class="menu__list-img">
               <img :src="item.image_url" :alt="item.name" />
             </div>
             <figcaption>

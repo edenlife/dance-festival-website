@@ -941,12 +941,18 @@
           <h3>Check us out in the press.</h3>
         </div>
         <div class="press__link">
-          <a href="http://" target="_blank">
+          <a
+            href="https://techcabal.com/2020/12/17/the-backend-eden-choplife/"
+            target="_blank"
+          >
             <img
               :src="require(`~/assets/images/techcabal.svg`)"
               alt="techcabal"
           /></a>
-          <a href="http://" target="_blank">
+          <a
+            href="https://www.benjamindada.com/eden-launch-andela/"
+            target="_blank"
+          >
             <img :src="require(`~/assets/images/press2.svg`)" alt="press2"
           /></a>
           <a href="https://www.future.africa/home/eden" target="_blank">

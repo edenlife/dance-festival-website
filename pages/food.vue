@@ -182,7 +182,7 @@
             ></template>
           </carousel>
         </nav> -->
-        <div class="menu__list">
+        <div id="load-more" class="menu__list">
           <figure v-for="(item, i) in newWeekMeal" :key="i">
             <div class="menu__list-img">
               <img :src="item.image_url" :alt="item.name" />
@@ -200,6 +200,20 @@
             </figcaption>
           </figure>
         </div>
+        <button
+          v-if="newWeekMeal.length == 12"
+          class="btn"
+          @click.prevent="fetchFewMeal()"
+        >
+          See more
+        </button>
+        <button
+          v-if="newWeekMeal.length > 12"
+          class="btn"
+          @click.prevent="fetchAllMeal()"
+        >
+          See less
+        </button>
       </section>
     </div>
 
@@ -770,6 +784,7 @@ export default {
       newWeekMeal: [],
       firstDateFormat: null,
       lastDateFormat: null,
+      allMeal: [],
     }
   },
 
@@ -817,8 +832,18 @@ export default {
       )
         .then((res) => res.json())
         .then((meals) => {
-          this.newWeekMeal = meals.data
+          this.allMeal = meals.data
+          this.newWeekMeal =
+            meals.data.length > 12 ? meals.data.slice(0, 12) : meals.data
         })
+    },
+    fetchAllMeal() {
+      this.fetchMeal()
+      const scrollToElement = document.querySelector('#load-more')
+      scrollToElement.scrollIntoView()
+    },
+    fetchFewMeal() {
+      this.newWeekMeal = this.allMeal
     },
     changeText() {
       const first = this.headerText.shift()

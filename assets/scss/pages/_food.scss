@@ -318,7 +318,8 @@
   width: 83%;
   margin: 0 auto;
   padding: $gap * 8 0;
-
+  display: flex;
+  flex-direction: column;
   &__title {
     text-align: center;
     color: color(eden-neutral-1);
@@ -427,6 +428,12 @@
         color: color(eden-neutral-1);
       }
     }
+  }
+  .btn {
+    color: color(eden-green-primary);
+    @include font-size(lg);
+    line-height: 23px;
+    cursor: pointer;
   }
   @include respond(xl) {
     &__list {

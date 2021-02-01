@@ -664,6 +664,7 @@
 
 <script>
 // import Carousel from 'vue-owl-carousel'
+import moment from 'moment'
 import foodMessages from '~/static/foodMessages'
 import { pricing } from '~/static/pricing'
 import { currencyFormat, scrollToApp, formatDate } from '~/static/functions'
@@ -824,15 +825,10 @@ export default {
       const curr = new Date()
       const first = curr.getDate() - curr.getDay()
       const last = first + 6
-      const second = first + 1
       const lastDay = new Date(curr.setDate(last))
       this.lastDateFormat = formatDate('dd MMM yyyy', lastDay)
       this.firstDateFormat = formatDate('dd MMM yyyy', first)
-
-      const secondDay = new Date(curr.setDate(second))
-        .toLocaleString()
-        .split(',')[0]
-      const dateData = secondDay.replace(/\//g, '-')
+      const dateData = moment(curr).format('DD-MM-YYYY')
       fetch(
         `https://api-staging.edenlife.ng/api/v2/meal/items/all?current_date=${dateData}`
       )

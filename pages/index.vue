@@ -191,7 +191,7 @@
             <nuxt-link :to="{ path: '/' }" class="btn">
               {{
                 exploreService === 'gifting' || setExploreService
-                  ? 'Coming Soon'
+                  ? 'Coming soon'
                   : ''
               }}
 

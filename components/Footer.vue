@@ -8,6 +8,7 @@
           <a
             href="https://play.google.com/store/apps/details?id=com.ouredenlife.app"
             target="_blank"
+            @click.prevent="openPlayStore"
           >
             <img
               src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611338471/eden-website-v2/playstore_n43eju.svg"
@@ -17,6 +18,7 @@
           <a
             href="https://apps.apple.com/us/app/eden-life/id1482373755?ls=1"
             target="_blank"
+            @click.prevent="openAppleStore"
           >
             <img
               src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611338469/eden-website-v2/appstore_o1bj6d.svg"
@@ -205,8 +207,27 @@
 </template>
 
 <script>
+import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+
 export default {
   name: 'Footer',
+
+  methods: {
+    openPlayStore() {
+      window.open(
+        ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`,
+        '_blank'
+      )
+      mixpanelTrackEvent('Get the app(playstore) clicked')
+    },
+    openAppleStore() {
+      window.open(
+        `https://apps.apple.com/us/app/eden-life/id1482373755?ls=1`,
+        '_blank'
+      )
+      mixpanelTrackEvent('Get the app(applestore) clicked')
+    },
+  },
 }
 </script>
 

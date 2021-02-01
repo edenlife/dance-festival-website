@@ -137,7 +137,100 @@
         <div class="description__body">
           <div class="description__slider">
             <div class="description__slider-timeline">
-              <svg
+              <div class="vertical">
+                <svg
+                  class="one"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" fill="#03A84E" />
+                </svg>
+                <svg
+                  class="two"
+                  width="2"
+                  height="90"
+                  viewBox="0 0 2 190"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M0 0H2V190H0V0Z" fill="#E4E8E6" />
+                </svg>
+                <svg
+                  class="three"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" fill="#03A84E" />
+                </svg>
+                <svg
+                  class="four"
+                  width="2"
+                  height="90"
+                  viewBox="0 0 2 190"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M0 0H2V190H0V0Z" fill="#E4E8E6" />
+                </svg>
+                <svg
+                  class="five"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" fill="#03A84E" />
+                </svg>
+                <svg
+                  class="six"
+                  width="2"
+                  height="90"
+                  viewBox="0 0 2 190"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M0 0H2V190H0V0Z" fill="#E4E8E6" />
+                </svg>
+                <svg
+                  class="seven"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" fill="#03A84E" />
+                </svg>
+                <svg
+                  class="eight"
+                  width="2"
+                  height="90"
+                  viewBox="0 0 2 190"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M0 0H2V190H0V0Z" fill="#E4E8E6" />
+                </svg>
+                <svg
+                  class="nine"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" fill="#03A84E" />
+                </svg>
+              </div>
+              <!-- <span class="vertical"></span> -->
+              <!-- <svg
                 class="vertical"
                 width="28"
                 height="370"
@@ -145,28 +238,25 @@
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <rect x="13" y="4" width="2" height="361" fill="#E4E8E6" />
-                <path d="M13 4H15V194H13V4Z" fill="#61DB98" />
-                <circle cx="14" cy="4" r="4" fill="#03A84E" />
-                <circle cx="14" cy="99" r="4" fill="#03A84E" />
-                <circle opacity="0.1" cx="14" cy="191" r="14" fill="#03A84E" />
-                <circle opacity="0.1" cx="14" cy="191" r="9" fill="#03A84E" />
-                <circle cx="14" cy="191" r="4" fill="#03A84E" />
-                <circle
-                  cx="14"
-                  cy="278"
-                  r="4"
-                  fill="#E4E8E6"
-                  stroke="#F9FDFF"
+              
+                <rect
+                  class="path"
+                  x="13"
+                  y="4"
+                  width="2"
+                  height="361"
+                  fill="red"
+                  stroke="#000000"
+                  stroke-width="3"
                 />
-                <circle
-                  cx="14"
-                  cy="365"
-                  r="4"
-                  fill="#E4E8E6"
-                  stroke="#F9FDFF"
-                />
-              </svg>
+                <path d="M13 4H15V194H13V4Z" />
+                <circle cx="14" cy="4" r="4" />
+                <circle cx="14" cy="99" r="4" />
+                <circle cx="14" cy="191" r="4" />
+                <circle cx="14" cy="278" r="4" />
+                <circle cx="14" cy="365" r="4" />
+              </svg> -->
+
               <svg
                 class="horizontal"
                 width="329"

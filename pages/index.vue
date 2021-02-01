@@ -311,12 +311,13 @@
                 value=""
                 placeholder="Enter your email"
               />
-              <!-- <input
+              <input
                 id=""
+                style="display: none"
                 type="text"
                 name="fields[state]"
                 :value="bound_fields.city"
-              /> -->
+              />
               <div class="form__input-item">
                 <div
                   class="select"
@@ -368,7 +369,7 @@
                   </div>
                 </div>
                 <button
-                  type="submut"
+                  type="submit"
                   value="send"
                   class="form__input-btn"
                   data-drip-attribute="sign-up-button"
@@ -849,8 +850,26 @@
           <p>
             We're coming to your city. Be the first to know when we touch down.
           </p>
-          <div class="form__input">
-            <input id="" type="email" name="" placeholder="Enter your email" />
+          <form
+            class="form__input"
+            action="https://www.getdrip.com/forms/800280240/submissions"
+            data-drip-embedded-form="800280240"
+            method="post"
+          >
+            <input
+              id=""
+              type="email"
+              value=""
+              name="fields[email]"
+              placeholder="Enter your email"
+            />
+            <input
+              id=""
+              style="display: none"
+              type="text"
+              name="fields[state]"
+              :value="bound_fields.city"
+            />
             <div class="form__input-item">
               <div
                 class="select"
@@ -900,11 +919,16 @@
                   </div>
                 </div>
               </div>
-              <button type="button" class="form__input-btn">
+              <button
+                type="submit"
+                class="form__input-btn"
+                value="send"
+                data-drip-attribute="sign-up-button"
+              >
                 Send Message
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </section>
     </div>
@@ -1047,10 +1071,6 @@ export default {
         {
           name: 'Kwara',
           id: 'kwara',
-        },
-        {
-          name: 'Lagos',
-          id: 'lagos',
         },
         {
           name: 'Nasarawa',

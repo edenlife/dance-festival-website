@@ -107,9 +107,9 @@
       <section class="menu">
         <div class="menu__title">
           <h3>Next week’s menu</h3>
-          <p>12 Nov 2021 - 19 Nov 2021</p>
+          <p>{{ firstDateFormat }} - {{ lastDateFormat }}</p>
         </div>
-        <nav class="menu__nav">
+        <!-- <nav class="menu__nav">
           <carousel
             class="carousel-container"
             :nav="false"
@@ -181,14 +181,20 @@
                 </svg> </span
             ></template>
           </carousel>
-        </nav>
+        </nav> -->
         <div class="menu__list">
-          <figure v-for="(item, i) in foodMenu" :key="i">
+          <figure v-for="(item, i) in newWeekMeal" :key="i">
             <div class="menu__list-img">
-              <img :src="item.image" :alt="item.name" />
+              <img :src="item.image_url" :alt="item.name" />
             </div>
             <figcaption>
-              <p>
+              <p v-if="item.name && item.name.includes('500ml')">
+                {{ item.name.replace('500ml', '') }}
+              </p>
+              <p v-else-if="item.name && item.name.includes('1L')">
+                {{ item.name.replace('1L', '') }}
+              </p>
+              <p v-else>
                 {{ item.name }}
               </p>
             </figcaption>
@@ -637,14 +643,14 @@
 </template>
 
 <script>
-import Carousel from 'vue-owl-carousel'
+// import Carousel from 'vue-owl-carousel'
 import foodMessages from '~/static/foodMessages'
 import { pricing } from '~/static/pricing'
-import { currencyFormat, scrollToApp } from '~/static/functions'
+import { currencyFormat, scrollToApp, formatDate } from '~/static/functions'
 
 export default {
   components: {
-    Carousel,
+    // Carousel,
   },
   beforeRouteEnter(to, from, next) {
     const tab = to.hash.replace('#', '')
@@ -760,6 +766,9 @@ export default {
         width: 0,
         height: 0,
       },
+      newWeekMeal: [],
+      firstDateFormat: null,
+      lastDateFormat: null,
     }
   },
 
@@ -781,12 +790,34 @@ export default {
     this.totalWeeklyPrice = pricing({
       meal: { item: null, frequency: 'weekly', qty: this.mealsPerWeek },
     })
+    this.fetchMeal()
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
   },
   methods: {
     currencyFormat,
+    fetchMeal() {
+      const curr = new Date()
+      const first = curr.getDate() - curr.getDay()
+      const last = first + 6
+      const second = first + 1
+      const lastDay = new Date(curr.setDate(last))
+      this.lastDateFormat = formatDate('dd MMM yyyy', lastDay)
+      this.firstDateFormat = formatDate('dd MMM yyyy', first)
+
+      const secondDay = new Date(curr.setDate(second))
+        .toLocaleString()
+        .split(',')[0]
+      const dateData = secondDay.replace(/\//g, '-')
+      fetch(
+        `https://api-staging.edenlife.ng/api/v2/meal/items/all?current_date=${dateData}`
+      )
+        .then((res) => res.json())
+        .then((meals) => {
+          this.newWeekMeal = meals.data
+        })
+    },
     changeText() {
       const first = this.headerText.shift()
       this.headerText = this.headerText.concat(first)

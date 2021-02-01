@@ -660,17 +660,34 @@
     <div class="container--form">
       <section class="faq__form">
         <h3>Still have questions? Shoot.</h3>
-        <div class="form">
+        <form
+          class="form"
+          data-drip-embedded-form="570264409"
+          action="https://www.getdrip.com/forms/570264409/submissions"
+          method="post"
+        >
           <div class="form__input">
             <label for="email">Email</label>
-            <input id="" type="email" name="" />
+            <input id="" type="email" value="" name="fields[email]" />
           </div>
           <div class="form__input">
             <label for="email">Message</label>
-            <textarea id="" name="" cols="30" rows="10"></textarea>
+            <textarea
+              id=""
+              cols="30"
+              rows="10"
+              name="fields[message]"
+              value=""
+            ></textarea>
           </div>
-          <button type="button" class="form__btn">Send Message</button>
-        </div>
+          <button
+            type="submit"
+            class="form__btn"
+            data-drip-attribute="sign-up-button"
+          >
+            Send Message
+          </button>
+        </form>
       </section>
     </div>
   </div>

@@ -377,7 +377,6 @@
 
 <script>
 import { scrollToApp } from '~/static/functions'
-import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
   name: 'Navigation',
@@ -414,7 +413,6 @@ export default {
       }
     },
     scrollTo(id) {
-      mixpanelTrackEvent('Get Started Clicked')
       scrollToApp(id)
     },
     serviceToggle() {

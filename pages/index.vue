@@ -373,6 +373,7 @@
                   value="send"
                   class="form__input-btn"
                   data-drip-attribute="sign-up-button"
+                  @click="submitForm"
                 >
                   <svg
                     width="24"
@@ -924,6 +925,7 @@
                 class="form__input-btn"
                 value="send"
                 data-drip-attribute="sign-up-button"
+                @click="submitForm"
               >
                 Send Message
               </button>
@@ -969,6 +971,7 @@
 <script>
 import testimonials from '~/static/testimonials'
 import { scrollToApp } from '~/static/functions'
+import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
   data() {
@@ -1151,6 +1154,9 @@ export default {
     window.removeEventListener('resize', this.handleResize)
   },
   methods: {
+    submitForm() {
+      mixpanelTrackEvent('Enlist form')
+    },
     scrollTo(id) {
       scrollToApp(id)
     },

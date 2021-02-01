@@ -684,6 +684,7 @@
             type="submit"
             class="form__btn"
             data-drip-attribute="sign-up-button"
+            @click="submitForm"
           >
             Send Message
           </button>
@@ -695,6 +696,7 @@
 
 <script>
 import { scrollToApp } from '~/static/functions'
+import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
   data() {
@@ -707,6 +709,9 @@ export default {
       this.questions.length && this.questions.includes(item)
         ? (this.questions = this.questions.filter((o1) => o1 !== item))
         : this.questions.push(item)
+    },
+    submitForm() {
+      mixpanelTrackEvent('Feedback form')
     },
     scrollTo(id) {
       scrollToApp(id)

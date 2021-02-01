@@ -1,3 +1,5 @@
+import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+
 export const formatNumber = (number) => {
   return number ? number.replace(/\B(?=(\d{3})+(?!\d))/g, ',') : 0
 }
@@ -7,6 +9,8 @@ export const currencyFormat = (number) => {
 }
 
 export const scrollToApp = (id) => {
+  mixpanelTrackEvent('Get Started Clicked')
+
   const userAgent = navigator.userAgent || navigator.vendor || window.opera
   // Windows Phone must come first because its UA also contains "Android"
   if (/windows phone/i.test(userAgent)) {

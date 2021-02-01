@@ -100,6 +100,8 @@
 </template>
 
 <script>
+import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+
 export default {
   data() {
     return {
@@ -379,6 +381,9 @@ export default {
         },
       ],
     }
+  },
+  mounted() {
+    mixpanelTrackEvent('About Us page')
   },
   methods: {
     scrollTo(ref) {

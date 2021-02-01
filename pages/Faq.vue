@@ -704,6 +704,9 @@ export default {
       questions: ['one'],
     }
   },
+  mounted() {
+    mixpanelTrackEvent('FAQs page')
+  },
   methods: {
     expandQuestion(item) {
       this.questions.length && this.questions.includes(item)

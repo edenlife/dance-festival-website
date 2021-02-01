@@ -448,6 +448,7 @@
 
 <script>
 import { scrollToApp } from '~/static/functions'
+import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
   data() {
@@ -508,6 +509,8 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
     }
   },
   mounted() {
+    mixpanelTrackEvent('Companies page')
+
     window.setInterval(() => {
       this.changeText()
     }, 2300)

@@ -66,8 +66,12 @@
 
 <script>
 import { scrollToApp } from '~/static/functions'
+import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
+  mounted() {
+    mixpanelTrackEvent('Contact Us page')
+  },
   methods: {
     scrollToFooter(id) {
       scrollToApp(id)

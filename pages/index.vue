@@ -1149,6 +1149,7 @@ export default {
 
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
+    mixpanelTrackEvent('Landing page')
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)

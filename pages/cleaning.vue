@@ -530,6 +530,7 @@
 <script>
 import { pricing } from '~/static/pricing'
 import { currencyFormat, scrollToApp } from '~/static/functions'
+import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
   data() {
@@ -583,6 +584,8 @@ export default {
     }
   },
   mounted() {
+    mixpanelTrackEvent('Cleaning page')
+
     window.setInterval(() => {
       this.changeText()
     }, 2300)

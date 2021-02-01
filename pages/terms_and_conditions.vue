@@ -38,6 +38,7 @@
 
 <script>
 import terms from '~/static/terms'
+import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
   beforeRouteEnter(to, from, next) {
@@ -78,6 +79,9 @@ export default {
         { property: 'og:description', content: [this.content] },
       ],
     }
+  },
+  mounted() {
+    mixpanelTrackEvent('T&C page')
   },
 }
 </script>

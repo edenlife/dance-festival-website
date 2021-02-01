@@ -647,6 +647,7 @@
 import foodMessages from '~/static/foodMessages'
 import { pricing } from '~/static/pricing'
 import { currencyFormat, scrollToApp, formatDate } from '~/static/functions'
+import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
   components: {
@@ -779,6 +780,7 @@ export default {
     },
   },
   mounted() {
+    mixpanelTrackEvent('Food page')
     window.setInterval(() => {
       this.changeText()
     }, 2300)

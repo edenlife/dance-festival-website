@@ -8,9 +8,8 @@ export const currencyFormat = (number) => {
   return number ? number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') : 0
 }
 
-export const scrollToApp = (id) => {
-  mixpanelTrackEvent('Get Started Clicked')
-
+export const scrollToApp = (id, description) => {
+  mixpanelTrackEvent(`Get Started - (${description})`)
   const userAgent = navigator.userAgent || navigator.vendor || window.opera
   // Windows Phone must come first because its UA also contains "Android"
   if (/windows phone/i.test(userAgent)) {

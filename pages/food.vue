@@ -91,7 +91,9 @@
               <button
                 type="button"
                 class="btn"
-                @click.prevent="scrollToFooter('#get-the-app')"
+                @click.prevent="
+                  scrollToFooter('#get-the-app', 'food - how it works')
+                "
               >
                 Get the app
               </button>
@@ -866,8 +868,8 @@ export default {
     scrollTo(ref) {
       this.$refs[ref].scrollIntoView()
     },
-    scrollToFooter(id) {
-      scrollToApp(id)
+    scrollToFooter(id, label) {
+      scrollToApp(id, label)
     },
     increaseOrder(order) {
       if (order === 'weekly') {

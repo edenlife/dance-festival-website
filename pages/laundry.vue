@@ -16,7 +16,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="scrollToFooter('#get-the-app')"
+              @click.prevent="scrollToFooter('#get-the-app', 'laundry - hero')"
             >
               Start Your Eden Life
             </button>
@@ -85,7 +85,9 @@
               <button
                 type="button"
                 class="btn"
-                @click.prevent="scrollToFooter('#get-the-app')"
+                @click.prevent="
+                  scrollToFooter('#get-the-app', 'laundry - how it works')
+                "
               >
                 Get the app
               </button>
@@ -617,8 +619,8 @@ export default {
         this.setExploreService = true
       } else this.setExploreService = false
     },
-    scrollToFooter(id) {
-      scrollToApp(id)
+    scrollToFooter(id, label) {
+      scrollToApp(id, label)
     },
     increaseOrder(order) {
       if (order === 'washDry') {

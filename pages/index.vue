@@ -18,7 +18,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="scrollTo('#get-the-app')"
+              @click.prevent="scrollTo('#get-the-app', 'homepage')"
             >
               Start Your Eden Life
             </button>
@@ -1164,8 +1164,8 @@ export default {
     submitForm() {
       mixpanelTrackEvent('Enlist form')
     },
-    scrollTo(id) {
-      scrollToApp(id)
+    scrollTo(id, label) {
+      scrollToApp(id, label)
     },
     scrollToVideo(ref) {
       this.$refs[ref].scrollIntoView()

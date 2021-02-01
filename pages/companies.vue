@@ -17,7 +17,9 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="scrollToFooter('#get-the-app')"
+              @click.prevent="
+                scrollToFooter('#get-the-app', 'companies - hero')
+              "
             >
               Get Eden
             </button>
@@ -349,7 +351,9 @@
               <button
                 type="button"
                 class="btn"
-                @click.prevent="scrollToFooter('#get-the-app')"
+                @click.prevent="
+                  scrollToFooter('#get-the-app', 'companies - how it works')
+                "
               >
                 Get Eden
               </button>
@@ -357,7 +361,9 @@
             <button
               type="button"
               class="btn--mobile"
-              @click.prevent="scrollToFooter('#get-the-app')"
+              @click.prevent="
+                scrollToFooter('#get-the-app', 'companies - how it works')
+              "
             >
               Get Eden
             </button>
@@ -438,7 +444,9 @@
         <button
           type="button"
           class="btn"
-          @click.prevent="scrollToFooter('#get-the-app')"
+          @click.prevent="
+            scrollToFooter('#get-the-app', 'companies - testimonial')
+          "
         >
           Get the Perfect Perk
         </button>
@@ -521,8 +529,8 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
       const first = this.headerText.shift()
       this.headerText = this.headerText.concat(first)
     },
-    scrollToFooter(id) {
-      scrollToApp(id)
+    scrollToFooter(id, label) {
+      scrollToApp(id, label)
     },
   },
 }

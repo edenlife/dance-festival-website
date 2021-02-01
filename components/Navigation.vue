@@ -9,8 +9,8 @@
       </nuxt-link>
       <ul class="navigation__menu">
         <li>
-          <nuxt-link :to="{ path: '/about_us' }" class="navigation__menu-item">
-            About Us
+          <nuxt-link :to="{ path: '/companies' }" class="navigation__menu-item">
+            Companies
           </nuxt-link>
         </li>
         <li>
@@ -287,10 +287,10 @@
           <ul class="menu">
             <li class="menu--list" @click.prevent="handleToggle()">
               <nuxt-link
-                :to="{ path: '/about_us' }"
+                :to="{ path: '/companies' }"
                 class="navigation__mobile-item"
               >
-                About Us
+                Companies
               </nuxt-link>
             </li>
             <li class="menu--list">
@@ -410,7 +410,7 @@ export default {
       }
     },
     scrollTo(id) {
-      scrollToApp(id)
+      scrollToApp(id, 'Navbar')
     },
     serviceToggle() {
       this.visible = !this.visible

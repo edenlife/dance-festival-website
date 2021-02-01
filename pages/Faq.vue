@@ -212,7 +212,7 @@
               <a
                 href="#"
                 style="color: #03a84e"
-                @click.prevent="scrollTo('#get-the-app')"
+                @click.prevent="scrollTo('#get-the-app', 'faq')"
                 >Eden</a
               >, you can configure a plan that fits your needs, then you get
               assigned a Gardener to help you manage your home. The app takes
@@ -581,7 +581,7 @@
               <a
                 href="#"
                 style="color: #03a84e"
-                @click.prevent="scrollTo('#get-the-app')"
+                @click.prevent="scrollTo('#get-the-app', 'faq')"
                 >here</a
               >. It takes 5 minutes to set up.
             </p>
@@ -719,8 +719,8 @@ export default {
     submitForm() {
       mixpanelTrackEvent('Feedback form')
     },
-    scrollTo(id) {
-      scrollToApp(id)
+    scrollTo(id, label) {
+      scrollToApp(id, label)
     },
   },
 }

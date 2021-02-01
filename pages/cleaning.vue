@@ -23,7 +23,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="scrollToFooter('#get-the-app')"
+              @click.prevent="scrollToFooter('#get-the-app', 'cleaning - hero')"
             >
               Sign up for a Clean home
             </button>
@@ -94,7 +94,9 @@
               <button
                 type="button"
                 class="btn"
-                @click.prevent="scrollToFooter('#get-the-app')"
+                @click.prevent="
+                  scrollToFooter('#get-the-app', 'cleaning - how it works')
+                "
               >
                 Get the app
               </button>
@@ -611,8 +613,8 @@ export default {
   },
   methods: {
     currencyFormat,
-    scrollToFooter(id) {
-      scrollToApp(id)
+    scrollToFooter(id, label) {
+      scrollToApp(id, label)
     },
     changeText() {
       const first = this.headerText.shift()

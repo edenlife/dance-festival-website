@@ -319,13 +319,13 @@
           </ul>
           <transition name="slide-fade">
             <div v-if="period === 'weekly'" class="plan__price-weekly">
-              <div>
+              <!-- <div>
                 <img
                   src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611757237/eden-website-v2/food-image1_cppzzn.png"
                   alt="Meal"
                 />
-              </div>
-              <div class="plan__price-item">
+              </div> -->
+              <div class="plan__price-item one">
                 <p>How many meals do you want to eat daily?</p>
                 <div class="btn--group">
                   <button
@@ -776,7 +776,7 @@ export default {
       deliveryPerWeek: 1,
       totalDailyPrice: null,
       totalWeeklyPrice: null,
-      period: 'weekly',
+      period: 'monthly',
       window: {
         width: 0,
         height: 0,

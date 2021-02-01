@@ -749,6 +749,11 @@
     }
 
     &-item {
+      &.one {
+        p {
+          margin-top: $gap * 4.8;
+        }
+      }
       p {
         margin-top: $gap * 3.2;
         margin-bottom: $gap - 2;
@@ -799,7 +804,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      margin: $gap * 4 0;
+      margin: $gap * 21 0 $gap * 4 0;
       color: color(eden-neutral-1);
       h5 {
         @include font-family(cerebri);

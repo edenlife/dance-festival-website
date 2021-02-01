@@ -1,7 +1,7 @@
 const TIMES_PER_MONTH = {
   'one-off': 1,
   'bi-weekly': 2,
-  'weekly-twodays': 8,
+  'weekly-twodays': 4,
   weekly: 4,
   daily: {
     'monday-friday': 20,
@@ -77,7 +77,10 @@ export const pricing = (services) => {
         frequency === 'daily'
           ? TIMES_PER_MONTH[frequency][serviceDay || 'monday-friday']
           : TIMES_PER_MONTH[frequency]
-      return unitPrice * parseInt(qty) * monthlyFrequency
+
+      return frequency === 'weekly-twodays'
+        ? unitPrice * parseInt(qty) * monthlyFrequency + 4000
+        : unitPrice * parseInt(qty) * monthlyFrequency
     },
   }
   const total = Object.keys(services).reduce((totalPrice, serviceName) => {

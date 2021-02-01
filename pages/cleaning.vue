@@ -494,10 +494,10 @@
               Gift cards and gift boxes for every occasion, right at your
               fingertips.
             </p>
-            <nuxt-link :to="{ path: '/gifting' }" class="btn">
+            <nuxt-link :to="{ path: '' }" class="btn">
               {{
                 exploreService === 'gifting' || setExploreService
-                  ? 'Explore'
+                  ? 'Coming soon'
                   : ''
               }}
 

@@ -126,7 +126,7 @@
               </nuxt-link>
             </li>
             <li>
-              <nuxt-link :to="{ path: '/gifting' }" class="footer__bottom-logo">
+              <nuxt-link :to="{ path: '' }" class="footer__bottom-logo">
                 Gifting
               </nuxt-link>
             </li>

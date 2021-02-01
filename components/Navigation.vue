@@ -218,10 +218,7 @@
                     @mouseenter.stop="service = 'gifting'"
                     @mouseleave.stop="service = ''"
                   >
-                    <nuxt-link
-                      :to="{ path: '/gifting' }"
-                      class="service__list-item"
-                    >
+                    <nuxt-link :to="{ path: '' }" class="service__list-item">
                       <span>🎁</span>
                       <h5>Gifting</h5>
                       <svg
@@ -352,7 +349,7 @@
                     class="menu--list-item gifting"
                     @click.prevent="handleToggle()"
                   >
-                    <nuxt-link :to="{ path: '/gifting' }" class="">
+                    <nuxt-link :to="{ path: '' }" class="">
                       <span class="icon">🎁</span>
                       <span>Gifting</span>
                     </nuxt-link>

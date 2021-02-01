@@ -137,7 +137,7 @@ export default {
           image:
             'https://res.cloudinary.com/eden-life-inc/image/upload/v1611919035/eden-website-v2/awazi_wef42h.png',
           name: 'Awazi Angbalaga',
-          role: '-',
+          role: 'Happiness Engineering',
         },
         {
           id: 6,

@@ -298,18 +298,31 @@
               We're coming to your city. Be the first to know when we touch
               down.
             </p>
-            <div class="form__input">
+            <form
+              class="form__input"
+              action="https://www.getdrip.com/forms/800280240/submissions"
+              data-drip-embedded-form="800280240"
+              method="post"
+            >
               <input
                 id=""
                 type="email"
-                name=""
+                name="fields[email]"
+                value=""
                 placeholder="Enter your email"
               />
+              <!-- <input
+                id=""
+                type="text"
+                name="fields[state]"
+                :value="bound_fields.city"
+              /> -->
               <div class="form__input-item">
                 <div
                   class="select"
                   :data-value="bound_fields.city"
                   :data-list="cities"
+                  name="fields[state]"
                 >
                   <div class="selector" @click="toggle()">
                     <div class="label">
@@ -354,7 +367,12 @@
                     </div>
                   </div>
                 </div>
-                <button type="button" class="form__input-btn">
+                <button
+                  type="submut"
+                  value="send"
+                  class="form__input-btn"
+                  data-drip-attribute="sign-up-button"
+                >
                   <svg
                     width="24"
                     height="24"
@@ -379,7 +397,7 @@
                   </svg>
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
 

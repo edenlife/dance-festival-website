@@ -114,7 +114,7 @@
             </li>
             <li @click="trackLink('About us')">
               <nuxt-link
-                :to="{ path: '/companies' }"
+                :to="{ path: '/about_us' }"
                 class="footer__bottom-logo"
                 @click.prevent="trackLink('About us')"
               >

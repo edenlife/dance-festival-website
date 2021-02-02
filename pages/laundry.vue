@@ -625,6 +625,8 @@ export default {
       scrollToApp(id, label)
     },
     increaseOrder(order) {
+      mixpanelTrackEvent(`Increase ${order} order clicked - laundry page`)
+
       if (order === 'washDry') {
         this.washDry++
         this.totalWashDryPrice = pricing({
@@ -648,6 +650,8 @@ export default {
       }
     },
     decreaseOrder(order) {
+      mixpanelTrackEvent(`Decrease ${order} order clicked - laundry page`)
+
       if (order === 'washDry' && this.washDry > 1) {
         this.washDry--
         this.totalWashDryPrice = pricing({
@@ -671,6 +675,8 @@ export default {
       }
     },
     laundryDryFrequency(freq) {
+      mixpanelTrackEvent(` ${freq} wash&dry frequency clicked - laundry page`)
+
       this.washDryFrequency = freq
       this.totalWashDryPrice = pricing({
         laundry: {
@@ -681,6 +687,8 @@ export default {
       })
     },
     laundryIronFrequency(freq) {
+      mixpanelTrackEvent(` ${freq} wash&iron frequency clicked - laundry page`)
+
       this.washIronFrequency = freq
       this.totalWashIronPrice = pricing({
         laundry: {

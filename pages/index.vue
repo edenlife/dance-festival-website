@@ -612,7 +612,7 @@
                 <a
                   href="#"
                   style="color: #03a84e"
-                  @click.prevent="Video('#get-the-app')"
+                  @click.prevent="scrollTo('#get-the-app', 'homepage-faq')"
                   >Eden</a
                 >, you can configure a plan that fits your needs, then you get
                 assigned a Gardener to help you manage your home. The app takes
@@ -1164,12 +1164,13 @@ export default {
   },
   methods: {
     submitForm() {
-      mixpanelTrackEvent('Enlist form')
+      mixpanelTrackEvent('Enlist form - homepage')
     },
     scrollTo(id, label) {
       scrollToApp(id, label)
     },
     scrollToVideo(ref) {
+      mixpanelTrackEvent('Watch the video clicked - homepage')
       this.$refs[ref].scrollIntoView()
     },
     handleResize() {
@@ -1220,15 +1221,14 @@ export default {
       }
     },
     expandQuestion(item) {
-      if (this.questions.length) {
+      if (this.questions.length && this.questions.includes(item)) {
+        this.questions.pop()
+      } else if (this.questions.length) {
         this.questions.pop()
         this.questions.push(item)
       } else {
         this.questions.push(item)
       }
-      // this.questions.length && this.questions.includes(item)
-      //   ? (this.questions = this.questions.filter((o1) => o1 !== item))
-      //   : this.questions.push(item)
     },
   },
 }

@@ -709,7 +709,9 @@ export default {
   },
   methods: {
     expandQuestion(item) {
-      if (this.questions.length) {
+      if (this.questions.length && this.questions.includes(item)) {
+        this.questions.pop()
+      } else if (this.questions.length) {
         this.questions.pop()
         this.questions.push(item)
       } else {
@@ -717,7 +719,7 @@ export default {
       }
     },
     submitForm() {
-      mixpanelTrackEvent('Feedback form')
+      mixpanelTrackEvent('Feedback form - faq page')
     },
     scrollTo(id, label) {
       scrollToApp(id, label)

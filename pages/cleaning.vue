@@ -693,6 +693,8 @@ export default {
       } else this.setExploreService = false
     },
     increaseOrder(order) {
+      mixpanelTrackEvent(`Increase order clicked - cleaning`)
+
       if (order === 'light') {
         this.light++
         this.totalLightPrice = pricing({
@@ -716,6 +718,8 @@ export default {
       }
     },
     decreaseOrder(order) {
+      mixpanelTrackEvent(`Decrease order clicked - cleaning`)
+
       if (order === 'light' && this.light > 1) {
         this.light--
         this.totalLightPrice = pricing({
@@ -739,6 +743,8 @@ export default {
       }
     },
     calculateLightFrequency(freq) {
+      mixpanelTrackEvent(`Order frequency ${freq} clicked - cleaning`)
+
       this.lightFrequency = freq
       this.totalLightPrice = pricing({
         cleaning: {
@@ -816,6 +822,8 @@ export default {
       })
     },
     playVideo() {
+      mixpanelTrackEvent('How it works replay - cleaning')
+
       const vid = document.querySelector('video')
       vid.play()
       this.videoControl()

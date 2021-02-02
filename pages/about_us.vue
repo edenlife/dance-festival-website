@@ -387,6 +387,7 @@ export default {
   },
   methods: {
     scrollTo(ref) {
+      mixpanelTrackEvent('Join Eden clicked - contact page')
       this.$refs[ref].scrollIntoView()
     },
   },

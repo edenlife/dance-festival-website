@@ -679,27 +679,7 @@ export default {
   components: {
     // Carousel,
   },
-  beforeRouteEnter(to, from, next) {
-    const tab = to.hash.replace('#', '')
-    next((vm) => {
-      vm.activeTabIndex = 0
-      vm.tabs.forEach((item, index) => {
-        if (item.id === tab) {
-          vm.activeTabIndex = index
-        }
-      })
-    })
-  },
-  beforeRouteUpdate(to, from, next) {
-    const tab = to.hash.replace('#', '')
-    this.activeTabIndex = 0
-    this.tabs.forEach((item, index) => {
-      if (item.id === tab) {
-        this.activeTabIndex = index
-      }
-    })
-    next()
-  },
+
   data() {
     return {
       headerText: [
@@ -710,76 +690,6 @@ export default {
         'savory seafood',
       ],
       activeTabIndex: null,
-      tabs: [
-        {
-          id: '',
-          title: 'Continental Breakfast',
-        },
-        {
-          id: 'healthy-salad',
-          title: 'Healthy Salad',
-        },
-        {
-          id: 'noodles-pasta',
-          title: 'Noodles & Pasta',
-        },
-        {
-          id: 'rice',
-          title: 'Rice',
-        },
-        {
-          id: 'sauces',
-          title: 'Sauces',
-        },
-        {
-          id: 'seafood-chinese',
-          title: 'Seafood and Chinese',
-        },
-        {
-          id: 'sides',
-          title: 'Sides',
-        },
-        {
-          id: 'Soups',
-          title: 'soups',
-        },
-        {
-          id: 'Swallow',
-          title: 'swallow',
-        },
-      ],
-      foodMenu: [
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/v1612083303/eden-website-v2/menu-coleslaw_s7wn0t.png',
-          name: 'Food',
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/v1612083303/eden-website-v2/menu-coleslaw_s7wn0t.png',
-          name: 'Food',
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/v1612083303/eden-website-v2/menu-coleslaw_s7wn0t.png',
-          name: 'Food',
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/v1612083303/eden-website-v2/menu-coleslaw_s7wn0t.png',
-          name: 'Food',
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/v1612083303/eden-website-v2/menu-coleslaw_s7wn0t.png',
-          name: 'Food',
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/v1612083303/eden-website-v2/menu-coleslaw_s7wn0t.png',
-          name: 'Food',
-        },
-      ],
       setExploreService: false,
       exploreService: '',
       messageList: foodMessages,
@@ -846,10 +756,14 @@ export default {
     },
     fetchAllMeal() {
       this.fetchMeal()
+      mixpanelTrackEvent('See less meals clicked - food page')
+
       const scrollToElement = document.querySelector('#load-more')
       scrollToElement.scrollIntoView()
     },
     fetchFewMeal() {
+      mixpanelTrackEvent('See more meals clicked - food page')
+
       this.newWeekMeal = this.allMeal
     },
     changeText() {
@@ -869,12 +783,15 @@ export default {
       scrollToElement.scrollIntoView()
     },
     scrollTo(ref) {
+      mixpanelTrackEvent(`See our menu clicked - food page`)
       this.$refs[ref].scrollIntoView()
     },
     scrollToFooter(id, label) {
       scrollToApp(id, label)
     },
     increaseOrder(order) {
+      mixpanelTrackEvent(`Increase ${order} order clicked - food page`)
+
       if (order === 'weekly') {
         this.mealsPerDay++
         this.totalDailyPrice = pricing({
@@ -890,6 +807,8 @@ export default {
       }
     },
     decreaseOrder(order) {
+      mixpanelTrackEvent(`Decrease ${order} order clicked - food page`)
+
       if (order === 'weekly' && this.mealsPerDay > 1) {
         this.mealsPerDay--
         this.totalDailyPrice = pricing({
@@ -905,6 +824,8 @@ export default {
       }
     },
     increaseFrequency() {
+      mixpanelTrackEvent(`Increase order frequency clicked - food page`)
+
       if (this.deliveryPerWeek < 2) {
         this.deliveryPerWeek++
         const freq = this.deliveryPerWeek === 1 ? 'weekly' : 'weekly-twodays'
@@ -914,6 +835,8 @@ export default {
       }
     },
     decreaseFrequency() {
+      mixpanelTrackEvent(`Decrease order frequency clicked - food page`)
+
       if (this.deliveryPerWeek > 1) {
         this.deliveryPerWeek--
         const freq = this.deliveryPerWeek === 1 ? 'weekly' : 'weekly-twodays'

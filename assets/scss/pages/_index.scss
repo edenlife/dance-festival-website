@@ -401,7 +401,6 @@
     margin-bottom: $gap * 4;
   }
   &__item {
-    //TO DO: add overlay
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -414,6 +413,9 @@
     video {
       width: 100% !important;
       height: auto !important;
+    }
+    video::-webkit-media-controls-panel {
+      padding-bottom: 50px;
     }
   }
 
@@ -433,9 +435,17 @@
       height: 260px;
     }
   }
+  @media only screen and (min-width: 1450px) and (max-width: 1700px) {
+    video::-webkit-media-controls-panel {
+      padding-bottom: 100px;
+    }
+  }
   @include respond(xxl) {
     max-width: 1440px;
     margin: 0 auto;
+    video::-webkit-media-controls-panel {
+      padding-bottom: 100px;
+    }
   }
 }
 

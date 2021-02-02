@@ -12,8 +12,12 @@
         />
       </nuxt-link>
       <ul class="navigation__menu">
-        <li class="fallback" @mouseenter.stop="showService = false"></li>
-        <li>
+        <li
+          v-if="serviceNav"
+          class="fallback"
+          @mouseenter.stop="showService = false"
+        ></li>
+        <li v-if="serviceNav">
           <div class="navigation__menu-item navigation__menu-service">
             <button
               type="button"
@@ -265,11 +269,40 @@
             </transition>
           </div>
         </li>
-        <li @mouseenter.stop="showService = false">
+        <li v-if="serviceNav" @mouseenter.stop="showService = false">
           <nuxt-link :to="{ path: '/companies' }" class="navigation__menu-item">
             Companies
           </nuxt-link>
         </li>
+        <!-- food -->
+        <li v-if="currentRoute === 'food'">
+          <button
+            class="navigation__menu-item"
+            @click.prevent="scrollToSection('#menu-options')"
+          >
+            Menu
+          </button>
+        </li>
+        <!-- laundry -->
+        <li v-if="currentRoute === 'laundry'">
+          <button
+            class="navigation__menu-item"
+            @click.prevent="scrollToSection('#laundry-plan')"
+          >
+            Laundry Plans
+          </button>
+        </li>
+        <!-- cleaning -->
+        <li v-if="currentRoute === 'cleaning'">
+          <button
+            class="navigation__menu-item"
+            @click.prevent="scrollToSection('#cleaning-plan')"
+          >
+            Cleaning Plans
+          </button>
+        </li>
+        <!--  -->
+
         <li>
           <a
             href="#"
@@ -392,6 +425,19 @@ export default {
       currentRoute: '',
     }
   },
+  computed: {
+    serviceNav() {
+      if (
+        this.currentRoute === 'laundry' ||
+        this.currentRoute === 'cleaning' ||
+        this.currentRoute === 'food'
+      ) {
+        return false
+      } else {
+        return true
+      }
+    },
+  },
   watch: {
     $route() {
       const getRoute = this.$nuxt.$route.path
@@ -401,7 +447,8 @@ export default {
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
     window.addEventListener('resize', this.handleResize)
-    this.currentRoute = this.$nuxt.$route.path
+    const getRoute = this.$nuxt.$route.path
+    this.currentRoute = getRoute.replace('/', '')
   },
   methods: {
     handleResize() {
@@ -423,6 +470,10 @@ export default {
       if (this.currentRoute === '') {
         scrollToApp(id, `homepage - Navbar`)
       } else scrollToApp(id, `${this.currentRoute} - Navbar`)
+    },
+    scrollToSection(id) {
+      const scrollToElement = document.querySelector(id)
+      scrollToElement.scrollIntoView()
     },
     serviceToggle() {
       this.visible = !this.visible

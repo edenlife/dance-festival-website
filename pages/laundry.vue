@@ -127,7 +127,7 @@
       </section>
     </div>
 
-    <div class="container--plan">
+    <div id="laundry-plan" class="container--plan">
       <section class="plan">
         <div class="plan__title">
           <h3>

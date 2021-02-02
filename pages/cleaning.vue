@@ -497,6 +497,7 @@
             class="options__service-item options__service-food"
             @mouseenter.stop="exploreService = 'food'"
             @mouseleave.stop="exploreService = ''"
+            @click="trackLink('Food')"
           >
             <h3>🧺</h3>
             <h5>Food</h5>
@@ -529,6 +530,7 @@
             class="options__service-item options__service-laundry"
             @mouseenter.stop="exploreService = 'laundry'"
             @mouseleave.stop="exploreService = ''"
+            @click="trackLink('Laundry')"
           >
             <h3>🧺</h3>
             <h5>Laundry</h5>
@@ -566,6 +568,7 @@
             class="options__service-item options__service-gifting"
             @mouseenter.stop="exploreService = 'gifting'"
             @mouseleave.stop="exploreService = ''"
+            @click="trackLink('Gifting')"
           >
             <h3>🎁</h3>
             <h5>Gifting</h5>
@@ -857,6 +860,9 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
       const vid = document.querySelector('video')
       vid.play()
       this.videoControl()
+    },
+    trackLink(service) {
+      mixpanelTrackEvent(`${service} clicked - Cleaning (more options)`)
     },
   },
 }

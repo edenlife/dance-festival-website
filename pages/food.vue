@@ -556,6 +556,7 @@
             class="options__service-item options__service-laundry"
             @mouseenter.stop="exploreService = 'laundry'"
             @mouseleave.stop="exploreService = ''"
+            @click="trackLink('Laundry')"
           >
             <h3>🧺</h3>
             <h5>Laundry</h5>
@@ -593,6 +594,7 @@
             class="options__service-item options__service-cleaning"
             @mouseenter.stop="exploreService = 'cleaning'"
             @mouseleave.stop="exploreService = ''"
+            @click="trackLink('Cleaning')"
           >
             <h3>🏠</h3>
             <h5>Home Cleaning</h5>
@@ -627,6 +629,7 @@
             class="options__service-item options__service-gifting"
             @mouseenter.stop="exploreService = 'gifting'"
             @mouseleave.stop="exploreService = ''"
+            @click="trackLink('Gifting')"
           >
             <h3>🎁</h3>
             <h5>Gifting</h5>
@@ -844,6 +847,9 @@ export default {
           meal: { item: null, frequency: freq, qty: this.mealsPerWeek },
         })
       }
+    },
+    trackLink(service) {
+      mixpanelTrackEvent(`${service} clicked - Food (more options)`)
     },
   },
 }

@@ -210,7 +210,7 @@
             </nuxt-link>
             <div class="services__type-bg">
               <img
-                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611318735/eden-website-v2/gift-img1_r9mjjh.png"
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/q_auto/v1612286532/eden-website-v2/giftimage_xjioyo.jpg"
                 alt="gifting"
               />
             </div>

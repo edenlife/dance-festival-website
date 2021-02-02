@@ -1,79 +1,68 @@
-export default [
-  {
-    name: 'Adaku',
-    image: 'adaku',
-    description: `Got my first meal delivery from <span style="color:#03A84E"> @ouredenlife </span> today and I'm sold. I was made for this lifestyle, please.`,
-    handle: 'adakanma',
-    tweetLink: 'https://twitter.com/adakanma/status/1304074750952714241?s=20',
-  },
-  {
-    name: 'Raheem Azeez',
-    image: 'raheem',
-    description: `<span style="color:#03A84E"> @ouredenlife </span> 🤝🤝 quality food and quality customer service
-<br><br>
-      I really love this`,
-    handle: 'biodun_codegeek',
-    tweetLink:
-      'https://twitter.com/biodun_codegeek/status/1313066786229714945?s=20',
-  },
-  {
-    name: 'Goddess Inanna',
-    image: 'goddess',
-    description: `My baby makes breakfast every weekend, it’s so cute and I enjoy it  because the guy sabi cook wella more than me 🤣🤣🤣. <br><br>
-
-    We have an <span style="color:#03A84E"> @ouredenlife </span> subscription for food, so we get meals weekly, but weekends are his  days to whip up something nice for us. So much love it 🥰`,
-    handle: 'jemimahh__',
-    tweetLink: 'https://twitter.com/jemimahh__/status/1332839906796843010?s=20',
-  },
-  {
-    name: '✰ ✰ ✰ ✰ ✰ WF',
-    image: 'ahmad',
-    description: `Today is praise <span style="color:#03A84E"> @ouredenlife </span> day, I was tired of cooking during the lockdown and was getting unproductive, registered and I haven’t looked back since then`,
-    handle: 'gamik_official',
-    tweetLink:
-      'https://twitter.com/gamik_official/status/1292159712331542528?s=20',
-  },
-  {
-    name: '20.10.2020 | Adjoa',
-    image: 'simi',
-    description: `<span style="color:#03A84E"> @ouredenlife </span> salads opened my eyes to this and now every salad falls short. Their salads set the bar really high`,
-    handle: 'SimiOlusola',
-    tweetLink:
-      'https://twitter.com/SimiOlusola/status/1304814536441069568?s=20',
-  },
-  {
-    name: 'Elemi Meje',
-    image: 'elemi',
-    description: `First <span style="color:#03A84E"> @ouredenlife </span> meals just came in. Lets see how this goes.`,
-    handle: 'TheAkindare',
-    tweetLink:
-      'https://twitter.com/TheAkindare/status/1305441902532218880?s=20',
-  },
-  {
-    name: 'Fiyin Adebayo',
-    image: 'fiyin',
-    description: `Through my foodie journey in Lagos, <span style="color:#03A84E"> @ouredenlife </span> ’s has delivered the best moin moin I’ve eaten so far. You can never go wrong with this one!`,
-    handle: 'ceemion',
-    tweetLink: 'https://twitter.com/ceemion/status/1276138487104897024?s=20',
-  },
-  {
-    name: `(0, eval)('yats')`,
-    image: 'cozzbie',
-    description: `One of two things will kill you in Nigeria.
-      <br><br>
-      The Nigerian government with their foolishness or 
-      <span style="color:#03A84E"> @ouredenlife </span> with food. Jesu!! The size of this Amala.
-      <br><br>
-      Wtf!!!`,
-    handle: 'cozzbie',
-    tweetLink: 'https://twitter.com/cozzbie/status/1329746136303808514?s=20',
-  },
-  {
-    name: 'IBK',
-    image: 'ibk',
-    description: `Did one week of Eden and inches have literally melted off my waist and hips`,
-    handle: 'TheOnlyIbukun',
-    tweetLink:
-      'https://twitter.com/TheOnlyIbukun/status/1302874463814529024?s=20',
-  },
-]
+export default {
+  giftHer: [
+    {
+      id: 'burn-for-you-her',
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/v1612292936/eden-website-v2/hers-50_ywhukj.jpg',
+      name: 'Burn For You',
+      description: `We have curated our <span>Burn For You</span> gift basket to stoke the heat of your belle's affection for you and leave her heady with pleasure.`,
+      amount: 50000,
+      content: [
+        'One week of food (Giftcard)',
+        'Scented candle',
+        'Cold infuse',
+        'Box of chocolates',
+        'Box of handcreams',
+        'Personalised Card',
+      ],
+    },
+    {
+      id: 'adore-you-her',
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/v1612292936/eden-website-v2/hers-40_bpwpr6.jpg',
+      name: 'Adore You',
+      description: `Curated to express and celebrate your devotion, our <span>Adore You</span> gift basket, for her, is indulgent and shows just how much you care.`,
+      amount: 40000,
+      content: [
+        'Live cactus plant',
+        'Box of chocolates',
+        'Scented candle',
+        'Sheet mask',
+        'Personalised greeting card',
+      ],
+    },
+  ],
+  giftHim: [
+    {
+      id: 'burn-for-you-him',
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/v1612292936/eden-website-v2/his-50_rewyfa.jpg',
+      name: 'Burn For You',
+      description: `This <span>Burn For You</span> gift basket for your beau contains items that express the sweetness of love, resilience of longevity, and the warmth of intimacy.`,
+      amount: 50000,
+      content: [
+        'One week of food (Giftcard)',
+        'Box of socks',
+        'Box of cufflinks',
+        'Bottle of wine',
+        'Coffee',
+        'Personalized greeting card',
+      ],
+    },
+    {
+      id: 'adore-you-him',
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/v1612292936/eden-website-v2/his-40_crq0hf.jpg',
+      name: 'Adore You',
+      description: `Designed to communicate just how extra-special he is, our <span>Adore You</span> gift basket for him is full of sweet and thoughtful things that say "I care for you.`,
+      amount: 40000,
+      content: [
+        'Self-heating mug set',
+        'Red wine',
+        'Box of socks',
+        'Coffee',
+        'Personalised greeting card',
+      ],
+    },
+  ],
+}

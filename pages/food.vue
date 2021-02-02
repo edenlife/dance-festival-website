@@ -188,7 +188,7 @@
           <figure v-for="(item, i) in newWeekMeal" :key="i">
             <div v-if="item.image_url === null" class="menu__list-img fallback">
               <img
-                :src="require(`~/assets/images/food-fallback.png`)"
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1612250107/eden-website-v2/food-fallback_gnwkhu.png"
                 :alt="item.name"
               />
             </div>

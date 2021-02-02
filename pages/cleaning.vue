@@ -47,8 +47,8 @@
 
         <div class="description__body">
           <div class="description__slider">
-            <div class="description__slider-timeline slider">
-              <span class="slide"></span>
+            <div class="description__slider-vertical slider">
+              <span class="slide-y"></span>
               <!-- <div class="slide">
                 <svg
                   width="8"
@@ -96,6 +96,9 @@
                   <circle cx="4" cy="4" r="4" />
                 </svg>
               </div> -->
+            </div>
+            <div class="description__slider-horizontal slider">
+              <span class="slide-x"></span>
             </div>
 
             <div class="description__slider-text">
@@ -600,11 +603,11 @@ export default {
   data() {
     return {
       headerText: [
-        'Love',
-        'Family',
-        'Having Fun',
-        'Working Out',
-        'Being Better',
+        'love',
+        'family',
+        'having fun',
+        'working out',
+        'being better',
       ],
       cleaningMessage: [
         {
@@ -757,25 +760,38 @@ export default {
     },
     videoControl() {
       const video = document.querySelector('video')
-      const slide = document.querySelector('.slide')
+      const slideY = document.querySelector('.slide-y')
+      const slideX = document.querySelector('.slide-x')
       const slider = document.querySelector('.slider')
-
+      const scrollToElement = document.querySelector(
+        '.description__slider-text'
+      )
       // control timeline with video play
       video.addEventListener('timeupdate', function () {
         const parcentagePlayed = (this.currentTime / this.duration) * 100
-        slide.style.height = parcentagePlayed.toFixed(2) + '%'
+        slideY.style.height = parcentagePlayed.toFixed(2) + '%'
+        slideX.style.width = parcentagePlayed.toFixed(2) + '%'
 
         if (this.currentTime < 8) {
           document.querySelector('.one').className = 'one view'
           document.querySelector('.two').className = 'two'
           document.querySelector('.three').className = 'three'
           document.querySelector('.btn--replay').className = 'btn--replay'
+          scrollToElement.scrollBy({
+            left: 10,
+          })
         } else if (this.currentTime > 9 && this.currentTime < 19) {
+          scrollToElement.scrollBy({
+            left: 0,
+          })
           document.querySelector('.one').className = 'one'
           document.querySelector('.two').className = 'two view'
           document.querySelector('.three').className = 'three'
           document.querySelector('.btn--replay').className = 'btn--replay'
         } else if (this.currentTime > 19) {
+          scrollToElement.scrollBy({
+            left: 20,
+          })
           document.querySelector('.two').className = 'two'
           document.querySelector('.one').className = 'one'
           document.querySelector('.three').className = 'three view'
@@ -794,7 +810,8 @@ export default {
           video.pause()
           video.currentTime = Math.round(currentTime)
           video.play()
-          slide.style.height = percentageCovered.toFixed(2) + '%'
+          slideY.style.height = percentageCovered.toFixed(2) + '%'
+          slideX.style.width = percentageCovered.toFixed(2) + '%'
         }
       })
     },

@@ -4,10 +4,10 @@
       <header class="hero">
         <div class="hero__title">
           <h1 class="">
-            The Perfect Perk <br />for <span> {{ headerText[0] }}</span>
+            The perfect perk <br />for <span> {{ headerText[0] }}</span>
           </h1>
           <h1 class="mobile">
-            The Perfect Perk for <span> {{ headerText[0] }}</span>
+            The perfect perk for <span> {{ headerText[0] }}</span>
           </h1>
           <p>
             CEO, Hiring Manager or Team Lead? Eden is the best way to reward
@@ -462,7 +462,7 @@ import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 export default {
   data() {
     return {
-      headerText: ['Rockstar Companies', 'Thoughtful Teams'],
+      headerText: ['rockstar companies', 'thoughtful teams'],
       TeamMessageList: [
         {
           name: 'Oyechukwu 😎',

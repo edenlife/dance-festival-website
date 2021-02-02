@@ -5,11 +5,11 @@
         <div class="hero__title">
           <h1>
             Enjoy <span> {{ headerText[0] }}</span> <br />
-            Ready in 5 minutes
+            ready in 5 minutes
           </h1>
           <h1 class="mobile">
             Enjoy <span> {{ headerText[0] }}</span> <br />
-            Ready in <br />5 minutes
+            ready in <br />5 minutes
           </h1>
           <p>
             A food subscription on Eden Life gets you delicious meals prepared
@@ -703,11 +703,11 @@ export default {
   data() {
     return {
       headerText: [
-        'Perfect Pasta',
-        'Spicy Soups',
-        'Gorgeous Gizdodo',
-        'Peng Porridge',
-        'Savory Seafood',
+        'perfect pasta',
+        'spicy soups',
+        'gorgeous gizdodo',
+        'peng porridge',
+        'savory seafood',
       ],
       activeTabIndex: null,
       tabs: [

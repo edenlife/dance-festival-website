@@ -3,7 +3,7 @@
     <div class="container--hero">
       <header class="hero">
         <div class="hero__title">
-          <h1>We Make The <br />Good Life Happen</h1>
+          <h1>We make the <br />good life happen</h1>
           <p>
             Excellent customer service, top-notch service providers, and
             easy-to-use technology. That's our recipe for brewing you a

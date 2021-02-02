@@ -5,7 +5,7 @@
         <div class="hero__title">
           <h1>
             Save your <span> {{ headerText[0] }}</span> <br />
-            Clean clothes on repeat.
+            clean clothes on repeat.
           </h1>
           <p>
             Getting an Eden laundry plan means we'll pick up your dirty laundry
@@ -531,7 +531,7 @@ import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 export default {
   data() {
     return {
-      headerText: ['Time', 'Energy', 'Money'],
+      headerText: ['time', 'energy', 'money'],
       LaundryMessage: [
         {
           name: 'justin irabor',

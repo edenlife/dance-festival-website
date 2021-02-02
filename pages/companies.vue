@@ -10,7 +10,7 @@
             The Perfect Perk for <span> {{ headerText[0] }}</span>
           </h1>
           <p>
-            CEO, Hiring manager or Team Lead? Eden is the best way to reward
+            CEO, Hiring Manager or Team Lead? Eden is the best way to reward
             your team's good work while staying on budget.
           </p>
           <div class="hero__button">
@@ -63,7 +63,7 @@
           </div>
           <div class="team__card-item sport">
             <h3>💚</h3>
-            <h5>Team Sport</h5>
+            <h5>Appreciate Value</h5>
             <p>
               And with a subscription to any of our plans, your team members can
               see that they're highly valued by your organization.
@@ -77,7 +77,7 @@
       <section class="services">
         <div class="services__title">
           <h3>Team Perks</h3>
-          <p>Cancelling & Pausing any time is as easy as clicking a button.</p>
+          <p>A happy team is a productive team</p>
         </div>
         <div class="services__type">
           <div class="services__type-item services__type-food">
@@ -346,7 +346,7 @@
                 <h5>Every team member gets personalized service</h5>
               </div>
               <div class="five">
-                <h5>You monitor/evaluate team satisfaction. (Coming soon)</h5>
+                <h5>You monitor/evaluate team satisfaction.</h5>
               </div>
               <button
                 type="button"
@@ -383,7 +383,7 @@
     <div class="container--customers">
       <section class="customers">
         <div class="customers__title">
-          <h3>Companies <br />💚 us.</h3>
+          <h3>The wall of 💚</h3>
           <div class="customers__title-image">
             <img
               src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611859999/eden-website-v2/cocreations_k8zyc1.svg"

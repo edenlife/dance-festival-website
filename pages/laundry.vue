@@ -8,9 +8,9 @@
             Clean clothes on repeat.
           </h1>
           <p>
-            Getting an Eden Life laundry plan means we'll pick up your dirty
-            laundry and bring back your clean clothes, folded or ironed, within
-            48 hours.
+            Getting an Eden laundry plan means we'll pick up your dirty laundry
+            and bring back your clean clothes, folded or ironed, within 48
+            hours.
           </p>
           <div class="hero__button">
             <button
@@ -102,7 +102,7 @@
     <div class="container--wall">
       <section class="wall">
         <div class="wall__title">
-          <h3>💚 notes <br />cos’ errbody <br />loves us</h3>
+          <h3>The wall of 💚</h3>
         </div>
         <div class="wall__messages">
           <div v-for="(item, i) in LaundryMessage" :key="i" class="card">
@@ -157,7 +157,7 @@
             <li>
               <h5 class="icon icon--three">👼</h5>
               <div class="icon--text">
-                <h5>Cancel anytime.</h5>
+                <h5>Pause anytime.</h5>
                 <p>On God!</p>
               </div>
             </li>
@@ -170,7 +170,7 @@
               :class="{ active: plan === 'washDry' }"
               @click.prevent="plan = 'washDry'"
             >
-              <span> Wash, Dry & Fold</span>
+              <span> Wash & Fold</span>
               <svg
                 v-if="plan === 'washDry'"
                 width="6"
@@ -186,7 +186,7 @@
               :class="{ active: plan === 'washIron' }"
               @click.prevent="plan = 'washIron'"
             >
-              <span> Wash, Fold & Iron </span>
+              <span> Wash & Iron </span>
               <svg
                 v-if="plan === 'washIron'"
                 width="6"
@@ -233,6 +233,7 @@
                     v-model="washDry"
                     type="number"
                     name=""
+                    readonly
                     placeholder="0"
                   />
                   <button
@@ -334,6 +335,7 @@
                     type="number"
                     name=""
                     placeholder="0"
+                    readonly
                   />
                   <button
                     class="btn--item plus"

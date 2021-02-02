@@ -3,7 +3,7 @@
     <div class="container--header">
       <header class="faq__header">
         <h1>FAQs</h1>
-        <p>Your EdenLife questions, answered.</p>
+        <p>Your Eden questions, answered.</p>
       </header>
       <section class="faq__questions">
         <div class="faq__questions-item">

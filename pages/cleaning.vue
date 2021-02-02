@@ -12,12 +12,12 @@
             <span> {{ headerText[0] }}</span>
           </h1>
           <p>
-            Let Eden Life handle your home's self-care routine
+            Let Eden handle your home's self-care routine.
             <br />
             <br />
 
-            Use Eden Life to keep your home clean, your toilets scrubbed and
-            your dishes done all through the month!
+            Use Eden to keep your home clean, your toilets scrubbed and your
+            dishes done all through the month!
           </p>
           <div class="hero__button">
             <button
@@ -103,7 +103,16 @@
             </div>
           </div>
 
-          <div class="description__video"></div>
+          <div class="description__video">
+            <!-- <video id="video" controls="controls" preload="none" width="600">
+              <source
+                id="mp4"
+                :src="require(`~/assets/images/Untitled.mp4`)"
+                type="video/mp4"
+              />
+            </video> -->
+            <!-- <video :src="require(`~/assets/images/Untitled.mp4`)" controls /> -->
+          </div>
         </div>
       </section>
     </div>
@@ -111,7 +120,7 @@
     <div class="container--wall">
       <section class="wall">
         <div class="wall__title">
-          <h3>💚 notes <br />cos’ errbody <br />loves us</h3>
+          <h3>The wall of 💚</h3>
         </div>
         <div class="wall__messages">
           <div v-for="(item, i) in cleaningMessage" :key="i" class="card">
@@ -133,8 +142,8 @@
             Zero stress.
           </h3>
           <p>
-            You deserve a home where you just sit back and relax. No cleaning.
-            No stress.
+            You deserve a home where you just sit back and relax.<br />
+            No cleaning. No stress.
           </p>
           <ul>
             <li>
@@ -154,7 +163,7 @@
             <li>
               <h5 class="icon icon--three">👼</h5>
               <div class="icon--text">
-                <h5>Cancel anytime.</h5>
+                <h5>Pause anytime.</h5>
                 <p>On God!</p>
               </div>
             </li>
@@ -179,7 +188,7 @@
                 <circle cx="3" cy="3" r="3" fill="#61DB98" />
               </svg>
             </li>
-            <li
+            <!-- <li
               :class="{ active: plan === 'deep' }"
               @click.prevent="plan = 'deep'"
             >
@@ -194,7 +203,7 @@
               >
                 <circle cx="3" cy="3" r="3" fill="#61DB98" />
               </svg>
-            </li>
+            </li> -->
           </ul>
           <!--  -->
           <transition name="slide-fade">
@@ -235,6 +244,7 @@
                     type="number"
                     name=""
                     placeholder="0"
+                    readonly
                   />
                   <button
                     class="btn--item plus"
@@ -301,7 +311,7 @@
               </div>
             </div>
           </transition>
-          <transition name="slide-fade">
+          <!-- <transition name="slide-fade">
             <div v-if="plan === 'deep'" class="plan__price-light">
               <div class="plan__price-item">
                 <p>
@@ -339,6 +349,7 @@
                     type="number"
                     name=""
                     placeholder="0"
+                    readonly
                   />
                   <button
                     class="btn--item plus"
@@ -404,7 +415,7 @@
                 <p>Monthly</p>
               </div>
             </div>
-          </transition>
+          </transition> -->
         </div>
       </section>
     </div>

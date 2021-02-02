@@ -1,6 +1,10 @@
 <template>
   <div id="navigation-container" class="container" :style="getColor()">
-    <nav id="navigation-top" class="navigation">
+    <nav
+      id="navigation-top"
+      class="navigation"
+      @mouseleave.stop="showService = false"
+    >
       <nuxt-link :to="{ path: '/' }" class="navigation__logo">
         <img
           src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611230252/eden-website-v2/eden-logo_lcepc6.svg"
@@ -8,11 +12,7 @@
         />
       </nuxt-link>
       <ul class="navigation__menu">
-        <li>
-          <nuxt-link :to="{ path: '/companies' }" class="navigation__menu-item">
-            Companies
-          </nuxt-link>
-        </li>
+        <li class="fallback" @mouseenter.stop="showService = false"></li>
         <li>
           <div class="navigation__menu-item navigation__menu-service">
             <button
@@ -45,10 +45,7 @@
               >
                 <div class="service__title">
                   <h3>Eden Services</h3>
-                  <p>
-                    Cancelling & Pausing any time is as easy as clicking a
-                    button
-                  </p>
+                  <p>Convenience you can depend on. Always.</p>
                 </div>
                 <ul class="service__list">
                   <li
@@ -268,6 +265,11 @@
             </transition>
           </div>
         </li>
+        <li @mouseenter.stop="showService = false">
+          <nuxt-link :to="{ path: '/companies' }" class="navigation__menu-item">
+            Companies
+          </nuxt-link>
+        </li>
         <li>
           <a
             href="#"
@@ -285,14 +287,6 @@
       <transition name="slide">
         <div v-if="showNavbar" class="navigation__mobile">
           <ul class="menu">
-            <li class="menu--list" @click.prevent="handleToggle()">
-              <nuxt-link
-                :to="{ path: '/companies' }"
-                class="navigation__mobile-item"
-              >
-                Companies
-              </nuxt-link>
-            </li>
             <li class="menu--list">
               <div class="navigation__mobile-item service">
                 <div>Service</div>
@@ -358,6 +352,14 @@
               </transition>
             </li>
             <li class="menu--list" @click.prevent="handleToggle()">
+              <nuxt-link
+                :to="{ path: '/companies' }"
+                class="navigation__mobile-item"
+              >
+                Companies
+              </nuxt-link>
+            </li>
+            <li class="menu--list" @click.prevent="handleToggle()">
               <a
                 href="#"
                 class="navigation__mobile-item navigation__mobile-link"
@@ -387,11 +389,19 @@ export default {
         width: 0,
         height: 0,
       },
+      currentRoute: '',
     }
+  },
+  watch: {
+    $route() {
+      const getRoute = this.$nuxt.$route.path
+      this.currentRoute = getRoute.replace('/', '')
+    },
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
     window.addEventListener('resize', this.handleResize)
+    this.currentRoute = this.$nuxt.$route.path
   },
   methods: {
     handleResize() {
@@ -410,7 +420,9 @@ export default {
       }
     },
     scrollTo(id) {
-      scrollToApp(id, 'Navbar')
+      if (this.currentRoute === '') {
+        scrollToApp(id, `homepage - Navbar`)
+      } else scrollToApp(id, `${this.currentRoute} - Navbar`)
     },
     serviceToggle() {
       this.visible = !this.visible

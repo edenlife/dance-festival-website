@@ -108,7 +108,7 @@
     <div id="menu-options" ref="menu-options" class="container--menu">
       <section class="menu">
         <div class="menu__title">
-          <h3>This week’s menu</h3>
+          <h3>Current menu</h3>
           <p>{{ firstDateFormat }} - {{ lastDateFormat }}</p>
         </div>
         <!-- <nav class="menu__nav">
@@ -283,7 +283,7 @@
             <li>
               <h5 class="icon icon--three">👼</h5>
               <div class="icon--text">
-                <h5>Cancel anytime.</h5>
+                <h5>Pause anytime.</h5>
                 <p>On God!</p>
               </div>
             </li>
@@ -334,7 +334,7 @@
                 />
               </div> -->
               <div class="plan__price-item one">
-                <p>How many meals do you want to eat daily?</p>
+                <p>How many meals do you want daily?</p>
                 <div class="btn--group">
                   <button
                     class="btn--item minus"
@@ -362,6 +362,7 @@
                     type="number"
                     name=""
                     placeholder="0"
+                    readonly
                   />
                   <button
                     class="btn--item plus"
@@ -405,7 +406,7 @@
           <transition name="slide-fade">
             <div v-if="period === 'monthly'" class="plan__price-monthly">
               <div class="plan__price-item">
-                <p>How many meals do you want to eat weekly?</p>
+                <p>How many meals do you want every week?</p>
                 <div class="btn--group">
                   <button
                     class="btn--item minus"
@@ -433,6 +434,7 @@
                     type="number"
                     name=""
                     placeholder="0"
+                    readonly
                   />
                   <button
                     class="btn--item plus"
@@ -497,6 +499,7 @@
                     type="number"
                     name=""
                     placeholder="0"
+                    readonly
                     max="2"
                   />
                   <button
@@ -703,7 +706,7 @@ export default {
         'Perfect Pasta',
         'Spicy Soups',
         'Gorgeous Gizdodo',
-        'Peppery Porridge',
+        'Peng Porridge',
         'Savory Seafood',
       ],
       activeTabIndex: null,

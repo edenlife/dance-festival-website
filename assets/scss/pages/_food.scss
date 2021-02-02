@@ -432,6 +432,7 @@
         @include font-size(lg);
         @include font-weight(light);
         color: color(eden-neutral-1);
+        text-transform: capitalize;
       }
     }
   }

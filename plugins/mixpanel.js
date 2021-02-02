@@ -17,6 +17,6 @@ export const mixpanelTrackLink = (link, name) => {
 //   property_2: 'value 2',
 //   property_3: 'value 3',
 // })
-// mixpanel.track_links('#nav a', 'click nav link', {
-//   referrer: document.referrer,
+// mixpanel.track_links('#nav a', 'click food link', {
+//   referrer: 'homepage services',
 // })

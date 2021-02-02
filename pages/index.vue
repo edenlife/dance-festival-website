@@ -70,7 +70,7 @@
       <section class="services">
         <div class="services__title">
           <h3>Services</h3>
-          <p>Cancelling & Pausing any time is as easy as clicking a button.</p>
+          <p>Convenience you can depend on. Always.</p>
         </div>
         <div class="services__type">
           <div
@@ -229,6 +229,8 @@
             src="https://res.cloudinary.com/eden-life-inc/video/upload/v1581682950/A_day_in_the_life_of_an_Eden_user_rasjrw.mp4"
             poster="https://res.cloudinary.com/eden-life-inc/image/upload/v1611319513/eden-website-v2/video-thumbnail_crnwew.png"
             controls
+            autoplay
+            muted
           />
         </div>
       </section>
@@ -237,7 +239,7 @@
     <div class="container--customers">
       <section class="customers">
         <div class="customers__title">
-          <h3>Your neighbours <br />💚 us.</h3>
+          <h3>The wall of 💚</h3>
           <div class="customers__title-image">
             <img
               src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/cowrywise_wtcvv5.svg"

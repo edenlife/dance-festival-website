@@ -261,7 +261,7 @@ export default [
     title: 'Cancellation Policy',
     content: `<h2 class="content__title pt-0">CANCELLATION & PAUSE POLICY</h2>
       <p class="content__text">
-          Every Friday, we notify you of your service schedule for the following week. You can confirm the schedule or make changes as you see fit. No response from you indicates confirmation and your services will occur as communicated.
+          Every Wednesday, we notify you of your service schedule for the following week. You can confirm the schedule or make changes as you see fit. No response from you indicates confirmation and your services will occur as communicated.
       </p>
       <h2 class="content__title">Pausing Your Plan</h2>
       <p class="content__text">

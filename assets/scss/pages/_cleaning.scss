@@ -428,24 +428,44 @@
       background-color: color(eden-neutral-7);
       border: 1px solid rgba(228, 232, 230, 0.2);
       border-radius: 8px;
+      &:hover {
+        transform: scale(1.01);
+        transition: all 0.3s ease-in-out;
+      }
       &__title {
-        &-name {
-          text-align: center;
-          @include font-size(base);
-          line-height: 24px;
-          color: color(eden-neutral-1);
+        display: flex;
+        align-items: center;
+        margin-bottom: $gap + 6;
+        &-img {
+          margin-right: $gap - 2;
+          width: 68px;
+          height: 68px;
+          img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            object-fit: cover;
+          }
         }
-        margin-bottom: $gap + 2;
+        &-name {
+          margin-bottom: 4px;
+          color: color(eden-neutral-1);
+          @include font-size(base);
+        }
+        &-handle {
+          line-height: 21px;
+          @include font-size(sm);
+          color: color(eden-green-primary);
+        }
       }
       &__description {
-        text-align: center;
         color: color(eden-neutral-2);
         @include font-size(sm);
         line-height: 21px;
       }
 
-      &:nth-child(6) {
-        margin-top: -$gap * 6;
+      &:nth-child(3) {
+        margin-top: -$gap * 4;
       }
     }
   }

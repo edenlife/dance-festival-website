@@ -178,10 +178,22 @@
         </div>
         <div class="wall__messages">
           <div v-for="(item, i) in cleaningMessage" :key="i" class="card">
-            <div class="card__title">
-              <p class="card__title-name">{{ item.name }}</p>
-            </div>
-            <p class="card__description" v-html="item.description"></p>
+            <a :href="item.tweetLink" target="_blank">
+              <div class="card__title">
+                <div class="card__title-img">
+                  <img
+                    :src="require(`~/assets/images/customer-${item.image}.jpg`)"
+                    :alt="item.name"
+                  />
+                </div>
+
+                <div class="">
+                  <p class="card__title-name">{{ item.name }}</p>
+                  <p class="card__title-handle">@{{ item.handle }}</p>
+                </div>
+              </div>
+              <p class="card__description" v-html="item.description"></p>
+            </a>
           </div>
         </div>
       </section>
@@ -611,28 +623,46 @@ export default {
       ],
       cleaningMessage: [
         {
-          name: 'Joshua',
-          description: `The cleaning was awesome. I will recommend 10/10.`,
+          name: 'kofo',
+          image: 'kofo',
+          description: `The way my house sparkles after the 
+<span style="color:#03A84E"> @ouredenlife </span>
+ cleaners are done with their magic dey always give me endorphins`,
+          handle: `yoruba_dev
+`,
+          tweetLink:
+            'https://twitter.com/yoruba_dev/status/1334066072878772225?s=20',
         },
         {
-          name: 'Abdulmujeeb',
-          description: `The cleaning was good`,
+          name: 'Enogieru Osasenaga',
+          image: 'enogieru',
+          description: ` Got one win today and put a proposal for another project. It’s safe to say it’s been a blessed week. 
+<span style="color:#03A84E"> @ouredenlife </span>
+ been making my stay in Lagos worthwhile. 
+Tonight we Netflix cause tomorrow is back to the streets.`,
+          handle: `OsasenagaEno
+`,
+          tweetLink:
+            'https://twitter.com/OsasenagaEno/status/1316432226813390853?s=20',
         },
         {
-          name: 'Esther',
-          description: `Oh yeah, it exceeded my expectations. I really love Christy, her cleaning was perfect, no complaints at all.  Most especially my kitchen and bathrooms has never been cleaner.`,
+          name: 'ifeanyi',
+          image: 'ifeanyi',
+          description: ` A friend recently told me about  
+<span style="color:#03A84E"> @ouredenlife </span>
+ and basically they help you automate your chores(laundry,meals, cleaning etc). If you’re the type too busy(or lazy) to do it yourself then check them out.`,
+          handle: `ifeanyi_uu`,
+          tweetLink:
+            'https://twitter.com/ifeanyi_uu/status/1299012714644283393',
         },
         {
-          name: 'Feyi',
-          description: `The job was well done`,
-        },
-        {
-          name: 'Bamidele',
-          description: `The cleaning was good`,
-        },
-        {
-          name: 'Joseph',
-          description: `I don't think I have ever seen my house this clean, the cleaner has done a good job`,
+          name: 'Olaniyan Ibukunoluwa',
+          image: 'olaniyan',
+          description: ` Have you checked out 
+<span style="color:#03A84E"> @ouredenlife </span>
+ . They do this and are professionals. You can tailor it to suit you.`,
+          handle: `fohrin2`,
+          tweetLink: 'https://twitter.com/fohrin2/status/1303295606102937600',
         },
       ],
       exploreService: '',

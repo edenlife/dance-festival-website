@@ -304,32 +304,20 @@
               We're coming to your city. Be the first to know when we touch
               down.
             </p>
-            <form
-              class="form__input"
-              action="https://www.getdrip.com/forms/800280240/submissions"
-              data-drip-embedded-form="800280240"
-              method="post"
-            >
+            <form class="form__input">
               <input
                 id=""
+                v-model="bound_fields.email"
                 type="email"
-                name="fields[email]"
-                value=""
+                name=""
                 placeholder="Enter your email"
-              />
-              <input
-                id=""
-                style="display: none"
-                type="text"
-                name="fields[state]"
-                :value="bound_fields.city"
+                :class="{ 'has-error': $v.bound_fields.email.$error }"
               />
               <div class="form__input-item">
                 <div
                   class="select"
                   :data-value="bound_fields.city"
                   :data-list="cities"
-                  name="fields[state]"
                 >
                   <div class="selector" @click="toggle()">
                     <div class="label">
@@ -376,10 +364,9 @@
                 </div>
                 <button
                   type="submit"
-                  value="send"
                   class="form__input-btn"
-                  data-drip-attribute="sign-up-button"
-                  @click="submitForm"
+                  :disabled="loading"
+                  @click.prevent="submitForm"
                 >
                   <svg
                     width="24"
@@ -857,25 +844,14 @@
           <p>
             We're coming to your city. Be the first to know when we touch down.
           </p>
-          <form
-            class="form__input"
-            action="https://www.getdrip.com/forms/800280240/submissions"
-            data-drip-embedded-form="800280240"
-            method="post"
-          >
+          <form class="form__input">
             <input
               id=""
+              v-model="bound_fields.email"
               type="email"
-              value=""
-              name="fields[email]"
+              name=""
               placeholder="Enter your email"
-            />
-            <input
-              id=""
-              style="display: none"
-              type="text"
-              name="fields[state]"
-              :value="bound_fields.city"
+              :class="{ 'has-error': $v.bound_fields.email.$error }"
             />
             <div class="form__input-item">
               <div
@@ -929,8 +905,7 @@
               <button
                 type="submit"
                 class="form__input-btn"
-                value="send"
-                data-drip-attribute="sign-up-button"
+                :disabled="loading"
                 @click="submitForm"
               >
                 Send Message
@@ -977,17 +952,129 @@
         </div>
       </section>
     </div>
+
+    <modal v-if="showSuccessModal" :show-modal="showSuccessModal" class="modal">
+      <div slot="header"></div>
+      <div slot="body" class="modal__body">
+        <div class="form__modal">
+          <div class="form__modal-title">
+            <button class="btn btn--success" @click="showSuccessModal = false">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="15.5"
+                  fill="white"
+                  stroke="#E4E8E6"
+                />
+                <path
+                  d="M20 12L12 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 12L20 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="form__modal-body">
+            <img
+              :src="require(`~/assets/images/successful.svg`)"
+              alt="failed"
+            />
+            <h5>Information Submitted</h5>
+            <p>You have successfully submitted your information.</p>
+            <button
+              type="submit"
+              class="btn--submit"
+              :disabled="loading"
+              @click="showSuccessModal = false"
+            >
+              Continue Browsing
+            </button>
+          </div>
+        </div>
+      </div>
+      <div slot="footer"></div>
+    </modal>
+
+    <modal v-if="showFailedModal" :show-modal="showFailedModal" class="modal">
+      <div slot="header"></div>
+      <div slot="body" class="modal__body">
+        <div class="form__modal">
+          <div class="form__modal-title">
+            <button class="btn btn--success" @click="showFailedModal = false">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="15.5"
+                  fill="white"
+                  stroke="#E4E8E6"
+                />
+                <path
+                  d="M20 12L12 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 12L20 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div class="form__modal-body">
+            <img :src="require(`~/assets/images/failed.svg`)" alt="failed" />
+            <h5>Submission Failed</h5>
+            <p>
+              Your information was not successfully submitted. Please try again
+              or reach us at <span>eve@edenlife.ng </span> or
+              <span>+2348123456790</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div slot="footer"></div>
+    </modal>
   </div>
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required, email } from 'vuelidate/lib/validators'
 import testimonials from '~/static/testimonials'
 import { scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
+  mixins: [validationMixin],
   data() {
     return {
+      showFailedModal: false,
+      showSuccessModal: false,
+      loading: false,
       showFrame: false,
       services: [
         { title: 'housecleaning', value: 'cleaning' },
@@ -1154,6 +1241,12 @@ export default {
       autoPlayMute: '',
     }
   },
+  validations: {
+    bound_fields: {
+      email: { required, email },
+      city: { required },
+    },
+  },
   mounted() {
     window.setInterval(() => {
       this.changeService()
@@ -1168,6 +1261,36 @@ export default {
   },
   methods: {
     submitForm() {
+      this.$v.bound_fields.$touch()
+      this.loading = true
+      if (!this.$v.bound_fields.$error) {
+        fetch('https://api-staging.edenlife.ng/api/v3/website/landingpage', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(this.bound_fields),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log('Success:', data)
+            Object.keys(this.bound_fields).forEach(
+              (key) => (this.bound_fields[key] = '')
+            )
+            this.$nextTick(() => {
+              this.$v.bound_fields.$reset()
+              this.bound_fields.city = null
+              this.cityName = 'Select your city'
+            })
+            this.showSuccessModal = true
+            this.loading = false
+          })
+          .catch((error) => {
+            console.error('Error:', error)
+            this.loading = false
+            this.showFailedModal = true
+          })
+      }
       mixpanelTrackEvent('Enlist form - homepage')
     },
     scrollTo(id, label) {

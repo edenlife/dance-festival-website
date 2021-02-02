@@ -772,8 +772,6 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
       //   this.$v.companyForm.$touch();
       // this.loading = true;
       // if (!this.$v.companyForm.$error) {
-      //   const formResponse = await requestCompanyCarebox(this.companyForm);
-      //   if (formResponse.status) {
       //     Object.keys(this.companyForm).forEach(
       //       key => (this.companyForm[key] = "")
       //     );
@@ -782,7 +780,7 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
       //     });
       //     this.showModalCompany = false;
       //     this.loading = false;
-      //   }
+      //
       // }
     },
     changeText() {

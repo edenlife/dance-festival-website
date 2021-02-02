@@ -660,52 +660,176 @@
     <div class="container--form">
       <section class="faq__form">
         <h3>Still have questions? Shoot.</h3>
-        <form
-          class="form"
-          data-drip-embedded-form="570264409"
-          action="https://www.getdrip.com/forms/570264409/submissions"
-          method="post"
-        >
+        <form class="form">
           <div class="form__input">
             <label for="email">Email</label>
-            <input id="" type="email" value="" name="fields[email]" />
+            <input
+              id=""
+              v-model="bound_fields.email"
+              type="email"
+              name=""
+              :class="{ 'has-error': $v.bound_fields.email.$error }"
+            />
           </div>
           <div class="form__input">
-            <label for="email">Message</label>
+            <label for="message">Message</label>
             <textarea
               id=""
+              v-model="bound_fields.message"
               cols="30"
               rows="10"
-              name="fields[message]"
-              value=""
+              name=""
+              :class="{ 'has-error': $v.bound_fields.message.$error }"
             ></textarea>
           </div>
           <button
             type="submit"
             class="form__btn"
-            data-drip-attribute="sign-up-button"
-            @click="submitForm"
+            :disabled="loading"
+            @click.prevent="submitForm"
           >
             Send Message
           </button>
         </form>
       </section>
     </div>
+
+    <modal v-if="showSuccessModal" :show-modal="showSuccessModal" class="modal">
+      <div slot="header"></div>
+      <div slot="body" class="modal__body">
+        <div class="form__modal">
+          <div class="form__modal-title">
+            <button class="btn btn--success" @click="showSuccessModal = false">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="15.5"
+                  fill="white"
+                  stroke="#E4E8E6"
+                />
+                <path
+                  d="M20 12L12 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 12L20 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="form__modal-body">
+            <img
+              :src="require(`~/assets/images/successful.svg`)"
+              alt="failed"
+            />
+            <h5>Question Submitted</h5>
+            <p>You have successfully submitted your question.</p>
+            <button
+              type="submit"
+              class="btn--submit"
+              :disabled="loading"
+              @click="showSuccessModal = false"
+            >
+              Continue Browsing
+            </button>
+          </div>
+        </div>
+      </div>
+      <div slot="footer"></div>
+    </modal>
+
+    <modal v-if="showFailedModal" :show-modal="showFailedModal" class="modal">
+      <div slot="header"></div>
+      <div slot="body" class="modal__body">
+        <div class="form__modal">
+          <div class="form__modal-title">
+            <button class="btn btn--success" @click="showFailedModal = false">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="15.5"
+                  fill="white"
+                  stroke="#E4E8E6"
+                />
+                <path
+                  d="M20 12L12 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 12L20 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div class="form__modal-body">
+            <img :src="require(`~/assets/images/failed.svg`)" alt="failed" />
+            <h5>Submission Failed</h5>
+            <p>
+              Your question was not successfully submitted. Please try again or
+              reach us at <span>eve@edenlife.ng </span> or
+              <span>+2348123456790</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div slot="footer"></div>
+    </modal>
   </div>
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required, email } from 'vuelidate/lib/validators'
 import { scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
+  mixins: [validationMixin],
   data() {
     return {
       questions: ['one'],
+      loading: false,
+      showFailedModal: false,
+      showSuccessModal: false,
+      bound_fields: {
+        email: null,
+        message: null,
+      },
     }
   },
   mounted() {
     mixpanelTrackEvent('FAQs page')
+  },
+  validations: {
+    bound_fields: {
+      email: { required, email },
+      message: { required },
+    },
   },
   methods: {
     expandQuestion(item) {
@@ -719,6 +843,34 @@ export default {
       }
     },
     submitForm() {
+      this.$v.bound_fields.$touch()
+      this.loading = true
+      if (!this.$v.bound_fields.$error) {
+        fetch('https://api-staging.edenlife.ng/api/v3/website/faqpage', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(this.bound_fields),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log('Success:', data)
+            Object.keys(this.bound_fields).forEach(
+              (key) => (this.bound_fields[key] = '')
+            )
+            this.$nextTick(() => {
+              this.$v.bound_fields.$reset()
+            })
+            this.showSuccessModal = true
+            this.loading = false
+          })
+          .catch((error) => {
+            console.error('Error:', error)
+            this.loading = false
+            this.showFailedModal = true
+          })
+      }
       mixpanelTrackEvent('Feedback form - faq page')
     },
     scrollTo(id, label) {

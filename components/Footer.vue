@@ -165,7 +165,7 @@
             </li>
             <li @click="trackLink('Gifting')">
               <nuxt-link
-                :to="{ path: '' }"
+                :to="{ path: '/gifting' }"
                 class="footer__bottom-logo"
                 @click.prevent="trackLink('Gifting')"
               >

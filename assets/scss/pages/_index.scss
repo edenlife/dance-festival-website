@@ -251,7 +251,6 @@
           box-shadow: none;
         }
         img {
-          margin-top: 8px;
           border-top-left-radius: 0px;
           border-bottom-right-radius: 8px;
         }
@@ -268,8 +267,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-    &-gift {
+      margin-top: auto;
       height: 112px;
       img {
         width: 100%;

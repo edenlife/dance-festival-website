@@ -865,7 +865,6 @@
           box-shadow: none;
         }
         img {
-          margin-top: 8px;
           border-top-left-radius: 0px;
           border-bottom-right-radius: 8px;
         }
@@ -882,8 +881,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-    &-gift {
+      margin-top: auto;
       height: 129px;
       img {
         width: 100%;
@@ -891,6 +889,7 @@
         object-fit: cover;
       }
     }
+
     &-food {
       background-color: color(eden-green-quinary);
       .options__service-bg {

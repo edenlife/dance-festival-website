@@ -592,8 +592,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-    &-gift {
+      margin-top: auto;
       height: 112px;
       img {
         width: 100%;
@@ -601,6 +600,7 @@
         object-fit: cover;
       }
     }
+
     &-food {
       background-color: color(eden-green-quinary);
       .services__type-bg {

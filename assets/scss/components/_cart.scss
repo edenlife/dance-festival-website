@@ -243,4 +243,75 @@
       }
     }
   }
+
+  @include respond(xl) {
+    &__drawer {
+      width: 55%;
+      right: -55%;
+    }
+  }
+
+  @include respond(md) {
+    &__drawer {
+      width: 65%;
+      right: -65%;
+    }
+  }
+
+  @include respond(xs) {
+    &__drawer {
+      width: 85%;
+      right: -85%;
+
+      &-header {
+        padding: $gap * 1.5;
+
+        h5 {
+          @include font-size(lg);
+        }
+
+      }
+
+      &-body {
+        padding: $gap * 1.5;
+        &--empty {
+          p {
+            @include font-size(base);
+          }
+        }
+
+      }
+
+      &-footer {
+        padding: $gap * 1.5;
+      }
+    }
+
+    &__item {
+      padding: $gap * 1.5 0;
+
+      &-info {
+        img {
+          height: 50px;
+          width: 50px;
+          border-radius: 4px;
+        }
+        div {
+          p {
+            @include font-size(base);
+          }
+
+          span {
+            @include font-size(xs);
+          }
+        }
+      }
+
+      &-price {
+        p {
+          @include font-size(sm);
+        }
+      }
+    }
+  }
 }

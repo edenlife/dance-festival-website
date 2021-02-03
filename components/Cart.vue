@@ -41,7 +41,7 @@
                 </div>
               </div>
               <div class="cart__item-price">
-                <p>NGN {{ currencyFormat(item.amount * item.quantity) }}</p>
+                <p>N {{ currencyFormat(item.amount * item.quantity) }}</p>
                 <div class="btn--group">
                   <button
                     class="btn--item minus"

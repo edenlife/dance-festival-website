@@ -163,4 +163,91 @@
       }
     }
   }
+
+  @include respond(xl) {
+
+    &__box {
+      min-height: 300px;
+    }
+
+    &__description {
+      flex: 0 0 45%;
+
+      h3 {
+        @include font-size(3xl);
+      }
+
+      p {
+        line-height: 24px;
+        @include font-size(base);
+      }
+
+      h4 {
+        @include font-size(2xl);
+        margin-bottom: $gap * 2
+      }
+
+      .btn {
+        &--group {
+          margin-bottom: $gap * 1.5;
+          input {
+            height: 36px;
+            width: 36px;
+            padding: 0;
+          }
+        }
+
+        &--item {
+          padding: 0;
+          height: 36px;
+          width: 36px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+
+          &.plus {
+            border-radius: 0px 4px 4px 0px;
+          }
+          &.minus {
+            border-radius: 4px 0px 0px 4px;
+          }
+        }
+      }
+    }
+  }
+
+  @include respond(xs) {
+    flex-direction: column;
+
+    &.reverse {
+      flex-direction: column;
+    }
+
+    &__box {
+      margin-bottom: $gap * 2;
+
+      &-content {
+        ul {
+          li {
+            flex: 0 0 100% ;
+          }
+        }
+      }
+    }
+
+    &__description {
+      text-align: center;
+      .quantity {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
 }

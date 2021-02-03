@@ -141,7 +141,7 @@
                   <p>Information on who would be receiving this item</p>
                 </div>
                 <form action="" class="form">
-                  <div class="form__group">
+                  <div class="form__group radios">
                     <div class="form__group-radio">
                       <input
                         id="deliverToMe"
@@ -297,7 +297,7 @@
                   <p>How do you want to pay?</p>
                 </div>
                 <form action="" class="form">
-                  <div class="form__group">
+                  <div class="form__group radios">
                     <div class="form__group-radio">
                       <input
                         id="paystack"
@@ -361,12 +361,12 @@
                   <span>Quantity: {{ item.quantity }}</span>
                 </div>
               </div>
-              <p>NGN {{ currencyFormat(item.amount * item.quantity) }}</p>
+              <p>&#8358; {{ currencyFormat(item.amount * item.quantity) }}</p>
             </div>
           </div>
           <div class="checkout__summary-footer">
             <p>Subtotal</p>
-            <p>NGN {{ currencyFormat(subTotal) }}</p>
+            <p>&#8358; {{ currencyFormat(subTotal) }}</p>
           </div>
         </div>
       </section>

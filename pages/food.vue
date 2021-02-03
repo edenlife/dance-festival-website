@@ -675,7 +675,7 @@
 import moment from 'moment'
 import foodMessages from '~/static/foodMessages'
 import { pricing } from '~/static/pricing'
-import { currencyFormat, scrollToApp, formatDate } from '~/static/functions'
+import { currencyFormat, scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
@@ -740,12 +740,12 @@ export default {
   methods: {
     currencyFormat,
     fetchMeal() {
-      const curr = new Date()
-      const first = curr.getDate() - curr.getDay()
-      const last = first + 6
-      const lastDay = new Date(curr.setDate(last))
-      this.lastDateFormat = formatDate('dd MMM yyyy', lastDay)
-      this.firstDateFormat = formatDate('dd MMM yyyy', first)
+      this.lastDateFormat = moment(new Date())
+        .endOf('week')
+        .format('DD MMM YYYY')
+      this.firstDateFormat = moment(new Date())
+        .startOf('week')
+        .format('DD MMM YYYY')
       const dateData = moment(new Date()).format('DD-MM-YYYY')
       fetch(
         `https://api-staging.edenlife.ng/api/v2/meal/items/all?current_date=${dateData}`

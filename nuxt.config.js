@@ -27,43 +27,55 @@ export default {
       },
 
       // Schema.org markup for Google+
-      // { itemprop: 'name', content: 'Eden' },
-      // { itemprop: 'description', content: 'Say goodbye to chores forever.' },
-      // { itemprop: 'image', content: 'https://ouredenlife.com/edencard.png' },
+      { itemprop: 'name', content: 'Eden' },
+      { itemprop: 'description', content: 'Say goodbye to chores forever.' },
+      {
+        itemprop: 'image',
+        content: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+      },
 
       // Twitter Card data
-      // { name: 'twitter:card', content: 'summary_large_image' },
-      // { name: 'twitter:site', content: '@ouredenlife' },
-      // { name: 'twitter:title', content: 'Eden' },
-      // { name: 'twitter:url', content: 'https://ouredenlife.com' },
-      // {
-      //   name: 'twitter:image',
-      //   content: 'https://ouredenlife.com/edencard.png',
-      // },
-      // {
-      //   name: 'twitter:description',
-      //   content:
-      //     "Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!",
-      // },
-      // { name: 'twitter:app:country', content: 'NG' },
-      // { name: 'twitter:creator', content: '@ouredenlife' },
-      // { name: 'twitter:domain', content: '@ouredenlife' },
-      // {
-      //   name: 'twitter:image:src',
-      //   content: 'https://ouredenlife.com/edencard.png',
-      // },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@ouredenlife' },
+      { name: 'twitter:title', content: 'Eden' },
+      {
+        name: 'twitter:url',
+        content: 'https://ouredenlifev2-staging.netlify.app',
+      },
+      {
+        name: 'twitter:image',
+        content: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+      },
+      {
+        name: 'twitter:description',
+        content:
+          "Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!",
+      },
+      { name: 'twitter:app:country', content: 'NG' },
+      { name: 'twitter:creator', content: '@ouredenlife' },
+      { name: 'twitter:domain', content: '@ouredenlife' },
+      {
+        name: 'twitter:image:src',
+        content: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+      },
 
       // Open Graph data
-      // { property: 'og:title', content: 'Eden' },
-      // { property: 'og:url', content: 'https://ouredenlife.com' },
-      // { property: 'og:image', content: 'https://ouredenlife.com/edencard.png' },
-      // {
-      //   property: 'og:description',
-      //   content:
-      //     "Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!",
-      // },
-      // { property: 'og:type', content: 'website' },
-      // { property: 'og:site_name', content: 'Eden' },
+      { property: 'og:title', content: 'Eden' },
+      {
+        property: 'og:url',
+        content: 'https://ouredenlifev2-staging.netlify.app',
+      },
+      {
+        property: 'og:image',
+        content: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+      },
+      {
+        property: 'og:description',
+        content:
+          "Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!",
+      },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'Eden' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },

@@ -596,7 +596,7 @@
                 />
               </svg>
             </nuxt-link>
-            <div class="options__service-bg">
+            <div class="options__service-bg options__service-gift">
               <img
                 src="https://res.cloudinary.com/eden-life-inc/image/upload/q_auto/v1612286532/eden-website-v2/giftimage_xjioyo.jpg"
                 alt="gifting"

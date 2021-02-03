@@ -5,7 +5,7 @@
         <div class="hero__title">
           <h1>
             Save your <span> {{ headerText[0] }}</span> <br />
-            Clean clothes on repeat.
+            clean clothes on repeat.
           </h1>
           <p>
             Getting an Eden laundry plan means we'll pick up your dirty laundry
@@ -127,7 +127,7 @@
       </section>
     </div>
 
-    <div class="container--plan">
+    <div id="laundry-plan" class="container--plan">
       <section class="plan">
         <div class="plan__title">
           <h3>
@@ -417,6 +417,7 @@
             class="options__service-item options__service-food"
             @mouseenter.stop="exploreService = 'food'"
             @mouseleave.stop="exploreService = ''"
+            @click="trackLink('Food')"
           >
             <h3>🧺</h3>
             <h5>Food</h5>
@@ -449,6 +450,7 @@
             class="options__service-item options__service-cleaning"
             @mouseenter.stop="exploreService = 'cleaning'"
             @mouseleave.stop="exploreService = ''"
+            @click="trackLink('Cleaning')"
           >
             <h3>🏠</h3>
             <h5>Home Cleaning</h5>
@@ -483,6 +485,7 @@
             class="options__service-item options__service-gifting"
             @mouseenter.stop="exploreService = 'gifting'"
             @mouseleave.stop="exploreService = ''"
+            @click="trackLink('Gifting')"
           >
             <h3>🎁</h3>
             <h5>Gifting</h5>
@@ -512,7 +515,7 @@
             </nuxt-link>
             <div class="options__service-bg">
               <img
-                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611318735/eden-website-v2/gift-img1_r9mjjh.png"
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/q_auto/v1612286532/eden-website-v2/giftimage_xjioyo.jpg"
                 alt="gifting"
               />
             </div>
@@ -531,7 +534,7 @@ import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 export default {
   data() {
     return {
-      headerText: ['Time', 'Energy', 'Money'],
+      headerText: ['time', 'energy', 'money'],
       LaundryMessage: [
         {
           name: 'justin irabor',
@@ -625,6 +628,8 @@ export default {
       scrollToApp(id, label)
     },
     increaseOrder(order) {
+      mixpanelTrackEvent(`Increase ${order} order clicked - laundry page`)
+
       if (order === 'washDry') {
         this.washDry++
         this.totalWashDryPrice = pricing({
@@ -648,6 +653,8 @@ export default {
       }
     },
     decreaseOrder(order) {
+      mixpanelTrackEvent(`Decrease ${order} order clicked - laundry page`)
+
       if (order === 'washDry' && this.washDry > 1) {
         this.washDry--
         this.totalWashDryPrice = pricing({
@@ -671,6 +678,8 @@ export default {
       }
     },
     laundryDryFrequency(freq) {
+      mixpanelTrackEvent(` ${freq} wash&dry frequency clicked - laundry page`)
+
       this.washDryFrequency = freq
       this.totalWashDryPrice = pricing({
         laundry: {
@@ -681,6 +690,8 @@ export default {
       })
     },
     laundryIronFrequency(freq) {
+      mixpanelTrackEvent(` ${freq} wash&iron frequency clicked - laundry page`)
+
       this.washIronFrequency = freq
       this.totalWashIronPrice = pricing({
         laundry: {
@@ -689,6 +700,9 @@ export default {
           qty: this.washIron,
         },
       })
+    },
+    trackLink(service) {
+      mixpanelTrackEvent(`${service} clicked - Laundry (more options)`)
     },
   },
 }

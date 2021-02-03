@@ -5,11 +5,11 @@
         <div class="hero__title">
           <h1>
             Enjoy <span> {{ headerText[0] }}</span> <br />
-            Ready in 5 minutes
+            ready in 5 minutes
           </h1>
           <h1 class="mobile">
             Enjoy <span> {{ headerText[0] }}</span> <br />
-            Ready in <br />5 minutes
+            ready in <br />5 minutes
           </h1>
           <p>
             A food subscription on Eden Life gets you delicious meals prepared
@@ -188,7 +188,7 @@
           <figure v-for="(item, i) in newWeekMeal" :key="i">
             <div v-if="item.image_url === null" class="menu__list-img fallback">
               <img
-                :src="require(`~/assets/images/food-fallback.png`)"
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1612250107/eden-website-v2/food-fallback_gnwkhu.png"
                 :alt="item.name"
               />
             </div>
@@ -556,6 +556,7 @@
             class="options__service-item options__service-laundry"
             @mouseenter.stop="exploreService = 'laundry'"
             @mouseleave.stop="exploreService = ''"
+            @click="trackLink('Laundry')"
           >
             <h3>🧺</h3>
             <h5>Laundry</h5>
@@ -593,6 +594,7 @@
             class="options__service-item options__service-cleaning"
             @mouseenter.stop="exploreService = 'cleaning'"
             @mouseleave.stop="exploreService = ''"
+            @click="trackLink('Cleaning')"
           >
             <h3>🏠</h3>
             <h5>Home Cleaning</h5>
@@ -627,6 +629,7 @@
             class="options__service-item options__service-gifting"
             @mouseenter.stop="exploreService = 'gifting'"
             @mouseleave.stop="exploreService = ''"
+            @click="trackLink('Gifting')"
           >
             <h3>🎁</h3>
             <h5>Gifting</h5>
@@ -656,7 +659,7 @@
             </nuxt-link>
             <div class="options__service-bg">
               <img
-                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611318735/eden-website-v2/gift-img1_r9mjjh.png"
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/q_auto/v1612286532/eden-website-v2/giftimage_xjioyo.jpg"
                 alt="gifting"
               />
             </div>
@@ -679,107 +682,17 @@ export default {
   components: {
     // Carousel,
   },
-  beforeRouteEnter(to, from, next) {
-    const tab = to.hash.replace('#', '')
-    next((vm) => {
-      vm.activeTabIndex = 0
-      vm.tabs.forEach((item, index) => {
-        if (item.id === tab) {
-          vm.activeTabIndex = index
-        }
-      })
-    })
-  },
-  beforeRouteUpdate(to, from, next) {
-    const tab = to.hash.replace('#', '')
-    this.activeTabIndex = 0
-    this.tabs.forEach((item, index) => {
-      if (item.id === tab) {
-        this.activeTabIndex = index
-      }
-    })
-    next()
-  },
+
   data() {
     return {
       headerText: [
-        'Perfect Pasta',
-        'Spicy Soups',
-        'Gorgeous Gizdodo',
-        'Peng Porridge',
-        'Savory Seafood',
+        'perfect pasta',
+        'spicy soups',
+        'gorgeous gizdodo',
+        'peng porridge',
+        'savory seafood',
       ],
       activeTabIndex: null,
-      tabs: [
-        {
-          id: '',
-          title: 'Continental Breakfast',
-        },
-        {
-          id: 'healthy-salad',
-          title: 'Healthy Salad',
-        },
-        {
-          id: 'noodles-pasta',
-          title: 'Noodles & Pasta',
-        },
-        {
-          id: 'rice',
-          title: 'Rice',
-        },
-        {
-          id: 'sauces',
-          title: 'Sauces',
-        },
-        {
-          id: 'seafood-chinese',
-          title: 'Seafood and Chinese',
-        },
-        {
-          id: 'sides',
-          title: 'Sides',
-        },
-        {
-          id: 'Soups',
-          title: 'soups',
-        },
-        {
-          id: 'Swallow',
-          title: 'swallow',
-        },
-      ],
-      foodMenu: [
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/v1612083303/eden-website-v2/menu-coleslaw_s7wn0t.png',
-          name: 'Food',
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/v1612083303/eden-website-v2/menu-coleslaw_s7wn0t.png',
-          name: 'Food',
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/v1612083303/eden-website-v2/menu-coleslaw_s7wn0t.png',
-          name: 'Food',
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/v1612083303/eden-website-v2/menu-coleslaw_s7wn0t.png',
-          name: 'Food',
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/v1612083303/eden-website-v2/menu-coleslaw_s7wn0t.png',
-          name: 'Food',
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/v1612083303/eden-website-v2/menu-coleslaw_s7wn0t.png',
-          name: 'Food',
-        },
-      ],
       setExploreService: false,
       exploreService: '',
       messageList: foodMessages,
@@ -846,10 +759,14 @@ export default {
     },
     fetchAllMeal() {
       this.fetchMeal()
+      mixpanelTrackEvent('See less meals clicked - food page')
+
       const scrollToElement = document.querySelector('#load-more')
       scrollToElement.scrollIntoView()
     },
     fetchFewMeal() {
+      mixpanelTrackEvent('See more meals clicked - food page')
+
       this.newWeekMeal = this.allMeal
     },
     changeText() {
@@ -869,12 +786,15 @@ export default {
       scrollToElement.scrollIntoView()
     },
     scrollTo(ref) {
+      mixpanelTrackEvent(`See our menu clicked - food page`)
       this.$refs[ref].scrollIntoView()
     },
     scrollToFooter(id, label) {
       scrollToApp(id, label)
     },
     increaseOrder(order) {
+      mixpanelTrackEvent(`Increase ${order} order clicked - food page`)
+
       if (order === 'weekly') {
         this.mealsPerDay++
         this.totalDailyPrice = pricing({
@@ -890,6 +810,8 @@ export default {
       }
     },
     decreaseOrder(order) {
+      mixpanelTrackEvent(`Decrease ${order} order clicked - food page`)
+
       if (order === 'weekly' && this.mealsPerDay > 1) {
         this.mealsPerDay--
         this.totalDailyPrice = pricing({
@@ -905,6 +827,8 @@ export default {
       }
     },
     increaseFrequency() {
+      mixpanelTrackEvent(`Increase order frequency clicked - food page`)
+
       if (this.deliveryPerWeek < 2) {
         this.deliveryPerWeek++
         const freq = this.deliveryPerWeek === 1 ? 'weekly' : 'weekly-twodays'
@@ -914,6 +838,8 @@ export default {
       }
     },
     decreaseFrequency() {
+      mixpanelTrackEvent(`Decrease order frequency clicked - food page`)
+
       if (this.deliveryPerWeek > 1) {
         this.deliveryPerWeek--
         const freq = this.deliveryPerWeek === 1 ? 'weekly' : 'weekly-twodays'
@@ -921,6 +847,9 @@ export default {
           meal: { item: null, frequency: freq, qty: this.mealsPerWeek },
         })
       }
+    },
+    trackLink(service) {
+      mixpanelTrackEvent(`${service} clicked - Food (more options)`)
     },
   },
 }

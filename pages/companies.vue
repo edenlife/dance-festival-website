@@ -4,10 +4,10 @@
       <header class="hero">
         <div class="hero__title">
           <h1 class="">
-            The Perfect Perk <br />for <span> {{ headerText[0] }}</span>
+            The perfect perk <br />for <span> {{ headerText[0] }}</span>
           </h1>
           <h1 class="mobile">
-            The Perfect Perk for <span> {{ headerText[0] }}</span>
+            The perfect perk for <span> {{ headerText[0] }}</span>
           </h1>
           <p>
             CEO, Hiring Manager or Team Lead? Eden is the best way to reward
@@ -18,7 +18,10 @@
               type="button"
               class="hero__button-solid"
               @click.prevent="
-                scrollToFooter('#get-the-app', 'companies - hero')
+                scrollToFooter(
+                  'Get the Perfect Perk clicked',
+                  'companies - hero'
+                )
               "
             >
               Get Eden
@@ -122,7 +125,7 @@
 
             <div class="services__type-bg">
               <img
-                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611318735/eden-website-v2/gift-img1_r9mjjh.png"
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/q_auto/v1612286532/eden-website-v2/giftimage_xjioyo.jpg"
                 alt="gifting"
               />
             </div>
@@ -352,7 +355,10 @@
                 type="button"
                 class="btn"
                 @click.prevent="
-                  scrollToFooter('#get-the-app', 'companies - how it works')
+                  scrollToFooter(
+                    'Get the Perfect Perk clicked',
+                    'companies - how it works'
+                  )
                 "
               >
                 Get Eden
@@ -362,7 +368,10 @@
               type="button"
               class="btn--mobile"
               @click.prevent="
-                scrollToFooter('#get-the-app', 'companies - how it works')
+                scrollToFooter(
+                  'Get the Perfect Perk clicked',
+                  'companies - how it works'
+                )
               "
             >
               Get Eden
@@ -445,24 +454,247 @@
           type="button"
           class="btn"
           @click.prevent="
-            scrollToFooter('#get-the-app', 'companies - testimonial')
+            scrollToFooter(
+              'Get the Perfect Perk clicked',
+              'companies - testimonial'
+            )
           "
         >
           Get the Perfect Perk
         </button>
       </section>
     </div>
+
+    <modal v-if="showModalCompany" :show-modal="showModalCompany" class="modal">
+      <div slot="header"></div>
+      <div slot="body" class="modal__body">
+        <div class="company__modal">
+          <div class="company__modal-title">
+            <h3 class="">Become a Rockstar Company</h3>
+            <button class="btn" @click="showModalCompany = false">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="15.5"
+                  fill="white"
+                  stroke="#E4E8E6"
+                />
+                <path
+                  d="M20 12L12 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 12L20 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <form action="" class="form">
+            <div class="form__input">
+              <label for="company name"> Company name</label>
+              <input
+                id=""
+                v-model="companyForm.company_name"
+                type="text"
+                name=""
+                placeholder="Enter company name"
+                :class="{ 'has-error': $v.companyForm.company_name.$error }"
+              />
+            </div>
+            <div class="form__input">
+              <label for="contact name"> Contact person</label>
+              <input
+                id=""
+                v-model="companyForm.contact_name"
+                type="text"
+                name=""
+                placeholder="Enter name"
+                :class="{ 'has-error': $v.companyForm.contact_name.$error }"
+              />
+            </div>
+            <div class="form__input">
+              <label for="email">Contact person email address</label>
+              <input
+                id=""
+                v-model="companyForm.email"
+                type="email"
+                name=""
+                placeholder="Enter email address"
+                :class="{ 'has-error': $v.companyForm.email.$error }"
+              />
+            </div>
+            <div class="form__input">
+              <label for="message">Anything else you’d like us to know?</label>
+              <textarea
+                id=""
+                v-model="companyForm.message"
+                name=""
+                cols="30"
+                rows="10"
+                placeholder="Extra message"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="btn--submit"
+              :disabled="loading"
+              @click.prevent="submit()"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+      <div slot="footer"></div>
+    </modal>
+
+    <modal v-if="showSuccessModal" :show-modal="showSuccessModal" class="modal">
+      <div slot="header"></div>
+      <div slot="body" class="modal__body">
+        <div class="company__modal">
+          <div class="company__modal-title">
+            <button class="btn btn--success" @click="showSuccessModal = false">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="15.5"
+                  fill="white"
+                  stroke="#E4E8E6"
+                />
+                <path
+                  d="M20 12L12 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 12L20 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="company__modal-body">
+            <img
+              :src="require(`~/assets/images/successful.svg`)"
+              alt="failed"
+            />
+            <h5>Information Submitted</h5>
+            <p>
+              You have successfully submitted your company’s information. We
+              will reach out to you within the next 48 hours.
+            </p>
+            <button
+              type="submit"
+              class="btn--submit"
+              :disabled="loading"
+              @click.prevent="closeModal"
+            >
+              Continue Browsing
+            </button>
+          </div>
+        </div>
+      </div>
+      <div slot="footer"></div>
+    </modal>
+
+    <modal v-if="showFailedModal" :show-modal="showFailedModal" class="modal">
+      <div slot="header"></div>
+      <div slot="body" class="modal__body">
+        <div class="company__modal">
+          <div class="company__modal-title">
+            <button class="btn btn--success" @click="showFailedModal = false">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="15.5"
+                  fill="white"
+                  stroke="#E4E8E6"
+                />
+                <path
+                  d="M20 12L12 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 12L20 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div class="company__modal-body">
+            <img :src="require(`~/assets/images/failed.svg`)" alt="failed" />
+            <h5>Submission Failed</h5>
+            <p>
+              Your comapny’s information was not successfully submitted. Please
+              try again or reach us at <span>eve@edenlife.ng </span> or
+              <span>+2348123456790</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div slot="footer"></div>
+    </modal>
   </div>
 </template>
 
 <script>
-import { scrollToApp } from '~/static/functions'
+import { validationMixin } from 'vuelidate'
+import { required, email } from 'vuelidate/lib/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
+  components: {
+    Modal: () => import('@/components/Modal.vue'),
+  },
+  mixins: [validationMixin],
+  validations: {
+    companyForm: {
+      contact_name: { required },
+      email: { required, email },
+      company_name: { required },
+    },
+  },
   data() {
     return {
-      headerText: ['Rockstar Companies', 'Thoughtful Teams'],
+      showModalCompany: false,
+      showSuccessModal: false,
+      showFailedModal: false,
+      loading: false,
+      headerText: ['rockstar companies', 'thoughtful teams'],
       TeamMessageList: [
         {
           name: 'Oyechukwu 😎',
@@ -515,6 +747,12 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
             'https://twitter.com/TejuAdeyinka/status/1255504942447591426?s=20',
         },
       ],
+      companyForm: {
+        company_name: '',
+        contact_name: '',
+        email: '',
+        message: '',
+      },
     }
   },
   mounted() {
@@ -525,12 +763,33 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
     }, 2300)
   },
   methods: {
+    closeModal() {
+      this.showSuccessModal = !this.showSuccessModal
+    },
+    submit() {
+      this.showModalCompany = !this.showModalCompany
+      this.showSuccessModal = !this.showSuccessModal
+      //   this.$v.companyForm.$touch();
+      // this.loading = true;
+      // if (!this.$v.companyForm.$error) {
+      //     Object.keys(this.companyForm).forEach(
+      //       key => (this.companyForm[key] = "")
+      //     );
+      //     this.$nextTick(() => {
+      //       this.$v.companyForm.$reset();
+      //     });
+      //     this.showModalCompany = false;
+      //     this.loading = false;
+      //
+      // }
+    },
     changeText() {
       const first = this.headerText.shift()
       this.headerText = this.headerText.concat(first)
     },
-    scrollToFooter(id, label) {
-      scrollToApp(id, label)
+    scrollToFooter(label) {
+      this.showModalCompany = !this.showModalCompany
+      mixpanelTrackEvent(label)
     },
   },
 }

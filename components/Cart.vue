@@ -66,7 +66,7 @@
                   <input
                     id=""
                     v-model="item.quantity"
-                    type="number"
+                    type="text"
                     name=""
                     placeholder="0"
                     readonly

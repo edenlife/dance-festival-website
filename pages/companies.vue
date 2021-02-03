@@ -513,6 +513,7 @@
                 :class="{ 'has-error': $v.companyForm.company_name.$error }"
               />
             </div>
+
             <div class="form__input">
               <label for="contact name"> Contact person</label>
               <input
@@ -534,6 +535,74 @@
                 placeholder="Enter email address"
                 :class="{ 'has-error': $v.companyForm.email.$error }"
               />
+            </div>
+            <div class="form__input">
+              <label for="services"
+                >What plans would you like for your team?</label
+              >
+              <div class="select">
+                <div class="selector">
+                  <div class="label" @click="toggle()">
+                    <span
+                      v-if="companyForm.service && !companyForm.service.length"
+                      class="placeholder"
+                    >
+                      Select services
+                    </span>
+                    <span
+                      v-for="(item, i) in companyForm.service"
+                      :key="i"
+                      class="label--text"
+                      >{{ item }}</span
+                    >
+                  </div>
+                  <svg
+                    class="arrow"
+                    :class="{ expanded: visible }"
+                    width="10"
+                    height="6"
+                    viewBox="0 0 10 6"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    @click="toggle()"
+                  >
+                    <path
+                      d="M1 1L5 5L9 1"
+                      stroke="#93A29B"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+
+                  <div :class="{ hidden: !visible, visible }">
+                    <transition name="slide-fade">
+                      <ul>
+                        <li
+                          v-for="(service, index) in services"
+                          :key="index"
+                          :value="service"
+                        >
+                          <input
+                            :id="service"
+                            v-model="companyForm.service"
+                            type="checkbox"
+                            :name="service"
+                            :value="service"
+                          />
+                          <label
+                            :for="service"
+                            :class="{
+                              checkmark: companyForm.service.includes(service),
+                            }"
+                          >
+                            {{ service }}</label
+                          >
+                        </li>
+                      </ul>
+                    </transition>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="form__input">
               <label for="message">Anything else you’d like us to know?</label>
@@ -686,6 +755,7 @@ export default {
       contact_name: { required },
       email: { required, email },
       company_name: { required },
+      service: { required },
     },
   },
   data() {
@@ -694,6 +764,7 @@ export default {
       showSuccessModal: false,
       showFailedModal: false,
       loading: false,
+      serviceName: 'Select services',
       headerText: ['rockstar companies', 'thoughtful teams'],
       TeamMessageList: [
         {
@@ -747,17 +818,24 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
             'https://twitter.com/TejuAdeyinka/status/1255504942447591426?s=20',
         },
       ],
+      services: [
+        'Team Lunch',
+        'Team Careboxes',
+        'Team Laundry',
+        'Team Housecleaning',
+      ],
       companyForm: {
         company_name: '',
         contact_name: '',
+        service: [],
         email: '',
         message: '',
       },
+      visible: false,
     }
   },
   mounted() {
     mixpanelTrackEvent('Companies page')
-
     window.setInterval(() => {
       this.changeText()
     }, 2300)
@@ -766,22 +844,41 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
     closeModal() {
       this.showSuccessModal = !this.showSuccessModal
     },
+    toggle() {
+      this.visible = !this.visible
+    },
     submit() {
-      this.showModalCompany = !this.showModalCompany
-      this.showSuccessModal = !this.showSuccessModal
-      //   this.$v.companyForm.$touch();
-      // this.loading = true;
-      // if (!this.$v.companyForm.$error) {
-      //     Object.keys(this.companyForm).forEach(
-      //       key => (this.companyForm[key] = "")
-      //     );
-      //     this.$nextTick(() => {
-      //       this.$v.companyForm.$reset();
-      //     });
-      //     this.showModalCompany = false;
-      //     this.loading = false;
-      //
-      // }
+      this.$v.companyForm.$touch()
+      this.loading = true
+      this.companyForm.service = JSON.stringify(this.companyForm.service)
+      if (!this.$v.companyForm.$error) {
+        fetch('https://api-staging.edenlife.ng/api/v3/website/companypage', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(this.companyForm),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log('Success:', data)
+            Object.keys(this.companyForm).forEach(
+              (key) => (this.companyForm[key] = '')
+            )
+            this.$nextTick(() => {
+              this.$v.companyForm.$reset()
+              this.companyForm.service = []
+            })
+            this.showSuccessModal = true
+            this.showModalCompany = !this.showModalCompany
+            this.loading = false
+          })
+          .catch((error) => {
+            console.error('Error:', error)
+            this.loading = false
+            this.showFailedModal = true
+          })
+      }
     },
     changeText() {
       const first = this.headerText.shift()

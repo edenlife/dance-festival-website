@@ -523,6 +523,10 @@ export default {
         return {
           'background-color': '#FFFCFA',
         }
+      } else if (path.includes('checkout')) {
+        return {
+          'background-color': '#ffffff',
+        }
       } else if (path.includes('gifting')) {
         return {
           'background-color': '#FFE8E5',

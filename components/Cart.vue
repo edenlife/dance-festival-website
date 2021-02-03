@@ -31,7 +31,7 @@
       </div>
       <div class="cart__drawer-body">
         <transition name="slide-fade">
-          <template v-if="cart.length">
+          <div v-if="cart.length">
             <div v-for="(item, index) in cart" :key="index" class="cart__item">
               <div class="cart__item-info">
                 <img :src="item.image" alt="" />
@@ -101,7 +101,7 @@
                 </div>
               </div>
             </div>
-          </template>
+          </div>
         </transition>
         <transition name="slide-fade">
           <div v-if="!cart.length" class="cart__drawer-body--empty">
@@ -123,7 +123,7 @@
           <p>Subtotal</p>
           <p>NGN {{ currencyFormat(subTotal) }}</p>
         </div>
-        <button type="button" class="btn">Checkout</button>
+        <button type="button" class="btn" @click="checkout">Checkout</button>
       </div>
     </div>
   </div>
@@ -184,6 +184,10 @@ export default {
     },
     removeItem(index) {
       this.$store.commit('removeItem', index)
+    },
+    checkout() {
+      this.close()
+      this.$router.push('/gifting/checkout')
     },
   },
 }

@@ -1,0 +1,352 @@
+@import '../../style.scss';
+
+.container {
+  width: 100%;
+
+  &--checkout {
+    margin: $gap * 10 0 $gap * 15
+  }
+}
+
+.checkout {
+  margin: 0 auto;
+  width: 83%;
+  padding: $gap * 5.3 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  &__form {
+    color: color(eden-neutral-1);
+    flex: 0 0 35%;
+
+    ul {
+      padding: $gap * 3.2 0 $gap + 2 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid #e4e8e6;
+      width: 100%;
+
+      li {
+        list-style: none;
+        color: color(eden-neutral-4);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.4s ease-in-out;
+        &.active {
+          color: color(eden-neutral-1);
+          span {
+            padding-bottom: $gap - 4;
+          }
+        }
+        &:hover {
+          color: color(eden-green-primary);
+        }
+      }
+    }
+    .slide-fade-enter-active {
+      transition: all 0.5s ease-in;
+    }
+    .slide-fade-leave-active {
+      opacity: 0;
+    }
+    .slide-fade-enter,
+    .slide-fade-leave-to {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+
+    &__title {
+      margin: $gap * 6 0 $gap * 4;
+
+      h5 {
+        @include font-size(xl);
+        margin-bottom: $gap * 1.5;
+        color: color(eden-neutral-1)
+      }
+
+      p {
+        @include font-size(lg);
+        color: color(eden-neutral-1)
+      }
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+
+      &__group {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        &:not(:last-child) {
+          margin-bottom: $gap * 3;
+        }
+
+        &-input {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+
+          label {
+            @include font-size(sm);
+            line-height: 19px;
+            @include font-weight(light);
+            color: color(eden-neutral-4);
+            margin-bottom: 4px;
+          }
+          input,
+          textarea {
+            height: 56px;
+            padding: $gap + 4 $gap + 6;
+            @include font-family(cerebri);
+            border: 1px solid #e4e8e6;
+            @include font-size(lg);
+            border-radius: 4px;
+            background-color: color(eden-neutral-7);
+            color: color(eden-neutral-1);
+
+            &::placeholder {
+              color: color(eden-neutral-4);
+              @include font-weight(light);
+            }
+            &:focus {
+              outline: none;
+              border: 1px solid #21312a;
+            }
+            &.has-error {
+              border-color: color(eden-red);
+            }
+          }
+          textarea {
+            height: 140px;
+          }
+          span {
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            color: color(eden-red);
+            font-size: 12px;
+          }
+
+          &:nth-child(2) {
+            margin-left: $gap * 2;
+          }
+        }
+
+        &-radio {
+          height: 100%;
+          width: 100%;
+          position: relative;
+
+          &:not(:last-child) {
+            margin-right: 20px;
+          }
+          label {
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: transparent;
+            border: 1px solid #e4e8e6;
+            border-radius: 4px;
+            cursor: pointer;
+            line-height: 1;
+            transition: all 0.25s ease-out;
+
+            span {
+              height: 18px;
+              width: 18px;
+              border: 1px solid #93A29B;
+              border-radius: 100px;
+              margin-right: 5px;
+              transition: border 0.25s ease-in;
+            }
+
+            img {
+              height: 24px;
+            }
+          }
+
+          input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+
+            &:checked + label {
+              background: #DEFFEF;
+              border-color: #03A84E;
+              transition: all 0.25s ease-in;
+
+              span {
+                border: 5px solid color(eden-green-primary);
+                transition: border 0.25s ease-in;
+              }
+            }
+          }
+        }
+      }
+
+      &__alert {
+        text-align: center;
+        margin-top: $gap * 3;
+        border-radius: 4px;
+        padding: $gap * 2;
+        background: rgba(228, 232, 230, 0.3);
+
+        p {
+          color: color(eden-neutral-2);
+          width: 90%;
+          line-height: 1.8;
+          margin: auto;
+        }
+      }
+
+      .btn--submit {
+        line-height: 23px;
+        @include font-size(lg);
+        background-color: color(eden-green-primary);
+        color: color(eden-neutral-7);
+        border-radius: 4px;
+        transition: all 0.4s ease-in-out;
+        padding: $gap * 1.6 $gap * 2.9;
+        margin-top: $gap * 2.4;
+        &:hover {
+          box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
+          background-color: color(eden-green-250);
+          color: color(eden-neutral-7);
+        }
+        &:active {
+          background-image: radial-gradient(
+              circle at center right,
+              rgba(0, 141, 64, 0.1) 50%,
+              #008d40 50%
+          );
+        }
+        &:disabled {
+          background: #57645E !important;
+          border-color: #57645E;
+          opacity: 0.44;
+          cursor: not-allowed;
+          pointer-events: all !important;
+        }
+      }
+    }
+  }
+
+  &__summary {
+    margin-top: $gap * 3.2;
+    position: relative;
+    flex: 0 0 40%;
+    border: 1px solid color(eden-neutral-6);
+    border-radius: 8px;
+
+    &-title {
+      padding: $gap * 2;
+      border-bottom: 1px solid color(eden-neutral-6);
+
+      h5 {
+        @include font-size(xl);
+      }
+    }
+
+    &-items {
+      padding: $gap * 2;
+
+      .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: $gap * 2 0;
+        border-bottom: 1px solid rgba(228, 232, 230, 0.3);
+
+        > div {
+          display: flex;
+          align-items: center;
+
+          img {
+            height: 64px;
+            width: 64px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: $gap * 1.5;
+          }
+          div {
+            p {
+              @include font-size(xl);
+              color: color(eden-neutral-1);
+              margin-bottom: $gap * 1.5;
+            }
+            span {
+              cursor: pointer;
+              color: color(eden-neutral-2);
+            }
+          }
+        }
+        p {
+          @include font-size(xl);
+          color: color(eden-neutral-1);
+          margin-bottom: $gap * 2;
+        }
+      }
+    }
+
+    &-footer {
+      border-top: 1px solid rgba(228, 232, 230, 0.7);
+      width: 100%;
+      background: #F7F8F8;
+      padding: $gap * 3;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      p {
+        @include font-size(lg);
+      }
+    }
+  }
+
+  @include respond(md) {
+    flex-direction: column;
+    width: 100%;
+    &__title {
+      width: 90%;
+      text-align: center;
+      p {
+        line-height: 24px;
+        @include font-size(base);
+        margin: $gap * 2.4 auto $gap * 5.5 auto;
+        width: 75%;
+      }
+    }
+    &__button {
+      width: 90%;
+      flex-direction: column;
+      margin: 0 auto;
+      &-link {
+        margin-top: $gap * 3.2;
+        align-self: center;
+      }
+    }
+    &__img {
+      display: none;
+    }
+  }
+  @include respond(xxl) {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}

@@ -235,105 +235,110 @@
                 </svg>
               </div>
 
-              <!-- <span class="vertical"></span> -->
-              <!-- <svg
-                class="vertical"
-                width="28"
-                height="370"
-                viewBox="0 0 28 370"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-              
-                <rect
-                  class="path"
-                  x="13"
-                  y="4"
-                  width="2"
-                  height="361"
-                  fill="red"
-                  stroke="#000000"
-                  stroke-width="3"
-                />
-                <path d="M13 4H15V194H13V4Z" />
-                <circle cx="14" cy="4" r="4" />
-                <circle cx="14" cy="99" r="4" />
-                <circle cx="14" cy="191" r="4" />
-                <circle cx="14" cy="278" r="4" />
-                <circle cx="14" cy="365" r="4" />
-              </svg> -->
-
-              <svg
-                class="horizontal"
-                width="329"
-                height="28"
-                viewBox="0 0 329 28"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  x="0.999512"
-                  y="15.3431"
-                  width="1.9977"
-                  height="325"
-                  transform="rotate(-90 0.999512 15.3431)"
-                  fill="#E4E8E6"
-                />
-                <ellipse
-                  cx="324"
-                  cy="14.3443"
-                  rx="4"
-                  ry="3.9954"
-                  fill="#E4E8E6"
-                  stroke="#FFFCFA"
-                />
-                <ellipse
-                  cx="244"
-                  cy="14.3443"
-                  rx="4"
-                  ry="3.9954"
-                  fill="#E4E8E6"
-                  stroke="#FFFCFA"
-                />
-                <path
-                  d="M4.99951 15.22V13.2223H165V15.22H4.99951Z"
-                  fill="#61DB98"
-                />
-                <ellipse
-                  rx="3.9954"
-                  ry="4"
-                  transform="matrix(-0.00115437 -0.999999 0.999999 -0.00115172 4.9949 14.3396)"
-                  fill="#03A84E"
-                />
-                <ellipse
-                  rx="3.9954"
-                  ry="4"
-                  transform="matrix(-0.00115437 -0.999999 0.999999 -0.00115172 84.9954 14.3397)"
-                  fill="#03A84E"
-                />
-                <ellipse
-                  opacity="0.1"
-                  rx="13.9839"
-                  ry="14"
-                  transform="matrix(-0.00115437 -0.999999 0.999999 -0.00115172 164.026 14)"
-                  fill="#03A84E"
-                />
-                <ellipse
-                  opacity="0.1"
-                  rx="8.98964"
-                  ry="9"
-                  transform="matrix(-0.00115437 -0.999999 0.999999 -0.00115172 164.026 14)"
-                  fill="#03A84E"
-                />
-                <ellipse
-                  rx="3.9954"
-                  ry="4"
-                  transform="matrix(-0.00115437 -0.999999 0.999999 -0.00115172 163.995 14)"
-                  fill="#03A84E"
-                />
-              </svg>
-
-              <!--<span class="slide">  </span> -->
+              <div class="horizontal">
+                <svg
+                  class="horizontal--a"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" fill="#03A84E" />
+                </svg>
+                <svg
+                  class="horizontal--b"
+                  width="70"
+                  height="3"
+                  viewBox="0 0 160 3"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M-0.000488281 2.23755V0.237549H160V2.23755H-0.000488281Z"
+                    fill="#E4E8E6"
+                  />
+                </svg>
+                <svg
+                  class="horizontal--c"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" />
+                </svg>
+                <svg
+                  class="horizontal--d"
+                  width="70"
+                  height="3"
+                  viewBox="0 0 160 3"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M-0.000488281 2.23755V0.237549H160V2.23755H-0.000488281Z"
+                    fill="#E4E8E6"
+                  />
+                </svg>
+                <svg
+                  class="horizontal--e"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" />
+                </svg>
+                <svg
+                  class="horizontal--f"
+                  width="70"
+                  height="3"
+                  viewBox="0 0 160 3"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M-0.000488281 2.23755V0.237549H160V2.23755H-0.000488281Z"
+                    fill="#E4E8E6"
+                  />
+                </svg>
+                <svg
+                  class="horizontal--g"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" />
+                </svg>
+                <svg
+                  class="horizontal--h"
+                  width="70"
+                  height="3"
+                  viewBox="0 0 160 3"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M-0.000488281 2.23755V0.237549H160V2.23755H-0.000488281Z"
+                    fill="#E4E8E6"
+                  />
+                </svg>
+                <svg
+                  class="horizontal--i"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" />
+                </svg>
+              </div>
             </div>
             <div class="description__slider-text">
               <div class="one">
@@ -835,6 +840,9 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
     }
   },
   mounted() {
+    setTimeout(() => {
+      this.descriptionControl()
+    }, 10)
     mixpanelTrackEvent('Companies page')
     window.setInterval(() => {
       this.changeText()
@@ -887,6 +895,25 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
     scrollToFooter(label) {
       this.showModalCompany = !this.showModalCompany
       mixpanelTrackEvent(label)
+    },
+    descriptionControl() {
+      let count = 0
+      // If condition to set repeat
+      if (count < 2) {
+        const scrollToElement = document.querySelector(
+          '.description__slider-text'
+        )
+        scrollToElement.scrollLeft = scrollToElement.scrollLeft + 1
+        if (scrollToElement.scrollLeft === scrollToElement.scrollWidth - 61) {
+          setTimeout(function () {
+            scrollToElement.scrollLeft = 0
+            count++
+          }, 1200)
+        }
+        // set scrolling time start
+        // const my_time = setTimeout('pageScroll()', 10)
+        // set scrolling time end
+      }
     },
   },
 }

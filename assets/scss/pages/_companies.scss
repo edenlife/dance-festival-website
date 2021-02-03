@@ -462,8 +462,81 @@
           display: none;
         }
         .horizontal {
-          display: block;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          &--b {
+            fill: none;
+            stroke: #61db98;
+            stroke-width: 8;
+            stroke-dasharray: 390;
+            stroke-dashoffset: 390;
+            animation: dash 3s linear forwards;
+          }
+          &--d {
+            fill: none;
+            stroke: #61db98;
+            stroke-width: 11;
+            stroke-dasharray: 390;
+            stroke-dashoffset: 390;
+            animation: dash 3s linear forwards;
+            animation-delay: 3s;
+          }
+          &--f {
+            fill: none;
+            stroke: #61db98;
+            stroke-width: 11;
+            stroke-dasharray: 390;
+            stroke-dashoffset: 390;
+            animation: dash 3s linear forwards;
+            animation-delay: 6s;
+          }
+          &--h {
+            fill: none;
+            stroke: #61db98;
+            stroke-width: 11;
+            stroke-dasharray: 390;
+            stroke-dashoffset: 390;
+            animation: dash 3s linear forwards;
+            animation-delay: 9s;
+          }
+
+          @keyframes dash {
+            to {
+              stroke-dashoffset: 0;
+              fill: color(eden-green-primary);
+            }
+          }
+
+          &--c {
+            fill: color(eden-neutral-6);
+            animation: circleScale 1s linear forwards;
+            animation-delay: 1.5s;
+          }
+          &--e {
+            fill: color(eden-neutral-6);
+            animation: circleScale 1s linear forwards;
+            animation-delay: 4.5s;
+          }
+          &--g {
+            fill: color(eden-neutral-6);
+            animation: circleScale 1s linear forwards;
+            animation-delay: 7.5s;
+          }
+          &--i {
+            fill: color(eden-neutral-6);
+            animation: circleScale 1s linear forwards;
+            animation-delay: 10.5s;
+          }
+          @keyframes circleScale {
+            to {
+              fill: color(eden-green-primary);
+            }
+          }
         }
+      }
+      ::-webkit-scrollbar {
+        display: none;
       }
       &-text {
         width: 90%;

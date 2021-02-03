@@ -181,19 +181,17 @@
     flex: 0 0 50%;
     display: flex;
     gap: $gap * 3.5;
-    &-timeline {
+    &-vertical {
       margin-top: $gap + 5;
       // background-color: color(eden-neutral-6);
-      // width: 2px;
-      // height: 400px;
-      // margin-left: $gap * 2;
-      // position: relative;
-      // z-index: 5;
-      // cursor: pointer;
-      svg {
-        fill: color(eden-neutral-6);
-      }
-      .slide {
+      width: 5px;
+      height: 410px;
+      margin-left: $gap * 2;
+      position: relative;
+      z-index: 5;
+      cursor: pointer;
+
+      .slide-y {
         height: 0%;
         width: 100%;
         background-color: color(eden-green-secondary);
@@ -201,6 +199,53 @@
         display: block;
         transition: 0.08s height;
       }
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &--b {
+          fill: none;
+          stroke: #61db98;
+          stroke-width: 8;
+          stroke-dasharray: 390;
+          stroke-dashoffset: 390;
+          animation: dash 22s linear forwards;
+        }
+        &--d {
+          fill: none;
+          stroke: #61db98;
+          stroke-width: 11;
+          stroke-dasharray: 390;
+          stroke-dashoffset: 390;
+          animation: dash 16s linear forwards;
+          animation-delay: 12s;
+        }
+        @keyframes dash {
+          to {
+            stroke-dashoffset: 0;
+            fill: color(eden-green-primary);
+          }
+        }
+        &--c {
+          fill: color(eden-neutral-6);
+          animation: circleScale 1s linear forwards;
+          animation-delay: 11s;
+        }
+        &--e {
+          fill: color(eden-neutral-6);
+          animation: circleScale 1s linear forwards;
+          animation-delay: 20s;
+        }
+        @keyframes circleScale {
+          to {
+            fill: color(eden-green-primary);
+          }
+        }
+      }
+    }
+    &-horizontal {
+      display: none;
     }
     &-text {
       color: color(eden-neutral-1);
@@ -215,7 +260,7 @@
         @include font-size(lg);
         @include font-weight(light);
         margin-bottom: $gap * 5.6;
-        width: 60%;
+        width: 70%;
       }
       .btn {
         line-height: 23px;
@@ -240,17 +285,59 @@
         }
       }
       .one {
+        color: color(eden-neutral-5);
+        transition: all 0.4s ease-in-out;
+
+        &.view {
+          color: color(eden-neutral-1);
+        }
       }
       .two {
         color: color(eden-neutral-5);
+        transition: all 0.4s ease-in-out;
+
+        &.view {
+          color: color(eden-neutral-1);
+        }
       }
       .three {
         color: color(eden-neutral-5);
+        transition: all 0.4s ease-in-out;
+
+        &.view {
+          color: color(eden-neutral-1);
+        }
       }
     }
   }
   &__video {
     flex: 0 0 50%;
+    align-self: flex-start;
+    &-item {
+      height: 470px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+    }
+    .btn--replay {
+      margin-top: $gap * 5.6;
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      @include font-size(base);
+      line-height: 24px;
+      color: color(eden-green-primary);
+      &.show {
+        display: flex;
+      }
+      span {
+        margin-left: $gap + 3;
+      }
+    }
   }
 
   @include respond(md) {
@@ -271,16 +358,76 @@
     &__slider {
       flex-direction: column;
       width: 100%;
-      &-timeline {
-        .vertical {
-          display: none;
+      order: 0;
+      margin-top: $gap * 10;
+
+      &-vertical {
+        display: none;
+      }
+      &-horizontal {
+        display: flex;
+        justify-content: center;
+        .timeline {
+          display: flex;
+          align-items: center;
+
+          &--b {
+            fill: none;
+            stroke: #61db98;
+            stroke-width: 8;
+            stroke-dasharray: 390;
+            stroke-dashoffset: 390;
+            animation: dash 22s linear forwards;
+          }
+          &--d {
+            fill: none;
+            stroke: #61db98;
+            stroke-width: 11;
+            stroke-dasharray: 390;
+            stroke-dashoffset: 390;
+            animation: dash 16s linear forwards;
+            animation-delay: 12s;
+          }
+          @keyframes dash {
+            to {
+              stroke-dashoffset: 0;
+              fill: color(eden-green-primary);
+            }
+          }
+          &--c {
+            fill: color(eden-neutral-6);
+            animation: circleScale 1s linear forwards;
+            animation-delay: 11s;
+          }
+          &--e {
+            fill: color(eden-neutral-6);
+            animation: circleScale 1s linear forwards;
+            animation-delay: 20s;
+          }
+          @keyframes circleScale {
+            to {
+              fill: color(eden-green-primary);
+            }
+          }
+        }
+        .slide-x {
+          height: 100%;
+          width: 0%;
+          background-color: color(eden-green-secondary);
+          position: relative;
+          display: block;
+          transition: 0.08s width;
         }
       }
+      ::-webkit-scrollbar {
+        display: none;
+      }
       &-text {
+        margin-top: $gap * 3.5;
         overflow: auto;
         display: flex;
         justify-content: space-between;
-        gap: $gap * 4.8;
+        gap: $gap * 5.8;
         margin-right: $gap * 4;
         h5 {
           text-align: center;
@@ -300,11 +447,21 @@
         }
 
         > * {
-          flex: 0 0 80%;
+          flex: 0 0 90%;
         }
         .btn {
           display: none;
         }
+      }
+    }
+    &__video {
+      order: -1;
+      &-item {
+        height: 280px;
+      }
+
+      .btn--replay {
+        margin-top: $gap * 3.6;
       }
     }
   }

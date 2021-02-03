@@ -46,24 +46,121 @@
 
         <div class="description__body">
           <div class="description__slider">
-            <div class="description__slider-timeline">
-              <svg
-                class="vertical"
-                width="28"
-                height="407"
-                viewBox="0 0 28 407"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect x="13" y="4" width="2" height="400" />
-                <path d="M13 4H15V219H13V4Z" fill="#61DB98" />
-                <circle cx="14" cy="4" r="4" fill="#03A84E" />
-                <circle opacity="0.1" cx="14" cy="216" r="14" />
-                <circle opacity="0.1" cx="14" cy="216" r="9" />
-                <circle cx="14" cy="216" r="4" />
-                <circle cx="14" cy="402" r="4" />
-              </svg>
-              <!--<span class="slide">  </span> -->
+            <div class="description__slider-vertical slider">
+              <div class="timeline">
+                <svg
+                  class="timeline--a"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" fill="#03A84E" />
+                </svg>
+                <svg
+                  class="timeline--b"
+                  width="3"
+                  height="175"
+                  viewBox="0 0 2 190"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M0 0H2V190H0V0Z" fill="#E4E8E6" />
+                </svg>
+                <svg
+                  class="timeline--c"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" />
+                </svg>
+                <svg
+                  class="timeline--d"
+                  width="3"
+                  height="205"
+                  viewBox="0 0 2 190"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M0 0H2V190H0V0Z" fill="#E4E8E6" />
+                </svg>
+                <svg
+                  class="timeline--e"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" />
+                </svg>
+              </div>
+              <!-- <span class="slide-y"></span> -->
+            </div>
+            <div class="description__slider-horizontal slider">
+              <!-- <span class="slide-x"></span> -->
+              <div class="timeline">
+                <svg
+                  class="timeline--a"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" fill="#03A84E" />
+                </svg>
+                <svg
+                  class="timeline--b"
+                  width="160"
+                  height="3"
+                  viewBox="0 0 160 3"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M-0.000488281 2.23755V0.237549H160V2.23755H-0.000488281Z"
+                    fill="#E4E8E6"
+                  />
+                </svg>
+                <svg
+                  class="timeline--c"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" />
+                </svg>
+                <svg
+                  class="timeline--d"
+                  width="160"
+                  height="3"
+                  viewBox="0 0 160 3"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M-0.000488281 2.23755V0.237549H160V2.23755H-0.000488281Z"
+                    fill="#E4E8E6"
+                  />
+                </svg>
+                <svg
+                  class="timeline--e"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" />
+                </svg>
+              </div>
             </div>
             <div class="description__slider-text">
               <div class="one">
@@ -100,7 +197,35 @@
             </div>
           </div>
 
-          <div class="description__video"></div>
+          <div class="description__video">
+            <div class="description__video-item">
+              <video ref="videoRef" muted autoplay>
+                <source
+                  src="https://res.cloudinary.com/eden-life-inc/video/upload/v1612252104/eden-website-v2/Home_Cleaning_gzu6jt.mp4"
+                  type="video/mp4"
+                />
+              </video>
+              <button
+                type="button"
+                class="btn--replay"
+                @click.prevent="playVideo"
+              >
+                <svg
+                  width="14"
+                  height="17"
+                  viewBox="0 0 14 17"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7.49872 3.18516C7.22334 3.16476 6.9987 2.94285 6.9987 2.66671V1.04048C6.9987 0.595027 6.46013 0.371945 6.14514 0.686928L3.18558 3.64649C2.99032 3.84175 2.99032 4.15833 3.18558 4.35359L6.14514 7.31315C6.46013 7.62814 6.9987 7.40505 6.9987 6.9596V5.33337C6.9987 5.05723 7.2232 4.83074 7.49799 4.85807C10.0225 5.10916 11.9987 7.24353 11.9987 9.83337C11.9987 12.5917 9.75703 14.8334 6.9987 14.8334C4.40885 14.8334 2.27448 12.8572 2.0234 10.3327C1.99607 10.0579 1.77484 9.83337 1.4987 9.83337H0.832031C0.555888 9.83337 0.330082 10.058 0.350479 10.3334C0.605973 13.783 3.48357 16.5 6.9987 16.5C10.682 16.5 13.6654 13.5167 13.6654 9.83337C13.6654 6.31825 10.9483 3.44065 7.49872 3.18516Z"
+                    fill="#03A84E"
+                  />
+                </svg>
+                <span> Replay video</span>
+              </button>
+            </div>
+          </div>
         </div>
       </section>
     </div>
@@ -720,6 +845,7 @@ export default {
     },
   },
   mounted() {
+    this.playVideo()
     mixpanelTrackEvent('Food page')
     window.setInterval(() => {
       this.changeText()
@@ -850,6 +976,50 @@ export default {
     },
     trackLink(service) {
       mixpanelTrackEvent(`${service} clicked - Food (more options)`)
+    },
+    videoControl() {
+      const video = document.querySelector('video')
+      const slider = document.querySelector('.slider')
+      const scrollToElement = document.querySelector(
+        '.description__slider-text'
+      )
+      // control timeline with video play
+      video.addEventListener('timeupdate', function () {
+        if (this.currentTime < 8) {
+          document.querySelector('.one').className = 'one view'
+          document.querySelector('.two').className = 'two'
+          document.querySelector('.three').className = 'three'
+          document.querySelector('.btn--replay').className = 'btn--replay'
+        } else if (this.currentTime > 11 && this.currentTime < 19) {
+          scrollToElement.scrollLeft = 350
+          document.querySelector('.two').className = 'two view'
+          document.querySelector('.btn--replay').className = 'btn--replay'
+        } else if (this.currentTime > 21) {
+          scrollToElement.scrollLeft = 750
+          document.querySelector('.three').className = 'three view'
+          document.querySelector('.btn--replay').className = 'btn--replay show'
+        }
+      })
+
+      // control video play with timeline clicks
+      slider.addEventListener('click', function (e) {
+        const clickedHeight = e.offsetY
+        const percentageCovered = clickedHeight / this.offsetHeight
+        const currentTime = percentageCovered * video.duration
+
+        // can't get the video duration until it is playing
+        if (video.currentTime > 0) {
+          video.pause()
+          video.currentTime = Math.round(currentTime)
+          video.play()
+        }
+      })
+    },
+    playVideo() {
+      mixpanelTrackEvent('How it works replay - cleaning')
+      const vid = document.querySelector('video')
+      vid.play()
+      this.videoControl()
     },
   },
 }

@@ -48,54 +48,7 @@
         <div class="description__body">
           <div class="description__slider">
             <div class="description__slider-vertical slider">
-              <span class="slide-y"></span>
-              <!-- <div class="slide">
-                <svg
-                  width="8"
-                  height="8"
-                  viewBox="0 0 8 8"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle cx="4" cy="4" r="4" />
-                </svg>
-                <svg
-                  width="2"
-                  height="215"
-                  viewBox="0 0 2 215"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M0 0H2V215H0V0Z" />
-                </svg>
-                <svg
-                  width="8"
-                  height="8"
-                  viewBox="0 0 8 8"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle cx="4" cy="4" r="4" />
-                </svg>
-                <svg
-                  width="2"
-                  height="215"
-                  viewBox="0 0 2 215"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M0 0H2V215H0V0Z" />
-                </svg>
-                <svg
-                  width="8"
-                  height="8"
-                  viewBox="0 0 8 8"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle cx="4" cy="4" r="4" />
-                </svg>
-              </div> -->
+              <!-- <span class="slide-y"></span> -->
             </div>
             <div class="description__slider-horizontal slider">
               <span class="slide-x"></span>
@@ -610,6 +563,8 @@
 </template>
 
 <script>
+// import { TweenMax, Linear } from 'gsap'
+
 import { pricing } from '~/static/pricing'
 import { currencyFormat, scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
@@ -799,7 +754,7 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
     },
     videoControl() {
       const video = document.querySelector('video')
-      const slideY = document.querySelector('.slide-y')
+      // const slideY = document.querySelector('.slide-y')
       const slideX = document.querySelector('.slide-x')
       const slider = document.querySelector('.slider')
       const scrollToElement = document.querySelector(
@@ -808,7 +763,7 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
       // control timeline with video play
       video.addEventListener('timeupdate', function () {
         const parcentagePlayed = (this.currentTime / this.duration) * 100
-        slideY.style.height = parcentagePlayed.toFixed(2) + '%'
+        // slideY.style.height = parcentagePlayed.toFixed(2) + '%'
         slideX.style.width = parcentagePlayed.toFixed(2) + '%'
 
         if (this.currentTime < 8) {
@@ -849,7 +804,7 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
           video.pause()
           video.currentTime = Math.round(currentTime)
           video.play()
-          slideY.style.height = percentageCovered.toFixed(2) + '%'
+          // slideY.style.height = percentageCovered.toFixed(2) + '%'
           slideX.style.width = percentageCovered.toFixed(2) + '%'
         }
       })

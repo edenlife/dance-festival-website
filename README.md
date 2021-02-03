@@ -1,6 +1,4 @@
-# edenwebsitev2
-
-## Build Setup
+# Eden | Say Goodbye To Chores Forever
 
 ```bash
 # install dependencies
@@ -18,5 +16,3 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-# edenwebsitev2
-# edenwebsite-v2

@@ -5,23 +5,6 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
-  // Environment variables
-  env: {
-    paystackKey:
-      process.env.NODE_ENV === 'production'
-        ? process.env.NUXT_ENV_PAYSTACK_KEY_LIVE
-        : process.env.NUXT_ENV_PAYSTACK_KEY_TEST,
-    raveKey:
-      process.env.NODE_ENV === 'production'
-        ? process.env.NUXT_ENV_RAVE_KEY_LIVE
-        : process.env.NUXT_ENV_RAVE_KEY_TEST,
-  },
-
-  baseUrl:
-    process.env.NODE_ENV === 'production'
-      ? 'https://api.edenlife.ng/api/v3/website/giftingpage'
-      : 'https://api-staging.edenlife.ng/api/v3/website/giftingpage',
-
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Eden | Say Goodbye To Chores Forever',

@@ -66,8 +66,8 @@ export default {
   data() {
     return {
       reference: '',
-      paystackKey: process.env.paystackKey,
-      raveKey: process.env.raveKey,
+      paystackKey: process.env.NUXT_ENV_PAYSTACK_KEY_TEST,
+      raveKey: process.env.NUXT_ENV_RAVE_KEY_TEST,
     }
   },
   computed: {

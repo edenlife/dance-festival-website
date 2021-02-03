@@ -15,7 +15,7 @@
   &__box {
     min-height: 500px;
     margin: auto;
-    flex: 0 0 40%;
+    flex: 0 0 45%;
     padding: $gap * 2;
     background-size: cover;
     background-position: center center;
@@ -116,6 +116,14 @@
             rgba(0, 141, 64, 0.1) 50%,
             #008d40 50%
         );
+      }
+
+      &:disabled {
+        background: #57645E !important;
+        border-color: #57645E;
+        opacity: 0.44;
+        cursor: not-allowed;
+        pointer-events: all !important;
       }
 
       &--group {

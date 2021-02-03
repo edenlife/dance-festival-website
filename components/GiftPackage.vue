@@ -68,8 +68,13 @@
           </svg>
         </button>
       </div>
-      <button type="button" class="btn" @click="addToCart">
-        Add to Cart
+      <button
+        type="button"
+        class="btn"
+        :disabled="itemInCart"
+        @click="addToCart"
+      >
+        {{ itemInCart ? 'Added' : 'Add' }} to Cart
       </button>
     </div>
   </div>
@@ -101,6 +106,12 @@ export default {
         backgroundImage: `url(${this.giftType.image})`,
       }
     },
+    itemInCart() {
+      const item = this.$store.getters.cart.filter(
+        (item) => item.id === this.giftType.id
+      )
+      return !!item.length
+    },
   },
   methods: {
     currencyFormat,
@@ -111,9 +122,10 @@ export default {
       this.quantity = this.quantity === 1 ? this.quantity : this.quantity - 1
     },
     addToCart() {
-      const { id, image, name, amount } = this.giftType
+      const { id, type, image, name, amount } = this.giftType
       const payload = {
         id,
+        type,
         image,
         name,
         amount,

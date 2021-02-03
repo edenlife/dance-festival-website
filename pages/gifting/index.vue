@@ -240,11 +240,11 @@
 
 <script>
 import Cart from '@/components/Cart'
-import giftTypes from '~/static/giftTypes'
+import giftTypes from 'static/giftTypes'
 
-import GiftPackage from '~/components/GiftPackage'
+import GiftPackage from '@/components/GiftPackage'
 
-import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import { mixpanelTrackEvent } from '@/plugins/mixpanel'
 
 export default {
   components: { Cart, GiftPackage },
@@ -263,7 +263,7 @@ export default {
   },
   computed: {
     cartItems() {
-      return Object.keys(this.$store.state.cart).length || 0
+      return this.$store.getters.cart.length
     },
   },
   mounted() {

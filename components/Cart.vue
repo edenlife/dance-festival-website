@@ -30,83 +30,81 @@
         </span>
       </div>
       <div class="cart__drawer-body">
-        <template v-if="itemsInCart">
-          <div
-            v-for="(value, key, index) in cart"
-            :key="index"
-            class="cart__item"
-          >
-            <div class="cart__item-info">
-              <img :src="value.image" alt="" />
-              <div>
-                <p>{{ value.name }}</p>
-                <span @click="removeItem(key)">Remove</span>
+        <transition name="slide-fade">
+          <template v-if="cart.length">
+            <div v-for="(item, index) in cart" :key="index" class="cart__item">
+              <div class="cart__item-info">
+                <img :src="item.image" alt="" />
+                <div>
+                  <p>{{ item.name }} ({{ item.type }})</p>
+                  <span @click="removeItem(index)">Remove</span>
+                </div>
+              </div>
+              <div class="cart__item-price">
+                <p>NGN {{ currencyFormat(item.amount * item.quantity) }}</p>
+                <div class="btn--group">
+                  <button
+                    class="btn--item minus"
+                    @click.prevent="decreaseQuantity(index)"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5 12H19"
+                        stroke="#21312A"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  <input
+                    id=""
+                    v-model="item.quantity"
+                    type="number"
+                    name=""
+                    placeholder="0"
+                    readonly
+                  />
+                  <button
+                    class="btn--item plus"
+                    @click.prevent="increaseQuantity(index)"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 5V19"
+                        stroke="#21312A"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M5 12H19"
+                        stroke="#21312A"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
-            <div class="cart__item-price">
-              <p>NGN {{ currencyFormat(value.amount * value.quantity) }}</p>
-              <div class="btn--group">
-                <button
-                  class="btn--item minus"
-                  @click.prevent="decreaseQuantity(key)"
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M5 12H19"
-                      stroke="#21312A"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </button>
-                <input
-                  id=""
-                  v-model="value.quantity"
-                  type="number"
-                  name=""
-                  placeholder="0"
-                  readonly
-                />
-                <button
-                  class="btn--item plus"
-                  @click.prevent="increaseQuantity(key)"
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12 5V19"
-                      stroke="#21312A"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M5 12H19"
-                      stroke="#21312A"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </template>
-        <template v-else>
-          <div class="cart__drawer-body--empty">
+          </template>
+        </transition>
+        <transition name="slide-fade">
+          <div v-if="!cart.length" class="cart__drawer-body--empty">
             <img
               src="https://res.cloudinary.com/eden-life-inc/image/upload/v1612297848/eden-website-v2/empty-cart_pczlxs.svg"
               alt
@@ -118,9 +116,9 @@
               find the perfect gift.
             </p>
           </div>
-        </template>
+        </transition>
       </div>
-      <div v-if="itemsInCart" class="cart__drawer-footer">
+      <div v-if="cart.length" class="cart__drawer-footer">
         <div>
           <p>Subtotal</p>
           <p>NGN {{ currencyFormat(subTotal) }}</p>
@@ -157,12 +155,9 @@ export default {
     cart() {
       return this.$store.getters.cart
     },
-    itemsInCart() {
-      return !!Object.keys(this.$store.getters.cart).length
-    },
     subTotal() {
-      return Object.keys(this.cart).reduce((total, item) => {
-        return total + this.cart[item].amount * this.cart[item].quantity
+      return this.cart.reduce((total, item) => {
+        return total + item.amount * item.quantity
       }, 0)
     },
   },
@@ -179,16 +174,16 @@ export default {
       this.shouldShow = false
       document.body.style.setProperty('overflow', 'visible', 'important')
     },
-    increaseQuantity(key) {
-      this.$store.commit('increaseItemQuantity', key)
+    increaseQuantity(index) {
+      this.$store.commit('increaseItemQuantity', index)
     },
-    decreaseQuantity(key) {
-      if (this.cart[key].quantity > 1) {
-        this.$store.commit('decreaseItemQuantity', key)
+    decreaseQuantity(index) {
+      if (this.cart[index].quantity > 1) {
+        this.$store.commit('decreaseItemQuantity', index)
       }
     },
-    removeItem(id) {
-      this.$store.commit('removeItem', id)
+    removeItem(index) {
+      this.$store.commit('removeItem', index)
     },
   },
 }

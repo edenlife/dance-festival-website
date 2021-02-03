@@ -1,5 +1,5 @@
 export const state = () => ({
-  cart: JSON.parse(localStorage.getItem('cart')).cart || {},
+  cart: JSON.parse(localStorage.getItem('cart')).cart || [],
 })
 
 export const getters = {
@@ -10,30 +10,19 @@ export const getters = {
 
 export const mutations = {
   addItem: (state, payload) => {
-    if (state.cart[payload.id]) {
-      state.cart[payload.id].quantity =
-        state.cart[payload.id].quantity + payload.quantity
-    } else {
-      state.cart[payload.id] = {
-        id: payload.id,
-        image: payload.image,
-        name: payload.name,
-        amount: payload.amount,
-        quantity: payload.quantity,
-      }
-    }
+    state.cart.push(payload)
     localStorage.setItem('cart', JSON.stringify(state))
   },
-  removeItem: (state, id) => {
-    delete state.cart[id]
+  removeItem: (state, index) => {
+    state.cart.splice(index, 1)
     localStorage.setItem('cart', JSON.stringify(state))
   },
-  increaseItemQuantity: (state, key) => {
-    state.cart[key].quantity++
+  increaseItemQuantity: (state, index) => {
+    state.cart[index].quantity++
     localStorage.setItem('cart', JSON.stringify(state))
   },
-  decreaseItemQuantity: (state, key) => {
-    state.cart[key].quantity--
+  decreaseItemQuantity: (state, index) => {
+    state.cart[index].quantity--
     localStorage.setItem('cart', JSON.stringify(state))
   },
 }

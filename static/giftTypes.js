@@ -15,6 +15,7 @@ export default {
         'Box of handcreams',
         'Personalised Card',
       ],
+      type: 'Her',
     },
     {
       id: 'adore-you-her',
@@ -30,6 +31,7 @@ export default {
         'Sheet mask',
         'Personalised greeting card',
       ],
+      type: 'Her',
     },
   ],
   giftHim: [
@@ -48,6 +50,7 @@ export default {
         'Coffee',
         'Personalized greeting card',
       ],
+      type: 'Him'
     },
     {
       id: 'adore-you-him',
@@ -63,6 +66,7 @@ export default {
         'Coffee',
         'Personalised greeting card',
       ],
+      type: 'Him'
     },
   ],
 }

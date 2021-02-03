@@ -4,7 +4,7 @@
   width: 100%;
 
   &--checkout {
-    margin: $gap * 10 0 $gap * 15
+    margin: $gap * 10 0 $gap * 15;
   }
 }
 
@@ -66,12 +66,12 @@
       h5 {
         @include font-size(xl);
         margin-bottom: $gap * 1.5;
-        color: color(eden-neutral-1)
+        color: color(eden-neutral-1);
       }
 
       p {
         @include font-size(lg);
-        color: color(eden-neutral-1)
+        color: color(eden-neutral-1);
       }
     }
 
@@ -165,12 +165,7 @@
               cursor: pointer;
               transform: rotateZ(0deg) translateY(0px);
               transition-duration: 0.5s;
-              transition-timing-function: cubic-bezier(
-                  0.59,
-                  1.39,
-                  0.37,
-                  1.01
-              );
+              transition-timing-function: cubic-bezier(0.59, 1.39, 0.37, 1.01);
             }
             .expanded {
               transform: rotateZ(180deg) translateY(2px);
@@ -247,7 +242,7 @@
             span {
               height: 18px;
               width: 18px;
-              border: 1px solid #93A29B;
+              border: 1px solid #93a29b;
               border-radius: 100px;
               margin-right: 5px;
               transition: border 0.25s ease-in;
@@ -270,8 +265,8 @@
             cursor: pointer;
 
             &:checked + label {
-              background: #DEFFEF;
-              border-color: #03A84E;
+              background: #deffef;
+              border-color: #03a84e;
               transition: all 0.25s ease-in;
 
               span {
@@ -314,14 +309,14 @@
         }
         &:active {
           background-image: radial-gradient(
-              circle at center right,
-              rgba(0, 141, 64, 0.1) 50%,
-              #008d40 50%
+            circle at center right,
+            rgba(0, 141, 64, 0.1) 50%,
+            #008d40 50%
           );
         }
         &:disabled {
-          background: #57645E !important;
-          border-color: #57645E;
+          background: #57645e !important;
+          border-color: #57645e;
           opacity: 0.44;
           cursor: not-allowed;
           pointer-events: all !important;
@@ -332,7 +327,7 @@
     &-successful {
       padding: $gap * 3;
       background: rgba(3, 168, 78, 0.04);
-      border: 1px solid #03A84E;
+      border: 1px solid #03a84e;
       border-radius: 8px;
 
       &-title {
@@ -358,7 +353,7 @@
       }
 
       &-content {
-        padding: 0 $gap * 2.5 ;
+        padding: 0 $gap * 2.5;
 
         p {
           @include font-size(base);
@@ -372,7 +367,7 @@
           background-color: transparent;
           color: color(eden-neutral-3);
           border-radius: 4px;
-          border: 1px solid color(eden-netural-6);
+          border: 1px solid color(eden-neutral-6);
           transition: all 0.4s ease-in-out;
           padding: $gap * 1.6 $gap * 2.9;
         }
@@ -439,7 +434,7 @@
     &-footer {
       border-top: 1px solid rgba(228, 232, 230, 0.7);
       width: 100%;
-      background: #F7F8F8;
+      background: #f7f8f8;
       padding: $gap * 3;
       display: flex;
       justify-content: space-between;

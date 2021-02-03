@@ -20,9 +20,9 @@
         <div class="hero__title">
           <h1>
             <span> Smile</span>
-            in a Box.
+            in a box.
           </h1>
-          <h1 class="mobile"><span>Smile </span> in a Box</h1>
+          <h1 class="mobile"><span>Smile</span> in a box</h1>
           <p>
             Give beautiful gifts, thoughtfully curated for
             <br />

@@ -219,7 +219,10 @@
                     @mouseenter.stop="service = 'gifting'"
                     @mouseleave.stop="service = ''"
                   >
-                    <nuxt-link :to="{ path: '/gifting' }" class="service__list-item">
+                    <nuxt-link
+                      :to="{ path: '/gifting' }"
+                      class="service__list-item"
+                    >
                       <span>🎁</span>
                       <h5>Gifting</h5>
                       <svg
@@ -529,7 +532,7 @@ export default {
         }
       } else if (path.includes('gifting')) {
         return {
-          'background-color': '#FFE8E5',
+          'background-color': 'rgba(255, 232, 229, 0.3)',
         }
       } else if (path.includes('about_us')) {
         return {

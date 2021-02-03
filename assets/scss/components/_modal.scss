@@ -8,13 +8,15 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  display: table;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
   transition: opacity 0.3s ease;
 }
 
 .modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
+  max-height: 90%;
 }
 
 .modal-container {
@@ -25,10 +27,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
-  position: relative;
-  max-height: 98%;
-  overflow-y: scroll;
-  @include respond(sm) {
+  @include respond(md) {
     padding: 10px 20px;
     width: 320px;
   }

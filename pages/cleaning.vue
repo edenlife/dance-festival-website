@@ -48,9 +48,29 @@
         <div class="description__body">
           <div class="description__slider">
             <div class="description__slider-vertical slider">
-              <span class="slide-y"></span>
-              <!-- <div class="slide">
+              <div class="timeline">
                 <svg
+                  class="timeline--a"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" fill="#03A84E" />
+                </svg>
+                <svg
+                  class="timeline--b"
+                  width="3"
+                  height="175"
+                  viewBox="0 0 2 190"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M0 0H2V190H0V0Z" fill="#E4E8E6" />
+                </svg>
+                <svg
+                  class="timeline--c"
                   width="8"
                   height="8"
                   viewBox="0 0 8 8"
@@ -60,15 +80,17 @@
                   <circle cx="4" cy="4" r="4" />
                 </svg>
                 <svg
-                  width="2"
-                  height="215"
-                  viewBox="0 0 2 215"
+                  class="timeline--d"
+                  width="3"
+                  height="205"
+                  viewBox="0 0 2 190"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path d="M0 0H2V215H0V0Z" />
+                  <path d="M0 0H2V190H0V0Z" fill="#E4E8E6" />
                 </svg>
                 <svg
+                  class="timeline--e"
                   width="8"
                   height="8"
                   viewBox="0 0 8 8"
@@ -77,28 +99,69 @@
                 >
                   <circle cx="4" cy="4" r="4" />
                 </svg>
-                <svg
-                  width="2"
-                  height="215"
-                  viewBox="0 0 2 215"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M0 0H2V215H0V0Z" />
-                </svg>
-                <svg
-                  width="8"
-                  height="8"
-                  viewBox="0 0 8 8"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle cx="4" cy="4" r="4" />
-                </svg>
-              </div> -->
+              </div>
+              <!-- <span class="slide-y"></span> -->
             </div>
             <div class="description__slider-horizontal slider">
-              <span class="slide-x"></span>
+              <!-- <span class="slide-x"></span> -->
+              <div class="timeline">
+                <svg
+                  class="timeline--a"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" fill="#03A84E" />
+                </svg>
+                <svg
+                  class="timeline--b"
+                  width="160"
+                  height="3"
+                  viewBox="0 0 160 3"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M-0.000488281 2.23755V0.237549H160V2.23755H-0.000488281Z"
+                    fill="#E4E8E6"
+                  />
+                </svg>
+                <svg
+                  class="timeline--c"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" />
+                </svg>
+                <svg
+                  class="timeline--d"
+                  width="160"
+                  height="3"
+                  viewBox="0 0 160 3"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M-0.000488281 2.23755V0.237549H160V2.23755H-0.000488281Z"
+                    fill="#E4E8E6"
+                  />
+                </svg>
+                <svg
+                  class="timeline--e"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" />
+                </svg>
+              </div>
             </div>
 
             <div class="description__slider-text">
@@ -610,6 +673,8 @@
 </template>
 
 <script>
+// import { TweenMax, Linear } from 'gsap'
+
 import { pricing } from '~/static/pricing'
 import { currencyFormat, scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
@@ -799,40 +864,29 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
     },
     videoControl() {
       const video = document.querySelector('video')
-      const slideY = document.querySelector('.slide-y')
-      const slideX = document.querySelector('.slide-x')
+      // const slideY = document.querySelector('.slide-y')
+      // const slideX = document.querySelector('.slide-x')
       const slider = document.querySelector('.slider')
       const scrollToElement = document.querySelector(
         '.description__slider-text'
       )
       // control timeline with video play
       video.addEventListener('timeupdate', function () {
-        const parcentagePlayed = (this.currentTime / this.duration) * 100
-        slideY.style.height = parcentagePlayed.toFixed(2) + '%'
-        slideX.style.width = parcentagePlayed.toFixed(2) + '%'
+        // const parcentagePlayed = (this.currentTime / this.duration) * 100
+        // slideY.style.height = parcentagePlayed.toFixed(2) + '%'
+        // slideX.style.width = parcentagePlayed.toFixed(2) + '%'
 
         if (this.currentTime < 8) {
           document.querySelector('.one').className = 'one view'
           document.querySelector('.two').className = 'two'
           document.querySelector('.three').className = 'three'
           document.querySelector('.btn--replay').className = 'btn--replay'
-          scrollToElement.scrollBy({
-            left: 10,
-          })
-        } else if (this.currentTime > 9 && this.currentTime < 19) {
-          scrollToElement.scrollBy({
-            left: 0,
-          })
-          document.querySelector('.one').className = 'one'
+        } else if (this.currentTime > 11 && this.currentTime < 19) {
+          scrollToElement.scrollLeft = 350
           document.querySelector('.two').className = 'two view'
-          document.querySelector('.three').className = 'three'
           document.querySelector('.btn--replay').className = 'btn--replay'
-        } else if (this.currentTime > 19) {
-          scrollToElement.scrollBy({
-            left: 20,
-          })
-          document.querySelector('.two').className = 'two'
-          document.querySelector('.one').className = 'one'
+        } else if (this.currentTime > 21) {
+          scrollToElement.scrollLeft = 750
           document.querySelector('.three').className = 'three view'
           document.querySelector('.btn--replay').className = 'btn--replay show'
         }
@@ -849,8 +903,8 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
           video.pause()
           video.currentTime = Math.round(currentTime)
           video.play()
-          slideY.style.height = percentageCovered.toFixed(2) + '%'
-          slideX.style.width = percentageCovered.toFixed(2) + '%'
+          // slideY.style.height = percentageCovered.toFixed(2) + '%'
+          // slideX.style.width = percentageCovered.toFixed(2) + '%'
         }
       })
     },

@@ -31,7 +31,9 @@
           For customer support, log in to your Eden app to chat directly with
           your Gardener.
         </p>
-        <a href="#" @click.prevent="scrollToFooter('#get-the-app')"
+        <a
+          href="#"
+          @click.prevent="scrollToFooter('#get-the-app', 'contact - support')"
           >Download the Eden App</a
         >
       </div>
@@ -73,8 +75,8 @@ export default {
     mixpanelTrackEvent('Contact Us page')
   },
   methods: {
-    scrollToFooter(id) {
-      scrollToApp(id)
+    scrollToFooter(id, label) {
+      scrollToApp(id, label)
     },
   },
 }

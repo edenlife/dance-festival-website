@@ -1,6 +1,10 @@
 <template>
   <div id="navigation-container" class="container" :style="getColor()">
-    <nav id="navigation-top" class="navigation">
+    <nav
+      id="navigation-top"
+      class="navigation"
+      @mouseleave.stop="showService = false"
+    >
       <nuxt-link :to="{ path: '/' }" class="navigation__logo">
         <img
           src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611230252/eden-website-v2/eden-logo_lcepc6.svg"
@@ -8,12 +12,12 @@
         />
       </nuxt-link>
       <ul class="navigation__menu">
-        <li>
-          <nuxt-link :to="{ path: '/about_us' }" class="navigation__menu-item">
-            About Us
-          </nuxt-link>
-        </li>
-        <li>
+        <li
+          v-if="serviceNav"
+          class="fallback"
+          @mouseenter.stop="showService = false"
+        ></li>
+        <li v-if="serviceNav">
           <div class="navigation__menu-item navigation__menu-service">
             <button
               type="button"
@@ -45,15 +49,12 @@
               >
                 <div class="service__title">
                   <h3>Eden Services</h3>
-                  <p>
-                    Cancelling & Pausing any time is as easy as clicking a
-                    button
-                  </p>
+                  <p>Convenience you can depend on. Always.</p>
                 </div>
                 <ul class="service__list">
                   <li
                     :class="{ food: service === 'food' }"
-                    @click="showService = false"
+                    @click="trackLink('Food')"
                     @mouseenter.stop="service = 'food'"
                     @mouseleave.stop="service = ''"
                   >
@@ -106,7 +107,7 @@
                   </li>
                   <li
                     :class="{ laundry: service === 'laundry' }"
-                    @click="showService = false"
+                    @click="trackLink('Laundry')"
                     @mouseenter.stop="service = 'laundry'"
                     @mouseleave.stop="service = ''"
                   >
@@ -160,7 +161,7 @@
                   </li>
                   <li
                     :class="{ cleaning: service === 'cleaning' }"
-                    @click="showService = false"
+                    @click="trackLink('Cleaning')"
                     @mouseenter.stop="service = 'cleaning'"
                     @mouseleave.stop="service = ''"
                   >
@@ -214,7 +215,7 @@
                   </li>
                   <li
                     :class="{ gifting: service === 'gifting' }"
-                    @click="showService = false"
+                    @click="trackLink('Gifting')"
                     @mouseenter.stop="service = 'gifting'"
                     @mouseleave.stop="service = ''"
                   >
@@ -268,6 +269,44 @@
             </transition>
           </div>
         </li>
+        <li
+          v-if="serviceNav"
+          @mouseenter.stop="showService = false"
+          @click="trackLink('Companies')"
+        >
+          <nuxt-link :to="{ path: '/companies' }" class="navigation__menu-item">
+            Companies
+          </nuxt-link>
+        </li>
+        <!-- food -->
+        <li v-if="currentRoute === 'food'">
+          <button
+            class="navigation__menu-item"
+            @click.prevent="scrollToSection('#menu-options', 'Menu')"
+          >
+            Menu
+          </button>
+        </li>
+        <!-- laundry -->
+        <li v-if="currentRoute === 'laundry'">
+          <button
+            class="navigation__menu-item"
+            @click.prevent="scrollToSection('#laundry-plan', 'Laundry plans')"
+          >
+            Laundry Plans
+          </button>
+        </li>
+        <!-- cleaning -->
+        <li v-if="currentRoute === 'cleaning'">
+          <button
+            class="navigation__menu-item"
+            @click.prevent="scrollToSection('#cleaning-plan', 'Cleaning plans')"
+          >
+            Cleaning Plans
+          </button>
+        </li>
+        <!--  -->
+
         <li>
           <a
             href="#"
@@ -285,14 +324,6 @@
       <transition name="slide">
         <div v-if="showNavbar" class="navigation__mobile">
           <ul class="menu">
-            <li class="menu--list" @click.prevent="handleToggle()">
-              <nuxt-link
-                :to="{ path: '/about_us' }"
-                class="navigation__mobile-item"
-              >
-                About Us
-              </nuxt-link>
-            </li>
             <li class="menu--list">
               <div class="navigation__mobile-item service">
                 <div>Service</div>
@@ -320,7 +351,7 @@
                 <ul v-if="visible" class="">
                   <li
                     class="menu--list-item food"
-                    @click.prevent="handleToggle()"
+                    @click.prevent="handleToggle('Food')"
                   >
                     <nuxt-link :to="{ path: '/food' }" class="">
                       <span class="icon">🥘</span>
@@ -329,7 +360,7 @@
                   </li>
                   <li
                     class="menu--list-item laundry"
-                    @click.prevent="handleToggle()"
+                    @click.prevent="handleToggle('Laundry')"
                   >
                     <nuxt-link :to="{ path: '/laundry' }" class="">
                       <span class="icon">🧺</span>
@@ -338,7 +369,7 @@
                   </li>
                   <li
                     class="menu--list-item cleaning"
-                    @click.prevent="handleToggle()"
+                    @click.prevent="handleToggle('Cleaning')"
                   >
                     <nuxt-link :to="{ path: '/cleaning' }" class="">
                       <span class="icon">🏠</span>
@@ -347,7 +378,7 @@
                   </li>
                   <li
                     class="menu--list-item gifting"
-                    @click.prevent="handleToggle()"
+                    @click.prevent="handleToggle('Gifting')"
                   >
                     <nuxt-link :to="{ path: '' }" class="">
                       <span class="icon">🎁</span>
@@ -356,6 +387,14 @@
                   </li>
                 </ul>
               </transition>
+            </li>
+            <li class="menu--list" @click.prevent="handleToggle('Companies')">
+              <nuxt-link
+                :to="{ path: '/companies' }"
+                class="navigation__mobile-item"
+              >
+                Companies
+              </nuxt-link>
             </li>
             <li class="menu--list" @click.prevent="handleToggle()">
               <a
@@ -374,6 +413,7 @@
 
 <script>
 import { scrollToApp } from '~/static/functions'
+import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
   name: 'Navigation',
@@ -387,11 +427,33 @@ export default {
         width: 0,
         height: 0,
       },
+      currentRoute: '',
     }
+  },
+  computed: {
+    serviceNav() {
+      if (
+        this.currentRoute === 'laundry' ||
+        this.currentRoute === 'cleaning' ||
+        this.currentRoute === 'food'
+      ) {
+        return false
+      } else {
+        return true
+      }
+    },
+  },
+  watch: {
+    $route() {
+      const getRoute = this.$nuxt.$route.path
+      this.currentRoute = getRoute.replace('/', '')
+    },
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
     window.addEventListener('resize', this.handleResize)
+    const getRoute = this.$nuxt.$route.path
+    this.currentRoute = getRoute.replace('/', '')
   },
   methods: {
     handleResize() {
@@ -409,13 +471,28 @@ export default {
         document.querySelector('#navigation-container').className = 'container'
       }
     },
+    trackLink(service) {
+      this.showService = false
+      mixpanelTrackEvent(`${service} clicked - ${this.currentRoute} - Navbar`)
+    },
     scrollTo(id) {
-      scrollToApp(id)
+      if (this.currentRoute === '') {
+        scrollToApp(id, `homepage - Navbar`)
+      } else scrollToApp(id, `${this.currentRoute} - Navbar`)
+    },
+    scrollToSection(id, service) {
+      mixpanelTrackEvent(`${service} clicked - ${this.currentRoute} - Navbar`)
+      const scrollToElement = document.querySelector(id)
+      scrollToElement.scrollIntoView()
     },
     serviceToggle() {
       this.visible = !this.visible
     },
-    handleToggle() {
+    handleToggle(menu) {
+      if (menu) {
+        mixpanelTrackEvent(`${menu} clicked - ${this.currentRoute} - Navbar`)
+      }
+
       const toggleButton = document.querySelector('.navigation__btn')
       toggleButton.classList.toggle('toggle')
       this.showNavbar = !this.showNavbar

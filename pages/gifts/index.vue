@@ -270,7 +270,7 @@ export default {
     },
   },
   mounted() {
-    mixpanelTrackEvent('Gifting page')
+    mixpanelTrackEvent('Gifts page')
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
   },

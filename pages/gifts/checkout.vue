@@ -542,7 +542,7 @@ export default {
     if (cart.length) {
       next()
     } else {
-      next('gifting')
+      next('gifts')
     }
   },
   data() {
@@ -632,7 +632,7 @@ export default {
       this.openPaymentGateway = true
     },
     continueShopping() {
-      this.$router.push('/gifting')
+      this.$router.push('/gifts')
       this.$store.commit('clearCart')
     },
     closePage() {

@@ -188,7 +188,7 @@ export default {
     },
     checkout() {
       this.close()
-      this.$router.push('/gifting/checkout')
+      this.$router.push('/gifts/checkout')
       mixpanelTrackEvent(`Checkout clicked - Gifting cart`)
     },
   },

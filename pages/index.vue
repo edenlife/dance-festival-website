@@ -1337,8 +1337,8 @@ export default {
           }
         case 'gift':
           return {
-            color: '#FFE8E5',
-            'box-shadow': 'inset 0 -23px 0 #FBE2DF',
+            color: '#00C0EA',
+            'box-shadow': 'inset 0 -23px 0 #D1F2FA',
           }
         default:
           return {

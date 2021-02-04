@@ -857,9 +857,9 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
     },
     submit() {
       this.$v.companyForm.$touch()
-      this.loading = true
       this.companyForm.service = JSON.stringify(this.companyForm.service)
       if (!this.$v.companyForm.$error) {
+        this.loading = true
         fetch('https://api-staging.edenlife.ng/api/v3/website/companypage', {
           method: 'POST',
           headers: {

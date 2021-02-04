@@ -1262,8 +1262,8 @@ export default {
   methods: {
     submitForm() {
       this.$v.bound_fields.$touch()
-      this.loading = true
       if (!this.$v.bound_fields.$error) {
+        this.loading = true
         fetch('https://api-staging.edenlife.ng/api/v3/website/landingpage', {
           method: 'POST',
           headers: {

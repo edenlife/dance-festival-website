@@ -59,7 +59,7 @@
                   <circle cx="4" cy="4" r="4" fill="#03A84E" />
                 </svg>
                 <svg
-                  class="timeline--b"
+                  class="bee"
                   width="3"
                   height="175"
                   viewBox="0 0 2 190"
@@ -69,7 +69,7 @@
                   <path d="M0 0H2V190H0V0Z" fill="#E4E8E6" />
                 </svg>
                 <svg
-                  class="timeline--c"
+                  class="cee"
                   width="8"
                   height="8"
                   viewBox="0 0 8 8"
@@ -79,7 +79,7 @@
                   <circle cx="4" cy="4" r="4" />
                 </svg>
                 <svg
-                  class="timeline--d"
+                  class="dee"
                   width="3"
                   height="205"
                   viewBox="0 0 2 190"
@@ -89,7 +89,7 @@
                   <path d="M0 0H2V190H0V0Z" fill="#E4E8E6" />
                 </svg>
                 <svg
-                  class="timeline--e"
+                  class="eee"
                   width="8"
                   height="8"
                   viewBox="0 0 8 8"
@@ -197,11 +197,11 @@
             </div>
           </div>
 
-          <div class="description__video">
+          <div id="food-video" class="description__video">
             <div class="description__video-item">
-              <video ref="videoRef" muted autoplay>
+              <video ref="videoRef" muted>
                 <source
-                  src="https://res.cloudinary.com/eden-life-inc/video/upload/v1612252104/eden-website-v2/Home_Cleaning_gzu6jt.mp4"
+                  src="https://res.cloudinary.com/eden-life-inc/video/upload/v1612445751/eden-website-v2/031_Food_cvtiw7.mp4"
                   type="video/mp4"
                 />
               </video>
@@ -849,7 +849,7 @@ export default {
     },
   },
   mounted() {
-    this.playVideo()
+    window.addEventListener('scroll', this.isInViewport)
     mixpanelTrackEvent('Food page')
     window.setInterval(() => {
       this.changeText()
@@ -866,9 +866,24 @@ export default {
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
+    window.addEventListener('scroll', this.isInViewport)
   },
   methods: {
     currencyFormat,
+    isInViewport() {
+      const element = document.querySelector('#food-video')
+      const { top, bottom } = element.getBoundingClientRect()
+      const vHeight =
+        window.innerHeight || document.documentElement.clientHeight
+      const isInView = (top > 0 || bottom > 0) && top < vHeight
+      if (isInView) {
+        this.playVideo()
+        document.querySelector('svg.bee').setAttribute('class', 'timeline--b')
+        document.querySelector('svg.cee').setAttribute('class', 'timeline--c')
+        document.querySelector('svg.dee').setAttribute('class', 'timeline--d')
+        document.querySelector('svg.eee').setAttribute('class', 'timeline--e')
+      }
+    },
     fetchMeal() {
       this.lastDateFormat = moment(new Date())
         .endOf('week')
@@ -994,11 +1009,11 @@ export default {
           document.querySelector('.two').className = 'two'
           document.querySelector('.three').className = 'three'
           document.querySelector('.btn--replay').className = 'btn--replay'
-        } else if (this.currentTime > 11 && this.currentTime < 19) {
+        } else if (this.currentTime > 11 && this.currentTime < 23) {
           scrollToElement.scrollLeft = 350
           document.querySelector('.two').className = 'two view'
           document.querySelector('.btn--replay').className = 'btn--replay'
-        } else if (this.currentTime > 21) {
+        } else if (this.currentTime > 25) {
           scrollToElement.scrollLeft = 750
           document.querySelector('.three').className = 'three view'
           document.querySelector('.btn--replay').className = 'btn--replay show'

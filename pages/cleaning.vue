@@ -60,7 +60,7 @@
                   <circle cx="4" cy="4" r="4" fill="#03A84E" />
                 </svg>
                 <svg
-                  class="timeline--b"
+                  class="bee"
                   width="3"
                   height="175"
                   viewBox="0 0 2 190"
@@ -70,7 +70,7 @@
                   <path d="M0 0H2V190H0V0Z" fill="#E4E8E6" />
                 </svg>
                 <svg
-                  class="timeline--c"
+                  class="cee"
                   width="8"
                   height="8"
                   viewBox="0 0 8 8"
@@ -80,7 +80,7 @@
                   <circle cx="4" cy="4" r="4" />
                 </svg>
                 <svg
-                  class="timeline--d"
+                  class="dee"
                   width="3"
                   height="205"
                   viewBox="0 0 2 190"
@@ -90,7 +90,7 @@
                   <path d="M0 0H2V190H0V0Z" fill="#E4E8E6" />
                 </svg>
                 <svg
-                  class="timeline--e"
+                  class="eee"
                   width="8"
                   height="8"
                   viewBox="0 0 8 8"
@@ -201,11 +201,11 @@
             </div>
           </div>
 
-          <div class="description__video">
+          <div id="cleaning-video" class="description__video">
             <div class="description__video-item">
-              <video ref="videoRef" muted autoplay>
+              <video ref="videoRef" muted>
                 <source
-                  src="https://res.cloudinary.com/eden-life-inc/video/upload/v1612252104/eden-website-v2/Home_Cleaning_gzu6jt.mp4"
+                  src="https://res.cloudinary.com/eden-life-inc/video/upload/v1612453847/eden-website-v2/032_Cleaning_fezstm.mp4"
                   type="video/mp4"
                 />
               </video>
@@ -749,7 +749,7 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
     }
   },
   mounted() {
-    this.playVideo()
+    window.addEventListener('scroll', this.isInViewport)
     mixpanelTrackEvent('Cleaning page')
     window.setInterval(() => {
       this.changeText()
@@ -773,9 +773,24 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
+    window.addEventListener('scroll', this.isInViewport)
   },
   methods: {
     currencyFormat,
+    isInViewport() {
+      const element = document.querySelector('#cleaning-video')
+      const { top, bottom } = element.getBoundingClientRect()
+      const vHeight =
+        window.innerHeight || document.documentElement.clientHeight
+      const isInView = (top > 0 || bottom > 0) && top < vHeight
+      if (isInView) {
+        this.playVideo()
+        document.querySelector('svg.bee').setAttribute('class', 'timeline--b')
+        document.querySelector('svg.cee').setAttribute('class', 'timeline--c')
+        document.querySelector('svg.dee').setAttribute('class', 'timeline--d')
+        document.querySelector('svg.eee').setAttribute('class', 'timeline--e')
+      }
+    },
     scrollToFooter(id, label) {
       scrollToApp(id, label)
     },

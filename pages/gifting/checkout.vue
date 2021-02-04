@@ -115,7 +115,7 @@
                       <input
                         id="customerPhoneNumber"
                         v-model.trim="$v.customer.phoneNumber.$model"
-                        oninput="customer.phoneNumber = customer.phoneNumber.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                         type="text"
                         name=""
                         placeholder="Enter phone number"

@@ -15,6 +15,7 @@
     "@nuxtjs/axios": "^5.12.5",
     "@nuxtjs/pwa": "^3.3.4",
     "core-js": "^3.8.2",
+    "flutterwave-vue-v3": "^1.0.5",
     "gsap": "^3.6.0",
     "mixpanel-browser": "^2.41.0",
     "moment": "^2.29.1",
@@ -22,6 +23,7 @@
     "sass": "^1.32.5",
     "sass-loader": "^10.1.1",
     "vue-owl-carousel": "^2.0.3",
+    "vue-paystack": "^2.0.4",
     "vuelidate": "^0.7.6"
   },
   "devDependencies": {

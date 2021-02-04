@@ -1,0 +1,273 @@
+@import '../../style.scss';
+
+.gift-package {
+  padding: 0 0 $gap * 16 0;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &.reverse {
+    flex-direction: row-reverse;
+  }
+
+  &__box {
+    min-height: 500px;
+    margin: auto;
+    flex: 0 0 45%;
+    padding: $gap * 2;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-end;
+
+    &-content {
+      width: 100%;
+      min-height: 60%;
+      background: rgba(33, 49, 42, 0.6);
+      border: 1px solid #57645e;
+      border-radius: 8px;
+      padding: $gap * 2;
+      text-align: left;
+
+      h4 {
+        color: color(eden-neutral-7);
+        margin-bottom: $gap * 3;
+      }
+
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+
+        li {
+          list-style: none;
+          text-align: left;
+          flex: 0 0 50%;
+          color: color(eden-neutral-7);
+          margin-bottom: $gap * 2;
+          position: relative;
+          padding-left: $gap;
+
+          &::before {
+            content: '';
+            position: absolute;
+            height: 5px;
+            width: 5px;
+            border-radius: 8px;
+            background: color(eden-neutral-7);
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  &__description {
+    flex: 0 0 40%;
+    margin: auto;
+    color: color(eden-neutral-1);
+    text-align: left;
+
+    h3 {
+      @include font-size(6xl);
+      @include font-weight(bold);
+      margin-bottom: $gap * 2;
+    }
+
+    p {
+      margin-bottom: $gap * 2;
+      @include font-size(lg);
+      line-height: 29px;
+      @include font-weight(light);
+      width: 90%;
+
+      span {
+        color: color(eden-green-primary) !important;
+      }
+    }
+
+    h4 {
+      @include font-size(3xl);
+      margin-bottom: $gap * 2;
+    }
+
+    .btn {
+      line-height: 23px;
+      @include font-size(lg);
+      background-color: color(eden-green-primary);
+      color: color(eden-neutral-7);
+      border-radius: 4px;
+      transition: all 0.4s ease-in-out;
+      padding: $gap + 6 $gap * 3.2;
+      width: 204px;
+
+      @include respond(xs) {
+        margin-top: $gap * 4;
+        width: unset;
+      }
+      &:hover {
+        box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
+        background-color: color(eden-green-250);
+        color: color(eden-neutral-7);
+      }
+      &:active {
+        background-image: radial-gradient(
+          circle at center right,
+          rgba(0, 141, 64, 0.1) 50%,
+          #008d40 50%
+        );
+      }
+
+      &:disabled {
+        background: #57645e !important;
+        border-color: #57645e;
+        opacity: 0.44;
+        cursor: not-allowed;
+        pointer-events: all !important;
+      }
+
+      &--group {
+        display: flex;
+        align-items: stretch;
+        margin-bottom: $gap * 4;
+
+        input {
+          color: color(eden-neutral-1);
+          border: 1px solid #e4e8e6;
+          background-color: color(eden-neutral-7);
+          outline: none;
+          padding: $gap + 8 0;
+          width: 84px;
+          text-align: center;
+          @include font-size(lg);
+        }
+        input[type='number']::-webkit-inner-spin-button,
+        input[type='number']::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+
+      &--item {
+        color: color(eden-neutral-1);
+        background-color: color(eden-neutral-6);
+        padding: $gap + 8;
+        border: 1px solid #e4e8e6;
+        cursor: pointer;
+        &.plus {
+          border-radius: 0px 8px 8px 0px;
+        }
+        &.minus {
+          border-radius: 8px 0px 0px 8px;
+        }
+      }
+    }
+  }
+
+  @include respond(xl) {
+    &__box {
+      min-height: 300px;
+    }
+
+    &__description {
+      flex: 0 0 45%;
+
+      h3 {
+        @include font-size(3xl);
+      }
+
+      p {
+        line-height: 24px;
+        @include font-size(base);
+      }
+
+      h4 {
+        @include font-size(2xl);
+        margin-bottom: $gap * 2;
+      }
+
+      .btn {
+        &--group {
+          // margin-bottom: 0;
+          input {
+            height: 60px;
+            padding: 0;
+          }
+        }
+
+        &--item {
+          padding: 0;
+          height: 60px;
+          width: 36px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+
+          &.plus {
+            border-radius: 0px 4px 4px 0px;
+          }
+          &.minus {
+            border-radius: 4px 0px 0px 4px;
+          }
+        }
+      }
+    }
+  }
+
+  @include respond(xs) {
+    flex-direction: column;
+    padding: 0 0 $gap * 10 0;
+
+    &.reverse {
+      flex-direction: column;
+    }
+
+    &__box {
+      margin-bottom: $gap * 4.8;
+
+      &-content {
+        ul {
+          li {
+            flex: 0 0 100%;
+          }
+        }
+      }
+    }
+
+    &__description {
+      text-align: center;
+
+      @include respond(xs) {
+        text-align: left;
+        .btn--group {
+          margin-bottom: 0;
+        }
+      }
+      .quantity {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @include respond(xs) {
+          flex-direction: column;
+          align-items: flex-start;
+          .btn {
+            align-self: flex-start;
+          }
+        }
+      }
+    }
+  }
+}

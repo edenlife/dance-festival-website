@@ -192,10 +192,10 @@
               Gift cards and gift boxes for every occasion, right at your
               fingertips.
             </p>
-            <nuxt-link :to="{ path: '/' }" class="btn">
+            <nuxt-link :to="{ path: '/gifting' }" class="btn">
               {{
                 exploreService === 'gifting' || setExploreService
-                  ? 'Coming soon'
+                  ? 'Explore'
                   : ''
               }}
 
@@ -1262,9 +1262,9 @@ export default {
   methods: {
     submitForm() {
       this.$v.bound_fields.$touch()
-      this.loading = true
       if (!this.$v.bound_fields.$error) {
-        fetch('https://api-staging.edenlife.ng/api/v3/website/landingpage', {
+        this.loading = true
+        fetch('https://api.edenlife.ng/api/v3/website/landingpage', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

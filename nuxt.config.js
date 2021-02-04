@@ -90,8 +90,15 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
+  // global env config
+
+  env: {
+    PAYSTACK_KEY_TEST: 'pk_live_78ed64a0265d4e0bdea74e76e7243c577d365219',
+    RAVE_KEY_TEST: 'FLWPUBK-d4dfef720154b7df12637126423b02c5-X',
+  },
+
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['~/plugins/flutterwave'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

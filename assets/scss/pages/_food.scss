@@ -593,6 +593,18 @@
       }
     }
   }
+  &__loader {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: $gap * 4;
+    p {
+      @include font-size(sm);
+      @include font-weight(light);
+      color: color(eden-neutral-3);
+    }
+  }
   .btn {
     color: color(eden-green-primary);
     @include font-size(lg);

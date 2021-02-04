@@ -130,6 +130,7 @@
 </template>
 
 <script>
+import { mixpanelTrackEvent } from '@/plugins/mixpanel'
 import { currencyFormat } from '~/static/functions'
 
 export default {
@@ -188,6 +189,7 @@ export default {
     checkout() {
       this.close()
       this.$router.push('/gifting/checkout')
+      mixpanelTrackEvent(`Checkout clicked - Gifting cart`)
     },
   },
 }

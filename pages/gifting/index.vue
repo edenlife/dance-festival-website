@@ -132,6 +132,7 @@
             class="options__service-item options__service-laundry"
             @mouseenter.stop="exploreService = 'laundry'"
             @mouseleave.stop="exploreService = ''"
+            @click="trackLink('Laundry')"
           >
             <h3>🧺</h3>
             <h5>Laundry</h5>
@@ -169,6 +170,7 @@
             class="options__service-item options__service-cleaning"
             @mouseenter.stop="exploreService = 'cleaning'"
             @mouseleave.stop="exploreService = ''"
+            @click="trackLink('Cleaning')"
           >
             <h3>🏠</h3>
             <h5>Home Cleaning</h5>
@@ -203,6 +205,7 @@
             class="options__service-item options__service-food"
             @mouseenter.stop="exploreService = 'food'"
             @mouseleave.stop="exploreService = ''"
+            @click="trackLink('Food')"
           >
             <h3>🧺</h3>
             <h5>Food</h5>
@@ -280,8 +283,12 @@ export default {
       this.window.height = window.innerHeight
       this.setExploreService = this.window.width < '768'
     },
+    trackLink(service) {
+      mixpanelTrackEvent(`${service} clicked - Gifting (more options)`)
+    },
     scrollTo(ref) {
       this.$refs[ref].scrollIntoView()
+      mixpanelTrackEvent(`Find the perfect gift clicked - Gifting-hero`)
     },
     openCart() {
       this.showCart = true

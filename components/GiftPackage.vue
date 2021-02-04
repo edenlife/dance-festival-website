@@ -15,7 +15,7 @@
       <p v-html="giftType.description"></p>
       <div class="quantity">
         <h4>
-          N
+          NGN
           {{ currencyFormat(giftType.amount) }}
         </h4>
         <div class="btn--group">
@@ -83,6 +83,7 @@
 </template>
 
 <script>
+import { mixpanelTrackEvent } from '@/plugins/mixpanel'
 import { currencyFormat } from '~/static/functions'
 
 export default {
@@ -134,6 +135,7 @@ export default {
         quantity: this.quantity,
       }
       this.$store.commit('addItem', payload)
+      mixpanelTrackEvent(`Add to cart clicked - Gifting`)
     },
   },
 }

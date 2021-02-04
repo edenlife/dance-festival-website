@@ -41,6 +41,7 @@
       ul {
         display: flex;
         flex-wrap: wrap;
+        align-items: flex-start;
 
         li {
           list-style: none;
@@ -193,7 +194,7 @@
 
       .btn {
         &--group {
-          margin-bottom: 0;
+          // margin-bottom: 0;
           input {
             height: 60px;
             padding: 0;
@@ -250,6 +251,9 @@
 
       @include respond(xs) {
         text-align: left;
+        .btn--group {
+          margin-bottom: 0;
+        }
       }
       .quantity {
         display: flex;

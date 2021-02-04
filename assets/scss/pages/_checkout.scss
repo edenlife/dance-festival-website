@@ -70,7 +70,9 @@
       }
 
       p {
-        @include font-size(lg);
+        @include font-size(base);
+        @include font-weight(light);
+
         color: color(eden-neutral-1);
       }
     }
@@ -380,13 +382,15 @@
     flex: 0 0 40%;
     border: 1px solid color(eden-neutral-6);
     border-radius: 8px;
-
+    color: color(eden-neutral-1);
     &-title {
       padding: $gap * 2;
       border-bottom: 1px solid color(eden-neutral-6);
 
       h5 {
         @include font-size(xl);
+        @include font-weight(medium);
+        @include font-family(cerebri);
       }
     }
 
@@ -413,20 +417,23 @@
           }
           div {
             p {
-              @include font-size(xl);
+              @include font-size(base);
               color: color(eden-neutral-1);
               margin-bottom: $gap * 1.5;
+              @include font-weight(regular);
             }
             span {
+              @include font-size(sm);
               cursor: pointer;
               color: color(eden-neutral-2);
             }
           }
         }
         p {
-          @include font-size(xl);
+          @include font-size(base);
           color: color(eden-neutral-1);
           margin-bottom: $gap * 2;
+          @include font-weight(medium);
         }
       }
     }
@@ -442,6 +449,9 @@
 
       p {
         @include font-size(lg);
+        &:last-child {
+          @include font-weight(medium);
+        }
       }
     }
   }
@@ -475,12 +485,13 @@
   }
 
   @include respond(md) {
-    flex-direction: column-reverse;
+    flex-direction: column;
     width: 80%;
     margin: auto;
 
     &__summary {
       width: 100%;
+      margin-top: $gap * 8;
     }
 
     &__form {
@@ -517,7 +528,7 @@
           }
         }
         p {
-          @include font-size(base);
+          @include font-size(sm);
         }
       }
     }

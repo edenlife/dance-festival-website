@@ -236,6 +236,10 @@
           <h3>Current menu</h3>
           <p>{{ firstDateFormat }} - {{ lastDateFormat }}</p>
         </div>
+        <div v-if="!newWeekMeal.length" class="menu__loader">
+          <Loader />
+          <p>Loading menu...</p>
+        </div>
         <!-- <nav class="menu__nav">
           <carousel
             class="carousel-container"
@@ -805,9 +809,9 @@ import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
   components: {
-    // Carousel,
+    // Carousel
+    Loader: () => import('@/components/Loader.vue'),
   },
-
   data() {
     return {
       headerText: [

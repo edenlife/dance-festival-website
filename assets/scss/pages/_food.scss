@@ -218,7 +218,7 @@
           stroke-width: 11;
           stroke-dasharray: 390;
           stroke-dashoffset: 390;
-          animation: dash 16s linear forwards;
+          animation: dash 26s linear forwards;
           animation-delay: 12s;
         }
         @keyframes dash {
@@ -235,7 +235,7 @@
         &--e {
           fill: color(eden-neutral-6);
           animation: circleScale 1s linear forwards;
-          animation-delay: 20s;
+          animation-delay: 25s;
         }
         @keyframes circleScale {
           to {

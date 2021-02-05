@@ -634,12 +634,12 @@
             @click="trackLink('Gifting')"
           >
             <h3>🎁</h3>
-            <h5>Gifting</h5>
+            <h5>Gifts</h5>
             <p>
               Gift cards and gift boxes for every occasion, right at your
               fingertips.
             </p>
-            <nuxt-link :to="{ path: '/gifting' }" class="btn">
+            <nuxt-link :to="{ path: '/gifts' }" class="btn">
               {{
                 exploreService === 'gifting' || setExploreService
                   ? 'Explore'

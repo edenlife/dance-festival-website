@@ -187,12 +187,12 @@
             @click="trackLink('Gifting')"
           >
             <h3>🎁</h3>
-            <h5>Gifting</h5>
+            <h5>Gifts</h5>
             <p>
               Gift cards and gift boxes for every occasion, right at your
               fingertips.
             </p>
-            <nuxt-link :to="{ path: '/gifting' }" class="btn">
+            <nuxt-link :to="{ path: '/gifts' }" class="btn">
               {{
                 exploreService === 'gifting' || setExploreService
                   ? 'Explore'
@@ -228,13 +228,13 @@
         <div class="video__title">
           <h3>Why Eden?</h3>
         </div>
-        <div class="video__item" @click.prevent="showFrame = !showFrame">
+        <div class="video__item">
           <video
-            src="https://res.cloudinary.com/eden-life-inc/video/upload/v1581682950/A_day_in_the_life_of_an_Eden_user_rasjrw.mp4"
+            src="https://res.cloudinary.com/eden-life-inc/video/upload/v1612513087/eden-website-v2/why-eden_c8x7tw.mp4"
             poster="https://res.cloudinary.com/eden-life-inc/image/upload/v1611319513/eden-website-v2/video-thumbnail_crnwew.png"
             controls
-            autoplay
             muted
+            autoplay
           />
         </div>
       </section>
@@ -1075,7 +1075,6 @@ export default {
       showFailedModal: false,
       showSuccessModal: false,
       loading: false,
-      showFrame: false,
       services: [
         { title: 'housecleaning', value: 'cleaning' },
         { title: 'laundry day', value: 'laundry' },

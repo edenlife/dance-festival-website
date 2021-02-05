@@ -165,11 +165,11 @@
             </li>
             <li @click="trackLink('Gifting')">
               <nuxt-link
-                :to="{ path: '/gifting' }"
+                :to="{ path: '/gifts' }"
                 class="footer__bottom-logo"
                 @click.prevent="trackLink('Gifting')"
               >
-                Gifting
+                Gifts
               </nuxt-link>
             </li>
           </ul>

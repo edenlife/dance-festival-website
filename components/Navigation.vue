@@ -220,11 +220,11 @@
                     @mouseleave.stop="service = ''"
                   >
                     <nuxt-link
-                      :to="{ path: '/gifting' }"
+                      :to="{ path: '/gifts' }"
                       class="service__list-item"
                     >
                       <span>🎁</span>
-                      <h5>Gifting</h5>
+                      <h5>Gifts</h5>
                       <svg
                         v-if="service === 'gifting'"
                         width="15"
@@ -383,9 +383,9 @@
                     class="menu--list-item gifting"
                     @click.prevent="handleToggle('Gifting')"
                   >
-                    <nuxt-link :to="{ path: '/gifting' }" class="">
+                    <nuxt-link :to="{ path: '/gifts' }" class="">
                       <span class="icon">🎁</span>
-                      <span>Gifting</span>
+                      <span>Gifts</span>
                     </nuxt-link>
                   </li>
                 </ul>
@@ -530,7 +530,7 @@ export default {
         return {
           'background-color': '#ffffff',
         }
-      } else if (path.includes('gifting')) {
+      } else if (path.includes('gifts')) {
         return {
           'background-color': 'rgba(255, 232, 229, 0.3)',
         }

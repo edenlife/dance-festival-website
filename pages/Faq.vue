@@ -518,7 +518,7 @@
         </div>
         <div class="faq__questions-item">
           <div class="faq__questions-title">
-            <h5>When does my Gardener come to my apartment?</h5>
+            <h5>How do I download the Eden app?</h5>
             <button
               type="button"
               class="expand"

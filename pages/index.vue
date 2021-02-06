@@ -230,7 +230,7 @@
         </div>
         <div class="video__item">
           <video
-            src="https://res.cloudinary.com/eden-life-inc/video/upload/v1612513087/eden-website-v2/why-eden_c8x7tw.mp4"
+            src="https://res.cloudinary.com/eden-life-inc/video/upload/v1612616596/eden-website-v2/EDEN_LIFE__q1rgcz.mp4"
             poster="https://res.cloudinary.com/eden-life-inc/image/upload/v1611319513/eden-website-v2/video-thumbnail_crnwew.png"
             controls
             muted

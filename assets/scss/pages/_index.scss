@@ -419,6 +419,7 @@
     video {
       width: 100% !important;
       height: auto !important;
+      outline: none !important;
     }
     video::-webkit-media-controls-panel {
       padding-bottom: 50px;

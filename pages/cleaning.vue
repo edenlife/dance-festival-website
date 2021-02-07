@@ -203,7 +203,7 @@
 
           <div id="cleaning-video" class="description__video">
             <div class="description__video-item">
-              <video ref="videoRef" muted autoplay playsinline>
+              <video ref="videoRef" muted playsinline>
                 <source
                   src="https://res.cloudinary.com/eden-life-inc/video/upload/v1612453847/eden-website-v2/032_Cleaning_fezstm.mp4"
                   type="video/mp4"

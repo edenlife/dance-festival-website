@@ -193,7 +193,7 @@
 
           <div id="laundry-video" class="description__video">
             <div class="description__video-item">
-              <video ref="videoRef" muted>
+              <video ref="videoRef" muted playsinline>
                 <source
                   src="https://res.cloudinary.com/eden-life-inc/video/upload/v1612453848/eden-website-v2/033_Laundry_jalxqc.mp4"
                   type="video/mp4"

@@ -180,7 +180,6 @@
   &__slider {
     flex: 0 0 50%;
     display: flex;
-    gap: $gap * 3.5;
     &-vertical {
       margin-top: $gap + 5;
       // background-color: color(eden-neutral-6);
@@ -248,6 +247,7 @@
       display: none;
     }
     &-text {
+      margin-left: $gap * 3.5;
       color: color(eden-neutral-1);
       h5 {
         line-height: 31px;
@@ -423,6 +423,7 @@
         display: none;
       }
       &-text {
+        margin-left: 0;
         margin-top: $gap * 3.5;
         overflow: auto;
         display: flex;

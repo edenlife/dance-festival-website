@@ -31,17 +31,17 @@ export default {
       { itemprop: 'description', content: 'Say goodbye to chores forever.' },
       {
         itemprop: 'image',
-        content: 'https://ouredenlifev2.netlify.app/edencard.png',
+        content: 'https://ouredenlife.com/edencard.png',
       },
 
       // Twitter Card data
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@ouredenlife' },
       { name: 'twitter:title', content: 'Eden' },
-      { name: 'twitter:url', content: 'https://ouredenlifev2.netlify.app' },
+      { name: 'twitter:url', content: 'https://ouredenlife.com' },
       {
         name: 'twitter:image',
-        content: 'https://ouredenlifev2.netlify.app/edencard.png',
+        content: 'https://ouredenlife.com/edencard.png',
       },
       {
         name: 'twitter:description',
@@ -53,15 +53,15 @@ export default {
       { name: 'twitter:domain', content: '@ouredenlife' },
       {
         name: 'twitter:image:src',
-        content: 'https://ouredenlifev2.netlify.app/edencard.png',
+        content: 'https://ouredenlife.com/edencard.png',
       },
 
       // Open Graph data
       { property: 'og:title', content: 'Eden' },
-      { property: 'og:url', content: 'https://ouredenlifev2.netlify.app' },
+      { property: 'og:url', content: 'https://ouredenlife.com' },
       {
         property: 'og:image',
-        content: 'https://ouredenlifev2.netlify.app/edencard.png',
+        content: 'https://ouredenlife.com/edencard.png',
       },
       {
         property: 'og:description',

@@ -199,7 +199,7 @@
 
           <div id="food-video" class="description__video">
             <div class="description__video-item">
-              <video ref="videoRef" muted>
+              <video ref="videoRef" muted autoplay>
                 <source
                   src="https://res.cloudinary.com/eden-life-inc/video/upload/v1612445751/eden-website-v2/031_Food_cvtiw7.mp4"
                   type="video/mp4"

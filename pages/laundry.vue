@@ -109,7 +109,7 @@
                   <circle cx="4" cy="4" r="4" fill="#03A84E" />
                 </svg>
                 <svg
-                  class="timeline--b"
+                  class="bee"
                   width="160"
                   height="3"
                   viewBox="0 0 160 3"
@@ -122,7 +122,7 @@
                   />
                 </svg>
                 <svg
-                  class="timeline--c"
+                  class="cee"
                   width="8"
                   height="8"
                   viewBox="0 0 8 8"
@@ -132,7 +132,7 @@
                   <circle cx="4" cy="4" r="4" />
                 </svg>
                 <svg
-                  class="timeline--d"
+                  class="dee"
                   width="160"
                   height="3"
                   viewBox="0 0 160 3"
@@ -145,7 +145,7 @@
                   />
                 </svg>
                 <svg
-                  class="timeline--e"
+                  class="eee"
                   width="8"
                   height="8"
                   viewBox="0 0 8 8"

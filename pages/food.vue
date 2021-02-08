@@ -1081,7 +1081,10 @@ export default {
       }
       if (order === 'monthly' && this.mealsPerWeek > 1) {
         this.mealsPerWeek--
-        this.deliveryPerWeek = 1
+        if (this.mealsPerWeek === 1) {
+          this.deliveryPerWeek = 1
+        }
+
         const freq = this.deliveryPerWeek === 1 ? 'weekly' : 'weekly-twodays'
         this.totalWeeklyPrice = pricing({
           meal: { item: null, frequency: freq, qty: this.mealsPerWeek },

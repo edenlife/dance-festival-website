@@ -542,6 +542,18 @@
               />
             </div>
             <div class="form__input">
+              <label for="phone number">Phone number</label>
+              <input
+                id=""
+                v-model.trim="$v.companyForm.phone_number.$model"
+                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                type="text"
+                name=""
+                placeholder="Enter phone number"
+                :class="{ 'has-error': $v.companyForm.phone_number.$error }"
+              />
+            </div>
+            <div class="form__input">
               <label for="services"
                 >What plans would you like for your team?</label
               >
@@ -761,6 +773,7 @@ export default {
       email: { required, email },
       company_name: { required },
       service: { required },
+      phone_number: { required },
     },
   },
   data() {
@@ -835,6 +848,7 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
         service: [],
         email: '',
         message: '',
+        phone_number: '',
       },
       visible: false,
     }

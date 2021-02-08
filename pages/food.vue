@@ -334,6 +334,9 @@
               <p v-if="item.name && item.name.includes('500ml')">
                 {{ item.name.replace('500ml', '') }}
               </p>
+              <p v-else-if="item.name && item.name.includes('500ML')">
+                {{ item.name.replace('500ML', '') }}
+              </p>
               <p v-else-if="item.name && item.name.includes('1L')">
                 {{ item.name.replace('1L', '') }}
               </p>

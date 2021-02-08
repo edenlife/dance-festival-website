@@ -658,6 +658,9 @@
         }
       }
     }
+    .btn {
+      margin-top: $gap * 4;
+    }
   }
   @include respond(xxl) {
     max-width: 1440px;

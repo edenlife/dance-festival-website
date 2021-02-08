@@ -1090,6 +1090,10 @@ export default {
           id: 'abia',
         },
         {
+          name: 'Abuja',
+          id: 'abuja',
+        },
+        {
           name: 'Adamawa',
           id: 'adamawa',
         },
@@ -1220,10 +1224,6 @@ export default {
         {
           name: 'Zamfara',
           id: 'zamfara',
-        },
-        {
-          name: 'Abuja',
-          id: 'abuja',
         },
       ],
       visible: false,

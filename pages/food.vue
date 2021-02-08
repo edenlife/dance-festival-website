@@ -887,27 +887,27 @@ export default {
       if (index % 4 === 0) {
         return (
           imageUrlTrim +
-          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_40,co_rgb:E4E1DD' +
+          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_80,co_rgb:E4E1DD10' +
           imageFormat
         )
       }
       if (index % 3 === 0) {
         return (
           imageUrlTrim +
-          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_40,co_rgb:DDE0E4' +
+          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_80,co_rgb:DDE0E410' +
           imageFormat
         )
       }
       if (index % 2 === 0) {
         return (
           imageUrlTrim +
-          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_40,co_rgb:D7E3E5' +
+          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_80,co_rgb:D7E3E510' +
           imageFormat
         )
       } else {
         return (
           imageUrlTrim +
-          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_40,co_rgb:D7E3E5' +
+          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_80,co_rgb:D7E3E510' +
           imageFormat
         )
       }

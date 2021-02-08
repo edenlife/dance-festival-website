@@ -940,38 +940,50 @@ export default {
         .then((res) => res.json())
         .then((meals) => {
           this.allMeal = meals.data
-          const breakfast = this.allMeal.filter((item) =>
-            item.class_category.includes('breakfast')
+          const breakfast = this.allMeal.filter(
+            (item) =>
+              item.class_category.includes('breakfast') &&
+              item.combo_image_url !== null
           )
           this.allMeal = this.allMeal.filter(
             (item) => !item.class_category.includes('breakfast')
           )
-          const meat = this.allMeal.filter((item) =>
-            item.class_category.includes('meat')
+          const meat = this.allMeal.filter(
+            (item) =>
+              item.class_category.includes('meat') &&
+              item.combo_image_url !== null
           )
           this.allMeal = this.allMeal.filter(
             (item) => !item.class_category.includes('meat')
           )
-          const traditional = this.allMeal.filter((item) =>
-            item.class_category.includes('traditional')
+          const traditional = this.allMeal.filter(
+            (item) =>
+              item.class_category.includes('traditional') &&
+              item.combo_image_url !== null
           )
           this.allMeal = this.allMeal.filter(
             (item) => !item.class_category.includes('traditional')
           )
-          const salad = this.allMeal.filter((item) =>
-            item.class_category.includes('salad')
+          const salad = this.allMeal.filter(
+            (item) =>
+              item.class_category.includes('salad') &&
+              item.combo_image_url !== null
           )
           this.allMeal = this.allMeal.filter(
             (item) => !item.class_category.includes('salad')
           )
-          const continental = this.allMeal.filter((item) =>
-            item.class_category.includes('continental')
+          const continental = this.allMeal.filter(
+            (item) =>
+              item.class_category.includes('continental') &&
+              item.combo_image_url !== null
           )
           this.allMeal = this.allMeal.filter(
             (item) => !item.class_category.includes('continental')
           )
-          const bird = this.allMeal.filter((item) =>
-            item.class_category.includes('bird')
+          const bird = this.allMeal.filter(
+            (item) =>
+              item.class_category.includes('bird') &&
+              item.combo_image_url !== null
           )
           this.allMeal = this.allMeal.filter(
             (item) => !item.class_category.includes('bird')
@@ -984,7 +996,9 @@ export default {
               item.id !== 3864
           )
           this.allMeal = this.allMeal.filter(
-            (item) => !item.class_category.includes('juice')
+            (item) =>
+              !item.class_category.includes('juice') &&
+              item.combo_image_url !== null
           )
           const others = this.allMeal
 

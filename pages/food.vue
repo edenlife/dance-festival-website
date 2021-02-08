@@ -325,7 +325,11 @@
               />
             </div>
             <div v-else class="menu__list-img">
-              <img :src="item.combo_image_url" :alt="item.name" />
+              <!-- :style="placeholderColorMix(i)" -->
+              <img
+                :src="optimizeImage(item.combo_image_url)"
+                :alt="item.name"
+              />
             </div>
             <figcaption>
               <p v-if="item.name && item.name.includes('500ml')">
@@ -807,7 +811,11 @@
 import moment from 'moment'
 import foodMessages from '~/static/foodMessages'
 import { pricing } from '~/static/pricing'
-import { currencyFormat, scrollToApp } from '~/static/functions'
+import {
+  currencyFormat,
+  scrollToApp,
+  placeholderColorMix,
+} from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
@@ -873,6 +881,13 @@ export default {
   },
   methods: {
     currencyFormat,
+    placeholderColorMix,
+    optimizeImage(imgUrl) {
+      const imageUrlTrim = imgUrl.substring(0, imgUrl.indexOf('/upload'))
+      const imageFormat = imgUrl.substring(imgUrl.indexOf('/upload') + 7)
+      // ,e_shadow:90,x_15,y_15,co_rgb:3e2222
+      return imageUrlTrim + '/upload/f_auto,q_auto' + imageFormat
+    },
     isInViewport() {
       const element = document.querySelector('#food-video')
       const { top, bottom } = element.getBoundingClientRect()

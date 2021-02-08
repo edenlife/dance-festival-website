@@ -940,8 +940,61 @@ export default {
         .then((res) => res.json())
         .then((meals) => {
           this.allMeal = meals.data
+          const breakfast = this.allMeal.filter((item) =>
+            item.class_category.includes('breakfast')
+          )
+          this.allMeal = this.allMeal.filter(
+            (item) => !item.class_category.includes('breakfast')
+          )
+          const meat = this.allMeal.filter((item) =>
+            item.class_category.includes('meat')
+          )
+          this.allMeal = this.allMeal.filter(
+            (item) => !item.class_category.includes('meat')
+          )
+          const traditional = this.allMeal.filter((item) =>
+            item.class_category.includes('traditional')
+          )
+          this.allMeal = this.allMeal.filter(
+            (item) => !item.class_category.includes('traditional')
+          )
+          const salad = this.allMeal.filter((item) =>
+            item.class_category.includes('salad')
+          )
+          this.allMeal = this.allMeal.filter(
+            (item) => !item.class_category.includes('salad')
+          )
+          const continental = this.allMeal.filter((item) =>
+            item.class_category.includes('continental')
+          )
+          this.allMeal = this.allMeal.filter(
+            (item) => !item.class_category.includes('continental')
+          )
+          const bird = this.allMeal.filter((item) =>
+            item.class_category.includes('bird')
+          )
+          this.allMeal = this.allMeal.filter(
+            (item) => !item.class_category.includes('bird')
+          )
+          const juice = this.allMeal.filter((item) =>
+            item.class_category.includes('juice')
+          )
+          this.allMeal = this.allMeal.filter(
+            (item) => !item.class_category.includes('juice')
+          )
+          const others = this.allMeal
+
+          this.allMeal = breakfast.concat(
+            meat,
+            traditional,
+            salad,
+            continental,
+            bird,
+            juice,
+            others
+          )
           this.newWeekMeal =
-            meals.data.length > 12 ? meals.data.slice(0, 12) : meals.data
+            this.allMeal.length > 12 ? this.allMeal.slice(0, 12) : this.allMeal
         })
     },
     fetchAllMeal() {

@@ -976,8 +976,12 @@ export default {
           this.allMeal = this.allMeal.filter(
             (item) => !item.class_category.includes('bird')
           )
-          const juice = this.allMeal.filter((item) =>
-            item.class_category.includes('juice')
+          const juice = this.allMeal.filter(
+            (item) =>
+              item.class_category.includes('juice') &&
+              item.combo_image_url !== null &&
+              item.id !== 3760 &&
+              item.id !== 3864
           )
           this.allMeal = this.allMeal.filter(
             (item) => !item.class_category.includes('juice')

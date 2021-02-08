@@ -35,37 +35,21 @@ export const scrollToApp = (id, description) => {
 export const placeholderColorMix = (id) => {
   const remainder = 0
   switch (remainder) {
-    case id % 10:
-      return {
-        'background-color': 'rgba(33, 150, 83, 0.15)',
-      }
-    case id % 9:
-      return {
-        'background-color': 'rgba(242, 153, 74, 0.15)',
-      }
-    case id % 8:
-      return {
-        'background-color': 'rgba(235, 87, 87, 0.15)',
-      }
-    case id % 7:
-      return {
-        'background-color': 'rgba(47, 128, 237, 0.15)',
-      }
-    case id % 6:
-      return {
-        'background-color': 'rgba(155, 81, 224, 0.15)',
-      }
-    case id % 5:
-      return {
-        'background-color': 'rgba(94, 112, 101, 0.15)',
-      }
     case id % 4:
       return {
-        'background-color': 'rgba(121, 85, 72, 0.15)',
+        'background-color': '#FFF9F5',
+      }
+    case id % 3:
+      return {
+        'background-color': '#F7F8FE',
+      }
+    case id % 2:
+      return {
+        'background-color': '#F0FBFF',
       }
     default:
       return {
-        'background-color': '#EEEEEE',
+        'background-color': '#F0FBFF',
       }
   }
 }

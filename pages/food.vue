@@ -324,10 +324,9 @@
                 :alt="item.name"
               />
             </div>
-            <div v-else class="menu__list-img">
-              <!-- :style="placeholderColorMix(i)" -->
+            <div v-else class="menu__list-img" :style="placeholderColorMix(i)">
               <img
-                :src="optimizeImage(item.combo_image_url)"
+                :src="optimizeImage(item.combo_image_url, i)"
                 :alt="item.name"
               />
             </div>
@@ -882,11 +881,36 @@ export default {
   methods: {
     currencyFormat,
     placeholderColorMix,
-    optimizeImage(imgUrl) {
+    optimizeImage(imgUrl, index) {
       const imageUrlTrim = imgUrl.substring(0, imgUrl.indexOf('/upload'))
       const imageFormat = imgUrl.substring(imgUrl.indexOf('/upload') + 7)
-      // ,e_shadow:90,x_15,y_15,co_rgb:3e2222
-      return imageUrlTrim + '/upload/f_auto,q_auto' + imageFormat
+      if (index % 4 === 0) {
+        return (
+          imageUrlTrim +
+          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_40,co_rgb:E4E1DD' +
+          imageFormat
+        )
+      }
+      if (index % 3 === 0) {
+        return (
+          imageUrlTrim +
+          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_40,co_rgb:DDE0E4' +
+          imageFormat
+        )
+      }
+      if (index % 2 === 0) {
+        return (
+          imageUrlTrim +
+          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_40,co_rgb:D7E3E5' +
+          imageFormat
+        )
+      } else {
+        return (
+          imageUrlTrim +
+          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_40,co_rgb:D7E3E5' +
+          imageFormat
+        )
+      }
     },
     isInViewport() {
       const element = document.querySelector('#food-video')

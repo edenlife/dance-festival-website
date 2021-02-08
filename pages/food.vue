@@ -1081,6 +1081,7 @@ export default {
       }
       if (order === 'monthly' && this.mealsPerWeek > 1) {
         this.mealsPerWeek--
+        this.deliveryPerWeek = 1
         const freq = this.deliveryPerWeek === 1 ? 'weekly' : 'weekly-twodays'
         this.totalWeeklyPrice = pricing({
           meal: { item: null, frequency: freq, qty: this.mealsPerWeek },
@@ -1090,7 +1091,7 @@ export default {
     increaseFrequency() {
       mixpanelTrackEvent(`Increase order frequency clicked - food page`)
 
-      if (this.deliveryPerWeek < 2) {
+      if (this.deliveryPerWeek < 2 && this.mealsPerWeek > 1) {
         this.deliveryPerWeek++
         const freq = this.deliveryPerWeek === 1 ? 'weekly' : 'weekly-twodays'
         this.totalWeeklyPrice = pricing({

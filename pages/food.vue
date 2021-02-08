@@ -315,14 +315,17 @@
         </nav> -->
         <div id="load-more" class="menu__list">
           <figure v-for="(item, i) in newWeekMeal" :key="i">
-            <div v-if="item.image_url === null" class="menu__list-img fallback">
+            <div
+              v-if="item.combo_image_url === null"
+              class="menu__list-img fallback"
+            >
               <img
                 src="https://res.cloudinary.com/eden-life-inc/image/upload/v1612250107/eden-website-v2/food-fallback_gnwkhu.png"
                 :alt="item.name"
               />
             </div>
             <div v-else class="menu__list-img">
-              <img :src="item.image_url" :alt="item.name" />
+              <img :src="item.combo_image_url" :alt="item.name" />
             </div>
             <figcaption>
               <p v-if="item.name && item.name.includes('500ml')">

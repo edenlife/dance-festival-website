@@ -15,8 +15,38 @@ const UNIT_PRICE_MAP = {
     essentials: 13000,
   },
   CLEANING: {
-    'light-cleaning': 5000,
-    fumigation: 20000,
+    'light-cleaning': {
+      1: 4000,
+      2: 6000,
+      3: 7000,
+      4: 10000,
+      5: 11000,
+      6: 13000,
+      7: 14000,
+      8: 15000,
+      9: 16000,
+      10: 17000,
+    },
+    'deep-cleaning': {
+      1: 20000,
+      2: 25000,
+      3: 35000,
+      4: 45000,
+      5: 55000,
+      6: 65000,
+      7: 70000,
+      8: 80000,
+      9: 90000,
+      10: 100000,
+    },
+    fumigation: {
+      1: 15000,
+      2: 25000,
+      3: 35000,
+      4: 55000,
+      5: 60000,
+      6: 70000,
+    },
   },
   LAUNDRY: {
     'wash-and-iron': 8000,
@@ -42,21 +72,21 @@ export const pricing = (services) => {
     },
     cleaning: ({ item, frequency, qty }) => {
       const itemKey = item.toLowerCase().split(' ').join('-')
-      const itemUnitPrice = UNIT_PRICE_MAP.CLEANING[itemKey] || 5000
-      const monthlyFrequency = TIMES_PER_MONTH[frequency]
-      let additionalRoomsCharge
-      switch (item) {
-        case 'light-cleaning':
-          additionalRoomsCharge = (parseInt(qty) - 1) * 500
-          break
-        case 'fumigation':
-          additionalRoomsCharge = (parseInt(qty) - 1) * 2500
-          break
-        default:
-          additionalRoomsCharge = (parseInt(qty) - 1) * 500
-          break
+      if (qty > 10 && item === 'light-cleaning') {
+        const monthlyFrequency = TIMES_PER_MONTH[frequency]
+        const addition = (qty - 10) * 1000
+        const unitPrice = 17000 + addition
+        return unitPrice * monthlyFrequency
+      } else if (qty > 10 && item === 'deep-cleaning') {
+        const monthlyFrequency = TIMES_PER_MONTH[frequency]
+        const addition = (qty - 10) * 10000
+        const unitPrice = 100000 + addition
+        return unitPrice * monthlyFrequency
+      } else {
+        const unitPrice = UNIT_PRICE_MAP.CLEANING[itemKey][qty]
+        const monthlyFrequency = TIMES_PER_MONTH[frequency]
+        return unitPrice * monthlyFrequency
       }
-      return (itemUnitPrice + additionalRoomsCharge) * monthlyFrequency
     },
     laundry: ({ item, frequency, qty }) => {
       const itemKey = item.toLowerCase().split(' ').join('-')

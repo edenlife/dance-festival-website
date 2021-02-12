@@ -30,9 +30,9 @@
 
   &--hero {
     background-color: rgba(255, 232, 229, 0.3);
-    margin-top: 103px;
+    margin-top: 143px;
     @include respond(md) {
-      margin-top: 100px;
+      margin-top: 169px;
     }
   }
 }

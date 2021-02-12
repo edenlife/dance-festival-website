@@ -93,7 +93,7 @@ export default {
 
     // Global site tag (gtag.js) - Google Analytics
     {
-      src: 'https://www.googletagmanager.com/gtag/js?id=G-5QEP8DKZL1',
+      src: 'https://www.googletagmanager.com/gtag/js?id=UA-140804740-1',
       type: 'text/javascript',
       body: true,
       defer: true,
@@ -103,7 +103,7 @@ export default {
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
     
-      gtag('config', 'G-5QEP8DKZL1');`,
+      gtag('config', 'UA-140804740-1');`,
       type: 'text/javascript',
       body: true,
       defer: true,
@@ -138,6 +138,12 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    [
+      '@nuxtjs/google-analytics',
+      {
+        id: process.env.GA_ID || '',
+      },
+    ],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

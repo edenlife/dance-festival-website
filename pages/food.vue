@@ -347,7 +347,7 @@
           </figure>
         </div>
         <button
-          v-if="newWeekMeal.length == 12"
+          v-if="newWeekMeal.length < 12"
           class="btn"
           @click.prevent="fetchFewMeal()"
         >

@@ -317,7 +317,7 @@
                 <circle cx="3" cy="3" r="3" fill="#61DB98" />
               </svg>
             </li>
-            <!-- <li
+            <li
               :class="{ active: plan === 'deep' }"
               @click.prevent="plan = 'deep'"
             >
@@ -332,7 +332,7 @@
               >
                 <circle cx="3" cy="3" r="3" fill="#61DB98" />
               </svg>
-            </li> -->
+            </li>
           </ul>
           <!--  -->
           <transition name="slide-fade">
@@ -403,6 +403,10 @@
                     </svg>
                   </button>
                 </div>
+                <p class="note">
+                  Note that rooms include bedrooms, bathrooms, living rooms,
+                  kitchens, stores and studies.
+                </p>
               </div>
               <div class="plan__price-item">
                 <p><span class="number">Frequency</span></p>
@@ -440,13 +444,14 @@
               </div>
             </div>
           </transition>
-          <!-- <transition name="slide-fade">
+          <transition name="slide-fade">
             <div v-if="plan === 'deep'" class="plan__price-light">
               <div class="plan__price-item">
                 <p>
-                  Recommended for once a week or every two weeks. This service
-                  cleans all your rooms, dusts all your surfaces, scrubs all
-                  your toilets, and does the dishes in the kitchen.
+                  Recommended once every three months (or when moving in/out of
+                  a home). This service gives your home a more intense cleaning
+                  treatment, with lots of internal scrubbing and external
+                  polishing.
                 </p>
                 <p>
                   <span class="number">Number of rooms</span>
@@ -508,6 +513,10 @@
                     </svg>
                   </button>
                 </div>
+                <p class="note">
+                  Note that rooms include bedrooms, bathrooms, living rooms,
+                  kitchens, stores and studies.
+                </p>
               </div>
               <div class="plan__price-item">
                 <p><span class="number">Frequency</span></p>
@@ -544,7 +553,7 @@
                 <p>Monthly</p>
               </div>
             </div>
-          </transition> -->
+          </transition>
         </div>
       </section>
     </div>
@@ -765,7 +774,7 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
     })
     this.totalDeepPrice = pricing({
       cleaning: {
-        item: 'fumigation',
+        item: 'deep-cleaning',
         frequency: this.deepFrequency,
         qty: this.deep,
       },
@@ -823,7 +832,7 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
         this.deep++
         this.totalDeepPrice = pricing({
           cleaning: {
-            item: 'fumigation',
+            item: 'deep-cleaning',
             frequency: this.deepFrequency,
             qty: this.deep,
           },
@@ -848,7 +857,7 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
         this.deep--
         this.totalDeepPrice = pricing({
           cleaning: {
-            item: 'fumigation',
+            item: 'deep-cleaning',
             frequency: this.deepFrequency,
             qty: this.deep,
           },
@@ -871,7 +880,7 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
       this.deepFrequency = freq
       this.totalDeepPrice = pricing({
         cleaning: {
-          item: 'fumigation',
+          item: 'deep-cleaning',
           frequency: this.deepFrequency,
           qty: this.deep,
         },

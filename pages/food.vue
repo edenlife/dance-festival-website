@@ -334,6 +334,9 @@
               <p v-if="item.name && item.name.includes('500ml')">
                 {{ item.name.replace('500ml', '') }}
               </p>
+              <p v-else-if="item.name && item.name.includes('500ML')">
+                {{ item.name.replace('500ML', '') }}
+              </p>
               <p v-else-if="item.name && item.name.includes('1L')">
                 {{ item.name.replace('1L', '') }}
               </p>
@@ -344,14 +347,14 @@
           </figure>
         </div>
         <button
-          v-if="newWeekMeal.length == 12"
+          v-if="allMeal.length > 12 && !showAllMeal"
           class="btn"
           @click.prevent="fetchFewMeal()"
         >
           See more
         </button>
         <button
-          v-if="newWeekMeal.length > 12"
+          v-if="newWeekMeal.length > 12 && showAllMeal"
           class="btn"
           @click.prevent="fetchAllMeal()"
         >
@@ -849,6 +852,7 @@ export default {
       firstDateFormat: null,
       lastDateFormat: null,
       allMeal: [],
+      showAllMeal: false,
     }
   },
 
@@ -940,20 +944,91 @@ export default {
         .then((res) => res.json())
         .then((meals) => {
           this.allMeal = meals.data
+          const breakfast = this.allMeal.filter(
+            (item) =>
+              item.class_category.includes('breakfast') &&
+              item.combo_image_url !== null
+          )
+          this.allMeal = this.allMeal.filter(
+            (item) => !item.class_category.includes('breakfast')
+          )
+          const meat = this.allMeal.filter(
+            (item) =>
+              item.class_category.includes('meat') &&
+              item.combo_image_url !== null
+          )
+          this.allMeal = this.allMeal.filter(
+            (item) => !item.class_category.includes('meat')
+          )
+          const traditional = this.allMeal.filter(
+            (item) =>
+              item.class_category.includes('traditional') &&
+              item.combo_image_url !== null
+          )
+          this.allMeal = this.allMeal.filter(
+            (item) => !item.class_category.includes('traditional')
+          )
+          const salad = this.allMeal.filter(
+            (item) =>
+              item.class_category.includes('salad') &&
+              item.combo_image_url !== null
+          )
+          this.allMeal = this.allMeal.filter(
+            (item) => !item.class_category.includes('salad')
+          )
+          const continental = this.allMeal.filter(
+            (item) =>
+              item.class_category.includes('continental') &&
+              item.combo_image_url !== null
+          )
+          this.allMeal = this.allMeal.filter(
+            (item) => !item.class_category.includes('continental')
+          )
+          const bird = this.allMeal.filter(
+            (item) =>
+              item.class_category.includes('bird') &&
+              item.combo_image_url !== null
+          )
+          this.allMeal = this.allMeal.filter(
+            (item) => !item.class_category.includes('bird')
+          )
+          const juice = this.allMeal.filter(
+            (item) =>
+              item.class_category.includes('juice') &&
+              item.combo_image_url !== null &&
+              item.id !== 3760 &&
+              item.id !== 3864
+          )
+          this.allMeal = this.allMeal.filter(
+            (item) =>
+              !item.class_category.includes('juice') &&
+              item.combo_image_url !== null
+          )
+          const others = this.allMeal
+
+          this.allMeal = breakfast.concat(
+            meat,
+            traditional,
+            salad,
+            continental,
+            bird,
+            juice,
+            others
+          )
           this.newWeekMeal =
-            meals.data.length > 12 ? meals.data.slice(0, 12) : meals.data
+            this.allMeal.length > 12 ? this.allMeal.slice(0, 12) : this.allMeal
         })
     },
     fetchAllMeal() {
       this.fetchMeal()
       mixpanelTrackEvent('See less meals clicked - food page')
-
+      this.showAllMeal = !this.showAllMeal
       const scrollToElement = document.querySelector('#load-more')
       scrollToElement.scrollIntoView()
     },
     fetchFewMeal() {
       mixpanelTrackEvent('See more meals clicked - food page')
-
+      this.showAllMeal = !this.showAllMeal
       this.newWeekMeal = this.allMeal
     },
     changeText() {
@@ -1007,6 +1082,10 @@ export default {
       }
       if (order === 'monthly' && this.mealsPerWeek > 1) {
         this.mealsPerWeek--
+        if (this.mealsPerWeek === 1) {
+          this.deliveryPerWeek = 1
+        }
+
         const freq = this.deliveryPerWeek === 1 ? 'weekly' : 'weekly-twodays'
         this.totalWeeklyPrice = pricing({
           meal: { item: null, frequency: freq, qty: this.mealsPerWeek },
@@ -1016,7 +1095,7 @@ export default {
     increaseFrequency() {
       mixpanelTrackEvent(`Increase order frequency clicked - food page`)
 
-      if (this.deliveryPerWeek < 2) {
+      if (this.deliveryPerWeek < 2 && this.mealsPerWeek > 1) {
         this.deliveryPerWeek++
         const freq = this.deliveryPerWeek === 1 ? 'weekly' : 'weekly-twodays'
         this.totalWeeklyPrice = pricing({

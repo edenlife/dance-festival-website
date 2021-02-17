@@ -704,6 +704,12 @@
           @include font-weight(light);
         }
       }
+      .note {
+        font-size: 14px;
+        line-height: 21px;
+        font-style: italic;
+        margin-top: $gap + 6;
+      }
       .btn {
         &--group {
           display: flex;

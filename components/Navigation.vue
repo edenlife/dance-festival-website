@@ -1,11 +1,5 @@
 <template>
   <div id="navigation-container" class="container" :style="getColor()">
-    <div v-if="showGiftBanner" class="banner">
-      Omo! It's almost Valentine and there's no chocolate within a mile of
-      Lagos. But you're my guy. So if you pay now, we'll run it and deliver your
-      gift basket by Wednesday
-    </div>
-
     <nav
       id="navigation-top"
       class="navigation"
@@ -457,11 +451,6 @@ export default {
     $route() {
       const getRoute = this.$nuxt.$route.path
       this.currentRoute = getRoute.replace('/', '')
-      if (this.currentRoute === 'gifts') {
-        this.showGiftBanner = true
-      } else {
-        this.showGiftBanner = false
-      }
     },
   },
   mounted() {

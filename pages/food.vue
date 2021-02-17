@@ -347,14 +347,14 @@
           </figure>
         </div>
         <button
-          v-if="newWeekMeal.length < 12"
+          v-if="allMeal.length > 12 && !showAllMeal"
           class="btn"
           @click.prevent="fetchFewMeal()"
         >
           See more
         </button>
         <button
-          v-if="newWeekMeal.length > 12"
+          v-if="newWeekMeal.length > 12 && showAllMeal"
           class="btn"
           @click.prevent="fetchAllMeal()"
         >
@@ -852,6 +852,7 @@ export default {
       firstDateFormat: null,
       lastDateFormat: null,
       allMeal: [],
+      showAllMeal: false,
     }
   },
 
@@ -1021,13 +1022,13 @@ export default {
     fetchAllMeal() {
       this.fetchMeal()
       mixpanelTrackEvent('See less meals clicked - food page')
-
+      this.showAllMeal = !this.showAllMeal
       const scrollToElement = document.querySelector('#load-more')
       scrollToElement.scrollIntoView()
     },
     fetchFewMeal() {
       mixpanelTrackEvent('See more meals clicked - food page')
-
+      this.showAllMeal = !this.showAllMeal
       this.newWeekMeal = this.allMeal
     },
     changeText() {

@@ -347,7 +347,7 @@
           </figure>
         </div>
         <button
-          v-if="allMeal.length > 12 && !showAllMeal"
+          v-if="newWeekMeal.length && allMeal.length > 12 && !showAllMeal"
           class="btn"
           @click.prevent="fetchFewMeal()"
         >
@@ -877,6 +877,12 @@ export default {
       meal: { item: null, frequency: 'weekly', qty: this.mealsPerWeek },
     })
     this.fetchMeal()
+
+    // scroll to menu
+    const getRoute = this.$nuxt.$route.fullPath
+    if (getRoute.includes('current-menu')) {
+      this.scrollToMenu()
+    }
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
@@ -1043,7 +1049,6 @@ export default {
       } else this.setExploreService = false
     },
     scrollToMenu() {
-      // this.activeTabIndex = id
       const scrollToElement = document.querySelector('#menu-options')
       scrollToElement.scrollIntoView()
     },

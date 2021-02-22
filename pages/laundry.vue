@@ -884,7 +884,7 @@ export default {
       })
     },
     playVideo() {
-      mixpanelTrackEvent('How it works replay - cleaning')
+      mixpanelTrackEvent('How it works replay - laundry')
       const vid = document.querySelector('video')
       vid.play()
       this.videoControl()

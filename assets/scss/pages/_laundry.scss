@@ -6,7 +6,6 @@
     background: color(eden-purple-50)
       url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611849815/eden-website-v2/eden-stamp_trgxux.svg')
       no-repeat bottom 6% left 2%;
-    margin-top: 100px;
     @include respond(md) {
       background: color(eden-purple-50)
         url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611849815/eden-website-v2/eden-stamp_trgxux.svg')
@@ -54,7 +53,7 @@
 .hero {
   margin: 0 auto;
   width: 83%;
-  padding: $gap * 10 0 $gap * 12.8 0;
+  padding: $gap * 20 0 $gap * 12.8 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -123,7 +122,7 @@
 
   @include respond(md) {
     flex-direction: column;
-    padding: $gap * 6.8 0 $gap * 22.3 0;
+    padding: $gap * 16.8 0 $gap * 22.3 0;
 
     width: 100%;
     &__title {

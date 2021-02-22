@@ -7,7 +7,7 @@
     background-image: url('~@/assets/images/faq-bg1.svg'),
       url('~@/assets/images/faq-bg2.svg'), url('~@/assets/images/faq-bg3.svg'),
       url('~@/assets/images/faq-bg4.svg');
-    background-position: top 15% left 10%, top 10% right 10%, top 60% left 5%,
+    background-position: top 25% left 10%, top 18% right 10%, top 60% left 5%,
       bottom right 11%;
     background-repeat: no-repeat;
     @include respond(md) {
@@ -26,7 +26,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: $gap * 10 0 $gap * 7.8 0;
+    margin-bottom: $gap * 7.8;
+    padding-top: $gap * 10;
     color: color(eden-neutral-1);
 
     h1 {

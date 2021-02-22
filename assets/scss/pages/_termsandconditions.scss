@@ -7,7 +7,8 @@
 .terms {
   &__header {
     width: 83%;
-    margin: $gap * 18 auto $gap * 8 auto;
+    margin: 0 auto $gap * 8 auto;
+    padding-top: $gap * 18;
     color: color(eden-neutral-1);
     h1 {
       @include font-size(7xl);
@@ -45,7 +46,8 @@
     }
 
     @include respond(md) {
-      margin: $gap * 18 auto $gap * 8 auto;
+      margin: 0 auto $gap * 8 auto;
+      padding-top: $gap * 18;
       width: 90%;
       h1 {
         @include font-size(5xl);
@@ -69,7 +71,7 @@
     }
     @include respond(xxl) {
       max-width: 1440px;
-      margin: $gap * 18 auto $gap * 2.9 auto;
+      margin: 0 auto $gap * 2.9 auto;
     }
   }
 

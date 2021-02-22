@@ -4,7 +4,6 @@
   &--hero {
     width: 100%;
     background-color: color(eden-blue-50);
-    margin-top: 100px;
   }
   &--description {
     width: 100%;
@@ -23,7 +22,7 @@
 .hero {
   margin: 0 auto;
   width: 83%;
-  padding: $gap * 10 0 $gap * 17 0;
+  padding: $gap * 20 0 $gap * 17 0;
   background-color: color(eden-blue-50);
   display: flex;
   justify-content: space-between;
@@ -88,7 +87,7 @@
   @include respond(md) {
     flex-direction: column;
     width: 100%;
-    padding: $gap * 10 0 $gap * 13 0;
+    padding: $gap * 20 0 $gap * 13 0;
 
     &__title {
       width: 100%;

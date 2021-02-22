@@ -4,7 +4,6 @@
   width: 100%;
   &--hero {
     background-color: #fff9f5;
-    margin-top: 100px;
   }
   &--services {
     background: color(eden-neutral-7)
@@ -58,7 +57,7 @@
 .hero {
   margin: 0 auto;
   width: 83%;
-  padding: $gap * 2.6 0 $gap * 5.3 0;
+  padding: $gap * 12.6 0 $gap * 5.3 0;
   background: #fff9f5
     url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611303561/eden-website-v2/hero-bg1_omm6sr.svg')
     no-repeat center;
@@ -137,7 +136,7 @@
   @include respond(md) {
     flex-direction: column;
     width: 100%;
-    padding: $gap * 10 0 $gap * 17 0;
+    padding: $gap * 20 0 $gap * 17 0;
     background: #fff9f5
       url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611670549/eden-website-v2/hero-bg-mobile_esankk.svg')
       no-repeat;

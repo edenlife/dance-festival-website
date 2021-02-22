@@ -294,7 +294,7 @@
       </section>
     </div>
 
-    <div class="container--questions">
+    <div id="waiting-list" class="container--questions">
       <section class="questions">
         <div class="questions__title">
           <h3>You have questions?<br />We have answers.</h3>
@@ -1254,6 +1254,12 @@ export default {
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
     mixpanelTrackEvent('Landing page')
+
+    // scroll to questions
+    const getRoute = this.$nuxt.$route.fullPath
+    if (getRoute.includes('join-the-list')) {
+      this.scrollToQuestions()
+    }
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
@@ -1294,6 +1300,10 @@ export default {
     },
     scrollTo(id, label) {
       scrollToApp(id, label)
+    },
+    scrollToQuestions() {
+      const scrollToElement = document.querySelector('#waiting-list')
+      scrollToElement.scrollIntoView()
     },
     scrollToVideo(ref) {
       mixpanelTrackEvent('Watch the video clicked - homepage')

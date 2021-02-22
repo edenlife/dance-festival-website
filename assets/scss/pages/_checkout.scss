@@ -4,7 +4,8 @@
   width: 100%;
 
   &--checkout {
-    margin: $gap * 10 0 $gap * 15;
+    margin-bottom: $gap * 15;
+    padding-top: $gap * 10;
   }
 }
 

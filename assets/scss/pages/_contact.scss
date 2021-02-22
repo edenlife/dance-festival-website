@@ -11,7 +11,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: $gap * 18 0 $gap * 2.9 0;
+    margin-bottom: $gap * 2.9;
+    padding-top: $gap * 18;
     color: color(eden-neutral-1);
     h1 {
       @include font-size(7xl);
@@ -28,7 +29,8 @@
     }
 
     @include respond(md) {
-      margin: $gap * 18 auto $gap * 2.9 auto;
+      margin: 0 auto $gap * 2.9 auto;
+      padding-top: $gap * 18;
       width: 90%;
       h1 {
         @include font-size(5xl);
@@ -40,7 +42,7 @@
     }
     @include respond(xxl) {
       max-width: 1440px;
-      margin: $gap * 18 auto $gap * 2.9 auto;
+      margin: 0 auto $gap * 2.9 auto;
     }
   }
 

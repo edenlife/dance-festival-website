@@ -532,7 +532,7 @@ export default {
         }
       } else if (path.includes('gifts')) {
         return {
-          'background-color': 'rgba(255, 232, 229, 0.3)',
+          'background-color': '#fff8f7',
         }
       } else if (path.includes('about_us')) {
         return {

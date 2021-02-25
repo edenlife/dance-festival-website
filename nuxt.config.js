@@ -75,6 +75,11 @@ export default {
         property: 'og:site_name',
         content: 'Eden',
       },
+      {
+        hid: 'og:type',
+        property: 'og:title',
+        content: 'Eden',
+      },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },

@@ -76,7 +76,7 @@ export default {
         content: 'Eden',
       },
       {
-        hid: 'og:type',
+        hid: 'og:title',
         property: 'og:title',
         content: 'Eden',
       },

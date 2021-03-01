@@ -13,6 +13,11 @@ export default {
       { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
 
+      {
+        name: 'google-site-verification',
+        content: 'DY7nD-yaw-f6Zbh_Mxq_k5Q2_W3nQV4MUhOpQaVDajA',
+      },
+
       { name: 'author', content: 'Eden Life Concierge Ltd' },
       { name: 'theme-color', content: '#20B26D' },
       {

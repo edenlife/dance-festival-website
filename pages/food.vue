@@ -943,54 +943,69 @@ export default {
           this.allMeal = meals.data
           const breakfast = this.allMeal.filter(
             (item) =>
+              item.class_category &&
               item.class_category.includes('breakfast') &&
               item.combo_image_url !== null
           )
           this.allMeal = this.allMeal.filter(
-            (item) => !item.class_category.includes('breakfast')
+            (item) =>
+              item.class_category && !item.class_category.includes('breakfast')
           )
           const meat = this.allMeal.filter(
             (item) =>
+              item.class_category &&
               item.class_category.includes('meat') &&
               item.combo_image_url !== null
           )
           this.allMeal = this.allMeal.filter(
-            (item) => !item.class_category.includes('meat')
+            (item) =>
+              item.class_category && !item.class_category.includes('meat')
           )
           const traditional = this.allMeal.filter(
             (item) =>
+              item.class_category &&
               item.class_category.includes('traditional') &&
               item.combo_image_url !== null
           )
           this.allMeal = this.allMeal.filter(
-            (item) => !item.class_category.includes('traditional')
+            (item) =>
+              item.class_category &&
+              !item.class_category.includes('traditional')
           )
           const salad = this.allMeal.filter(
             (item) =>
+              item.class_category &&
               item.class_category.includes('salad') &&
               item.combo_image_url !== null
           )
           this.allMeal = this.allMeal.filter(
-            (item) => !item.class_category.includes('salad')
+            (item) =>
+              item.class_category && !item.class_category.includes('salad')
           )
           const continental = this.allMeal.filter(
             (item) =>
+              item.class_category &&
               item.class_category.includes('continental') &&
               item.combo_image_url !== null
           )
           this.allMeal = this.allMeal.filter(
-            (item) => !item.class_category.includes('continental')
+            (item) =>
+              item.class_category &&
+              !item.class_category.includes('continental')
           )
           const bird = this.allMeal.filter(
             (item) =>
+              item.class_category &&
               item.class_category.includes('bird') &&
               item.combo_image_url !== null
           )
           this.allMeal = this.allMeal.filter(
-            (item) => !item.class_category.includes('bird')
+            (item) =>
+              item.class_category && !item.class_category.includes('bird')
           )
           const juice = this.allMeal.filter(
             (item) =>
+              item.class_category &&
               item.class_category.includes('juice') &&
               item.combo_image_url !== null &&
               item.id !== 3760 &&
@@ -998,6 +1013,7 @@ export default {
           )
           this.allMeal = this.allMeal.filter(
             (item) =>
+              item.class_category &&
               !item.class_category.includes('juice') &&
               item.combo_image_url !== null
           )

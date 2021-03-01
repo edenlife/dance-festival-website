@@ -15,7 +15,7 @@ export default {
 
       {
         name: 'google-site-verification',
-        content: 'DY7nD-yaw-f6Zbh_Mxq_k5Q2_W3nQV4MUhOpQaVDajA',
+        content: 'hR_rl1tIEYSU12wBm7rMnAD4rGO1O6lkyqRYLCuEMMM',
       },
 
       { name: 'author', content: 'Eden Life Concierge Ltd' },

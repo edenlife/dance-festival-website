@@ -10,15 +10,17 @@
           <div class="pricing__form-slider">
             <div class="pricing__form-slider--title">
               <p>What is your estimate monthly expense?</p>
-              <h3>₦100,000+</h3>
+              <h3>
+                <span v-if="estimate === '5'">+</span>₦{{ estimatedPrice }}
+              </h3>
             </div>
             <div class="range">
               <input
                 id="range"
                 v-model="estimate"
                 type="range"
-                min="1"
-                max="6"
+                min="0"
+                max="5"
                 steps="1"
                 value="1"
                 class="range-input"
@@ -70,9 +72,39 @@
         </div>
       </div>
       <div class="pricing__summary">
-        <div class="pricing__plan">
+        <div v-if="estimate === '5'" class="pricing__plan">
           <p class="pricing__plan-title">
-            For <span>₦100,000</span> monthly, you can get:
+            Yeah. You definitely deserve a custom plan from us. Please enter
+            your information below.
+          </p>
+          <div class="pricing__plan-input">
+            <label for="email"
+              >What is your email address?
+              <span>(you get 20% off your first month 💚)</span></label
+            >
+            <input
+              id=""
+              type="email"
+              name=""
+              placeholder="Enter your email address"
+            />
+          </div>
+          <div class="pricing__plan-input number">
+            <label for="phone">Phone Number</label>
+            <input
+              id=""
+              type="text"
+              name=""
+              placeholder="Enter your phone number"
+            />
+          </div>
+          <button class="pricing__plan-btn sales-btn">
+            Contact Sales Team
+          </button>
+        </div>
+        <div v-else class="pricing__plan">
+          <p class="pricing__plan-title">
+            For <span>₦{{ estimatedPrice }}</span> monthly, you can get:
           </p>
           <ul>
             <p><span>Food plan</span> <span>₦ 6,500</span></p>
@@ -107,25 +139,33 @@
               <p>Not what you want?</p>
               <button class="reconfigure-btn">Reconfigure.</button>
             </div>
-            <button class="pricing__plan-btn">Break up with chores</button>
-          </div>
-          <div class="pricing__plan-input">
-            <label for="email"
-              >What is your email address?
-              <span>(you get 20% off your first month 💚)</span></label
+            <button
+              v-if="!displayForm"
+              class="pricing__plan-btn"
+              @click.prevent="displayForm = !displayForm"
             >
-            <input
-              id=""
-              type="email"
-              name=""
-              placeholder="Enter your email address"
-            />
-            <p>
-              We’ll take you to download the app. You don’t have to do anything.
-              Just sit back, relax and enjoy your discount.
-            </p>
-            <button class="pricing__plan-btn">Start your Eden Life</button>
+              Break up with chores
+            </button>
           </div>
+          <transition v-if="displayForm" name="slide-fade">
+            <div class="pricing__plan-input">
+              <label for="email"
+                >What is your email address?
+                <span>(you get 20% off your first month 💚)</span></label
+              >
+              <input
+                id=""
+                type="email"
+                name=""
+                placeholder="Enter your email address"
+              />
+              <p>
+                We’ll take you to download the app. You don’t have to do
+                anything. Just sit back, relax and enjoy your discount.
+              </p>
+              <button class="pricing__plan-btn">Start your Eden Life</button>
+            </div>
+          </transition>
         </div>
       </div>
     </section>
@@ -133,20 +173,34 @@
 </template>
 
 <script>
+import { currencyFormat } from '~/static/functions'
+
 export default {
   data() {
     return {
       selectedService: [],
       services: ['Food', 'Laundry', 'Cleaning'],
-      estimate: 1,
+      estimate: 0,
+      displayForm: false,
+      estimatedPrice: '10,000',
+      priceList: [
+        '10,000',
+        '20,000',
+        '50,000',
+        '100,000',
+        '150,000',
+        '150,000',
+      ],
     }
   },
   mounted() {},
   methods: {
+    currencyFormat,
     getEstimate() {
+      this.estimatedPrice = this.priceList[this.estimate]
       const labels = document.querySelectorAll('.range-labels li')
       labels.forEach((el, i) => {
-        if (this.estimate > i) {
+        if (this.estimate >= i) {
           el.classList.add('selected')
         } else {
           el.classList.remove('selected')
@@ -159,8 +213,7 @@ export default {
         'moz-range-track',
         'ms-track',
       ]
-      const curVal = this.estimate - 1
-      const val = curVal * 20
+      const val = this.estimate * 20
 
       for (let i = 0; i < prefs.length; i++) {
         document

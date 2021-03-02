@@ -342,7 +342,7 @@
     backdrop-filter: blur(8px);
     border-radius: 16px;
     &-title {
-      line-height: 25px;
+      line-height: 32px;
       @include font-size(xl);
       margin-bottom: $gap * 1.2;
       span {
@@ -472,6 +472,7 @@
         padding: $gap + 8 $gap + 6;
         margin-top: $gap - 2;
         margin-bottom: $gap + 6;
+        outline: none;
         @include font-size(lg);
         @include font-family(cerebri);
         &::placeholder {
@@ -479,11 +480,31 @@
           @include font-weight(light);
         }
       }
+      &.number {
+        margin-top: $gap * 3.2;
+      }
+
       p {
         @include font-size(sm);
         line-height: 21px;
         margin-bottom: $gap * 3.2;
       }
+    }
+    .sales-btn {
+      margin-top: $gap * 3.2;
+      display: flex;
+      margin-left: auto;
+    }
+    .slide-fade-enter-active {
+      transition: all 0.5s ease;
+    }
+    .slide-fade-leave-active {
+      opacity: 0;
+    }
+    .slide-fade-enter,
+    .slide-fade-leave-to {
+      transform: translateY(5px);
+      opacity: 0;
     }
   }
   @include respond(md) {
@@ -627,6 +648,7 @@
       padding: $gap * 2.4;
       &-title {
         @include font-size(base);
+        line-height: 26px;
       }
       ul {
         padding: $gap * 2.4 0;
@@ -698,6 +720,9 @@
           @include font-size(xs);
           line-height: 18px;
         }
+      }
+      .sales-btn {
+        justify-content: center;
       }
     }
   }

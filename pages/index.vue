@@ -1289,6 +1289,7 @@ export default {
             })
             this.showSuccessModal = true
             this.loading = false
+            mixpanelTrackEvent('Enlist form - homepage')
           })
           .catch((error) => {
             console.error('Error:', error)
@@ -1296,7 +1297,6 @@ export default {
             this.showFailedModal = true
           })
       }
-      mixpanelTrackEvent('Enlist form - homepage')
     },
     scrollTo(id, label) {
       scrollToApp(id, label)

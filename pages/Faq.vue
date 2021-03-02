@@ -864,6 +864,7 @@ export default {
             })
             this.showSuccessModal = true
             this.loading = false
+            mixpanelTrackEvent('Feedback form - faq page')
           })
           .catch((error) => {
             console.error('Error:', error)
@@ -871,7 +872,6 @@ export default {
             this.showFailedModal = true
           })
       }
-      mixpanelTrackEvent('Feedback form - faq page')
     },
     scrollTo(id, label) {
       scrollToApp(id, label)

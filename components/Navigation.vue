@@ -281,6 +281,15 @@
             Companies
           </nuxt-link>
         </li>
+        <li
+          v-if="serviceNav"
+          @mouseenter.stop="showService = false"
+          @click="trackLink('Pricing')"
+        >
+          <nuxt-link :to="{ path: '/pricing' }" class="navigation__menu-item">
+            Pricing
+          </nuxt-link>
+        </li>
         <!-- food -->
         <li v-if="currentRoute === 'food'">
           <button
@@ -397,6 +406,14 @@
                 class="navigation__mobile-item"
               >
                 Companies
+              </nuxt-link>
+            </li>
+            <li class="menu--list" @click.prevent="handleToggle('Pricing')">
+              <nuxt-link
+                :to="{ path: '/pricing' }"
+                class="navigation__mobile-item"
+              >
+                Pricing
               </nuxt-link>
             </li>
             <li class="menu--list" @click.prevent="handleToggle()">
@@ -541,6 +558,10 @@ export default {
       } else if (path.includes('companies')) {
         return {
           'background-color': '#F7F8FE',
+        }
+      } else if (path.includes('pricing')) {
+        return {
+          'background-color': '#F6FFFA',
         }
       } else if (path.includes('terms_and_condition')) {
         return {

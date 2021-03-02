@@ -894,6 +894,7 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
             this.showSuccessModal = true
             this.showModalCompany = !this.showModalCompany
             this.loading = false
+            mixpanelTrackEvent('Company form - Companies page')
           })
           .catch((error) => {
             console.error('Error:', error)

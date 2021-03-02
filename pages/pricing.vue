@@ -18,7 +18,7 @@
                 v-model="estimate"
                 type="range"
                 min="1"
-                max="4"
+                max="6"
                 steps="1"
                 value="1"
                 class="range-input"
@@ -29,6 +29,8 @@
                 <li>b</li>
                 <li>c</li>
                 <li>d</li>
+                <li>e</li>
+                <li>f</li>
               </ul>
             </div>
           </div>
@@ -158,7 +160,7 @@ export default {
         'ms-track',
       ]
       const curVal = this.estimate - 1
-      const val = curVal * 34
+      const val = curVal * 20
 
       for (let i = 0; i < prefs.length; i++) {
         document

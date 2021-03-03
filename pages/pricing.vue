@@ -28,8 +28,8 @@
               />
               <ul id="range-labels" class="range-labels">
                 <li class="selected">a</li>
-                <li>b</li>
-                <li>c</li>
+                <li class="selected">b</li>
+                <li class="selected">c</li>
                 <li>d</li>
                 <li>e</li>
                 <li>f</li>
@@ -72,87 +72,15 @@
         </div>
       </div>
       <div class="pricing__summary">
-        <div v-if="estimate === '5' && !reconfigurePlan" class="pricing__plan">
-          <p class="pricing__plan-title">
-            Yeah. You definitely deserve a custom plan from us. Please enter
-            your information below.
-          </p>
-          <div class="pricing__plan-input">
-            <label for="email"
-              >What is your email address?
-              <span>(you get 20% off your first month 💚)</span></label
-            >
-            <input
-              id=""
-              type="email"
-              name=""
-              placeholder="Enter your email address"
-            />
-          </div>
-          <div class="pricing__plan-input number">
-            <label for="phone">Phone Number</label>
-            <input
-              id=""
-              type="text"
-              name=""
-              placeholder="Enter your phone number"
-            />
-          </div>
-          <button class="pricing__plan-btn sales-btn">
-            Contact Sales Team
-          </button>
-        </div>
-        <div v-if="estimate !== '5' && !reconfigurePlan" class="pricing__plan">
-          <p class="pricing__plan-title">
-            For <span>₦{{ estimatedPrice }}</span> monthly, you can get:
-          </p>
-          <ul>
-            <p><span>Food plan</span> <span>₦ 6,500</span></p>
-            <li>Weekly delivery</li>
-            <li>5 meals per week</li>
-            <li>Delivered once a week</li>
-          </ul>
-          <ul>
-            <p><span>Laundry plan</span> <span>₦ 6,500</span></p>
-            <li>Weekly delivery</li>
-            <li>5 meals per week</li>
-            <li>Delivered once a week</li>
-          </ul>
-          <ul>
-            <p><span>Cleaning plan</span> <span>₦ 6,500</span></p>
-            <li>Weekly delivery</li>
-            <li>5 meals per week</li>
-            <li>Delivered once a week</li>
-          </ul>
-          <p class="pricing__plan-subtotal">
-            <span>Subtotal</span> <span>₦ 99,800</span>
-          </p>
-          <p class="pricing__plan-discount">
-            <span>Discount (20% discount off your first month)</span>
-            <span>- ₦ 2,600</span>
-          </p>
-          <p class="pricing__plan-total">
-            <span>Total</span> <span>₦ 97,200</span>
-          </p>
-          <div class="pricing__plan-reconfigure">
-            <div class="reconfigure">
-              <p>Not what you want?</p>
-              <button
-                class="reconfigure-btn"
-                @click.prevent="reconfigurePlan = !reconfigurePlan"
-              >
-                Reconfigure.
-              </button>
-            </div>
-            <button
-              v-if="!displayForm"
-              class="pricing__plan-btn"
-              @click.prevent="displayForm = !displayForm"
-            >
-              Break up with chores
-            </button>
-          </div>
-          <transition v-if="displayForm" name="slide-fade">
+        <transition name="slide-fade">
+          <div
+            v-if="estimate === '5' && !reconfigurePlan"
+            class="pricing__plan"
+          >
+            <p class="pricing__plan-title">
+              Yeah. You definitely deserve a custom plan from us. Please enter
+              your information below.
+            </p>
             <div class="pricing__plan-input">
               <label for="email"
                 >What is your email address?
@@ -164,459 +92,559 @@
                 name=""
                 placeholder="Enter your email address"
               />
-              <p>
-                We’ll take you to download the app. You don’t have to do
-                anything. Just sit back, relax and enjoy your discount.
-              </p>
-              <button class="pricing__plan-btn">Start your Eden Life</button>
             </div>
-          </transition>
-        </div>
-
-        <div v-if="reconfigurePlan" class="pricing__calculator">
-          <p class="pricing__calculator-title">
-            <span>Reconfigure your Eden Life</span>
-          </p>
-          <!-- meal -->
-          <div class="calculator">
-            <div class="calculator__header">
-              <p>Food plan</p>
-              <button class="calculator__header-btn">Remove plan</button>
+            <div class="pricing__plan-input number">
+              <label for="phone">Phone Number</label>
+              <input
+                id=""
+                type="text"
+                name=""
+                placeholder="Enter your phone number"
+              />
             </div>
-            <div class="calculator__container">
-              <div class="calculator__input">
-                <div class="calculator__input-item">
-                  <label for="">Frequency</label>
-                  <div class="select">
-                    <div class="selector">
-                      <div class="label" @click="toggle('food')">
-                        <span>{{ mealFrequency }}</span>
-                      </div>
-                      <svg
-                        class="arrow"
-                        :class="{ expanded: visible.includes('food') }"
-                        width="10"
-                        height="6"
-                        viewBox="0 0 10 6"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        @click="toggle('food')"
-                      >
-                        <path
-                          d="M1 1L5 5L9 1"
-                          stroke="#93A29B"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-
-                      <div :class="{ hidden: !visible.includes('food') }">
-                        <transition name="slide-fade">
-                          <ul>
-                            <li @click.prevent="getMealPrice('Daily')">
-                              Daily
-                            </li>
-                            <li @click.prevent="getMealPrice('Weekly')">
-                              Weekly
-                            </li>
-                          </ul>
-                        </transition>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="calculator__input-item">
-                  <label for="">Number of meals per day</label>
-                  <div class="meal">
-                    <input
-                      id=""
-                      v-model="mealQty"
-                      type="number"
-                      name=""
-                      placeholder="0"
-                      min="1"
-                      class="meal--input"
-                    />
-                    <span class="meal--label">meals </span>
-                  </div>
-                </div>
-              </div>
-              <div class="calculator__footer">
-                <p>Food amount</p>
-                <p>₦30,000/month</p>
-              </div>
-            </div>
+            <button class="pricing__plan-btn sales-btn">
+              Contact Sales Team
+            </button>
           </div>
-          <!-- laundry -->
-          <div class="calculator">
-            <div class="calculator__header">
-              <p>Laundry plan</p>
-              <button class="calculator__header-btn">Remove plan</button>
+        </transition>
+        <transition name="slide-fade">
+          <div
+            v-if="estimate !== '5' && !reconfigurePlan"
+            class="pricing__plan"
+          >
+            <p class="pricing__plan-title">
+              For <span>₦{{ estimatedPrice }}</span> monthly, you can get:
+            </p>
+            <transition name="slide-fade">
+              <ul v-if="selectedService.includes('Food')">
+                <p><span>Food plan</span> <span>₦ 6,500</span></p>
+                <li>Weekly delivery</li>
+                <li>5 meals per week</li>
+                <li>Delivered once a week</li>
+              </ul>
+            </transition>
+            <transition name="slide-fade">
+              <ul v-if="selectedService.includes('Laundry')">
+                <p><span>Laundry plan</span> <span>₦ 6,500</span></p>
+                <li>Weekly delivery</li>
+                <li>5 meals per week</li>
+                <li>Delivered once a week</li>
+              </ul>
+            </transition>
+            <transition name="slide-fade">
+              <ul v-if="selectedService.includes('Cleaning')">
+                <p><span>Cleaning plan</span> <span>₦ 6,500</span></p>
+                <li>Weekly delivery</li>
+                <li>5 meals per week</li>
+                <li>Delivered once a week</li>
+              </ul>
+            </transition>
+            <p class="pricing__plan-subtotal">
+              <span>Subtotal</span> <span>₦ 99,800</span>
+            </p>
+            <p class="pricing__plan-discount">
+              <span>Discount (20% discount off your first month)</span>
+              <span>- ₦ 2,600</span>
+            </p>
+            <p class="pricing__plan-total">
+              <span>Total</span> <span>₦ 97,200</span>
+            </p>
+            <div class="pricing__plan-reconfigure">
+              <div class="reconfigure">
+                <p>Not what you want?</p>
+                <button
+                  class="reconfigure-btn"
+                  @click.prevent="reconfigurePlan = !reconfigurePlan"
+                >
+                  Reconfigure.
+                </button>
+              </div>
+              <button
+                v-if="!displayForm"
+                class="pricing__plan-btn"
+                @click.prevent="displayForm = !displayForm"
+              >
+                Break up with chores
+              </button>
             </div>
-            <div class="calculator__container">
-              <div class="calculator__input">
-                <div class="calculator__input-item">
-                  <label for="">Type</label>
-                  <div class="select">
-                    <div class="selector">
-                      <div class="label" @click="toggle('laundryType')">
-                        <span>{{ laundryType }}</span>
-                      </div>
-                      <svg
-                        class="arrow"
-                        :class="{ expanded: visible.includes('laundryType') }"
-                        width="10"
-                        height="6"
-                        viewBox="0 0 10 6"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        @click="toggle('laundryType')"
-                      >
-                        <path
-                          d="M1 1L5 5L9 1"
-                          stroke="#93A29B"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-
-                      <div
-                        :class="{ hidden: !visible.includes('laundryType') }"
-                      >
-                        <transition name="slide-fade">
-                          <ul>
-                            <li v-for="(item, i) in laundryTypeOption" :key="i">
-                              <span @click.prevent="getLaundryPrice(item)">{{
-                                item.name
-                              }}</span>
-                            </li>
-                          </ul>
-                        </transition>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="calculator__input-item">
-                  <label for="">Frequency</label>
-                  <div class="select">
-                    <div class="selector">
-                      <div class="label" @click="toggle('laundryFreq')">
-                        <span>{{ laundryFrequency }}</span>
-                      </div>
-                      <svg
-                        class="arrow"
-                        :class="{ expanded: visible.includes('laundryFreq') }"
-                        width="10"
-                        height="6"
-                        viewBox="0 0 10 6"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        @click="toggle('laundryFreq')"
-                      >
-                        <path
-                          d="M1 1L5 5L9 1"
-                          stroke="#93A29B"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-
-                      <div
-                        :class="{ hidden: !visible.includes('laundryFreq') }"
-                      >
-                        <transition name="slide-fade">
-                          <ul>
-                            <li v-for="(item, i) in frequencyOption" :key="i">
-                              <span @click.prevent="getLaundryPrice(item)">{{
-                                item.name
-                              }}</span>
-                            </li>
-                          </ul>
-                        </transition>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <transition name="slide-fade">
+              <div v-if="displayForm" class="pricing__plan-input">
+                <label for="email"
+                  >What is your email address?
+                  <span>(you get 20% off your first month 💚)</span></label
+                >
+                <input
+                  id=""
+                  type="email"
+                  name=""
+                  placeholder="Enter your email address"
+                />
+                <p>
+                  We’ll take you to download the app. You don’t have to do
+                  anything. Just sit back, relax and enjoy your discount.
+                </p>
+                <button class="pricing__plan-btn">Start your Eden Life</button>
               </div>
-              <div class="calculator__input">
-                <div class="calculator__input-item calculator__input-laundry">
-                  <label for="">Number of laundry bags</label>
-                  <div class="btn--group">
-                    <button
-                      class="btn--item minus"
-                      @click.prevent="decreaseOrder('washDry')"
-                    >
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M5 12H19"
-                          stroke="#21312A"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </button>
-                    <input
-                      id=""
-                      v-model="washDry"
-                      type="number"
-                      name=""
-                      readonly
-                      placeholder="0"
-                    />
-                    <button
-                      class="btn--item plus"
-                      @click.prevent="increaseOrder('washDry')"
-                    >
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M12 5V19"
-                          stroke="#21312A"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                        <path
-                          d="M5 12H19"
-                          stroke="#21312A"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="calculator__footer">
-                <p>Laundry amount</p>
-                <p>₦30,000/month</p>
-              </div>
-            </div>
+            </transition>
           </div>
-          <!-- cleaning -->
-          <div class="calculator">
-            <div class="calculator__header">
-              <p>Cleaning plan</p>
-              <button class="calculator__header-btn">Remove plan</button>
-            </div>
-            <div class="calculator__container">
-              <div class="calculator__input">
-                <div class="calculator__input-item">
-                  <label for="">Type</label>
-                  <div class="select">
-                    <div class="selector">
-                      <div class="label" @click="toggle('cleaningType')">
-                        <span>{{ cleaningType }}</span>
-                      </div>
-                      <svg
-                        class="arrow"
-                        :class="{ expanded: visible.includes('cleaningType') }"
-                        width="10"
-                        height="6"
-                        viewBox="0 0 10 6"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        @click="toggle('cleaningType')"
-                      >
-                        <path
-                          d="M1 1L5 5L9 1"
-                          stroke="#93A29B"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
+        </transition>
+        <transition name="slide-fade">
+          <div v-if="reconfigurePlan" class="pricing__calculator">
+            <p class="pricing__calculator-title">
+              <span>Reconfigure your Eden Life</span>
+            </p>
+            <!-- meal -->
+            <div class="calculator">
+              <div class="calculator__header">
+                <p>Food plan</p>
+                <button class="calculator__header-btn">Remove plan</button>
+              </div>
+              <div class="calculator__container">
+                <div class="calculator__input">
+                  <div class="calculator__input-item">
+                    <label for="">Frequency</label>
+                    <div class="select">
+                      <div class="selector">
+                        <div class="label" @click="toggle('food')">
+                          <span>{{ mealFrequency }}</span>
+                        </div>
+                        <svg
+                          class="arrow"
+                          :class="{ expanded: visible.includes('food') }"
+                          width="10"
+                          height="6"
+                          viewBox="0 0 10 6"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          @click="toggle('food')"
+                        >
+                          <path
+                            d="M1 1L5 5L9 1"
+                            stroke="#93A29B"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
 
-                      <div
-                        :class="{ hidden: !visible.includes('cleaningType') }"
-                      >
-                        <transition name="slide-fade">
-                          <ul>
-                            <li
-                              v-for="(item, i) in cleaningTypeOption"
-                              :key="i"
-                            >
-                              <span @click.prevent="getCleaningPrice(item)">{{
-                                item.name
-                              }}</span>
-                            </li>
-                          </ul>
-                        </transition>
+                        <div :class="{ hidden: !visible.includes('food') }">
+                          <transition name="slide-fade">
+                            <ul>
+                              <li @click.prevent="getMealPrice('Daily')">
+                                Daily
+                              </li>
+                              <li @click.prevent="getMealPrice('Weekly')">
+                                Weekly
+                              </li>
+                            </ul>
+                          </transition>
+                        </div>
                       </div>
+                    </div>
+                  </div>
+                  <div class="calculator__input-item">
+                    <label for="">Number of meals per day</label>
+                    <div class="meal">
+                      <input
+                        id=""
+                        v-model="mealQty"
+                        type="number"
+                        name=""
+                        placeholder="0"
+                        min="1"
+                        class="meal--input"
+                      />
+                      <span class="meal--label">meals </span>
                     </div>
                   </div>
                 </div>
-                <div class="calculator__input-item">
-                  <label for="">Frequency</label>
-                  <div class="select">
-                    <div class="selector">
-                      <div class="label" @click="toggle('cleaningFreq')">
-                        <span>{{ cleaningFrequency }}</span>
-                      </div>
-                      <svg
-                        class="arrow"
-                        :class="{ expanded: visible.includes('cleaningFreq') }"
-                        width="10"
-                        height="6"
-                        viewBox="0 0 10 6"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        @click="toggle('cleaningFreq')"
-                      >
-                        <path
-                          d="M1 1L5 5L9 1"
-                          stroke="#93A29B"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-
-                      <div
-                        :class="{ hidden: !visible.includes('cleaningFreq') }"
-                      >
-                        <transition name="slide-fade">
-                          <ul>
-                            <li v-for="(item, i) in frequencyOption" :key="i">
-                              <span @click.prevent="getCleaningPrice(item)">{{
-                                item.name
-                              }}</span>
-                            </li>
-                          </ul>
-                        </transition>
-                      </div>
-                    </div>
-                  </div>
+                <div class="calculator__footer">
+                  <p>Food amount</p>
+                  <p>₦30,000/month</p>
                 </div>
               </div>
-              <div class="calculator__input">
-                <div class="calculator__input-item calculator__input-cleaning">
-                  <label for="">Tell us about your home</label>
-                  <div class="select">
-                    <div class="selector">
-                      <div class="label" @click="toggle('cleaningQty')">
-                        <span>{{ getRoomTypes(roomTypes) }}</span>
-                      </div>
-                      <svg
-                        class="arrow"
-                        :class="{
-                          expanded: visible.includes('cleaningQty'),
-                        }"
-                        width="10"
-                        height="6"
-                        viewBox="0 0 10 6"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        @click="toggle('cleaningQty')"
-                      >
-                        <path
-                          d="M1 1L5 5L9 1"
-                          stroke="#93A29B"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
+            </div>
+            <!-- laundry -->
+            <div class="calculator">
+              <div class="calculator__header">
+                <p>Laundry plan</p>
+                <button class="calculator__header-btn">Remove plan</button>
+              </div>
+              <div class="calculator__container">
+                <div class="calculator__input">
+                  <div class="calculator__input-item">
+                    <label for="">Type</label>
+                    <div class="select">
+                      <div class="selector">
+                        <div class="label" @click="toggle('laundryType')">
+                          <span>{{ laundryType }}</span>
+                        </div>
+                        <svg
+                          class="arrow"
+                          :class="{ expanded: visible.includes('laundryType') }"
+                          width="10"
+                          height="6"
+                          viewBox="0 0 10 6"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          @click="toggle('laundryType')"
+                        >
+                          <path
+                            d="M1 1L5 5L9 1"
+                            stroke="#93A29B"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
 
-                      <div
-                        :class="{ hidden: !visible.includes('cleaningQty') }"
+                        <div
+                          :class="{ hidden: !visible.includes('laundryType') }"
+                        >
+                          <transition name="slide-fade">
+                            <ul>
+                              <li
+                                v-for="(item, i) in laundryTypeOption"
+                                :key="i"
+                              >
+                                <span @click.prevent="getLaundryPrice(item)">{{
+                                  item.name
+                                }}</span>
+                              </li>
+                            </ul>
+                          </transition>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="calculator__input-item">
+                    <label for="">Frequency</label>
+                    <div class="select">
+                      <div class="selector">
+                        <div class="label" @click="toggle('laundryFreq')">
+                          <span>{{ laundryFrequency }}</span>
+                        </div>
+                        <svg
+                          class="arrow"
+                          :class="{ expanded: visible.includes('laundryFreq') }"
+                          width="10"
+                          height="6"
+                          viewBox="0 0 10 6"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          @click="toggle('laundryFreq')"
+                        >
+                          <path
+                            d="M1 1L5 5L9 1"
+                            stroke="#93A29B"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+
+                        <div
+                          :class="{ hidden: !visible.includes('laundryFreq') }"
+                        >
+                          <transition name="slide-fade">
+                            <ul>
+                              <li v-for="(item, i) in frequencyOption" :key="i">
+                                <span @click.prevent="getLaundryPrice(item)">{{
+                                  item.name
+                                }}</span>
+                              </li>
+                            </ul>
+                          </transition>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="calculator__input">
+                  <div class="calculator__input-item calculator__input-laundry">
+                    <label for="">Number of laundry bags</label>
+                    <div class="btn--group">
+                      <button
+                        class="btn--item minus"
+                        @click.prevent="decreaseOrder('washDry')"
                       >
-                        <transition name="slide-fade">
-                          <ul>
-                            <li
-                              v-for="(item, i) in cleaningQtyOption"
-                              :key="i"
-                              class="control"
-                            >
-                              <span>{{ item.name }}</span>
-                              <span class="control__item">
-                                <button
-                                  class="control__item-btn"
-                                  @click.prevent="decreaseRoom(item, i)"
-                                >
-                                  <svg
-                                    width="12"
-                                    height="2"
-                                    viewBox="0 0 12 2"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M5 12H19"
+                            stroke="#21312A"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </button>
+                      <input
+                        id=""
+                        v-model="washDry"
+                        type="number"
+                        name=""
+                        readonly
+                        placeholder="0"
+                      />
+                      <button
+                        class="btn--item plus"
+                        @click.prevent="increaseOrder('washDry')"
+                      >
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 5V19"
+                            stroke="#21312A"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M5 12H19"
+                            stroke="#21312A"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="calculator__footer">
+                  <p>Laundry amount</p>
+                  <p>₦30,000/month</p>
+                </div>
+              </div>
+            </div>
+            <!-- cleaning -->
+            <div class="calculator">
+              <div class="calculator__header">
+                <p>Cleaning plan</p>
+                <button class="calculator__header-btn">Remove plan</button>
+              </div>
+              <div class="calculator__container">
+                <div class="calculator__input">
+                  <div class="calculator__input-item">
+                    <label for="">Type</label>
+                    <div class="select">
+                      <div class="selector">
+                        <div class="label" @click="toggle('cleaningType')">
+                          <span>{{ cleaningType }}</span>
+                        </div>
+                        <svg
+                          class="arrow"
+                          :class="{
+                            expanded: visible.includes('cleaningType'),
+                          }"
+                          width="10"
+                          height="6"
+                          viewBox="0 0 10 6"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          @click="toggle('cleaningType')"
+                        >
+                          <path
+                            d="M1 1L5 5L9 1"
+                            stroke="#93A29B"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+
+                        <div
+                          :class="{ hidden: !visible.includes('cleaningType') }"
+                        >
+                          <transition name="slide-fade">
+                            <ul>
+                              <li
+                                v-for="(item, i) in cleaningTypeOption"
+                                :key="i"
+                              >
+                                <span @click.prevent="getCleaningPrice(item)">{{
+                                  item.name
+                                }}</span>
+                              </li>
+                            </ul>
+                          </transition>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="calculator__input-item">
+                    <label for="">Frequency</label>
+                    <div class="select">
+                      <div class="selector">
+                        <div class="label" @click="toggle('cleaningFreq')">
+                          <span>{{ cleaningFrequency }}</span>
+                        </div>
+                        <svg
+                          class="arrow"
+                          :class="{
+                            expanded: visible.includes('cleaningFreq'),
+                          }"
+                          width="10"
+                          height="6"
+                          viewBox="0 0 10 6"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          @click="toggle('cleaningFreq')"
+                        >
+                          <path
+                            d="M1 1L5 5L9 1"
+                            stroke="#93A29B"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+
+                        <div
+                          :class="{ hidden: !visible.includes('cleaningFreq') }"
+                        >
+                          <transition name="slide-fade">
+                            <ul>
+                              <li v-for="(item, i) in frequencyOption" :key="i">
+                                <span @click.prevent="getCleaningPrice(item)">{{
+                                  item.name
+                                }}</span>
+                              </li>
+                            </ul>
+                          </transition>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="calculator__input">
+                  <div
+                    class="calculator__input-item calculator__input-cleaning"
+                  >
+                    <label for="">Tell us about your home</label>
+                    <div class="select">
+                      <div class="selector">
+                        <div class="label" @click="toggle('cleaningQty')">
+                          <span>{{ getRoomTypes(roomTypes) }}</span>
+                        </div>
+                        <svg
+                          class="arrow"
+                          :class="{
+                            expanded: visible.includes('cleaningQty'),
+                          }"
+                          width="10"
+                          height="6"
+                          viewBox="0 0 10 6"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          @click="toggle('cleaningQty')"
+                        >
+                          <path
+                            d="M1 1L5 5L9 1"
+                            stroke="#93A29B"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+
+                        <div
+                          :class="{ hidden: !visible.includes('cleaningQty') }"
+                        >
+                          <transition name="slide-fade">
+                            <ul>
+                              <li
+                                v-for="(item, i) in cleaningQtyOption"
+                                :key="i"
+                                class="control"
+                              >
+                                <span>{{ item.name }}</span>
+                                <span class="control__item">
+                                  <button
+                                    class="control__item-btn"
+                                    @click.prevent="decreaseRoom(item, i)"
                                   >
-                                    <path
-                                      d="M1.3335 1H10.6668"
-                                      stroke="#21312A"
-                                      stroke-width="1.5"
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                    />
-                                  </svg>
-                                </button>
-                                <span class="control__item-qty">
-                                  {{ item.qty }}
+                                    <svg
+                                      width="12"
+                                      height="2"
+                                      viewBox="0 0 12 2"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M1.3335 1H10.6668"
+                                        stroke="#21312A"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      />
+                                    </svg>
+                                  </button>
+                                  <span class="control__item-qty">
+                                    {{ item.qty }}
+                                  </span>
+                                  <button
+                                    class="control__item-btn"
+                                    @click.prevent="increaseRoom(item, i)"
+                                  >
+                                    <svg
+                                      width="16"
+                                      height="16"
+                                      viewBox="0 0 16 16"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M8 3.33301V12.6663"
+                                        stroke="#21312A"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      />
+                                      <path
+                                        d="M3.3335 8H12.6668"
+                                        stroke="#21312A"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      />
+                                    </svg>
+                                  </button>
                                 </span>
-                                <button
-                                  class="control__item-btn"
-                                  @click.prevent="increaseRoom(item, i)"
-                                >
-                                  <svg
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 16 16"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M8 3.33301V12.6663"
-                                      stroke="#21312A"
-                                      stroke-width="1.5"
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                    />
-                                    <path
-                                      d="M3.3335 8H12.6668"
-                                      stroke="#21312A"
-                                      stroke-width="1.5"
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                    />
-                                  </svg>
-                                </button>
-                              </span>
-                            </li>
-                          </ul>
-                        </transition>
+                              </li>
+                            </ul>
+                          </transition>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="calculator__footer">
-                <p>Cleaning amount</p>
-                <p>₦30,000/month</p>
+                <div class="calculator__footer">
+                  <p>Cleaning amount</p>
+                  <p>₦30,000/month</p>
+                </div>
               </div>
             </div>
+            <p class="pricing__calculator-subtotal">
+              <span>Subtotal</span> <span>₦ 99,800</span>
+            </p>
+            <p class="pricing__calculator-discount">
+              <span>Discount (20% discount off your first month)</span>
+              <span>- ₦ 2,600</span>
+            </p>
+            <p class="pricing__calculator-total">
+              <span>Total</span> <span>₦ 97,200</span>
+            </p>
+            <button class="pricing__calculator-btn">
+              Break up with chores
+            </button>
           </div>
-          <p class="pricing__calculator-subtotal">
-            <span>Subtotal</span> <span>₦ 99,800</span>
-          </p>
-          <p class="pricing__calculator-discount">
-            <span>Discount (20% discount off your first month)</span>
-            <span>- ₦ 2,600</span>
-          </p>
-          <p class="pricing__calculator-total">
-            <span>Total</span> <span>₦ 97,200</span>
-          </p>
-          <button class="pricing__calculator-btn">Break up with chores</button>
-        </div>
+        </transition>
       </div>
     </section>
   </div>
@@ -630,11 +658,11 @@ import { pricing } from '~/static/pricing'
 export default {
   data() {
     return {
-      selectedService: [],
+      selectedService: ['Food', 'Laundry', 'Cleaning'],
       services: ['Food', 'Laundry', 'Cleaning'],
-      estimate: 0,
+      estimate: 2,
       displayForm: false,
-      estimatedPrice: '10,000',
+      estimatedPrice: '50,000',
       priceList: [
         '10,000',
         '20,000',
@@ -643,7 +671,7 @@ export default {
         '150,000',
         '150,000',
       ],
-      reconfigurePlan: true,
+      reconfigurePlan: false,
       visible: [],
       mealFrequency: 'Daily',
       mealQty: 1,
@@ -722,7 +750,9 @@ export default {
       ],
     }
   },
-  mounted() {},
+  mounted() {
+    this.getEstimate()
+  },
   methods: {
     currencyFormat,
     toggle(plan) {

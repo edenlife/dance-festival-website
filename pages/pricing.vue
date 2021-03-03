@@ -506,7 +506,7 @@
                   <div class="select">
                     <div class="selector">
                       <div class="label" @click="toggle('cleaningQty')">
-                        <span>{{ cleaningType }}</span>
+                        <span>{{ getRoomTypes(roomTypes) }}</span>
                       </div>
                       <svg
                         class="arrow"
@@ -538,9 +538,12 @@
                               :key="i"
                               class="control"
                             >
-                              <span>Bedroom</span>
+                              <span>{{ item.name }}</span>
                               <span class="control__item">
-                                <button class="control__item-btn">
+                                <button
+                                  class="control__item-btn"
+                                  @click.prevent="decreaseRoom(item, i)"
+                                >
                                   <svg
                                     width="12"
                                     height="2"
@@ -557,8 +560,13 @@
                                     />
                                   </svg>
                                 </button>
-                                <span class="control__item-qty">1</span>
-                                <button class="control__item-btn">
+                                <span class="control__item-qty">
+                                  {{ item.qty }}
+                                </span>
+                                <button
+                                  class="control__item-btn"
+                                  @click.prevent="increaseRoom(item, i)"
+                                >
                                   <svg
                                     width="16"
                                     height="16"
@@ -679,7 +687,39 @@ export default {
           value: 'deep',
         },
       ],
-      cleaningQtyOption: [1, 2, 3],
+      roomTypes: ['1 bedroom', '1 bathroom', '1 living room'],
+      cleaningQtyOption: [
+        {
+          name: 'Bedroom',
+          value: 'bedroom',
+          label: 'bedroom',
+          qty: 1,
+        },
+        {
+          name: 'Bathroom',
+          value: 'bathroom',
+          label: 'bathroom',
+          qty: 1,
+        },
+        {
+          name: 'Living and Dining room',
+          value: 'living-room',
+          label: 'living room',
+          qty: 1,
+        },
+        {
+          name: 'Kitchen',
+          value: 'kitchen',
+          label: 'kitchen',
+          qty: 0,
+        },
+        {
+          name: 'Study and Store',
+          value: 'store',
+          label: 'store',
+          qty: 0,
+        },
+      ],
     }
   },
   mounted() {},
@@ -763,6 +803,39 @@ export default {
         this.cleaningFrequency = plan.name
         this.toggle('cleaningFreq')
       }
+    },
+    increaseRoom(item, index) {
+      let qty = item.qty
+      qty++
+      const newQty = qty++
+      this.cleaningQtyOption[index].qty = newQty
+      if (newQty > 1) {
+        this.roomTypes[index] = `${newQty + ' ' + item.label}s`
+      } else {
+        this.roomTypes[index] = `${newQty + ' ' + item.label}`
+      }
+    },
+    decreaseRoom(item, index) {
+      let qty = item.qty
+      if (qty >= 1) {
+        qty--
+        const newQty = qty--
+        this.cleaningQtyOption[index].qty = newQty
+        if (newQty === 1) {
+          this.roomTypes[index] = `${newQty + ' ' + item.label}`
+        } else {
+          this.roomTypes[index] = `${newQty + ' ' + item.label}s`
+        }
+        if (newQty === 0) {
+          delete this.roomTypes[index]
+        }
+      }
+    },
+    getRoomTypes(rooms) {
+      const filterRoom = rooms.filter((item) => {
+        return item !== null
+      })
+      return filterRoom.join(', ')
     },
     getEstimate() {
       this.estimatedPrice = this.priceList[this.estimate]

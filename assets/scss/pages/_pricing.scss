@@ -736,6 +736,7 @@
           margin-right: 0;
           .select {
             width: 100%;
+
             ul {
               width: 108%;
             }
@@ -743,6 +744,11 @@
               &:hover {
                 background: color(eden-neutral-7);
                 cursor: pointer;
+              }
+            }
+            .selector {
+              .label {
+                margin-right: $gap * 2.5;
               }
             }
           }

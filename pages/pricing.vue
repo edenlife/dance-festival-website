@@ -268,7 +268,7 @@
                 </div>
                 <div class="calculator__footer">
                   <p>Food amount</p>
-                  <p>₦30,000/month</p>
+                  <p>₦{{ formatNumber(totalFoodPrice) }}/month</p>
                 </div>
               </div>
             </div>
@@ -372,7 +372,7 @@
                     <div class="btn--group">
                       <button
                         class="btn--item minus"
-                        @click.prevent="decreaseOrder('washDry')"
+                        @click.prevent="decreaseLaundryOrder()"
                       >
                         <svg
                           width="24"
@@ -392,7 +392,7 @@
                       </button>
                       <input
                         id=""
-                        v-model="washDry"
+                        v-model="laundryQty"
                         type="number"
                         name=""
                         readonly
@@ -400,7 +400,7 @@
                       />
                       <button
                         class="btn--item plus"
-                        @click.prevent="increaseOrder('washDry')"
+                        @click.prevent="increaseLaundryOrder()"
                       >
                         <svg
                           width="24"
@@ -430,7 +430,7 @@
                 </div>
                 <div class="calculator__footer">
                   <p>Laundry amount</p>
-                  <p>₦30,000/month</p>
+                  <p>₦{{ formatNumber(totalLaundryPrice) }}/month</p>
                 </div>
               </div>
             </div>
@@ -701,15 +701,14 @@ export default {
       laundryTypeOption: [
         {
           name: 'Wash & Fold',
-          value: 'wash-fold',
+          value: 'wash-and-fold',
         },
         {
           name: 'Wash & Iron',
-          value: 'wash-iron',
+          value: 'wash-and-iron',
         },
       ],
-      washDry: 1,
-      washIron: 1,
+      laundryQty: 1,
       cleaningFrequency: 'Every 2 weeks',
       cleaningType: 'Light cleaning',
       cleaningTypeOption: [
@@ -761,10 +760,23 @@ export default {
       totalPrice: '',
       subtotalPrice: '',
       discountPrice: '',
+      totalFoodPrice: '',
+      laundryTypeValue: 'wash-and-fold',
+      laundryFreqOption: 'bi-weekly',
+      totalLaundryPrice: '',
     }
+  },
+  watch: {
+    mealQty(val) {
+      this.mealQty = val
+      this.calculateFoodPrice()
+    },
   },
   mounted() {
     this.getEstimate()
+    this.calculateFoodPrice()
+    this.calculateLaundryPrice()
+    mixpanelTrackEvent('Pricing page')
   },
   methods: {
     currencyFormat,
@@ -1160,67 +1172,56 @@ export default {
         root.style.setProperty('--pseudo-width', `${val}%`)
       }
     },
+    calculateFoodPrice() {
+      if (this.mealFrequency.toLowerCase() === 'daily') {
+        const total = pricing({
+          meal: { item: null, frequency: 'daily', qty: this.mealQty },
+        })
+        this.totalFoodPrice = total.toString()
+      }
+      if (this.mealFrequency.toLowerCase() === 'weekly') {
+        const total = pricing({
+          meal: { item: null, frequency: 'weekly', qty: this.mealQty },
+        })
+        this.totalFoodPrice = total.toString()
+      }
+    },
     getMealPrice(plan) {
       this.mealFrequency = plan
+      this.calculateFoodPrice()
       this.toggle('food')
     },
     getLaundryPrice(plan) {
       if (plan.value.includes('wash')) {
         this.laundryType = plan.name
+        this.laundryTypeValue = plan.value
+        this.calculateLaundryPrice()
         this.toggle('laundryType')
       } else {
         this.laundryFrequency = plan.name
+        this.laundryFreqOption = plan.value
+        this.calculateLaundryPrice()
         this.toggle('laundryFreq')
       }
     },
-    increaseOrder(order) {
-      mixpanelTrackEvent(`Increase ${order} order clicked - pricing page`)
-
-      if (order === 'washDry') {
-        this.washDry++
-        this.totalWashDryPrice = pricing({
-          laundry: {
-            item: 'wash-and-fold',
-            frequency: this.washDryFrequency,
-            qty: this.washDry,
-          },
-        })
-      }
-
-      if (order === 'washIron') {
-        this.washIron++
-        this.totalWashIronPrice = pricing({
-          laundry: {
-            item: 'wash-and-iron',
-            frequency: this.washIronFrequency,
-            qty: this.washIron,
-          },
-        })
-      }
+    calculateLaundryPrice() {
+      const total = pricing({
+        laundry: {
+          item: this.laundryTypeValue,
+          frequency: this.laundryFreqOption,
+          qty: this.laundryQty,
+        },
+      })
+      this.totalLaundryPrice = total.toString()
     },
-    decreaseOrder(order) {
-      mixpanelTrackEvent(`Decrease ${order} order clicked - pricing page`)
-
-      if (order === 'washDry' && this.washDry > 1) {
-        this.washDry--
-        this.totalWashDryPrice = pricing({
-          laundry: {
-            item: 'wash-and-fold',
-            frequency: this.washDryFrequency,
-            qty: this.washDry,
-          },
-        })
-      }
-
-      if (order === 'washIron' && this.washIron > 1) {
-        this.washIron--
-        this.totalWashIronPrice = pricing({
-          laundry: {
-            item: 'wash-and-iron',
-            frequency: this.washIronFrequency,
-            qty: this.washIron,
-          },
-        })
+    increaseLaundryOrder() {
+      this.laundryQty++
+      this.calculateLaundryPrice()
+    },
+    decreaseLaundryOrder() {
+      if (this.laundryQty > 1) {
+        this.laundryQty--
+        this.calculateLaundryPrice()
       }
     },
     getCleaningPrice(plan) {

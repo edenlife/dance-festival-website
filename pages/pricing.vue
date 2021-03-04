@@ -53,10 +53,10 @@
               >
                 <input
                   :id="service"
-                  v-model="selectedService"
                   type="checkbox"
                   :name="service"
                   :value="service"
+                  @change="changeService(service)"
                 />
                 <label
                   :for="service"
@@ -117,26 +117,28 @@
             </p>
             <transition name="slide-fade">
               <ul v-if="selectedService.includes('Food')">
-                <p><span>Food plan</span> <span>₦ 6,500</span></p>
-                <li>Weekly delivery</li>
-                <li>5 meals per week</li>
-                <li>Delivered once a week</li>
+                <p>
+                  <span>Food plan</span> <span>₦{{ foodPrice }}</span>
+                </p>
+                <li v-for="(item, i) in foodSummary" :key="i">{{ item }}</li>
               </ul>
             </transition>
             <transition name="slide-fade">
               <ul v-if="selectedService.includes('Laundry')">
-                <p><span>Laundry plan</span> <span>₦ 6,500</span></p>
-                <li>Weekly delivery</li>
-                <li>5 meals per week</li>
-                <li>Delivered once a week</li>
+                <p>
+                  <span>Laundry plan</span> <span>₦{{ laundryPrice }}</span>
+                </p>
+                <li v-for="(item, i) in laundrySummary" :key="i">{{ item }}</li>
               </ul>
             </transition>
             <transition name="slide-fade">
               <ul v-if="selectedService.includes('Cleaning')">
-                <p><span>Cleaning plan</span> <span>₦ 6,500</span></p>
-                <li>Weekly delivery</li>
-                <li>5 meals per week</li>
-                <li>Delivered once a week</li>
+                <p>
+                  <span>Cleaning plan</span> <span>₦{{ cleaningPrice }}</span>
+                </p>
+                <li v-for="(item, i) in cleaningSummary" :key="i">
+                  {{ item }}
+                </li>
               </ul>
             </transition>
             <p class="pricing__plan-subtotal">
@@ -748,6 +750,12 @@ export default {
           qty: 0,
         },
       ],
+      foodPrice: '',
+      laundryPrice: '',
+      cleaningPrice: '',
+      foodSummary: [],
+      laundrySummary: [],
+      cleaningSummary: [],
     }
   },
   mounted() {
@@ -760,6 +768,361 @@ export default {
         this.visible = this.visible.filter((item) => item !== plan)
       } else {
         this.visible.push(plan)
+      }
+    },
+    changeService(service) {
+      if (this.estimate === '0') {
+        this.selectedService.pop()
+        this.selectedService.push(service)
+        this.foodSummary = [
+          'Weekly delivery',
+          '1 meal per week',
+          'Delivered once a week',
+        ]
+        this.laundrySummary = [
+          'Wash and Fold',
+          '1 bag (max. 30 items per bag)',
+          'Picked up every two weeks',
+        ]
+        this.cleaningSummary = ['Light cleaning', '1 room', 'Every two weeks']
+        return
+      }
+      //
+      if (this.estimate === '1') {
+        if (
+          this.selectedService.length > 1 &&
+          this.selectedService.includes(service)
+        ) {
+          this.selectedService = this.selectedService.filter(
+            (item) => item !== service
+          )
+        } else if (
+          this.selectedService.length >= 1 &&
+          this.selectedService.length < 2 &&
+          !this.selectedService.includes(service)
+        ) {
+          this.selectedService.push(service)
+        }
+
+        if (this.selectedService.length > 1) {
+          this.foodPrice = '8,800'
+          this.laundryPrice = '9,000'
+          this.cleaningPrice = '8,000'
+          this.foodSummary = [
+            'Weekly delivery',
+            '1 meal per week',
+            'Delivered once a week',
+          ]
+          this.laundrySummary = [
+            'Wash and Fold',
+            '1 bag (max. 30 items per bag)',
+            'Picked up every two weeks',
+          ]
+          this.cleaningSummary = ['Light cleaning', '1 room', 'Every two weeks']
+        } else {
+          this.foodPrice = '16,000'
+          this.laundryPrice = '16,000'
+          this.cleaningPrice = '14,000'
+          this.foodSummary = [
+            'Weekly delivery',
+            '2 meals per week',
+            'Delivered once a week',
+          ]
+          this.laundrySummary = [
+            'Wash and Iron',
+            '1 bag (max. 30 items per bag)',
+            'Picked up every two weeks',
+          ]
+          this.cleaningSummary = [
+            'Light cleaning',
+            '3 rooms',
+            'Every two weeks',
+          ]
+        }
+        return
+      }
+      //
+      if (
+        this.selectedService.length > 1 &&
+        this.selectedService.includes(service)
+      ) {
+        this.selectedService = this.selectedService.filter(
+          (item) => item !== service
+        )
+      } else if (
+        this.selectedService.length >= 1 &&
+        !this.selectedService.includes(service)
+      ) {
+        this.selectedService.push(service)
+      }
+      //
+      if (this.estimate.toString() === '2') {
+        if (this.selectedService.length === 3) {
+          this.foodPrice = '16,000'
+          this.laundryPrice = '14,000'
+          this.cleaningPrice = '14,000'
+          this.foodSummary = [
+            'Weekly delivery',
+            '2 meals per week',
+            'Delivered once a week',
+          ]
+          this.laundrySummary = [
+            'Wash and Iron',
+            '1 bag (max. 30 items per bag)',
+            'Picked up every two weeks',
+          ]
+          this.cleaningSummary = [
+            'Light cleaning',
+            '3 rooms',
+            'Every two weeks',
+          ]
+        } else if (this.selectedService.length === 2) {
+          if (
+            this.selectedService.includes('Food') &&
+            this.selectedService.includes('Laundry')
+          ) {
+            this.foodPrice = '38,000'
+            this.laundryPrice = '9,000'
+            this.foodSummary = [
+              'Weekly delivery',
+              '5 meals per week',
+              'Delivered once a week',
+            ]
+            this.laundrySummary = [
+              'Wash and Fold',
+              '1 bag (max. 30 items per bag)',
+              'Picked up every two weeks',
+            ]
+          }
+          if (
+            this.selectedService.includes('Food') &&
+            this.selectedService.includes('Cleaning')
+          ) {
+            this.foodPrice = '16,000'
+            this.cleaningPrice = '28,000'
+            this.foodSummary = [
+              'Weekly delivery',
+              '2 meals per week',
+              'Delivered once a week',
+            ]
+            this.cleaningSummary = ['Light cleaning', '3 rooms', 'Once a week']
+          }
+          if (
+            this.selectedService.includes('Cleaning') &&
+            this.selectedService.includes('Laundry')
+          ) {
+            this.laundryPrice = '16,000'
+            this.cleaningPrice = '28,000'
+
+            this.laundrySummary = [
+              'Wash and Iron',
+              '1 bag (max. 30 items per bag)',
+              'Picked up every two weeks',
+            ]
+            this.cleaningSummary = ['Light cleaning', '3 rooms', 'Every week']
+          }
+        } else if (this.selectedService.length === 1) {
+          this.foodPrice = '44,000'
+          this.laundryPrice = '48,000'
+          this.cleaningPrice = '44,000'
+          this.foodSummary = ['Daily delivery', '7 meals per week']
+          this.laundrySummary = [
+            'Wash and Iron',
+            '3 bags (max. 30 items per bag)',
+            'Picked up every two weeks',
+          ]
+          this.cleaningSummary = ['Light cleaning', '5 rooms', 'Every week']
+        }
+      }
+      //
+      if (this.estimate.toString() === '3') {
+        if (this.selectedService.length === 3) {
+          this.foodPrice = '44,000'
+          this.laundryPrice = '16,000'
+          this.cleaningPrice = '28,000'
+          this.foodSummary = ['Daily delivery', '7 meals per week']
+          this.laundrySummary = [
+            'Wash and Iron',
+            '1 bag (max. 30 items per bag)',
+            'Picked up every two weeks',
+          ]
+          this.cleaningSummary = ['Light cleaning', '3 rooms', 'Every week']
+        } else if (this.selectedService.length === 2) {
+          if (
+            this.selectedService.includes('Food') &&
+            this.selectedService.includes('Laundry')
+          ) {
+            this.foodPrice = '68,000'
+            this.laundryPrice = '32,000'
+            this.foodSummary = ['Daily delivery', '10 meals per week']
+            this.laundrySummary = [
+              'Wash and Iron',
+              '1 bag (max. 30 items per bag)',
+              'Picked up every week',
+            ]
+          }
+          if (
+            this.selectedService.includes('Food') &&
+            this.selectedService.includes('Cleaning')
+          ) {
+            this.foodPrice = '68,000'
+            this.cleaningPrice = '28,000'
+            this.foodSummary = ['Daily delivery', '10 meals per week']
+            this.cleaningSummary = ['Light cleaning', '3 rooms', 'Every week']
+          }
+          if (
+            this.selectedService.includes('Cleaning') &&
+            this.selectedService.includes('Laundry')
+          ) {
+            this.laundryPrice = '48,000'
+            this.cleaningPrice = '44,000'
+
+            this.laundrySummary = [
+              'Wash and Iron',
+              '3 bags (max. 30 items per bag)',
+              'Picked up every two weeks',
+            ]
+            this.cleaningSummary = ['Light cleaning', '5 rooms', 'Every week']
+          }
+        } else if (this.selectedService.length === 1) {
+          this.foodPrice = '68,000'
+          this.laundryPrice = '96,000'
+          this.cleaningPrice = '60,000'
+          this.foodSummary = ['Daily delivery', '10 meals per week']
+          this.laundrySummary = [
+            'Wash and Iron',
+            '3 bags (max. 30 items per bag)',
+            'Picked up weekly',
+          ]
+          this.cleaningSummary = ['Light cleaning', '8 rooms', 'Every week']
+        }
+      }
+      //
+      if (this.estimate.toString() === '4') {
+        if (this.selectedService.length === 3) {
+          this.foodPrice = '80,800'
+          this.laundryPrice = '32,000'
+          this.cleaningPrice = '44,000'
+          this.foodSummary = ['Daily delivery', '14 meals per week']
+          this.laundrySummary = [
+            'Wash and Iron',
+            '1 bag (max. 30 items per bag)',
+            'Picked up every week',
+          ]
+          this.cleaningSummary = ['Light cleaning', '5 rooms', 'Every week']
+        } else if (this.selectedService.length === 2) {
+          if (
+            this.selectedService.includes('Food') &&
+            this.selectedService.includes('Laundry')
+          ) {
+            this.foodPrice = '80,800'
+            this.laundryPrice = '48,000'
+            this.foodSummary = ['Daily delivery', '14 meals per week']
+            this.laundrySummary = [
+              'Wash and Iron',
+              '3 bags (max. 30 items per bag)',
+              'Picked up every two weeks',
+            ]
+          }
+          if (
+            this.selectedService.includes('Food') &&
+            this.selectedService.includes('Cleaning')
+          ) {
+            this.foodPrice = '80,800'
+            this.cleaningPrice = '44,000'
+            this.foodSummary = ['Daily delivery', '14 meals per week']
+            this.cleaningSummary = ['Light cleaning', '5 rooms', 'Every week']
+          }
+          if (
+            this.selectedService.includes('Cleaning') &&
+            this.selectedService.includes('Laundry')
+          ) {
+            this.laundryPrice = '48,000'
+            this.cleaningPrice = '100,000'
+
+            this.laundrySummary = [
+              'Wash and Iron',
+              '3 bags (max. 30 items per bag)',
+              'Picked up every two weeks',
+            ]
+            this.cleaningSummary = ['Deep cleaning', '10 rooms', 'Every month']
+          }
+        } else if (this.selectedService.length === 1) {
+          this.foodPrice = '148,000'
+          this.laundryPrice = '128,000'
+          this.cleaningPrice = '100,000'
+          this.foodSummary = ['Daily delivery', '24 meals per week']
+          this.laundrySummary = [
+            'Wash and Iron',
+            '4 bags (max. 30 items per bag)',
+            'Picked up every week',
+          ]
+          this.cleaningSummary = ['Deep cleaning', '10 rooms', 'Every month']
+        }
+      }
+    },
+    getDefaultPrice(estimate) {
+      switch (estimate.toString()) {
+        case '0': {
+          this.selectedService = []
+          this.changeService('Food')
+          this.foodPrice = '8,800'
+          this.laundryPrice = '9,000'
+          this.cleaningPrice = '8,000'
+          break
+        }
+        case '1': {
+          this.selectedService = ['Food']
+          this.changeService('Laundry')
+          break
+        }
+        case '2': {
+          this.selectedService = ['Food', 'Laundry']
+          this.changeService('Cleaning')
+          break
+        }
+        case '3':
+          this.selectedService = ['Food', 'Laundry']
+          this.changeService('Cleaning')
+          break
+        case '4':
+          this.selectedService = ['Food', 'Laundry']
+          this.changeService('Cleaning')
+          break
+        case '5':
+          break
+        default:
+          console.log('default')
+      }
+    },
+    getEstimate() {
+      this.getDefaultPrice(this.estimate)
+      this.estimatedPrice = this.priceList[this.estimate]
+      const labels = document.querySelectorAll('.range-labels li')
+      labels.forEach((el, i) => {
+        if (this.estimate >= i) {
+          el.classList.add('selected')
+        } else {
+          el.classList.remove('selected')
+        }
+      })
+
+      // Change background gradient
+      const prefs = [
+        'webkit-slider-runnable-track',
+        'moz-range-track',
+        'ms-track',
+      ]
+      const val = this.estimate * 20
+
+      for (let i = 0; i < prefs.length; i++) {
+        document
+          .querySelector('.range-labels')
+          .classList.add('range-labels-active')
+        const root = document.querySelector(':root')
+        const element = document.querySelector('.range-labels-active')
+        getComputedStyle(element, '::before')
+        root.style.setProperty('--pseudo-width', `${val}%`)
       }
     },
     getMealPrice(plan) {
@@ -866,35 +1229,6 @@ export default {
         return item !== null
       })
       return filterRoom.join(', ')
-    },
-    getEstimate() {
-      this.estimatedPrice = this.priceList[this.estimate]
-      const labels = document.querySelectorAll('.range-labels li')
-      labels.forEach((el, i) => {
-        if (this.estimate >= i) {
-          el.classList.add('selected')
-        } else {
-          el.classList.remove('selected')
-        }
-      })
-
-      // Change background gradient
-      const prefs = [
-        'webkit-slider-runnable-track',
-        'moz-range-track',
-        'ms-track',
-      ]
-      const val = this.estimate * 20
-
-      for (let i = 0; i < prefs.length; i++) {
-        document
-          .querySelector('.range-labels')
-          .classList.add('range-labels-active')
-        const root = document.querySelector(':root')
-        const element = document.querySelector('.range-labels-active')
-        getComputedStyle(element, '::before')
-        root.style.setProperty('--pseudo-width', `${val}%`)
-      }
     },
   },
 }

@@ -271,6 +271,7 @@
                           name=""
                           placeholder="0"
                           min="1"
+                          max="20"
                           class="meal--input"
                         />
                         <span class="meal--label">meals </span>
@@ -846,8 +847,35 @@ export default {
   },
   watch: {
     mealQty(val) {
-      this.mealQty = val
+      if (this.mealFrequency.toLowerCase() === 'daily') {
+        if (val > 5) {
+          this.mealQty = 5
+        } else {
+          this.mealQty = val
+        }
+      }
+      if (this.mealFrequency.toLowerCase() === 'weekly') {
+        if (val > 4) {
+          this.mealQty = 4
+        } else {
+          this.mealQty = val
+        }
+      }
+      if (this.mealFrequency === 'Twice a week') {
+        if (val > 2) {
+          this.mealQty = 2
+        } else {
+          this.mealQty = val
+        }
+      }
       this.calculateFoodPrice()
+    },
+    laundryQty(val) {
+      if (val > 5) {
+        this.laundryQty = 5
+      } else {
+        this.laundryQty = val
+      }
     },
   },
   mounted() {
@@ -865,7 +893,7 @@ export default {
       this.laundrySummary = []
       this.foodSummary = []
       this.cleaningSummary = []
-      this.setCustom = !this.setCustom
+      this.setCustom = true
       this.calculateFoodPrice()
       this.calculateLaundryPrice()
       this.getTotalPrice(this.services, this.selectedService)
@@ -1376,8 +1404,10 @@ export default {
       ]
     },
     increaseLaundryOrder() {
-      this.laundryQty++
-      this.calculateLaundryPrice()
+      if (this.laundryQty < 5) {
+        this.laundryQty++
+        this.calculateLaundryPrice()
+      }
     },
     decreaseLaundryOrder() {
       if (this.laundryQty > 1) {

@@ -1334,7 +1334,7 @@ export default {
         this.getTotalPrice(this.services, this.selectedService)
         this.foodSummary = [
           `Daily delivery`,
-          `${this.mealQty} meals${this.mealQty > 1 ? 's' : ''} per day`,
+          `${this.mealQty} meal${this.mealQty > 1 ? 's' : ''} per day`,
         ]
       }
       if (this.mealFrequency.toLowerCase() === 'weekly') {

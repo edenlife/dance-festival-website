@@ -748,14 +748,17 @@ export default {
         {
           name: 'Once a week',
           value: 'weekly',
+          label: 'weekly',
         },
         {
           name: 'Every 2 weeks',
           value: 'bi-weekly',
+          label: 'every 2 weeks',
         },
         {
           name: 'Once a month',
           value: 'monthly',
+          label: 'once a month',
         },
       ],
       laundryTypeOption: [
@@ -821,7 +824,8 @@ export default {
       subtotalPrice: '',
       discountPrice: '',
       laundryTypeValue: 'wash-and-fold',
-      laundryFreqOption: 'bi-weekly',
+      laundryFreqValue: 'bi-weekly',
+      laundryFreqName: 'every 2 weeks',
     }
   },
   watch: {
@@ -842,6 +846,10 @@ export default {
       this.reconfigurePlan = !this.reconfigurePlan
       this.estimate = 6
       this.selectedService = ['Food', 'Laundry', 'Cleaning']
+      this.laundrySummary = []
+      this.foodSummary = []
+      this.cleaningSummary = []
+      this.setCustom = !this.setCustom
       this.calculateFoodPrice()
       this.calculateLaundryPrice()
       this.getTotalPrice(this.services, this.selectedService)
@@ -850,7 +858,6 @@ export default {
       this.reconfigurePlan = !this.reconfigurePlan
       this.displayForm = !this.displayForm
       this.estimatedPrice = this.subtotalPrice
-      this.setCustom = !this.setCustom
       this.setBackgroundGradient()
     },
     removePlan(plan) {
@@ -1269,6 +1276,10 @@ export default {
         })
         this.services[0].price = total.toString()
         this.getTotalPrice(this.services, this.selectedService)
+        this.foodSummary = [
+          `${this.mealFrequency} delivery`,
+          `${this.mealQty} meal per week`,
+        ]
       }
       if (this.mealFrequency.toLowerCase() === 'weekly') {
         const total = pricing({
@@ -1276,6 +1287,11 @@ export default {
         })
         this.services[0].price = total.toString()
         this.getTotalPrice(this.services, this.selectedService)
+        this.foodSummary = [
+          `${this.mealFrequency} delivery`,
+          `${this.mealQty} meal per week`,
+          'Delivered once a week',
+        ]
       }
     },
     getMealPrice(plan) {
@@ -1290,8 +1306,9 @@ export default {
         this.calculateLaundryPrice()
         this.toggle('laundryType')
       } else {
+        this.laundryFreqName = plan.label
         this.laundryFrequency = plan.name
-        this.laundryFreqOption = plan.value
+        this.laundryFreqValue = plan.value
         this.calculateLaundryPrice()
         this.toggle('laundryFreq')
       }
@@ -1300,12 +1317,17 @@ export default {
       const total = pricing({
         laundry: {
           item: this.laundryTypeValue,
-          frequency: this.laundryFreqOption,
+          frequency: this.laundryFreqValue,
           qty: this.laundryQty,
         },
       })
       this.services[1].price = total.toString()
       this.getTotalPrice(this.services, this.selectedService)
+      this.laundrySummary = [
+        `${this.laundryType}`,
+        `${this.laundryQty} bag (max. 30 items per bag)`,
+        `Picked up ${this.laundryFreqName}`,
+      ]
     },
     increaseLaundryOrder() {
       this.laundryQty++

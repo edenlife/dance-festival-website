@@ -7,7 +7,10 @@
             <h2>Pricing</h2>
             <p>You think Eden is expensive? Oya do am if e easy.</p>
           </div>
-          <div class="pricing__form-slider">
+          <div
+            v-show="!reconfigurePlan && !setCustom"
+            class="pricing__form-slider"
+          >
             <div class="pricing__form-slider--title">
               <p>What is your estimate monthly expense?</p>
               <h3>
@@ -703,7 +706,10 @@
             <p class="pricing__calculator-total">
               <span>Total</span> <span>₦ {{ formatNumber(totalPrice) }}</span>
             </p>
-            <button class="pricing__calculator-btn">
+            <button
+              class="pricing__calculator-btn"
+              @click.prevent="setReconfigureSummary()"
+            >
               Break up with chores
             </button>
           </div>
@@ -729,6 +735,7 @@ export default {
       ],
       estimate: 2,
       displayForm: false,
+      setCustom: false,
       estimatedPrice: '50000',
       priceList: ['10000', '20000', '50000', '100000', '150000', '150000'],
       reconfigurePlan: false,
@@ -839,6 +846,13 @@ export default {
       this.calculateLaundryPrice()
       this.getTotalPrice(this.services, this.selectedService)
     },
+    setReconfigureSummary() {
+      this.reconfigurePlan = !this.reconfigurePlan
+      this.displayForm = !this.displayForm
+      this.estimatedPrice = this.subtotalPrice
+      this.setCustom = !this.setCustom
+      this.setBackgroundGradient()
+    },
     removePlan(plan) {
       if (
         this.selectedService.length > 1 &&
@@ -853,6 +867,7 @@ export default {
       ) {
         this.selectedService.push(plan)
       }
+      this.getTotalPrice(this.services, this.selectedService)
     },
     toggle(plan) {
       if (this.visible.includes(plan)) {
@@ -1218,6 +1233,9 @@ export default {
     getEstimate() {
       this.getDefaultPrice(this.estimate)
       this.estimatedPrice = this.priceList[this.estimate]
+      this.setBackgroundGradient()
+    },
+    setBackgroundGradient() {
       const labels = document.querySelectorAll('.range-labels li')
       labels.forEach((el, i) => {
         if (this.estimate >= i) {
@@ -1226,7 +1244,6 @@ export default {
           el.classList.remove('selected')
         }
       })
-
       // Change background gradient
       const prefs = [
         'webkit-slider-runnable-track',

@@ -33,7 +33,9 @@
     &-container {
       width: 45%;
     }
-
+    &-title {
+      margin-bottom: $gap * 4;
+    }
     h2 {
       @include font-weight(bold);
       @include font-size(5xl);
@@ -45,7 +47,7 @@
       line-height: 29px;
     }
     &-slider {
-      margin: $gap * 4 0;
+      margin-bottom: $gap * 4;
       &--title {
         display: flex;
         justify-content: space-between;
@@ -875,6 +877,9 @@
       &-container {
         width: 100%;
       }
+      &-title {
+        margin-bottom: $gap * 4.8;
+      }
       h2 {
         text-align: center;
       }
@@ -886,7 +891,7 @@
         margin: 0 auto;
       }
       &-slider {
-        margin: $gap * 4.8 0;
+        margin-bottom: $gap * 4.8;
         &--title {
           flex-direction: column;
           align-items: center;

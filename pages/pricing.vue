@@ -247,11 +247,13 @@
                           <div :class="{ hidden: !visible.includes('food') }">
                             <transition name="slide-fade">
                               <ul>
-                                <li @click.prevent="getMealPrice('Daily')">
-                                  Daily
-                                </li>
-                                <li @click.prevent="getMealPrice('Weekly')">
-                                  Weekly
+                                <li
+                                  v-for="(item, i) in mealTypeOption"
+                                  :key="i"
+                                >
+                                  <span @click.prevent="getMealPrice(item)">{{
+                                    item.name
+                                  }}</span>
                                 </li>
                               </ul>
                             </transition>
@@ -759,6 +761,20 @@ export default {
           name: 'Once a month',
           value: 'monthly',
           label: 'once a month',
+        },
+      ],
+      mealTypeOption: [
+        {
+          name: 'Daily',
+          value: 'daily',
+        },
+        {
+          name: 'Weekly',
+          value: 'weekly',
+        },
+        {
+          name: 'Twice a week',
+          value: 'weekly-twodays',
         },
       ],
       laundryTypeOption: [
@@ -1277,8 +1293,8 @@ export default {
         this.services[0].price = total.toString()
         this.getTotalPrice(this.services, this.selectedService)
         this.foodSummary = [
-          `${this.mealFrequency} delivery`,
-          `${this.mealQty} meal per week`,
+          `Daily delivery`,
+          `${this.mealQty} meal${this.mealQty > 1 ? 's' : ''} per week`,
         ]
       }
       if (this.mealFrequency.toLowerCase() === 'weekly') {
@@ -1288,14 +1304,26 @@ export default {
         this.services[0].price = total.toString()
         this.getTotalPrice(this.services, this.selectedService)
         this.foodSummary = [
-          `${this.mealFrequency} delivery`,
-          `${this.mealQty} meal per week`,
+          `Weekly delivery`,
+          `${this.mealQty} meal${this.mealQty > 1 ? 's' : ''} per week`,
           'Delivered once a week',
+        ]
+      }
+      if (this.mealFrequency === 'Twice a week') {
+        const total = pricing({
+          meal: { item: null, frequency: 'weekly-twodays', qty: this.mealQty },
+        })
+        this.services[0].price = total.toString()
+        this.getTotalPrice(this.services, this.selectedService)
+        this.foodSummary = [
+          `Weekly delivery`,
+          `${this.mealQty} meal${this.mealQty > 1 ? 's' : ''} per week`,
+          'Delivered twice a week',
         ]
       }
     },
     getMealPrice(plan) {
-      this.mealFrequency = plan
+      this.mealFrequency = plan.name
       this.calculateFoodPrice()
       this.toggle('food')
     },
@@ -1325,7 +1353,9 @@ export default {
       this.getTotalPrice(this.services, this.selectedService)
       this.laundrySummary = [
         `${this.laundryType}`,
-        `${this.laundryQty} bag (max. 30 items per bag)`,
+        `${this.laundryQty} bag${
+          this.laundryQty > 1 ? 's' : ''
+        } (max. 30 items per bag)`,
         `Picked up ${this.laundryFreqName}`,
       ]
     },

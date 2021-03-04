@@ -1075,7 +1075,7 @@ export default {
           this.services[0].price = '44000'
           this.services[1].price = '48000'
           this.services[2].price = '44000'
-          this.foodSummary = ['Daily delivery', '7 meals per week']
+          this.foodSummary = ['Daily delivery', '1 meal per day']
           this.laundrySummary = [
             'Wash and Iron',
             '3 bags (max. 30 items per bag)',
@@ -1090,7 +1090,7 @@ export default {
           this.services[0].price = '44000'
           this.services[1].price = '16000'
           this.services[2].price = '28000'
-          this.foodSummary = ['Daily delivery', '7 meals per week']
+          this.foodSummary = ['Daily delivery', '1 meal per day']
           this.laundrySummary = [
             'Wash and Iron',
             '1 bag (max. 30 items per bag)',
@@ -1104,7 +1104,11 @@ export default {
           ) {
             this.services[0].price = '68000'
             this.services[1].price = '32000'
-            this.foodSummary = ['Daily delivery', '10 meals per week']
+            this.foodSummary = [
+              'Weekly delivery',
+              '10 meals per week',
+              'Delivered twice a week',
+            ]
             this.laundrySummary = [
               'Wash and Iron',
               '1 bag (max. 30 items per bag)',
@@ -1117,7 +1121,11 @@ export default {
           ) {
             this.services[0].price = '68000'
             this.services[2].price = '28000'
-            this.foodSummary = ['Daily delivery', '10 meals per week']
+            this.foodSummary = [
+              'Weekly delivery',
+              '10 meals per week',
+              'Delivered twice a week',
+            ]
             this.cleaningSummary = ['Light cleaning', '3 rooms', 'Every week']
           }
           if (
@@ -1138,7 +1146,11 @@ export default {
           this.services[0].price = '68000'
           this.services[1].price = '96000'
           this.services[2].price = '60000'
-          this.foodSummary = ['Daily delivery', '10 meals per week']
+          this.foodSummary = [
+            'Weekly delivery',
+            '10 meals per week',
+            'Delivered twice a week',
+          ]
           this.laundrySummary = [
             'Wash and Iron',
             '3 bags (max. 30 items per bag)',
@@ -1150,10 +1162,10 @@ export default {
       //
       if (this.estimate.toString() === '4') {
         if (this.selectedService.length === 3) {
-          this.services[0].price = '80800'
+          this.services[0].price = '80000'
           this.services[1].price = '32000'
           this.services[2].price = '44000'
-          this.foodSummary = ['Daily delivery', '14 meals per week']
+          this.foodSummary = ['Daily delivery', '2 meals per day']
           this.laundrySummary = [
             'Wash and Iron',
             '1 bag (max. 30 items per bag)',
@@ -1165,9 +1177,9 @@ export default {
             this.selectedService.includes('Food') &&
             this.selectedService.includes('Laundry')
           ) {
-            this.services[0].price = '80800'
+            this.services[0].price = '80000'
             this.services[1].price = '48000'
-            this.foodSummary = ['Daily delivery', '14 meals per week']
+            this.foodSummary = ['Daily delivery', '2 meals per day']
             this.laundrySummary = [
               'Wash and Iron',
               '3 bags (max. 30 items per bag)',
@@ -1178,9 +1190,9 @@ export default {
             this.selectedService.includes('Food') &&
             this.selectedService.includes('Cleaning')
           ) {
-            this.services[0].price = '80800'
+            this.services[0].price = '80000'
             this.services[2].price = '44000'
-            this.foodSummary = ['Daily delivery', '14 meals per week']
+            this.foodSummary = ['Daily delivery', '2 meals per day']
             this.cleaningSummary = ['Light cleaning', '5 rooms', 'Every week']
           }
           if (
@@ -1198,10 +1210,10 @@ export default {
             this.cleaningSummary = ['Deep cleaning', '10 rooms', 'Every month']
           }
         } else if (this.selectedService.length === 1) {
-          this.services[0].price = '148000'
+          this.services[0].price = '120000'
           this.services[1].price = '128000'
           this.services[2].price = '100000'
-          this.foodSummary = ['Daily delivery', '24 meals per week']
+          this.foodSummary = ['Daily delivery', '3 meals per day']
           this.laundrySummary = [
             'Wash and Iron',
             '4 bags (max. 30 items per bag)',
@@ -1294,30 +1306,34 @@ export default {
         this.getTotalPrice(this.services, this.selectedService)
         this.foodSummary = [
           `Daily delivery`,
-          `${this.mealQty} meal${this.mealQty > 1 ? 's' : ''} per week`,
+          `${this.mealQty} meals${this.mealQty > 1 ? 's' : ''} per day`,
         ]
       }
       if (this.mealFrequency.toLowerCase() === 'weekly') {
         const total = pricing({
-          meal: { item: null, frequency: 'weekly', qty: this.mealQty },
+          meal: { item: null, frequency: 'weekly', qty: this.mealQty * 5 },
         })
         this.services[0].price = total.toString()
         this.getTotalPrice(this.services, this.selectedService)
         this.foodSummary = [
           `Weekly delivery`,
-          `${this.mealQty} meal${this.mealQty > 1 ? 's' : ''} per week`,
+          `${this.mealQty * 5} meals per week`,
           'Delivered once a week',
         ]
       }
       if (this.mealFrequency === 'Twice a week') {
         const total = pricing({
-          meal: { item: null, frequency: 'weekly-twodays', qty: this.mealQty },
+          meal: {
+            item: null,
+            frequency: 'weekly-twodays',
+            qty: this.mealQty * 5,
+          },
         })
         this.services[0].price = total.toString()
         this.getTotalPrice(this.services, this.selectedService)
         this.foodSummary = [
           `Weekly delivery`,
-          `${this.mealQty} meal${this.mealQty > 1 ? 's' : ''} per week`,
+          `${this.mealQty * 5} meals per week`,
           'Delivered twice a week',
         ]
       }

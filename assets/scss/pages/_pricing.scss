@@ -788,6 +788,10 @@
         }
       }
     }
+    .slide-fade-leave-active {
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
 
     &-total {
       line-height: 20px;

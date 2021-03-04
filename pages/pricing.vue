@@ -11,7 +11,9 @@
             <div class="pricing__form-slider--title">
               <p>What is your estimate monthly expense?</p>
               <h3>
-                <span v-if="estimate === '5'">+</span>₦{{ estimatedPrice }}
+                <span v-if="estimate === '5'">+</span>₦{{
+                  formatNumber(estimatedPrice)
+                }}
               </h3>
             </div>
             <div class="range">
@@ -45,26 +47,26 @@
               <li
                 v-for="(service, index) in services"
                 :key="index"
-                :value="service"
+                :value="service.name"
                 class="service"
                 :class="{
-                  selected: selectedService.includes(service),
+                  selected: selectedService.includes(service.name),
                 }"
               >
                 <input
-                  :id="service"
+                  :id="service.name"
                   type="checkbox"
-                  :name="service"
-                  :value="service"
+                  :name="service.name"
+                  :value="service.name"
                   @change="changeService(service)"
                 />
                 <label
                   :for="service"
                   :class="{
-                    checkmark: selectedService.includes(service),
+                    checkmark: selectedService.includes(service.name),
                   }"
                 >
-                  {{ service }}</label
+                  {{ service.name }}</label
                 >
               </li>
             </ul>
@@ -113,12 +115,14 @@
             class="pricing__plan"
           >
             <p class="pricing__plan-title">
-              For <span>₦{{ estimatedPrice }}</span> monthly, you can get:
+              For <span>₦{{ formatNumber(estimatedPrice) }}</span> monthly, you
+              can get:
             </p>
             <transition name="slide-fade">
               <ul v-if="selectedService.includes('Food')">
                 <p>
-                  <span>Food plan</span> <span>₦{{ foodPrice }}</span>
+                  <span>Food plan</span>
+                  <span>₦{{ formatNumber(services[0].price) }}</span>
                 </p>
                 <li v-for="(item, i) in foodSummary" :key="i">{{ item }}</li>
               </ul>
@@ -126,7 +130,8 @@
             <transition name="slide-fade">
               <ul v-if="selectedService.includes('Laundry')">
                 <p>
-                  <span>Laundry plan</span> <span>₦{{ laundryPrice }}</span>
+                  <span>Laundry plan</span>
+                  <span>₦{{ formatNumber(services[1].price) }}</span>
                 </p>
                 <li v-for="(item, i) in laundrySummary" :key="i">{{ item }}</li>
               </ul>
@@ -134,7 +139,8 @@
             <transition name="slide-fade">
               <ul v-if="selectedService.includes('Cleaning')">
                 <p>
-                  <span>Cleaning plan</span> <span>₦{{ cleaningPrice }}</span>
+                  <span>Cleaning plan</span>
+                  <span>₦{{ formatNumber(services[2].price) }}</span>
                 </p>
                 <li v-for="(item, i) in cleaningSummary" :key="i">
                   {{ item }}
@@ -142,14 +148,15 @@
               </ul>
             </transition>
             <p class="pricing__plan-subtotal">
-              <span>Subtotal</span> <span>₦ 99,800</span>
+              <span>Subtotal</span>
+              <span>₦ {{ formatNumber(subtotalPrice) }}</span>
             </p>
             <p class="pricing__plan-discount">
               <span>Discount (20% discount off your first month)</span>
-              <span>- ₦ 2,600</span>
+              <span>- ₦ {{ formatNumber(discountPrice) }}</span>
             </p>
             <p class="pricing__plan-total">
-              <span>Total</span> <span>₦ 97,200</span>
+              <span>Total</span> <span>₦ {{ formatNumber(totalPrice) }}</span>
             </p>
             <div class="pricing__plan-reconfigure">
               <div class="reconfigure">
@@ -633,14 +640,15 @@
               </div>
             </div>
             <p class="pricing__calculator-subtotal">
-              <span>Subtotal</span> <span>₦ 99,800</span>
+              <span>Subtotal</span>
+              <span>₦ {{ formatNumber(subtotalPrice) }}</span>
             </p>
             <p class="pricing__calculator-discount">
               <span>Discount (20% discount off your first month)</span>
-              <span>- ₦ 2,600</span>
+              <span>- ₦ {{ formatNumber(discountPrice) }}</span>
             </p>
             <p class="pricing__calculator-total">
-              <span>Total</span> <span>₦ 97,200</span>
+              <span>Total</span> <span>₦ {{ formatNumber(totalPrice) }}</span>
             </p>
             <button class="pricing__calculator-btn">
               Break up with chores
@@ -653,7 +661,7 @@
 </template>
 
 <script>
-import { currencyFormat } from '~/static/functions'
+import { currencyFormat, formatNumber } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { pricing } from '~/static/pricing'
 
@@ -661,18 +669,15 @@ export default {
   data() {
     return {
       selectedService: ['Food', 'Laundry', 'Cleaning'],
-      services: ['Food', 'Laundry', 'Cleaning'],
+      services: [
+        { name: 'Food', price: '' },
+        { name: 'Laundry', price: '' },
+        { name: 'Cleaning', price: '' },
+      ],
       estimate: 2,
       displayForm: false,
-      estimatedPrice: '50,000',
-      priceList: [
-        '10,000',
-        '20,000',
-        '50,000',
-        '100,000',
-        '150,000',
-        '150,000',
-      ],
+      estimatedPrice: '50000',
+      priceList: ['10000', '20000', '50000', '100000', '150000', '150000'],
       reconfigurePlan: false,
       visible: [],
       mealFrequency: 'Daily',
@@ -750,12 +755,12 @@ export default {
           qty: 0,
         },
       ],
-      foodPrice: '',
-      laundryPrice: '',
-      cleaningPrice: '',
       foodSummary: [],
       laundrySummary: [],
       cleaningSummary: [],
+      totalPrice: '',
+      subtotalPrice: '',
+      discountPrice: '',
     }
   },
   mounted() {
@@ -763,6 +768,7 @@ export default {
   },
   methods: {
     currencyFormat,
+    formatNumber,
     toggle(plan) {
       if (this.visible.includes(plan)) {
         this.visible = this.visible.filter((item) => item !== plan)
@@ -770,10 +776,30 @@ export default {
         this.visible.push(plan)
       }
     },
+    getTotalPrice(array1, array2) {
+      const finalArray = []
+      array1.forEach((e1) =>
+        array2.forEach((e2) => {
+          if (e1.name === e2) {
+            finalArray.push(e1)
+          }
+        })
+      )
+      const subtotal = finalArray.reduce((acc, val) => {
+        const valInt = parseInt(val.price)
+        return acc + valInt
+      }, 0)
+
+      this.subtotalPrice = subtotal.toString()
+      const discount = subtotal * 0.2
+      this.discountPrice = discount.toString()
+      this.totalPrice = (subtotal - discount).toString()
+    },
     changeService(service) {
       if (this.estimate === '0') {
         this.selectedService.pop()
-        this.selectedService.push(service)
+        this.selectedService.push(service.name)
+        this.getTotalPrice(this.services, this.selectedService)
         this.foodSummary = [
           'Weekly delivery',
           '1 meal per week',
@@ -791,23 +817,23 @@ export default {
       if (this.estimate === '1') {
         if (
           this.selectedService.length > 1 &&
-          this.selectedService.includes(service)
+          this.selectedService.includes(service.name)
         ) {
           this.selectedService = this.selectedService.filter(
-            (item) => item !== service
+            (item) => item !== service.name
           )
         } else if (
           this.selectedService.length >= 1 &&
           this.selectedService.length < 2 &&
-          !this.selectedService.includes(service)
+          !this.selectedService.includes(service.name)
         ) {
-          this.selectedService.push(service)
+          this.selectedService.push(service.name)
         }
 
         if (this.selectedService.length > 1) {
-          this.foodPrice = '8,800'
-          this.laundryPrice = '9,000'
-          this.cleaningPrice = '8,000'
+          this.services[0].price = '8800'
+          this.services[1].price = '9000'
+          this.services[2].price = '8000'
           this.foodSummary = [
             'Weekly delivery',
             '1 meal per week',
@@ -820,9 +846,9 @@ export default {
           ]
           this.cleaningSummary = ['Light cleaning', '1 room', 'Every two weeks']
         } else {
-          this.foodPrice = '16,000'
-          this.laundryPrice = '16,000'
-          this.cleaningPrice = '14,000'
+          this.services[0].price = '16000'
+          this.services[1].price = '16000'
+          this.services[2].price = '14000'
           this.foodSummary = [
             'Weekly delivery',
             '2 meals per week',
@@ -839,28 +865,29 @@ export default {
             'Every two weeks',
           ]
         }
+        this.getTotalPrice(this.services, this.selectedService)
         return
       }
       //
       if (
         this.selectedService.length > 1 &&
-        this.selectedService.includes(service)
+        this.selectedService.includes(service.name)
       ) {
         this.selectedService = this.selectedService.filter(
-          (item) => item !== service
+          (item) => item !== service.name
         )
       } else if (
         this.selectedService.length >= 1 &&
-        !this.selectedService.includes(service)
+        !this.selectedService.includes(service.name)
       ) {
-        this.selectedService.push(service)
+        this.selectedService.push(service.name)
       }
       //
       if (this.estimate.toString() === '2') {
         if (this.selectedService.length === 3) {
-          this.foodPrice = '16,000'
-          this.laundryPrice = '14,000'
-          this.cleaningPrice = '14,000'
+          this.services[0].price = '16000'
+          this.services[1].price = '14000'
+          this.services[2].price = '14000'
           this.foodSummary = [
             'Weekly delivery',
             '2 meals per week',
@@ -881,8 +908,8 @@ export default {
             this.selectedService.includes('Food') &&
             this.selectedService.includes('Laundry')
           ) {
-            this.foodPrice = '38,000'
-            this.laundryPrice = '9,000'
+            this.services[0].price = '38000'
+            this.services[1].price = '9000'
             this.foodSummary = [
               'Weekly delivery',
               '5 meals per week',
@@ -898,8 +925,8 @@ export default {
             this.selectedService.includes('Food') &&
             this.selectedService.includes('Cleaning')
           ) {
-            this.foodPrice = '16,000'
-            this.cleaningPrice = '28,000'
+            this.services[0].price = '16000'
+            this.services[2].price = '28000'
             this.foodSummary = [
               'Weekly delivery',
               '2 meals per week',
@@ -911,8 +938,8 @@ export default {
             this.selectedService.includes('Cleaning') &&
             this.selectedService.includes('Laundry')
           ) {
-            this.laundryPrice = '16,000'
-            this.cleaningPrice = '28,000'
+            this.services[1].price = '16000'
+            this.services[2].price = '28000'
 
             this.laundrySummary = [
               'Wash and Iron',
@@ -922,9 +949,9 @@ export default {
             this.cleaningSummary = ['Light cleaning', '3 rooms', 'Every week']
           }
         } else if (this.selectedService.length === 1) {
-          this.foodPrice = '44,000'
-          this.laundryPrice = '48,000'
-          this.cleaningPrice = '44,000'
+          this.services[0].price = '44000'
+          this.services[1].price = '48000'
+          this.services[2].price = '44000'
           this.foodSummary = ['Daily delivery', '7 meals per week']
           this.laundrySummary = [
             'Wash and Iron',
@@ -937,9 +964,9 @@ export default {
       //
       if (this.estimate.toString() === '3') {
         if (this.selectedService.length === 3) {
-          this.foodPrice = '44,000'
-          this.laundryPrice = '16,000'
-          this.cleaningPrice = '28,000'
+          this.services[0].price = '44000'
+          this.services[1].price = '16000'
+          this.services[2].price = '28000'
           this.foodSummary = ['Daily delivery', '7 meals per week']
           this.laundrySummary = [
             'Wash and Iron',
@@ -952,8 +979,8 @@ export default {
             this.selectedService.includes('Food') &&
             this.selectedService.includes('Laundry')
           ) {
-            this.foodPrice = '68,000'
-            this.laundryPrice = '32,000'
+            this.services[0].price = '68000'
+            this.services[1].price = '32000'
             this.foodSummary = ['Daily delivery', '10 meals per week']
             this.laundrySummary = [
               'Wash and Iron',
@@ -965,8 +992,8 @@ export default {
             this.selectedService.includes('Food') &&
             this.selectedService.includes('Cleaning')
           ) {
-            this.foodPrice = '68,000'
-            this.cleaningPrice = '28,000'
+            this.services[0].price = '68000'
+            this.services[2].price = '28000'
             this.foodSummary = ['Daily delivery', '10 meals per week']
             this.cleaningSummary = ['Light cleaning', '3 rooms', 'Every week']
           }
@@ -974,8 +1001,8 @@ export default {
             this.selectedService.includes('Cleaning') &&
             this.selectedService.includes('Laundry')
           ) {
-            this.laundryPrice = '48,000'
-            this.cleaningPrice = '44,000'
+            this.services[1].price = '48000'
+            this.services[2].price = '44000'
 
             this.laundrySummary = [
               'Wash and Iron',
@@ -985,9 +1012,9 @@ export default {
             this.cleaningSummary = ['Light cleaning', '5 rooms', 'Every week']
           }
         } else if (this.selectedService.length === 1) {
-          this.foodPrice = '68,000'
-          this.laundryPrice = '96,000'
-          this.cleaningPrice = '60,000'
+          this.services[0].price = '68000'
+          this.services[1].price = '96000'
+          this.services[2].price = '60000'
           this.foodSummary = ['Daily delivery', '10 meals per week']
           this.laundrySummary = [
             'Wash and Iron',
@@ -1000,9 +1027,9 @@ export default {
       //
       if (this.estimate.toString() === '4') {
         if (this.selectedService.length === 3) {
-          this.foodPrice = '80,800'
-          this.laundryPrice = '32,000'
-          this.cleaningPrice = '44,000'
+          this.services[0].price = '80800'
+          this.services[1].price = '32000'
+          this.services[2].price = '44000'
           this.foodSummary = ['Daily delivery', '14 meals per week']
           this.laundrySummary = [
             'Wash and Iron',
@@ -1015,8 +1042,8 @@ export default {
             this.selectedService.includes('Food') &&
             this.selectedService.includes('Laundry')
           ) {
-            this.foodPrice = '80,800'
-            this.laundryPrice = '48,000'
+            this.services[0].price = '80800'
+            this.services[1].price = '48000'
             this.foodSummary = ['Daily delivery', '14 meals per week']
             this.laundrySummary = [
               'Wash and Iron',
@@ -1028,8 +1055,8 @@ export default {
             this.selectedService.includes('Food') &&
             this.selectedService.includes('Cleaning')
           ) {
-            this.foodPrice = '80,800'
-            this.cleaningPrice = '44,000'
+            this.services[0].price = '80800'
+            this.services[2].price = '44000'
             this.foodSummary = ['Daily delivery', '14 meals per week']
             this.cleaningSummary = ['Light cleaning', '5 rooms', 'Every week']
           }
@@ -1037,8 +1064,8 @@ export default {
             this.selectedService.includes('Cleaning') &&
             this.selectedService.includes('Laundry')
           ) {
-            this.laundryPrice = '48,000'
-            this.cleaningPrice = '100,000'
+            this.services[1].price = '48000'
+            this.services[2].price = '100000'
 
             this.laundrySummary = [
               'Wash and Iron',
@@ -1048,9 +1075,9 @@ export default {
             this.cleaningSummary = ['Deep cleaning', '10 rooms', 'Every month']
           }
         } else if (this.selectedService.length === 1) {
-          this.foodPrice = '148,000'
-          this.laundryPrice = '128,000'
-          this.cleaningPrice = '100,000'
+          this.services[0].price = '148000'
+          this.services[1].price = '128000'
+          this.services[2].price = '100000'
           this.foodSummary = ['Daily delivery', '24 meals per week']
           this.laundrySummary = [
             'Wash and Iron',
@@ -1060,35 +1087,43 @@ export default {
           this.cleaningSummary = ['Deep cleaning', '10 rooms', 'Every month']
         }
       }
+      this.getTotalPrice(this.services, this.selectedService)
     },
     getDefaultPrice(estimate) {
       switch (estimate.toString()) {
         case '0': {
           this.selectedService = []
-          this.changeService('Food')
-          this.foodPrice = '8,800'
-          this.laundryPrice = '9,000'
-          this.cleaningPrice = '8,000'
+          const defaultService = { name: 'Food', price: '8800' }
+          this.services[0].price = '8800'
+          this.services[1].price = '9000'
+          this.services[2].price = '8000'
+          this.changeService(defaultService)
           break
         }
         case '1': {
           this.selectedService = ['Food']
-          this.changeService('Laundry')
+          const defaultService = { name: 'Laundry', price: '' }
+          this.changeService(defaultService)
           break
         }
         case '2': {
           this.selectedService = ['Food', 'Laundry']
-          this.changeService('Cleaning')
+          const defaultService = { name: 'Cleaning', price: '' }
+          this.changeService(defaultService)
           break
         }
-        case '3':
+        case '3': {
           this.selectedService = ['Food', 'Laundry']
-          this.changeService('Cleaning')
+          const defaultService = { name: 'Cleaning', price: '' }
+          this.changeService(defaultService)
           break
-        case '4':
+        }
+        case '4': {
           this.selectedService = ['Food', 'Laundry']
-          this.changeService('Cleaning')
+          const defaultService = { name: 'Cleaning', price: '' }
+          this.changeService(defaultService)
           break
+        }
         case '5':
           break
         default:

@@ -15,38 +15,12 @@ const UNIT_PRICE_MAP = {
     essentials: 13000,
   },
   CLEANING: {
-    'light-cleaning': {
-      1: 4000,
-      2: 6000,
-      3: 7000,
-      4: 10000,
-      5: 11000,
-      6: 13000,
-      7: 14000,
-      8: 15000,
-      9: 16000,
-      10: 17000,
-    },
-    'deep-cleaning': {
-      1: 20000,
-      2: 25000,
-      3: 35000,
-      4: 45000,
-      5: 55000,
-      6: 65000,
-      7: 70000,
-      8: 80000,
-      9: 90000,
-      10: 100000,
-    },
-    fumigation: {
-      1: 15000,
-      2: 25000,
-      3: 35000,
-      4: 55000,
-      5: 60000,
-      6: 70000,
-    },
+    1: 15000,
+    2: 25000,
+    3: 35000,
+    4: 55000,
+    5: 60000,
+    6: 70000,
   },
   LAUNDRY: {
     'wash-and-iron': 8000,
@@ -70,23 +44,46 @@ export const pricing = (services) => {
       const monthlyFrequency = TIMES_PER_MONTH[frequency]
       return unitPrice * parseInt(qty) * monthlyFrequency
     },
-    cleaning: ({ item, frequency, qty }) => {
-      const itemKey = item.toLowerCase().split(' ').join('-')
-      if (qty > 10 && item === 'light-cleaning') {
-        const monthlyFrequency = TIMES_PER_MONTH[frequency]
-        const addition = (qty - 10) * 1000
-        const unitPrice = 17000 + addition
-        return unitPrice * monthlyFrequency
-      } else if (qty > 10 && item === 'deep-cleaning') {
-        const monthlyFrequency = TIMES_PER_MONTH[frequency]
-        const addition = (qty - 10) * 10000
-        const unitPrice = 100000 + addition
-        return unitPrice * monthlyFrequency
+    cleaning: ({ item, itemAreas, itemAreasPrice, frequency, qty }) => {
+      let areasTotalPrice = 0
+      let discount = 0
+      if (item !== 'fumigation') {
+        areasTotalPrice = Object.keys(itemAreas).reduce((total, area) => {
+          const areaQuantity = itemAreas[area]
+          const areaUnitPrice = itemAreasPrice[area]
+          return total + areaQuantity * areaUnitPrice
+        }, 0)
       } else {
-        const unitPrice = UNIT_PRICE_MAP.CLEANING[itemKey][qty]
-        const monthlyFrequency = TIMES_PER_MONTH[frequency]
-        return unitPrice * monthlyFrequency
+        areasTotalPrice = UNIT_PRICE_MAP.CLEANING[parseInt(qty)]
       }
+
+      switch (item) {
+        case 'light-cleaning':
+          if (areasTotalPrice >= 7000 && areasTotalPrice < 8000) {
+            discount = 1000
+          } else if (areasTotalPrice >= 8000 && areasTotalPrice < 13000) {
+            discount = 2000
+          } else if (areasTotalPrice >= 13000) {
+            discount = 3000
+          }
+          break
+        case 'deep-cleaning':
+          if (areasTotalPrice >= 25000 && areasTotalPrice < 30000) {
+            discount = 5000
+          } else if (areasTotalPrice >= 30000 && areasTotalPrice < 35000) {
+            discount = 10000
+          } else if (areasTotalPrice >= 35000) {
+            discount = 15000
+          }
+          break
+        case 'fumigation':
+          break
+        default:
+          break
+      }
+
+      const monthlyFrequency = TIMES_PER_MONTH[frequency]
+      return (areasTotalPrice - discount) * monthlyFrequency
     },
     laundry: ({ item, frequency, qty }) => {
       const itemKey = item.toLowerCase().split(' ').join('-')

@@ -634,7 +634,7 @@
                                   <span class="control__item">
                                     <button
                                       class="control__item-btn"
-                                      @click.prevent="decreaseRoom(item, i)"
+                                      @click.prevent="decreaseRoomQty(item, i)"
                                     >
                                       <svg
                                         width="12"
@@ -657,7 +657,7 @@
                                     </span>
                                     <button
                                       class="control__item-btn"
-                                      @click.prevent="increaseRoom(item, i)"
+                                      @click.prevent="increaseRoomQty(item, i)"
                                     >
                                       <svg
                                         width="16"
@@ -693,7 +693,7 @@
                   </div>
                   <div class="calculator__footer">
                     <p>Cleaning amount</p>
-                    <p>₦30,000/month</p>
+                    <p>₦{{ formatNumber(services[2].price) }}/month</p>
                   </div>
                 </div>
               </div>
@@ -794,30 +794,37 @@ export default {
       cleaningTypeOption: [
         {
           name: 'Light cleaning',
-          value: 'light',
+          value: 'light-cleaning',
+          type: 'cleaning',
         },
         {
           name: 'Deep cleaning',
-          value: 'deep',
+          value: 'deep-cleaning',
+          type: 'cleaning',
+        },
+        {
+          name: 'Fumigation',
+          value: 'fumigation',
+          type: 'cleaning',
         },
       ],
       roomTypes: ['1 bedroom', '1 bathroom', '1 living room'],
       cleaningQtyOption: [
         {
           name: 'Bedroom',
-          value: 'bedroom',
+          value: 'bedrooms',
           label: 'bedroom',
           qty: 1,
         },
         {
           name: 'Bathroom',
-          value: 'bathroom',
+          value: 'bathrooms',
           label: 'bathroom',
           qty: 1,
         },
         {
           name: 'Living and Dining room',
-          value: 'living-room',
+          value: 'living-rooms-dining-areas',
           label: 'living room',
           qty: 1,
         },
@@ -828,9 +835,15 @@ export default {
           qty: 0,
         },
         {
-          name: 'Study and Store',
-          value: 'store',
-          label: 'store',
+          name: 'Study',
+          value: 'study',
+          label: 'study',
+          qty: 0,
+        },
+        {
+          name: 'Balcony',
+          value: 'balcony',
+          label: 'balcony',
           qty: 0,
         },
       ],
@@ -842,7 +855,19 @@ export default {
       discountPrice: '',
       laundryTypeValue: 'wash-and-fold',
       laundryFreqValue: 'bi-weekly',
+      cleaningFrequencyName: 'Every 2 weeks',
       laundryFreqName: 'every 2 weeks',
+      cleaningTypeValue: 'light-cleaning',
+      cleaningFrequencyValue: 'bi-weekly',
+      cleaningServiceTypeAreas: {},
+      cleaningServiceTypes: [],
+      cleaningInfo: {
+        item: 'light-cleaning',
+        itemAreas: {},
+        itemAreasPrice: {},
+        frequency: 'bi-weekly',
+        qty: 3,
+      },
     }
   },
   watch: {
@@ -880,12 +905,45 @@ export default {
   },
   mounted() {
     this.getEstimate()
-
     mixpanelTrackEvent('Pricing page')
+    this.getCleaningServiceTypes()
   },
   methods: {
     currencyFormat,
     formatNumber,
+    calculateCleaningPrice() {
+      const {
+        item,
+        itemAreas,
+        itemAreasPrice,
+        frequency,
+        qty,
+      } = this.cleaningInfo
+      const total = pricing({
+        cleaning: {
+          item,
+          itemAreas,
+          itemAreasPrice,
+          frequency,
+          qty,
+        },
+      })
+      this.services[2].price = total.toString()
+      this.getTotalPrice(this.services, this.selectedService)
+      this.cleaningSummary = [
+        `${this.cleaningType}`,
+        `${this.cleaningInfo.qty} room${this.cleaningInfo.qty > 1 ? 's' : ''}`,
+        `${this.cleaningFrequencyName}`,
+      ]
+    },
+    getCleaningServiceTypes() {
+      fetch(`https://api-staging.edenlife.ng/api/v3/website/cleaning/items/all`)
+        .then((res) => res.json())
+        .then((cleaningResponse) => {
+          this.cleaningServiceTypes = cleaningResponse.data
+          this.setCleaningArea('light cleaning')
+        })
+    },
     setPlanConfig() {
       this.reconfigurePlan = !this.reconfigurePlan
       this.estimate = 6
@@ -896,6 +954,7 @@ export default {
       this.setCustom = true
       this.calculateFoodPrice()
       this.calculateLaundryPrice()
+      this.calculateCleaningPrice()
       this.getTotalPrice(this.services, this.selectedService)
     },
     setReconfigureSummary() {
@@ -1415,32 +1474,79 @@ export default {
         this.calculateLaundryPrice()
       }
     },
+    setCleaningArea(area) {
+      const selectedArea = this.cleaningServiceTypes.filter((item) => {
+        return item.name.toLowerCase() === area.toLowerCase()
+      })
+      selectedArea[0].cleaning_areas.forEach((area) => {
+        this.cleaningInfo.itemAreasPrice[area.slug] = area.price
+      })
+      selectedArea[0].cleaning_areas.forEach((e1) =>
+        this.cleaningQtyOption.forEach((e2) => {
+          if (e1.slug === e2.value) {
+            this.cleaningInfo.itemAreas[e1.slug] = e2.qty
+          }
+        })
+      )
+    },
     getCleaningPrice(plan) {
-      if (plan.name.includes('cleaning')) {
+      if (plan.type === 'cleaning') {
         this.cleaningType = plan.name
+        this.cleaningTypeValue = plan.value
+        if (plan.value === 'light-cleaning') {
+          this.cleaningInfo.item = plan.value
+          this.setCleaningArea('light cleaning')
+        }
+        if (plan.value === 'deep-cleaning') {
+          this.cleaningInfo.item = plan.value
+          this.setCleaningArea('deep cleaning')
+        }
+        if (plan.value === 'fumigation') {
+          this.cleaningInfo.item = plan.value
+          this.cleaningInfo.qty = this.cleaningQtyOption.reduce((acc, val) => {
+            return acc + val.qty
+          }, 0)
+        }
         this.toggle('cleaningType')
+        this.calculateCleaningPrice()
       } else {
+        this.cleaningFrequencyName = plan.label
+        this.cleaningFrequencyValue = plan.value
         this.cleaningFrequency = plan.name
+        this.cleaningInfo.frequency = plan.value
+        this.calculateCleaningPrice()
         this.toggle('cleaningFreq')
       }
     },
-    increaseRoom(item, index) {
+    increaseRoomQty(item, index) {
       let qty = item.qty
       qty++
       const newQty = qty++
       this.cleaningQtyOption[index].qty = newQty
+      this.cleaningInfo.qty = this.cleaningQtyOption.reduce((acc, val) => {
+        return acc + val.qty
+      }, 0)
+      this.setCleaningArea(this.cleaningType)
+      this.calculateCleaningPrice()
+
       if (newQty > 1) {
         this.roomTypes[index] = `${newQty + ' ' + item.label}s`
       } else {
         this.roomTypes[index] = `${newQty + ' ' + item.label}`
       }
     },
-    decreaseRoom(item, index) {
+    decreaseRoomQty(item, index) {
       let qty = item.qty
       if (qty >= 1) {
         qty--
         const newQty = qty--
         this.cleaningQtyOption[index].qty = newQty
+        this.cleaningInfo.qty = this.cleaningQtyOption.reduce((acc, val) => {
+          return acc + val.qty
+        }, 0)
+        this.setCleaningArea(this.cleaningType)
+        this.calculateCleaningPrice()
+
         if (newQty === 1) {
           this.roomTypes[index] = `${newQty + ' ' + item.label}`
         } else {
@@ -1457,6 +1563,7 @@ export default {
       })
       return filterRoom.join(', ')
     },
+    subscribe() {},
   },
 }
 </script>

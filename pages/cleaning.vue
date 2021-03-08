@@ -212,7 +212,7 @@
               <button
                 type="button"
                 class="btn--replay"
-                @click.prevent="playVideo"
+                @click.prevent="playButtonClicked"
               >
                 <svg
                   width="14"
@@ -933,11 +933,13 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
       })
     },
     playVideo() {
-      mixpanelTrackEvent('How it works replay - cleaning')
-
       const vid = document.querySelector('video')
       vid.play()
       this.videoControl()
+    },
+    playButtonClicked() {
+      mixpanelTrackEvent('How it works replay - cleaning')
+      this.playVideo()
     },
     trackLink(service) {
       mixpanelTrackEvent(`${service} clicked - Cleaning (more options)`)

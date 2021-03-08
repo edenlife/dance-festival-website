@@ -709,12 +709,20 @@
             <p class="pricing__calculator-total">
               <span>Total</span> <span>₦ {{ formatNumber(totalPrice) }}</span>
             </p>
-            <button
-              class="pricing__calculator-btn"
-              @click.prevent="setReconfigureSummary()"
-            >
-              Break up with chores
-            </button>
+            <div class="pricing__calculator-footer">
+              <button
+                class="pricing__calculator-switch"
+                @click.prevent="switchToEstimate()"
+              >
+                Use estimate
+              </button>
+              <button
+                class="pricing__calculator-btn"
+                @click.prevent="setReconfigureSummary()"
+              >
+                Break up with chores
+              </button>
+            </div>
           </div>
         </transition>
       </div>
@@ -911,6 +919,10 @@ export default {
   methods: {
     currencyFormat,
     formatNumber,
+    switchToEstimate() {
+      this.reconfigurePlan = !this.reconfigurePlan
+      this.setCustom = false
+    },
     calculateCleaningPrice() {
       const {
         item,

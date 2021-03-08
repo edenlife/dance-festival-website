@@ -30,9 +30,13 @@
     width: 80%;
     margin-top: $gap * 4;
     margin-left: auto;
+    position: sticky;
+    top: 15%;
     &-container {
       width: 45%;
+      position: relative;
     }
+
     &-title {
       margin-bottom: $gap * 4;
     }
@@ -839,9 +843,19 @@
         }
       }
     }
-
-    &-btn {
+    &-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-top: $gap * 4.2;
+    }
+    &-switch {
+      text-decoration: underline;
+      color: color(eden-green-primary);
+      @include font-size(base);
+      @include font-family(cerebri);
+    }
+    &-btn {
       display: flex;
       margin-left: auto;
       color: color(eden-green-primary);
@@ -875,6 +889,7 @@
     &__form {
       width: 90%;
       margin: 0 auto;
+      position: unset;
       &-container {
         width: 100%;
       }
@@ -891,6 +906,7 @@
         width: 70%;
         margin: 0 auto;
       }
+
       &-slider {
         margin-bottom: $gap * 4.8;
         &--title {
@@ -908,6 +924,17 @@
             line-height: 21px;
             margin: 0;
             width: 100%;
+          }
+        }
+
+        .range-labels {
+          li {
+            &:nth-child(4) {
+              margin-left: 0px;
+            }
+            &:nth-child(5) {
+              margin-left: 0px;
+            }
           }
         }
       }
@@ -1095,6 +1122,13 @@
         @include font-size(base);
         line-height: 20px;
       }
+      &-footer {
+        flex-direction: column;
+      }
+      &-switch {
+        order: 0;
+        margin: $gap * 4 0 $gap * 2 0;
+      }
 
       .calculator {
         &__header {
@@ -1231,6 +1265,7 @@
         }
       }
       &-btn {
+        order: -1;
         width: 100%;
         justify-content: center;
       }
@@ -1241,6 +1276,7 @@
     margin: 0 auto $gap * 10 auto;
     &__form {
       margin: $gap * 4 0 0;
+      position: unset;
     }
   }
   .slide-fade-enter-active {

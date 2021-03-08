@@ -1032,7 +1032,7 @@ export default {
       this.setCustom = false
       this.estimate = 2
       this.selectedService = ['Food', 'Laundry', 'Cleaning']
-      this.getDefaultPrice(this.estimate)
+      this.getEstimate()
     },
     calculateCleaningPrice() {
       const {

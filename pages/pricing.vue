@@ -93,21 +93,29 @@
               >
               <input
                 id=""
+                v-model="form.email"
                 type="email"
                 name=""
                 placeholder="Enter your email address"
+                :class="{ 'has-error': $v.form.email.$error }"
               />
             </div>
             <div class="pricing__plan-input number">
               <label for="phone">Phone Number</label>
               <input
                 id=""
+                v-model.trim="$v.form.phone_number.$model"
+                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                 type="text"
                 name=""
                 placeholder="Enter your phone number"
+                :class="{ 'has-error': $v.form.phone_number.$error }"
               />
             </div>
-            <button class="pricing__plan-btn sales-btn">
+            <button
+              class="pricing__plan-btn sales-btn"
+              @click="sendUserInfoIntercom"
+            >
               Contact Sales Team
             </button>
           </div>
@@ -727,23 +735,102 @@
         </transition>
       </div>
     </section>
+
+    <modal v-if="showSuccessModal" :show-modal="showSuccessModal" class="modal">
+      <div slot="header"></div>
+      <div slot="body" class="modal__body">
+        <div class="pricing__modal">
+          <div class="pricing__modal-title">
+            <button class="btn btn--success" @click="showSuccessModal = false">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="15.5"
+                  fill="white"
+                  stroke="#E4E8E6"
+                />
+                <path
+                  d="M20 12L12 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 12L20 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="pricing__modal-body">
+            <img
+              :src="require(`~/assets/images/successful.svg`)"
+              alt="failed"
+            />
+            <h5>Information Submitted</h5>
+            <p>
+              You have successfully submitted your information. We will reach
+              out to you within the next 48 hours.
+            </p>
+            <button
+              type="submit"
+              class="btn--submit"
+              @click.prevent="showSuccessModal = !showSuccessModal"
+            >
+              Continue Browsing
+            </button>
+          </div>
+        </div>
+      </div>
+      <div slot="footer"></div>
+    </modal>
   </div>
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate'
+import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 import { currencyFormat, formatNumber } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { pricing } from '~/static/pricing'
 
 export default {
+  components: {
+    Modal: () => import('@/components/Modal.vue'),
+  },
+  mixins: [validationMixin],
+  validations: {
+    form: {
+      email: { required, email },
+      phone_number: {
+        required,
+        minLength: minLength(11),
+        maxLength: maxLength(11),
+      },
+    },
+  },
   data() {
     return {
+      showSuccessModal: false,
       selectedService: ['Food', 'Laundry', 'Cleaning'],
       services: [
         { name: 'Food', price: '' },
         { name: 'Laundry', price: '' },
         { name: 'Cleaning', price: '' },
       ],
+      form: {
+        email: '',
+        phone_number: '',
+      },
       estimate: 2,
       displayForm: false,
       setCustom: false,
@@ -919,6 +1006,27 @@ export default {
   methods: {
     currencyFormat,
     formatNumber,
+    sendUserInfoIntercom() {
+      mixpanelTrackEvent('Contact sales button clicked', 'pricing page')
+      this.$v.form.$touch()
+      if (!this.$v.form.$error) {
+        this.$intercom('update', {
+          email: this.form.email,
+          phone: this.form.phone_number,
+        })
+        const metadata = {
+          phone_number: this.form.phone_number,
+          email: this.form.email,
+        }
+        this.$intercom('trackEvent', 'request-custom-pricing', metadata)
+
+        this.$nextTick(() => {
+          this.form.email = ''
+          this.form.phone_number = ''
+          this.showSuccessModal = true
+        })
+      }
+    },
     switchToEstimate() {
       this.reconfigurePlan = !this.reconfigurePlan
       this.setCustom = false

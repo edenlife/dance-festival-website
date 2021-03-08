@@ -208,7 +208,7 @@
               <button
                 type="button"
                 class="btn--replay"
-                @click.prevent="playVideo"
+                @click.prevent="playButtonClicked"
               >
                 <svg
                   width="14"
@@ -1168,10 +1168,13 @@ export default {
       })
     },
     playVideo() {
-      mixpanelTrackEvent('How it works replay - food')
       const vid = document.querySelector('video')
       vid.play()
       this.videoControl()
+    },
+    playButtonClicked() {
+      mixpanelTrackEvent('How it works replay - food')
+      this.playVideo()
     },
   },
 }

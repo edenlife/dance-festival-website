@@ -922,6 +922,9 @@ export default {
     switchToEstimate() {
       this.reconfigurePlan = !this.reconfigurePlan
       this.setCustom = false
+      this.estimate = 2
+      this.selectedService = ['Food', 'Laundry', 'Cleaning']
+      this.getDefaultPrice(this.estimate)
     },
     calculateCleaningPrice() {
       const {

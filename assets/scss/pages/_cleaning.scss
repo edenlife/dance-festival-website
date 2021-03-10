@@ -644,7 +644,7 @@
     border-radius: 8px;
     background-color: color(eden-neutral-7);
     padding: 0 $gap * 5.2;
-    ul {
+    &-option {
       padding: $gap * 3.2 0 $gap + 2 0;
       display: flex;
       justify-content: space-around;
@@ -703,12 +703,7 @@
           @include font-weight(light);
         }
       }
-      .note {
-        font-size: 14px;
-        line-height: 21px;
-        font-style: italic;
-        margin-top: $gap + 6;
-      }
+
       .btn {
         &--group {
           display: flex;
@@ -779,6 +774,137 @@
           }
           &:nth-child(3) {
             border-radius: 0px 8px 8px 0px;
+          }
+        }
+      }
+      .calculator {
+        &__input {
+          display: flex;
+          flex-direction: column;
+          margin-right: $gap + 3;
+          width: 100%;
+          margin-right: 0;
+          label {
+            @include font-size(base);
+            line-height: 21px;
+            @include font-weight(medium);
+            color: color(eden-neutral-1);
+            margin-bottom: $gap - 2;
+            margin-top: $gap * 2;
+          }
+          .select {
+            width: 100%;
+            border: 1px solid #e4e8e6;
+            @include font-size(lg);
+            border-radius: 8px;
+            @include font-family(cerebri);
+            background-color: transparent;
+            color: color(eden-neutral-1);
+            height: 60px;
+            padding: $gap + 8 $gap + 6;
+
+            &:focus,
+            &:active,
+            &:hover {
+              border: 1px solid #e4e8e6;
+            }
+            .selector {
+              position: relative;
+
+              .arrow {
+                position: absolute;
+                right: 0;
+                top: 10px;
+                cursor: pointer;
+                transform: rotateZ(0deg) translateY(0px);
+                transition-duration: 0.5s;
+                transition-timing-function: cubic-bezier(
+                  0.59,
+                  1.39,
+                  0.37,
+                  1.01
+                );
+              }
+              .expanded {
+                transform: rotateZ(180deg) translateY(2px);
+              }
+              ::-webkit-scrollbar {
+                display: none;
+              }
+              .label {
+                display: block;
+                @include font-size(base);
+                line-height: 24px;
+                overflow: auto;
+                white-space: nowrap;
+                margin-right: $gap * 2.5;
+
+                // text-transform: capitalize;
+              }
+
+              &--room {
+                display: flex;
+                flex-direction: column;
+                width: 105%;
+                list-style-type: none;
+                @include font-size(base);
+                color: color(eden-neutral-1);
+                border: 0.5px solid #e4e8e6;
+                position: absolute;
+                left: -15px;
+                top: 50px;
+                z-index: 3;
+                background: color(eden-neutral-7);
+                border-radius: 8px;
+                box-shadow: 0px 4px 8px rgba(121, 139, 131, 0.161);
+              }
+              li {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 $gap * 2;
+                position: relative;
+                width: 100%;
+                height: 60px;
+                // text-transform: capitalize;
+
+                &:hover {
+                  background: color(eden-neutral-7);
+                  cursor: pointer;
+                }
+              }
+              .control {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                line-height: 20px;
+                &__item {
+                  flex: 0 0 20%;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: stretch;
+                  &-qty {
+                    align-self: center;
+                    padding: 0 $gap + 5;
+                  }
+                  &-btn {
+                    background: rgba(228, 232, 230, 0.4);
+                    border-radius: 8px;
+                    padding: 8px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  }
+                }
+              }
+
+              .hidden {
+                visibility: hidden;
+              }
+              .visible {
+                visibility: visible;
+              }
+            }
           }
         }
       }
@@ -873,7 +999,7 @@
       width: 100%;
       padding: 0 $gap * 2.4;
 
-      ul {
+      &-option {
         padding: $gap * 2.5 0 $gap + 2 0;
         margin-bottom: $gap * 2.4;
         @include font-size(sm);
@@ -928,6 +1054,25 @@
             &:active,
             &:hover {
               border: 1px solid #03a84e;
+            }
+          }
+        }
+        .calculator {
+          &__input {
+            label {
+              @include font-size(sm);
+            }
+            .select {
+              height: 48px;
+              .selector {
+                .arrow {
+                  top: 0px;
+                }
+                &--room {
+                  width: 110%;
+                  @include font-size(sm);
+                }
+              }
             }
           }
         }

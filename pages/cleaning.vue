@@ -300,14 +300,14 @@
         </div>
 
         <div class="plan__price">
-          <ul>
+          <ul class="plan__price-option">
             <li
-              :class="{ active: plan === 'light' }"
-              @click.prevent="plan = 'light'"
+              :class="{ active: plan === 'light-cleaning' }"
+              @click.prevent="setCleaningType('light-cleaning')"
             >
               <span> Light Cleaning</span>
               <svg
-                v-if="plan === 'light'"
+                v-if="plan === 'light-cleaning'"
                 width="6"
                 height="6"
                 viewBox="0 0 6 6"
@@ -318,12 +318,12 @@
               </svg>
             </li>
             <li
-              :class="{ active: plan === 'deep' }"
-              @click.prevent="plan = 'deep'"
+              :class="{ active: plan === 'deep-cleaning' }"
+              @click.prevent="setCleaningType('deep-cleaning')"
             >
               <span> Deep Cleaning </span>
               <svg
-                v-if="plan === 'deep'"
+                v-if="plan === 'deep-cleaning'"
                 width="6"
                 height="6"
                 viewBox="0 0 6 6"
@@ -336,99 +336,134 @@
           </ul>
           <!--  -->
           <transition name="slide-fade">
-            <div v-if="plan === 'light'" class="plan__price-light">
+            <div v-if="plan === 'light-cleaning'" class="plan__price-light">
               <div class="plan__price-item">
                 <p>
                   Recommended for once a week or every two weeks. This service
                   cleans all your rooms, dusts all your surfaces, scrubs all
                   your toilets, and does the dishes in the kitchen.
                 </p>
-                <p>
-                  <span class="number">Number of rooms</span>
-                </p>
-                <div class="btn--group">
-                  <button
-                    class="btn--item minus"
-                    @click.prevent="decreaseOrder('light')"
-                  >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M5 12H19"
-                        stroke="#21312A"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </button>
-                  <input
-                    id=""
-                    v-model="light"
-                    type="number"
-                    name=""
-                    placeholder="0"
-                    readonly
-                  />
-                  <button
-                    class="btn--item plus"
-                    @click.prevent="increaseOrder('light')"
-                  >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 5V19"
-                        stroke="#21312A"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                      <path
-                        d="M5 12H19"
-                        stroke="#21312A"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </button>
+                <div class="calculator__input">
+                  <label for="">Tell us about your home</label>
+                  <div class="select">
+                    <div class="selector">
+                      <div class="label" @click="toggle('light')">
+                        <span>{{ roomTypes }}</span>
+                      </div>
+                      <svg
+                        class="arrow"
+                        :class="{
+                          expanded: visible.includes('light'),
+                        }"
+                        width="10"
+                        height="6"
+                        viewBox="0 0 10 6"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        @click="toggle('light')"
+                      >
+                        <path
+                          d="M1 1L5 5L9 1"
+                          stroke="#93A29B"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+
+                      <div
+                        :class="{
+                          hidden: !visible.includes('light'),
+                        }"
+                      >
+                        <transition name="slide-fade">
+                          <ul class="selector--room">
+                            <li
+                              v-for="(item, i) in cleaningQtyOption"
+                              :key="i"
+                              class="control"
+                            >
+                              <span>{{ item.name }}</span>
+                              <span class="control__item">
+                                <button
+                                  class="control__item-btn"
+                                  @click.prevent="decreaseRoomQty(item, i)"
+                                >
+                                  <svg
+                                    width="12"
+                                    height="2"
+                                    viewBox="0 0 12 2"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M1.3335 1H10.6668"
+                                      stroke="#21312A"
+                                      stroke-width="1.5"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                    />
+                                  </svg>
+                                </button>
+                                <span class="control__item-qty">
+                                  {{ item.qty }}
+                                </span>
+                                <button
+                                  class="control__item-btn"
+                                  @click.prevent="increaseRoomQty(item, i)"
+                                >
+                                  <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M8 3.33301V12.6663"
+                                      stroke="#21312A"
+                                      stroke-width="1.5"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                    />
+                                    <path
+                                      d="M3.3335 8H12.6668"
+                                      stroke="#21312A"
+                                      stroke-width="1.5"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                    />
+                                  </svg>
+                                </button>
+                              </span>
+                            </li>
+                          </ul>
+                        </transition>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <p class="note">
-                  Note that rooms include bedrooms, bathrooms, living rooms,
-                  kitchens, stores and studies.
-                </p>
               </div>
               <div class="plan__price-item">
                 <p><span class="number">Frequency</span></p>
                 <div class="btn--group">
                   <button
                     class="btn--freq"
-                    :class="{ active: lightFrequency === 'weekly' }"
-                    @click.prevent="calculateLightFrequency('weekly')"
+                    :class="{ active: frequency === 'weekly' }"
+                    @click.prevent="calculateFrequency('weekly')"
                   >
                     Once a week
                   </button>
                   <button
                     class="btn--freq"
-                    :class="{ active: lightFrequency === 'bi-weekly' }"
-                    @click.prevent="calculateLightFrequency('bi-weekly')"
+                    :class="{ active: frequency === 'bi-weekly' }"
+                    @click.prevent="calculateFrequency('bi-weekly')"
                   >
                     Every 2 weeks
                   </button>
                   <button
                     class="btn--freq"
-                    :class="{ active: lightFrequency === 'monthly' }"
-                    @click.prevent="calculateLightFrequency('monthly')"
+                    :class="{ active: frequency === 'monthly' }"
+                    @click.prevent="calculateFrequency('monthly')"
                   >
                     Once a month
                   </button>
@@ -438,14 +473,14 @@
                 <h5>
                   <span class="price">Price </span>
                   <span class="icon">👉 </span> NGN
-                  {{ currencyFormat(totalLightPrice) }}
+                  {{ currencyFormat(totalPrice) }}
                 </h5>
                 <p>Monthly</p>
               </div>
             </div>
           </transition>
           <transition name="slide-fade">
-            <div v-if="plan === 'deep'" class="plan__price-light">
+            <div v-if="plan === 'deep-cleaning'" class="plan__price-light">
               <div class="plan__price-item">
                 <p>
                   Recommended once every three months (or when moving in/out of
@@ -453,92 +488,127 @@
                   treatment, with lots of internal scrubbing and external
                   polishing.
                 </p>
-                <p>
-                  <span class="number">Number of rooms</span>
-                </p>
-                <div class="btn--group">
-                  <button
-                    class="btn--item minus"
-                    @click.prevent="decreaseOrder('deep')"
-                  >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M5 12H19"
-                        stroke="#21312A"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </button>
-                  <input
-                    id=""
-                    v-model="deep"
-                    type="number"
-                    name=""
-                    placeholder="0"
-                    readonly
-                  />
-                  <button
-                    class="btn--item plus"
-                    @click.prevent="increaseOrder('deep')"
-                  >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 5V19"
-                        stroke="#21312A"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                      <path
-                        d="M5 12H19"
-                        stroke="#21312A"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </button>
+                <div class="calculator__input">
+                  <label for="">Tell us about your home</label>
+                  <div class="select">
+                    <div class="selector">
+                      <div class="label" @click="toggle('deep')">
+                        <span>{{ roomTypes }}</span>
+                      </div>
+                      <svg
+                        class="arrow"
+                        :class="{
+                          expanded: visible.includes('deep'),
+                        }"
+                        width="10"
+                        height="6"
+                        viewBox="0 0 10 6"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        @click="toggle('deep')"
+                      >
+                        <path
+                          d="M1 1L5 5L9 1"
+                          stroke="#93A29B"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+
+                      <div
+                        :class="{
+                          hidden: !visible.includes('deep'),
+                        }"
+                      >
+                        <transition name="slide-fade">
+                          <ul class="selector--room">
+                            <li
+                              v-for="(item, i) in cleaningQtyOption"
+                              :key="i"
+                              class="control"
+                            >
+                              <span>{{ item.name }}</span>
+                              <span class="control__item">
+                                <button
+                                  class="control__item-btn"
+                                  @click.prevent="decreaseRoomQty(item, i)"
+                                >
+                                  <svg
+                                    width="12"
+                                    height="2"
+                                    viewBox="0 0 12 2"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M1.3335 1H10.6668"
+                                      stroke="#21312A"
+                                      stroke-width="1.5"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                    />
+                                  </svg>
+                                </button>
+                                <span class="control__item-qty">
+                                  {{ item.qty }}
+                                </span>
+                                <button
+                                  class="control__item-btn"
+                                  @click.prevent="increaseRoomQty(item, i)"
+                                >
+                                  <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M8 3.33301V12.6663"
+                                      stroke="#21312A"
+                                      stroke-width="1.5"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                    />
+                                    <path
+                                      d="M3.3335 8H12.6668"
+                                      stroke="#21312A"
+                                      stroke-width="1.5"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                    />
+                                  </svg>
+                                </button>
+                              </span>
+                            </li>
+                          </ul>
+                        </transition>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <p class="note">
-                  Note that rooms include bedrooms, bathrooms, living rooms,
-                  kitchens, stores and studies.
-                </p>
               </div>
               <div class="plan__price-item">
                 <p><span class="number">Frequency</span></p>
                 <div class="btn--group">
                   <button
                     class="btn--freq"
-                    :class="{ active: deepFrequency === 'weekly' }"
-                    @click.prevent="calculateDeepFrequency('weekly')"
+                    :class="{ active: frequency === 'weekly' }"
+                    @click.prevent="calculateFrequency('weekly')"
                   >
                     Once a week
                   </button>
                   <button
                     class="btn--freq"
-                    :class="{ active: deepFrequency === 'bi-weekly' }"
-                    @click.prevent="calculateDeepFrequency('bi-weekly')"
+                    :class="{ active: frequency === 'bi-weekly' }"
+                    @click.prevent="calculateFrequency('bi-weekly')"
                   >
                     Every 2 weeks
                   </button>
                   <button
                     class="btn--freq"
-                    :class="{ active: deepFrequency === 'monthly' }"
-                    @click.prevent="calculateDeepFrequency('monthly')"
+                    :class="{ active: frequency === 'monthly' }"
+                    @click.prevent="calculateFrequency('monthly')"
                   >
                     Once a month
                   </button>
@@ -548,7 +618,7 @@
                 <h5>
                   <span class="price">Price </span>
                   <span class="icon">👉 </span> NGN
-                  {{ currencyFormat(totalDeepPrice) }}
+                  {{ currencyFormat(totalPrice) }}
                 </h5>
                 <p>Monthly</p>
               </div>
@@ -750,11 +820,57 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
       },
       light: 1,
       deep: 1,
-      plan: 'light',
-      lightFrequency: 'weekly',
-      deepFrequency: 'weekly',
-      totalLightPrice: null,
-      totalDeepPrice: null,
+      plan: 'light-cleaning',
+      frequency: 'weekly',
+      totalPrice: null,
+      visible: [],
+      roomTypes: null,
+      cleaningQtyOption: [
+        {
+          name: 'Bedroom',
+          value: 'bedrooms',
+          label: 'bedroom',
+          qty: 1,
+        },
+        {
+          name: 'Bathroom',
+          value: 'bathrooms',
+          label: 'bathroom',
+          qty: 1,
+        },
+        {
+          name: 'Living and Dining room',
+          value: 'living-rooms-dining-areas',
+          label: 'living room',
+          qty: 1,
+        },
+        {
+          name: 'Kitchen',
+          value: 'kitchen',
+          label: 'kitchen',
+          qty: 1,
+        },
+        {
+          name: 'Study',
+          value: 'study',
+          label: 'study',
+          qty: 0,
+        },
+        {
+          name: 'Balcony',
+          value: 'balcony',
+          label: 'balcony',
+          qty: 0,
+        },
+      ],
+      cleaningServiceTypes: [],
+      cleaningInfo: {
+        item: 'light-cleaning',
+        itemAreas: {},
+        itemAreasPrice: {},
+        frequency: 'weekly',
+        qty: 4,
+      },
     }
   },
   mounted() {
@@ -765,20 +881,7 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
     }, 2300)
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
-    this.totalLightPrice = pricing({
-      cleaning: {
-        item: 'light-cleaning',
-        frequency: this.lightFrequency,
-        qty: this.light,
-      },
-    })
-    this.totalDeepPrice = pricing({
-      cleaning: {
-        item: 'deep-cleaning',
-        frequency: this.deepFrequency,
-        qty: this.deep,
-      },
-    })
+    this.getCleaningServiceTypes()
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
@@ -786,6 +889,20 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
   },
   methods: {
     currencyFormat,
+    toggle(plan) {
+      if (this.visible.includes(plan)) {
+        this.visible = this.visible.filter((item) => item !== plan)
+      } else {
+        this.visible.push(plan)
+      }
+    },
+    setCleaningType(plan) {
+      this.plan = plan
+      this.cleaningInfo.item = plan
+      const planType = plan.replace('-', ' ')
+      this.setCleaningArea(planType)
+      this.calculateCleaningPrice()
+    },
     isInViewport() {
       const element = document.querySelector('#cleaning-video')
       const { top, bottom } = element.getBoundingClientRect()
@@ -814,77 +931,91 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
         this.setExploreService = true
       } else this.setExploreService = false
     },
-    increaseOrder(order) {
-      mixpanelTrackEvent(`Increase order clicked - cleaning`)
-
-      if (order === 'light') {
-        this.light++
-        this.totalLightPrice = pricing({
-          cleaning: {
-            item: 'light-cleaning',
-            frequency: this.lightFrequency,
-            qty: this.light,
-          },
+    // Cleaning calculator
+    getCleaningServiceTypes() {
+      fetch(`https://api-staging.edenlife.ng/api/v3/website/cleaning/items/all`)
+        .then((res) => res.json())
+        .then((cleaningResponse) => {
+          this.cleaningServiceTypes = cleaningResponse.data
+          this.setCleaningArea('light cleaning')
+          this.calculateCleaningPrice()
         })
-      }
-
-      if (order === 'deep') {
-        this.deep++
-        this.totalDeepPrice = pricing({
-          cleaning: {
-            item: 'deep-cleaning',
-            frequency: this.deepFrequency,
-            qty: this.deep,
-          },
-        })
-      }
     },
-    decreaseOrder(order) {
-      mixpanelTrackEvent(`Decrease order clicked - cleaning`)
-
-      if (order === 'light' && this.light > 1) {
-        this.light--
-        this.totalLightPrice = pricing({
-          cleaning: {
-            item: 'light-cleaning',
-            frequency: this.lightFrequency,
-            qty: this.light,
-          },
-        })
-      }
-
-      if (order === 'deep' && this.deep > 1) {
-        this.deep--
-        this.totalDeepPrice = pricing({
-          cleaning: {
-            item: 'deep-cleaning',
-            frequency: this.deepFrequency,
-            qty: this.deep,
-          },
-        })
-      }
-    },
-    calculateLightFrequency(freq) {
-      mixpanelTrackEvent(`Order frequency ${freq} clicked - cleaning`)
-
-      this.lightFrequency = freq
-      this.totalLightPrice = pricing({
+    calculateCleaningPrice() {
+      const {
+        item,
+        itemAreas,
+        itemAreasPrice,
+        frequency,
+        qty,
+      } = this.cleaningInfo
+      this.totalPrice = pricing({
         cleaning: {
-          item: 'light-cleaning',
-          frequency: this.lightFrequency,
-          qty: this.light,
+          item,
+          itemAreas,
+          itemAreasPrice,
+          frequency,
+          qty,
         },
       })
+      this.getEstimateRoomTypes()
     },
-    calculateDeepFrequency(freq) {
-      this.deepFrequency = freq
-      this.totalDeepPrice = pricing({
-        cleaning: {
-          item: 'deep-cleaning',
-          frequency: this.deepFrequency,
-          qty: this.deep,
-        },
+    setCleaningArea(area) {
+      const selectedArea = this.cleaningServiceTypes.filter((item) => {
+        return item.name.toLowerCase() === area.toLowerCase()
       })
+      selectedArea[0].cleaning_areas.forEach((area) => {
+        this.cleaningInfo.itemAreasPrice[area.slug] = area.price
+      })
+      selectedArea[0].cleaning_areas.forEach((e1) =>
+        this.cleaningQtyOption.forEach((e2) => {
+          if (e1.slug === e2.value) {
+            this.cleaningInfo.itemAreas[e1.slug] = e2.qty
+          }
+        })
+      )
+    },
+    calculateFrequency(plan) {
+      this.frequency = plan
+      this.cleaningInfo.frequency = plan
+      this.calculateCleaningPrice()
+    },
+    increaseRoomQty(item, index) {
+      let qty = item.qty
+      qty++
+      const newQty = qty++
+      this.cleaningQtyOption[index].qty = newQty
+      this.cleaningInfo.qty = this.cleaningQtyOption.reduce((acc, val) => {
+        return acc + val.qty
+      }, 0)
+      this.setCleaningType(this.plan)
+      this.calculateCleaningPrice()
+    },
+    decreaseRoomQty(item, index) {
+      let qty = item.qty
+      if (qty >= 1) {
+        qty--
+        const newQty = qty--
+        this.cleaningQtyOption[index].qty = newQty
+        this.cleaningInfo.qty = this.cleaningQtyOption.reduce((acc, val) => {
+          return acc + val.qty
+        }, 0)
+        this.setCleaningType(this.plan)
+        this.calculateCleaningPrice()
+      }
+    },
+    getEstimateRoomTypes() {
+      const filterRoom = this.cleaningQtyOption.filter((item) => {
+        return item.qty !== 0
+      })
+      const rooms = filterRoom.map((item) => {
+        if (item.qty > 1) {
+          return item.qty + ' ' + item.label + 's'
+        } else {
+          return item.qty + ' ' + item.label
+        }
+      })
+      this.roomTypes = rooms.join(', ')
     },
     videoControl() {
       const video = document.querySelector('video')

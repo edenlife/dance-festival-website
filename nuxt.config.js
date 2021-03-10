@@ -101,6 +101,15 @@ export default {
       defer: true,
     },
 
+    // Setup Bento
+    {
+      src:
+        'https://fast.bentonow.com?site_uuid=c5cfd9ac8b0d3346d2eead94a44e5549',
+      type: 'text/javascript',
+      body: true,
+      defer: true,
+    },
+
     // Global site tag (gtag.js) - Google Analytics
     {
       src: 'https://www.googletagmanager.com/gtag/js?id=UA-140804740-1',

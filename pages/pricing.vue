@@ -1276,24 +1276,24 @@ export default {
             this.calculateCleaningPrice()
           }
         } else if (this.selectedService.length === 1) {
-          this.mealQty = 0.4
-          this.mealFrequency = 'Weekly'
+          this.mealQty = 1
+          this.mealFrequency = 'Daily'
           this.calculateFoodPrice()
           this.laundryFreqName = 'every two weeks'
           this.laundryType = 'Wash & Iron'
           this.laundryTypeValue = 'wash-and-iron'
           this.laundryFreqValue = 'bi-weekly'
-          this.laundryQty = 1
+          this.laundryQty = 3
           this.calculateLaundryPrice()
-          this.cleaningType = 'Light cleaning'
+          this.cleaningType = 'Deep cleaning'
           this.cleaningFrequency = 'Every two weeks'
           this.cleaningQtyOption[0].qty = 2
           this.cleaningQtyOption[1].qty = 3
           this.cleaningQtyOption[4].qty = 0
           this.cleaningQtyOption[5].qty = 0
           this.getEstimateRoomTypes()
-          this.setCleaningArea('light cleaning')
-          this.cleaningInfo.item = 'light-cleaning'
+          this.setCleaningArea('deep cleaning')
+          this.cleaningInfo.item = 'deep-cleaning'
           this.cleaningInfo.frequency = 'bi-weekly'
           this.calculateCleaningPrice()
         }

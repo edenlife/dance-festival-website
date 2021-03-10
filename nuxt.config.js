@@ -101,25 +101,6 @@ export default {
       defer: true,
     },
 
-    // Facebook pixel setup
-    {
-      src:
-        'https://www.facebook.com/tr?id=1269879040024228&ev=PageView&noscript=1',
-      innerHTML: `!function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1269879040024228');
-  fbq('track', 'PageView');`,
-      type: 'text/javascript',
-      body: true,
-      defer: true,
-    },
-
     // Global site tag (gtag.js) - Google Analytics
     {
       src: 'https://www.googletagmanager.com/gtag/js?id=UA-140804740-1',
@@ -171,6 +152,18 @@ export default {
       '@nuxtjs/google-analytics',
       {
         id: 'UA-140804740-1',
+      },
+    ],
+
+    // Facebook pixel setup
+    [
+      'nuxt-facebook-pixel-module',
+      {
+        /* module options */
+        track: 'PageView',
+        pixelId: '1269879040024228',
+        autoPageView: true,
+        disabled: false,
       },
     ],
   ],

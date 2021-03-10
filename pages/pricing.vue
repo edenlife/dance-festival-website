@@ -19,7 +19,7 @@
                 }}
               </h3>
             </div>
-            <div class="range">
+            <div v-show="!loading" class="range">
               <input
                 id="range"
                 v-model="estimate"
@@ -961,6 +961,7 @@ export default {
         frequency: 'bi-weekly',
         qty: 4,
       },
+      loading: false,
     }
   },
   watch: {
@@ -1669,12 +1670,14 @@ export default {
 
     // Cleaning calculator
     getCleaningServiceTypes() {
+      this.loading = true
       fetch(`https://api-staging.edenlife.ng/api/v3/website/cleaning/items/all`)
         .then((res) => res.json())
         .then((cleaningResponse) => {
           this.cleaningServiceTypes = cleaningResponse.data
           this.setCleaningArea('light cleaning')
           this.getEstimate()
+          this.loading = false
         })
     },
     calculateCleaningPrice() {

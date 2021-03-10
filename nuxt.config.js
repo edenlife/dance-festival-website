@@ -103,8 +103,13 @@ export default {
 
     // Setup Bento
     {
-      src:
-        'https://fast.bentonow.com?site_uuid=c5cfd9ac8b0d3346d2eead94a44e5549',
+      src: 'https://app.bentonow.com/c5cfd9ac8b0d3346d2eead94a44e5549.js',
+      innerHTML: `
+        if (typeof(bento$) != 'undefined') {        
+          bento$(function() {
+              bento.view();
+          });
+      }`,
       type: 'text/javascript',
       body: true,
       defer: true,

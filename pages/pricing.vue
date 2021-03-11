@@ -1614,6 +1614,9 @@ export default {
         if (this.mealQty > 5) {
           this.mealQty = 5
         }
+        if (this.mealQty < 1) {
+          this.mealQty = 1
+        }
         const total = pricing({
           meal: { item: null, frequency: 'daily', qty: this.mealQty },
         })
@@ -1627,6 +1630,9 @@ export default {
       if (this.mealFrequency.toLowerCase() === 'weekly') {
         if (this.mealQty > 20) {
           this.mealQty = 20
+        }
+        if (this.mealQty < 2) {
+          this.mealQty = 1
         }
         const total = pricing({
           meal: { item: null, frequency: 'weekly', qty: this.mealQty },
@@ -1642,6 +1648,9 @@ export default {
       if (this.mealFrequency === 'Twice a week') {
         if (this.mealQty > 10) {
           this.mealQty = 10
+        }
+        if (this.mealQty < 2) {
+          this.mealQty = 2
         }
         const total = pricing({
           meal: {

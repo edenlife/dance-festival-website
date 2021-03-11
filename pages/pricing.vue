@@ -259,9 +259,11 @@
                                   v-for="(item, i) in mealTypeOption"
                                   :key="i"
                                 >
-                                  <span @click.prevent="getMealPrice(item)">{{
-                                    item.name
-                                  }}</span>
+                                  <span
+                                    class="select--item"
+                                    @click.prevent="getMealPrice(item)"
+                                    >{{ item.name }}</span
+                                  >
                                 </li>
                               </ul>
                             </transition>
@@ -349,6 +351,7 @@
                                   :key="i"
                                 >
                                   <span
+                                    class="select--item"
                                     @click.prevent="getLaundryPrice(item)"
                                     >{{ item.name }}</span
                                   >
@@ -398,6 +401,7 @@
                                   :key="i"
                                 >
                                   <span
+                                    class="select--item"
                                     @click.prevent="getLaundryPrice(item)"
                                     >{{ item.name }}</span
                                   >
@@ -536,6 +540,7 @@
                                   :key="i"
                                 >
                                   <span
+                                    class="select--item"
                                     @click.prevent="getCleaningPrice(item)"
                                     >{{ item.name }}</span
                                   >
@@ -585,6 +590,7 @@
                                   :key="i"
                                 >
                                   <span
+                                    class="select--item"
                                     @click.prevent="getCleaningPrice(item)"
                                     >{{ item.name }}</span
                                   >

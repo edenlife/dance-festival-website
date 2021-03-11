@@ -26,7 +26,7 @@ const UNIT_PRICE_MAP = {
     'wash-and-iron': 8000,
     'wash-and-fold': 4500,
   },
-  MEAL: {
+  WEEKLYMEAL: {
     1: 2200,
     2: 2000,
     4: 1900,
@@ -34,6 +34,10 @@ const UNIT_PRICE_MAP = {
     10: 1600,
     14: 1550,
     20: 1500,
+  },
+  DAILYMEAL: {
+    1: 2200,
+    2: 2000,
   },
 }
 
@@ -93,13 +97,24 @@ export const pricing = (services) => {
     },
     meal: ({ frequency, qty, serviceDay }) => {
       let quantity = parseInt(qty)
-      if (!UNIT_PRICE_MAP.MEAL[parseInt(qty)]) {
-        const nearestUnitPrice = Object.keys(UNIT_PRICE_MAP.MEAL).filter(
-          (key) => quantity > key
-        )
-        quantity = nearestUnitPrice.pop()
+      let unitPrice = null
+      if (frequency === 'daily') {
+        if (!UNIT_PRICE_MAP.DAILYMEAL[parseInt(qty)]) {
+          const nearestUnitPrice = Object.keys(UNIT_PRICE_MAP.DAILYMEAL).filter(
+            (key) => quantity > key
+          )
+          quantity = nearestUnitPrice.pop()
+        }
+        unitPrice = UNIT_PRICE_MAP.DAILYMEAL[quantity]
+      } else if (frequency !== 'daily') {
+        if (!UNIT_PRICE_MAP.WEEKLYMEAL[parseInt(qty)]) {
+          const nearestUnitPrice = Object.keys(
+            UNIT_PRICE_MAP.WEEKLYMEAL
+          ).filter((key) => quantity > key)
+          quantity = nearestUnitPrice.pop()
+        }
+        unitPrice = UNIT_PRICE_MAP.WEEKLYMEAL[quantity]
       }
-      const unitPrice = UNIT_PRICE_MAP.MEAL[quantity]
       const monthlyFrequency =
         frequency === 'daily'
           ? TIMES_PER_MONTH[frequency][serviceDay || 'monday-friday']

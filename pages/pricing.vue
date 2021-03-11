@@ -1647,7 +1647,7 @@ export default {
           meal: {
             item: null,
             frequency: 'weekly-twodays',
-            qty: this.mealQty,
+            qty: this.mealQty * 2,
           },
         })
         this.services[0].price = total.toString()

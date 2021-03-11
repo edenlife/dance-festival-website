@@ -1617,7 +1617,7 @@ export default {
         const total = pricing({
           meal: { item: null, frequency: 'daily', qty: this.mealQty },
         })
-        this.services[0].price = total.toString()
+        this.services[0].price = isNaN(total) ? 0 : total.toString()
         this.getTotalPrice(this.services, this.selectedService)
         this.foodSummary = [
           `Daily delivery`,

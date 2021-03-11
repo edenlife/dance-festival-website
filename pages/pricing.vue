@@ -229,7 +229,7 @@
                   <div class="calculator__input">
                     <div class="calculator__input-item">
                       <label for="">Frequency</label>
-                      <div class="select">
+                      <div ref="select" class="select">
                         <div class="selector">
                           <div class="label" @click="toggle('food')">
                             <span>{{ mealFrequency }}</span>
@@ -270,7 +270,7 @@
                       </div>
                     </div>
                     <div class="calculator__input-item">
-                      <label for="">Number of meals per day</label>
+                      <label for="">Number of meals per delivery</label>
                       <div class="meal">
                         <input
                           id=""
@@ -312,7 +312,7 @@
                   <div class="calculator__input">
                     <div class="calculator__input-item">
                       <label for="">Type</label>
-                      <div class="select">
+                      <div ref="select" class="select">
                         <div class="selector">
                           <div class="label" @click="toggle('laundryType')">
                             <span>{{ laundryType }}</span>
@@ -361,7 +361,7 @@
                     </div>
                     <div class="calculator__input-item">
                       <label for="">Frequency</label>
-                      <div class="select">
+                      <div ref="select" class="select">
                         <div class="selector">
                           <div class="label" @click="toggle('laundryFreq')">
                             <span>{{ laundryFrequency }}</span>
@@ -965,7 +965,7 @@ export default {
     }
   },
   watch: {
-    mealQty(val) {
+    mealQty(val, old) {
       if (this.mealFrequency.toLowerCase() === 'daily') {
         if (val > 5) {
           this.mealQty = 5
@@ -974,15 +974,15 @@ export default {
         }
       }
       if (this.mealFrequency.toLowerCase() === 'weekly') {
-        if (val > 4) {
-          this.mealQty = 4
+        if (val > 20) {
+          this.mealQty = 20
         } else {
           this.mealQty = val
         }
       }
       if (this.mealFrequency === 'Twice a week') {
-        if (val > 2) {
-          this.mealQty = 2
+        if (val > 10) {
+          this.mealQty = 10
         } else {
           this.mealQty = val
         }
@@ -998,12 +998,40 @@ export default {
     },
   },
   mounted() {
+    document.addEventListener('click', this.toggleSelect)
     mixpanelTrackEvent('Pricing page')
     this.getCleaningServiceTypes()
+  },
+  destroyed() {
+    document.removeEventListener('click', this.toggleSelect)
   },
   methods: {
     currencyFormat,
     formatNumber,
+    toggleSelect(event) {
+      // const ab = document.getElementsByClassName('label')
+      // if (this.visible.length > ) {x
+      // const cl = ab.length
+      // for (let i = 0; i < cl; i++) {
+      //   if (i !== event.target) {
+      //     // this.visible = []
+      //   }
+      //   console.log(ab[i])
+      //   console.log(event.target)
+      // }
+      // const ab = elA.filter((item) => {
+      //   console.log(item)
+      //   console.log(event.target)
+      //   if (item !== event.target) {
+      //     this.visible = []
+      //   }
+      //   return item
+      // })
+      // console.log('bbb')
+      // console.log(this.visible.length)
+      // this.visible.splice(0, 1)
+      // }
+    },
     sendUserInfoIntercom() {
       mixpanelTrackEvent('Contact sales button clicked', 'pricing page')
       this.$v.form.$touch()
@@ -1095,7 +1123,7 @@ export default {
       if (this.estimate === '0') {
         this.selectedService.pop()
         this.selectedService.push(service.name)
-        this.mealQty = 0.2
+        this.mealQty = 1
         this.mealFrequency = 'Weekly'
         this.calculateFoodPrice()
         this.laundryFreqName = 'every two weeks'
@@ -1136,7 +1164,7 @@ export default {
         }
 
         if (this.selectedService.length > 1) {
-          this.mealQty = 0.2
+          this.mealQty = 1
           this.mealFrequency = 'Weekly'
           this.calculateFoodPrice()
           this.laundryFreqName = 'every two weeks'
@@ -1157,7 +1185,7 @@ export default {
           this.cleaningInfo.frequency = 'bi-weekly'
           this.calculateCleaningPrice()
         } else {
-          this.mealQty = 0.4
+          this.mealQty = 2
           this.mealFrequency = 'Weekly'
           this.calculateFoodPrice()
           this.laundryType = 'Wash & Iron'
@@ -1199,7 +1227,7 @@ export default {
       // estimated price 50,000
       if (this.estimate.toString() === '2') {
         if (this.selectedService.length === 3) {
-          this.mealQty = 0.4
+          this.mealQty = 2
           this.mealFrequency = 'Weekly'
           this.calculateFoodPrice()
           this.laundryType = 'Wash & Iron'
@@ -1224,7 +1252,7 @@ export default {
             this.selectedService.includes('Food') &&
             this.selectedService.includes('Laundry')
           ) {
-            this.mealQty = 1
+            this.mealQty = 5
             this.mealFrequency = 'Weekly'
             this.calculateFoodPrice()
             this.laundryFreqName = 'every two weeks'
@@ -1238,7 +1266,7 @@ export default {
             this.selectedService.includes('Food') &&
             this.selectedService.includes('Cleaning')
           ) {
-            this.mealQty = 1
+            this.mealQty = 5
             this.mealFrequency = 'Weekly'
             this.calculateFoodPrice()
             this.cleaningType = 'Light cleaning'
@@ -1326,7 +1354,7 @@ export default {
             this.selectedService.includes('Food') &&
             this.selectedService.includes('Laundry')
           ) {
-            this.mealQty = 2
+            this.mealQty = 10
             this.mealFrequency = 'Twice a week'
             this.calculateFoodPrice()
             this.laundryFreqName = 'weekly'
@@ -1340,7 +1368,7 @@ export default {
             this.selectedService.includes('Food') &&
             this.selectedService.includes('Cleaning')
           ) {
-            this.mealQty = 2
+            this.mealQty = 10
             this.mealFrequency = 'Twice a week'
             this.calculateFoodPrice()
             this.cleaningType = 'Deep cleaning'
@@ -1378,7 +1406,7 @@ export default {
             this.calculateCleaningPrice()
           }
         } else if (this.selectedService.length === 1) {
-          this.mealQty = 2
+          this.mealQty = 10
           this.mealFrequency = 'Twice a week'
           this.calculateFoodPrice()
           this.laundryFreqName = 'weekly'
@@ -1577,6 +1605,9 @@ export default {
     // Food claculator
     calculateFoodPrice() {
       if (this.mealFrequency.toLowerCase() === 'daily') {
+        if (this.mealQty > 5) {
+          this.mealQty = 5
+        }
         const total = pricing({
           meal: { item: null, frequency: 'daily', qty: this.mealQty },
         })
@@ -1588,30 +1619,36 @@ export default {
         ]
       }
       if (this.mealFrequency.toLowerCase() === 'weekly') {
+        if (this.mealQty > 20) {
+          this.mealQty = 20
+        }
         const total = pricing({
-          meal: { item: null, frequency: 'weekly', qty: this.mealQty * 5 },
+          meal: { item: null, frequency: 'weekly', qty: this.mealQty },
         })
         this.services[0].price = total.toString()
         this.getTotalPrice(this.services, this.selectedService)
         this.foodSummary = [
           `Weekly delivery`,
-          `${this.mealQty * 5} meal${this.mealQty * 5 > 1 ? 's' : ''} per week`,
+          `${this.mealQty} meal${this.mealQty > 1 ? 's' : ''} per week`,
           'Delivered once a week',
         ]
       }
       if (this.mealFrequency === 'Twice a week') {
+        if (this.mealQty > 10) {
+          this.mealQty = 10
+        }
         const total = pricing({
           meal: {
             item: null,
             frequency: 'weekly-twodays',
-            qty: this.mealQty * 5,
+            qty: this.mealQty,
           },
         })
         this.services[0].price = total.toString()
         this.getTotalPrice(this.services, this.selectedService)
         this.foodSummary = [
           `Weekly delivery`,
-          `${this.mealQty * 5} meals per week`,
+          `${this.mealQty} meals per week`,
           'Delivered twice a week',
         ]
       }

@@ -1360,7 +1360,7 @@ export default {
             this.selectedService.includes('Food') &&
             this.selectedService.includes('Laundry')
           ) {
-            this.mealQty = 10
+            this.mealQty = 5
             this.mealFrequency = 'Twice a week'
             this.calculateFoodPrice()
             this.laundryFreqName = 'weekly'
@@ -1374,7 +1374,7 @@ export default {
             this.selectedService.includes('Food') &&
             this.selectedService.includes('Cleaning')
           ) {
-            this.mealQty = 10
+            this.mealQty = 5
             this.mealFrequency = 'Twice a week'
             this.calculateFoodPrice()
             this.cleaningType = 'Deep cleaning'
@@ -1412,7 +1412,7 @@ export default {
             this.calculateCleaningPrice()
           }
         } else if (this.selectedService.length === 1) {
-          this.mealQty = 10
+          this.mealQty = 5
           this.mealFrequency = 'Twice a week'
           this.calculateFoodPrice()
           this.laundryFreqName = 'weekly'
@@ -1654,7 +1654,7 @@ export default {
         this.getTotalPrice(this.services, this.selectedService)
         this.foodSummary = [
           `Weekly delivery`,
-          `${this.mealQty} meals per week`,
+          `${this.mealQty * 2} meals per week`,
           'Delivered twice a week',
         ]
       }

@@ -101,20 +101,6 @@ export default {
       defer: true,
     },
 
-    // Setup Bento
-    {
-      src: 'https://app.bentonow.com/c5cfd9ac8b0d3346d2eead94a44e5549.js',
-      innerHTML: `
-        if (typeof(bento$) != 'undefined') {        
-          bento$(function() {
-              bento.view();
-          });
-      }`,
-      type: 'text/javascript',
-      body: true,
-      defer: true,
-    },
-
     // Global site tag (gtag.js) - Google Analytics
     {
       src: 'https://www.googletagmanager.com/gtag/js?id=UA-140804740-1',

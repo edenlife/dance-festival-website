@@ -229,10 +229,10 @@
                   <div class="calculator__input">
                     <div class="calculator__input-item">
                       <label for="">Frequency</label>
-                      <div ref="select" class="select">
+                      <div class="select">
                         <div class="selector">
                           <div class="label" @click="toggle('food')">
-                            <span>{{ mealFrequency }}</span>
+                            <span class="label--text">{{ mealFrequency }}</span>
                           </div>
                           <svg
                             class="arrow"
@@ -314,10 +314,10 @@
                   <div class="calculator__input">
                     <div class="calculator__input-item">
                       <label for="">Type</label>
-                      <div ref="select" class="select">
+                      <div class="select">
                         <div class="selector">
                           <div class="label" @click="toggle('laundryType')">
-                            <span>{{ laundryType }}</span>
+                            <span class="label--text">{{ laundryType }}</span>
                           </div>
                           <svg
                             class="arrow"
@@ -364,10 +364,12 @@
                     </div>
                     <div class="calculator__input-item">
                       <label for="">Frequency</label>
-                      <div ref="select" class="select">
+                      <div class="select">
                         <div class="selector">
                           <div class="label" @click="toggle('laundryFreq')">
-                            <span>{{ laundryFrequency }}</span>
+                            <span class="label--text">{{
+                              laundryFrequency
+                            }}</span>
                           </div>
                           <svg
                             class="arrow"
@@ -506,7 +508,7 @@
                       <div class="select">
                         <div class="selector">
                           <div class="label" @click="toggle('cleaningType')">
-                            <span>{{ cleaningType }}</span>
+                            <span class="label--text">{{ cleaningType }}</span>
                           </div>
                           <svg
                             class="arrow"
@@ -556,7 +558,9 @@
                       <div class="select">
                         <div class="selector">
                           <div class="label" @click="toggle('cleaningFreq')">
-                            <span>{{ cleaningFrequency }}</span>
+                            <span class="label--text">{{
+                              cleaningFrequency
+                            }}</span>
                           </div>
                           <svg
                             class="arrow"
@@ -610,7 +614,7 @@
                       <div class="select">
                         <div class="selector">
                           <div class="label" @click="toggle('cleaningQty')">
-                            <span>{{ roomTypes }}</span>
+                            <span class="label--text">{{ roomTypes }}</span>
                           </div>
                           <svg
                             class="arrow"
@@ -651,6 +655,7 @@
                                       @click.prevent="decreaseRoomQty(item, i)"
                                     >
                                       <svg
+                                        class="control__item-icon"
                                         width="12"
                                         height="2"
                                         viewBox="0 0 12 2"
@@ -658,6 +663,7 @@
                                         xmlns="http://www.w3.org/2000/svg"
                                       >
                                         <path
+                                          class="control__item-icon"
                                           d="M1.3335 1H10.6668"
                                           stroke="#21312A"
                                           stroke-width="1.5"
@@ -674,6 +680,7 @@
                                       @click.prevent="increaseRoomQty(item, i)"
                                     >
                                       <svg
+                                        class="control__item-icon"
                                         width="16"
                                         height="16"
                                         viewBox="0 0 16 16"
@@ -681,6 +688,7 @@
                                         xmlns="http://www.w3.org/2000/svg"
                                       >
                                         <path
+                                          class="control__item-icon"
                                           d="M8 3.33301V12.6663"
                                           stroke="#21312A"
                                           stroke-width="1.5"
@@ -688,6 +696,7 @@
                                           stroke-linejoin="round"
                                         />
                                         <path
+                                          class="control__item-icon"
                                           d="M3.3335 8H12.6668"
                                           stroke="#21312A"
                                           stroke-width="1.5"
@@ -1015,28 +1024,36 @@ export default {
     currencyFormat,
     formatNumber,
     toggleSelect(event) {
-      // const ab = document.getElementsByClassName('label')
-      // if (this.visible.length > ) {x
-      // const cl = ab.length
-      // for (let i = 0; i < cl; i++) {
-      //   if (i !== event.target) {
-      //     // this.visible = []
-      //   }
-      //   console.log(ab[i])
-      //   console.log(event.target)
-      // }
-      // const ab = elA.filter((item) => {
-      //   console.log(item)
-      //   console.log(event.target)
-      //   if (item !== event.target) {
-      //     this.visible = []
-      //   }
-      //   return item
-      // })
-      // console.log('bbb')
-      // console.log(this.visible.length)
-      // this.visible.splice(0, 1)
-      // }
+      const label = document.getElementsByClassName('label')
+      const labelLength = label.length
+      const newArray = []
+      const labelItem = document.getElementsByClassName('label--text')
+      const labelItemLength = labelItem.length
+      const arrow = document.getElementsByClassName('arrow')
+      const arrowLength = arrow.length
+      const btn = document.getElementsByClassName('control__item-btn')
+      const btnLength = btn.length
+      const icon = document.getElementsByClassName('control__item-icon')
+      const iconLength = icon.length
+      for (let i = 0; i < labelLength; i++) {
+        newArray.push(label[i])
+      }
+      for (let i = 0; i < labelItemLength; i++) {
+        newArray.push(labelItem[i])
+      }
+      for (let i = 0; i < arrowLength; i++) {
+        newArray.push(arrow[i])
+      }
+      for (let i = 0; i < btnLength; i++) {
+        newArray.push(btn[i])
+      }
+      for (let i = 0; i < iconLength; i++) {
+        newArray.push(icon[i])
+      }
+      console.log(newArray)
+      if (!newArray.includes(event.target)) {
+        this.visible = []
+      }
     },
     sendUserInfoIntercom() {
       mixpanelTrackEvent('Contact sales button clicked', 'pricing page')

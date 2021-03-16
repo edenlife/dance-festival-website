@@ -565,10 +565,14 @@
         display: flex;
         align-items: center;
         margin-bottom: $gap * 2.4;
+        &-delivery{
+        width: 100%;
+        }
         &-item {
           display: flex;
           flex-direction: column;
           margin-right: $gap + 3;
+
           .meal {
             display: flex;
             justify-content: space-between;
@@ -706,6 +710,47 @@
             }
             .visible {
               visibility: visible;
+            }
+          }
+          .delivery {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            &__days{
+              flex: 0 0 15%;
+              &.daily{
+              flex: 0 0 45%;
+              }
+              &-item {
+                position: relative;
+                border: 1px solid #E4E8E6;
+                border-radius: 8px;
+                height: 60px;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                &.checked {
+                  border: 1px solid #61DB98;
+                  background: color(eden-green-quinary);
+                label{
+                  color:color(eden-neutral-1);
+                }
+                }
+                input[type="checkbox"] {
+                  opacity: 0;
+                }
+                label{
+                  position: absolute;
+                  @include font-size(base);
+                  @include font-weight(regular);
+                  color:color(eden-neutral-3);
+                  line-height: 24px;
+                  margin-top: $gap;
+                  text-transform: capitalize;
+                }
+              }
             }
           }
         }
@@ -1157,7 +1202,17 @@
             width: 100%;
             margin-bottom: $gap * 2;
             margin-right: 0;
+            .delivery {
+              &__days{
 
+                &-item {
+                height: 48px;
+                  label{
+                    @include font-size(xs);
+                  }
+                }
+              }
+            }
             .meal {
               &--input {
                 width: 100%;

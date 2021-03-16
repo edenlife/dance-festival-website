@@ -5,7 +5,10 @@
         <div class="pricing__form">
           <div class="pricing__form-title">
             <h2>Pricing</h2>
-            <p>You think Eden is expensive? Oya do am if e easy.</p>
+            <p>
+              There's a myth in town that Eden is expensive. Now let's show you
+              it isn't.
+            </p>
           </div>
           <div
             v-show="!reconfigurePlan && !setCustom"
@@ -176,7 +179,7 @@
                   class="reconfigure-btn"
                   @click.prevent="setPlanConfig()"
                 >
-                  Reconfigure.
+                  Customise.
                 </button>
               </div>
               <button
@@ -211,7 +214,7 @@
         <transition name="slide-fade">
           <div v-if="reconfigurePlan" class="pricing__calculator">
             <p class="pricing__calculator-title">
-              <span>Reconfigure your Eden Life</span>
+              <span>Customise your Eden Life</span>
             </p>
             <!-- meal -->
             <transition name="slide-fade">
@@ -285,6 +288,54 @@
                           class="meal--input"
                         />
                         <span class="meal--label">meals </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="calculator__input">
+                    <div
+                      class="calculator__input-item calculator__input-delivery"
+                    >
+                      <label for="">Delivery days</label>
+                      <div v-if="mealFrequency === 'Daily'" class="delivery">
+                        <div
+                          v-for="(item, i) in dailyDeliveryDays"
+                          :key="i"
+                          class="delivery__days daily"
+                        >
+                          <div
+                            class="delivery__days-item"
+                            :class="{ checked: selectedDays.includes(item) }"
+                          >
+                            <input
+                              :id="item"
+                              v-model="selectedDays"
+                              type="checkbox"
+                              :value="item"
+                              @change="updateDeliveyDay(item)"
+                            />
+                            <label :for="item">{{ item }}</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div v-else class="delivery">
+                        <div
+                          v-for="(item, i) in deliveryDays"
+                          :key="i"
+                          class="delivery__days"
+                        >
+                          <div
+                            class="delivery__days-item"
+                            :class="{ checked: selectedDays.includes(item) }"
+                          >
+                            <input
+                              :id="item"
+                              type="checkbox"
+                              :value="item"
+                              @change="updateDeliveyDay(item)"
+                            />
+                            <label :for="item">{{ item }}</label>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -854,6 +905,9 @@ export default {
       reconfigurePlan: false,
       visible: [],
       mealFrequency: 'Daily',
+      dailyDeliveryDays: ['monday-friday', 'monday-saturday'],
+      selectedDays: ['monday-friday'],
+      deliveryDays: ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
       mealQty: 1,
       laundryFrequency: 'Every two weeks',
       laundryType: 'Wash & Fold',
@@ -1023,6 +1077,29 @@ export default {
   methods: {
     currencyFormat,
     formatNumber,
+    updateDeliveyDay(item) {
+      if (this.mealFrequency.toLowerCase() === 'daily') {
+        this.selectedDays = []
+        this.selectedDays[0] = item
+        this.selectedDays.push(item)
+        this.calculateFoodPrice()
+      }
+      if (this.mealFrequency.toLowerCase() === 'weekly') {
+        this.selectedDays = []
+        this.selectedDays[0] = item
+      }
+      if (this.mealFrequency === 'Twice a week') {
+        if (this.selectedDays.length > 1 && this.selectedDays.includes(item)) {
+          this.selectedDays = this.selectedDays.filter((el) => el !== item)
+        } else if (
+          this.selectedDays.length >= 1 &&
+          this.selectedDays.length < 2 &&
+          !this.selectedDays.includes(item)
+        ) {
+          this.selectedDays.push(item)
+        }
+      }
+    },
     toggleSelect(event) {
       const label = document.getElementsByClassName('label')
       const labelLength = label.length
@@ -1050,7 +1127,6 @@ export default {
       for (let i = 0; i < iconLength; i++) {
         newArray.push(icon[i])
       }
-      console.log(newArray)
       if (!newArray.includes(event.target)) {
         this.visible = []
       }
@@ -1089,6 +1165,7 @@ export default {
       this.reconfigurePlan = !this.reconfigurePlan
       this.estimate = 3
       this.selectedService = ['Food', 'Laundry', 'Cleaning']
+      this.selectedDays = ['monday-friday']
       this.setCustom = true
       this.getEstimate()
     },
@@ -1354,6 +1431,7 @@ export default {
         if (this.selectedService.length === 3) {
           this.mealQty = 1
           this.mealFrequency = 'Daily'
+          this.selectedDays = ['monday-friday']
           this.calculateFoodPrice()
           this.laundryFreqName = 'every two weeks'
           this.laundryType = 'Wash & Iron'
@@ -1379,6 +1457,7 @@ export default {
           ) {
             this.mealQty = 5
             this.mealFrequency = 'Twice a week'
+            this.selectedDays = ['mon', 'thu']
             this.calculateFoodPrice()
             this.laundryFreqName = 'weekly'
             this.laundryType = 'Wash & Iron'
@@ -1393,6 +1472,7 @@ export default {
           ) {
             this.mealQty = 5
             this.mealFrequency = 'Twice a week'
+            this.selectedDays = ['mon', 'thu']
             this.calculateFoodPrice()
             this.cleaningType = 'Deep cleaning'
             this.cleaningFrequency = 'Once a month'
@@ -1632,7 +1712,12 @@ export default {
           this.mealQty = 5
         }
         const total = pricing({
-          meal: { item: null, frequency: 'daily', qty: this.mealQty },
+          meal: {
+            item: null,
+            frequency: 'daily',
+            qty: this.mealQty,
+            serviceDay: this.selectedDays[0],
+          },
         })
         this.services[0].price = isNaN(total) ? 0 : total.toString()
         this.getTotalPrice(this.services, this.selectedService)
@@ -1677,6 +1762,16 @@ export default {
       }
     },
     getMealPrice(plan) {
+      if (plan.name.toLowerCase() === 'daily') {
+        this.selectedDays = ['monday-friday']
+      }
+      if (plan.name.toLowerCase() === 'weekly') {
+        this.selectedDays = ['mon']
+      }
+      if (plan.name === 'Twice a week') {
+        this.selectedDays = ['mon', 'thu']
+      }
+
       this.mealFrequency = plan.name
       this.calculateFoodPrice()
       this.toggle('food')

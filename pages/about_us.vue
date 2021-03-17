@@ -151,7 +151,7 @@ export default {
         {
           id: 7,
           image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919029/eden-website-v2/derin_hroxqi.png',
+            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1615990303/eden-website-v2/PXL_20210305_093619807.PORTRAIT_va3nwd.jpg',
           name: 'Aderinsola Oluwafemi',
           role: 'Product',
         },
@@ -377,6 +377,69 @@ export default {
           image:
             'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919004/eden-website-v2/olabowale_jaeb96.png',
           name: 'Olabowale Adetoye',
+          role: 'Food Production',
+        },
+        {
+          id: 40,
+          image:
+            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1615990273/eden-website-v2/Happiness_Etim_Udonya_Food_Production_v8axnt.jpg',
+          name: 'Happiness Etim Udonya',
+          role: 'Food Production',
+        },
+        {
+          id: 41,
+          image:
+            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1615990279/eden-website-v2/Olude_Segun_Food_Production_m2hwig.jpg',
+          name: 'Olude Segun',
+          role: 'Food Production',
+        },
+        {
+          id: 42,
+          image:
+            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1615990266/eden-website-v2/Collins_Uche_Finance_au9qxt.jpg',
+          name: 'Collins Uche',
+          role: 'Finance',
+        },
+        {
+          id: 43,
+          image:
+            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1615990268/eden-website-v2/Fatimah_Ologbonori_Food_Production_w0xl4z.jpg',
+          name: 'Fatimah Ologbonori',
+          role: 'Food Production',
+        },
+        {
+          id: 44,
+          image:
+            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1615990428/eden-website-v2/Adedeji_Abidoye_Happiness_Engineering_blrta5.jpg',
+          name: 'Adedeji Abidoye',
+          role: 'Happiness Engineering',
+        },
+        {
+          id: 45,
+          image:
+            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1615990295/eden-website-v2/Oluwaseyi_Alitagba_Food_Production_lyoyaz.jpg',
+          name: 'Oluwaseyi Alitaga',
+          role: 'Food Production',
+        },
+        {
+          id: 46,
+          image:
+            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1615990289/eden-website-v2/Oluwamayowa_Olatunji_Food_Production_l9cobs.jpg',
+          name: 'Oluwamayowa Olatunji',
+          role: 'Food Production',
+        },
+        {
+          id: 47,
+          image:
+            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1615990439/eden-website-v2/Chiedozie_Ike_Growth_uc3kys.jpg',
+          name: 'Chiedozie Ike',
+          role: 'Growth',
+        },
+        {
+          id: 48,
+          image:
+            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1615990312/eden-website-v2/Veronica_Emmanuel_Food_Production_zzvwka.jpg',
+          name: 'Veronica Emmanuel',
           role: 'Food Production',
         },
       ],

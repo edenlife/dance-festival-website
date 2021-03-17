@@ -1,0 +1,492 @@
+@import '../../style.scss';
+
+.container {
+  &--hero {
+    width: 100%;
+    background-color: color(eden-green-senary);
+  }
+  &--nav {
+    width: 100%;
+    background-color: color(eden-neutral-7);
+    box-shadow: inset 0px -1px 0px #e4e8e6;
+  }
+  &--posts {
+    width: 100%;
+    background-color: color(eden-neutral-7);
+  }
+  &--sunscribe {
+    width: 100%;
+    background-color: color(eden-neutral-7);
+  }
+}
+
+.hero {
+  margin: 0 auto;
+  width: 83%;
+  padding: $gap * 18 0 $gap * 9 0;
+  background-color: color(eden-green-senary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__title {
+    color: color(eden-neutral-1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1 {
+      line-height: 62px;
+      @include font-size(7xl);
+      @include font-weight(bold);
+      margin-bottom: $gap - 2;
+    }
+    p {
+      margin-bottom: $gap * 4.8;
+      line-height: 29px;
+      @include font-size(lg);
+      color: color(eden-neutral-2);
+    }
+  }
+
+  &__social {
+    width: 140px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+      color: red;
+    }
+  }
+
+  @include respond(md) {
+    width: 100%;
+    padding: $gap * 18 0 $gap * 7 0;
+  }
+  @include respond(xxl) {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}
+
+.nav {
+  margin: 0 auto;
+  width: 83%;
+  display: flex;
+  &__item {
+    padding: $gap * 2 0;
+    margin-right: $gap * 5.6;
+    line-height: 24px;
+    color: color(eden-neutral-3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__search {
+    margin-left: auto;
+    align-self: flex-end;
+    padding: $gap * 2;
+    border-left: 1px solid #e4e8e6;
+    display: flex;
+    align-items: center;
+    input[type='search'] {
+      color: color(eden-neutral-2);
+      line-height: 24px;
+      border: none;
+      outline: none;
+      @include font-family(cerebri);
+      @include font-size(base);
+      margin-left: $gap * 2;
+
+      &::placeholder {
+        color: color(eden-neutral-2);
+      }
+    }
+  }
+  @include respond(md) {
+    width: 100%;
+    justify-content: center;
+    &__item {
+      padding: $gap * 2 0;
+      margin-right: $gap * 2.4;
+      line-height: 21px;
+      @include font-size(sm);
+    }
+    &__search {
+      display: none;
+      // input[type='search'] {
+      //   @include font-size(sm);
+      //   &::placeholder {
+      //     color: color(eden-neutral-2);
+      //   }
+      // }
+    }
+  }
+  @include respond(xxl) {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}
+
+.posts {
+  margin: 0 auto;
+  width: 83%;
+  padding-top: $gap * 6.4;
+
+  &__upper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $gap * 4;
+  }
+  &__lower {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $gap * 4;
+    margin-top: $gap * 8;
+  }
+  &__item {
+    &-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px 8px 0px 0px;
+    }
+    &-details {
+      border-radius: 0px 0px 8px 8px;
+      color: color(eden-neutral-1);
+      padding: $gap * 2 0;
+      h5 {
+        line-height: 26px;
+        @include font-size(xl);
+        @include font-weight(bold);
+      }
+      p {
+        padding-top: $gap + 2;
+        padding-bottom: $gap + 6;
+        line-height: 21px;
+        @include font-size(sm);
+      }
+    }
+
+    &-date {
+      display: flex;
+      align-items: center;
+      text-transform: uppercase;
+      line-height: 18px;
+      @include font-size(xs);
+      color: color(eden-neutral-2);
+      margin-bottom: $gap * 4.5;
+      .dot {
+        padding: 0 8px;
+      }
+    }
+    &-author {
+      display: flex;
+      align-items: center;
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        margin-right: $gap + 2;
+      }
+      p {
+        line-height: 21px;
+        @include font-size(sm);
+      }
+    }
+  }
+
+  &__featured {
+    grid-column: 1/3;
+
+    &-title {
+      line-height: 31px;
+      @include font-size(2xl);
+      @include font-weight(bold);
+      color: color(eden-neutral-1);
+      margin-bottom: $gap * 3.2;
+    }
+    &-details {
+      background: #fafbfe;
+      padding: $gap * 2;
+      border-radius: 0px 0px 8px 8px;
+      color: color(eden-neutral-1);
+      h5 {
+        line-height: 26px;
+        @include font-size(xl);
+        @include font-weight(bold);
+      }
+      p {
+        padding-top: $gap + 2;
+        padding-bottom: $gap + 6;
+        line-height: 21px;
+        @include font-size(sm);
+      }
+    }
+    &-img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 8px 8px 0px 0px;
+    }
+  }
+  &__recommended {
+    margin-left: $gap * 6;
+  }
+
+  &__latest {
+    grid-column: 1/3;
+    &-title {
+      line-height: 31px;
+      @include font-size(2xl);
+      @include font-weight(bold);
+      color: color(eden-neutral-1);
+      margin-bottom: -8px;
+    }
+  }
+  &__popular {
+    grid-column: 3/4;
+    grid-row: 1/3;
+    margin-top: -$gap * 6;
+    margin-left: $gap * 6;
+  }
+
+  &__side {
+    &-title {
+      line-height: 23px;
+      @include font-size(lg);
+      @include font-weight(bold);
+      color: color(eden-neutral-1);
+      margin-bottom: $gap * 3.2;
+    }
+    &-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: $gap * 4;
+      img {
+        width: 78px;
+        height: 78px;
+        object-fit: cover;
+        margin-right: $gap + 2;
+        border-radius: 8px;
+      }
+      .title {
+        line-height: 24px;
+        @include font-size(base);
+        color: color(eden-neutral-1);
+        margin-bottom: $gap + 2;
+      }
+      .date {
+        @include font-size(xs);
+        text-transform: uppercase;
+        color: color(eden-neutral-3);
+      }
+    }
+  }
+
+  @include respond(md) {
+    width: 90%;
+    margin: 0 auto;
+    padding-top: $gap * 4.8;
+
+    &__upper {
+      display: flex;
+      flex-direction: column;
+    }
+    &__lower {
+      display: flex;
+      flex-direction: column;
+      margin-top: $gap * 3;
+    }
+    &__item {
+      &-img {
+        height: 190px;
+      }
+      &-details {
+        padding: $gap * 2 0;
+        h5 {
+          line-height: 23px;
+          @include font-size(lg);
+        }
+      }
+      &-date {
+        margin-bottom: $gap * 2.4;
+      }
+    }
+
+    &__featured {
+      &-title {
+        line-height: 26px;
+        @include font-size(xl);
+      }
+      &-details {
+        padding: $gap * 2 $gap + 6;
+      }
+      &-img {
+        height: 190px;
+      }
+    }
+
+    &__recommended {
+      margin-top: $gap * 5;
+      margin-left: 0px;
+    }
+
+    &__latest {
+      &-title {
+        line-height: 26px;
+        @include font-size(xl);
+        margin-bottom: -8px;
+      }
+    }
+    &__popular {
+      order: -1;
+      margin-top: $gap * 3;
+      margin-left: 0;
+    }
+
+    &__side {
+      &-title {
+        line-height: 23px;
+        @include font-size(lg);
+        @include font-weight(bold);
+        color: color(eden-neutral-1);
+        margin-bottom: $gap * 3.2;
+      }
+      &-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: $gap * 4;
+        img {
+          width: 78px;
+          height: 78px;
+          object-fit: cover;
+          margin-right: $gap + 2;
+          border-radius: 8px;
+        }
+        .title {
+          line-height: 24px;
+          @include font-size(base);
+          color: color(eden-neutral-1);
+          margin-bottom: $gap + 2;
+        }
+        .date {
+          @include font-size(xs);
+          text-transform: uppercase;
+          color: color(eden-neutral-3);
+        }
+      }
+    }
+  }
+
+  @include respond(xxl) {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}
+
+.subscribe {
+  margin: 0 auto;
+  width: 83%;
+  padding: $gap * 18 0 $gap * 20 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: color(eden-neutral-1);
+  h3 {
+    line-height: 47px;
+    @include font-size(5xl);
+    @include font-weight(bold);
+  }
+  p {
+    margin: $gap * 2 0 $gap * 6 0;
+    line-height: 29px;
+    @include font-size(lg);
+    width: 38%;
+    text-align: center;
+  }
+  .form {
+    display: flex;
+    &__input {
+      input[type='email'] {
+        border: 1px solid #c9d0cd;
+        border-radius: 4px;
+        background-color: color(eden-neutral-7);
+        color: color(eden-neutral-1);
+        padding: $gap + 4 $gap + 6;
+        @include font-size(lg);
+        @include font-family(cerebri);
+        width: 450px;
+        height: 56px;
+        &::placeholder {
+          color: color(eden-neutral-4);
+          @include font-weight(light);
+        }
+        &:focus {
+          outline: none;
+          border: 1px solid #21312a;
+        }
+        &.has-error {
+          border: 1px solid color(eden-red);
+        }
+      }
+    }
+    &__btn {
+      margin-left: $gap + 2;
+      align-self: center;
+      line-height: 23px;
+      @include font-size(lg);
+      background-color: color(eden-green-primary);
+      color: color(eden-neutral-7);
+      border-radius: 4px;
+      transition: all 0.4s ease-in-out;
+      padding: $gap * 1.6 $gap * 4;
+      &:hover {
+        box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
+        background-color: color(eden-green-250);
+        color: color(eden-neutral-7);
+      }
+      &:active {
+        background-image: radial-gradient(
+          circle at center right,
+          rgba(0, 141, 64, 0.1) 50%,
+          #008d40 50%
+        );
+      }
+    }
+  }
+
+  @include respond(md) {
+    width: 100%;
+    padding: $gap * 18 0 $gap * 18 0;
+    h3 {
+      line-height: 31px;
+      @include font-size(2xl);
+    }
+    p {
+      margin: $gap + 6 0 $gap * 4.8 0;
+      line-height: 24px;
+      @include font-size(base);
+      width: 80%;
+      text-align: center;
+    }
+    .form {
+      width: 80%;
+      flex-direction: column;
+      &__input {
+        input[type='email'] {
+          width: 100%;
+        }
+      }
+      &__btn {
+        margin-top: $gap + 6;
+        width: 100%;
+        margin-left: 0px;
+      }
+    }
+  }
+
+  @include respond(xxl) {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}

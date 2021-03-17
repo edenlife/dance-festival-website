@@ -188,14 +188,13 @@
               </nuxt-link>
             </li>
             <li @click="trackLink('Blog')">
-              <a
-                href="https://blog.ouredenlife.com"
-                target="_blank"
+              <nuxt-link
+                :to="{ path: '/blog' }"
                 class="footer__bottom-logo"
                 @click.prevent="trackLink('Blog')"
               >
                 Blog
-              </a>
+              </nuxt-link>
             </li>
             <li @click="trackLink('Contact us')">
               <nuxt-link

@@ -567,6 +567,10 @@ export default {
         return {
           'background-color': '#ffffff',
         }
+      } else if (path.includes('blog')) {
+        return {
+          'background-color': '#F6FFFA',
+        }
       }
     },
   },

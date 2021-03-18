@@ -4,6 +4,14 @@
   &--hero {
     width: 100%;
     background-color: color(eden-green-senary);
+    background-image: url('~@/assets/images/blog-bg1.svg'),
+      url('~@/assets/images/blog-bg2.svg'), url('~@/assets/images/blog-bg3.svg');
+    background-position: top 70% left 15%, top 40% right 10%,
+      bottom 10% right 25%;
+    background-repeat: no-repeat;
+    @include respond(md) {
+      background-image: none;
+    }
   }
   &--nav {
     width: 100%;
@@ -14,9 +22,17 @@
     width: 100%;
     background-color: color(eden-neutral-7);
   }
-  &--sunscribe {
+  &--subscribe {
     width: 100%;
     background-color: color(eden-neutral-7);
+    background-image: url('~@/assets/images/blog-bg4.svg'),
+      url('~@/assets/images/blog-bg5.svg'), url('~@/assets/images/blog-bg6.svg');
+    background-position: top 25% left 18%, top 30% right 20%,
+      bottom 20% left 18%;
+    background-repeat: no-repeat;
+    @include respond(md) {
+      background-image: none;
+    }
   }
 }
 
@@ -24,7 +40,7 @@
   margin: 0 auto;
   width: 83%;
   padding: $gap * 18 0 $gap * 9 0;
-  background-color: color(eden-green-senary);
+  // background-color: color(eden-green-senary);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,6 +95,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    p {
+      cursor: pointer;
+    }
+    .active {
+      color: color(eden-neutral-1);
+    }
   }
   &__search {
     margin-left: auto;
@@ -130,6 +152,12 @@
   margin: 0 auto;
   width: 83%;
   padding-top: $gap * 6.4;
+
+  &__other {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $gap * 4;
+  }
 
   &__upper {
     display: grid;
@@ -287,6 +315,11 @@
     margin: 0 auto;
     padding-top: $gap * 4.8;
 
+    &__other {
+      display: flex;
+      flex-direction: column;
+    }
+
     &__upper {
       display: flex;
       flex-direction: column;
@@ -386,7 +419,7 @@
 .subscribe {
   margin: 0 auto;
   width: 83%;
-  padding: $gap * 18 0 $gap * 20 0;
+  padding: $gap * 18 0 $gap * 30 0;
   display: flex;
   flex-direction: column;
   justify-content: center;

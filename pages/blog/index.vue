@@ -111,7 +111,7 @@
     </div>
     <!--  -->
     <div class="container--posts">
-      <div class="posts">
+      <div v-if="activeTabIndex === 0" class="posts">
         <div class="posts__upper">
           <div class="posts__featured">
             <h3 class="posts__featured-title">Featured Post</h3>
@@ -210,9 +210,41 @@
           </div>
         </div>
       </div>
+      <div v-if="activeTabIndex === 1" class="posts">
+        <div class="posts__other">
+          <div v-for="(item, i) in 5" :key="i">
+            <figure class="posts__item">
+              <img
+                class="posts__item-img"
+                src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
+                alt=""
+              />
+              <figcaption class="posts__item-details">
+                <h5>Your 5 Senses' Easy Guide to Home Decor</h5>
+                <p>
+                  Learn home decor tips from your senses, that'll transform your
+                  apartment into a true home.
+                </p>
+                <div class="posts__item-date">
+                  <nuxt-link to="/"> HOME </nuxt-link>
+                  <span class="dot">&#8226;</span>
+                  <span>July 27, 2020</span>
+                </div>
+                <div class="posts__item-author">
+                  <img
+                    :src="require(`~/assets/images/customer-kofo.jpg`)"
+                    alt=""
+                  />
+                  <p>Sonia Amadi</p>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
     </div>
     <!--  -->
-    <div class="container--subscibe">
+    <div class="container--subscribe">
       <div class="subscribe">
         <h3>Subscribe to the Good Life</h3>
         <p>
@@ -276,11 +308,11 @@ export default {
     return {
       activeTabIndex: null,
       tabs: [
-        { id: 1, title: 'All' },
-        { id: 2, title: 'Home' },
-        { id: 3, title: 'Food' },
-        { id: 4, title: 'Eden 101' },
-        { id: 5, title: 'Life is Good' },
+        { id: 0, title: 'All' },
+        { id: 1, title: 'Home' },
+        { id: 2, title: 'Food' },
+        { id: 3, title: 'Eden 101' },
+        { id: 4, title: 'Life is Good' },
       ],
       loading: false,
       form: {

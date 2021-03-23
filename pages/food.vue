@@ -810,7 +810,7 @@
 
 <script>
 // import Carousel from 'vue-owl-carousel'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import foodMessages from '~/static/foodMessages'
 import { pricing } from '~/static/pricing'
 import {
@@ -937,13 +937,13 @@ export default {
       }
     },
     fetchMeal() {
-      this.lastDateFormat = moment(new Date())
+      this.lastDateFormat = dayjs(new Date())
         .endOf('week')
         .format('DD MMM YYYY')
-      this.firstDateFormat = moment(new Date())
+      this.firstDateFormat = dayjs(new Date())
         .startOf('week')
         .format('DD MMM YYYY')
-      const dateData = moment(new Date()).format('DD-MM-YYYY')
+      const dateData = dayjs(new Date()).format('DD-MM-YYYY')
       fetch(
         `https://api-staging.edenlife.ng/api/v2/meal/items/all?current_date=${dateData}`
       )

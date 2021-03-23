@@ -59,19 +59,19 @@
       </header>
     </div>
     <!--  -->
-    <div class="container--nav">
+    <div ref="nav-container" class="container--nav">
       <nav class="nav">
         <div
           v-for="(tab, index) in tabs"
           :key="index"
           class="nav__item"
-          @click.prevent="activeTabIndex = index"
+          @click.prevent="activeTabIndex = tab.id"
         >
-          <p :class="`${activeTabIndex === index ? 'active' : ''}`">
+          <p :class="`${activeTabIndex === tab.id ? 'active' : ''}`">
             {{ tab.title }}
           </p>
           <svg
-            v-if="activeTabIndex === index"
+            v-if="activeTabIndex === tab.id"
             width="6"
             height="6"
             viewBox="0 0 6 6"
@@ -115,46 +115,61 @@
         <div class="posts__upper">
           <div class="posts__featured">
             <h3 class="posts__featured-title">Featured Post</h3>
-            <figure class="posts__item">
-              <img
-                class="posts__featured-img posts__item-img"
-                src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
-                alt=""
-              />
-              <figcaption class="posts__item-details posts__featured-details">
-                <h5>Your 5 Senses' Easy Guide to Home Decor</h5>
-                <p>
-                  Learn home decor tips from your senses, that'll transform your
-                  apartment into a true home.
-                </p>
-                <div class="posts__item-date">
-                  <span>July 27, 2020</span>
-                </div>
-                <div class="posts__item-author">
-                  <img
-                    :src="require(`~/assets/images/customer-kofo.jpg`)"
-                    alt=""
-                  />
-                  <p>Sonia Amadi</p>
-                </div>
-              </figcaption>
-            </figure>
-          </div>
-          <div class="posts__recommended">
-            <h3 class="posts__side-title">Highly Recommended</h3>
-            <div v-for="(item, i) in 4" :key="i">
-              <figure class="posts__side-item">
+            <nuxt-link
+              :to="{
+                name: 'blog-slug',
+                params: { slug: featuredPost.slug },
+              }"
+            >
+              <figure
+                v-if="Object.keys(featuredPost).length !== 0"
+                class="posts__item"
+                @click="viewDetails(featuredPost.id)"
+              >
                 <img
+                  class="posts__featured-img posts__item-img"
                   src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
                   alt=""
                 />
-                <figcaption>
-                  <p class="title">
-                    WTAH?!: All the fees you need to know when house-...
-                  </p>
-                  <p class="date">June 30, 2020</p>
+                <figcaption class="posts__item-details posts__featured-details">
+                  <h5>{{ featuredPost.title.rendered }}</h5>
+                  <p v-html="featuredPost.excerpt.rendered"></p>
+                  <div class="posts__item-date">
+                    <span>{{ dateFormatter(featuredPost.date) }}</span>
+                  </div>
+                  <div class="posts__item-author">
+                    <img
+                      :src="require(`~/assets/images/customer-kofo.jpg`)"
+                      alt=""
+                    />
+                    <p>{{ featuredPost._embedded.author[0].name }}</p>
+                  </div>
                 </figcaption>
               </figure>
+            </nuxt-link>
+          </div>
+          <div class="posts__recommended">
+            <h3 class="posts__side-title">Highly Recommended</h3>
+            <div v-for="(item, i) in recommendedPost" :key="i">
+              <nuxt-link
+                :to="{
+                  name: 'blog-slug',
+                  params: { slug: item.slug },
+                }"
+              >
+                <figure class="posts__side-item" @click="viewDetails(item.id)">
+                  <img
+                    src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
+                    alt=""
+                  />
+                  <figcaption>
+                    <p class="title">
+                      {{ item.title.rendered }}
+                    </p>
+                    <p class="date">{{ dateFormatter(item.date) }}</p>
+                  </figcaption>
+                </figure>
+              </nuxt-link>
             </div>
           </div>
         </div>
@@ -163,82 +178,240 @@
           <div class="posts__latest">
             <h3 class="posts__latest-title">Latest Posts</h3>
           </div>
-          <div v-for="(item, i) in 5" :key="i">
-            <figure class="posts__item">
-              <img
-                class="posts__featured-img posts__item-img"
-                src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
-                alt=""
-              />
-              <figcaption class="posts__item-details">
-                <h5>Your 5 Senses' Easy Guide to Home Decor</h5>
-                <p>
-                  Learn home decor tips from your senses, that'll transform your
-                  apartment into a true home.
-                </p>
-                <div class="posts__item-date">
-                  <nuxt-link to="/"> HOME </nuxt-link>
-                  <span class="dot">&#8226;</span>
-                  <span>July 27, 2020</span>
-                </div>
-                <div class="posts__item-author">
-                  <img
-                    :src="require(`~/assets/images/customer-kofo.jpg`)"
-                    alt=""
-                  />
-                  <p>Sonia Amadi</p>
-                </div>
-              </figcaption>
-            </figure>
-          </div>
-          <div class="posts__popular">
-            <h3 class="posts__side-title">Popular</h3>
-            <div v-for="(item, i) in 4" :key="i">
-              <figure class="posts__side-item">
+          <div v-for="(item, i) in allPosts" :key="i">
+            <nuxt-link
+              :to="{
+                name: 'blog-slug',
+                params: { slug: item.slug },
+              }"
+            >
+              <figure class="posts__item" @click="viewDetails(item.id)">
                 <img
+                  class="posts__item-img"
                   src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
                   alt=""
                 />
-                <figcaption>
-                  <p class="title">
-                    WTAH?!: All the fees you need to know when house-...
-                  </p>
-                  <p class="date">June 30, 2020</p>
+                <figcaption class="posts__item-details">
+                  <h5>{{ item.title.rendered }}</h5>
+                  <p v-html="truncate(item.excerpt.rendered, 180)"></p>
+                  <div class="posts__item-date">
+                    <span
+                      :style="getColor(item._embedded['wp:term'][0][0].slug)"
+                      @click.prevent="
+                        getCategory(item._embedded['wp:term'][0][0].id)
+                      "
+                    >
+                      {{ item._embedded['wp:term'][0][0].name }}
+                    </span>
+                    <span class="dot">&#8226;</span>
+                    <span>{{ dateFormatter(item.date) }}</span>
+                  </div>
+                  <div class="posts__item-author">
+                    <img
+                      :src="require(`~/assets/images/customer-kofo.jpg`)"
+                      alt=""
+                    />
+                    <p>{{ item._embedded.author[0].name }}</p>
+                  </div>
                 </figcaption>
               </figure>
+            </nuxt-link>
+          </div>
+          <div class="posts__popular">
+            <h3 class="posts__side-title">Popular</h3>
+            <div v-for="(item, i) in popularPost" :key="i">
+              <nuxt-link
+                :to="{
+                  name: 'blog-slug',
+                  params: { slug: item.slug },
+                }"
+              >
+                <figure class="posts__side-item" @click="viewDetails(item.id)">
+                  <img
+                    src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
+                    alt=""
+                  />
+                  <figcaption>
+                    <p class="title">
+                      {{ item.title.rendered }}
+                    </p>
+                    <p class="date">{{ dateFormatter(item.date) }}</p>
+                  </figcaption>
+                </figure>
+              </nuxt-link>
             </div>
           </div>
         </div>
       </div>
-      <div v-if="activeTabIndex === 1" class="posts">
+      <div v-if="activeTabIndex === 2" class="posts">
         <div class="posts__other">
-          <div v-for="(item, i) in 5" :key="i">
-            <figure class="posts__item">
-              <img
-                class="posts__item-img"
-                src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
-                alt=""
-              />
-              <figcaption class="posts__item-details">
-                <h5>Your 5 Senses' Easy Guide to Home Decor</h5>
-                <p>
-                  Learn home decor tips from your senses, that'll transform your
-                  apartment into a true home.
-                </p>
-                <div class="posts__item-date">
-                  <nuxt-link to="/"> HOME </nuxt-link>
-                  <span class="dot">&#8226;</span>
-                  <span>July 27, 2020</span>
-                </div>
-                <div class="posts__item-author">
-                  <img
-                    :src="require(`~/assets/images/customer-kofo.jpg`)"
-                    alt=""
-                  />
-                  <p>Sonia Amadi</p>
-                </div>
-              </figcaption>
-            </figure>
+          <div v-for="(item, i) in homePosts" :key="i">
+            <nuxt-link
+              :to="{
+                name: 'blog-slug',
+                params: { slug: item.slug },
+              }"
+            >
+              <figure class="posts__item" @click="viewDetails(item.id)">
+                <img
+                  class="posts__item-img"
+                  src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
+                  alt=""
+                />
+                <figcaption class="posts__item-details">
+                  <h5>{{ item.title.rendered }}</h5>
+                  <p v-html="truncate(item.excerpt.rendered, 180)"></p>
+                  <div class="posts__item-date">
+                    <span
+                      :style="getColor(item._embedded['wp:term'][0][0].slug)"
+                      @click.prevent="
+                        getCategory(item._embedded['wp:term'][0][0].id)
+                      "
+                    >
+                      {{ item._embedded['wp:term'][0][0].name }}
+                    </span>
+                    <span class="dot">&#8226;</span>
+                    <span>{{ dateFormatter(item.date) }}</span>
+                  </div>
+                  <div class="posts__item-author">
+                    <img
+                      :src="require(`~/assets/images/customer-kofo.jpg`)"
+                      alt=""
+                    />
+                    <p>{{ item._embedded.author[0].name }}</p>
+                  </div>
+                </figcaption>
+              </figure>
+            </nuxt-link>
+          </div>
+        </div>
+      </div>
+      <div v-if="activeTabIndex === 3" class="posts">
+        <div class="posts__other">
+          <div v-for="(item, i) in foodPosts" :key="i">
+            <nuxt-link
+              :to="{
+                name: 'blog-slug',
+                params: { slug: item.slug },
+              }"
+            >
+              <figure class="posts__item" @click="viewDetails(item.id)">
+                <img
+                  class="posts__item-img"
+                  src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
+                  alt=""
+                />
+                <figcaption class="posts__item-details">
+                  <h5>{{ item.title.rendered }}</h5>
+                  <p v-html="truncate(item.excerpt.rendered, 180)"></p>
+                  <div class="posts__item-date">
+                    <span
+                      :style="getColor(item._embedded['wp:term'][0][0].slug)"
+                      @click.prevent="
+                        getCategory(item._embedded['wp:term'][0][0].id)
+                      "
+                    >
+                      {{ item._embedded['wp:term'][0][0].name }}
+                    </span>
+                    <span class="dot">&#8226;</span>
+                    <span>{{ dateFormatter(item.date) }}</span>
+                  </div>
+                  <div class="posts__item-author">
+                    <img
+                      :src="require(`~/assets/images/customer-kofo.jpg`)"
+                      alt=""
+                    />
+                    <p>{{ item._embedded.author[0].name }}</p>
+                  </div>
+                </figcaption>
+              </figure>
+            </nuxt-link>
+          </div>
+        </div>
+      </div>
+      <div v-if="activeTabIndex === 4" class="posts">
+        <div class="posts__other">
+          <div v-for="(item, i) in edenPosts" :key="i">
+            <nuxt-link
+              :to="{
+                name: 'blog-slug',
+                params: { slug: item.slug },
+              }"
+            >
+              <figure class="posts__item" @click="viewDetails(item.id)">
+                <img
+                  class="posts__item-img"
+                  src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
+                  alt=""
+                />
+                <figcaption class="posts__item-details">
+                  <h5>{{ item.title.rendered }}</h5>
+                  <p v-html="truncate(item.excerpt.rendered, 180)"></p>
+                  <div class="posts__item-date">
+                    <span
+                      :style="getColor(item._embedded['wp:term'][0][0].slug)"
+                      @click.prevent="
+                        getCategory(item._embedded['wp:term'][0][0].id)
+                      "
+                    >
+                      {{ item._embedded['wp:term'][0][0].name }}
+                    </span>
+                    <span class="dot">&#8226;</span>
+                    <span>{{ dateFormatter(item.date) }}</span>
+                  </div>
+                  <div class="posts__item-author">
+                    <img
+                      :src="require(`~/assets/images/customer-kofo.jpg`)"
+                      alt=""
+                    />
+                    <p>{{ item._embedded.author[0].name }}</p>
+                  </div>
+                </figcaption>
+              </figure>
+            </nuxt-link>
+          </div>
+        </div>
+      </div>
+      <div v-if="activeTabIndex === 5" class="posts">
+        <div class="posts__other">
+          <div v-for="(item, i) in lifePosts" :key="i">
+            <nuxt-link
+              :to="{
+                name: 'blog-slug',
+                params: { slug: item.slug },
+              }"
+            >
+              <figure class="posts__item" @click="viewDetails(item.id)">
+                <img
+                  class="posts__item-img"
+                  src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
+                  alt=""
+                />
+                <figcaption class="posts__item-details">
+                  <h5>{{ item.title.rendered }}</h5>
+                  <p v-html="truncate(item.excerpt.rendered, 180)"></p>
+                  <div class="posts__item-date">
+                    <span
+                      :style="getColor(item._embedded['wp:term'][0][0].slug)"
+                      @click.prevent="
+                        getCategory(item._embedded['wp:term'][0][0].id)
+                      "
+                    >
+                      {{ item._embedded['wp:term'][0][0].name }}
+                    </span>
+                    <span class="dot">&#8226;</span>
+                    <span>{{ dateFormatter(item.date) }}</span>
+                  </div>
+                  <div class="posts__item-author">
+                    <img
+                      :src="require(`~/assets/images/customer-kofo.jpg`)"
+                      alt=""
+                    />
+                    <p>{{ item._embedded.author[0].name }}</p>
+                  </div>
+                </figcaption>
+              </figure>
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -279,6 +452,7 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
+import dayjs from 'dayjs'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
@@ -309,10 +483,10 @@ export default {
       activeTabIndex: null,
       tabs: [
         { id: 0, title: 'All' },
-        { id: 1, title: 'Home' },
-        { id: 2, title: 'Food' },
-        { id: 3, title: 'Eden 101' },
-        { id: 4, title: 'Life is Good' },
+        { id: 2, title: 'Home' },
+        { id: 3, title: 'Food' },
+        { id: 4, title: 'Eden 101' },
+        { id: 5, title: 'Life is Good' },
       ],
       loading: false,
       form: {
@@ -320,6 +494,14 @@ export default {
       },
       showSuccessModal: false,
       showFailedModal: false,
+      allPosts: [],
+      featuredPost: [],
+      popularPost: [],
+      recommendedPost: [],
+      homePosts: [],
+      lifePosts: [],
+      foodPosts: [],
+      edenPosts: [],
     }
   },
   validations: {
@@ -327,7 +509,211 @@ export default {
       email: { required, email },
     },
   },
+  async fetch() {
+    this.getFeaturedPost()
+    this.getRecommendedPost()
+    this.getPopularPost()
+    this.getHomePost()
+    this.getLifePost()
+    this.getEdenPost()
+    this.getFoodPost()
+    await this.fetchAllPosts()
+  },
   methods: {
+    dateFormatter(date) {
+      return dayjs(date).format('MMMM D, YYYY')
+    },
+    truncate(value, length) {
+      if (!value) return ''
+      value = value.toString()
+      if (value.length > length) {
+        return value.substring(0, length) + '...'
+      } else {
+        return value
+      }
+    },
+    viewDetails(id) {
+      this.$store.commit('updateId', id)
+    },
+    async fetchAllPosts() {
+      const posts = await fetch(
+        `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?page=1&per_page=20&_embed=1`
+      ).then((res) => res.json())
+      this.allPosts = posts
+        .filter((el) => el.status === 'publish')
+        .map(
+          ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
+            id,
+            slug,
+            title,
+            excerpt,
+            date,
+            tags,
+            content,
+            _embedded,
+          })
+        )
+    },
+    async getFeaturedPost() {
+      const post = await fetch(
+        `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?tags=8&_embed=1`
+      ).then((res) => res.json())
+      const rawPost = post
+        .filter((el) => el.status === 'publish')
+        .map(
+          ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
+            id,
+            slug,
+            title,
+            excerpt,
+            date,
+            tags,
+            content,
+            _embedded,
+          })
+        )
+      this.featuredPost = rawPost[0]
+    },
+    async getRecommendedPost() {
+      const post = await fetch(
+        `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?tags=6&_embed=1`
+      ).then((res) => res.json())
+      this.recommendedPost = post
+        .filter((el) => el.status === 'publish')
+        .map(
+          ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
+            id,
+            slug,
+            title,
+            excerpt,
+            date,
+            tags,
+            content,
+            _embedded,
+          })
+        )
+    },
+    async getPopularPost() {
+      const post = await fetch(
+        `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?tags=7&_embed=1`
+      ).then((res) => res.json())
+      this.popularPost = post
+        .filter((el) => el.status === 'publish')
+        .map(
+          ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
+            id,
+            slug,
+            title,
+            excerpt,
+            date,
+            tags,
+            content,
+            _embedded,
+          })
+        )
+    },
+    async getHomePost() {
+      const posts = await fetch(
+        `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?categories=2&_embed=1`
+      ).then((res) => res.json())
+      this.homePosts = posts
+        .filter((el) => el.status === 'publish')
+        .map(
+          ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
+            id,
+            slug,
+            title,
+            excerpt,
+            date,
+            tags,
+            content,
+            _embedded,
+          })
+        )
+    },
+    async getLifePost() {
+      const posts = await fetch(
+        `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?categories=5&_embed=1`
+      ).then((res) => res.json())
+      this.lifePosts = posts
+        .filter((el) => el.status === 'publish')
+        .map(
+          ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
+            id,
+            slug,
+            title,
+            excerpt,
+            date,
+            tags,
+            content,
+            _embedded,
+          })
+        )
+    },
+    async getEdenPost() {
+      const posts = await fetch(
+        `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?categories=4&_embed=1`
+      ).then((res) => res.json())
+      this.edenPosts = posts
+        .filter((el) => el.status === 'publish')
+        .map(
+          ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
+            id,
+            slug,
+            title,
+            excerpt,
+            date,
+            tags,
+            content,
+            _embedded,
+          })
+        )
+    },
+    async getFoodPost() {
+      const posts = await fetch(
+        `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?categories=3&_embed=1`
+      ).then((res) => res.json())
+      this.foodPosts = posts
+        .filter((el) => el.status === 'publish')
+        .map(
+          ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
+            id,
+            slug,
+            title,
+            excerpt,
+            date,
+            tags,
+            content,
+            _embedded,
+          })
+        )
+    },
+    getCategory(id) {
+      this.$refs['nav-container'].scrollIntoView()
+      this.activeTabIndex = id
+    },
+    getColor(slug) {
+      switch (slug) {
+        case 'food':
+          return {
+            color: '#03A84E',
+          }
+        case 'eden-101':
+          return {
+            color: '#00C0EA',
+          }
+        case 'home':
+          return {
+            color: '#FF9D00',
+          }
+        case 'life-is-good':
+          return {
+            color: '#5571FF',
+          }
+        default:
+          console.log('default')
+      }
+    },
     openSocialMedia(name, url) {
       mixpanelTrackEvent(`${name} icon clicked - Blog`)
       window.open(url, '_blank')

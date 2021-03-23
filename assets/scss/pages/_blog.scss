@@ -40,7 +40,6 @@
   margin: 0 auto;
   width: 83%;
   padding: $gap * 18 0 $gap * 9 0;
-  // background-color: color(eden-green-senary);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,6 +75,16 @@
   @include respond(md) {
     width: 100%;
     padding: $gap * 18 0 $gap * 7 0;
+    &__title {
+      h1 {
+        line-height: 47px;
+        @include font-size(5xl);
+      }
+      p {
+        line-height: 24px;
+        @include font-size(base);
+      }
+    }
   }
   @include respond(xxl) {
     max-width: 1440px;
@@ -171,13 +180,18 @@
     margin-top: $gap * 8;
   }
   &__item {
+    height: 100%;
     &-img {
       width: 100%;
-      height: 200px;
+      height: 45%;
       object-fit: cover;
       border-radius: 8px 8px 0px 0px;
     }
     &-details {
+      height: 55%;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
       border-radius: 0px 0px 8px 8px;
       color: color(eden-neutral-1);
       padding: $gap * 2 0;
@@ -201,12 +215,13 @@
       line-height: 18px;
       @include font-size(xs);
       color: color(eden-neutral-2);
-      margin-bottom: $gap * 4.5;
+      margin-bottom: $gap * 2.4;
       .dot {
         padding: 0 8px;
       }
     }
     &-author {
+      margin-top: auto;
       display: flex;
       align-items: center;
       img {
@@ -233,6 +248,7 @@
       margin-bottom: $gap * 3.2;
     }
     &-details {
+      height: unset;
       background: #fafbfe;
       padding: $gap * 2;
       border-radius: 0px 0px 8px 8px;
@@ -334,6 +350,7 @@
         height: 190px;
       }
       &-details {
+        height: unset;
         padding: $gap * 2 0;
         h5 {
           line-height: 23px;
@@ -342,6 +359,9 @@
       }
       &-date {
         margin-bottom: $gap * 2.4;
+      }
+      &-author {
+        margin-top: 0;
       }
     }
 

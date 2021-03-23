@@ -1,10 +1,14 @@
 export const state = () => ({
   cart: JSON.parse(localStorage.getItem('cart')) || [],
+  blogId: null,
 })
 
 export const getters = {
   cart: (state) => {
     return state.cart
+  },
+  blogId: (state) => {
+    return state.blogId
   },
 }
 
@@ -28,5 +32,8 @@ export const mutations = {
   clearCart: (state) => {
     state.cart = []
     localStorage.setItem('cart', JSON.stringify(state.cart))
+  },
+  updateId: (state, payload) => {
+    state.blogId = payload
   },
 }

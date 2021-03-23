@@ -187,6 +187,7 @@
                 <label for="email">What is your email address?</label>
                 <input
                   id=""
+                  v-model="form.email"
                   type="email"
                   name=""
                   placeholder="Enter your email address"
@@ -195,7 +196,9 @@
                   We’ll take you to download the app. You don’t have to do
                   anything. Just sit back, relax and enjoy your discount.
                 </p>
-                <button class="pricing__plan-btn">Start your Eden Life</button>
+                <button class="pricing__plan-btn" @click.prevent="getStarted()">
+                  Start your Eden Life
+                </button>
               </div>
             </transition>
           </div>
@@ -862,8 +865,8 @@
             />
             <h5>We’ve sent a mail</h5>
             <p>
-              We’ve sent an email to {{ form.email }}. Please check your mail
-              for next steps.
+              We’ve sent an email to <b> {{ form.email }}</b
+              >. Please check your mail for next steps.
             </p>
             <button
               type="submit"
@@ -1096,8 +1099,12 @@ export default {
   methods: {
     currencyFormat,
     formatNumber,
+    getStarted() {
+      this.showEmailModal = true
+    },
     openApp() {
       this.showEmailModal = !this.showEmailModal
+      this.form.email = ''
     },
     updateDeliveyDay(item) {
       if (this.mealFrequency.toLowerCase() === 'daily') {

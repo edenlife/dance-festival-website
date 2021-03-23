@@ -4,18 +4,15 @@
       <div class="pricing__form-container">
         <div class="pricing__form">
           <div class="pricing__form-title">
-            <h2>Pricing</h2>
-            <p>
-              There's a myth in town that Eden is expensive. Now let's show you
-              it isn't.
-            </p>
+            <h2>Find A Plan. Made For You.</h2>
+            <p>Flexible. Straightforward. No hidden costs.</p>
           </div>
           <div
             v-show="!reconfigurePlan && !setCustom"
             class="pricing__form-slider"
           >
             <div class="pricing__form-slider--title">
-              <p>What is your estimate monthly expense?</p>
+              <p>Choose Your Monthly Budget.</p>
               <h3>
                 <span v-if="estimate === '5'">+</span>₦{{
                   formatNumber(estimatedPrice)
@@ -46,9 +43,7 @@
           </div>
 
           <div class="pricing__form-input">
-            <p>
-              What service(s) are you interested in? <span>(optional)</span>
-            </p>
+            <p>What service(s) are you interested in?</p>
             <ul>
               <li
                 v-for="(service, index) in services"
@@ -90,10 +85,7 @@
               your information below.
             </p>
             <div class="pricing__plan-input">
-              <label for="email"
-                >What is your email address?
-                <span>(you get 20% off your first month 💚)</span></label
-              >
+              <label for="email">What is your email address?</label>
               <input
                 id=""
                 v-model="form.email"
@@ -187,15 +179,12 @@
                 class="pricing__plan-btn"
                 @click.prevent="displayForm = !displayForm"
               >
-                Break up with chores
+                Subscribe (20% off)
               </button>
             </div>
             <transition name="slide-fade">
               <div v-if="displayForm" class="pricing__plan-input">
-                <label for="email"
-                  >What is your email address?
-                  <span>(you get 20% off your first month 💚)</span></label
-                >
+                <label for="email">What is your email address?</label>
                 <input
                   id=""
                   type="email"
@@ -794,7 +783,7 @@
                 class="pricing__calculator-btn"
                 @click.prevent="setReconfigureSummary()"
               >
-                Break up with chores
+                Subscribe (20% off)
               </button>
             </div>
           </div>
@@ -1254,11 +1243,12 @@ export default {
     changeService(service) {
       // estimated price 10,000
       if (this.estimate === '0') {
+        if (service.name === 'Food') {
+          return
+        }
         this.selectedService.pop()
         this.selectedService.push(service.name)
-        this.mealQty = 1
-        this.mealFrequency = 'Weekly'
-        this.calculateFoodPrice()
+
         this.laundryFreqName = 'every two weeks'
         this.laundryType = 'Wash & Fold'
         this.laundryTypeValue = 'wash-and-fold'
@@ -1671,7 +1661,7 @@ export default {
       switch (estimate.toString()) {
         case '0': {
           this.selectedService = []
-          const defaultService = { name: 'Food', price: '8800' }
+          const defaultService = { name: 'Laundry', price: '9000' }
           this.changeService(defaultService)
           break
         }

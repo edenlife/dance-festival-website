@@ -187,10 +187,11 @@
                 <label for="email">What is your email address?</label>
                 <input
                   id=""
-                  v-model="form.email"
+                  v-model="subscribeEmail"
                   type="email"
                   name=""
                   placeholder="Enter your email address"
+                  :class="{ 'has-error': $v.subscribeEmail.$error }"
                 />
                 <p>
                   We’ll take you to download the app. You don’t have to do
@@ -865,7 +866,7 @@
             />
             <h5>We’ve sent a mail</h5>
             <p>
-              We’ve sent an email to <b> {{ form.email }}</b
+              We’ve sent an email to <b> {{ subscribeEmail }}</b
               >. Please check your mail for next steps.
             </p>
             <button
@@ -896,6 +897,7 @@ export default {
   },
   mixins: [validationMixin],
   validations: {
+    subscribeEmail: { required, email },
     form: {
       email: { required, email },
       phone_number: {
@@ -909,6 +911,7 @@ export default {
     return {
       showSuccessModal: false,
       showEmailModal: false,
+      subscribeEmail: '',
       selectedService: ['Food', 'Laundry', 'Cleaning'],
       services: [
         { name: 'Food', price: '' },
@@ -1100,11 +1103,17 @@ export default {
     currencyFormat,
     formatNumber,
     getStarted() {
-      this.showEmailModal = true
+      this.$v.subscribeEmail.$touch()
+      if (!this.$v.subscribeEmail.$error) {
+        this.showEmailModal = true
+        this.$nextTick(() => {
+          this.subscribeEmail = ''
+        })
+      }
     },
     openApp() {
       this.showEmailModal = !this.showEmailModal
-      this.form.email = ''
+      this.$v.$reset()
     },
     updateDeliveyDay(item) {
       if (this.mealFrequency.toLowerCase() === 'daily') {

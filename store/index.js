@@ -1,6 +1,7 @@
 export const state = () => ({
   cart: JSON.parse(localStorage.getItem('cart')) || [],
   blogId: null,
+  blogNavId: null,
 })
 
 export const getters = {
@@ -9,6 +10,9 @@ export const getters = {
   },
   blogId: (state) => {
     return state.blogId
+  },
+  blogNavId: (state) => {
+    return state.blogNavId
   },
 }
 
@@ -35,5 +39,8 @@ export const mutations = {
   },
   updateId: (state, payload) => {
     state.blogId = payload
+  },
+  blogNavId: (state, payload) => {
+    state.blogNavId = payload
   },
 }

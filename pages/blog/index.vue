@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="container--hero">
+    <div ref="nav-container" class="container--hero">
       <header class="hero">
         <div class="hero__title">
           <h1>The Good Life</h1>
@@ -59,7 +59,7 @@
       </header>
     </div>
     <!--  -->
-    <div ref="nav-container" class="container--nav">
+    <div class="container--nav">
       <nav class="nav">
         <div
           v-for="(tab, index) in tabs"
@@ -518,6 +518,19 @@ export default {
     this.getEdenPost()
     this.getFoodPost()
     await this.fetchAllPosts()
+  },
+  computed: {
+    blogNavId() {
+      return this.$store.getters.blogNavId
+    },
+  },
+  destroyed() {
+    this.$store.commit('blogNavId', null)
+  },
+  mounted() {
+    if (this.blogNavId !== null) {
+      this.activeTabIndex = this.blogNavId
+    }
   },
   methods: {
     dateFormatter(date) {

@@ -7,7 +7,7 @@
       <header class="hero">
         <div class="hero__date">
           <span :style="getColor(postDetails._embedded['wp:term'][0][0].slug)">
-            HOME
+            {{ postDetails._embedded['wp:term'][0][0].name }}
           </span>
           <span class="dot">&#8226;</span>
           <span>{{ dateFormatter(postDetails.date) }}</span>
@@ -194,33 +194,45 @@
       <div class="related">
         <h3 class="related__title">Related posts</h3>
         <div class="related__box">
-          <div v-for="(item, i) in 3" :key="i">
-            <figure class="related__item">
-              <img
-                class="related__item-img"
-                src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
-                alt=""
-              />
-              <figcaption class="related__item-details">
-                <h5>Your 5 Senses' Easy Guide to Home Decor</h5>
-                <p>
-                  Learn home decor tips from your senses, that'll transform your
-                  apartment into a true home.
-                </p>
-                <div class="related__item-date">
-                  <nuxt-link to="/"> HOME </nuxt-link>
-                  <span class="dot">&#8226;</span>
-                  <span>July 27, 2020</span>
-                </div>
-                <div class="related__item-author">
-                  <img
-                    :src="require(`~/assets/images/customer-kofo.jpg`)"
-                    alt=""
-                  />
-                  <p>Sonia Amadi</p>
-                </div>
-              </figcaption>
-            </figure>
+          <div v-for="(item, i) in relatedPosts" :key="i">
+            <nuxt-link
+              :to="{
+                name: 'blog-slug',
+                params: { slug: item.slug },
+              }"
+            >
+              <figure class="related__item" @click="viewDetails(item.id)">
+                <img
+                  class="related__item-img"
+                  src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
+                  alt=""
+                />
+                <figcaption class="related__item-details">
+                  <h5>{{ item.title.rendered }}</h5>
+                  <p v-html="truncate(item.excerpt.rendered, 180)"></p>
+
+                  <div class="related__item-date">
+                    <span
+                      :style="getColor(item._embedded['wp:term'][0][0].slug)"
+                      @click.prevent="
+                        getCategory(item._embedded['wp:term'][0][0].id)
+                      "
+                    >
+                      {{ item._embedded['wp:term'][0][0].name }}
+                    </span>
+                    <span class="dot">&#8226;</span>
+                    <span>{{ dateFormatter(item.date) }}</span>
+                  </div>
+                  <div class="related__item-author">
+                    <img
+                      :src="require(`~/assets/images/customer-kofo.jpg`)"
+                      alt=""
+                    />
+                    <p>{{ item._embedded.author[0].name }}</p>
+                  </div>
+                </figcaption>
+              </figure>
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -245,6 +257,7 @@ export default {
       },
       postDetails: {},
       navbar: '',
+      relatedPosts: [],
     }
   },
   validations: {
@@ -267,15 +280,55 @@ export default {
     dateFormatter(date) {
       return dayjs(date).format('MMMM D, YYYY')
     },
+    truncate(value, length) {
+      if (!value) return ''
+      value = value.toString()
+      if (value.length > length) {
+        return value.substring(0, length) + '...'
+      } else {
+        return value
+      }
+    },
+    viewDetails(id) {
+      this.$store.commit('updateId', id)
+    },
     async getSingleArticle(id) {
       this.postDetails = await fetch(
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts/${id}?_embed=1`
       ).then((res) => res.json())
       this.navbar = document.querySelector('#navigation-container')
+      const category = this.postDetails.categories[0]
+      this.getRelatedPost(category)
+    },
+    async getRelatedPost(category) {
+      const posts = await fetch(
+        `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?categories=${category}&_embed=1`
+      ).then((res) => res.json())
+      this.relatedPosts = posts
+        .filter((el) => el.status === 'publish')
+        .map(
+          ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
+            id,
+            slug,
+            title,
+            excerpt,
+            date,
+            tags,
+            content,
+            _embedded,
+          })
+        )
+      // && el.id !== this.blogId remove current post
+      // N:B randomize related post and splice
     },
     openSocialMedia(name, url) {
       mixpanelTrackEvent(`${name} icon clicked - Blog`)
       window.open(url, '_blank')
+    },
+    getCategory(id) {
+      this.$router.push('/blog')
+      this.navbar.style.backgroundColor = '#F6FFFA'
+      this.$store.commit('blogNavId', id)
     },
     getColor(slug) {
       switch (slug) {

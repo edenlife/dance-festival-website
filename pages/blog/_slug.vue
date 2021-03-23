@@ -21,7 +21,7 @@
         </div>
         <div class="hero__featured">
           <img
-            src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
+            :src="postDetails._embedded['wp:featuredmedia'][0].source_url"
             alt=""
           />
         </div>
@@ -204,7 +204,7 @@
               <figure class="related__item" @click="viewDetails(item.id)">
                 <img
                   class="related__item-img"
-                  src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
+                  :src="item._embedded['wp:featuredmedia'][0].source_url"
                   alt=""
                 />
                 <figcaption class="related__item-details">

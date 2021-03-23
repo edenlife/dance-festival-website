@@ -128,7 +128,9 @@
               >
                 <img
                   class="posts__featured-img posts__item-img"
-                  src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
+                  :src="
+                    featuredPost._embedded['wp:featuredmedia'][0].source_url
+                  "
                   alt=""
                 />
                 <figcaption class="posts__item-details posts__featured-details">
@@ -159,7 +161,7 @@
               >
                 <figure class="posts__side-item" @click="viewDetails(item.id)">
                   <img
-                    src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
+                    :src="item._embedded['wp:featuredmedia'][0].source_url"
                     alt=""
                   />
                   <figcaption>
@@ -188,7 +190,7 @@
               <figure class="posts__item" @click="viewDetails(item.id)">
                 <img
                   class="posts__item-img"
-                  src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
+                  :src="item._embedded['wp:featuredmedia'][0].source_url"
                   alt=""
                 />
                 <figcaption class="posts__item-details">
@@ -228,7 +230,7 @@
               >
                 <figure class="posts__side-item" @click="viewDetails(item.id)">
                   <img
-                    src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
+                    :src="item._embedded['wp:featuredmedia'][0].source_url"
                     alt=""
                   />
                   <figcaption>
@@ -255,7 +257,7 @@
               <figure class="posts__item" @click="viewDetails(item.id)">
                 <img
                   class="posts__item-img"
-                  src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
+                  :src="item._embedded['wp:featuredmedia'][0].source_url"
                   alt=""
                 />
                 <figcaption class="posts__item-details">
@@ -298,7 +300,7 @@
               <figure class="posts__item" @click="viewDetails(item.id)">
                 <img
                   class="posts__item-img"
-                  src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
+                  :src="item._embedded['wp:featuredmedia'][0].source_url"
                   alt=""
                 />
                 <figcaption class="posts__item-details">
@@ -341,7 +343,7 @@
               <figure class="posts__item" @click="viewDetails(item.id)">
                 <img
                   class="posts__item-img"
-                  src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
+                  :src="item._embedded['wp:featuredmedia'][0].source_url"
                   alt=""
                 />
                 <figcaption class="posts__item-details">
@@ -384,7 +386,7 @@
               <figure class="posts__item" @click="viewDetails(item.id)">
                 <img
                   class="posts__item-img"
-                  src="https://res-2.cloudinary.com/hstxdo55f/image/upload/q_auto/v1/ghost-blog-images/Meet-Garden-v3.0.png"
+                  :src="item._embedded['wp:featuredmedia'][0].source_url"
                   alt=""
                 />
                 <figcaption class="posts__item-details">

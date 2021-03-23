@@ -840,7 +840,7 @@
           <div class="pricing__modal-body">
             <img
               :src="require(`~/assets/images/successful.svg`)"
-              alt="failed"
+              alt="successful"
             />
             <h5>Information Submitted</h5>
             <p>
@@ -853,6 +853,35 @@
               @click.prevent="showSuccessModal = !showSuccessModal"
             >
               Continue Browsing
+            </button>
+          </div>
+        </div>
+      </div>
+      <div slot="footer"></div>
+    </modal>
+
+    <modal v-if="showEmailModal" :show-modal="showEmailModal" class="modal">
+      <div slot="header"></div>
+      <div slot="body" class="modal__body">
+        <div class="pricing__modal">
+          <div class="pricing__modal-title"></div>
+          <div class="pricing__modal-body">
+            <img
+              class="email-img"
+              :src="require(`~/assets/images/email-modal.svg`)"
+              alt="email"
+            />
+            <h5>We’ve sent a mail</h5>
+            <p>
+              We’ve sent an email to {{ form.email }}. Please check your mail
+              for next steps.
+            </p>
+            <button
+              type="submit"
+              class="btn--submit"
+              @click.prevent="openApp()"
+            >
+              Okay. Got it !!
             </button>
           </div>
         </div>
@@ -887,6 +916,7 @@ export default {
   data() {
     return {
       showSuccessModal: false,
+      showEmailModal: false,
       selectedService: ['Food', 'Laundry', 'Cleaning'],
       services: [
         { name: 'Food', price: '' },
@@ -1077,6 +1107,9 @@ export default {
   methods: {
     currencyFormat,
     formatNumber,
+    openApp() {
+      this.showEmailModal = !this.showEmailModal
+    },
     updateDeliveyDay(item) {
       if (this.mealFrequency.toLowerCase() === 'daily') {
         this.selectedDays = []

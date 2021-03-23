@@ -887,7 +887,7 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
-import { currencyFormat, formatNumber } from '~/static/functions'
+import { currencyFormat, formatNumber, scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { pricing } from '~/static/pricing'
 
@@ -1056,6 +1056,9 @@ export default {
         qty: 4,
       },
       loading: false,
+      totalFoodSummary: {},
+      totalLaundrySummary: {},
+      totalCleaningSummary: {},
     }
   },
   watch: {
@@ -1103,6 +1106,9 @@ export default {
     currencyFormat,
     formatNumber,
     getStarted() {
+      // this.totalFoodSummary
+      // this.totalLaundrySummary
+      // this.totalCleaningSummary
       this.$v.subscribeEmail.$touch()
       if (!this.$v.subscribeEmail.$error) {
         this.showEmailModal = true
@@ -1114,6 +1120,7 @@ export default {
     openApp() {
       this.showEmailModal = !this.showEmailModal
       this.$v.$reset()
+      scrollToApp('#get-the-app', 'Pricing-page')
     },
     updateDeliveyDay(item) {
       if (this.mealFrequency.toLowerCase() === 'daily') {
@@ -1746,6 +1753,7 @@ export default {
 
     // Food claculator
     calculateFoodPrice() {
+      // TODO : add total amount to totalFoodSummary
       if (this.mealFrequency.toLowerCase() === 'daily') {
         if (this.mealQty > 5) {
           this.mealQty = 5
@@ -1764,6 +1772,13 @@ export default {
           `Daily delivery`,
           `${this.mealQty} meal${this.mealQty > 1 ? 's' : ''} per day`,
         ]
+        this.totalFoodSummary = {
+          frequency: 'daily',
+          item: null,
+          qty: this.mealQty,
+          service_day: this.selectedDays,
+          dislikes: [],
+        }
       }
       if (this.mealFrequency.toLowerCase() === 'weekly') {
         if (this.mealQty > 20) {
@@ -1779,6 +1794,13 @@ export default {
           `${this.mealQty} meal${this.mealQty > 1 ? 's' : ''} per week`,
           'Delivered once a week',
         ]
+        this.totalFoodSummary = {
+          frequency: 'weekly',
+          item: null,
+          qty: this.mealQty,
+          service_day: this.selectedDays,
+          dislikes: [],
+        }
       }
       if (this.mealFrequency === 'Twice a week') {
         if (this.mealQty > 10) {
@@ -1798,6 +1820,14 @@ export default {
           `${this.mealQty * 2} meals per week`,
           'Delivered twice a week',
         ]
+
+        this.totalFoodSummary = {
+          frequency: 'weekly-twodays',
+          item: null,
+          qty: this.mealQty * 2,
+          service_day: this.selectedDays,
+          dislikes: [],
+        }
       }
     },
     getMealPrice(plan) {
@@ -1848,6 +1878,13 @@ export default {
         } (max. 30 items per bag)`,
         `Picked up ${this.laundryFreqName}`,
       ]
+      // TODO : add total amount to totalLaundrySummary
+      this.totalLaundrySummary = {
+        frequency: this.laundryFreqValue,
+        item: this.laundryTypeValue,
+        qty: this.laundryQty,
+        service_day: [],
+      }
     },
     increaseLaundryOrder() {
       if (this.laundryQty < 5) {
@@ -1898,6 +1935,14 @@ export default {
         `${this.roomTypes}`,
         `${this.cleaningFrequency}`,
       ]
+      // TODO : add total amount to totalCleaningSummary
+      this.totalCleaningSummary = {
+        frequency: this.cleaningInfo.frequency,
+        item: this.cleaningInfo.item,
+        item_areas: this.cleaningInfo.itemAreas,
+        qty: this.cleaningInfo.qty,
+        service_day: [],
+      }
     },
     setCleaningArea(area) {
       const selectedArea = this.cleaningServiceTypes.filter((item) => {

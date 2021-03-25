@@ -157,7 +157,7 @@
     <!--  -->
     <div v-if="showSearchbar" class="container--result">
       <div class="result">
-        <h3 class="result__title">Showing results for “{{ search }}”</h3>
+        <h3 class="result__title">Showing results for “{{ searchInput }}”</h3>
         <div v-show="!searchResults.length" class="result__empty">
           <p>Sorry. There are no results for this keyword.</p>
           <p>
@@ -173,7 +173,7 @@
             v-for="(tab, index) in tabs"
             :key="index"
             class="result__nav-item"
-            @click.prevent="resultTabIndex = tab.id"
+            @click.prevent="resultCategory(tab.id)"
           >
             <p :class="`${resultTabIndex === tab.id ? 'active' : ''}`">
               {{ tab.title }}
@@ -191,7 +191,65 @@
           </div>
         </div>
 
-        <div v-if="searchResults.length" class="result__content">
+        <div v-if="resultTabIndex !== 0" class="result__content">
+          <div v-for="(item, i) in filteredSearchResults" :key="i">
+            <nuxt-link
+              :to="{
+                name: 'blog-slug',
+                params: { slug: item.slug + '?' + item.id },
+              }"
+            >
+              <figure class="result__item">
+                <img
+                  class="result__item-img"
+                  :src="item._embedded['wp:featuredmedia'][0].source_url"
+                  alt=""
+                />
+                <figcaption class="result__item-details">
+                  <h5>{{ item.title.rendered }}</h5>
+                  <p v-html="truncate(item.excerpt.rendered, 180)"></p>
+                  <div class="result__item-date">
+                    <span
+                      :style="getColor(item._embedded['wp:term'][0][0].slug)"
+                      @click.prevent="
+                        getCategory(item._embedded['wp:term'][0][0].id)
+                      "
+                    >
+                      {{ item._embedded['wp:term'][0][0].name }}
+                    </span>
+                    <span class="dot">&#8226;</span>
+                    <span>{{ dateFormatter(item.date) }}</span>
+                  </div>
+                  <div class="result__item-author">
+                    <img
+                      :src="require(`~/assets/images/customer-kofo.jpg`)"
+                      alt=""
+                    />
+                    <p>{{ item._embedded.author[0].name }}</p>
+                  </div>
+                </figcaption>
+              </figure>
+            </nuxt-link>
+          </div>
+          <div
+            v-show="!filteredSearchResults.length"
+            class="result__empty result__content-empty"
+          >
+            <p>
+              Sorry. There are no results in this category for this keyword.
+            </p>
+            <p>
+              Try searching for something else or
+              <span class="" @click.prevent="viewAllPost()"
+                >go back to our main blog page</span
+              >.
+            </p>
+          </div>
+        </div>
+        <div
+          v-if="searchResults.length && resultTabIndex === 0"
+          class="result__content"
+        >
           <div v-for="(item, i) in searchResults" :key="i">
             <nuxt-link
               :to="{
@@ -232,7 +290,7 @@
             </nuxt-link>
           </div>
         </div>
-        <div v-else class="result__content">
+        <div v-if="!searchResults.length" class="result__content">
           <h3 class="result__content-title">Suggested posts</h3>
           <div v-for="(item, i) in allPosts" :key="i">
             <nuxt-link
@@ -648,6 +706,7 @@ export default {
       activeTabIndex: null,
       resultTabIndex: 0,
       search: '',
+      searchInput: '',
       showSearchbar: false,
       tabs: [
         { id: 0, title: 'All' },
@@ -672,6 +731,7 @@ export default {
       edenPosts: [],
       searchResults: [],
       suggestedPost: [],
+      filteredSearchResults: [],
     }
   },
   validations: {
@@ -717,12 +777,22 @@ export default {
     },
     viewAllPost() {
       this.showSearchbar = !this.showSearchbar
+      this.activeTabIndex = 0
+      this.search = ''
+      this.resultTabIndex = 0
+    },
+    resultCategory(id) {
+      this.resultTabIndex = id
+      this.filteredSearchResults = this.searchResults.filter(
+        (el) => el.categories[0] === id
+      )
     },
     searchPost() {
       this.searchResults = this.allPosts.filter((el) =>
         el.title.rendered.toLowerCase().includes(this.search.toLowerCase())
       )
       this.showSearchbar = true
+      this.searchInput = this.search
       // console.log(this.allPosts)
       // console.log(this.allPosts.splice(1))
       // this.suggestedPost = this.allPosts.splice(1)
@@ -734,7 +804,7 @@ export default {
       this.allPosts = posts
         .filter((el) => el.status === 'publish')
         .map(
-          ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
+          ({
             id,
             slug,
             title,
@@ -743,6 +813,17 @@ export default {
             tags,
             content,
             _embedded,
+            categories,
+          }) => ({
+            id,
+            slug,
+            title,
+            excerpt,
+            date,
+            tags,
+            content,
+            _embedded,
+            categories,
           })
         )
     },

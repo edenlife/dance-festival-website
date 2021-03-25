@@ -628,6 +628,9 @@
       @include font-size(4xl);
       line-height: 42px;
     }
+    &-empty {
+      grid-column: 1/4;
+    }
   }
   &__item {
     height: 480px;

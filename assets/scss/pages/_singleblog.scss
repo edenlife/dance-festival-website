@@ -60,6 +60,9 @@
     .dot {
       padding: 0 8px;
     }
+    &-category {
+      cursor: pointer;
+    }
   }
   &__title {
     position: relative;

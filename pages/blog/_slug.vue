@@ -6,7 +6,13 @@
     >
       <header class="hero">
         <div class="hero__date">
-          <span :style="getColor(postDetails._embedded['wp:term'][0][0].slug)">
+          <span
+            :style="getColor(postDetails._embedded['wp:term'][0][0].slug)"
+            class="hero__date-category"
+            @click.prevent="
+              getCategory(postDetails._embedded['wp:term'][0][0].id)
+            "
+          >
             {{ postDetails._embedded['wp:term'][0][0].name }}
           </span>
           <span class="dot">&#8226;</span>

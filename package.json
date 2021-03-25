@@ -14,11 +14,12 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.12.5",
     "@nuxtjs/pwa": "^3.3.4",
+    "axios": "^0.21.1",
     "core-js": "^3.8.2",
+    "dayjs": "^1.10.4",
     "flutterwave-vue-v3": "^1.0.5",
     "gsap": "^3.6.0",
     "mixpanel-browser": "^2.41.0",
-    "moment": "^2.29.1",
     "nuxt": "^2.14.12",
     "nuxt-intercom": "^1.0.8",
     "sass": "^1.32.5",

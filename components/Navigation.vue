@@ -1,5 +1,9 @@
 <template>
-  <div id="navigation-container" class="container" :style="getColor()">
+  <div
+    id="navigation-container"
+    class="container"
+    :style="getNavigationColor(routeUpdate)"
+  >
     <nav
       id="navigation-top"
       class="navigation"
@@ -432,7 +436,7 @@
 </template>
 
 <script>
-import { scrollToApp } from '~/static/functions'
+import { scrollToApp, getNavigationColor } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
@@ -448,6 +452,7 @@ export default {
         height: 0,
       },
       currentRoute: '',
+      routeUpdate: '',
     }
   },
   computed: {
@@ -465,8 +470,8 @@ export default {
   },
   watch: {
     $route() {
-      const getRoute = this.$nuxt.$route.path
-      this.currentRoute = getRoute.replace('/', '')
+      this.routeUpdate = this.$nuxt.$route.path
+      this.currentRoute = this.routeUpdate.replace('/', '')
     },
   },
   mounted() {
@@ -476,6 +481,7 @@ export default {
     this.currentRoute = getRoute.replace('/', '')
   },
   methods: {
+    getNavigationColor,
     handleResize() {
       this.window.width = window.innerWidth
       this.window.height = window.innerHeight
@@ -516,58 +522,6 @@ export default {
       const toggleButton = document.querySelector('.navigation__btn')
       toggleButton.classList.toggle('toggle')
       this.showNavbar = !this.showNavbar
-    },
-    getColor() {
-      const path = this.$nuxt.$route.path
-      if (path === '/') {
-        return {
-          'background-color': '#fff9f5',
-        }
-      } else if (path.includes('contact_us')) {
-        return {
-          'background-color': '#ffffff',
-        }
-      } else if (path.includes('faq')) {
-        return {
-          'background-color': '#F7FDFF',
-        }
-      } else if (path.includes('food')) {
-        return {
-          'background-color': '#F6FFFA',
-        }
-      } else if (path.includes('laundry')) {
-        return {
-          'background-color': '#F7F8FE',
-        }
-      } else if (path.includes('cleaning')) {
-        return {
-          'background-color': '#FFFCFA',
-        }
-      } else if (path.includes('checkout')) {
-        return {
-          'background-color': '#ffffff',
-        }
-      } else if (path.includes('gifts')) {
-        return {
-          'background-color': '#fff8f7',
-        }
-      } else if (path.includes('about_us')) {
-        return {
-          'background-color': '#F7FDFF',
-        }
-      } else if (path.includes('companies')) {
-        return {
-          'background-color': '#F7F8FE',
-        }
-      } else if (path.includes('pricing')) {
-        return {
-          'background-color': '#F6FFFA',
-        }
-      } else if (path.includes('terms_and_condition')) {
-        return {
-          'background-color': '#ffffff',
-        }
-      }
     },
   },
 }

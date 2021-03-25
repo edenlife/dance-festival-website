@@ -118,13 +118,12 @@
             <nuxt-link
               :to="{
                 name: 'blog-slug',
-                params: { slug: featuredPost.slug },
+                params: { slug: featuredPost.slug + '?' + featuredPost.id },
               }"
             >
               <figure
                 v-if="Object.keys(featuredPost).length !== 0"
                 class="posts__item"
-                @click="viewDetails(featuredPost.id)"
               >
                 <img
                   class="posts__featured-img posts__item-img"
@@ -156,10 +155,10 @@
               <nuxt-link
                 :to="{
                   name: 'blog-slug',
-                  params: { slug: item.slug },
+                  params: { slug: item.slug + '?' + item.id },
                 }"
               >
-                <figure class="posts__side-item" @click="viewDetails(item.id)">
+                <figure class="posts__side-item">
                   <img
                     :src="item._embedded['wp:featuredmedia'][0].source_url"
                     alt=""
@@ -184,10 +183,10 @@
             <nuxt-link
               :to="{
                 name: 'blog-slug',
-                params: { slug: item.slug },
+                params: { slug: item.slug + '?' + item.id },
               }"
             >
-              <figure class="posts__item" @click="viewDetails(item.id)">
+              <figure class="posts__item">
                 <img
                   class="posts__item-img"
                   :src="item._embedded['wp:featuredmedia'][0].source_url"
@@ -225,10 +224,10 @@
               <nuxt-link
                 :to="{
                   name: 'blog-slug',
-                  params: { slug: item.slug },
+                  params: { slug: item.slug + '?' + item.id },
                 }"
               >
-                <figure class="posts__side-item" @click="viewDetails(item.id)">
+                <figure class="posts__side-item">
                   <img
                     :src="item._embedded['wp:featuredmedia'][0].source_url"
                     alt=""
@@ -251,10 +250,10 @@
             <nuxt-link
               :to="{
                 name: 'blog-slug',
-                params: { slug: item.slug },
+                params: { slug: item.slug + '?' + item.id },
               }"
             >
-              <figure class="posts__item" @click="viewDetails(item.id)">
+              <figure class="posts__item">
                 <img
                   class="posts__item-img"
                   :src="item._embedded['wp:featuredmedia'][0].source_url"
@@ -294,10 +293,10 @@
             <nuxt-link
               :to="{
                 name: 'blog-slug',
-                params: { slug: item.slug },
+                params: { slug: item.slug + '?' + item.id },
               }"
             >
-              <figure class="posts__item" @click="viewDetails(item.id)">
+              <figure class="posts__item">
                 <img
                   class="posts__item-img"
                   :src="item._embedded['wp:featuredmedia'][0].source_url"
@@ -337,10 +336,10 @@
             <nuxt-link
               :to="{
                 name: 'blog-slug',
-                params: { slug: item.slug },
+                params: { slug: item.slug + '?' + item.id },
               }"
             >
-              <figure class="posts__item" @click="viewDetails(item.id)">
+              <figure class="posts__item">
                 <img
                   class="posts__item-img"
                   :src="item._embedded['wp:featuredmedia'][0].source_url"
@@ -380,10 +379,10 @@
             <nuxt-link
               :to="{
                 name: 'blog-slug',
-                params: { slug: item.slug },
+                params: { slug: item.slug + '?' + item.id },
               }"
             >
-              <figure class="posts__item" @click="viewDetails(item.id)">
+              <figure class="posts__item">
                 <img
                   class="posts__item-img"
                   :src="item._embedded['wp:featuredmedia'][0].source_url"
@@ -543,9 +542,6 @@ export default {
       } else {
         return value
       }
-    },
-    viewDetails(id) {
-      this.$store.commit('updateId', id)
     },
     async fetchAllPosts() {
       const posts = await fetch(

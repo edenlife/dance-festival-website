@@ -195,10 +195,10 @@
             <nuxt-link
               :to="{
                 name: 'blog-slug',
-                params: { slug: item.slug },
+                params: { slug: item.slug + '?' + item.id },
               }"
             >
-              <figure class="related__item" @click="viewDetails(item.id)">
+              <figure class="related__item">
                 <img
                   class="related__item-img"
                   :src="item._embedded['wp:featuredmedia'][0].source_url"
@@ -255,6 +255,7 @@ export default {
       postDetails: {},
       navbar: '',
       relatedPosts: [],
+      blogId: null,
     }
   },
   validations: {
@@ -262,14 +263,9 @@ export default {
       email: { required, email },
     },
   },
-  // async fetch() {
-  // },
-  computed: {
-    blogId() {
-      return this.$store.getters.blogId
-    },
-  },
   async mounted() {
+    const slug = this.$route.params.slug
+    this.blogId = slug.split('?')[1]
     await this.getSingleArticle(this.blogId)
   },
   methods: {
@@ -285,9 +281,6 @@ export default {
       } else {
         return value
       }
-    },
-    viewDetails(id) {
-      this.$store.commit('updateId', id)
     },
     async getSingleArticle(id) {
       this.postDetails = await fetch(

@@ -190,12 +190,18 @@
                   type="email"
                   name=""
                   placeholder="Enter your email address"
-                  :class="{ 'has-error': $v.subscribeEmail.$error }"
+                  :class="{
+                    'has-error': $v.subscribeEmail.$error || custumerStatus,
+                  }"
                 />
-                <p>
+                <p v-if="responseMessage.length">
+                  {{ responseMessage }}
+                </p>
+                <p v-else>
                   We’ll take you to download the app. You don’t have to do
                   anything. Just sit back, relax and enjoy your discount.
                 </p>
+
                 <button
                   class="pricing__plan-btn"
                   :disabled="isLoading"
@@ -916,6 +922,7 @@ export default {
     return {
       showSuccessModal: false,
       showEmailModal: false,
+      custumerStatus: false,
       subscribeEmail: '',
       selectedService: ['Food', 'Laundry', 'Cleaning'],
       services: [
@@ -1073,6 +1080,7 @@ export default {
       totalCleaningSummary: {},
       isLoading: false,
       discountCalculated: null,
+      responseMessage: '',
     }
   },
   watch: {
@@ -1149,7 +1157,16 @@ export default {
             body: JSON.stringify(payload),
           }
         )
+        const userStatus = await dataResponse.json()
+
+        if (dataResponse.status === 409) {
+          this.responseMessage = userStatus.message
+          this.isLoading = false
+          this.custumerStatus = true
+        }
         if (dataResponse.status === 200) {
+          this.responseMessage = ''
+          this.custumerStatus = false
           this.showEmailModal = true
           this.isLoading = false
         }

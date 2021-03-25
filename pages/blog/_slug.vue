@@ -156,17 +156,14 @@
             </svg>
           </a>
         </div>
-        <p v-html="postDetails.content.rendered"></p>
+        <div class="content__slug" v-html="postDetails.content.rendered"></div>
       </div>
     </div>
     <!--  -->
     <div class="container--subscribe">
       <div class="subscribe">
         <h3>Subscribe to the Good Life</h3>
-        <p>
-          Enter your email address below and we’ll update you when new articles
-          are up!
-        </p>
+        <p>Get our latest posts straight in your inbox.</p>
         <form class="form">
           <div class="form__input">
             <input
@@ -296,6 +293,7 @@ export default {
       this.postDetails = await fetch(
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts/${id}?_embed=1`
       ).then((res) => res.json())
+      console.log(this.postDetails)
       this.navbar = document.querySelector('#navigation-container')
       const category = this.postDetails.categories[0]
       this.getRelatedPost(category)
@@ -389,4 +387,82 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/pages/_singleblog.scss';
+</style>
+
+<style lang="scss">
+@import '@/assets/style.scss';
+
+.content {
+  &__slug {
+    color: color(eden-neutral-1);
+    h3 {
+      @include font-size(2xl);
+      margin-bottom: $gap * 2.4;
+      margin-top: $gap * 4;
+      line-height: 31px;
+    }
+    p {
+      @include font-size(lg);
+      margin-bottom: $gap * 2.4;
+      line-height: 29px;
+    }
+    figure {
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+      }
+      margin-bottom: $gap * 4;
+      margin-top: $gap * 2;
+      figcaption {
+        text-align: center;
+        margin-top: $gap;
+      }
+    }
+    ul,
+    ol {
+      li {
+        @include font-size(lg);
+        line-height: 29px;
+      }
+    }
+    a {
+      color: color(eden-green-primary);
+      &:hover {
+        text-decoration: underline;
+        color: color(eden-green-primary);
+      }
+    }
+  }
+  &__slug {
+    @include respond(md) {
+      h3 {
+        @include font-size(xl);
+        margin-bottom: $gap + 6;
+        margin-top: $gap * 4;
+        line-height: 31px;
+      }
+      p {
+        @include font-size(base);
+        line-height: 26px;
+        margin-bottom: $gap + 6;
+      }
+      figure {
+        margin-bottom: $gap * 3.2;
+        margin-top: $gap + 6;
+      }
+      ul,
+      ol {
+        width: 90%;
+        margin: 0 auto;
+
+        li {
+          @include font-size(base);
+          line-height: 26px;
+          margin-bottom: $gap + 6;
+        }
+      }
+    }
+  }
+}
 </style>

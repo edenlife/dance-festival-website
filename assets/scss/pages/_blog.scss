@@ -25,13 +25,11 @@
   &--subscribe {
     width: 100%;
     background-color: color(eden-neutral-7);
-    background-image: url('~@/assets/images/blog-bg4.svg'),
-      url('~@/assets/images/blog-bg5.svg'), url('~@/assets/images/blog-bg6.svg');
-    background-position: top 25% left 18%, top 30% right 20%,
-      bottom 20% left 18%;
+    background-image: url('~@/assets/images/blog-bg5.svg');
+    background-position: top 38% right 31%;
     background-repeat: no-repeat;
     @include respond(md) {
-      background-image: none;
+      background-position: top 11% center;
     }
   }
 }
@@ -180,7 +178,7 @@
     margin-top: $gap * 8;
   }
   &__item {
-    height: 100%;
+    height: 480px;
     &-img {
       width: 100%;
       height: 45%;
@@ -231,6 +229,7 @@
         margin-right: $gap + 2;
       }
       p {
+        padding: 0;
         line-height: 21px;
         @include font-size(sm);
       }
@@ -446,14 +445,14 @@
   align-items: center;
   color: color(eden-neutral-1);
   h3 {
-    line-height: 47px;
-    @include font-size(5xl);
+    line-height: 31px;
+    @include font-size(2xl);
     @include font-weight(bold);
   }
   p {
-    margin: $gap * 2 0 $gap * 6 0;
-    line-height: 29px;
-    @include font-size(lg);
+    margin: $gap + 2 0 $gap * 4.4 0;
+    line-height: 26px;
+    @include font-size(base);
     width: 38%;
     text-align: center;
   }
@@ -468,8 +467,8 @@
         padding: $gap + 4 $gap + 6;
         @include font-size(lg);
         @include font-family(cerebri);
-        width: 450px;
-        height: 56px;
+        width: 350px;
+        height: 48px;
         &::placeholder {
           color: color(eden-neutral-4);
           @include font-weight(light);
@@ -492,7 +491,7 @@
       color: color(eden-neutral-7);
       border-radius: 4px;
       transition: all 0.4s ease-in-out;
-      padding: $gap * 1.6 $gap * 4;
+      padding: $gap * 1.2 $gap * 2.2;
       &:hover {
         box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
         background-color: color(eden-green-250);
@@ -516,7 +515,7 @@
       @include font-size(2xl);
     }
     p {
-      margin: $gap + 6 0 $gap * 4.8 0;
+      margin: $gap + 2 0 $gap * 4 0;
       line-height: 24px;
       @include font-size(base);
       width: 80%;

@@ -422,10 +422,7 @@
     <div class="container--subscribe">
       <div class="subscribe">
         <h3>Subscribe to the Good Life</h3>
-        <p>
-          Enter your email address below and we’ll update you when new articles
-          are up!
-        </p>
+        <p>Get our latest posts straight in your inbox.</p>
         <form class="form">
           <div class="form__input">
             <input

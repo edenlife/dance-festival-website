@@ -456,6 +456,10 @@ export default {
         }
       }
     }
+    .cats,
+    .tags {
+      display: none;
+    }
   }
 }
 </style>

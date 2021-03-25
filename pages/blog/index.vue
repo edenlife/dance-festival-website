@@ -7,54 +7,47 @@
           <p>by Eden.</p>
         </div>
         <div class="hero__social">
-          <a
-            href="https://twitter.com/ouredenlife"
-            target="_blank"
-            @click.prevent="
-              openSocialMedia('Twitter', 'https://twitter.com/ouredenlife')
-            "
+          <ShareNetwork
+            network="twitter"
+            url="https://ouredenlife.com/blog"
+            title=""
+            description=""
+            hashtags=""
           >
             <img :src="require(`~/assets/images/twitter.svg`)" alt="twitter" />
-          </a>
-          <a
-            href="https://instagram.com/ouredenlife"
-            target="_blank"
-            @click.prevent="
-              openSocialMedia('Instagram', 'https://instagram.com/ouredenlife')
-            "
+          </ShareNetwork>
+          <ShareNetwork
+            network="whatsapp"
+            url="https://ouredenlife.com/blog"
+            title=""
+            description=""
           >
             <img
-              :src="require(`~/assets/images/instagram.svg`)"
-              alt="instagram"
+              :src="require(`~/assets/images/whatsapp.svg`)"
+              alt="whatsapp"
             />
-          </a>
+          </ShareNetwork>
+
           <a
-            href="https://facebook.com/ouredenlife"
+            href="https://www.facebook.com/sharer/sharer.php?u=https://ouredenlife.com/blog"
             target="_blank"
-            @click.prevent="
-              openSocialMedia('Facebook', 'https://facebook.com/ouredenlife')
-            "
           >
             <img
               :src="require(`~/assets/images/facebook.svg`)"
               alt="facebook"
             />
           </a>
-          <a
-            href="https://www.linkedin.com/company/ouredenlife/"
-            target="_blank"
-            @click.prevent="
-              openSocialMedia(
-                'LinkedIn',
-                'https://www.linkedin.com/company/ouredenlife/'
-              )
-            "
+          <ShareNetwork
+            network="LinkedIn"
+            url="https://ouredenlife.com/blog"
+            title=""
+            description=""
           >
             <img
               :src="require(`~/assets/images/linkedin.svg`)"
               alt="linkedin"
             />
-          </a>
+          </ShareNetwork>
         </div>
       </header>
     </div>
@@ -292,7 +285,7 @@
         </div>
         <div v-if="!searchResults.length" class="result__content">
           <h3 class="result__content-title">Suggested posts</h3>
-          <div v-for="(item, i) in allPosts" :key="i">
+          <div v-for="(item, i) in suggestedPost" :key="i">
             <nuxt-link
               :to="{
                 name: 'blog-slug',
@@ -404,7 +397,7 @@
           <div class="posts__latest">
             <h3 class="posts__latest-title">Latest Posts</h3>
           </div>
-          <div v-for="(item, i) in allPosts" :key="i">
+          <div v-for="(item, i) in latestPost" :key="i">
             <nuxt-link
               :to="{
                 name: 'blog-slug',
@@ -732,6 +725,7 @@ export default {
       searchResults: [],
       suggestedPost: [],
       filteredSearchResults: [],
+      latestPost: [],
     }
   },
   validations: {
@@ -793,9 +787,7 @@ export default {
       )
       this.showSearchbar = true
       this.searchInput = this.search
-      // console.log(this.allPosts)
-      // console.log(this.allPosts.splice(1))
-      // this.suggestedPost = this.allPosts.splice(1)
+      this.suggestedPost = this.allPosts.slice(0, 3)
     },
     async fetchAllPosts() {
       const posts = await fetch(
@@ -826,6 +818,7 @@ export default {
             categories,
           })
         )
+      this.latestPost = this.allPosts.slice(0, 8)
     },
     async getFeaturedPost() {
       const post = await fetch(

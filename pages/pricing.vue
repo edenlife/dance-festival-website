@@ -1983,6 +1983,13 @@ export default {
           qty,
         },
       })
+      const newItemAreas = Object.keys(itemAreas).reduce((accumulator, key) => {
+        if (itemAreas[key] !== 0) {
+          accumulator[key] = itemAreas[key]
+        }
+        return accumulator
+      }, {})
+
       this.services[2].price = total.toString()
       this.getTotalPrice(this.services, this.selectedService)
       this.cleaningSummary = [
@@ -1993,7 +2000,7 @@ export default {
       this.totalCleaningSummary = {
         frequency: this.cleaningInfo.frequency,
         item: this.cleaningInfo.item,
-        item_areas: this.cleaningInfo.itemAreas,
+        item_areas: newItemAreas,
         qty: this.cleaningInfo.qty,
         service_day: [],
         amount: total,

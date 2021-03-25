@@ -14,9 +14,8 @@
             <div class="pricing__form-slider--title">
               <p>Choose Your Monthly Budget.</p>
               <h3>
-                <span v-if="estimate === '5'">+</span>₦{{
-                  formatNumber(estimatedPrice)
-                }}
+                ₦{{ formatNumber(estimatedPrice) }}
+                <span v-if="estimate === '5'">+</span>
               </h3>
             </div>
             <div v-show="!loading" class="range">
@@ -922,7 +921,7 @@ export default {
         email: '',
         phone_number: '',
       },
-      estimate: 3,
+      estimate: 1,
       displayForm: false,
       setCustom: false,
       estimatedPrice: '50000',
@@ -1109,12 +1108,10 @@ export default {
       // this.totalFoodSummary
       // this.totalLaundrySummary
       // this.totalCleaningSummary
+      // discounted_amount
       this.$v.subscribeEmail.$touch()
       if (!this.$v.subscribeEmail.$error) {
         this.showEmailModal = true
-        this.$nextTick(() => {
-          this.subscribeEmail = ''
-        })
       }
     },
     openApp() {
@@ -1125,13 +1122,13 @@ export default {
     updateDeliveyDay(item) {
       if (this.mealFrequency.toLowerCase() === 'daily') {
         this.selectedDays = []
-        this.selectedDays[0] = item
         this.selectedDays.push(item)
         this.calculateFoodPrice()
       }
       if (this.mealFrequency.toLowerCase() === 'weekly') {
         this.selectedDays = []
         this.selectedDays[0] = item
+        this.calculateFoodPrice()
       }
       if (this.mealFrequency === 'Twice a week') {
         if (this.selectedDays.length > 1 && this.selectedDays.includes(item)) {
@@ -1143,6 +1140,7 @@ export default {
         ) {
           this.selectedDays.push(item)
         }
+        this.calculateFoodPrice()
       }
     },
     toggleSelect(event) {
@@ -1201,8 +1199,8 @@ export default {
       this.reconfigurePlan = !this.reconfigurePlan
       this.setCustom = false
       this.displayForm = false
-      this.estimate = 3
-      this.selectedService = ['Food', 'Laundry', 'Cleaning']
+      this.estimate = 1
+      this.selectedService = ['Food', 'Laundry']
       this.getEstimate()
     },
     setPlanConfig() {
@@ -1265,13 +1263,12 @@ export default {
     },
     changeService(service) {
       // estimated price 10,000
-      if (this.estimate === '0') {
+      if (this.estimate.toString() === '0') {
         if (service.name === 'Food') {
           return
         }
         this.selectedService.pop()
         this.selectedService.push(service.name)
-
         this.laundryFreqName = 'every two weeks'
         this.laundryType = 'Wash & Fold'
         this.laundryTypeValue = 'wash-and-fold'
@@ -1293,7 +1290,7 @@ export default {
       }
 
       // estimated price 20,000
-      if (this.estimate === '1') {
+      if (this.estimate.toString() === '1') {
         if (
           this.selectedService.length > 1 &&
           this.selectedService.includes(service.name)
@@ -1753,7 +1750,6 @@ export default {
 
     // Food claculator
     calculateFoodPrice() {
-      // TODO : add total amount to totalFoodSummary
       if (this.mealFrequency.toLowerCase() === 'daily') {
         if (this.mealQty > 5) {
           this.mealQty = 5
@@ -1777,7 +1773,7 @@ export default {
           item: null,
           qty: this.mealQty,
           service_day: this.selectedDays,
-          dislikes: [],
+          amount: total,
         }
       }
       if (this.mealFrequency.toLowerCase() === 'weekly') {
@@ -1878,12 +1874,12 @@ export default {
         } (max. 30 items per bag)`,
         `Picked up ${this.laundryFreqName}`,
       ]
-      // TODO : add total amount to totalLaundrySummary
       this.totalLaundrySummary = {
         frequency: this.laundryFreqValue,
         item: this.laundryTypeValue,
         qty: this.laundryQty,
         service_day: [],
+        amount: total,
       }
     },
     increaseLaundryOrder() {
@@ -1935,13 +1931,13 @@ export default {
         `${this.roomTypes}`,
         `${this.cleaningFrequency}`,
       ]
-      // TODO : add total amount to totalCleaningSummary
       this.totalCleaningSummary = {
         frequency: this.cleaningInfo.frequency,
         item: this.cleaningInfo.item,
         item_areas: this.cleaningInfo.itemAreas,
         qty: this.cleaningInfo.qty,
         service_day: [],
+        amount: total,
       }
     },
     setCleaningArea(area) {

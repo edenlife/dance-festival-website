@@ -38,13 +38,12 @@
       <div class="content">
         <div class="content__social">
           <p class="content__social-title">Share</p>
-          <a
+          <ShareNetwork
+            network="twitter"
+            :url="`https://ouredenlife.com${singleUrl}`"
+            title=""
+            description=""
             class="link"
-            href="https://twitter.com/ouredenlife"
-            target="_blank"
-            @click.prevent="
-              openSocialMedia('Twitter', 'https://twitter.com/ouredenlife')
-            "
           >
             <svg
               class="link--twitter"
@@ -59,14 +58,11 @@
                 fill=""
               />
             </svg>
-          </a>
+          </ShareNetwork>
           <a
-            href="https://facebook.com/ouredenlife"
-            target="_blank"
             class="link"
-            @click.prevent="
-              openSocialMedia('Facebook', 'https://facebook.com/ouredenlife')
-            "
+            :href="`https://www.facebook.com/sharer/sharer.php?u=https://ouredenlife.com${singleUrl}`"
+            target="_blank"
           >
             <svg
               class="link--facebook"
@@ -82,16 +78,12 @@
               />
             </svg>
           </a>
-          <a
-            href="https://www.linkedin.com/company/ouredenlife/"
-            target="_blank"
+          <ShareNetwork
+            network="LinkedIn"
+            :url="`https://ouredenlife.com${singleUrl}`"
+            title=""
+            description=""
             class="link"
-            @click.prevent="
-              openSocialMedia(
-                'LinkedIn',
-                'https://www.linkedin.com/company/ouredenlife/'
-              )
-            "
           >
             <svg
               class="link--linkedin"
@@ -106,17 +98,13 @@
                 fill=""
               />
             </svg>
-          </a>
-          <a
-            href="https://www.linkedin.com/company/ouredenlife/"
-            target="_blank"
+          </ShareNetwork>
+          <ShareNetwork
+            network="whatsapp"
+            :url="`https://ouredenlife.com/${singleUrl}`"
+            title=""
+            description=""
             class="link"
-            @click.prevent="
-              openSocialMedia(
-                'WhatsApp',
-                'https://www.linkedin.com/company/ouredenlife/'
-              )
-            "
           >
             <svg
               class="link--whatsapp"
@@ -131,17 +119,13 @@
                 fill=""
               />
             </svg>
-          </a>
-          <a
-            href="https://www.linkedin.com/company/ouredenlife/"
-            target="_blank"
+          </ShareNetwork>
+          <ShareNetwork
+            network="Email"
+            :url="`https://ouredenlife.com${singleUrl}`"
+            title=""
+            description=""
             class="link"
-            @click.prevent="
-              openSocialMedia(
-                'WhatsApp',
-                'https://www.linkedin.com/company/ouredenlife/'
-              )
-            "
           >
             <svg
               class="link--email"
@@ -160,7 +144,7 @@
                 fill=""
               />
             </svg>
-          </a>
+          </ShareNetwork>
         </div>
         <div class="content__slug" v-html="postDetails.content.rendered"></div>
       </div>
@@ -262,6 +246,7 @@ export default {
       navbar: '',
       relatedPosts: [],
       blogId: null,
+      singleUrl: '',
     }
   },
   validations: {
@@ -270,6 +255,7 @@ export default {
     },
   },
   async mounted() {
+    this.singleUrl = this.$route.fullPath
     const slug = this.$route.params.slug
     this.blogId = slug.split('?')[1]
     await this.getSingleArticle(this.blogId)
@@ -315,7 +301,9 @@ export default {
             _embedded,
           })
         )
+      // TODO
       // && el.id !== this.blogId remove current post
+      // posts.slice(0, 3)
       // N:B randomize related post and splice
     },
     openSocialMedia(name, url) {

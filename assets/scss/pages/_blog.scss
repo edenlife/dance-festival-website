@@ -18,7 +18,15 @@
     background-color: color(eden-neutral-7);
     box-shadow: inset 0px -1px 0px #e4e8e6;
   }
+  &--search {
+    width: 100%;
+    background-color: color(eden-neutral-7);
+  }
   &--posts {
+    width: 100%;
+    background-color: color(eden-neutral-7);
+  }
+  &--result {
     width: 100%;
     background-color: color(eden-neutral-7);
   }
@@ -130,6 +138,15 @@
       }
     }
   }
+  &__search-full {
+    border: 1px solid #e4e8e6;
+    border-radius: 8px;
+    margin-top: $gap * 8;
+    width: 100%;
+    input[type='search'] {
+      width: 100%;
+    }
+  }
   @include respond(md) {
     width: 100%;
     justify-content: center;
@@ -147,6 +164,18 @@
       //     color: color(eden-neutral-2);
       //   }
       // }
+    }
+    &__search-full {
+      width: 90%;
+      margin-right: auto;
+      margin-left: auto;
+      display: block;
+      padding: $gap + 4;
+
+      input[type='search'] {
+        // margin-left: $gap * 5;
+        width: fit-content;
+      }
     }
   }
   @include respond(xxl) {
@@ -537,6 +566,175 @@
     }
   }
 
+  @include respond(xxl) {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}
+
+.result {
+  margin: 0 auto;
+  width: 83%;
+  padding-top: $gap * 6.4;
+  color: color(eden-neutral-1);
+  &__title {
+    @include font-size(2xl);
+    line-height: 31px;
+  }
+  &__empty {
+    @include font-size(lg);
+    line-height: 36px;
+    margin-top: $gap * 3.2;
+    margin-bottom: $gap * 14;
+    span {
+      cursor: pointer;
+      color: color(eden-green-primary);
+    }
+  }
+  &__nav {
+    display: flex;
+    // align-items: center;
+    margin-top: $gap * 4;
+    border-bottom: 1px solid #e4e8e6;
+
+    &-filter {
+      color: color(eden-neutral-2);
+      margin-right: $gap * 3.2;
+      margin-top: $gap + 8;
+    }
+    &-item {
+      padding: $gap * 2 0;
+      margin-right: $gap * 5.6;
+      line-height: 24px;
+      color: color(eden-neutral-3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      p {
+        cursor: pointer;
+      }
+      .active {
+        color: color(eden-neutral-1);
+      }
+    }
+  }
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $gap * 4;
+    margin-top: $gap * 4.8;
+    &-title {
+      grid-column: 1/4;
+      @include font-size(4xl);
+      line-height: 42px;
+    }
+  }
+  &__item {
+    height: 480px;
+    &-img {
+      width: 100%;
+      height: 45%;
+      object-fit: cover;
+      border-radius: 8px 8px 0px 0px;
+    }
+    &-details {
+      height: 55%;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      border-radius: 0px 0px 8px 8px;
+      color: color(eden-neutral-1);
+      padding: $gap * 2 0;
+      h5 {
+        line-height: 26px;
+        @include font-size(xl);
+        @include font-weight(bold);
+      }
+      p {
+        padding-top: $gap + 2;
+        padding-bottom: $gap + 6;
+        line-height: 21px;
+        @include font-size(sm);
+      }
+    }
+
+    &-date {
+      display: flex;
+      align-items: center;
+      text-transform: uppercase;
+      line-height: 18px;
+      @include font-size(xs);
+      color: color(eden-neutral-2);
+      margin-bottom: $gap * 2.4;
+      .dot {
+        padding: 0 8px;
+      }
+    }
+    &-author {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        margin-right: $gap + 2;
+      }
+      p {
+        padding: 0;
+        line-height: 21px;
+        @include font-size(sm);
+      }
+    }
+  }
+  @include respond(md) {
+    width: 90%;
+    margin: 0 auto;
+    &__content {
+      display: flex;
+      flex-direction: column;
+      margin-top: $gap * 4.8;
+      &-title {
+        @include font-size(2xl);
+        line-height: 32px;
+      }
+    }
+    &__item {
+      &-img {
+        height: 190px;
+      }
+      &-details {
+        height: unset;
+        padding: $gap * 2 0;
+        h5 {
+          line-height: 23px;
+          @include font-size(lg);
+        }
+      }
+      &-date {
+        margin-bottom: $gap * 2.4;
+      }
+      &-author {
+        margin-top: 0;
+      }
+    }
+    &__empty {
+      @include font-size(sm);
+      line-height: 26px;
+    }
+    &__nav {
+      flex-wrap: wrap;
+      &-filter {
+        flex-basis: 100%;
+      }
+      &-item {
+        padding: $gap * 2 0;
+        margin-right: $gap * 2;
+        line-height: 21px;
+        @include font-size(sm);
+      }
+    }
+  }
   @include respond(xxl) {
     max-width: 1440px;
     margin: 0 auto;

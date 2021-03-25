@@ -196,7 +196,11 @@
                   We’ll take you to download the app. You don’t have to do
                   anything. Just sit back, relax and enjoy your discount.
                 </p>
-                <button class="pricing__plan-btn" @click.prevent="getStarted()">
+                <button
+                  class="pricing__plan-btn"
+                  :disabled="isLoading"
+                  @click.prevent="getStarted()"
+                >
                   Start your Eden Life
                 </button>
               </div>
@@ -317,15 +321,17 @@
                         >
                           <div
                             class="delivery__days-item"
-                            :class="{ checked: selectedDays.includes(item) }"
+                            :class="{
+                              checked: selectedDays.includes(item.name),
+                            }"
                           >
                             <input
-                              :id="item"
+                              :id="item.value"
                               type="checkbox"
-                              :value="item"
-                              @change="updateDeliveyDay(item)"
+                              :value="item.value"
+                              @change="updateDeliveyDay(item.name)"
                             />
-                            <label :for="item">{{ item }}</label>
+                            <label :for="item.value">{{ item.value }}</label>
                           </div>
                         </div>
                       </div>
@@ -931,7 +937,14 @@ export default {
       mealFrequency: 'Daily',
       dailyDeliveryDays: ['monday-friday', 'monday-saturday'],
       selectedDays: ['monday-friday'],
-      deliveryDays: ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
+      deliveryDays: [
+        { name: 'monday', value: 'mon' },
+        { name: 'tuesday', value: 'tue' },
+        { name: 'wednesday', value: 'wed' },
+        { name: 'thursday', value: 'thu' },
+        { name: 'friday', value: 'fri' },
+        { name: 'saturday', value: 'sat' },
+      ],
       mealQty: 1,
       laundryFrequency: 'Every two weeks',
       laundryType: 'Wash & Fold',
@@ -1058,6 +1071,8 @@ export default {
       totalFoodSummary: {},
       totalLaundrySummary: {},
       totalCleaningSummary: {},
+      isLoading: false,
+      discountCalculated: null,
     }
   },
   watch: {
@@ -1104,17 +1119,44 @@ export default {
   methods: {
     currencyFormat,
     formatNumber,
-    getStarted() {
-      // this.totalFoodSummary
-      // this.totalLaundrySummary
-      // this.totalCleaningSummary
-      // discounted_amount
+    async getStarted() {
       this.$v.subscribeEmail.$touch()
       if (!this.$v.subscribeEmail.$error) {
-        this.showEmailModal = true
+        this.isLoading = true
+        const payload = {
+          email: this.subscribeEmail,
+          plan_details: {
+            ...(this.selectedService.includes('Food') && {
+              meal: this.totalFoodSummary,
+            }),
+            ...(this.selectedService.includes('Laundry') && {
+              laundry: this.totalLaundrySummary,
+            }),
+            ...(this.selectedService.includes('Cleaning') && {
+              cleaning: this.totalCleaningSummary,
+            }),
+          },
+          discounted_amount: this.discountCalculated,
+        }
+
+        const dataResponse = await fetch(
+          'https://api-staging.edenlife.ng/api/v3/website/pricing/signup',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+          }
+        )
+        if (dataResponse.status === 200) {
+          this.showEmailModal = true
+          this.isLoading = false
+        }
       }
     },
     openApp() {
+      this.subscribeEmail = ''
       this.showEmailModal = !this.showEmailModal
       this.$v.$reset()
       scrollToApp('#get-the-app', 'Pricing-page')
@@ -1257,9 +1299,9 @@ export default {
       }, 0)
 
       this.subtotalPrice = subtotal.toString()
-      const discount = subtotal * 0.2
-      this.discountPrice = discount.toString()
-      this.totalPrice = (subtotal - discount).toString()
+      this.discountCalculated = subtotal * 0.2
+      this.discountPrice = this.discountCalculated.toString()
+      this.totalPrice = (subtotal - this.discountCalculated).toString()
     },
     changeService(service) {
       // estimated price 10,000
@@ -1500,7 +1542,7 @@ export default {
           ) {
             this.mealQty = 5
             this.mealFrequency = 'Twice a week'
-            this.selectedDays = ['mon', 'thu']
+            this.selectedDays = ['monday', 'thursday']
             this.calculateFoodPrice()
             this.laundryFreqName = 'weekly'
             this.laundryType = 'Wash & Iron'
@@ -1515,7 +1557,7 @@ export default {
           ) {
             this.mealQty = 5
             this.mealFrequency = 'Twice a week'
-            this.selectedDays = ['mon', 'thu']
+            this.selectedDays = ['monday', 'thursday']
             this.calculateFoodPrice()
             this.cleaningType = 'Deep cleaning'
             this.cleaningFrequency = 'Once a month'
@@ -1831,10 +1873,10 @@ export default {
         this.selectedDays = ['monday-friday']
       }
       if (plan.name.toLowerCase() === 'weekly') {
-        this.selectedDays = ['mon']
+        this.selectedDays = ['monday']
       }
       if (plan.name === 'Twice a week') {
-        this.selectedDays = ['mon', 'thu']
+        this.selectedDays = ['monday', 'thursday']
       }
 
       this.mealFrequency = plan.name
@@ -2022,7 +2064,6 @@ export default {
       })
       this.roomTypes = rooms.join(', ')
     },
-    subscribe() {},
   },
 }
 </script>

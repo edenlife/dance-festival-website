@@ -1156,6 +1156,7 @@ export default {
       }
     },
     openApp() {
+      this.subscribeEmail = ''
       this.showEmailModal = !this.showEmailModal
       this.$v.$reset()
       scrollToApp('#get-the-app', 'Pricing-page')

@@ -455,6 +455,10 @@ export default {
           margin-bottom: $gap + 6;
         }
       }
+      .cats,
+      .tags {
+        display: none;
+      }
     }
   }
 }

@@ -151,4 +151,8 @@ export default {
     appId: 'z3bq2kah',
     hideDefaultLauncher: true,
   },
+
+  generate: {
+    fallback: true,
+  },
 }

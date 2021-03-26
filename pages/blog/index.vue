@@ -785,6 +785,7 @@ export default {
       this.searchResults = this.allPosts.filter((el) =>
         el.title.rendered.toLowerCase().includes(this.search.toLowerCase())
       )
+      this.resultTabIndex = 0
       this.showSearchbar = true
       this.searchInput = this.search
       this.suggestedPost = this.allPosts.slice(0, 3)

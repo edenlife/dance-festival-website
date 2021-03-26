@@ -147,6 +147,11 @@
           </ShareNetwork>
         </div>
         <div class="content__slug" v-html="postDetails.content.rendered"></div>
+        <script
+          async
+          src="https://platform.twitter.com/widgets.js"
+          charset="utf-8"
+        ></script>
       </div>
     </div>
     <!--  -->

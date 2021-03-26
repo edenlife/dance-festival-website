@@ -30,17 +30,18 @@
 }
 
 .hero {
-  margin: 0 auto;
+  margin: 0 auto 400px auto;
   width: 83%;
   padding: $gap * 14 0 $gap * 20 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: color(eden-neutral-1);
-  margin-bottom: 400px;
+  position: relative;
+
   &__featured {
     position: absolute;
-    top: 400px;
+    top: 80%;
     height: 540px;
     width: 80%;
     img {
@@ -65,7 +66,6 @@
     }
   }
   &__title {
-    position: relative;
     width: 65%;
     text-align: center;
     line-height: 55px;
@@ -98,13 +98,17 @@
       @include font-size(4xl);
     }
     &__featured {
-      top: 380px;
+      width: 100%;
+      top: 90%;
       height: 150px;
     }
   }
   @include respond(xxl) {
     max-width: 1440px;
-    margin: 0 auto;
+    margin: 0 auto 400px auto;
+    &__featured {
+      width: 100%;
+    }
   }
 }
 

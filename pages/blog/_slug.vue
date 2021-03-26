@@ -394,7 +394,13 @@ export default {
       line-height: 29px;
     }
     figure {
+      margin-top: $gap * 2;
       img {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+      }
+      video {
         width: 100%;
         height: 100%;
         border-radius: 8px;

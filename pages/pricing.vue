@@ -1079,7 +1079,6 @@ export default {
       totalLaundrySummary: {},
       totalCleaningSummary: {},
       isLoading: false,
-      discountCalculated: null,
       responseMessage: '',
     }
   },
@@ -1144,7 +1143,7 @@ export default {
               cleaning: this.totalCleaningSummary,
             }),
           },
-          discounted_amount: this.discountCalculated,
+          discounted_amount: parseInt(this.totalPrice),
         }
 
         const dataResponse = await fetch(
@@ -1316,9 +1315,9 @@ export default {
       }, 0)
 
       this.subtotalPrice = subtotal.toString()
-      this.discountCalculated = subtotal * 0.2
-      this.discountPrice = this.discountCalculated.toString()
-      this.totalPrice = (subtotal - this.discountCalculated).toString()
+      const discount = subtotal * 0.2
+      this.discountPrice = discount.toString()
+      this.totalPrice = (subtotal - discount).toString()
     },
     changeService(service) {
       // estimated price 10,000
@@ -1368,6 +1367,7 @@ export default {
         if (this.selectedService.length > 1) {
           this.mealQty = 1
           this.mealFrequency = 'Weekly'
+          this.selectedDays = ['monday']
           this.calculateFoodPrice()
           this.laundryFreqName = 'every two weeks'
           this.laundryType = 'Wash & Fold'
@@ -1389,6 +1389,7 @@ export default {
         } else {
           this.mealQty = 2
           this.mealFrequency = 'Weekly'
+          this.selectedDays = ['monday']
           this.calculateFoodPrice()
           this.laundryType = 'Wash & Iron'
           this.laundryFreqName = 'every two weeks'
@@ -1431,6 +1432,7 @@ export default {
         if (this.selectedService.length === 3) {
           this.mealQty = 2
           this.mealFrequency = 'Weekly'
+          this.selectedDays = ['monday']
           this.calculateFoodPrice()
           this.laundryType = 'Wash & Iron'
           this.laundryFreqName = 'every two weeks'
@@ -1456,6 +1458,7 @@ export default {
           ) {
             this.mealQty = 5
             this.mealFrequency = 'Weekly'
+            this.selectedDays = ['monday']
             this.calculateFoodPrice()
             this.laundryFreqName = 'every two weeks'
             this.laundryType = 'Wash & Fold'
@@ -1470,6 +1473,7 @@ export default {
           ) {
             this.mealQty = 5
             this.mealFrequency = 'Weekly'
+            this.selectedDays = ['monday']
             this.calculateFoodPrice()
             this.cleaningType = 'Light cleaning'
             this.cleaningFrequency = 'Every two weeks'
@@ -1508,6 +1512,7 @@ export default {
         } else if (this.selectedService.length === 1) {
           this.mealQty = 1
           this.mealFrequency = 'Daily'
+          this.selectedDays = ['monday-friday']
           this.calculateFoodPrice()
           this.laundryFreqName = 'every two weeks'
           this.laundryType = 'Wash & Iron'
@@ -1854,7 +1859,7 @@ export default {
           item: null,
           qty: this.mealQty,
           service_day: this.selectedDays,
-          dislikes: [],
+          amount: total,
         }
       }
       if (this.mealFrequency === 'Twice a week') {
@@ -1881,7 +1886,7 @@ export default {
           item: null,
           qty: this.mealQty * 2,
           service_day: this.selectedDays,
-          dislikes: [],
+          amount: total,
         }
       }
     },

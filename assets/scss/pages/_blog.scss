@@ -205,6 +205,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: $gap * 4;
     margin-top: $gap * 8;
+    margin-bottom: $gap * 20;
   }
   &__item {
     height: 480px;
@@ -473,6 +474,17 @@
   justify-content: center;
   align-items: center;
   color: color(eden-neutral-1);
+  &__inline {
+    grid-column: 1/4;
+    grid-row: 3;
+    padding: $gap * 8 0;
+    background-image: url('~@/assets/images/blog-bg5.svg');
+    background-position: top 45% right 23%;
+    background-repeat: no-repeat;
+    @include respond(md) {
+      background-position: top 11% center;
+    }
+  }
   h3 {
     line-height: 31px;
     @include font-size(2xl);

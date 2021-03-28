@@ -460,6 +460,30 @@
               </nuxt-link>
             </div>
           </div>
+          <div class="subscribe subscribe__inline">
+            <h3>Subscribe to the Good Life</h3>
+            <p>Get our latest posts straight in your inbox.</p>
+            <form class="form">
+              <div class="form__input">
+                <input
+                  id=""
+                  v-model="form.email"
+                  type="email"
+                  name=""
+                  placeholder="Email address"
+                  :class="{ 'has-error': $v.form.email.$error }"
+                />
+              </div>
+              <button
+                type="submit"
+                class="form__btn"
+                :disabled="loading"
+                @click.prevent="subscribe"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
         </div>
       </div>
       <div v-if="activeTabIndex === 2" class="posts">
@@ -636,7 +660,7 @@
       </div>
     </div>
     <!--  -->
-    <div class="container--subscribe">
+    <div v-if="activeTabIndex !== 0" class="container--subscribe">
       <div class="subscribe">
         <h3>Subscribe to the Good Life</h3>
         <p>Get our latest posts straight in your inbox.</p>

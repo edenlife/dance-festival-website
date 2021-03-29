@@ -329,7 +329,11 @@
     </div>
     <!--  -->
     <div v-else class="container--posts">
-      <div v-if="activeTabIndex === 0" class="posts">
+      <div v-if="isLoading" class="posts__loading">
+        <Loader />
+        <p>Loading articles...</p>
+      </div>
+      <div v-if="activeTabIndex === 0 && !isLoading" class="posts">
         <div class="posts__upper">
           <div class="posts__featured">
             <h3 class="posts__featured-title">Featured Post</h3>
@@ -696,6 +700,9 @@ import dayjs from 'dayjs'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
+  components: {
+    Loader: () => import('@/components/Loader.vue'),
+  },
   mixins: [validationMixin],
   beforeRouteEnter(to, from, next) {
     const tab = to.hash.replace('#', '')
@@ -720,6 +727,7 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
       activeTabIndex: null,
       resultTabIndex: 0,
       search: '',
@@ -815,6 +823,7 @@ export default {
       this.suggestedPost = this.allPosts.slice(0, 3)
     },
     async fetchAllPosts() {
+      this.isLoading = true
       const posts = await fetch(
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?page=1&per_page=20&_embed=1`
       ).then((res) => res.json())
@@ -843,6 +852,7 @@ export default {
             categories,
           })
         )
+      this.isLoading = false
       this.latestPost = this.allPosts.slice(0, 8)
     },
     async getFeaturedPost() {
@@ -883,6 +893,8 @@ export default {
             _embedded,
           })
         )
+
+      this.recommendedPost = this.recommendedPost.slice(0, 4)
     },
     async getPopularPost() {
       const post = await fetch(
@@ -902,6 +914,7 @@ export default {
             _embedded,
           })
         )
+      this.popularPost = this.popularPost.slice(0, 4)
     },
     async getHomePost() {
       const posts = await fetch(

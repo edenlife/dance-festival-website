@@ -401,3 +401,13 @@
     margin: 0 auto;
   }
 }
+
+.post__loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+  p {
+    color: color(eden-neutral-1);
+  }
+}

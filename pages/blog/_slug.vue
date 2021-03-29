@@ -231,6 +231,10 @@
     </div>
     <!--  -->
   </div>
+  <div v-else class="post__loading">
+    <Loader />
+    <p>Loading article...</p>
+  </div>
 </template>
 
 <script>
@@ -240,6 +244,9 @@ import dayjs from 'dayjs'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { getNavigationColor } from '~/static/functions'
 export default {
+  components: {
+    Loader: () => import('@/components/Loader.vue'),
+  },
   mixins: [validationMixin],
   data() {
     return {

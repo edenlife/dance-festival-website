@@ -441,34 +441,33 @@ export default {
         color: color(eden-green-primary);
       }
     }
-    .wp-block-group__inner-container {
+
+    .mc4wp-form,
+    .mc4wp-form-128 {
       background-color: color(eden-green-senary);
       border-radius: 8px;
       background-image: url('~@/assets/images/blog-bg5.svg');
       background-position: top 45% right 23%;
       background-repeat: no-repeat;
-      h3 {
-        text-align: center;
-        padding-top: $gap * 5;
-        margin-bottom: $gap + 2;
-      }
-      p {
-        @include font-size(base);
-        line-height: 26px;
-        text-align: center;
-        margin-bottom: $gap * 4.4;
-      }
-      form {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-bottom: $gap * 5;
-
-        label {
-          display: none;
+      .mc4wp-form-fields {
+        h3 {
+          text-align: center;
+          padding-top: $gap * 5;
+          margin-bottom: $gap + 2;
         }
-        .wpforms-field-medium,
-        .wpforms-field-required {
+        p {
+          @include font-size(base);
+          line-height: 26px;
+          text-align: center;
+          margin-bottom: $gap * 4.4;
+        }
+        div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding-bottom: $gap * 5;
+        }
+        input[type='email'] {
           border: 1px solid #c9d0cd;
           border-radius: 4px;
           background-color: color(eden-neutral-7);
@@ -490,7 +489,7 @@ export default {
             border: 1px solid color(eden-red);
           }
         }
-        .wpforms-submit,
+
         .slug--form--btn {
           margin-left: $gap + 2;
           align-self: center;
@@ -501,6 +500,8 @@ export default {
           border-radius: 4px;
           transition: all 0.4s ease-in-out;
           padding: $gap * 1.2 $gap * 2.2;
+          outline: none;
+          border: none;
           &:hover {
             box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
             background-color: color(eden-green-250);
@@ -516,6 +517,7 @@ export default {
         }
       }
     }
+
     .cats,
     .tags {
       display: none;
@@ -552,7 +554,9 @@ export default {
           margin-bottom: $gap + 6;
         }
       }
-      .wp-block-group__inner-container {
+      .mc4wp-form,
+      .mc4wp-form-128 {
+        padding: $gap * 3 $gap $gap * 2 $gap;
         background-position: top 10% center;
         h3 {
           padding-top: $gap * 13;
@@ -560,15 +564,16 @@ export default {
           line-height: 20px;
         }
 
-        form {
-          flex-direction: column;
-          .wpforms-field-medium,
-          .wpforms-field-required {
+        .mc4wp-form-fields {
+          div {
+            flex-direction: column;
+          }
+          input[type='email'] {
             width: 100%;
           }
-          .wpforms-submit,
           .slug--form--btn {
             display: flex;
+            justify-content: center;
             margin-left: 0px;
             margin-top: $gap + 6;
             width: 100%;

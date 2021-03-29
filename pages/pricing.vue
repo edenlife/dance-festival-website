@@ -276,20 +276,66 @@
                         </div>
                       </div>
                     </div>
-                    <div class="calculator__input-item">
+                    <div class="calculator__input-item calculator__input-meal">
                       <label for="">Number of meals per delivery</label>
-                      <div class="meal">
+                      <div class="btn--group">
+                        <button
+                          class="btn--item minus"
+                          @click.prevent="decreaseFoodOrder()"
+                        >
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M5 12H19"
+                              stroke="#21312A"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </button>
                         <input
                           id=""
                           v-model="mealQty"
-                          type="number"
-                          name=""
-                          placeholder="0"
                           min="1"
                           max="20"
-                          class="meal--input"
+                          type="number"
+                          name=""
+                          readonly
+                          placeholder="0"
                         />
-                        <span class="meal--label">meals </span>
+                        <button
+                          class="btn--item plus"
+                          @click.prevent="increaseFoodOrder()"
+                        >
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 5V19"
+                              stroke="#21312A"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                            <path
+                              d="M5 12H19"
+                              stroke="#21312A"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -1618,6 +1664,7 @@ export default {
         } else if (this.selectedService.length === 1) {
           this.mealQty = 5
           this.mealFrequency = 'Twice a week'
+          this.selectedDays = ['monday', 'thursday']
           this.calculateFoodPrice()
           this.laundryFreqName = 'weekly'
           this.laundryType = 'Wash & Iron'
@@ -1643,6 +1690,7 @@ export default {
         if (this.selectedService.length === 3) {
           this.mealQty = 2
           this.mealFrequency = 'Daily'
+          this.selectedDays = ['monday-friday']
           this.calculateFoodPrice()
           this.laundryFreqName = 'weekly'
           this.laundryType = 'Wash & Iron'
@@ -1668,6 +1716,7 @@ export default {
           ) {
             this.mealQty = 2
             this.mealFrequency = 'Daily'
+            this.selectedDays = ['monday-friday']
             this.calculateFoodPrice()
             this.laundryFreqName = 'every two weeks'
             this.laundryType = 'Wash & Iron'
@@ -1720,6 +1769,7 @@ export default {
         } else if (this.selectedService.length === 1) {
           this.mealQty = 3
           this.mealFrequency = 'Daily'
+          this.selectedDays = ['monday-friday']
           this.calculateFoodPrice()
           this.laundryFreqName = 'weekly'
           this.laundryType = 'Wash & Iron'
@@ -1888,6 +1938,18 @@ export default {
           service_day: this.selectedDays,
           amount: total,
         }
+      }
+    },
+    increaseFoodOrder() {
+      if (this.mealQty < 20) {
+        this.mealQty++
+        this.calculateFoodPrice()
+      }
+    },
+    decreaseFoodOrder() {
+      if (this.mealQty > 1) {
+        this.mealQty--
+        this.calculateFoodPrice()
       }
     },
     getMealPrice(plan) {

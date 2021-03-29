@@ -15,6 +15,7 @@ const UNIT_PRICE_MAP = {
     essentials: 13000,
   },
   CLEANING: {
+    0: 0,
     1: 15000,
     2: 25000,
     3: 35000,

@@ -354,6 +354,15 @@
       }
     }
   }
+  &__loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    p {
+      color: color(eden-neutral-1);
+    }
+  }
 
   @include respond(md) {
     width: 90%;

@@ -983,7 +983,7 @@ export default {
       estimate: 1,
       displayForm: false,
       setCustom: false,
-      estimatedPrice: '50000',
+      estimatedPrice: '20000',
       priceList: ['10000', '20000', '50000', '100000', '150000', '150000'],
       reconfigurePlan: false,
       visible: [],

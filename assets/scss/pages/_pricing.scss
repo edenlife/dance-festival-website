@@ -573,33 +573,6 @@
           flex-direction: column;
           margin-right: $gap + 3;
 
-          .meal {
-            display: flex;
-            justify-content: space-between;
-            align-items: stretch;
-            &--input {
-              color: color(eden-neutral-1);
-              border: none;
-              border: 1px solid #e4e8e6;
-              background-color: transparent;
-              outline: none;
-              padding: $gap + 8 $gap * 2.3;
-              width: 180px;
-              text-align: left;
-              @include font-size(lg);
-              border-radius: 8px 0px 0px 8px;
-            }
-            &--label {
-              @include font-size(sm);
-              line-height: 21px;
-              color: #6b6b6b;
-              background-color: color(eden-neutral-6);
-              padding: $gap + 8;
-              width: 80px;
-              border: 1px solid #e4e8e6;
-              border-radius: 0px 8px 8px 0px;
-            }
-          }
           .select {
             border: 1px solid #e4e8e6;
             @include font-size(lg);
@@ -752,6 +725,59 @@
                 }
               }
             }
+          }
+        }
+        &-meal {
+          .btn {
+            &--group {
+              display: flex;
+              justify-content: space-between;
+              align-items: stretch;
+              input {
+                width: 100%;
+                text-align: center;
+                border-radius: 0px;
+              }
+            }
+            &--item {
+              color: color(eden-neutral-1);
+              background-color: color(eden-neutral-6);
+              padding: 0 $gap + 8;
+              border: 1px solid #e4e8e6;
+              cursor: pointer;
+              &.plus {
+                border-radius: 0px 8px 8px 0px;
+              }
+              &.minus {
+                border-radius: 8px 0px 0px 8px;
+              }
+            }
+          }
+          //
+          display: flex;
+          justify-content: space-between;
+          align-items: stretch;
+          &--input {
+            color: color(eden-neutral-1);
+            border: none;
+            border: 1px solid #e4e8e6;
+            background-color: transparent;
+            outline: none;
+            padding: $gap + 8 $gap * 2.3;
+            width: 180px;
+            text-align: left;
+            @include font-size(lg);
+            border-radius: 8px 0px 0px 8px;
+          }
+          &--label {
+            @include font-size(sm);
+            line-height: 21px;
+            color: #6b6b6b;
+            background-color: color(eden-neutral-6);
+            padding: $gap + 8;
+            width: 80px;
+            border: 1px solid #e4e8e6;
+            border-radius: 0px 8px 8px 0px;
           }
         }
         &-laundry {

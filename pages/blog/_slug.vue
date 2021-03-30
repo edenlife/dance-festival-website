@@ -318,8 +318,10 @@ export default {
       const posts = await fetch(
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?categories=${category}&_embed=1`
       ).then((res) => res.json())
-      this.relatedPosts = posts
-        .filter((el) => el.status === 'publish')
+      const allRelatedPost = posts
+        .filter(
+          (el) => el.status === 'publish' && el.id !== parseInt(this.blogId)
+        )
         .map(
           ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
             id,
@@ -332,9 +334,8 @@ export default {
             _embedded,
           })
         )
+      this.relatedPosts = allRelatedPost.slice(0, 3)
       // TODO
-      // && el.id !== this.blogId remove current post
-      // posts.slice(0, 3)
       // N:B randomize related post and splice
     },
     openSocialMedia(name, url) {

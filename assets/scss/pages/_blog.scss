@@ -144,6 +144,7 @@
   @include respond(md) {
     width: 100%;
     justify-content: center;
+    flex-wrap: wrap;
     &__item {
       padding: $gap * 2 0;
       margin-right: $gap * 2.4;
@@ -151,15 +152,15 @@
       @include font-size(sm);
     }
     &__search {
-      display: none;
-      // input[type='search'] {
-      //   @include font-size(sm);
-      //   &::placeholder {
-      //     color: color(eden-neutral-2);
-      //   }
-      // }
+      flex-basis: 100%;
+      order: -1;
+      input[type='search'] {
+        @include font-size(sm);
+        width: 90%;
+      }
     }
     &__search-full {
+      flex-basis: unset;
       width: 90%;
       margin-right: auto;
       margin-left: auto;
@@ -167,8 +168,7 @@
       padding: $gap + 4;
 
       input[type='search'] {
-        // margin-left: $gap * 5;
-        width: fit-content;
+        width: 80%;
       }
     }
   }
@@ -661,6 +661,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: $gap * 4;
     margin-top: $gap * 4.8;
+    padding-bottom: $gap * 20;
     &-title {
       grid-column: 1/4;
       @include font-size(4xl);

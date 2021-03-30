@@ -1070,9 +1070,10 @@ export default {
           label: 'bedroom',
           qty: 1,
         },
+        // TODO: FIX slug
         {
           name: 'Bathroom',
-          value: 'bathrooms',
+          value: 'toilets-bathrooms',
           label: 'bathroom',
           qty: 1,
         },

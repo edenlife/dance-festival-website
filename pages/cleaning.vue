@@ -832,9 +832,10 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
           label: 'bedroom',
           qty: 1,
         },
+        // TODO: FIX slug
         {
           name: 'Bathroom',
-          value: 'bathrooms',
+          value: 'toilets-bathrooms',
           label: 'bathroom',
           qty: 1,
         },

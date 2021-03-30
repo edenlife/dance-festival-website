@@ -207,7 +207,12 @@
                   :disabled="isLoading"
                   @click.prevent="getStarted()"
                 >
-                  Start your Eden Life
+                  <svg v-if="isLoading">
+                    <use
+                      xlink:href="@/assets/images/loading-icon.svg#loading-icon"
+                    ></use>
+                  </svg>
+                  <span v-else>Start your Eden Life</span>
                 </button>
               </div>
             </transition>

@@ -435,6 +435,9 @@
       }
     }
     &-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       align-self: flex-end;
       color: color(eden-green-primary);
       @include font-size(base);
@@ -444,6 +447,8 @@
       padding: $gap * 1.4 $gap * 3.2;
       border-radius: 4px;
       transition: all 0.4s ease-in-out;
+      width: 240px;
+      height: 52px;
       &:hover {
         box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
         background-color: color(eden-green-250);
@@ -455,6 +460,11 @@
           rgba(0, 141, 64, 0.1) 50%,
           #008d40 50%
         );
+      }
+      svg {
+        width: 20px;
+        height: 15px;
+        fill: color(eden-neutral-7);
       }
     }
     &-input {

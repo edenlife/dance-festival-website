@@ -108,10 +108,16 @@ export default {
   env: {
     PAYSTACK_KEY_TEST: 'pk_test_510052635616385dc547e4f1790f59052cf56048',
     RAVE_KEY_TEST: 'FLWPUBK_TEST-f35584e887ccd845a97f7c45c84fbac9-X',
+    MAILCHIMP_USERID: '8d551f5341eee34aa00432838',
+    MAILCHIMP_LISTID: '987fa4d39c',
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/flutterwave', '~/plugins/vue-social-sharing.js'],
+  plugins: [
+    '~/plugins/flutterwave',
+    '~/plugins/vue-social-sharing.js',
+    '~/plugins/vue-mailchimp-subscribe.js',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

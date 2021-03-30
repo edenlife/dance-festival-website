@@ -156,29 +156,35 @@
     </div>
     <!--  -->
     <div class="container--subscribe">
-      <div class="subscribe">
+      <div v-if="!user_subscribed" class="subscribe">
         <h3>Subscribe to the Good Life</h3>
         <p>Get our latest posts straight in your inbox.</p>
-        <form class="form">
-          <div class="form__input">
-            <input
-              id=""
-              v-model="form.email"
-              type="email"
-              name=""
-              placeholder="Email address"
-              :class="{ 'has-error': $v.form.email.$error }"
-            />
-          </div>
-          <button
-            type="submit"
-            class="form__btn"
-            :disabled="loading"
-            @click.prevent="subscribe"
-          >
-            Subscribe
-          </button>
-        </form>
+        <mailchimp-subscribe
+          url="https://ouredenlife.us1.list-manage.com/subscribe/post-json"
+          :user-id="userId"
+          :list-id="listId"
+          @success="onSuccess"
+        >
+          <template #default="{ subscribe, setEmail, loading }">
+            <form class="form" @submit.prevent="subscribe">
+              <div class="form__input">
+                <input
+                  type="email"
+                  placeholder="Email address"
+                  @input="setEmail($event.target.value)"
+                />
+              </div>
+              <button type="submit" class="form__btn" :disabled="loading">
+                Subscribe
+              </button>
+            </form>
+          </template>
+        </mailchimp-subscribe>
+      </div>
+      <div v-else class="subscribe subscribe__success">
+        <p class="subscribe__success-text">
+          Thanks for subscribing to the Good Life 💚
+        </p>
       </div>
     </div>
     <!--  -->
@@ -231,6 +237,7 @@
     </div>
     <!--  -->
   </div>
+
   <div v-else class="post__loading">
     <Loader />
     <p>Loading article...</p>
@@ -241,15 +248,21 @@
 import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 import dayjs from 'dayjs'
+import MailchimpSubscribe from 'vue-mailchimp-subscribe'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { getNavigationColor } from '~/static/functions'
+
 export default {
   components: {
     Loader: () => import('@/components/Loader.vue'),
+    MailchimpSubscribe,
   },
   mixins: [validationMixin],
   data() {
     return {
+      userId: '',
+      listId: '',
+      user_subscribed: false,
       loading: false,
       form: {
         email: null,
@@ -271,6 +284,8 @@ export default {
     const slug = this.$route.params.slug
     this.blogId = slug.split('?')[1]
     await this.getSingleArticle(this.blogId)
+    this.userId = process.env.MAILCHIMP_USERID
+    this.listId = process.env.MAILCHIMP_LISTID
   },
   methods: {
     getNavigationColor,
@@ -285,6 +300,10 @@ export default {
       } else {
         return value
       }
+    },
+    onSuccess() {
+      // handle success
+      this.user_subscribed = true
     },
     async getSingleArticle(id) {
       this.postDetails = await fetch(
@@ -379,7 +398,6 @@ export default {
           }
       }
     },
-    subscribe() {},
   },
 }
 </script>

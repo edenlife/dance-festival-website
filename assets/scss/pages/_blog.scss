@@ -33,12 +33,6 @@
   &--subscribe {
     width: 100%;
     background-color: color(eden-neutral-7);
-    background-image: url('~@/assets/images/blog-bg5.svg');
-    background-position: top 38% right 31%;
-    background-repeat: no-repeat;
-    @include respond(md) {
-      background-position: top 11% center;
-    }
   }
 }
 
@@ -483,6 +477,10 @@
   justify-content: center;
   align-items: center;
   color: color(eden-neutral-1);
+  background-image: url('~@/assets/images/blog-bg5.svg');
+  background-position: top 38% right 31%;
+  background-repeat: no-repeat;
+
   &__inline {
     grid-column: 1/4;
     grid-row: 3;
@@ -493,6 +491,13 @@
     @include respond(md) {
       background-position: top 11% center;
     }
+  }
+  &__success {
+    grid-column: 1/4;
+    grid-row: 3;
+    padding: $gap * 8 0;
+    background-image: none;
+    background-repeat: no-repeat;
   }
   h3 {
     line-height: 31px;
@@ -558,6 +563,7 @@
   }
 
   @include respond(md) {
+    background-position: top 11% center;
     width: 100%;
     padding: $gap * 18 0 $gap * 18 0;
     h3 {
@@ -571,6 +577,17 @@
       width: 80%;
       text-align: center;
     }
+    &__success {
+      grid-column: 1/4;
+      grid-row: 3;
+      padding: $gap * 3 0;
+      background-image: none;
+      background-repeat: no-repeat;
+      p {
+        width: 100%;
+      }
+    }
+
     .form {
       width: 80%;
       flex-direction: column;

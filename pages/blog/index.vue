@@ -464,29 +464,35 @@
               </nuxt-link>
             </div>
           </div>
-          <div class="subscribe subscribe__inline">
+          <div v-if="!user_subscribed" class="subscribe subscribe__inline">
             <h3>Subscribe to the Good Life</h3>
             <p>Get our latest posts straight in your inbox.</p>
-            <form class="form">
-              <div class="form__input">
-                <input
-                  id=""
-                  v-model="form.email"
-                  type="email"
-                  name=""
-                  placeholder="Email address"
-                  :class="{ 'has-error': $v.form.email.$error }"
-                />
-              </div>
-              <button
-                type="submit"
-                class="form__btn"
-                :disabled="loading"
-                @click.prevent="subscribe"
-              >
-                Subscribe
-              </button>
-            </form>
+            <mailchimp-subscribe
+              url="https://ouredenlife.us1.list-manage.com/subscribe/post-json"
+              :user-id="userId"
+              :list-id="listId"
+              @success="onSuccess"
+            >
+              <template #default="{ subscribe, setEmail, loading }">
+                <form class="form" @submit.prevent="subscribe">
+                  <div class="form__input">
+                    <input
+                      type="email"
+                      placeholder="Email address"
+                      @input="setEmail($event.target.value)"
+                    />
+                  </div>
+                  <button type="submit" class="form__btn" :disabled="loading">
+                    Subscribe
+                  </button>
+                </form>
+              </template>
+            </mailchimp-subscribe>
+          </div>
+          <div v-else class="subscribe subscribe__success">
+            <p class="subscribe__success-text">
+              Thanks for subscribing to the Good Life 💚
+            </p>
           </div>
         </div>
       </div>
@@ -665,29 +671,35 @@
     </div>
     <!--  -->
     <div v-if="activeTabIndex !== 0" class="container--subscribe">
-      <div class="subscribe">
+      <div v-if="!user_subscribed" class="subscribe">
         <h3>Subscribe to the Good Life</h3>
         <p>Get our latest posts straight in your inbox.</p>
-        <form class="form">
-          <div class="form__input">
-            <input
-              id=""
-              v-model="form.email"
-              type="email"
-              name=""
-              placeholder="Email address"
-              :class="{ 'has-error': $v.form.email.$error }"
-            />
-          </div>
-          <button
-            type="submit"
-            class="form__btn"
-            :disabled="loading"
-            @click.prevent="subscribe"
-          >
-            Subscribe
-          </button>
-        </form>
+        <mailchimp-subscribe
+          url="https://ouredenlife.us1.list-manage.com/subscribe/post-json"
+          :user-id="userId"
+          :list-id="listId"
+          @success="onSuccess"
+        >
+          <template #default="{ subscribe, setEmail, loading }">
+            <form class="form" @submit.prevent="subscribe">
+              <div class="form__input">
+                <input
+                  type="email"
+                  placeholder="Email address"
+                  @input="setEmail($event.target.value)"
+                />
+              </div>
+              <button type="submit" class="form__btn" :disabled="loading">
+                Subscribe
+              </button>
+            </form>
+          </template>
+        </mailchimp-subscribe>
+      </div>
+      <div v-else class="subscribe subscribe__success">
+        <p class="subscribe__success-text">
+          Thanks for subscribing to the Good Life 💚
+        </p>
       </div>
     </div>
   </div>
@@ -697,11 +709,13 @@
 import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 import dayjs from 'dayjs'
+import MailchimpSubscribe from 'vue-mailchimp-subscribe'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
   components: {
     Loader: () => import('@/components/Loader.vue'),
+    MailchimpSubscribe,
   },
   mixins: [validationMixin],
   beforeRouteEnter(to, from, next) {
@@ -730,6 +744,9 @@ export default {
       isLoading: false,
       activeTabIndex: null,
       resultTabIndex: 0,
+      userId: '',
+      listId: '',
+      user_subscribed: false,
       search: '',
       searchInput: '',
       showSearchbar: false,
@@ -787,6 +804,8 @@ export default {
     if (this.blogNavId !== null) {
       this.activeTabIndex = this.blogNavId
     }
+    this.userId = process.env.MAILCHIMP_USERID
+    this.listId = process.env.MAILCHIMP_LISTID
   },
   methods: {
     dateFormatter(date) {
@@ -800,6 +819,10 @@ export default {
       } else {
         return value
       }
+    },
+    onSuccess() {
+      // handle success
+      this.user_subscribed = true
     },
     viewAllPost() {
       this.showSearchbar = !this.showSearchbar
@@ -1021,35 +1044,6 @@ export default {
     openSocialMedia(name, url) {
       mixpanelTrackEvent(`${name} icon clicked - Blog`)
       window.open(url, '_blank')
-    },
-    subscribe() {
-      this.$v.form.$touch()
-      // if (!this.$v.form.$error) {
-      //   this.loading = true
-      //   fetch('https://api-staging.edenlife.ng/api/v3/website/faqpage', {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify(this.form),
-      //   })
-      //     .then((response) => response.json())
-      //     .then((data) => {
-      //       console.log('Success:', data)
-      //       Object.keys(this.form).forEach((key) => (this.form[key] = ''))
-      //       this.$nextTick(() => {
-      //         this.$v.form.$reset()
-      //       })
-      //       this.showSuccessModal = true
-      //       this.loading = false
-      //       mixpanelTrackEvent('subscribe form - blog page')
-      //     })
-      //     .catch((error) => {
-      //       console.error('Error:', error)
-      //       this.loading = false
-      //       this.showFailedModal = true
-      //     })
-      // }
     },
   },
 }

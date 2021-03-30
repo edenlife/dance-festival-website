@@ -10,13 +10,3 @@ export const mixpanelTrackLink = (link, name) => {
     referrer: document.referrer,
   })
 }
-
-// mixpanel.track('event name', {
-//   distinct_id: 'unique client id',
-//   property_1: 'value 1',
-//   property_2: 'value 2',
-//   property_3: 'value 3',
-// })
-// mixpanel.track_links('#nav a', 'click food link', {
-//   referrer: 'homepage services',
-// })

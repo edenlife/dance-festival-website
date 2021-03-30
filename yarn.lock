@@ -1570,6 +1570,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/intercom-web@^2.8.10":
+  version "2.8.11"
+  resolved "https://registry.yarnpkg.com/@types/intercom-web/-/intercom-web-2.8.11.tgz#c8e342cfd890ef8b4016ec0508994b18907b5a0a"
+  integrity sha512-9oJQiACRVQ1A61CJ+oXcLywOAxar4X5s8Lau4SI+WvgWRCB83wfmMVjdYceexySVQH+i9FOVYNKpZixeENJNbQ==
+
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.3.tgz#4ba8ddb720221f432e443bd5f9117fd22cfd4762"
@@ -7417,6 +7422,13 @@ nuxt-facebook-pixel-module@^1.5.0:
   integrity sha512-TWM7iv1tLD80NMFDqmv4GrdpE4jkPihcztajeJm6B7TklymR0Jgz3NZ14CzeXRS7FJDJeyZaxmpkcPga1uSiRA==
   dependencies:
     minimatch "^3.0.4"
+
+nuxt-intercom@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/nuxt-intercom/-/nuxt-intercom-1.0.8.tgz#fb6fa33b01f45053d8fad58d95f028799a70d553"
+  integrity sha512-An6n3ajONQsl9ybyvERzzJ10tjkP6VFkEh41RL8tcm8M8zZ08T+qK//veJ8DgzIi7zZl/2zYk5G4KLhujp9ByQ==
+  dependencies:
+    "@types/intercom-web" "^2.8.10"
 
 nuxt@^2.14.12:
   version "2.14.12"

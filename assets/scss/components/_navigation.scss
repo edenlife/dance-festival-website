@@ -28,7 +28,7 @@
     justify-content: space-between;
 
     &-item {
-      margin-left: $gap * 6;
+      margin: 0 $gap * 3;
       line-height: 24px;
       @include font-size(base);
       color: color(eden-neutral-1);
@@ -162,6 +162,7 @@
       }
     }
     &-link {
+      margin-right: 0;
       background-color: color(eden-green-primary);
       color: color(eden-neutral-7);
       padding: $gap * 1.4 $gap * 3.2;

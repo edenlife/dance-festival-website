@@ -289,6 +289,10 @@ export default {
         // Open Graph
         { hid: 'og:title', property: 'og:title', content: this.articleTitle },
         {
+          property: 'og:url',
+          content: `https://ouredenlifev2-staging.netlify.app${this.$route.fullPath}`,
+        },
+        {
           hid: 'og:description',
           property: 'og:description',
           content: this.articleDescription,
@@ -305,6 +309,10 @@ export default {
           hid: 'twitter:title',
           name: 'twitter:title',
           content: this.articleTitle,
+        },
+        {
+          name: 'twitter:url',
+          content: `https://ouredenlifev2-staging.netlify.app${this.$route.fullPath}`,
         },
         {
           hid: 'twitter:description',

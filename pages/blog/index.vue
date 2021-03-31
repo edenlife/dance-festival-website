@@ -199,7 +199,7 @@
                   alt=""
                 />
                 <figcaption class="result__item-details">
-                  <h5>{{ item.title.rendered }}</h5>
+                  <h5 v-html="truncate(item.title.rendered, 60)"></h5>
                   <p v-html="truncate(item.excerpt.rendered, 180)"></p>
                   <div class="result__item-date">
                     <span
@@ -257,7 +257,7 @@
                   alt=""
                 />
                 <figcaption class="result__item-details">
-                  <h5>{{ item.title.rendered }}</h5>
+                  <h5 v-html="truncate(item.title.rendered, 60)"></h5>
                   <p v-html="truncate(item.excerpt.rendered, 180)"></p>
                   <div class="result__item-date">
                     <span
@@ -299,7 +299,7 @@
                   alt=""
                 />
                 <figcaption class="result__item-details">
-                  <h5>{{ item.title.rendered }}</h5>
+                  <h5 v-html="truncate(item.title.rendered, 60)"></h5>
                   <p v-html="truncate(item.excerpt.rendered, 180)"></p>
                   <div class="result__item-date">
                     <span
@@ -355,7 +355,7 @@
                   alt=""
                 />
                 <figcaption class="posts__item-details posts__featured-details">
-                  <h5>{{ featuredPost.title.rendered }}</h5>
+                  <h5 v-html="truncate(featuredPost.title.rendered, 60)"></h5>
                   <p v-html="featuredPost.excerpt.rendered"></p>
                   <div class="posts__item-date">
                     <span>{{ dateFormatter(featuredPost.date) }}</span>
@@ -386,9 +386,10 @@
                     alt=""
                   />
                   <figcaption>
-                    <p class="title">
-                      {{ item.title.rendered }}
-                    </p>
+                    <p
+                      class="title"
+                      v-html="truncate(item.title.rendered, 50)"
+                    ></p>
                     <p class="date">{{ dateFormatter(item.date) }}</p>
                   </figcaption>
                 </figure>
@@ -415,7 +416,7 @@
                   alt=""
                 />
                 <figcaption class="posts__item-details">
-                  <h5>{{ item.title.rendered }}</h5>
+                  <h5 v-html="truncate(item.title.rendered, 60)"></h5>
                   <p v-html="truncate(item.excerpt.rendered, 180)"></p>
                   <div class="posts__item-date">
                     <span
@@ -455,9 +456,10 @@
                     alt=""
                   />
                   <figcaption>
-                    <p class="title">
-                      {{ item.title.rendered }}
-                    </p>
+                    <p
+                      class="title"
+                      v-html="truncate(item.title.rendered, 50)"
+                    ></p>
                     <p class="date">{{ dateFormatter(item.date) }}</p>
                   </figcaption>
                 </figure>
@@ -512,7 +514,7 @@
                   alt=""
                 />
                 <figcaption class="posts__item-details">
-                  <h5>{{ item.title.rendered }}</h5>
+                  <h5 v-html="truncate(item.title.rendered, 60)"></h5>
                   <p v-html="truncate(item.excerpt.rendered, 180)"></p>
                   <div class="posts__item-date">
                     <span
@@ -555,7 +557,7 @@
                   alt=""
                 />
                 <figcaption class="posts__item-details">
-                  <h5>{{ item.title.rendered }}</h5>
+                  <h5 v-html="truncate(item.title.rendered, 60)"></h5>
                   <p v-html="truncate(item.excerpt.rendered, 180)"></p>
                   <div class="posts__item-date">
                     <span
@@ -598,7 +600,7 @@
                   alt=""
                 />
                 <figcaption class="posts__item-details">
-                  <h5>{{ item.title.rendered }}</h5>
+                  <h5 v-html="truncate(item.title.rendered, 60)"></h5>
                   <p v-html="truncate(item.excerpt.rendered, 180)"></p>
                   <div class="posts__item-date">
                     <span
@@ -641,7 +643,7 @@
                   alt=""
                 />
                 <figcaption class="posts__item-details">
-                  <h5>{{ item.title.rendered }}</h5>
+                  <h5 v-html="truncate(item.title.rendered, 60)"></h5>
                   <p v-html="truncate(item.excerpt.rendered, 180)"></p>
                   <div class="posts__item-date">
                     <span

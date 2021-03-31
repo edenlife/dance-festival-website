@@ -18,9 +18,7 @@
           <span class="dot">&#8226;</span>
           <span>{{ dateFormatter(postDetails.date) }}</span>
         </div>
-        <h1 class="hero__title">
-          {{ postDetails.title.rendered }}
-        </h1>
+        <h1 class="hero__title" v-html="postDetails.title.rendered"></h1>
         <div class="hero__author">
           <img :src="require(`~/assets/images/customer-kofo.jpg`)" alt="" />
           <p>{{ postDetails._embedded.author[0].name }}</p>
@@ -206,7 +204,7 @@
                   alt=""
                 />
                 <figcaption class="related__item-details">
-                  <h5>{{ item.title.rendered }}</h5>
+                  <h5 v-html="truncate(item.title.rendered, 60)"></h5>
                   <p v-html="truncate(item.excerpt.rendered, 180)"></p>
 
                   <div class="related__item-date">

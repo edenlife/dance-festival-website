@@ -200,7 +200,7 @@
                 />
                 <figcaption class="result__item-details">
                   <h5 v-html="truncate(item.title.rendered, 60)"></h5>
-                  <p v-html="truncate(item.excerpt.rendered, 180)"></p>
+                  <p v-html="truncate(item.excerpt.rendered, 170)"></p>
                   <div class="result__item-date">
                     <span
                       :style="getColor(item._embedded['wp:term'][0][0].slug)"
@@ -214,10 +214,7 @@
                     <span>{{ dateFormatter(item.date) }}</span>
                   </div>
                   <div class="result__item-author">
-                    <img
-                      :src="require(`~/assets/images/customer-kofo.jpg`)"
-                      alt=""
-                    />
+                    <img :src="item._embedded.author[0].description" alt="" />
                     <p>{{ item._embedded.author[0].name }}</p>
                   </div>
                 </figcaption>
@@ -258,7 +255,7 @@
                 />
                 <figcaption class="result__item-details">
                   <h5 v-html="truncate(item.title.rendered, 60)"></h5>
-                  <p v-html="truncate(item.excerpt.rendered, 180)"></p>
+                  <p v-html="truncate(item.excerpt.rendered, 170)"></p>
                   <div class="result__item-date">
                     <span
                       :style="getColor(item._embedded['wp:term'][0][0].slug)"
@@ -272,10 +269,7 @@
                     <span>{{ dateFormatter(item.date) }}</span>
                   </div>
                   <div class="result__item-author">
-                    <img
-                      :src="require(`~/assets/images/customer-kofo.jpg`)"
-                      alt=""
-                    />
+                    <img :src="item._embedded.author[0].description" alt="" />
                     <p>{{ item._embedded.author[0].name }}</p>
                   </div>
                 </figcaption>
@@ -300,7 +294,7 @@
                 />
                 <figcaption class="result__item-details">
                   <h5 v-html="truncate(item.title.rendered, 60)"></h5>
-                  <p v-html="truncate(item.excerpt.rendered, 180)"></p>
+                  <p v-html="truncate(item.excerpt.rendered, 170)"></p>
                   <div class="result__item-date">
                     <span
                       :style="getColor(item._embedded['wp:term'][0][0].slug)"
@@ -314,10 +308,7 @@
                     <span>{{ dateFormatter(item.date) }}</span>
                   </div>
                   <div class="result__item-author">
-                    <img
-                      :src="require(`~/assets/images/customer-kofo.jpg`)"
-                      alt=""
-                    />
+                    <img :src="item._embedded.author[0].description" alt="" />
                     <p>{{ item._embedded.author[0].name }}</p>
                   </div>
                 </figcaption>
@@ -362,7 +353,7 @@
                   </div>
                   <div class="posts__item-author">
                     <img
-                      :src="require(`~/assets/images/customer-kofo.jpg`)"
+                      :src="featuredPost._embedded.author[0].description"
                       alt=""
                     />
                     <p>{{ featuredPost._embedded.author[0].name }}</p>
@@ -417,7 +408,7 @@
                 />
                 <figcaption class="posts__item-details">
                   <h5 v-html="truncate(item.title.rendered, 60)"></h5>
-                  <p v-html="truncate(item.excerpt.rendered, 180)"></p>
+                  <p v-html="truncate(item.excerpt.rendered, 170)"></p>
                   <div class="posts__item-date">
                     <span
                       :style="getColor(item._embedded['wp:term'][0][0].slug)"
@@ -431,10 +422,7 @@
                     <span>{{ dateFormatter(item.date) }}</span>
                   </div>
                   <div class="posts__item-author">
-                    <img
-                      :src="require(`~/assets/images/customer-kofo.jpg`)"
-                      alt=""
-                    />
+                    <img :src="item._embedded.author[0].description" alt="" />
                     <p>{{ item._embedded.author[0].name }}</p>
                   </div>
                 </figcaption>
@@ -515,7 +503,7 @@
                 />
                 <figcaption class="posts__item-details">
                   <h5 v-html="truncate(item.title.rendered, 60)"></h5>
-                  <p v-html="truncate(item.excerpt.rendered, 180)"></p>
+                  <p v-html="truncate(item.excerpt.rendered, 170)"></p>
                   <div class="posts__item-date">
                     <span
                       :style="getColor(item._embedded['wp:term'][0][0].slug)"
@@ -529,10 +517,7 @@
                     <span>{{ dateFormatter(item.date) }}</span>
                   </div>
                   <div class="posts__item-author">
-                    <img
-                      :src="require(`~/assets/images/customer-kofo.jpg`)"
-                      alt=""
-                    />
+                    <img :src="item._embedded.author[0].description" alt="" />
                     <p>{{ item._embedded.author[0].name }}</p>
                   </div>
                 </figcaption>
@@ -558,7 +543,7 @@
                 />
                 <figcaption class="posts__item-details">
                   <h5 v-html="truncate(item.title.rendered, 60)"></h5>
-                  <p v-html="truncate(item.excerpt.rendered, 180)"></p>
+                  <p v-html="truncate(item.excerpt.rendered, 170)"></p>
                   <div class="posts__item-date">
                     <span
                       :style="getColor(item._embedded['wp:term'][0][0].slug)"
@@ -572,10 +557,7 @@
                     <span>{{ dateFormatter(item.date) }}</span>
                   </div>
                   <div class="posts__item-author">
-                    <img
-                      :src="require(`~/assets/images/customer-kofo.jpg`)"
-                      alt=""
-                    />
+                    <img :src="item._embedded.author[0].description" alt="" />
                     <p>{{ item._embedded.author[0].name }}</p>
                   </div>
                 </figcaption>
@@ -601,7 +583,7 @@
                 />
                 <figcaption class="posts__item-details">
                   <h5 v-html="truncate(item.title.rendered, 60)"></h5>
-                  <p v-html="truncate(item.excerpt.rendered, 180)"></p>
+                  <p v-html="truncate(item.excerpt.rendered, 170)"></p>
                   <div class="posts__item-date">
                     <span
                       :style="getColor(item._embedded['wp:term'][0][0].slug)"
@@ -615,10 +597,7 @@
                     <span>{{ dateFormatter(item.date) }}</span>
                   </div>
                   <div class="posts__item-author">
-                    <img
-                      :src="require(`~/assets/images/customer-kofo.jpg`)"
-                      alt=""
-                    />
+                    <img :src="item._embedded.author[0].description" alt="" />
                     <p>{{ item._embedded.author[0].name }}</p>
                   </div>
                 </figcaption>
@@ -644,7 +623,7 @@
                 />
                 <figcaption class="posts__item-details">
                   <h5 v-html="truncate(item.title.rendered, 60)"></h5>
-                  <p v-html="truncate(item.excerpt.rendered, 180)"></p>
+                  <p v-html="truncate(item.excerpt.rendered, 170)"></p>
                   <div class="posts__item-date">
                     <span
                       :style="getColor(item._embedded['wp:term'][0][0].slug)"
@@ -658,10 +637,7 @@
                     <span>{{ dateFormatter(item.date) }}</span>
                   </div>
                   <div class="posts__item-author">
-                    <img
-                      :src="require(`~/assets/images/customer-kofo.jpg`)"
-                      alt=""
-                    />
+                    <img :src="item._embedded.author[0].description" alt="" />
                     <p>{{ item._embedded.author[0].name }}</p>
                   </div>
                 </figcaption>

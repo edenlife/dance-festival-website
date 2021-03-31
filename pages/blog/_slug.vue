@@ -20,7 +20,7 @@
         </div>
         <h1 class="hero__title" v-html="postDetails.title.rendered"></h1>
         <div class="hero__author">
-          <img :src="require(`~/assets/images/customer-kofo.jpg`)" alt="" />
+          <img :src="postDetails._embedded.author[0].description" alt="" />
           <p>{{ postDetails._embedded.author[0].name }}</p>
         </div>
         <div class="hero__featured">
@@ -205,7 +205,7 @@
                 />
                 <figcaption class="related__item-details">
                   <h5 v-html="truncate(item.title.rendered, 60)"></h5>
-                  <p v-html="truncate(item.excerpt.rendered, 180)"></p>
+                  <p v-html="truncate(item.excerpt.rendered, 170)"></p>
 
                   <div class="related__item-date">
                     <span
@@ -221,7 +221,7 @@
                   </div>
                   <div class="related__item-author">
                     <img
-                      :src="require(`~/assets/images/customer-kofo.jpg`)"
+                      :src="postDetails._embedded.author[0].description"
                       alt=""
                     />
                     <p>{{ item._embedded.author[0].name }}</p>

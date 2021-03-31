@@ -19,6 +19,15 @@
     width: 100%;
     background-color: color(eden-neutral-7);
   }
+  &--comments {
+    margin: 0 auto 200px auto;
+    width: 83%;
+    background-color: color(eden-neutral-7);
+    @include respond(xxl) {
+      max-width: 1440px;
+      margin: 0 auto 200px auto;
+    }
+  }
 }
 
 .hero {

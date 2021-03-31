@@ -234,6 +234,9 @@
       </div>
     </div>
     <!--  -->
+    <div class="container--comments">
+      <Disqus :page-config="disqusConfig" />
+    </div>
   </div>
 
   <div v-else class="post__loading">
@@ -275,6 +278,15 @@ export default {
   validations: {
     form: {
       email: { required, email },
+    },
+  },
+  computed: {
+    disqusConfig() {
+      return {
+        url: `https://ouredenlife.com${this.singleUrl}`,
+        category_id: this.postDetails._embedded['wp:term'][0][0].name,
+        title: this.postDetails.title.rendered,
+      }
     },
   },
   async mounted() {

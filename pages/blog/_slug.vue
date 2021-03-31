@@ -9,23 +9,21 @@
           <span
             :style="getColor(postDetails._embedded['wp:term'][0][0].slug)"
             class="hero__date-category"
-            @click.prevent="
-              getCategory(postDetails._embedded['wp:term'][0][0].id)
-            "
+            @click.prevent="getCategory(article._embedded['wp:term'][0][0].id)"
           >
-            {{ postDetails._embedded['wp:term'][0][0].name }}
+            {{ article._embedded['wp:term'][0][0].name }}
           </span>
           <span class="dot">&#8226;</span>
-          <span>{{ dateFormatter(postDetails.date) }}</span>
+          <span>{{ dateFormatter(article.date) }}</span>
         </div>
-        <h1 class="hero__title" v-html="postDetails.title.rendered"></h1>
+        <h1 class="hero__title" v-html="article.title.rendered"></h1>
         <div class="hero__author">
-          <img :src="postDetails._embedded.author[0].description" alt="" />
-          <p>{{ postDetails._embedded.author[0].name }}</p>
+          <img :src="article._embedded.author[0].description" alt="" />
+          <p>{{ article._embedded.author[0].name }}</p>
         </div>
         <div class="hero__featured">
           <img
-            :src="postDetails._embedded['wp:featuredmedia'][0].source_url"
+            :src="article._embedded['wp:featuredmedia'][0].source_url"
             alt=""
           />
         </div>
@@ -144,7 +142,7 @@
             </svg>
           </ShareNetwork>
         </div>
-        <div class="content__slug" v-html="postDetails.content.rendered"></div>
+        <div class="content__slug" v-html="article.content.rendered"></div>
         <script
           async
           src="https://platform.twitter.com/widgets.js"
@@ -220,10 +218,7 @@
                     <span>{{ dateFormatter(item.date) }}</span>
                   </div>
                   <div class="related__item-author">
-                    <img
-                      :src="postDetails._embedded.author[0].description"
-                      alt=""
-                    />
+                    <img :src="item._embedded.author[0].description" alt="" />
                     <p>{{ item._embedded.author[0].name }}</p>
                   </div>
                 </figcaption>
@@ -259,6 +254,13 @@ export default {
     MailchimpSubscribe,
   },
   mixins: [validationMixin],
+  async asyncData({ params }) {
+    const slug = params.slug.split('?')[1]
+    const article = await fetch(
+      `https://wordpress.edenlife.ng/wp-json/wp/v2/posts/${slug}?_embed=1`
+    ).then((res) => res.json())
+    return { article }
+  },
   data() {
     return {
       userId: '',
@@ -268,13 +270,56 @@ export default {
       form: {
         email: null,
       },
-      postDetails: {},
       navbar: '',
       relatedPosts: [],
       blogId: null,
       singleUrl: '',
+      postDetails: {},
     }
   },
+  head() {
+    return {
+      title: this.articleTitle,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.articleDescription,
+        },
+        // Open Graph
+        { hid: 'og:title', property: 'og:title', content: this.articleTitle },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.articleDescription,
+        },
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: this.imageLink,
+        },
+
+        // Twitter
+        {
+          hid: 'twitter:title',
+          name: 'twitter:title',
+          content: this.articleTitle,
+        },
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content: this.articleDescription,
+        },
+        {
+          hid: 'twitter:image',
+          name: 'twitter:image',
+          content: this.imageLink,
+        },
+      ],
+    }
+  },
+
   validations: {
     form: {
       email: { required, email },
@@ -285,9 +330,18 @@ export default {
     disqusConfig() {
       return {
         url: `https://ouredenlifev2-staging.netlify.app${this.singleUrl}`,
-        category_id: this.postDetails._embedded['wp:term'][0][0].name,
-        title: this.truncate(this.postDetails.title.rendered, 150),
+        category_id: this.article._embedded['wp:term'][0][0].name,
+        title: this.truncate(this.article.title.rendered, 150),
       }
+    },
+    articleDescription() {
+      return this.article.excerpt.rendered.replace(/(<([^>]+)>)/gi, '')
+    },
+    imageLink() {
+      return this.article._embedded['wp:featuredmedia'][0].source_url
+    },
+    articleTitle() {
+      return this.article.title.rendered
     },
   },
   async mounted() {
@@ -320,7 +374,6 @@ export default {
       this.postDetails = await fetch(
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts/${id}?_embed=1`
       ).then((res) => res.json())
-      console.log(this.postDetails)
       this.navbar = document.querySelector('#navigation-container')
       const category = this.postDetails.categories[0]
       this.getRelatedPost(category)

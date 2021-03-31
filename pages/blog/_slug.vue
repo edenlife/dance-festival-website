@@ -281,11 +281,12 @@ export default {
     },
   },
   computed: {
+    // TODO change to ouredenlife on prod
     disqusConfig() {
       return {
-        url: `https://ouredenlife.com${this.singleUrl}`,
+        url: `https://ouredenlifev2-staging.netlify.app${this.singleUrl}`,
         category_id: this.postDetails._embedded['wp:term'][0][0].name,
-        title: this.postDetails.title.rendered,
+        title: this.truncate(this.postDetails.title.rendered, 150),
       }
     },
   },

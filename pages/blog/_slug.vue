@@ -335,7 +335,7 @@ export default {
       }
     },
     articleDescription() {
-      return this.article.excerpt.rendered
+      return this.article.excerpt.rendered.replace(/(<([^>]+)>)/gi, '')
     },
     imageLink() {
       return this.article._embedded['wp:featuredmedia'][0].source_url

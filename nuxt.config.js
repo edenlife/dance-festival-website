@@ -117,6 +117,7 @@ export default {
     '~/plugins/flutterwave',
     '~/plugins/vue-social-sharing.js',
     '~/plugins/vue-mailchimp-subscribe.js',
+    '~/plugins/disqus.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

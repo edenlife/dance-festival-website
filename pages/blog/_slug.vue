@@ -74,12 +74,10 @@
               />
             </svg>
           </a>
-          <ShareNetwork
-            network="LinkedIn"
-            :url="`https://ouredenlife.com${singleUrl}`"
-            title=""
-            description=""
+          <a
             class="link"
+            :href="`https://www.linkedin.com/sharing/share-offsite/?url=http://ouredenlife.com${singleUrl}`"
+            target="_blank"
           >
             <svg
               class="link--linkedin"
@@ -94,7 +92,7 @@
                 fill=""
               />
             </svg>
-          </ShareNetwork>
+          </a>
           <ShareNetwork
             network="whatsapp"
             :url="`https://ouredenlife.com/${singleUrl}`"
@@ -289,6 +287,7 @@ export default {
         // Open Graph
         { hid: 'og:title', property: 'og:title', content: this.articleTitle },
         {
+          hid: 'og:url',
           property: 'og:url',
           content: `https://ouredenlifev2-staging.netlify.app${this.$route.fullPath}`,
         },

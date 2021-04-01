@@ -1219,6 +1219,13 @@ export default {
           this.custumerStatus = false
           this.showEmailModal = true
           this.isLoading = false
+          this.$intercom('update', {
+            email: this.subscribeEmail,
+          })
+          const metadata = {
+            email: this.subscribeEmail,
+          }
+          this.$intercom('trackEvent', 'pricing-page-onboarding', metadata)
         }
       }
     },

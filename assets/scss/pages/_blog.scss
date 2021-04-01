@@ -315,6 +315,11 @@
     margin-top: -$gap * 6;
     margin-left: $gap * 6;
   }
+  &__pagination {
+    grid-column: 1/4;
+    grid-row: 6;
+    padding-top: $gap * 2;
+  }
 
   &__side {
     &-title {

@@ -429,7 +429,7 @@
               </figure>
             </nuxt-link>
           </div>
-          <div class="posts__popular">
+          <div ref="latest-container" class="posts__popular">
             <h3 class="posts__side-title">Popular</h3>
             <div v-for="(item, i) in popularPost" :key="i">
               <nuxt-link
@@ -454,6 +454,10 @@
               </nuxt-link>
             </div>
           </div>
+          <div class="posts__pagination">
+            <Pagination :pagination="pagination" @paginate="controlPage" />
+          </div>
+
           <div v-if="!user_subscribed" class="subscribe subscribe__inline">
             <h3>Subscribe to the Good Life</h3>
             <p>Get our latest posts straight in your inbox.</p>
@@ -479,6 +483,7 @@
               </template>
             </mailchimp-subscribe>
           </div>
+
           <div v-else class="subscribe subscribe__success">
             <p class="subscribe__success-text">
               Thanks for subscribing to the Good Life 💚
@@ -694,6 +699,7 @@ export default {
   components: {
     Loader: () => import('@/components/Loader.vue'),
     MailchimpSubscribe,
+    Pagination: () => import('@/components/Pagination.vue'),
   },
   mixins: [validationMixin],
   beforeRouteEnter(to, from, next) {
@@ -719,6 +725,7 @@ export default {
   },
   data() {
     return {
+      pagination: {},
       isLoading: false,
       activeTabIndex: null,
       resultTabIndex: 0,
@@ -798,6 +805,12 @@ export default {
         return value
       }
     },
+    controlPage(pageNum) {
+      const min = pageNum * 8 - 8
+      this.latestPost = this.allPosts.slice(min, pageNum * 8)
+      this.pagination.current_page = pageNum
+      this.$refs['latest-container'].scrollIntoView()
+    },
     onSuccess() {
       // handle success
       this.user_subscribed = true
@@ -854,6 +867,15 @@ export default {
           })
         )
       this.isLoading = false
+      const quotient = Math.floor(this.allPosts.length / 8)
+      const remainder = this.allPosts.length % 8
+      remainder > 0
+        ? (this.pageCount = quotient + 1)
+        : (this.pageCount = quotient)
+      this.pagination = {
+        last_page: this.pageCount,
+        current_page: 1,
+      }
       this.latestPost = this.allPosts.slice(0, 8)
     },
     async getFeaturedPost() {

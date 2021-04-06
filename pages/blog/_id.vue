@@ -189,8 +189,8 @@
           <div v-for="(item, i) in relatedPosts" :key="i">
             <nuxt-link
               :to="{
-                name: 'blog-slug-id',
-                params: { slug: item.slug, id: item.id },
+                name: 'blog-id',
+                params: { id: item.id },
               }"
             >
               <figure class="related__item">

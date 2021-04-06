@@ -190,7 +190,7 @@
             <nuxt-link
               :to="{
                 name: 'blog-slug',
-                params: { slug: item.slug + '?' + item.id },
+                params: { slug: item.slug + '-' + item.id },
               }"
             >
               <figure class="related__item">
@@ -253,9 +253,10 @@ export default {
   },
   mixins: [validationMixin],
   async asyncData({ params }) {
-    const slug = params.slug.split('?')[1]
+    const slug = params.slug.split('-')
+    const id = slug[slug.length - 1]
     const article = await fetch(
-      `https://wordpress.edenlife.ng/wp-json/wp/v2/posts/${slug}?_embed=1`
+      `https://wordpress.edenlife.ng/wp-json/wp/v2/posts/${id}?_embed=1`
     ).then((res) => res.json())
     return { article }
   },
@@ -353,8 +354,8 @@ export default {
   },
   async mounted() {
     this.singleUrl = this.$route.fullPath
-    const slug = this.$route.params.slug
-    this.blogId = slug.split('?')[1]
+    const slug = this.$route.params.slug.split('-')
+    this.blogId = slug[slug.length - 1]
     await this.getSingleArticle(this.blogId)
     this.userId = process.env.MAILCHIMP_USERID
     this.listId = process.env.MAILCHIMP_LISTID

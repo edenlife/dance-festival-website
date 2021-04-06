@@ -188,9 +188,8 @@
           <div v-for="(item, i) in filteredSearchResults" :key="i">
             <nuxt-link
               :to="{
-                name: 'blog-slug',
-                params: { slug: item.slug },
-                query: { id: item.id },
+                name: 'blog-slug-id',
+                params: { slug: item.slug, id: item.id },
               }"
             >
               <figure class="result__item">
@@ -244,9 +243,8 @@
           <div v-for="(item, i) in searchResults" :key="i">
             <nuxt-link
               :to="{
-                name: 'blog-slug',
-                params: { slug: item.slug },
-                query: { id: item.id },
+                name: 'blog-slug-id',
+                params: { slug: item.slug, id: item.id },
               }"
             >
               <figure class="result__item">
@@ -284,9 +282,8 @@
           <div v-for="(item, i) in suggestedPost" :key="i">
             <nuxt-link
               :to="{
-                name: 'blog-slug',
-                params: { slug: item.slug },
-                query: { id: item.id },
+                name: 'blog-slug-id',
+                params: { slug: item.slug, id: item.id },
               }"
             >
               <figure class="result__item">
@@ -333,9 +330,8 @@
             <h3 class="posts__featured-title">Featured Post</h3>
             <nuxt-link
               :to="{
-                name: 'blog-slug',
-                params: { slug: featuredPost.slug },
-                query: { id: featuredPost.id },
+                name: 'blog-slug-id',
+                params: { slug: featuredPost.slug, id: featuredPost.id },
               }"
             >
               <figure
@@ -371,9 +367,8 @@
             <div v-for="(item, i) in recommendedPost" :key="i">
               <nuxt-link
                 :to="{
-                  name: 'blog-slug',
-                  params: { slug: item.slug },
-                  query: { id: item.id },
+                  name: 'blog-slug-id',
+                  params: { slug: item.slug, id: item.id },
                 }"
               >
                 <figure class="posts__side-item">
@@ -401,9 +396,8 @@
           <div v-for="(item, i) in latestPost" :key="i">
             <nuxt-link
               :to="{
-                name: 'blog-slug',
-                params: { slug: item.slug },
-                query: { id: item.id },
+                name: 'blog-slug-id',
+                params: { slug: item.slug, id: item.id },
               }"
             >
               <figure class="posts__item">
@@ -440,9 +434,8 @@
             <div v-for="(item, i) in popularPost" :key="i">
               <nuxt-link
                 :to="{
-                  name: 'blog-slug',
-                  params: { slug: item.slug },
-                  query: { id: item.id },
+                  name: 'blog-slug-id',
+                  params: { slug: item.slug, id: item.id },
                 }"
               >
                 <figure class="posts__side-item">
@@ -503,9 +496,8 @@
           <div v-for="(item, i) in homePosts" :key="i">
             <nuxt-link
               :to="{
-                name: 'blog-slug',
-                params: { slug: item.slug },
-                query: { id: item.id },
+                name: 'blog-slug-id',
+                params: { slug: item.slug, id: item.id },
               }"
             >
               <figure class="posts__item">
@@ -544,9 +536,8 @@
           <div v-for="(item, i) in foodPosts" :key="i">
             <nuxt-link
               :to="{
-                name: 'blog-slug',
-                params: { slug: item.slug },
-                query: { id: item.id },
+                name: 'blog-slug-id',
+                params: { slug: item.slug, id: item.id },
               }"
             >
               <figure class="posts__item">
@@ -585,9 +576,8 @@
           <div v-for="(item, i) in edenPosts" :key="i">
             <nuxt-link
               :to="{
-                name: 'blog-slug',
-                params: { slug: item.slug },
-                query: { id: item.id },
+                name: 'blog-slug-id',
+                params: { slug: item.slug, id: item.id },
               }"
             >
               <figure class="posts__item">
@@ -626,9 +616,8 @@
           <div v-for="(item, i) in lifePosts" :key="i">
             <nuxt-link
               :to="{
-                name: 'blog-slug',
-                params: { slug: item.slug },
-                query: { id: item.id },
+                name: 'blog-slug-id',
+                params: { slug: item.slug, id: item.id },
               }"
             >
               <figure class="posts__item">

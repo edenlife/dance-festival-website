@@ -1,3 +1,10 @@
+const dynamicRoutes = async () => {
+  const singleRoute = await fetch(
+    'https://wordpress.edenlife.ng/wp-json/wp/v2/posts?page=1&per_page=50&_embed=1'
+  ).then((res) => res.json())
+  return singleRoute.map((post) => `/blog/${post.slug}-${post.id}`)
+}
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -7,76 +14,76 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    // title: 'Eden | Say Goodbye To Chores Forever',
-    // meta: [
-    //   { charset: 'utf-8' },
-    //   { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
-    //   { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    title: 'Eden | Say Goodbye To Chores Forever',
+    meta: [
+      { charset: 'utf-8' },
+      { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
 
-    //   { name: 'author', content: 'Eden Life Concierge Ltd' },
-    //   { name: 'theme-color', content: '#20B26D' },
-    //   {
-    //     name: 'description',
-    //     content:
-    //       "Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!",
-    //   },
-    //   {
-    //     name: 'keywords',
-    //     content:
-    //       'Eden Life in Nigeria, Eden Concierge in Nigeria, Eden Concierge, Eden Life, Improving quality of life, Quality of Life in Nigeria, Excellent service, Food service, Laundry service, AC service, Home cleaning service, Light cleaning service, Home Deep cleaning service, Concierge to make you productive, eden app, Eden Nigeria, butler app, home concierge, eden, home assistants, convenience at home, edenlife, Eden, house helps, house maids, maids, house helps in Nigeria, house maids in Nigeria, Automate chores, Efficient household management, Avoiding housework, Tired of housework',
-    //   },
+      { name: 'author', content: 'Eden Life Concierge Ltd' },
+      { name: 'theme-color', content: '#20B26D' },
+      {
+        name: 'description',
+        content:
+          "Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!",
+      },
+      {
+        name: 'keywords',
+        content:
+          'Eden Life in Nigeria, Eden Concierge in Nigeria, Eden Concierge, Eden Life, Improving quality of life, Quality of Life in Nigeria, Excellent service, Food service, Laundry service, AC service, Home cleaning service, Light cleaning service, Home Deep cleaning service, Concierge to make you productive, eden app, Eden Nigeria, butler app, home concierge, eden, home assistants, convenience at home, edenlife, Eden, house helps, house maids, maids, house helps in Nigeria, house maids in Nigeria, Automate chores, Efficient household management, Avoiding housework, Tired of housework',
+      },
 
-    //   // Schema.org markup for Google+
-    //   { itemprop: 'name', content: 'Eden' },
-    //   { itemprop: 'description', content: 'Say goodbye to chores forever.' },
-    //   {
-    //     itemprop: 'image',
-    //     content: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
-    //   },
+      // Schema.org markup for Google+
+      { itemprop: 'name', content: 'Eden' },
+      { itemprop: 'description', content: 'Say goodbye to chores forever.' },
+      {
+        itemprop: 'image',
+        content: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+      },
 
-    //   // Twitter Card data
-    //   { name: 'twitter:card', content: 'summary_large_image' },
-    //   { name: 'twitter:site', content: '@ouredenlife' },
-    //   { name: 'twitter:title', content: 'Eden' },
-    //   {
-    //     name: 'twitter:url',
-    //     content: 'https://ouredenlifev2-staging.netlify.app',
-    //   },
-    //   {
-    //     name: 'twitter:image',
-    //     content: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
-    //   },
-    //   {
-    //     name: 'twitter:description',
-    //     content:
-    //       "Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!",
-    //   },
-    //   { name: 'twitter:app:country', content: 'NG' },
-    //   { name: 'twitter:creator', content: '@ouredenlife' },
-    //   { name: 'twitter:domain', content: '@ouredenlife' },
-    //   {
-    //     name: 'twitter:image:src',
-    //     content: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
-    //   },
+      // Twitter Card data
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@ouredenlife' },
+      { name: 'twitter:title', content: 'Eden' },
+      {
+        name: 'twitter:url',
+        content: 'https://ouredenlifev2-staging.netlify.app',
+      },
+      {
+        name: 'twitter:image',
+        content: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+      },
+      {
+        name: 'twitter:description',
+        content:
+          "Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!",
+      },
+      { name: 'twitter:app:country', content: 'NG' },
+      { name: 'twitter:creator', content: '@ouredenlife' },
+      { name: 'twitter:domain', content: '@ouredenlife' },
+      {
+        name: 'twitter:image:src',
+        content: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+      },
 
-    //   // Open Graph data
-    //   { property: 'og:title', content: 'Eden' },
-    //   {
-    //     property: 'og:url',
-    //     content: 'https://ouredenlifev2-staging.netlify.app',
-    //   },
-    //   {
-    //     property: 'og:image',
-    //     content: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
-    //   },
-    //   {
-    //     property: 'og:description',
-    //     content:
-    //       "Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!",
-    //   },
-    //   { property: 'og:type', content: 'website' },
-    //   { property: 'og:site_name', content: 'Eden' },
-    // ],
+      // Open Graph data
+      { property: 'og:title', content: 'Eden' },
+      {
+        property: 'og:url',
+        content: 'https://ouredenlifev2-staging.netlify.app',
+      },
+      {
+        property: 'og:image',
+        content: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+      },
+      {
+        property: 'og:description',
+        content:
+          "Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!",
+      },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'Eden' },
+    ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
@@ -160,6 +167,7 @@ export default {
   },
 
   generate: {
+    routes: dynamicRoutes,
     fallback: true,
   },
 }

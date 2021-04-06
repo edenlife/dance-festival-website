@@ -1,8 +1,12 @@
-const dynamicRoutes = async () => {
-  const singleRoute = await fetch(
-    'https://wordpress.edenlife.ng/wp-json/wp/v2/posts?page=1&per_page=50&_embed=1'
-  ).then((res) => res.json())
-  return singleRoute.map((post) => `/blog/${post.id}`)
+import axios from 'axios'
+const dynamicRoutes = () => {
+  return axios
+    .get(
+      'https://wordpress.edenlife.ng/wp-json/wp/v2/posts?page=1&per_page=50&_embed=1'
+    )
+    .then((res) => {
+      return res.data.map((post) => `/blog/${post.id}`)
+    })
 }
 
 export default {

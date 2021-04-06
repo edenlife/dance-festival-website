@@ -319,25 +319,28 @@ export default {
         },
 
         // Open Graph data
-        { property: 'og:title', content: this.articleTitle },
         {
+          hid: 'og:url',
           property: 'og:url',
           content: `https://ouredenlifev2-staging.netlify.app${this.$route.fullPath}`,
         },
         {
+          hid: 'og:image',
           property: 'og:image',
           content: 'https://ouredenlife.com/edencardfood.png',
         },
         {
+          hid: 'og:description',
           property: 'og:description',
           content: this.articleDescription,
         },
         {
+          hid: 'og:type',
           property: 'og:type',
           content: 'article',
         },
         {
-          hid: 'og:type',
+          hid: 'og:site_name',
           property: 'og:site_name',
           content: this.articleTitle,
         },

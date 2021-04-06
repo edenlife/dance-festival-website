@@ -285,45 +285,55 @@ export default {
           name: 'description',
           content: this.articleDescription,
         },
-        // Open Graph
-        { hid: 'og:title', property: 'og:title', content: this.articleTitle },
+
+        // Schema.org markup for Google+
+        { itemprop: 'name', content: 'Eden' },
+        { itemprop: 'description', content: this.articleTitle },
         {
-          hid: 'og:url',
-          property: 'og:url',
-          content: `https://ouredenlifev2-staging.netlify.app${this.$route.fullPath}`,
-        },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: this.articleDescription,
-        },
-        { hid: 'og:type', property: 'og:type', content: 'article' },
-        {
-          hid: 'og:image',
-          property: 'og:image',
+          itemprop: 'image',
           content: this.imageLink,
         },
 
-        // Twitter
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: this.articleTitle,
-        },
+        // Twitter Card data
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:site', content: '@ouredenlife' },
+        { name: 'twitter:title', content: this.articleTitle },
         {
           name: 'twitter:url',
           content: `https://ouredenlifev2-staging.netlify.app${this.$route.fullPath}`,
         },
         {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: this.articleDescription,
-        },
-        {
-          hid: 'twitter:image',
           name: 'twitter:image',
           content: this.imageLink,
         },
+        {
+          name: 'twitter:description',
+          content: this.articleDescription,
+        },
+        { name: 'twitter:app:country', content: 'NG' },
+        { name: 'twitter:creator', content: '@ouredenlife' },
+        { name: 'twitter:domain', content: '@ouredenlife' },
+        {
+          name: 'twitter:image:src',
+          content: this.imageLink,
+        },
+
+        // Open Graph data
+        { property: 'og:title', content: this.articleTitle },
+        {
+          property: 'og:url',
+          content: `https://ouredenlifev2-staging.netlify.app${this.$route.fullPath}`,
+        },
+        {
+          property: 'og:image',
+          content: this.imageLink,
+        },
+        {
+          property: 'og:description',
+          content: this.articleDescription,
+        },
+        { property: 'og:type', content: 'article' },
+        { property: 'og:site_name', content: this.articleTitle },
       ],
     }
   },

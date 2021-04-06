@@ -286,34 +286,29 @@ export default {
           content: this.articleDescription,
         },
 
-        // Schema.org markup for Google+
-        { itemprop: 'name', content: this.articleTitle },
-        { itemprop: 'description', content: this.articleDescription },
-        {
-          itemprop: 'image',
-          content: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
-        },
-
         // Twitter Card data
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:site', content: '@ouredenlife' },
-        { name: 'twitter:title', content: this.articleTitle },
         {
+          hid: 'twitter:title',
+          name: 'twitter:title',
+          content: this.articleTitle,
+        },
+        {
+          hid: 'twitter:url',
           name: 'twitter:url',
           content: `https://ouredenlifev2-staging.netlify.app${this.$route.fullPath}`,
         },
         {
+          hid: 'twitter:image',
           name: 'twitter:image',
           content: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
         },
         {
+          hid: 'twitter:description',
           name: 'twitter:description',
           content: this.articleDescription,
         },
-        { name: 'twitter:app:country', content: 'NG' },
-        { name: 'twitter:creator', content: '@ouredenlife' },
-        { name: 'twitter:domain', content: '@ouredenlife' },
         {
+          hid: 'twitter:image:src',
           name: 'twitter:image:src',
           content: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
         },
@@ -348,6 +343,13 @@ export default {
           hid: 'og:title',
           property: 'og:title',
           content: this.articleTitle,
+        },
+      ],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlifev2-staging.netlify.app${this.$route.fullPath}`,
         },
       ],
     }

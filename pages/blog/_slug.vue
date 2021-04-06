@@ -291,7 +291,7 @@ export default {
         { itemprop: 'description', content: this.articleDescription },
         {
           itemprop: 'image',
-          content: 'https://ouredenlife.com/edencardfood.png',
+          content: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
         },
 
         // Twitter Card data
@@ -304,7 +304,7 @@ export default {
         },
         {
           name: 'twitter:image',
-          content: 'https://ouredenlife.com/edencardfood.png',
+          content: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
         },
         {
           name: 'twitter:description',
@@ -315,7 +315,7 @@ export default {
         { name: 'twitter:domain', content: '@ouredenlife' },
         {
           name: 'twitter:image:src',
-          content: 'https://ouredenlife.com/edencardfood.png',
+          content: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
         },
 
         // Open Graph data
@@ -327,7 +327,7 @@ export default {
         {
           hid: 'og:image',
           property: 'og:image',
-          content: 'https://ouredenlife.com/edencardfood.png',
+          content: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
         },
         {
           hid: 'og:description',

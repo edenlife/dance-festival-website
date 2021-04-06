@@ -190,7 +190,8 @@
             <nuxt-link
               :to="{
                 name: 'blog-slug',
-                params: { slug: item.slug + '-' + item.id },
+                params: { slug: item.slug },
+                query: { id: item.id },
               }"
             >
               <figure class="related__item">
@@ -252,11 +253,9 @@ export default {
     MailchimpSubscribe,
   },
   mixins: [validationMixin],
-  async asyncData({ params }) {
-    const slug = params.slug.split('-')
-    const id = slug[slug.length - 1]
+  async asyncData({ query }) {
     const article = await fetch(
-      `https://wordpress.edenlife.ng/wp-json/wp/v2/posts/${id}?_embed=1`
+      `https://wordpress.edenlife.ng/wp-json/wp/v2/posts/${query.id}?_embed=1`
     ).then((res) => res.json())
     return { article }
   },
@@ -301,7 +300,8 @@ export default {
         {
           hid: 'og:image',
           property: 'og:image',
-          content: this.imageLink,
+          content: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+          // content: this.imageLink,
         },
 
         // Twitter
@@ -322,7 +322,8 @@ export default {
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content: this.imageLink,
+          content: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+          // content: this.imageLink,
         },
       ],
     }
@@ -354,8 +355,7 @@ export default {
   },
   async mounted() {
     this.singleUrl = this.$route.fullPath
-    const slug = this.$route.params.slug.split('-')
-    this.blogId = slug[slug.length - 1]
+    this.blogId = this.$route.query.id
     await this.getSingleArticle(this.blogId)
     this.userId = process.env.MAILCHIMP_USERID
     this.listId = process.env.MAILCHIMP_LISTID

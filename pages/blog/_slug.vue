@@ -9,23 +9,21 @@
           <span
             :style="getColor(postDetails._embedded['wp:term'][0][0].slug)"
             class="hero__date-category"
-            @click.prevent="
-              getCategory(postDetails._embedded['wp:term'][0][0].id)
-            "
+            @click.prevent="getCategory(article._embedded['wp:term'][0][0].id)"
           >
-            {{ postDetails._embedded['wp:term'][0][0].name }}
+            {{ article._embedded['wp:term'][0][0].name }}
           </span>
           <span class="dot">&#8226;</span>
-          <span>{{ dateFormatter(postDetails.date) }}</span>
+          <span>{{ dateFormatter(article.date) }}</span>
         </div>
-        <h1 class="hero__title" v-html="postDetails.title.rendered"></h1>
+        <h1 class="hero__title" v-html="article.title.rendered"></h1>
         <div class="hero__author">
-          <img :src="postDetails._embedded.author[0].description" alt="" />
-          <p>{{ postDetails._embedded.author[0].name }}</p>
+          <img :src="article._embedded.author[0].description" alt="" />
+          <p>{{ article._embedded.author[0].name }}</p>
         </div>
         <div class="hero__featured">
           <img
-            :src="postDetails._embedded['wp:featuredmedia'][0].source_url"
+            :src="article._embedded['wp:featuredmedia'][0].source_url"
             alt=""
           />
         </div>
@@ -142,7 +140,7 @@
             </svg>
           </ShareNetwork>
         </div>
-        <div class="content__slug" v-html="postDetails.content.rendered"></div>
+        <div class="content__slug" v-html="article.content.rendered"></div>
         <script
           async
           src="https://platform.twitter.com/widgets.js"
@@ -191,8 +189,8 @@
           <div v-for="(item, i) in relatedPosts" :key="i">
             <nuxt-link
               :to="{
-                name: 'blog-id',
-                params: { id: item.id },
+                name: 'blog-slug',
+                params: { slug: item.slug + '-' + item.id },
               }"
             >
               <figure class="related__item">
@@ -254,7 +252,14 @@ export default {
     MailchimpSubscribe,
   },
   mixins: [validationMixin],
-  props: ['id'],
+  async asyncData({ params }) {
+    const slug = params.slug.split('-')
+    const id = slug[slug.length - 1]
+    const article = await fetch(
+      `https://wordpress.edenlife.ng/wp-json/wp/v2/posts/${id}?_embed=1`
+    ).then((res) => res.json())
+    return { article }
+  },
   data() {
     return {
       userId: '',
@@ -266,31 +271,22 @@ export default {
       },
       navbar: '',
       relatedPosts: [],
+      blogId: null,
       singleUrl: '',
       postDetails: null,
     }
   },
-  async fetch() {
-    const id = this.id
-    await this.getSingleArticle(id)
-  },
   head() {
     return {
-      title: this.postDetails ? this.postDetails.title.rendered : '',
+      title: this.articleTitle,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.postDetails
-            ? this.postDetails.excerpt.rendered.replace(/(<([^>]+)>)/gi, '')
-            : '',
+          content: this.articleDescription,
         },
         // Open Graph
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: this.postDetails ? this.postDetails.title.rendered : '',
-        },
+        { hid: 'og:title', property: 'og:title', content: this.articleTitle },
         {
           hid: 'og:url',
           property: 'og:url',
@@ -299,23 +295,20 @@ export default {
         {
           hid: 'og:description',
           property: 'og:description',
-          content: this.postDetails
-            ? this.postDetails.excerpt.rendered.replace(/(<([^>]+)>)/gi, '')
-            : '',
+          content: this.articleDescription,
         },
         { hid: 'og:type', property: 'og:type', content: 'article' },
         {
           hid: 'og:image',
           property: 'og:image',
-          content: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
-          // content: this.imageLink,
+          content: this.imageLink,
         },
 
         // Twitter
         {
           hid: 'twitter:title',
           name: 'twitter:title',
-          content: this.postDetails ? this.postDetails.title.rendered : '',
+          content: this.articleTitle,
         },
         {
           name: 'twitter:url',
@@ -324,15 +317,12 @@ export default {
         {
           hid: 'twitter:description',
           name: 'twitter:description',
-          content: this.postDetails
-            ? this.postDetails.excerpt.rendered.replace(/(<([^>]+)>)/gi, '')
-            : '',
+          content: this.articleDescription,
         },
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
-          // content: this.imageLink,
+          content: this.imageLink,
         },
       ],
     }
@@ -348,21 +338,25 @@ export default {
     disqusConfig() {
       return {
         url: `https://ouredenlifev2-staging.netlify.app${this.singleUrl}`,
-        category_id: this.postDetails._embedded['wp:term'][0][0].name,
-        title: this.truncate(this.postDetails.title.rendered, 150),
+        category_id: this.article._embedded['wp:term'][0][0].name,
+        title: this.truncate(this.article.title.rendered, 150),
       }
     },
-    // articleDescription() {
-    //   return this.postDetails.excerpt.rendered.replace(/(<([^>]+)>)/gi, '')
-    // },
-    // imageLink() {
-    //   return this.postDetails._embedded['wp:featuredmedia'][0].source_url
-    // },
-    // articleTitle() {
-    //   return this.postDetails.title.rendered
-    // },
+    articleDescription() {
+      return this.article.excerpt.rendered.replace(/(<([^>]+)>)/gi, '')
+    },
+    imageLink() {
+      return this.article._embedded['wp:featuredmedia'][0].source_url
+    },
+    articleTitle() {
+      return this.article.title.rendered
+    },
   },
-  mounted() {
+  async mounted() {
+    this.singleUrl = this.$route.fullPath
+    const slug = this.$route.params.slug.split('-')
+    this.blogId = slug[slug.length - 1]
+    await this.getSingleArticle(this.blogId)
     this.userId = process.env.MAILCHIMP_USERID
     this.listId = process.env.MAILCHIMP_LISTID
   },
@@ -397,7 +391,9 @@ export default {
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?categories=${category}&_embed=1`
       ).then((res) => res.json())
       const allRelatedPost = posts
-        .filter((el) => el.status === 'publish' && el.id !== parseInt(this.id))
+        .filter(
+          (el) => el.status === 'publish' && el.id !== parseInt(this.blogId)
+        )
         .map(
           ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
             id,

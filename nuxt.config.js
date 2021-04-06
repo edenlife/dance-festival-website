@@ -5,7 +5,7 @@ const dynamicRoutes = () => {
       'https://wordpress.edenlife.ng/wp-json/wp/v2/posts?page=1&per_page=50&_embed=1'
     )
     .then((res) => {
-      return res.data.map((post) => `/blog/${post.id}`)
+      return res.data.map((post) => `/blog/${post.slug}-${post.id}`)
     })
 }
 

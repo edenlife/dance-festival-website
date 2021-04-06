@@ -287,11 +287,11 @@ export default {
         },
 
         // Schema.org markup for Google+
-        { itemprop: 'name', content: 'Eden' },
-        { itemprop: 'description', content: this.articleTitle },
+        { itemprop: 'name', content: this.articleTitle },
+        { itemprop: 'description', content: this.articleDescription },
         {
           itemprop: 'image',
-          content: this.imageLink,
+          content: 'https://ouredenlife.com/edencardfood.png',
         },
 
         // Twitter Card data
@@ -304,7 +304,7 @@ export default {
         },
         {
           name: 'twitter:image',
-          content: this.imageLink,
+          content: 'https://ouredenlife.com/edencardfood.png',
         },
         {
           name: 'twitter:description',
@@ -315,7 +315,7 @@ export default {
         { name: 'twitter:domain', content: '@ouredenlife' },
         {
           name: 'twitter:image:src',
-          content: this.imageLink,
+          content: 'https://ouredenlife.com/edencardfood.png',
         },
 
         // Open Graph data
@@ -326,14 +326,26 @@ export default {
         },
         {
           property: 'og:image',
-          content: this.imageLink,
+          content: 'https://ouredenlife.com/edencardfood.png',
         },
         {
           property: 'og:description',
           content: this.articleDescription,
         },
-        { property: 'og:type', content: 'article' },
-        { property: 'og:site_name', content: this.articleTitle },
+        {
+          property: 'og:type',
+          content: 'article',
+        },
+        {
+          hid: 'og:type',
+          property: 'og:site_name',
+          content: this.articleTitle,
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.articleTitle,
+        },
       ],
     }
   },

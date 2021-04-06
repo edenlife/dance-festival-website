@@ -189,7 +189,7 @@
             <nuxt-link
               :to="{
                 name: 'blog-slug',
-                params: { slug: item.slug + '?' + item.id },
+                params: { slug: item.slug + '-' + item.id },
               }"
             >
               <figure class="result__item">
@@ -244,7 +244,7 @@
             <nuxt-link
               :to="{
                 name: 'blog-slug',
-                params: { slug: item.slug + '?' + item.id },
+                params: { slug: item.slug + '-' + item.id },
               }"
             >
               <figure class="result__item">
@@ -283,7 +283,7 @@
             <nuxt-link
               :to="{
                 name: 'blog-slug',
-                params: { slug: item.slug + '?' + item.id },
+                params: { slug: item.slug + '-' + item.id },
               }"
             >
               <figure class="result__item">
@@ -331,7 +331,7 @@
             <nuxt-link
               :to="{
                 name: 'blog-slug',
-                params: { slug: featuredPost.slug + '?' + featuredPost.id },
+                params: { slug: featuredPost.slug + '-' + featuredPost.id },
               }"
             >
               <figure
@@ -368,7 +368,7 @@
               <nuxt-link
                 :to="{
                   name: 'blog-slug',
-                  params: { slug: item.slug + '?' + item.id },
+                  params: { slug: item.slug + '-' + item.id },
                 }"
               >
                 <figure class="posts__side-item">
@@ -397,7 +397,7 @@
             <nuxt-link
               :to="{
                 name: 'blog-slug',
-                params: { slug: item.slug + '?' + item.id },
+                params: { slug: item.slug + '-' + item.id },
               }"
             >
               <figure class="posts__item">
@@ -435,7 +435,7 @@
               <nuxt-link
                 :to="{
                   name: 'blog-slug',
-                  params: { slug: item.slug + '?' + item.id },
+                  params: { slug: item.slug + '-' + item.id },
                 }"
               >
                 <figure class="posts__side-item">
@@ -497,7 +497,7 @@
             <nuxt-link
               :to="{
                 name: 'blog-slug',
-                params: { slug: item.slug + '?' + item.id },
+                params: { slug: item.slug + '-' + item.id },
               }"
             >
               <figure class="posts__item">
@@ -537,7 +537,7 @@
             <nuxt-link
               :to="{
                 name: 'blog-slug',
-                params: { slug: item.slug + '?' + item.id },
+                params: { slug: item.slug + '-' + item.id },
               }"
             >
               <figure class="posts__item">
@@ -577,7 +577,7 @@
             <nuxt-link
               :to="{
                 name: 'blog-slug',
-                params: { slug: item.slug + '?' + item.id },
+                params: { slug: item.slug + '-' + item.id },
               }"
             >
               <figure class="posts__item">
@@ -617,7 +617,7 @@
             <nuxt-link
               :to="{
                 name: 'blog-slug',
-                params: { slug: item.slug + '?' + item.id },
+                params: { slug: item.slug + '-' + item.id },
               }"
             >
               <figure class="posts__item">

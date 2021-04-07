@@ -310,7 +310,7 @@ export default {
     // TODO change to ouredenlife on prod
     disqusConfig() {
       return {
-        url: `https://ouredenlifev2-staging.netlify.app${this.singleUrl}`,
+        url: `https://ouredenlife.com${this.singleUrl}`,
         category_id: this.article._embedded['wp:term'][0][0].name,
         title: this.truncate(this.article.title.rendered, 150),
       }

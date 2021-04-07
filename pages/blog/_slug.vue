@@ -245,6 +245,7 @@ import dayjs from 'dayjs'
 import MailchimpSubscribe from 'vue-mailchimp-subscribe'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { getNavigationColor } from '~/static/functions'
+import getSiteMeta from '~/static/getSiteMeta'
 
 export default {
   components: {
@@ -278,73 +279,8 @@ export default {
   },
   head() {
     return {
-      title: this.articleTitle,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.articleDescription,
-        },
-
-        // Twitter Card data
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: this.articleTitle,
-        },
-        {
-          hid: 'twitter:url',
-          name: 'twitter:url',
-          content: `https://ouredenlifev2-staging.netlify.app${this.$route.fullPath}`,
-        },
-        {
-          hid: 'twitter:image',
-          name: 'twitter:image',
-          content: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
-        },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: this.articleDescription,
-        },
-        {
-          hid: 'twitter:image:src',
-          name: 'twitter:image:src',
-          content: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
-        },
-
-        // Open Graph data
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: `https://ouredenlifev2-staging.netlify.app${this.$route.fullPath}`,
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
-        },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: this.articleDescription,
-        },
-        {
-          hid: 'og:type',
-          property: 'og:type',
-          content: 'article',
-        },
-        {
-          hid: 'og:site_name',
-          property: 'og:site_name',
-          content: this.articleTitle,
-        },
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: this.articleTitle,
-        },
-      ],
+      title: this.article.title.rendered,
+      meta: [...this.meta],
       link: [
         {
           hid: 'canonical',
@@ -361,6 +297,16 @@ export default {
     },
   },
   computed: {
+    meta() {
+      const metaData = {
+        type: 'article',
+        title: this.article.title.rendered,
+        description: this.article.excerpt.rendered.replace(/(<([^>]+)>)/gi, ''),
+        url: `https://ouredenlifev2-staging.netlify.app${this.$route.fullPath}`,
+        mainImage: this.article._embedded['wp:featuredmedia'][0].source_url,
+      }
+      return getSiteMeta(metaData)
+    },
     // TODO change to ouredenlife on prod
     disqusConfig() {
       return {
@@ -368,15 +314,6 @@ export default {
         category_id: this.article._embedded['wp:term'][0][0].name,
         title: this.truncate(this.article.title.rendered, 150),
       }
-    },
-    articleDescription() {
-      return this.article.excerpt.rendered.replace(/(<([^>]+)>)/gi, '')
-    },
-    imageLink() {
-      return this.article._embedded['wp:featuredmedia'][0].source_url
-    },
-    articleTitle() {
-      return this.article.title.rendered
     },
   },
   async mounted() {

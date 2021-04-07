@@ -117,6 +117,10 @@ export default {
     '@nuxtjs/pwa',
 
     'nuxt-intercom',
+
+    '@nuxt/content',
+
+    '@nuxtjs/sitemap',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

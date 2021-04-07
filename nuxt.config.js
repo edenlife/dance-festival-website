@@ -1,5 +1,6 @@
 import axios from 'axios'
 import getSiteMeta from './static/getSiteMeta'
+import getRoutes from './static/getRoutes'
 
 const dynamicRoutes = () => {
   return axios
@@ -132,6 +133,14 @@ export default {
   build: {
     transpile: ['gsap'],
   },
+
+  sitemap: {
+    hostname: 'https://ouredenlifev2-staging.netlify.app',
+    routes() {
+      return getRoutes()
+    },
+  },
+
   // add intercom
   intercom: {
     appId: 'z3bq2kah',

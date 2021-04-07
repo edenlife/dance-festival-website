@@ -36,7 +36,7 @@
           <p class="content__social-title">Share</p>
           <ShareNetwork
             network="twitter"
-            :url="`https://ouredenlife.com${singleUrl}`"
+            :url="`https://ouredenlifev2-staging.netlify.app${singleUrl}`"
             title=""
             description=""
             class="link"
@@ -57,7 +57,7 @@
           </ShareNetwork>
           <a
             class="link"
-            :href="`https://www.facebook.com/sharer/sharer.php?u=https://ouredenlife.com${singleUrl}`"
+            :href="`https://www.facebook.com/sharer/sharer.php?u=https://ouredenlifev2-staging.netlify.app${singleUrl}`"
             target="_blank"
           >
             <svg
@@ -95,7 +95,7 @@
           </a>
           <ShareNetwork
             network="whatsapp"
-            :url="`https://ouredenlife.com/${singleUrl}`"
+            :url="`https://ouredenlifev2-staging.netlify.app/${singleUrl}`"
             title=""
             description=""
             class="link"
@@ -116,7 +116,7 @@
           </ShareNetwork>
           <ShareNetwork
             network="Email"
-            :url="`https://ouredenlife.com${singleUrl}`"
+            :url="`https://ouredenlifev2-staging.netlify.app${singleUrl}`"
             title=""
             description=""
             class="link"

@@ -9,7 +9,7 @@
         <div class="hero__social">
           <ShareNetwork
             network="twitter"
-            url="https://ouredenlife.com/blog"
+            url="https://ouredenlifev2-staging.netlify.app/blog"
             title=""
             description=""
             hashtags=""
@@ -18,7 +18,7 @@
           </ShareNetwork>
           <ShareNetwork
             network="whatsapp"
-            url="https://ouredenlife.com/blog"
+            url="https://ouredenlifev2-staging.netlify.app/blog"
             title=""
             description=""
           >
@@ -29,7 +29,7 @@
           </ShareNetwork>
 
           <a
-            href="https://www.facebook.com/sharer/sharer.php?u=https://ouredenlife.com/blog"
+            href="https://www.facebook.com/sharer/sharer.php?u=https://ouredenlifev2-staging.netlify.app/blog"
             target="_blank"
           >
             <img
@@ -39,7 +39,7 @@
           </a>
           <ShareNetwork
             network="LinkedIn"
-            url="https://ouredenlife.com/blog"
+            url="https://ouredenlifev2-staging.netlify.app/blog"
             title=""
             description=""
           >

@@ -76,7 +76,7 @@
           </a>
           <a
             class="link"
-            :href="`https://www.linkedin.com/sharing/share-offsite/?url=http://ouredenlife.com${singleUrl}`"
+            :href="`https://www.linkedin.com/sharing/share-offsite/?url=https://ouredenlifev2-staging.netlify.app${singleUrl}`"
             target="_blank"
           >
             <svg

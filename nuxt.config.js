@@ -1,6 +1,6 @@
 import axios from 'axios'
-import getSiteMeta from './static/getSiteMeta'
-import getRoutes from './static/getRoutes'
+import getSiteMeta from './utils/getSiteMeta'
+import getRoutes from './utils/getRoutes'
 
 const dynamicRoutes = () => {
   return axios
@@ -16,7 +16,7 @@ const meta = getSiteMeta()
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-  ssr: false,
+  ssr: true,
 
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',

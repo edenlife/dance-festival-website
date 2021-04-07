@@ -245,7 +245,7 @@ import dayjs from 'dayjs'
 import MailchimpSubscribe from 'vue-mailchimp-subscribe'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { getNavigationColor } from '~/static/functions'
-import getSiteMeta from '~/static/getSiteMeta'
+import getSiteMeta from '~/utils/getSiteMeta'
 
 export default {
   components: {

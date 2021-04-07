@@ -1,5 +1,5 @@
 export const state = () => ({
-  cart: JSON.parse(localStorage.getItem('cart')) || [],
+  cart: process.browser ? JSON.parse(localStorage.getItem('cart')) : [],
   blogNavId: null,
 })
 

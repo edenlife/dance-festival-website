@@ -118,8 +118,6 @@ export default {
 
     'nuxt-intercom',
 
-    '@nuxt/content',
-
     '@nuxtjs/sitemap',
   ],
 
@@ -140,7 +138,11 @@ export default {
 
   sitemap: {
     hostname: 'https://ouredenlifev2-staging.netlify.app',
-    routes() {
+    gzip: true,
+    path: '/sitemap.xml',
+    cacheTime: 1000 * 60 * 60 * 2,
+    trailingSlash: true,
+    routes: () => {
       return getRoutes()
     },
   },

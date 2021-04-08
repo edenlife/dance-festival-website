@@ -95,7 +95,7 @@
           </a>
           <ShareNetwork
             network="whatsapp"
-            :url="`https://ouredenlifev2-staging.netlify.app/${singleUrl}`"
+            :url="`https://ouredenlifev2-staging.netlify.app${singleUrl}`"
             title=""
             description=""
             class="link"
@@ -228,7 +228,20 @@
     </div>
     <!--  -->
     <div class="container--comments">
-      <Disqus :page-config="disqusConfig" />
+      <div id="fb-root"></div>
+      <script
+        async
+        defer
+        crossorigin="anonymous"
+        src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v10.0"
+        nonce="wYfPPswh"
+      ></script>
+      <div
+        class="fb-comments"
+        :data-href="`https://ouredenlifev2-staging.netlify.app${singleUrl}`"
+        data-width=""
+        data-numposts="5"
+      ></div>
     </div>
   </div>
 
@@ -306,14 +319,6 @@ export default {
         mainImage: this.article._embedded['wp:featuredmedia'][0].source_url,
       }
       return getSiteMeta(metaData)
-    },
-    // TODO change to ouredenlife on prod
-    disqusConfig() {
-      return {
-        url: `https://ouredenlife.com${this.singleUrl}`,
-        category_id: this.article._embedded['wp:term'][0][0].name,
-        title: this.truncate(this.article.title.rendered, 150),
-      }
     },
   },
   async mounted() {

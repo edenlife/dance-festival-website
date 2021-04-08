@@ -183,7 +183,7 @@
     </div>
     <!--  -->
     <div class="container--related">
-      <div class="related">
+      <div v-if="relatedPosts.length" class="related">
         <h3 class="related__title">Related posts</h3>
         <div class="related__box">
           <div v-for="(item, i) in relatedPosts" :key="i">
@@ -229,13 +229,6 @@
     <!--  -->
     <div class="container--comments">
       <div id="fb-root"></div>
-      <script
-        async
-        defer
-        crossorigin="anonymous"
-        src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v10.0"
-        nonce="wYfPPswh"
-      ></script>
       <div
         class="fb-comments"
         :data-href="`https://ouredenlifev2-staging.netlify.app${singleUrl}`"
@@ -256,6 +249,7 @@ import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 import dayjs from 'dayjs'
 import MailchimpSubscribe from 'vue-mailchimp-subscribe'
+import { fbSdk } from '~/plugins/fb.js'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { getNavigationColor } from '~/static/functions'
 import getSiteMeta from '~/utils/getSiteMeta'
@@ -290,6 +284,7 @@ export default {
       postDetails: null,
     }
   },
+
   head() {
     return {
       title: this.article.title.rendered,
@@ -304,11 +299,6 @@ export default {
     }
   },
 
-  validations: {
-    form: {
-      email: { required, email },
-    },
-  },
   computed: {
     meta() {
       const metaData = {
@@ -321,6 +311,13 @@ export default {
       return getSiteMeta(metaData)
     },
   },
+
+  validations: {
+    form: {
+      email: { required, email },
+    },
+  },
+
   async mounted() {
     this.singleUrl = this.$route.fullPath
     const slug = this.$route.params.slug.split('-')
@@ -328,6 +325,7 @@ export default {
     await this.getSingleArticle(this.blogId)
     this.userId = process.env.MAILCHIMP_USERID
     this.listId = process.env.MAILCHIMP_LISTID
+    fbSdk()
   },
   methods: {
     getNavigationColor,

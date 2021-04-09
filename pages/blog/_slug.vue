@@ -327,6 +327,7 @@ export default {
     this.listId = process.env.MAILCHIMP_LISTID
     fbSdk()
   },
+
   methods: {
     getNavigationColor,
     dateFormatter(date) {

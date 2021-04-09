@@ -246,7 +246,7 @@
       <div
         class="fb-comments"
         :data-href="`https://ouredenlifev2-staging.netlify.app${singleUrl}`"
-        data-width=""
+        data-width="100%"
         data-numposts="5"
       ></div>
     </div>

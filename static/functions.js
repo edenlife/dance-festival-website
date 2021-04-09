@@ -54,7 +54,7 @@ export const placeholderColorMix = (id) => {
   }
 }
 
-export const getNavigationColor = (path, category) => {
+export const getNavigationColor = (path) => {
   if (path === '/') {
     return {
       'background-color': '#fff9f5',

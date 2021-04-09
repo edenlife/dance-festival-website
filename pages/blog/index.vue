@@ -214,7 +214,14 @@
                     <span>{{ dateFormatter(item.date) }}</span>
                   </div>
                   <div class="result__item-author">
-                    <img :src="item._embedded.author[0].description" alt="" />
+                    <img
+                      :src="
+                        item._embedded.author[0].description === ''
+                          ? `https://res.cloudinary.com/eden-life-inc/image/upload/v1617954733/eden-website-v2/empty-male-member_j0cqu4.svg`
+                          : item._embedded.author[0].description
+                      "
+                      alt=""
+                    />
                     <p>{{ item._embedded.author[0].name }}</p>
                   </div>
                 </figcaption>
@@ -269,7 +276,14 @@
                     <span>{{ dateFormatter(item.date) }}</span>
                   </div>
                   <div class="result__item-author">
-                    <img :src="item._embedded.author[0].description" alt="" />
+                    <img
+                      :src="
+                        item._embedded.author[0].description === ''
+                          ? `https://res.cloudinary.com/eden-life-inc/image/upload/v1617954733/eden-website-v2/empty-male-member_j0cqu4.svg`
+                          : item._embedded.author[0].description
+                      "
+                      alt=""
+                    />
                     <p>{{ item._embedded.author[0].name }}</p>
                   </div>
                 </figcaption>
@@ -308,7 +322,14 @@
                     <span>{{ dateFormatter(item.date) }}</span>
                   </div>
                   <div class="result__item-author">
-                    <img :src="item._embedded.author[0].description" alt="" />
+                    <img
+                      :src="
+                        item._embedded.author[0].description === ''
+                          ? `https://res.cloudinary.com/eden-life-inc/image/upload/v1617954733/eden-website-v2/empty-male-member_j0cqu4.svg`
+                          : item._embedded.author[0].description
+                      "
+                      alt=""
+                    />
                     <p>{{ item._embedded.author[0].name }}</p>
                   </div>
                 </figcaption>
@@ -353,7 +374,11 @@
                   </div>
                   <div class="posts__item-author">
                     <img
-                      :src="featuredPost._embedded.author[0].description"
+                      :src="
+                        featuredPost._embedded.author[0].description === ''
+                          ? `https://res.cloudinary.com/eden-life-inc/image/upload/v1617954733/eden-website-v2/empty-male-member_j0cqu4.svg`
+                          : featuredPost._embedded.author[0].description
+                      "
                       alt=""
                     />
                     <p>{{ featuredPost._embedded.author[0].name }}</p>
@@ -422,7 +447,14 @@
                     <span>{{ dateFormatter(item.date) }}</span>
                   </div>
                   <div class="posts__item-author">
-                    <img :src="item._embedded.author[0].description" alt="" />
+                    <img
+                      :src="
+                        item._embedded.author[0].description === ''
+                          ? `https://res.cloudinary.com/eden-life-inc/image/upload/v1617954733/eden-website-v2/empty-male-member_j0cqu4.svg`
+                          : item._embedded.author[0].description
+                      "
+                      alt=""
+                    />
                     <p>{{ item._embedded.author[0].name }}</p>
                   </div>
                 </figcaption>
@@ -522,7 +554,14 @@
                     <span>{{ dateFormatter(item.date) }}</span>
                   </div>
                   <div class="posts__item-author">
-                    <img :src="item._embedded.author[0].description" alt="" />
+                    <img
+                      :src="
+                        item._embedded.author[0].description === ''
+                          ? `https://res.cloudinary.com/eden-life-inc/image/upload/v1617954733/eden-website-v2/empty-male-member_j0cqu4.svg`
+                          : item._embedded.author[0].description
+                      "
+                      alt=""
+                    />
                     <p>{{ item._embedded.author[0].name }}</p>
                   </div>
                 </figcaption>
@@ -562,7 +601,14 @@
                     <span>{{ dateFormatter(item.date) }}</span>
                   </div>
                   <div class="posts__item-author">
-                    <img :src="item._embedded.author[0].description" alt="" />
+                    <img
+                      :src="
+                        item._embedded.author[0].description === ''
+                          ? `https://res.cloudinary.com/eden-life-inc/image/upload/v1617954733/eden-website-v2/empty-male-member_j0cqu4.svg`
+                          : item._embedded.author[0].description
+                      "
+                      alt=""
+                    />
                     <p>{{ item._embedded.author[0].name }}</p>
                   </div>
                 </figcaption>
@@ -602,7 +648,14 @@
                     <span>{{ dateFormatter(item.date) }}</span>
                   </div>
                   <div class="posts__item-author">
-                    <img :src="item._embedded.author[0].description" alt="" />
+                    <img
+                      :src="
+                        item._embedded.author[0].description === ''
+                          ? `https://res.cloudinary.com/eden-life-inc/image/upload/v1617954733/eden-website-v2/empty-male-member_j0cqu4.svg`
+                          : item._embedded.author[0].description
+                      "
+                      alt=""
+                    />
                     <p>{{ item._embedded.author[0].name }}</p>
                   </div>
                 </figcaption>
@@ -642,7 +695,14 @@
                     <span>{{ dateFormatter(item.date) }}</span>
                   </div>
                   <div class="posts__item-author">
-                    <img :src="item._embedded.author[0].description" alt="" />
+                    <img
+                      :src="
+                        item._embedded.author[0].description === ''
+                          ? `https://res.cloudinary.com/eden-life-inc/image/upload/v1617954733/eden-website-v2/empty-male-member_j0cqu4.svg`
+                          : item._embedded.author[0].description
+                      "
+                      alt=""
+                    />
                     <p>{{ item._embedded.author[0].name }}</p>
                   </div>
                 </figcaption>
@@ -791,6 +851,8 @@ export default {
     }
     this.userId = process.env.MAILCHIMP_USERID
     this.listId = process.env.MAILCHIMP_LISTID
+    const navbar = document.querySelector('#navigation-container')
+    navbar.style.backgroundColor = '#F6FFFA'
   },
   methods: {
     dateFormatter(date) {

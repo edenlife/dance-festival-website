@@ -18,7 +18,14 @@
         </div>
         <h1 class="hero__title" v-html="article.title.rendered"></h1>
         <div class="hero__author">
-          <img :src="article._embedded.author[0].description" alt="" />
+          <img
+            :src="
+              article._embedded.author[0].description === ''
+                ? `https://res.cloudinary.com/eden-life-inc/image/upload/v1617954733/eden-website-v2/empty-male-member_j0cqu4.svg`
+                : article._embedded.author[0].description
+            "
+            alt=""
+          />
           <p>{{ article._embedded.author[0].name }}</p>
         </div>
         <div class="hero__featured">
@@ -216,7 +223,14 @@
                     <span>{{ dateFormatter(item.date) }}</span>
                   </div>
                   <div class="related__item-author">
-                    <img :src="item._embedded.author[0].description" alt="" />
+                    <img
+                      :src="
+                        item._embedded.author[0].description === ''
+                          ? `https://res.cloudinary.com/eden-life-inc/image/upload/v1617954733/eden-website-v2/empty-male-member_j0cqu4.svg`
+                          : item._embedded.author[0].description
+                      "
+                      alt=""
+                    />
                     <p>{{ item._embedded.author[0].name }}</p>
                   </div>
                 </figcaption>

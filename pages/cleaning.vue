@@ -893,7 +893,7 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
         title: 'Eden | Cleaning',
         description:
           'Professional cleaning at your doorstep. Up to thrice a week.',
-        url: `https://ouredenlifev2-staging.netlify.ap/cleaning`,
+        url: `https://ouredenlifev2-staging.netlify.app/cleaning`,
         mainImage:
           'https://ouredenlifev2-staging.netlify.app/edencardcleaning.png',
       }

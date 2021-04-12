@@ -731,7 +731,7 @@ export default {
         title: 'Eden | Laundry',
         description:
           'Your clothes, picked up, laundered and delivered to you in 48 hours or less.',
-        url: `https://ouredenlifev2-staging.netlify.ap/laundry`,
+        url: `https://ouredenlifev2-staging.netlify.app/laundry`,
         mainImage:
           'https://ouredenlifev2-staging.netlify.app/edencardlaundry.png',
       }

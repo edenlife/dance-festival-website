@@ -347,7 +347,7 @@
       </div>
       <div v-if="activeTabIndex === 0 && !isLoading" class="posts">
         <div class="posts__upper">
-          <div class="posts__featured">
+          <div v-if="featuredPost !== null" class="posts__featured">
             <h3 class="posts__featured-title">Featured Post</h3>
             <nuxt-link
               :to="{
@@ -808,14 +808,6 @@ export default {
       },
       showSuccessModal: false,
       showFailedModal: false,
-      allPosts: [],
-      featuredPost: [],
-      popularPost: [],
-      recommendedPost: [],
-      homePosts: [],
-      lifePosts: [],
-      foodPosts: [],
-      edenPosts: [],
       searchResults: [],
       suggestedPost: [],
       filteredSearchResults: [],
@@ -828,18 +820,42 @@ export default {
     },
   },
   async fetch() {
-    this.getFeaturedPost()
-    this.getRecommendedPost()
-    this.getPopularPost()
-    this.getHomePost()
-    this.getLifePost()
-    this.getEdenPost()
-    this.getFoodPost()
+    await this.fetchFeaturedPost()
+    await this.fetchRecommendedPost()
+    await this.fetchPopularPost()
+    await this.fetchHomePost()
+    await this.fetchLifePost()
+    await this.fetchEdenPost()
+    await this.fetchFoodPost()
     await this.fetchAllPosts()
   },
   computed: {
     blogNavId() {
       return this.$store.getters.blogNavId
+    },
+    allPosts() {
+      return this.$store.getters.getAllPosts
+    },
+    featuredPost() {
+      return this.$store.getters.getFeaturedPost
+    },
+    popularPost() {
+      return this.$store.getters.getPopularPost
+    },
+    recommendedPost() {
+      return this.$store.getters.getRecommendedPost
+    },
+    homePosts() {
+      return this.$store.getters.getHomePosts
+    },
+    lifePosts() {
+      return this.$store.getters.getLifePosts
+    },
+    foodPosts() {
+      return this.$store.getters.getFoodPosts
+    },
+    edenPosts() {
+      return this.$store.getters.getEdenPosts
     },
   },
   destroyed() {
@@ -900,11 +916,24 @@ export default {
       this.suggestedPost = this.allPosts.slice(0, 3)
     },
     async fetchAllPosts() {
+      if (this.allPosts.length) {
+        const quotient = Math.floor(this.allPosts.length / 8)
+        const remainder = this.allPosts.length % 8
+        remainder > 0
+          ? (this.pageCount = quotient + 1)
+          : (this.pageCount = quotient)
+        this.pagination = {
+          last_page: this.pageCount,
+          current_page: 1,
+        }
+        this.latestPost = this.allPosts.slice(0, 8)
+        return
+      }
       this.isLoading = true
-      const posts = await fetch(
+      let posts = await fetch(
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?page=1&per_page=50&_embed=1`
       ).then((res) => res.json())
-      this.allPosts = posts
+      posts = posts
         .filter((el) => el.status === 'publish')
         .map(
           ({
@@ -929,9 +958,10 @@ export default {
             categories,
           })
         )
+      this.$store.commit('setAllPosts', posts)
       this.isLoading = false
-      const quotient = Math.floor(this.allPosts.length / 8)
-      const remainder = this.allPosts.length % 8
+      const quotient = Math.floor(posts.length / 8)
+      const remainder = posts.length % 8
       remainder > 0
         ? (this.pageCount = quotient + 1)
         : (this.pageCount = quotient)
@@ -939,13 +969,15 @@ export default {
         last_page: this.pageCount,
         current_page: 1,
       }
-      this.latestPost = this.allPosts.slice(0, 8)
+      this.latestPost = posts.slice(0, 8)
     },
-    async getFeaturedPost() {
-      const post = await fetch(
+    async fetchFeaturedPost() {
+      if (this.featuredPost !== null) return
+      this.isLoading = true
+      let post = await fetch(
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?tags=8&_embed=1`
       ).then((res) => res.json())
-      const rawPost = post
+      post = post
         .filter((el) => el.status === 'publish')
         .map(
           ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
@@ -959,13 +991,16 @@ export default {
             _embedded,
           })
         )
-      this.featuredPost = rawPost[0]
+      this.$store.commit('setFeaturedPost', post[0])
+      this.isLoading = false
     },
-    async getRecommendedPost() {
-      const post = await fetch(
+    async fetchRecommendedPost() {
+      if (this.recommendedPost.length) return
+      this.isLoading = true
+      let post = await fetch(
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?tags=6&_embed=1`
       ).then((res) => res.json())
-      this.recommendedPost = post
+      post = post
         .filter((el) => el.status === 'publish')
         .map(
           ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
@@ -979,14 +1014,16 @@ export default {
             _embedded,
           })
         )
-
-      this.recommendedPost = this.recommendedPost.slice(0, 4)
+      this.$store.commit('setRecommendedPost', post.slice(0, 4))
+      this.isLoading = false
     },
-    async getPopularPost() {
-      const post = await fetch(
+    async fetchPopularPost() {
+      if (this.popularPost.length) return
+      this.isLoading = true
+      let post = await fetch(
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?tags=7&_embed=1`
       ).then((res) => res.json())
-      this.popularPost = post
+      post = post
         .filter((el) => el.status === 'publish')
         .map(
           ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
@@ -1000,13 +1037,16 @@ export default {
             _embedded,
           })
         )
-      this.popularPost = this.popularPost.slice(0, 4)
+      this.$store.commit('setPopularPost', post.slice(0, 4))
+      this.isLoading = false
     },
-    async getHomePost() {
-      const posts = await fetch(
+    async fetchHomePost() {
+      if (this.homePosts.length) return
+      this.isLoading = true
+      let posts = await fetch(
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?categories=2&_embed=1`
       ).then((res) => res.json())
-      this.homePosts = posts
+      posts = posts
         .filter((el) => el.status === 'publish')
         .map(
           ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
@@ -1020,12 +1060,16 @@ export default {
             _embedded,
           })
         )
+      this.$store.commit('setHomePosts', posts)
+      this.isLoading = false
     },
-    async getLifePost() {
-      const posts = await fetch(
+    async fetchLifePost() {
+      if (this.lifePosts.length) return
+      this.isLoading = true
+      let posts = await fetch(
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?categories=5&_embed=1`
       ).then((res) => res.json())
-      this.lifePosts = posts
+      posts = posts
         .filter((el) => el.status === 'publish')
         .map(
           ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
@@ -1039,12 +1083,17 @@ export default {
             _embedded,
           })
         )
+      this.$store.commit('setLifePosts', posts)
+      this.isLoading = false
     },
-    async getEdenPost() {
-      const posts = await fetch(
+    async fetchEdenPost() {
+      if (this.edenPosts.length) return
+      this.isLoading = true
+
+      let posts = await fetch(
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?categories=4&_embed=1`
       ).then((res) => res.json())
-      this.edenPosts = posts
+      posts = posts
         .filter((el) => el.status === 'publish')
         .map(
           ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
@@ -1058,12 +1107,17 @@ export default {
             _embedded,
           })
         )
+      this.$store.commit('setEdenPosts', posts)
+      this.isLoading = false
     },
-    async getFoodPost() {
-      const posts = await fetch(
+    async fetchFoodPost() {
+      if (this.foodPosts.length) return
+      this.isLoading = true
+
+      let posts = await fetch(
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?categories=3&_embed=1`
       ).then((res) => res.json())
-      this.foodPosts = posts
+      posts = posts
         .filter((el) => el.status === 'publish')
         .map(
           ({ id, slug, title, excerpt, date, tags, content, _embedded }) => ({
@@ -1077,6 +1131,8 @@ export default {
             _embedded,
           })
         )
+      this.$store.commit('setFoodPosts', posts)
+      this.isLoading = false
     },
     getCategory(id) {
       this.$refs['nav-container'].scrollIntoView()

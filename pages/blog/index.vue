@@ -882,6 +882,7 @@ export default {
       this.activeTabIndex = 0
       this.search = ''
       this.resultTabIndex = 0
+      this.pagination.current_page = 1
     },
     resultCategory(id) {
       this.resultTabIndex = id

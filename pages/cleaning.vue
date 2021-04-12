@@ -757,6 +757,7 @@
 import { pricing } from '~/static/pricing'
 import { currencyFormat, scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import getSiteMeta from '~/utils/getSiteMeta'
 
 export default {
   data() {
@@ -872,6 +873,32 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
         qty: 4,
       },
     }
+  },
+  head() {
+    return {
+      title: 'Eden | Cleaning',
+      meta: [...this.meta],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlifev2-staging.netlify.app/cleaning`,
+        },
+      ],
+    }
+  },
+  computed: {
+    meta() {
+      const metaData = {
+        title: 'Eden | Cleaning',
+        description:
+          'Professional cleaning at your doorstep. Up to thrice a week.',
+        url: `https://ouredenlifev2-staging.netlify.ap/cleaning`,
+        mainImage:
+          'https://ouredenlifev2-staging.netlify.app/edencardcleaning.png',
+      }
+      return getSiteMeta(metaData)
+    },
   },
   mounted() {
     window.addEventListener('scroll', this.isInViewport)

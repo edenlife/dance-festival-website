@@ -819,6 +819,7 @@ import {
   placeholderColorMix,
 } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import getSiteMeta from '~/utils/getSiteMeta'
 
 export default {
   components: {
@@ -855,6 +856,31 @@ export default {
       showAllMeal: false,
     }
   },
+  head() {
+    return {
+      title: 'Eden | Food',
+      meta: [...this.meta],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlifev2-staging.netlify.app/food`,
+        },
+      ],
+    }
+  },
+  computed: {
+    meta() {
+      const metaData = {
+        title: 'Eden | Food',
+        description:
+          'Your chef-cooked meals, delivered to you. Daily or weekly.',
+        url: `https://ouredenlifev2-staging.netlify.ap/food`,
+        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
+      }
+      return getSiteMeta(metaData)
+    },
+  },
 
   watch: {
     weekly(val) {
@@ -862,6 +888,7 @@ export default {
       this.weekly_price = weeklyDefault * val
     },
   },
+
   mounted() {
     window.addEventListener('scroll', this.isInViewport)
     mixpanelTrackEvent('Food page')

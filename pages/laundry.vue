@@ -655,6 +655,7 @@
 import { pricing } from '~/static/pricing'
 import { currencyFormat, scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import getSiteMeta from '~/utils/getSiteMeta'
 
 export default {
   data() {
@@ -710,6 +711,32 @@ export default {
       totalWashDryPrice: null,
       totalWashIronPrice: null,
     }
+  },
+  head() {
+    return {
+      title: 'Eden | Laundry',
+      meta: [...this.meta],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlifev2-staging.netlify.app/laundry`,
+        },
+      ],
+    }
+  },
+  computed: {
+    meta() {
+      const metaData = {
+        title: 'Eden | Laundry',
+        description:
+          'Your clothes, picked up, laundered and delivered to you in 48 hours or less.',
+        url: `https://ouredenlifev2-staging.netlify.ap/laundry`,
+        mainImage:
+          'https://ouredenlifev2-staging.netlify.app/edencardlaundry.png',
+      }
+      return getSiteMeta(metaData)
+    },
   },
   mounted() {
     window.addEventListener('scroll', this.isInViewport)

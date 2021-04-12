@@ -100,6 +100,7 @@ export default {
     '~/plugins/flutterwave',
     '~/plugins/vue-social-sharing.js',
     '~/plugins/vue-mailchimp-subscribe.js',
+    { src: '~/plugins/vue-persist.js', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

@@ -754,6 +754,7 @@ import { required, email } from 'vuelidate/lib/validators'
 import dayjs from 'dayjs'
 import MailchimpSubscribe from 'vue-mailchimp-subscribe'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import getSiteMeta from '~/utils/getSiteMeta'
 
 export default {
   components: {
@@ -814,11 +815,6 @@ export default {
       latestPost: [],
     }
   },
-  validations: {
-    form: {
-      email: { required, email },
-    },
-  },
   async fetch() {
     await this.fetchFeaturedPost()
     await this.fetchRecommendedPost()
@@ -829,7 +825,35 @@ export default {
     await this.fetchFoodPost()
     await this.fetchAllPosts()
   },
+
+  head() {
+    return {
+      title: 'The Good Life',
+      meta: [...this.meta],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlifev2-staging.netlify.app/blog`,
+        },
+      ],
+    }
+  },
+  validations: {
+    form: {
+      email: { required, email },
+    },
+  },
   computed: {
+    meta() {
+      const metaData = {
+        title: 'The Good Life',
+        description: `The Good Life is the best place for how-tos, great food, tips on living well in Nigeria, and so much more. <br><br> Powered by Eden Life.`,
+        url: `https://ouredenlifev2-staging.netlify.app/blog`,
+        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencardblog.png',
+      }
+      return getSiteMeta(metaData)
+    },
     blogNavId() {
       return this.$store.getters.blogNavId
     },

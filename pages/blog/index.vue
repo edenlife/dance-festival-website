@@ -14,7 +14,11 @@
             description=""
             hashtags=""
           >
-            <img :src="require(`~/assets/images/twitter.svg`)" alt="twitter" />
+            <img
+              :src="require(`~/assets/images/twitter.svg`)"
+              alt="twitter"
+              @click.prevent="openSocialMedia('Twitter')"
+            />
           </ShareNetwork>
           <ShareNetwork
             network="whatsapp"
@@ -25,6 +29,7 @@
             <img
               :src="require(`~/assets/images/whatsapp.svg`)"
               alt="whatsapp"
+              @click.prevent="openSocialMedia('Whatsapp')"
             />
           </ShareNetwork>
 
@@ -35,6 +40,7 @@
             <img
               :src="require(`~/assets/images/facebook.svg`)"
               alt="facebook"
+              @click="openSocialMedia('Facebook')"
             />
           </a>
           <ShareNetwork
@@ -46,6 +52,7 @@
             <img
               :src="require(`~/assets/images/linkedin.svg`)"
               alt="linkedin"
+              @click.prevent="openSocialMedia('LinkedIn')"
             />
           </ShareNetwork>
         </div>
@@ -889,6 +896,7 @@ export default {
     this.$store.commit('blogNavId', null)
   },
   mounted() {
+    mixpanelTrackEvent('Blog page')
     if (this.blogNavId !== null) {
       this.activeTabIndex = this.blogNavId
     }
@@ -1187,9 +1195,8 @@ export default {
           console.log('default')
       }
     },
-    openSocialMedia(name, url) {
-      mixpanelTrackEvent(`${name} icon clicked - Blog`)
-      window.open(url, '_blank')
+    openSocialMedia(name) {
+      mixpanelTrackEvent(`${name} share icon clicked - Blog`)
     },
   },
 }

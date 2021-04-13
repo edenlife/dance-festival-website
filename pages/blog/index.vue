@@ -815,6 +815,13 @@ export default {
       latestPost: [],
     }
   },
+
+  validations: {
+    form: {
+      email: { required, email },
+    },
+  },
+
   async fetch() {
     await this.fetchFeaturedPost()
     await this.fetchRecommendedPost()
@@ -839,11 +846,7 @@ export default {
       ],
     }
   },
-  validations: {
-    form: {
-      email: { required, email },
-    },
-  },
+
   computed: {
     meta() {
       const metaData = {

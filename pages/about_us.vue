@@ -69,7 +69,10 @@
         </div>
         <div class="humaans__gallery">
           <figure v-for="item in humaans" :key="item.id">
-            <div class="humaans__gallery-img">
+            <div
+              class="humaans__gallery-img"
+              :class="{ empty: item.image.includes('empty') }"
+            >
               <img :src="item.image" :alt="item.name" />
             </div>
             <figcaption>
@@ -140,13 +143,6 @@ export default {
             'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919035/eden-website-v2/awazi_wef42h.png',
           name: 'Awazi Angbalaga',
           role: 'Happiness Engineering',
-        },
-        {
-          id: 6,
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919033/eden-website-v2/georgina_nsscpz.png',
-          name: 'Georgina Nwauko',
-          role: 'Supply',
         },
         {
           id: 7,
@@ -403,7 +399,7 @@ export default {
         {
           id: 43,
           image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1615990268/eden-website-v2/Fatimah_Ologbonori_Food_Production_w0xl4z.jpg',
+            'https://res.cloudinary.com/eden-life-inc/image/upload/v1617954732/eden-website-v2/empty-female-member_nda8ka.svg',
           name: 'Fatimah Ologbonori',
           role: 'Food Production',
         },

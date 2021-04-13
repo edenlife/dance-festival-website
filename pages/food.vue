@@ -801,7 +801,7 @@
 
 <script>
 // import Carousel from 'vue-owl-carousel'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import foodMessages from '~/static/foodMessages'
 import { pricing } from '~/static/pricing'
 import {
@@ -810,6 +810,7 @@ import {
   placeholderColorMix,
 } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import getSiteMeta from '~/utils/getSiteMeta'
 
 export default {
   components: {
@@ -846,6 +847,31 @@ export default {
       showAllMeal: false,
     }
   },
+  head() {
+    return {
+      title: 'Eden | Food',
+      meta: [...this.meta],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlife.com/food`,
+        },
+      ],
+    }
+  },
+  computed: {
+    meta() {
+      const metaData = {
+        title: 'Eden | Food',
+        description:
+          'Your chef-cooked meals, delivered to you. Daily or weekly.',
+        url: `https://ouredenlife.com/food`,
+        mainImage: 'https://ouredenlife.com/edencardfood.png',
+      }
+      return getSiteMeta(metaData)
+    },
+  },
 
   watch: {
     weekly(val) {
@@ -853,6 +879,7 @@ export default {
       this.weekly_price = weeklyDefault * val
     },
   },
+
   mounted() {
     window.addEventListener('scroll', this.isInViewport)
     mixpanelTrackEvent('Food page')
@@ -928,13 +955,13 @@ export default {
       }
     },
     fetchMeal() {
-      this.lastDateFormat = moment(new Date())
+      this.lastDateFormat = dayjs(new Date())
         .endOf('week')
         .format('DD MMM YYYY')
-      this.firstDateFormat = moment(new Date())
+      this.firstDateFormat = dayjs(new Date())
         .startOf('week')
         .format('DD MMM YYYY')
-      const dateData = moment(new Date()).format('DD-MM-YYYY')
+      const dateData = dayjs(new Date()).format('DD-MM-YYYY')
       fetch(
         `https://api.edenlife.ng/api/v2/meal/items/all?current_date=${dateData}`
       )

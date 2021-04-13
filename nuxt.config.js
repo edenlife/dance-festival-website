@@ -1,6 +1,22 @@
+import axios from 'axios'
+import getSiteMeta from './utils/getSiteMeta'
+import getRoutes from './utils/getRoutes'
+
+const dynamicRoutes = () => {
+  return axios
+    .get(
+      'https://wordpress.edenlife.ng/wp-json/wp/v2/posts?_fields=id,slug&per_page=100&offset=0'
+    )
+    .then((res) => {
+      return res.data.map((post) => `/blog/${post.slug}-${post.id}`)
+    })
+}
+
+const meta = getSiteMeta()
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-  ssr: false,
+  ssr: true,
 
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -9,6 +25,7 @@ export default {
   head: {
     title: 'Eden | Say Goodbye To Chores Forever',
     meta: [
+      ...meta,
       { charset: 'utf-8' },
       { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -20,73 +37,36 @@ export default {
 
       { name: 'author', content: 'Eden Life Concierge Ltd' },
       { name: 'theme-color', content: '#20B26D' },
+      { name: 'Eden', content: 'True' },
+      { property: 'og:site_name', content: 'Eden' },
       {
+        hid: 'description',
         name: 'description',
         content:
           "Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!",
       },
       {
+        hid: 'keywords',
         name: 'keywords',
         content:
           'Eden Life in Nigeria, Eden Concierge in Nigeria, Eden Concierge, Eden Life, Improving quality of life, Quality of Life in Nigeria, Excellent service, Food service, Laundry service, AC service, Home cleaning service, Light cleaning service, Home Deep cleaning service, Concierge to make you productive, eden app, Eden Nigeria, butler app, home concierge, eden, home assistants, convenience at home, edenlife, Eden, house helps, house maids, maids, house helps in Nigeria, house maids in Nigeria, Automate chores, Efficient household management, Avoiding housework, Tired of housework',
       },
-
-      // Schema.org markup for Google+
-      { itemprop: 'name', content: 'Eden' },
-      { itemprop: 'description', content: 'Say goodbye to chores forever.' },
-      {
-        itemprop: 'image',
-        content: 'https://ouredenlife.com/edencard.png',
-      },
-
-      // Twitter Card data
+      { property: 'og:image:width', content: '740' },
+      { property: 'og:image:height', content: '300' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@ouredenlife' },
-      { name: 'twitter:title', content: 'Eden' },
-      { name: 'twitter:url', content: 'https://ouredenlife.com' },
-      {
-        name: 'twitter:image',
-        content: 'https://ouredenlife.com/edencard.png',
-      },
-      {
-        name: 'twitter:description',
-        content:
-          "Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!",
-      },
       { name: 'twitter:app:country', content: 'NG' },
       { name: 'twitter:creator', content: '@ouredenlife' },
       { name: 'twitter:domain', content: '@ouredenlife' },
+    ],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
-        name: 'twitter:image:src',
-        content: 'https://ouredenlife.com/edencard.png',
-      },
-
-      // Open Graph data
-      { property: 'og:title', content: 'Eden' },
-      { property: 'og:url', content: 'https://ouredenlife.com' },
-      {
-        property: 'og:image',
-        content: 'https://ouredenlife.com/edencard.png',
-      },
-      {
-        property: 'og:description',
-        content:
-          "Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!",
-      },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:site_name', content: 'Eden' },
-      {
-        hid: 'og:type',
-        property: 'og:site_name',
-        content: 'Eden',
-      },
-      {
-        hid: 'og:title',
-        property: 'og:title',
-        content: 'Eden',
+        hid: 'canonical',
+        rel: 'canonical',
+        href: 'https://ouredenlife.com',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
   script: [
@@ -135,10 +115,18 @@ export default {
   env: {
     PAYSTACK_KEY_TEST: 'pk_live_78ed64a0265d4e0bdea74e76e7243c577d365219',
     RAVE_KEY_TEST: 'FLWPUBK-d4dfef720154b7df12637126423b02c5-X',
+    MAILCHIMP_USERID: '8d551f5341eee34aa00432838',
+    MAILCHIMP_LISTID: '987fa4d39c',
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/flutterwave', '~/plugins/hotjar'],
+  plugins: [
+    '~/plugins/flutterwave',
+    '~/plugins/vue-social-sharing.js',
+    '~/plugins/vue-mailchimp-subscribe.js',
+    { src: '~/plugins/hotjar', ssr: false },
+    { src: '~/plugins/vue-persist.js', ssr: false },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -175,6 +163,8 @@ export default {
     ],
     // intercom setup
     'nuxt-intercom',
+
+    '@nuxtjs/sitemap',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -191,9 +181,26 @@ export default {
   build: {
     transpile: ['gsap'],
   },
+
+  sitemap: {
+    hostname: 'https://ouredenlife.com',
+    gzip: true,
+    path: '/sitemap.xml',
+    cacheTime: 1000 * 60 * 60 * 2,
+    trailingSlash: true,
+    routes: () => {
+      return getRoutes()
+    },
+  },
+
   // add intercom
   intercom: {
     appId: 's0gimx8q',
     hideDefaultLauncher: true,
+  },
+
+  generate: {
+    routes: dynamicRoutes,
+    fallback: true,
   },
 }

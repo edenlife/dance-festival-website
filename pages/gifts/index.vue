@@ -244,10 +244,9 @@
 <script>
 import Cart from '@/components/Cart'
 import giftTypes from 'static/giftTypes'
-
 import GiftPackage from '@/components/GiftPackage'
-
 import { mixpanelTrackEvent } from '@/plugins/mixpanel'
+import getSiteMeta from '~/utils/getSiteMeta'
 
 export default {
   components: { Cart, GiftPackage },
@@ -264,7 +263,31 @@ export default {
       showCart: false,
     }
   },
+
+  head() {
+    return {
+      title: 'Eden | Gifts',
+      meta: [...this.meta],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlife.com/gifts`,
+        },
+      ],
+    }
+  },
   computed: {
+    meta() {
+      const metaData = {
+        title: 'Eden | Gifts',
+        description:
+          'Gift cards and gift boxes for every occasion, right at your fingertips.',
+        url: `https://ouredenlife.com/gifts`,
+        mainImage: 'https://ouredenlife.com/edencardgifting.png',
+      }
+      return getSiteMeta(metaData)
+    },
     cartItems() {
       return this.$store.getters.cart.length
     },

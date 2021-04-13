@@ -40,7 +40,7 @@
             <img
               :src="require(`~/assets/images/facebook.svg`)"
               alt="facebook"
-              @click.prevent="openSocialMedia('Facebook')"
+              @click="openSocialMedia('Facebook')"
             />
           </a>
           <ShareNetwork
@@ -897,7 +897,6 @@ export default {
   },
   mounted() {
     mixpanelTrackEvent('Blog page')
-
     if (this.blogNavId !== null) {
       this.activeTabIndex = this.blogNavId
     }

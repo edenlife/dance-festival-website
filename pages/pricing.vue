@@ -1096,13 +1096,13 @@ export default {
         },
         {
           name: 'Study',
-          value: 'study',
+          value: 'study-store',
           label: 'study',
           qty: 0,
         },
         {
           name: 'Balcony',
-          value: 'balcony',
+          value: 'outdoor-balcony',
           label: 'balcony',
           qty: 0,
         },

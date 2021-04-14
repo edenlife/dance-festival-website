@@ -7,54 +7,54 @@
           <p>by Eden.</p>
         </div>
         <div class="hero__social">
-          <ShareNetwork
-            network="twitter"
-            url="https://ouredenlifev2-staging.netlify.app/blog"
-            title=""
-            description=""
-            hashtags=""
-          >
-            <img
-              :src="require(`~/assets/images/twitter.svg`)"
-              alt="twitter"
-              @click.prevent="openSocialMedia('Twitter')"
-            />
-          </ShareNetwork>
-          <ShareNetwork
-            network="whatsapp"
-            url="https://ouredenlifev2-staging.netlify.app/blog"
-            title=""
-            description=""
-          >
-            <img
-              :src="require(`~/assets/images/whatsapp.svg`)"
-              alt="whatsapp"
-              @click.prevent="openSocialMedia('Whatsapp')"
-            />
-          </ShareNetwork>
-
           <a
-            href="https://www.facebook.com/sharer/sharer.php?u=https://ouredenlifev2-staging.netlify.app/blog"
+            href="https://twitter.com/ouredenlife"
             target="_blank"
+            @click.prevent="
+              openSocialMedia('Twitter', 'https://twitter.com/ouredenlife')
+            "
+          >
+            <img :src="require(`~/assets/images/twitter.svg`)" alt="twitter" />
+          </a>
+          <a
+            href="https://instagram.com/ouredenlife"
+            target="_blank"
+            @click.prevent="
+              openSocialMedia('Instagram', 'https://instagram.com/ouredenlife')
+            "
+          >
+            <img
+              :src="require(`~/assets/images/instagram.svg`)"
+              alt="instagram"
+            />
+          </a>
+          <a
+            href="https://facebook.com/ouredenlife"
+            target="_blank"
+            @click.prevent="
+              openSocialMedia('Facebook', 'https://facebook.com/ouredenlife')
+            "
           >
             <img
               :src="require(`~/assets/images/facebook.svg`)"
               alt="facebook"
-              @click="openSocialMedia('Facebook')"
             />
           </a>
-          <ShareNetwork
-            network="LinkedIn"
-            url="https://ouredenlifev2-staging.netlify.app/blog"
-            title=""
-            description=""
+          <a
+            href="https://www.linkedin.com/company/ouredenlife/"
+            target="_blank"
+            @click.prevent="
+              openSocialMedia(
+                'LinkedIn',
+                'https://www.linkedin.com/company/ouredenlife/'
+              )
+            "
           >
             <img
               :src="require(`~/assets/images/linkedin.svg`)"
               alt="linkedin"
-              @click.prevent="openSocialMedia('LinkedIn')"
             />
-          </ShareNetwork>
+          </a>
         </div>
       </header>
     </div>
@@ -1195,8 +1195,9 @@ export default {
           console.log('default')
       }
     },
-    openSocialMedia(name) {
-      mixpanelTrackEvent(`${name} share icon clicked - Blog`)
+    openSocialMedia(name, url) {
+      mixpanelTrackEvent(`${name} icon clicked - Blog`)
+      window.open(url, '_blank')
     },
   },
 }

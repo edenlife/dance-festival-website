@@ -64,21 +64,23 @@ export const pricing = (services) => {
 
       switch (item) {
         case 'light-cleaning':
-          if (areasTotalPrice >= 7000 && areasTotalPrice < 8000) {
-            discount = 1000
-          } else if (areasTotalPrice >= 8000 && areasTotalPrice < 13000) {
-            discount = 2000
-          } else if (areasTotalPrice >= 13000) {
+          if (areasTotalPrice >= 15000) {
             discount = 3000
+          } else if (areasTotalPrice >= 9000) {
+            discount = 2000
+          } else if (areasTotalPrice >= 7000) {
+            discount = 1000
           }
           break
         case 'deep-cleaning':
-          if (areasTotalPrice >= 25000 && areasTotalPrice < 30000) {
-            discount = 5000
-          } else if (areasTotalPrice >= 30000 && areasTotalPrice < 35000) {
-            discount = 10000
-          } else if (areasTotalPrice >= 35000) {
+          if (areasTotalPrice >= 90000) {
+            discount = 20000
+          } else if (areasTotalPrice >= 50000) {
             discount = 15000
+          } else if (areasTotalPrice >= 40000) {
+            discount = 10000
+          } else if (areasTotalPrice >= 30000) {
+            discount = 5000
           }
           break
         case 'fumigation':
@@ -88,7 +90,8 @@ export const pricing = (services) => {
       }
 
       const monthlyFrequency = TIMES_PER_MONTH[frequency]
-      return (areasTotalPrice - discount) * monthlyFrequency
+      const unitPrice = areasTotalPrice - discount
+      return (unitPrice < 5000 ? 5000 : unitPrice) * monthlyFrequency
     },
     laundry: ({ item, frequency, qty }) => {
       const itemKey = item.toLowerCase().split(' ').join('-')

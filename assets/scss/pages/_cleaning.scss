@@ -794,6 +794,7 @@
           }
           .select {
             width: 100%;
+            max-width: 490px;
             border: 1px solid #e4e8e6;
             @include font-size(lg);
             border-radius: 8px;
@@ -802,7 +803,6 @@
             color: color(eden-neutral-1);
             height: 60px;
             padding: $gap + 8 $gap + 6;
-
             &:focus,
             &:active,
             &:hover {
@@ -883,6 +883,7 @@
                   display: flex;
                   justify-content: space-between;
                   align-items: stretch;
+                  margin-left: $gap;
                   &-qty {
                     align-self: center;
                     padding: 0 $gap + 5;
@@ -1064,9 +1065,11 @@
             }
             .select {
               height: 48px;
+              padding: $gap + 2 $gap + 6;
+
               .selector {
                 .arrow {
-                  top: 0px;
+                  top: 6px;
                 }
                 &--room {
                   width: 110%;

@@ -382,7 +382,7 @@
                               :key="i"
                               class="control"
                             >
-                              <span>{{ item.name }}</span>
+                              <span>{{ item.cleaning_area_name }}</span>
                               <span class="control__item">
                                 <button
                                   class="control__item-btn"
@@ -527,7 +527,7 @@
                               :key="i"
                               class="control"
                             >
-                              <span>{{ item.name }}</span>
+                              <span>{{ item.cleaning_area_name }}</span>
                               <span class="control__item">
                                 <button
                                   class="control__item-btn"
@@ -826,44 +826,7 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
       totalPrice: null,
       visible: [],
       roomTypes: null,
-      cleaningQtyOption: [
-        {
-          name: 'Bedroom',
-          value: 'bedrooms',
-          label: 'bedroom',
-          qty: 1,
-        },
-        {
-          name: 'Bathroom',
-          value: 'bathrooms',
-          label: 'bathroom',
-          qty: 1,
-        },
-        {
-          name: 'Living and Dining room',
-          value: 'living-rooms-dining-areas',
-          label: 'living room',
-          qty: 1,
-        },
-        {
-          name: 'Kitchen',
-          value: 'kitchen',
-          label: 'kitchen',
-          qty: 1,
-        },
-        {
-          name: 'Study',
-          value: 'study',
-          label: 'study',
-          qty: 0,
-        },
-        {
-          name: 'Balcony',
-          value: 'balcony',
-          label: 'balcony',
-          qty: 0,
-        },
-      ],
+      cleaningQtyOption: [],
       cleaningServiceTypes: [],
       cleaningInfo: {
         item: 'light-cleaning',
@@ -964,6 +927,17 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
         .then((res) => res.json())
         .then((cleaningResponse) => {
           this.cleaningServiceTypes = cleaningResponse.data
+          const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
+            ({ name }) => name.toLowerCase() === 'light cleaning'
+          )
+          this.cleaningQtyOption = cleaning_areas.map((obj) => ({
+            ...obj,
+            qty: 0,
+          }))
+          this.cleaningQtyOption[0].qty = 1
+          this.cleaningQtyOption[1].qty = 1
+          this.cleaningQtyOption[2].qty = 1
+          this.cleaningQtyOption[3].qty = 1
           this.setCleaningArea('light cleaning')
           this.calculateCleaningPrice()
         })
@@ -988,16 +962,14 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
       this.getEstimateRoomTypes()
     },
     setCleaningArea(area) {
-      const selectedArea = this.cleaningServiceTypes.filter((item) => {
-        return item.name.toLowerCase() === area.toLowerCase()
-      })
-      selectedArea[0].cleaning_areas.forEach((area) => {
-        this.cleaningInfo.itemAreasPrice[area.slug] = area.price
-      })
-      selectedArea[0].cleaning_areas.forEach((e1) =>
+      const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
+        ({ name }) => name.toLowerCase() === area.toLowerCase()
+      )
+      cleaning_areas.forEach((e1) =>
         this.cleaningQtyOption.forEach((e2) => {
-          if (e1.slug === e2.value) {
+          if (e1.slug === e2.slug) {
             this.cleaningInfo.itemAreas[e1.slug] = e2.qty
+            this.cleaningInfo.itemAreasPrice[e1.slug] = e1.price
           }
         })
       )
@@ -1036,11 +1008,7 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
         return item.qty !== 0
       })
       const rooms = filterRoom.map((item) => {
-        if (item.qty > 1) {
-          return item.qty + ' ' + item.label + 's'
-        } else {
-          return item.qty + ' ' + item.label
-        }
+        return item.qty + ' ' + item.cleaning_area_name
       })
       this.roomTypes = rooms.join(', ')
     },

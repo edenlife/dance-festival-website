@@ -91,6 +91,9 @@ export const pricing = (services) => {
 
       const monthlyFrequency = TIMES_PER_MONTH[frequency]
       const unitPrice = areasTotalPrice - discount
+      if (unitPrice === 0) {
+        return 0
+      }
       return (unitPrice < 5000 ? 5000 : unitPrice) * monthlyFrequency
     },
     laundry: ({ item, frequency, qty }) => {

@@ -639,7 +639,7 @@
                             <transition name="slide-fade">
                               <ul>
                                 <li
-                                  v-for="(item, i) in cleaningTypeOption"
+                                  v-for="(item, i) in cleaningOptions"
                                   :key="i"
                                 >
                                   <span
@@ -749,7 +749,7 @@
                                   :key="i"
                                   class="control"
                                 >
-                                  <span>{{ item.name }}</span>
+                                  <span>{{ item.cleaning_area_name }}</span>
                                   <span class="control__item">
                                     <button
                                       class="control__item-btn"
@@ -1045,14 +1045,14 @@ export default {
       laundryQty: 1,
       cleaningFrequency: 'Every two weeks',
       cleaningType: 'Light cleaning',
-      cleaningTypeOption: [
+      cleaningOptions: [
         {
-          name: 'Light cleaning',
+          name: 'Light Cleaning',
           value: 'light-cleaning',
           type: 'cleaning',
         },
         {
-          name: 'Deep cleaning',
+          name: 'Deep Cleaning',
           value: 'deep-cleaning',
           type: 'cleaning',
         },
@@ -1063,44 +1063,7 @@ export default {
         },
       ],
       roomTypes: null,
-      cleaningQtyOption: [
-        {
-          name: 'Bedroom',
-          value: 'bedrooms',
-          label: 'bedroom',
-          qty: 1,
-        },
-        {
-          name: 'Bathroom',
-          value: 'bathrooms',
-          label: 'bathroom',
-          qty: 1,
-        },
-        {
-          name: 'Living and Dining room',
-          value: 'living-rooms-dining-areas',
-          label: 'living room',
-          qty: 1,
-        },
-        {
-          name: 'Kitchen',
-          value: 'kitchen',
-          label: 'kitchen',
-          qty: 1,
-        },
-        {
-          name: 'Study',
-          value: 'study',
-          label: 'study',
-          qty: 0,
-        },
-        {
-          name: 'Balcony',
-          value: 'balcony',
-          label: 'balcony',
-          qty: 0,
-        },
-      ],
+      cleaningQtyOption: [],
       foodSummary: [],
       laundrySummary: [],
       cleaningSummary: [],
@@ -1118,7 +1081,7 @@ export default {
         itemAreas: {},
         itemAreasPrice: {},
         frequency: 'bi-weekly',
-        qty: 4,
+        qty: 2,
       },
       loading: false,
       totalFoodSummary: {},
@@ -1305,6 +1268,10 @@ export default {
       this.displayForm = false
       this.estimate = 1
       this.selectedService = ['Food', 'Laundry']
+      this.cleaningQtyOption[0].qty = 1
+      this.cleaningQtyOption[1].qty = 1
+      this.cleaningQtyOption[2].qty = 1
+      this.cleaningQtyOption[3].qty = 1
       this.getEstimate()
     },
     setPlanConfig() {
@@ -2028,6 +1995,20 @@ export default {
         .then((res) => res.json())
         .then((cleaningResponse) => {
           this.cleaningServiceTypes = cleaningResponse.data
+          const [{ name: optionName }] = this.cleaningOptions.filter(
+            ({ value }) => value === 'light-cleaning'
+          )
+          const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
+            ({ name }) => name === optionName
+          )
+          this.cleaningQtyOption = cleaning_areas.map((obj) => ({
+            ...obj,
+            qty: 0,
+          }))
+          this.cleaningQtyOption[0].qty = 1
+          this.cleaningQtyOption[1].qty = 1
+          this.cleaningQtyOption[2].qty = 1
+          this.cleaningQtyOption[3].qty = 1
           this.setCleaningArea('light cleaning')
           this.getEstimate()
           this.loading = false
@@ -2074,19 +2055,18 @@ export default {
       }
     },
     setCleaningArea(area) {
-      const selectedArea = this.cleaningServiceTypes.filter((item) => {
-        return item.name.toLowerCase() === area.toLowerCase()
-      })
-      selectedArea[0].cleaning_areas.forEach((area) => {
-        this.cleaningInfo.itemAreasPrice[area.slug] = area.price
-      })
-      selectedArea[0].cleaning_areas.forEach((e1) =>
+      const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
+        ({ name }) => name.toLowerCase() === area.toLowerCase()
+      )
+      cleaning_areas.forEach((e1) =>
         this.cleaningQtyOption.forEach((e2) => {
-          if (e1.slug === e2.value) {
+          if (e1.slug === e2.slug) {
             this.cleaningInfo.itemAreas[e1.slug] = e2.qty
+            this.cleaningInfo.itemAreasPrice[e1.slug] = e1.price
           }
         })
       )
+      console.log(this.cleaningInfo)
     },
     getCleaningPrice(plan) {
       if (plan.type === 'cleaning') {
@@ -2147,11 +2127,7 @@ export default {
         return item.qty !== 0
       })
       const rooms = filterRoom.map((item) => {
-        if (item.qty > 1) {
-          return item.qty + ' ' + item.label + 's'
-        } else {
-          return item.qty + ' ' + item.label
-        }
+        return item.qty + ' ' + item.cleaning_area_name
       })
       this.roomTypes = rooms.join(', ')
     },

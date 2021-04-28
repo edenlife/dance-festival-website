@@ -240,7 +240,7 @@
           <Loader />
           <p>Loading menu...</p>
         </div>
-        <nav class="menu__nav">
+        <nav v-if="tabs.length" class="menu__nav">
           <carousel
             class="carousel-container"
             :nav="false"
@@ -251,7 +251,7 @@
                 items: 1,
               },
               600: {
-                items: 3,
+                items: 8,
               },
             }"
           >

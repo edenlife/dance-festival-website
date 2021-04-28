@@ -345,10 +345,15 @@ export default {
       }
     },
     fetchMeal() {
-      this.lastDateFormat = dayjs(new Date())
+      const today = new Date()
+      this.lastDateFormat = dayjs(
+        new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7)
+      )
         .endOf('week')
         .format('DD MMM YYYY')
-      this.firstDateFormat = dayjs(new Date())
+      this.firstDateFormat = dayjs(
+        new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7)
+      )
         .startOf('week')
         .format('DD MMM YYYY')
       // const dateData = dayjs(new Date()).format('DD-MM-YYYY')

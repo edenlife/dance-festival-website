@@ -236,11 +236,11 @@
           <h3>Current menu</h3>
           <p>{{ firstDateFormat }} - {{ lastDateFormat }}</p>
         </div>
-        <div v-if="!newWeekMeal.length" class="menu__loader">
+        <div v-if="!allMeal.length" class="menu__loader">
           <Loader />
           <p>Loading menu...</p>
         </div>
-        <!-- <nav class="menu__nav">
+        <nav class="menu__nav">
           <carousel
             class="carousel-container"
             :nav="false"
@@ -277,13 +277,13 @@
               v-for="(tab, index) in tabs"
               :key="index"
               class="menu__nav-item"
-              @click.prevent="activeTabIndex = index"
+              @click.prevent="changeCategory(tab)"
             >
-              <p :class="`${activeTabIndex === index ? 'active' : ''}`">
-                {{ tab.title }}
+              <p :class="`${activeTabIndex === tab ? 'active' : ''}`">
+                {{ tab }}
               </p>
               <svg
-                v-if="activeTabIndex === index"
+                v-if="activeTabIndex === tab"
                 width="6"
                 height="6"
                 viewBox="0 0 6 6"
@@ -312,54 +312,31 @@
                 </svg> </span
             ></template>
           </carousel>
-        </nav> -->
+        </nav>
         <div id="load-more" class="menu__list">
-          <figure v-for="(item, i) in newWeekMeal" :key="i">
-            <div
-              v-if="item.combo_image_url === null"
-              class="menu__list-img fallback"
-            >
+          <figure v-for="(item, i) in mealsInCategory" :key="i">
+            <div v-if="!item.image" class="menu__list-img fallback">
               <img
                 src="https://res.cloudinary.com/eden-life-inc/image/upload/v1612250107/eden-website-v2/food-fallback_gnwkhu.png"
                 :alt="item.name"
               />
             </div>
             <div v-else class="menu__list-img" :style="placeholderColorMix(i)">
-              <img
-                :src="optimizeImage(item.combo_image_url, i)"
-                :alt="item.name"
-              />
+              <img :src="optimizeImage(item.image, i)" :alt="item.name" />
             </div>
             <figcaption>
-              <p v-if="item.name && item.name.includes('500ml')">
-                {{ item.name.replace('500ml', '') }}
-              </p>
-              <p v-else-if="item.name && item.name.includes('500ML')">
-                {{ item.name.replace('500ML', '') }}
-              </p>
-              <p v-else-if="item.name && item.name.includes('1L')">
-                {{ item.name.replace('1L', '') }}
-              </p>
-              <p v-else>
-                {{ item.name }}
+              <p>
+                {{
+                  `${item.name}${
+                    item.main_sides ? ', ' + item.main_sides : ''
+                  }${item.protein_sides ? ', ' + item.protein_sides : ''}${
+                    item.other_sides ? ', ' + item.other_sides : ''
+                  }`
+                }}
               </p>
             </figcaption>
           </figure>
         </div>
-        <button
-          v-if="newWeekMeal.length && allMeal.length > 12 && !showAllMeal"
-          class="btn"
-          @click.prevent="fetchFewMeal()"
-        >
-          See more
-        </button>
-        <button
-          v-if="newWeekMeal.length > 12 && showAllMeal"
-          class="btn"
-          @click.prevent="fetchAllMeal()"
-        >
-          See less
-        </button>
       </section>
     </div>
 
@@ -809,7 +786,6 @@
 </template>
 
 <script>
-// import Carousel from 'vue-owl-carousel'
 import dayjs from 'dayjs'
 import foodMessages from '~/static/foodMessages'
 import { pricing } from '~/static/pricing'
@@ -823,7 +799,6 @@ import getSiteMeta from '~/utils/getSiteMeta'
 
 export default {
   components: {
-    // Carousel
     Loader: () => import('@/components/Loader.vue'),
   },
   data() {
@@ -835,6 +810,7 @@ export default {
         'peng porridge',
         'savory seafood',
       ],
+      tabs: [],
       activeTabIndex: null,
       setExploreService: false,
       exploreService: '',
@@ -849,11 +825,10 @@ export default {
         width: 0,
         height: 0,
       },
-      newWeekMeal: [],
       firstDateFormat: null,
       lastDateFormat: null,
       allMeal: [],
-      showAllMeal: false,
+      mealsInCategory: [],
     }
   },
   head() {
@@ -882,13 +857,6 @@ export default {
     },
   },
 
-  watch: {
-    weekly(val) {
-      const weeklyDefault = 24500
-      this.weekly_price = weeklyDefault * val
-    },
-  },
-
   mounted() {
     window.addEventListener('scroll', this.isInViewport)
     mixpanelTrackEvent('Food page')
@@ -911,6 +879,7 @@ export default {
       this.scrollToMenu()
     }
   },
+
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
     window.addEventListener('scroll', this.isInViewport)
@@ -970,99 +939,78 @@ export default {
       this.firstDateFormat = dayjs(new Date())
         .startOf('week')
         .format('DD MMM YYYY')
-      const dateData = dayjs(new Date()).format('DD-MM-YYYY')
+      // const dateData = dayjs(new Date()).format('DD-MM-YYYY')
+      // TODO change to staging
       fetch(
-        `https://api-staging.edenlife.ng/api/v2/meal/items/all?current_date=${dateData}`
+        `https://api.edenlife.ng/api/v2/meal/items/all?current_date=02-05-2021`
       )
         .then((res) => res.json())
         .then((meals) => {
           this.allMeal = meals.data
-          const breakfast = this.allMeal.filter(
-            (item) =>
-              item.class_category.includes('breakfast') &&
-              item.combo_image_url !== null
-          )
-          this.allMeal = this.allMeal.filter(
-            (item) => !item.class_category.includes('breakfast')
-          )
-          const meat = this.allMeal.filter(
-            (item) =>
-              item.class_category.includes('meat') &&
-              item.combo_image_url !== null
-          )
-          this.allMeal = this.allMeal.filter(
-            (item) => !item.class_category.includes('meat')
-          )
-          const traditional = this.allMeal.filter(
-            (item) =>
-              item.class_category.includes('traditional') &&
-              item.combo_image_url !== null
-          )
-          this.allMeal = this.allMeal.filter(
-            (item) => !item.class_category.includes('traditional')
-          )
-          const salad = this.allMeal.filter(
-            (item) =>
-              item.class_category.includes('salad') &&
-              item.combo_image_url !== null
-          )
-          this.allMeal = this.allMeal.filter(
-            (item) => !item.class_category.includes('salad')
-          )
-          const continental = this.allMeal.filter(
-            (item) =>
-              item.class_category.includes('continental') &&
-              item.combo_image_url !== null
-          )
-          this.allMeal = this.allMeal.filter(
-            (item) => !item.class_category.includes('continental')
-          )
-          const bird = this.allMeal.filter(
-            (item) =>
-              item.class_category.includes('bird') &&
-              item.combo_image_url !== null
-          )
-          this.allMeal = this.allMeal.filter(
-            (item) => !item.class_category.includes('bird')
-          )
-          const juice = this.allMeal.filter(
-            (item) =>
+          this.getMealCategories(this.allMeal)
+          const combo = []
+          this.allMeal.map((item) => {
+            return item.preset_combos_full.map((el) => {
+              if (el.visible === true) {
+                combo.push({
+                  name: item.name,
+                  class_category: item.class_category,
+                  ...el,
+                })
+              }
+              return combo
+            })
+          })
+          this.allMeal.map((item) => {
+            if (
               item.class_category.includes('juice') &&
               item.combo_image_url !== null &&
               item.id !== 3760 &&
               item.id !== 3864
-          )
-          this.allMeal = this.allMeal.filter(
-            (item) =>
-              !item.class_category.includes('juice') &&
-              item.combo_image_url !== null
-          )
-          const others = this.allMeal
+            ) {
+              combo.push({
+                name: item.name,
+                class_category: item.class_category,
+                image: item.combo_image_url,
+              })
+            }
+            return combo
+          })
+          this.allMeal.map((item) => {
+            if (item.class_category.includes('smoothies')) {
+              combo.push({
+                name: item.name,
+                class_category: item.class_category,
+                image: item.combo_image_url,
+              })
+            }
+            return combo
+          })
 
-          this.allMeal = breakfast.concat(
-            meat,
-            traditional,
-            salad,
-            continental,
-            bird,
-            juice,
-            others
-          )
-          this.newWeekMeal =
-            this.allMeal.length > 12 ? this.allMeal.slice(0, 12) : this.allMeal
+          this.allMeal = combo
         })
     },
-    fetchAllMeal() {
-      this.fetchMeal()
-      mixpanelTrackEvent('See less meals clicked - food page')
-      this.showAllMeal = !this.showAllMeal
-      const scrollToElement = document.querySelector('#load-more')
-      scrollToElement.scrollIntoView()
+    getMealCategories(items) {
+      const mapped = items.reduce((acc, { class_category }) => {
+        if (class_category) {
+          const classes = class_category.split(',')
+          acc.push(...classes)
+        }
+        return acc
+      }, [])
+      this.tabs = [...new Set(mapped)]
+      this.activeTabIndex = this.tabs[0]
+      this.changeCategory(this.activeTabIndex)
     },
-    fetchFewMeal() {
-      mixpanelTrackEvent('See more meals clicked - food page')
-      this.showAllMeal = !this.showAllMeal
-      this.newWeekMeal = this.allMeal
+    changeCategory(val) {
+      this.activeTabIndex = val
+      this.mealsInCategory = this.getMealsInEachCategory(this.allMeal, val)
+    },
+    getMealsInEachCategory(items, category) {
+      return items.filter(
+        ({ class_category }) =>
+          class_category && class_category.includes(category)
+      )
     },
     changeText() {
       const first = this.headerText.shift()

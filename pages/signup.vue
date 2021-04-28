@@ -23,6 +23,10 @@
             <br />
             Start your Eden lunch plan today.
           </p>
+          <img
+            src="https://res.cloudinary.com/eden-life-inc/image/upload/v1619608257/eden-website-v2/Food_IMG_ptb5mk.png"
+            alt=""
+          />
         </div>
         <div class="hero__form">
           <div class="hero__form-title">
@@ -81,7 +85,7 @@
           <Loader />
           <p>Loading menu...</p>
         </div>
-        <nav class="menu__nav">
+        <nav v-if="tabs.length" class="menu__nav">
           <carousel
             class="carousel-container"
             :nav="false"
@@ -92,7 +96,7 @@
                 items: 1,
               },
               600: {
-                items: 3,
+                items: 8,
               },
             }"
           >

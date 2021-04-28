@@ -76,6 +76,8 @@
     );
     backdrop-filter: blur(8px);
     border-radius: 16px;
+    position: relative;
+
     &-body {
       display: flex;
       flex-direction: column;

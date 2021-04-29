@@ -12,13 +12,14 @@
       <div class="hero">
         <div class="hero__title">
           <h1>
-            Pay Once* <br />
-            Get Lunch all month.
+            <span class="pay"> *Pay Once.</span> <br />
+            Get Lunch All Month.
           </h1>
           <p>
-            You deserve to enjoy your break with delicious meals and zero
-            stress. And we're here to make it happen.
-            <span class="bold">Monday to Friday. </span>
+            Subscribe to our lunch plan and get chef-cooked meals delivered.
+            <span class="bold">Monday to Friday. </span> You work so hard and
+            deserve better.
+            <!-- <span class="bold">Monday to Friday. </span> -->
             <br />
             <br />
             Start your Eden lunch plan today.
@@ -30,8 +31,8 @@
         </div>
         <div class="hero__form">
           <div class="hero__form-title">
-            <h3>Get Started</h3>
-            <p>Your contact details and delivery location.</p>
+            <h3>Start Your Eden Life</h3>
+            <p>Enter your contact details and delivery location.</p>
           </div>
           <div class="hero__form-body">
             <div class="hero__form-input">
@@ -68,10 +69,12 @@
               />
             </div>
             <button class="hero__form-btn" @click="sendUserInfoIntercom">
-              Get Lunch at 20% Off
+              Get Started at 20% Off
             </button>
           </div>
-          <p class="note">*N1,760 per meal. No extra delivery fees.</p>
+          <p class="note">
+            *₦1,760 per meal on our first month. (Delivery costs included)
+          </p>
         </div>
       </div>
     </div>
@@ -183,7 +186,7 @@
           </figure>
         </div>
         <button class="menu-btn" @click.prevent="scrollToTop('hero')">
-          Get Lunch at 20% Off
+          Get Started at 20% Off
         </button>
       </section>
     </div>
@@ -364,7 +367,6 @@ export default {
         .then((res) => res.json())
         .then((meals) => {
           this.allMeal = meals.data
-          this.getMealCategories(this.allMeal)
           const combo = []
           this.allMeal.map((item) => {
             return item.preset_combos_full.map((el) => {
@@ -382,7 +384,6 @@ export default {
             if (
               item.class_category.includes('juice') &&
               item.combo_image_url !== null &&
-              item.id !== 3760 &&
               item.id !== 3864
             ) {
               combo.push({
@@ -403,8 +404,8 @@ export default {
             }
             return combo
           })
-
           this.allMeal = combo
+          this.getMealCategories(this.allMeal)
         })
     },
     getMealCategories(items) {

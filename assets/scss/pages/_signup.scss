@@ -45,6 +45,9 @@
       @include font-size(8xl);
       @include font-weight(bold);
       width: 70%;
+      .pay {
+        margin-left: -$gap * 2;
+      }
     }
     p {
       margin-top: $gap * 4;
@@ -149,6 +152,7 @@
       position: absolute;
       bottom: -8%;
       right: 0;
+      text-align: center;
     }
   }
   @include respond(xxl) {
@@ -201,6 +205,7 @@
       }
       .note {
         right: unset;
+        bottom: -10%;
       }
     }
   }

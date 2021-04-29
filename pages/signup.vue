@@ -399,7 +399,7 @@ export default {
               combo.push({
                 name: item.name,
                 class_category: item.class_category,
-                image: item.combo_image_url,
+                image: item.image_url,
               })
             }
             return combo

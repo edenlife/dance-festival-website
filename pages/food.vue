@@ -947,7 +947,6 @@ export default {
         .then((res) => res.json())
         .then((meals) => {
           this.allMeal = meals.data
-          this.getMealCategories(this.allMeal)
           const combo = []
           this.allMeal.map((item) => {
             return item.preset_combos_full.map((el) => {
@@ -965,7 +964,6 @@ export default {
             if (
               item.class_category.includes('juice') &&
               item.combo_image_url !== null &&
-              item.id !== 3760 &&
               item.id !== 3864
             ) {
               combo.push({
@@ -981,13 +979,14 @@ export default {
               combo.push({
                 name: item.name,
                 class_category: item.class_category,
-                image: item.combo_image_url,
+                image: item.image_url,
               })
             }
             return combo
           })
 
           this.allMeal = combo
+          this.getMealCategories(this.allMeal)
         })
     },
     getMealCategories(items) {

@@ -1070,6 +1070,14 @@ import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
   mixins: [validationMixin],
+  beforeRouteEnter(to, from, next) {
+    console.log(!from.fullPath.includes('edenlife'))
+    next((vm) => {
+      if (!from.fullPath.includes('edenlife')) {
+        vm.$router.push('/signup')
+      }
+    })
+  },
   data() {
     return {
       showFailedModal: false,

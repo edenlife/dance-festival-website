@@ -1070,6 +1070,10 @@ import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
   mixins: [validationMixin],
+  beforeRouteEnter(to, from, next) {
+    console.log(from)
+    next((vm) => {})
+  },
   data() {
     return {
       showFailedModal: false,
@@ -1244,6 +1248,11 @@ export default {
     bound_fields: {
       email: { required, email },
       city: { required },
+    },
+  },
+  computed: {
+    fromOrigin() {
+      return this.$store.getters.getFromOrigin
     },
   },
   mounted() {

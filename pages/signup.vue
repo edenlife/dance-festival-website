@@ -13,13 +13,13 @@
         <div class="hero__title">
           <h1>
             <span class="pay"> *Pay Once.</span> <br />
-            Get Lunch All Month.
+            Get Lunch.<br />
+            All Month.
           </h1>
           <p>
             Subscribe to our lunch plan and get chef-cooked meals delivered.
             <span class="bold">Monday to Friday. </span> You work so hard and
             deserve better.
-            <!-- <span class="bold">Monday to Friday. </span> -->
             <br />
             <br />
             Start your Eden lunch plan today.

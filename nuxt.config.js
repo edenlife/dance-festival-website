@@ -148,6 +148,7 @@ export default {
     '~/plugins/vue-mailchimp-subscribe.js',
     { src: '~/plugins/hotjar', ssr: false },
     { src: '~/plugins/vue-persist.js', ssr: false },
+    { src: 'plugins/vue-owl-carousel.js', ssr: false }, // Only works on client side
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

@@ -502,6 +502,11 @@
 
     .carousel-container {
       display: flex;
+      width: 100%;
+      .owl-carousel {
+        display: grid;
+      }
+      // owl-theme owl-loaded owl-drag
       .prev,
       .next {
         z-index: 100;
@@ -544,6 +549,7 @@
         transition: all 0.4s ease-in-out;
         margin-bottom: $gap - 4;
         white-space: nowrap;
+        text-transform: capitalize;
 
         &.active {
           color: color(eden-neutral-1);

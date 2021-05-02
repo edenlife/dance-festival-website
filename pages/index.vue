@@ -1070,6 +1070,14 @@ import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
   mixins: [validationMixin],
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      console.log(vm.fromOrigin)
+      if (vm.fromOrigin) {
+        vm.$router.push('/signup')
+      }
+    })
+  },
   data() {
     return {
       showFailedModal: false,

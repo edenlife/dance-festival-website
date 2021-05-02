@@ -1070,10 +1070,6 @@ import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
   mixins: [validationMixin],
-  beforeRouteEnter(to, from, next) {
-    console.log(from)
-    next((vm) => {})
-  },
   data() {
     return {
       showFailedModal: false,

@@ -22,8 +22,8 @@
             deserve better.
             <br />
             <br />
-            Start your Eden lunch plan today.
-            <span class="bold"> Get 20% off your first month.</span>
+            Start your Eden lunch plan today
+            <span class="bold"> and get 20% off your first month.</span>
           </p>
           <img
             src="https://res.cloudinary.com/eden-life-inc/image/upload/v1619608257/eden-website-v2/Food_IMG_ptb5mk.png"
@@ -82,7 +82,7 @@
     <div class="container--menu">
       <section class="menu">
         <div class="menu__title">
-          <h3>Next week's menu</h3>
+          <h3>Current menu</h3>
           <p>{{ firstDateFormat }} - {{ lastDateFormat }}</p>
         </div>
         <div v-if="!allMeal.length" class="menu__loader">
@@ -349,15 +349,10 @@ export default {
       }
     },
     fetchMeal() {
-      const today = new Date()
-      this.lastDateFormat = dayjs(
-        new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7)
-      )
+      this.lastDateFormat = dayjs(new Date())
         .endOf('week')
         .format('DD MMM YYYY')
-      this.firstDateFormat = dayjs(
-        new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7)
-      )
+      this.firstDateFormat = dayjs(new Date())
         .startOf('week')
         .format('DD MMM YYYY')
       //   const dateData = dayjs(

@@ -448,7 +448,7 @@ export default {
           this.form.email = ''
           this.form.name = ''
           this.form.address = ''
-          this.$router.push('/')
+          this.$router.push('/food')
         })
       }
     },

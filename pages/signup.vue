@@ -443,7 +443,7 @@ export default {
           name: this.form.name,
           address: this.form.address,
         }
-        this.$intercom('trackEvent', 'lead-genaration-signup', metadata)
+        this.$intercom('trackEvent', 'lead-generation-signup', metadata)
         this.$nextTick(() => {
           this.form.email = ''
           this.form.name = ''

@@ -23,7 +23,10 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    __dangerouslyDisableSanitizers: ['script'],
+    __dangerouslyDisableSanitizersByTagID: {
+      'gtag-script2': ['innerHTML'],
+      'gtm-script2': ['innerHTML'],
+    },
 
     script: [
       // Global site tag (gtag.js) - Google Analytics

@@ -147,6 +147,7 @@ export default {
     '~/plugins/vue-social-sharing.js',
     '~/plugins/vue-mailchimp-subscribe.js',
     { src: '~/plugins/hotjar', ssr: false },
+    { src: 'plugins/route-subscribe.js', ssr: false }, // Only works on client side
     { src: '~/plugins/vue-persist.js', ssr: false },
     { src: 'plugins/vue-owl-carousel.js', ssr: false }, // Only works on client side
   ],

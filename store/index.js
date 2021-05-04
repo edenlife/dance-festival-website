@@ -9,6 +9,7 @@ export const state = () => ({
   lifePosts: [],
   foodPosts: [],
   edenPosts: [],
+  fromOrigin: null,
 })
 
 export const getters = {
@@ -41,6 +42,9 @@ export const getters = {
   },
   getEdenPosts: (state) => {
     return state.edenPosts
+  },
+  getFromOrigin: (state) => {
+    return state.fromOrigin
   },
 }
 
@@ -86,5 +90,8 @@ export const mutations = {
   },
   setEdenPosts: (state, payload) => {
     state.edenPosts = payload
+  },
+  setFromOrigin: (state, payload) => {
+    state.fromOrigin = payload
   },
 }

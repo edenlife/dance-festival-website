@@ -23,6 +23,7 @@
             <br />
             <br />
             Start your Eden lunch plan today.
+            <span class="bold"> Get 20% off your first month.</span>
           </p>
           <img
             src="https://res.cloudinary.com/eden-life-inc/image/upload/v1619608257/eden-website-v2/Food_IMG_ptb5mk.png"
@@ -359,10 +360,13 @@ export default {
       )
         .startOf('week')
         .format('DD MMM YYYY')
-      // const dateData = dayjs(new Date()).format('DD-MM-YYYY')
+      //   const dateData = dayjs(
+      //   new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7)
+      // ).format('DD-MM-YYYY')
+      const dateData = dayjs(new Date()).format('DD-MM-YYYY')
       // TODO change to staging
       fetch(
-        `https://api.edenlife.ng/api/v2/meal/items/all?current_date=02-05-2021`
+        `https://api.edenlife.ng/api/v2/meal/items/all?current_date=${dateData}`
       )
         .then((res) => res.json())
         .then((meals) => {

@@ -445,11 +445,32 @@ export default {
         }
         this.$intercom('trackEvent', 'lead-generation-signup', metadata)
         this.$nextTick(() => {
+          this.$v.form.$reset()
           this.form.email = ''
           this.form.name = ''
           this.form.address = ''
-          this.$router.push('/food')
+          this.openApp()
         })
+      }
+    },
+    openApp() {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera
+      // Windows Phone must come first because its UA also contains "Android"
+      if (/windows phone/i.test(userAgent)) {
+        window.open(
+          ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`
+        )
+      }
+
+      if (/android/i.test(userAgent)) {
+        window.open(
+          ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`
+        )
+      }
+
+      // iOS detection from: http://stackoverflow.com/a/9039885/177710
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.open(`https://apps.apple.com/us/app/eden-life/id1482373755?ls=1`)
       }
     },
     openSocialMedia(name, url) {

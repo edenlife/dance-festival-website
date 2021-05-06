@@ -33,7 +33,10 @@
         <div class="hero__form">
           <div class="hero__form-title">
             <h3>Start Your Eden Life</h3>
-            <p>Enter your contact details and delivery location.</p>
+            <p>
+              Enter your details and we'll email you about the next steps. Let's
+              go!
+            </p>
           </div>
           <div class="hero__form-body">
             <div class="hero__form-input">
@@ -70,7 +73,12 @@
               />
             </div>
             <button class="hero__form-btn" @click="sendUserInfoIntercom">
-              Get Started at 20% Off
+              <svg v-if="loading">
+                <use
+                  xlink:href="@/assets/images/loading-icon.svg#loading-icon"
+                ></use>
+              </svg>
+              <span v-else> Get Started at 20% Off</span>
             </button>
           </div>
           <p class="note">
@@ -306,6 +314,7 @@ export default {
       lastDateFormat: null,
       allMeal: [],
       mealsInCategory: [],
+      loading: false,
     }
   },
   mounted() {
@@ -433,6 +442,7 @@ export default {
       mixpanelTrackEvent('Sign up button clicked', 'Lead page')
       this.$v.form.$touch()
       if (!this.$v.form.$error) {
+        this.loading = true
         this.$intercom('update', {
           email: this.form.email,
           name: this.form.name,
@@ -444,42 +454,19 @@ export default {
           address: this.form.address,
         }
         this.$intercom('trackEvent', 'lead-generation-signup', metadata)
-        this.$nextTick(() => {
-          this.$v.form.$reset()
-          this.form.email = ''
-          this.form.name = ''
-          this.form.address = ''
-          this.openApp()
-        })
+        setTimeout(() => {
+          this.$nextTick(() => {
+            this.$v.form.$reset()
+            this.form.email = ''
+            this.form.name = ''
+            this.form.address = ''
+            this.loading = false
+            this.$router.push('/')
+          })
+        }, 500)
       }
     },
-    openApp() {
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera
-      // Windows Phone must come first because its UA also contains "Android"
-      if (/windows phone/i.test(userAgent)) {
-        window.open(
-          ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`
-        )
-        return
-      }
 
-      if (/android/i.test(userAgent)) {
-        window.open(
-          ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`
-        )
-        return
-      }
-
-      // iOS detection from: http://stackoverflow.com/a/9039885/177710
-      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        window.open(`https://apps.apple.com/us/app/eden-life/id1482373755?ls=1`)
-        return
-      }
-
-      window.open(
-        ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`
-      )
-    },
     openSocialMedia(name, url) {
       mixpanelTrackEvent(`${name} icon clicked - Lead page`)
       window.open(url, '_blank')

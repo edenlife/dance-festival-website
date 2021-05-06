@@ -460,18 +460,25 @@ export default {
         window.open(
           ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`
         )
+        return
       }
 
       if (/android/i.test(userAgent)) {
         window.open(
           ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`
         )
+        return
       }
 
       // iOS detection from: http://stackoverflow.com/a/9039885/177710
       if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
         window.open(`https://apps.apple.com/us/app/eden-life/id1482373755?ls=1`)
+        return
       }
+
+      window.open(
+        ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`
+      )
     },
     openSocialMedia(name, url) {
       mixpanelTrackEvent(`${name} icon clicked - Lead page`)

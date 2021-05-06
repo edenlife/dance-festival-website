@@ -261,7 +261,7 @@
             You enjoy the leisure.
           </h3>
           <p>
-            Each laundry bag contains up to 35 clothing items, and you can track
+            Each laundry bag contains up to 30 clothing items, and you can track
             your order on the app.
           </p>
           <ul>

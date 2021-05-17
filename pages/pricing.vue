@@ -1317,7 +1317,6 @@ export default {
           }
           this.$intercom('trackEvent', 'pricing-page-onboarding', metadata)
           mixpanelTrackEvent('get started button clicked', 'pricing page')
-          
         } catch (error) {
           this.responseMessage = error.response.data.message
           this.isLoading = false
@@ -2138,30 +2137,6 @@ export default {
     // Cleaning calculator
     async fetchCleaningServiceTypes() {
       this.loading = true
-<<<<<<< HEAD
-      fetch(`https://api.edenlife.ng/api/v3/website/cleaning/items/all`)
-        .then((res) => res.json())
-        .then((cleaningResponse) => {
-          this.cleaningServiceTypes = cleaningResponse.data
-          const [{ name: optionName }] = this.cleaningOptions.filter(
-            ({ value }) => value === 'light-cleaning'
-          )
-          const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
-            ({ name }) => name === optionName
-          )
-          this.cleaningQtyOption = cleaning_areas.map((obj) => ({
-            ...obj,
-            qty: 0,
-          }))
-          this.cleaningQtyOption[0].qty = 1
-          this.cleaningQtyOption[1].qty = 1
-          this.cleaningQtyOption[2].qty = 1
-          this.cleaningQtyOption[3].qty = 1
-          this.setCleaningArea('light cleaning')
-          this.getEstimate()
-          this.loading = false
-        })
-=======
       const cleaningResponse = await getCleaningServiceTypes()
       this.cleaningServiceTypes = cleaningResponse.data.data
       const [{ name: optionName }] = this.cleaningOptions.filter(
@@ -2181,7 +2156,6 @@ export default {
       this.setCleaningArea('light cleaning')
       this.getEstimate()
       this.loading = false
->>>>>>> staging
     },
     calculateCleaningPrice() {
       const {

@@ -752,12 +752,11 @@
 </template>
 
 <script>
-// import { TweenMax, Linear } from 'gsap'
-
 import { pricing } from '~/static/pricing'
 import { currencyFormat, scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import getSiteMeta from '~/utils/getSiteMeta'
+import { getCleaningServiceTypes } from '~/request/all.api'
 
 export default {
   data() {
@@ -871,7 +870,7 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
     }, 2300)
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
-    this.getCleaningServiceTypes()
+    this.fetchCleaningServiceTypes()
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
@@ -922,25 +921,22 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
       } else this.setExploreService = false
     },
     // Cleaning calculator
-    getCleaningServiceTypes() {
-      fetch(`https://api-staging.edenlife.ng/api/v3/website/cleaning/items/all`)
-        .then((res) => res.json())
-        .then((cleaningResponse) => {
-          this.cleaningServiceTypes = cleaningResponse.data
-          const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
-            ({ name }) => name.toLowerCase() === 'light cleaning'
-          )
-          this.cleaningQtyOption = cleaning_areas.map((obj) => ({
-            ...obj,
-            qty: 0,
-          }))
-          this.cleaningQtyOption[0].qty = 1
-          this.cleaningQtyOption[1].qty = 1
-          this.cleaningQtyOption[2].qty = 1
-          this.cleaningQtyOption[3].qty = 1
-          this.setCleaningArea('light cleaning')
-          this.calculateCleaningPrice()
-        })
+    async fetchCleaningServiceTypes() {
+      const cleaningResponse = await getCleaningServiceTypes()
+      this.cleaningServiceTypes = cleaningResponse.data.data
+      const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
+        ({ name }) => name.toLowerCase() === 'light cleaning'
+      )
+      this.cleaningQtyOption = cleaning_areas.map((obj) => ({
+        ...obj,
+        qty: 0,
+      }))
+      this.cleaningQtyOption[0].qty = 1
+      this.cleaningQtyOption[1].qty = 1
+      this.cleaningQtyOption[2].qty = 1
+      this.cleaningQtyOption[3].qty = 1
+      this.setCleaningArea('light cleaning')
+      this.calculateCleaningPrice()
     },
     calculateCleaningPrice() {
       const {

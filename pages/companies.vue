@@ -761,6 +761,7 @@
 import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import { companiesApi } from '~/request/all.api'
 
 export default {
   components: {
@@ -869,38 +870,28 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
     toggle() {
       this.visible = !this.visible
     },
-    submit() {
+    async submit() {
       this.$v.companyForm.$touch()
       this.companyForm.service = JSON.stringify(this.companyForm.service)
       if (!this.$v.companyForm.$error) {
-        this.loading = true
-        fetch('https://api-staging.edenlife.ng/api/v3/website/companypage', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(this.companyForm),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log('Success:', data)
-            Object.keys(this.companyForm).forEach(
-              (key) => (this.companyForm[key] = '')
-            )
-            this.$nextTick(() => {
-              this.$v.companyForm.$reset()
-              this.companyForm.service = []
-            })
-            this.showSuccessModal = true
-            this.showModalCompany = !this.showModalCompany
-            this.loading = false
-            mixpanelTrackEvent('Company form - Companies page')
+        try {
+          this.loading = true
+          await companiesApi(this.companyForm)
+          Object.keys(this.companyForm).forEach(
+            (key) => (this.companyForm[key] = '')
+          )
+          this.$nextTick(() => {
+            this.$v.companyForm.$reset()
+            this.companyForm.service = []
           })
-          .catch((error) => {
-            console.error('Error:', error)
-            this.loading = false
-            this.showFailedModal = true
-          })
+          this.showSuccessModal = true
+          this.showModalCompany = !this.showModalCompany
+          this.loading = false
+          mixpanelTrackEvent('Company form - Companies page')
+        } catch (error) {
+          this.loading = false
+          this.showFailedModal = true
+        }
       }
     },
     changeText() {

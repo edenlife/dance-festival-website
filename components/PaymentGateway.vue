@@ -31,6 +31,7 @@
 
 <script type="text/javascript">
 import Paystack from 'vue-paystack'
+import { giftingApi } from '~/request/all.api'
 
 export default {
   name: 'PaymentGateway',
@@ -129,29 +130,19 @@ export default {
       this.shouldShow = false
     },
     async saveInformation() {
-      const payload = {
-        customer: this.customer,
-        recipient: this.recipient,
-        delivery: this.delivery,
-        items: JSON.stringify(this.$store.getters.cart),
-        total_amount: this.amount,
-      }
-
-      const dataResponse = await fetch(
-        'https://api-staging.edenlife.ng/api/v3/website/giftingpage',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(payload),
+      try {
+        const payload = {
+          customer: this.customer,
+          recipient: this.recipient,
+          delivery: this.delivery,
+          items: JSON.stringify(this.$store.getters.cart),
+          total_amount: this.amount,
         }
-      )
-      if (dataResponse.status === 200) {
+        await giftingApi(payload)
         this.$emit('success')
         this.$store.commit('clearCart')
         this.shouldShow = false
-      }
+      } catch (error) {}
     },
   },
 }

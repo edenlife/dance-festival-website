@@ -144,7 +144,22 @@
             <transition name="slide-fade">
               <ul v-if="selectedService.includes('Cleaning')">
                 <p>
-                  <span>Cleaning plan</span>
+                  <span class="cleaning"
+                    >Cleaning plan
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      @click="showCleaningModal = true"
+                    >
+                      <path
+                        d="M7.00017 0.333008C5.68162 0.333008 4.39269 0.724001 3.29636 1.45654C2.20004 2.18909 1.34555 3.23028 0.840969 4.44845C0.336385 5.66663 0.204362 7.00707 0.461597 8.30028C0.718832 9.59348 1.35377 10.7814 2.28612 11.7137C3.21847 12.6461 4.40636 13.281 5.69956 13.5382C6.99277 13.7955 8.33322 13.6635 9.55139 13.1589C10.7696 12.6543 11.8108 11.7998 12.5433 10.7035C13.2758 9.60715 13.6668 8.31822 13.6668 6.99967C13.6649 5.23217 12.9619 3.53762 11.712 2.2878C10.4622 1.03798 8.76767 0.334974 7.00017 0.333008ZM7.00017 12.333C5.94533 12.333 4.91419 12.0202 4.03712 11.4342C3.16006 10.8481 2.47648 10.0152 2.07281 9.04065C1.66914 8.06611 1.56352 6.99376 1.76931 5.95919C1.9751 4.92463 2.48305 3.97432 3.22893 3.22844C3.97481 2.48256 4.92512 1.97461 5.95968 1.76882C6.99425 1.56303 8.06661 1.66865 9.04114 2.07232C10.0157 2.47598 10.8486 3.15957 11.4347 4.03663C12.0207 4.9137 12.3335 5.94484 12.3335 6.99967C12.3319 8.41367 11.7695 9.76928 10.7696 10.7691C9.76977 11.769 8.41416 12.3314 7.00017 12.333ZM7.00017 6.66634C6.82336 6.66634 6.65379 6.73658 6.52876 6.8616C6.40374 6.98663 6.3335 7.1562 6.3335 7.33301V9.33301C6.3335 9.50982 6.40374 9.67939 6.52876 9.80441C6.65379 9.92944 6.82336 9.99967 7.00017 9.99967C7.17698 9.99967 7.34655 9.92944 7.47157 9.80441C7.59659 9.67939 7.66683 9.50982 7.66683 9.33301V7.33301C7.66683 7.1562 7.59659 6.98663 7.47157 6.8616C7.34655 6.73658 7.17698 6.66634 7.00017 6.66634ZM7.00017 3.99967C6.83535 3.99967 6.67423 4.04855 6.53719 4.14012C6.40015 4.23168 6.29334 4.36183 6.23027 4.5141C6.16719 4.66638 6.15069 4.83393 6.18285 4.99558C6.215 5.15723 6.29437 5.30572 6.41091 5.42226C6.52745 5.53881 6.67594 5.61817 6.83759 5.65033C6.99924 5.68248 7.1668 5.66598 7.31907 5.60291C7.47134 5.53983 7.60149 5.43302 7.69306 5.29598C7.78463 5.15894 7.8335 4.99783 7.8335 4.83301C7.8335 4.61199 7.7457 4.40003 7.58942 4.24375C7.43314 4.08747 7.22118 3.99967 7.00017 3.99967Z"
+                        fill="#03A84E"
+                      />
+                    </svg>
+                  </span>
                   <span>₦{{ formatNumber(services[2].price) }}</span>
                 </p>
                 <li v-for="(item, i) in cleaningSummary" :key="i">
@@ -594,7 +609,12 @@
             >
               <div class="calculator">
                 <div class="calculator__header">
-                  <p>Cleaning plan</p>
+                  <p>
+                    Cleaning plan
+                    <span @click="showCleaningModal = true">
+                      What do I get from Cleaning?</span
+                    >
+                  </p>
                   <button
                     class="calculator__header-btn"
                     @click.prevent="removePlan('Cleaning')"
@@ -605,7 +625,22 @@
                 <div class="calculator__container">
                   <div class="calculator__input">
                     <div class="calculator__input-item">
-                      <label for="">Type</label>
+                      <label for=""
+                        ><span>Type</span>
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 14 14"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          @click="showCleaningModal = true"
+                        >
+                          <path
+                            d="M7.00017 0.333008C5.68162 0.333008 4.39269 0.724001 3.29636 1.45654C2.20004 2.18909 1.34555 3.23028 0.840969 4.44845C0.336385 5.66663 0.204362 7.00707 0.461597 8.30028C0.718832 9.59348 1.35377 10.7814 2.28612 11.7137C3.21847 12.6461 4.40636 13.281 5.69956 13.5382C6.99277 13.7955 8.33322 13.6635 9.55139 13.1589C10.7696 12.6543 11.8108 11.7998 12.5433 10.7035C13.2758 9.60715 13.6668 8.31822 13.6668 6.99967C13.6649 5.23217 12.9619 3.53762 11.712 2.2878C10.4622 1.03798 8.76767 0.334974 7.00017 0.333008ZM7.00017 12.333C5.94533 12.333 4.91419 12.0202 4.03712 11.4342C3.16006 10.8481 2.47648 10.0152 2.07281 9.04065C1.66914 8.06611 1.56352 6.99376 1.76931 5.95919C1.9751 4.92463 2.48305 3.97432 3.22893 3.22844C3.97481 2.48256 4.92512 1.97461 5.95968 1.76882C6.99425 1.56303 8.06661 1.66865 9.04114 2.07232C10.0157 2.47598 10.8486 3.15957 11.4347 4.03663C12.0207 4.9137 12.3335 5.94484 12.3335 6.99967C12.3319 8.41367 11.7695 9.76928 10.7696 10.7691C9.76977 11.769 8.41416 12.3314 7.00017 12.333ZM7.00017 6.66634C6.82336 6.66634 6.65379 6.73658 6.52876 6.8616C6.40374 6.98663 6.3335 7.1562 6.3335 7.33301V9.33301C6.3335 9.50982 6.40374 9.67939 6.52876 9.80441C6.65379 9.92944 6.82336 9.99967 7.00017 9.99967C7.17698 9.99967 7.34655 9.92944 7.47157 9.80441C7.59659 9.67939 7.66683 9.50982 7.66683 9.33301V7.33301C7.66683 7.1562 7.59659 6.98663 7.47157 6.8616C7.34655 6.73658 7.17698 6.66634 7.00017 6.66634ZM7.00017 3.99967C6.83535 3.99967 6.67423 4.04855 6.53719 4.14012C6.40015 4.23168 6.29334 4.36183 6.23027 4.5141C6.16719 4.66638 6.15069 4.83393 6.18285 4.99558C6.215 5.15723 6.29437 5.30572 6.41091 5.42226C6.52745 5.53881 6.67594 5.61817 6.83759 5.65033C6.99924 5.68248 7.1668 5.66598 7.31907 5.60291C7.47134 5.53983 7.60149 5.43302 7.69306 5.29598C7.78463 5.15894 7.8335 4.99783 7.8335 4.83301C7.8335 4.61199 7.7457 4.40003 7.58942 4.24375C7.43314 4.08747 7.22118 3.99967 7.00017 3.99967Z"
+                            fill="#03A84E"
+                          />
+                        </svg>
+                      </label>
                       <div class="select">
                         <div class="selector">
                           <div class="label" @click="toggle('cleaningType')">
@@ -938,6 +973,119 @@
       </div>
       <div slot="footer"></div>
     </modal>
+
+    <modal
+      v-if="showCleaningModal"
+      :show-modal="showCleaningModal"
+      class="modal"
+    >
+      <div slot="header"></div>
+      <div slot="body" class="modal__body">
+        <div class="pricing__modal">
+          <div class="pricing__modal-title">
+            <h5>What do I get from Cleaning?</h5>
+            <button class="btn btn--success" @click="showCleaningModal = false">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="15.5"
+                  fill="white"
+                  stroke="#E4E8E6"
+                />
+                <path
+                  d="M20 12L12 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 12L20 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="pricing__modal-body">
+            <ul class="pricing__modal-option">
+              <li
+                :class="{ active: cleaningPlanType === 'light-cleaning' }"
+                @click.prevent="cleaningPlanType = 'light-cleaning'"
+              >
+                <span> Light Cleaning</span>
+                <svg
+                  v-if="cleaningPlanType === 'light-cleaning'"
+                  width="6"
+                  height="6"
+                  viewBox="0 0 6 6"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="3" cy="3" r="3" fill="#61DB98" />
+                </svg>
+              </li>
+              <li
+                :class="{ active: cleaningPlanType === 'deep-cleaning' }"
+                @click.prevent="cleaningPlanType = 'deep-cleaning'"
+              >
+                <span> Deep Cleaning </span>
+                <svg
+                  v-if="cleaningPlanType === 'deep-cleaning'"
+                  width="6"
+                  height="6"
+                  viewBox="0 0 6 6"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="3" cy="3" r="3" fill="#61DB98" />
+                </svg>
+              </li>
+            </ul>
+            <ul
+              v-if="cleaningPlanType === 'light-cleaning'"
+              class="pricing__modal-option--cleaning"
+            >
+              <li>Sweeping and mopping of all floors</li>
+              <li>Dust and wipe all surfaces</li>
+              <li>Cobweb removal from all surfaces</li>
+              <li>Wash dirty dishes</li>
+              <li>Arrange, lay beds and fold clothes</li>
+              <li>Arrange all furntiure and lay beds</li>
+              <li>Polish all wood and glass surfaces</li>
+              <li>Disinfect and wash toilet and urinals</li>
+              <li>Empty and clean trash can</li>
+            </ul>
+            <ul v-else class="pricing__modal-option--cleaning">
+              <li>Sweeping and mopping of all floors</li>
+              <li>Dust and wipe all surfaces</li>
+              <li>Cobweb removal from all surfaces</li>
+              <li>Wash dirty dishes</li>
+              <li>Arrange, lay beds and fold clothes</li>
+              <li>Arrange all furntiure and lay beds</li>
+              <li>Polish all wood and glass surfaces</li>
+              <li>Disinfect and wash toilet and urinals</li>
+              <li>Empty and clean trash can</li>
+              <li>Scrape floors, walls and clean all surfaces</li>
+              <li>
+                Clean internal and external parts of home appliances (Gas
+                cooker, refrigerators etc)
+              </li>
+              <li>Clean cupboards and cabinets</li>
+              <li>AC vents cleaned</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div slot="footer"></div>
+    </modal>
   </div>
 </template>
 
@@ -967,6 +1115,8 @@ export default {
   },
   data() {
     return {
+      cleaningPlanType: 'light-cleaning',
+      showCleaningModal: false,
       showSuccessModal: false,
       showEmailModal: false,
       custumerStatus: false,

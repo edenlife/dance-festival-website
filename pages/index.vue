@@ -1067,6 +1067,7 @@ import { required, email } from 'vuelidate/lib/validators'
 import testimonials from '~/static/testimonials'
 import { scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import { landingPageApi } from '~/request/all.api'
 
 export default {
   mixins: [validationMixin],
@@ -1265,36 +1266,27 @@ export default {
     window.removeEventListener('resize', this.handleResize)
   },
   methods: {
-    submitForm() {
+    async submitForm() {
       this.$v.bound_fields.$touch()
       if (!this.$v.bound_fields.$error) {
-        this.loading = true
-        fetch('https://api.edenlife.ng/api/v3/website/landingpage', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(this.bound_fields),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log('Success:', data)
-            Object.keys(this.bound_fields).forEach(
-              (key) => (this.bound_fields[key] = '')
-            )
-            this.$nextTick(() => {
-              this.$v.bound_fields.$reset()
-              this.bound_fields.city = null
-              this.cityName = 'Select your city'
-            })
-            this.showSuccessModal = true
-            this.loading = false
+        try {
+          this.loading = true
+          await landingPageApi(this.bound_fields)
+          Object.keys(this.bound_fields).forEach(
+            (key) => (this.bound_fields[key] = '')
+          )
+          this.$nextTick(() => {
+            this.$v.bound_fields.$reset()
+            this.bound_fields.city = null
+            this.cityName = 'Select your city'
           })
-          .catch((error) => {
-            console.error('Error:', error)
-            this.loading = false
-            this.showFailedModal = true
-          })
+          this.showSuccessModal = true
+          this.loading = false
+          mixpanelTrackEvent('Enlist form - homepage')
+        } catch (error) {
+          this.loading = false
+          this.showFailedModal = true
+        }
       }
       mixpanelTrackEvent('Enlist form - homepage')
     },

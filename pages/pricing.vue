@@ -952,6 +952,7 @@ import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 import { currencyFormat, formatNumber, scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { pricing } from '~/static/pricing'
+import { getCleaningServiceTypes, signupApi } from '~/request/all.api'
 
 export default {
   components: {
@@ -1132,7 +1133,7 @@ export default {
   mounted() {
     document.addEventListener('click', this.toggleSelect)
     mixpanelTrackEvent('Pricing page')
-    this.getCleaningServiceTypes()
+    this.fetchCleaningServiceTypes()
   },
   destroyed() {
     document.removeEventListener('click', this.toggleSelect)
@@ -1143,45 +1144,31 @@ export default {
     async getStarted() {
       this.$v.subscribeEmail.$touch()
       if (!this.$v.subscribeEmail.$error) {
-        this.isLoading = true
-        const payload = {
-          email: this.subscribeEmail,
-          plan_details: {
-            ...(this.selectedService.includes('Food') && {
-              meal: this.totalFoodSummary,
-            }),
-            ...(this.selectedService.includes('Laundry') && {
-              laundry: this.totalLaundrySummary,
-            }),
-            ...(this.selectedService.includes('Cleaning') && {
-              cleaning: this.totalCleaningSummary,
-            }),
-          },
-          discounted_amount: parseInt(this.totalPrice),
-        }
-
-        const dataResponse = await fetch(
-          'https://api.edenlife.ng/api/v3/website/pricing/signup',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
+        try {
+          this.isLoading = true
+          const payload = {
+            email: this.subscribeEmail,
+            plan_details: {
+              ...(this.selectedService.includes('Food') && {
+                meal: this.totalFoodSummary,
+              }),
+              ...(this.selectedService.includes('Laundry') && {
+                laundry: this.totalLaundrySummary,
+              }),
+              ...(this.selectedService.includes('Cleaning') && {
+                cleaning: this.totalCleaningSummary,
+              }),
             },
-            body: JSON.stringify(payload),
+            discounted_amount: parseInt(this.totalPrice),
           }
-        )
-        const userStatus = await dataResponse.json()
 
-        if (dataResponse.status === 409) {
-          this.responseMessage = userStatus.message
-          this.isLoading = false
-          this.custumerStatus = true
-        }
-        if (dataResponse.status === 200) {
+          await signupApi(payload)
+
           this.responseMessage = ''
           this.custumerStatus = false
           this.showEmailModal = true
           this.isLoading = false
+
           this.$intercom('update', {
             email: this.subscribeEmail,
           })
@@ -1189,8 +1176,13 @@ export default {
             email: this.subscribeEmail,
           }
           this.$intercom('trackEvent', 'pricing-page-onboarding', metadata)
+          mixpanelTrackEvent('get started button clicked', 'pricing page')
+          
+        } catch (error) {
+          this.responseMessage = error.response.data.message
+          this.isLoading = false
+          this.custumerStatus = true
         }
-        mixpanelTrackEvent('get started button clicked', 'pricing page')
       }
     },
     openApp() {
@@ -2004,8 +1996,9 @@ export default {
     },
 
     // Cleaning calculator
-    getCleaningServiceTypes() {
+    async fetchCleaningServiceTypes() {
       this.loading = true
+<<<<<<< HEAD
       fetch(`https://api.edenlife.ng/api/v3/website/cleaning/items/all`)
         .then((res) => res.json())
         .then((cleaningResponse) => {
@@ -2028,6 +2021,27 @@ export default {
           this.getEstimate()
           this.loading = false
         })
+=======
+      const cleaningResponse = await getCleaningServiceTypes()
+      this.cleaningServiceTypes = cleaningResponse.data.data
+      const [{ name: optionName }] = this.cleaningOptions.filter(
+        ({ value }) => value === 'light-cleaning'
+      )
+      const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
+        ({ name }) => name === optionName
+      )
+      this.cleaningQtyOption = cleaning_areas.map((obj) => ({
+        ...obj,
+        qty: 0,
+      }))
+      this.cleaningQtyOption[0].qty = 1
+      this.cleaningQtyOption[1].qty = 1
+      this.cleaningQtyOption[2].qty = 1
+      this.cleaningQtyOption[3].qty = 1
+      this.setCleaningArea('light cleaning')
+      this.getEstimate()
+      this.loading = false
+>>>>>>> staging
     },
     calculateCleaningPrice() {
       const {

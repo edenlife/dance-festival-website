@@ -807,6 +807,7 @@ import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 import { scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import { faqApi } from '~/request/all.api'
 
 export default {
   mixins: [validationMixin],
@@ -842,34 +843,25 @@ export default {
         this.questions.push(item)
       }
     },
-    submitForm() {
+    async submitForm() {
       this.$v.bound_fields.$touch()
       if (!this.$v.bound_fields.$error) {
-        this.loading = true
-        fetch('https://api.edenlife.ng/api/v3/website/faqpage', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(this.bound_fields),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log('Success:', data)
-            Object.keys(this.bound_fields).forEach(
-              (key) => (this.bound_fields[key] = '')
-            )
-            this.$nextTick(() => {
-              this.$v.bound_fields.$reset()
-            })
-            this.showSuccessModal = true
-            this.loading = false
+        try {
+          this.loading = true
+          await faqApi(this.bound_fields)
+          Object.keys(this.bound_fields).forEach(
+            (key) => (this.bound_fields[key] = '')
+          )
+          this.$nextTick(() => {
+            this.$v.bound_fields.$reset()
           })
-          .catch((error) => {
-            console.error('Error:', error)
-            this.loading = false
-            this.showFailedModal = true
-          })
+          this.showSuccessModal = true
+          this.loading = false
+          mixpanelTrackEvent('Feedback form - faq page')
+        } catch (error) {
+          this.loading = false
+          this.showFailedModal = true
+        }
       }
       mixpanelTrackEvent('Feedback form - faq page')
     },

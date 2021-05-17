@@ -644,6 +644,36 @@
     border-radius: 8px;
     background-color: color(eden-neutral-7);
     padding: 0 $gap * 5.2;
+    &-description {
+      background-color: #fff9f5;
+      border: 1px solid #ffac76;
+      padding: $gap * 2.4;
+      border-radius: 8px;
+      margin-top: $gap * 3.2;
+      margin-bottom: $gap * 1.2;
+
+      &-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h5 {
+          @include font-size(base);
+          @include font-weight(medium);
+          color: color(eden-neutral-1);
+          @include font-family(cerebri);
+        }
+      }
+      ul {
+        li {
+          &:first-child {
+            margin-top: $gap * 2.4;
+          }
+          margin-top: $gap + 6;
+          color: color(eden-neutral-1);
+          margin-left: $gap * 2.4;
+        }
+      }
+    }
     &-option {
       padding: $gap * 3.2 0 $gap + 2 0;
       display: flex;
@@ -999,7 +1029,21 @@
     &__price {
       width: 100%;
       padding: 0 $gap * 2.4;
+      &-description {
+        padding: $gap * 2;
 
+        &-title {
+          h5 {
+            @include font-size(sm);
+          }
+        }
+        ul {
+          li {
+            @include font-size(sm);
+            margin-left: $gap * 2;
+          }
+        }
+      }
       &-option {
         padding: $gap * 2.5 0 $gap + 2 0;
         margin-bottom: $gap * 2.4;

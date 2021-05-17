@@ -338,11 +338,79 @@
           <transition name="slide-fade">
             <div v-if="plan === 'light-cleaning'" class="plan__price-light">
               <div class="plan__price-item">
-                <p>
-                  Recommended for once a week or every two weeks. This service
-                  cleans all your rooms, dusts all your surfaces, scrubs all
-                  your toilets, and does the dishes in the kitchen.
-                </p>
+                <div class="plan__price-description">
+                  <div class="plan__price-description-title">
+                    <h5>What do I get from Light Cleaning?</h5>
+                    <button
+                      type="button"
+                      class="expand"
+                      @click.prevent="
+                        showCleaningDescription = !showCleaningDescription
+                      "
+                    >
+                      <svg
+                        v-if="showCleaningDescription"
+                        width="22"
+                        height="22"
+                        viewBox="0 0 22 22"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                          stroke="#FFAC76"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+
+                        <path
+                          d="M7 11H15"
+                          stroke="#FFAC76"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <svg
+                        v-else
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                          stroke="#FFAC76"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M12 8V16"
+                          stroke="#FFAC76"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M8 12H16"
+                          stroke="#FFAC76"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  <ul v-if="showCleaningDescription">
+                    <li>Sweeping and mopping of all floors</li>
+                    <li>Dust and wipe all surfaces</li>
+                    <li>Cobweb removal from all surfaces</li>
+                    <li>Wash dirty dishes</li>
+                    <li>Arrange, lay beds and fold clothes</li>
+                    <li>Arrange all furntiure and lay beds</li>
+                    <li>Polish all wood and glass surfaces</li>
+                    <li>Disinfect and wash toilet and urinals</li>
+                    <li>Empty and clean trash can</li>
+                  </ul>
+                </div>
                 <div class="calculator__input">
                   <label for="">Tell us about your home</label>
                   <div class="select">
@@ -482,12 +550,78 @@
           <transition name="slide-fade">
             <div v-if="plan === 'deep-cleaning'" class="plan__price-light">
               <div class="plan__price-item">
-                <p>
-                  Recommended once every three months (or when moving in/out of
-                  a home). This service gives your home a more intense cleaning
-                  treatment, with lots of internal scrubbing and external
-                  polishing.
-                </p>
+                <div class="plan__price-description">
+                  <div class="plan__price-description-title">
+                    <h5>What do I get from Deep Cleaning?</h5>
+                    <button
+                      type="button"
+                      class="expand"
+                      @click.prevent="
+                        showCleaningDescription = !showCleaningDescription
+                      "
+                    >
+                      <svg
+                        v-if="showCleaningDescription"
+                        width="22"
+                        height="22"
+                        viewBox="0 0 22 22"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                          stroke="#FFAC76"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+
+                        <path
+                          d="M7 11H15"
+                          stroke="#FFAC76"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <svg
+                        v-else
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                          stroke="#FFAC76"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M12 8V16"
+                          stroke="#FFAC76"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M8 12H16"
+                          stroke="#FFAC76"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  <ul v-if="showCleaningDescription">
+                    <li>Everything listed in light cleaning</li>
+                    <li>Scrape floors, walls and clean all surfaces</li>
+                    <li>
+                      Clean internal and external parts of home appliances (Gas
+                      cooker, refrigerators etc)
+                    </li>
+                    <li>Clean cupboards and cabinets</li>
+                    <li>AC vents cleaned</li>
+                  </ul>
+                </div>
                 <div class="calculator__input">
                   <label for="">Tell us about your home</label>
                   <div class="select">
@@ -768,6 +902,7 @@ export default {
         'working out',
         'being better',
       ],
+      showCleaningDescription: false,
       cleaningMessage: [
         {
           name: 'kofo',

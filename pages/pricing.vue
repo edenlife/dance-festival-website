@@ -1052,8 +1052,7 @@
               <li>Dust and wipe all surfaces</li>
               <li>Cobweb removal from all surfaces</li>
               <li>Wash dirty dishes</li>
-              <li>Arrange, lay beds and fold clothes</li>
-              <li>Arrange all furntiure and lay beds</li>
+              <li>Arrange furniture, lay beds and fold clothes</li>
               <li>Polish all wood and glass surfaces</li>
               <li>Disinfect and wash toilet and urinals</li>
               <li>Empty and clean trash can</li>
@@ -1063,8 +1062,7 @@
               <li>Dust and wipe all surfaces</li>
               <li>Cobweb removal from all surfaces</li>
               <li>Wash dirty dishes</li>
-              <li>Arrange, lay beds and fold clothes</li>
-              <li>Arrange all furntiure and lay beds</li>
+              <li>Arrange furniture, lay beds and fold clothes</li>
               <li>Polish all wood and glass surfaces</li>
               <li>Disinfect and wash toilet and urinals</li>
               <li>Empty and clean trash can</li>

@@ -404,8 +404,7 @@
                     <li>Dust and wipe all surfaces</li>
                     <li>Cobweb removal from all surfaces</li>
                     <li>Wash dirty dishes</li>
-                    <li>Arrange, lay beds and fold clothes</li>
-                    <li>Arrange all furntiure and lay beds</li>
+                    <li>Arrange furniture, lay beds and fold clothes</li>
                     <li>Polish all wood and glass surfaces</li>
                     <li>Disinfect and wash toilet and urinals</li>
                     <li>Empty and clean trash can</li>
@@ -612,7 +611,14 @@
                     </button>
                   </div>
                   <ul v-if="showCleaningDescription">
-                    <li>Everything listed in light cleaning</li>
+                    <li>Sweeping and mopping of all floors</li>
+                    <li>Dust and wipe all surfaces</li>
+                    <li>Cobweb removal from all surfaces</li>
+                    <li>Wash dirty dishes</li>
+                    <li>Arrange furniture, lay beds and fold clothes</li>
+                    <li>Polish all wood and glass surfaces</li>
+                    <li>Disinfect and wash toilet and urinals</li>
+                    <li>Empty and clean trash can</li>
                     <li>Scrape floors, walls and clean all surfaces</li>
                     <li>
                       Clean internal and external parts of home appliances (Gas

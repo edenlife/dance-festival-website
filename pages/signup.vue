@@ -10,77 +10,135 @@
         </nuxt-link>
       </header>
       <div class="hero">
-        <div class="hero__title">
-          <h1>
-            <span class="pay"> *Pay Once.</span> <br />
-            Get Lunch.<br />
-            All Month.
-          </h1>
-          <p>
-            Subscribe to our lunch plan and get chef-cooked meals delivered.
-            <span class="bold">Monday to Friday. </span> You work so hard and
-            deserve better.
-            <br />
-            <br />
-            Start your Eden lunch plan today
-            <span class="bold"> and get 20% off your first month.</span>
-          </p>
-          <img
-            src="https://res.cloudinary.com/eden-life-inc/image/upload/v1619608257/eden-website-v2/Food_IMG_ptb5mk.png"
-            alt=""
-          />
-        </div>
-        <div class="hero__form">
-          <div class="hero__form-title">
-            <h3>Start Your Eden Life</h3>
+        <div class="hero__img"></div>
+        <div class="hero__header">
+          <div class="hero__header-title">
+            <h1>
+              <span class="pay"> *Pay Once.</span> <br />
+              Get Lunch.<br />
+              All Month.
+            </h1>
             <p>
-              Enter your details and we'll email you about the next steps. Let's
-              go!
+              Subscribe to our lunch plan and get chef-cooked meals delivered
+              straight to you.
+              <span class="bold">Monday to Friday. </span>
+              <br />
+              The perfect fuel for your hard-work 💚
+            </p>
+            <p class="discount">Enjoy 20% off your first month!</p>
+          </div>
+          <div class="hero__form">
+            <div class="hero__form-title">
+              <h3>Start your Eden lunch plan today</h3>
+              <p>
+                Enter your details and we'll reach out to you about the next
+                steps. Let's go!
+              </p>
+            </div>
+            <div class="hero__form-body">
+              <div class="hero__form-input">
+                <label for="name">Full Name</label>
+                <input
+                  id=""
+                  v-model="form.name"
+                  type="text"
+                  name=""
+                  placeholder="First & Last Name"
+                  :class="{ 'has-error': $v.form.name.$error }"
+                />
+              </div>
+              <div class="hero__form-input">
+                <label for="email">Email</label>
+                <input
+                  id=""
+                  v-model="form.email"
+                  type="email"
+                  name=""
+                  placeholder="email@example.com"
+                  :class="{ 'has-error': $v.form.email.$error }"
+                />
+              </div>
+              <div class="hero__form-input">
+                <label for="address">Phone Number</label>
+                <input
+                  id=""
+                  v-model="form.address"
+                  type="text"
+                  name=""
+                  placeholder="Where you’ll receive your meals"
+                  :class="{ 'has-error': $v.form.address.$error }"
+                />
+              </div>
+              <button class="hero__form-btn" @click="sendUserInfoIntercom">
+                Get Started at 20% Off
+              </button>
+            </div>
+            <p class="note">
+              *₦1,760 per meal on our first month. (Delivery costs included)
             </p>
           </div>
-          <div class="hero__form-body">
-            <div class="hero__form-input">
-              <label for="name">Full Name</label>
-              <input
-                id=""
-                v-model="form.name"
-                type="text"
-                name=""
-                placeholder="First & Last Name"
-                :class="{ 'has-error': $v.form.name.$error }"
-              />
-            </div>
-            <div class="hero__form-input">
-              <label for="email">Email</label>
-              <input
-                id=""
-                v-model="form.email"
-                type="email"
-                name=""
-                placeholder="email@example.com"
-                :class="{ 'has-error': $v.form.email.$error }"
-              />
-            </div>
-            <div class="hero__form-input">
-              <label for="address">Address</label>
-              <input
-                id=""
-                v-model="form.address"
-                type="text"
-                name=""
-                placeholder="Where you’ll receive your meals"
-                :class="{ 'has-error': $v.form.address.$error }"
-              />
-            </div>
-            <button class="hero__form-btn" @click="sendUserInfoIntercom">
-              Get Started at 20% Off
-            </button>
-          </div>
-          <p class="note">
-            *₦1,760 per meal on our first month. (Delivery costs included)
-          </p>
         </div>
       </div>
+    </div>
+    <div class="container--description">
+      <section class="description">
+        <div class="description__title">
+          <h3>Why let Eden worry about lunchtime?</h3>
+          <div class="card">
+            <a :href="testimonial.tweetLink" target="_blank">
+              <div class="card__title">
+                <div class="card__title-img">
+                  <img
+                    :src="
+                      require(`~/assets/images/customer-${testimonial.image}.png`)
+                    "
+                    :alt="testimonial.name"
+                  />
+                </div>
+
+                <div class="">
+                  <p class="card__title-name">{{ testimonial.name }}</p>
+                  <p class="card__title-handle">@{{ testimonial.handle }}</p>
+                </div>
+              </div>
+              <p class="card__description" v-html="testimonial.description"></p>
+            </a>
+          </div>
+        </div>
+        <div class="description__details">
+          <div class="description__details-item">
+            <h5 class="description__details-item--icon">💰</h5>
+            <div class="description__details-item--text">
+              <h5>It's budget-friendly</h5>
+              <p>
+                We asked around, crunched some numbers, and found out that
+                Eden's food plans save our customers as much as 68% of their
+                monthly food bill!
+              </p>
+            </div>
+          </div>
+          <div class="description__details-item">
+            <h5 class="description__details-item--icon">🚀</h5>
+            <div class="description__details-item--text">
+              <h5>It's a monthly subscription</h5>
+              <p>
+                You pay once and get fresh food all through the month. Once you
+                subscribe, you're good for the whole month.
+              </p>
+            </div>
+          </div>
+          <div class="description__details-item">
+            <h5 class="description__details-item--icon">🤩</h5>
+            <div class="description__details-item--text">
+              <h5>It's budget-friendly</h5>
+              <p>
+                You don't have to do anything at all. We'll handle everything
+                from shopping to cooking to delivery.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
     <div class="container--menu">
       <section class="menu">
@@ -298,6 +356,14 @@ export default {
   },
   data() {
     return {
+      testimonial: {
+        name: 'Jinchūriki of the Spirit.',
+        image: 'nicelegs',
+        description: `Working on projects while <span style="color:#03A84E"> @ouredenlife </span> does the chores, talk about maximum productivity >>>>>>>>>>>>>> <br><br> Please I'm not lazy I just don't like stress besides it's called delegating for a reason 😁`,
+        handle: 'ms_nicelegs',
+        tweetLink:
+          'https://twitter.com/ms_nicelegs/status/1276445141906141185?s=20',
+      },
       form: {
         email: '',
         name: '',

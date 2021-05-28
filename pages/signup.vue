@@ -10,7 +10,17 @@
         </nuxt-link>
       </header>
       <div class="hero">
-        <div class="hero__img"></div>
+        <div class="hero__img">
+          <div ref="center-image" class="center"></div>
+          <div class="hero__img-container">
+            <div
+              v-for="(item, i) in 8"
+              :key="i"
+              :class="`dial dial-${i + 1}`"
+              @click.prevent="changeCenter(i)"
+            ></div>
+          </div>
+        </div>
         <div class="hero__header">
           <div class="hero__header-title">
             <h1>
@@ -59,14 +69,15 @@
                 />
               </div>
               <div class="hero__form-input">
-                <label for="address">Phone Number</label>
+                <label for="phone number">Phone Number</label>
                 <input
                   id=""
-                  v-model="form.address"
+                  v-model.trim="$v.form.phone_number.$model"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                   type="text"
                   name=""
-                  placeholder="Where you’ll receive your meals"
-                  :class="{ 'has-error': $v.form.address.$error }"
+                  placeholder="08123456789"
+                  :class="{ 'has-error': $v.form.phone_number.$error }"
                 />
               </div>
               <button class="hero__form-btn" @click="sendUserInfoIntercom">
@@ -339,7 +350,7 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 import dayjs from 'dayjs'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { placeholderColorMix } from '~/static/functions'
@@ -351,7 +362,11 @@ export default {
     form: {
       email: { required, email },
       name: { required },
-      address: { required },
+      phone_number: {
+        required,
+        minLength: minLength(11),
+        maxLength: maxLength(11),
+      },
     },
   },
   data() {
@@ -367,7 +382,7 @@ export default {
       form: {
         email: '',
         name: '',
-        address: '',
+        phone_number: '',
       },
       tabs: [],
       activeTabIndex: null,
@@ -507,12 +522,12 @@ export default {
         this.$intercom('update', {
           email: this.form.email,
           name: this.form.name,
-          address: this.form.address,
+          phone_number: this.form.phone_number,
         })
         const metadata = {
           email: this.form.email,
           name: this.form.name,
-          address: this.form.address,
+          phone_number: this.form.phone_number,
         }
         this.$intercom('trackEvent', 'lead-genaration-signup', metadata)
         setTimeout(() => {
@@ -520,17 +535,23 @@ export default {
             this.$v.form.$reset()
             this.form.email = ''
             this.form.name = ''
-            this.form.address = ''
+            this.form.phone_number = ''
             this.loading = false
             this.$router.push('/')
           })
         }, 500)
       }
     },
-
     openSocialMedia(name, url) {
       mixpanelTrackEvent(`${name} icon clicked - Lead page`)
       window.open(url, '_blank')
+    },
+    changeCenter(i) {
+      this.$refs[
+        'center-image'
+      ].style.backgroundImage = `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${
+        i + 1
+      }.png')`
     },
   },
 }

@@ -39,12 +39,76 @@
   padding: $gap * 9 0 $gap * 18 0;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   color: color(eden-neutral-1);
+  position: relative;
   &__img {
-    flex: 0 0 50%;
+    display: flex;
+    justify-content: center;
+    margin-top: $gap * 6;
+    flex: 0 0 55%;
+    position: sticky;
+    top: 14%;
+    .center {
+      position: absolute;
+      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-0.png');
+      top: 50%;
+      left: 50%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      height: 300px;
+    }
+    &-container {
+      height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      will-change: transform;
+      animation: spin 10s linear infinite;
+
+      .dial {
+        padding-bottom: 500px;
+        position: absolute;
+        $number-of-images: 8;
+        $rotate: 0;
+        $angle: (360 / $number-of-images) * 1deg;
+        cursor: pointer;
+        @for $i from 0 through $number-of-images {
+          &-#{$i} {
+            transform: rotate($rotate);
+            $rotate: ($rotate + $angle);
+            z-index: $i;
+          }
+          &-#{$i}:before {
+            background: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-#{$i}.png')
+              center /
+              92px;
+            width: 92px;
+            height: 92px;
+            background-size: contain;
+            content: '';
+            position: absolute;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+          }
+        }
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
   }
   &__header {
-    flex: 0 0 40%;
+    flex: 0 0 38%;
     margin-top: $gap * 6;
     &-title {
       position: relative;
@@ -176,6 +240,9 @@
     width: 90%;
     padding: 0 0 $gap * 9 0;
     flex-direction: column;
+    &__img {
+      display: none;
+    }
     &__header {
       margin-bottom: $gap * 6;
       &-title {

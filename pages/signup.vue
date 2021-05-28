@@ -37,6 +37,17 @@
             </p>
             <p class="discount">Enjoy 20% off your first month!</p>
           </div>
+          <div class="hero__header--img">
+            <div ref="center-image" class="center"></div>
+            <div class="hero__header--img-container">
+              <div
+                v-for="(item, i) in 8"
+                :key="i"
+                :class="`dial dial-${i + 1}`"
+                @click.prevent="changeCenter(i)"
+              ></div>
+            </div>
+          </div>
           <div class="hero__form">
             <div class="hero__form-title">
               <h3>Start your Eden lunch plan today</h3>
@@ -84,9 +95,9 @@
                 Get Started at 20% Off
               </button>
             </div>
-            <p class="note">
+            <!-- <p class="note">
               *₦1,760 per meal on our first month. (Delivery costs included)
-            </p>
+            </p> -->
           </div>
         </div>
       </div>

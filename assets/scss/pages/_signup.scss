@@ -139,6 +139,10 @@
         width: fit-content;
       }
     }
+
+    &--img {
+      display: none;
+    }
   }
   &__form {
     margin-top: $gap * 10;
@@ -238,7 +242,7 @@
   }
   @include respond(md) {
     width: 90%;
-    padding: 0 0 $gap * 9 0;
+    padding: 0;
     flex-direction: column;
     &__img {
       display: none;
@@ -261,6 +265,71 @@
           margin-right: auto;
           text-align: center;
         }
+        .discount {
+          margin-top: $gap * 6.4;
+        }
+      }
+      &--img {
+        display: flex;
+        justify-content: center;
+        margin-top: $gap * 8;
+        .center {
+          position: absolute;
+          background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-0.png');
+          top: 44%;
+          left: 50%;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+          transform: translate(-50%, -50%);
+          width: 170px;
+          height: 170px;
+        }
+        &-container {
+          height: 300px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          will-change: transform;
+          animation: spin 10s linear infinite;
+
+          .dial {
+            padding-bottom: 300px;
+            position: absolute;
+            $number-of-images: 8;
+            $rotate: 0;
+            $angle: (360 / $number-of-images) * 1deg;
+            cursor: pointer;
+            @for $i from 0 through $number-of-images {
+              &-#{$i} {
+                transform: rotate($rotate);
+                $rotate: ($rotate + $angle);
+                z-index: $i;
+              }
+              &-#{$i}:before {
+                background: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-#{$i}.png')
+                  center /
+                  46px;
+                width: 46px;
+                height: 46px;
+                background-size: contain;
+                content: '';
+                position: absolute;
+                transform: translate(-50%, -50%);
+                z-index: 1;
+              }
+            }
+          }
+
+          @keyframes spin {
+            0% {
+              transform: rotate(0deg);
+            }
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+        }
       }
     }
 
@@ -277,6 +346,8 @@
       }
       &-btn {
         width: 100%;
+        @include font-size(base);
+        margin-top: $gap;
       }
       .note {
         right: unset;
@@ -536,7 +607,7 @@
     }
     &-btn {
       margin-top: $gap * 6;
-      width: 100%;
+      @include font-size(base);
     }
   }
   @include respond(xxl) {
@@ -644,6 +715,8 @@
   @include respond(md) {
     width: 90%;
     flex-direction: column;
+    padding: $gap * 6.4 0;
+
     &__title {
       display: flex;
       flex-direction: column;
@@ -653,6 +726,7 @@
         @include font-size(3xl);
         line-height: 36px;
         text-align: center;
+        margin-bottom: $gap * 4;
       }
       .card {
         width: 307px;
@@ -660,14 +734,15 @@
       }
     }
     &__details {
-      margin-top: $gap * 4;
+      margin-top: $gap * 6.4;
       &-item {
         flex-direction: column;
         align-items: center;
+        padding-bottom: $gap * 4.8;
         &--text {
           h5 {
             text-align: center;
-            margin-top: $gap;
+            margin-top: $gap * 2.4;
             @include font-size(lg);
             line-height: 29px;
           }

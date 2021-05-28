@@ -9,7 +9,12 @@
   &--description {
     background: #f0fff8
       url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611834564/eden-website-v2/bg-8_d0hgzi.svg')
-      no-repeat bottom -18% left -8%;
+      no-repeat bottom -10% left -3% / 10%;
+    @include respond(md) {
+      background: #f0fff8
+        url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611834564/eden-website-v2/bg-8_d0hgzi.svg')
+        no-repeat bottom -4% left -20% / 30%;
+    }
   }
   &--footer {
     background: color(eden-green-senary)
@@ -248,7 +253,7 @@
       display: none;
     }
     &__header {
-      margin-bottom: $gap * 6;
+      margin-bottom: $gap * 6.4;
       &-title {
         h1 {
           line-height: 47px;
@@ -715,7 +720,7 @@
   @include respond(md) {
     width: 90%;
     flex-direction: column;
-    padding: $gap * 6.4 0;
+    padding: $gap * 6.4 0 $gap * 10 0;
 
     &__title {
       display: flex;

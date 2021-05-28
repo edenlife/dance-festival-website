@@ -38,13 +38,13 @@
             <p class="discount">Enjoy 20% off your first month!</p>
           </div>
           <div class="hero__header--img">
-            <div ref="center-image" class="center"></div>
+            <div ref="center-image-mobile" class="center"></div>
             <div class="hero__header--img-container">
               <div
                 v-for="(item, i) in 8"
                 :key="i"
                 :class="`dial dial-${i + 1}`"
-                @click.prevent="changeCenter(i)"
+                @click.prevent="changeCenterMobile(i)"
               ></div>
             </div>
           </div>
@@ -560,6 +560,13 @@ export default {
     changeCenter(i) {
       this.$refs[
         'center-image'
+      ].style.backgroundImage = `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${
+        i + 1
+      }.png')`
+    },
+    changeCenterMobile(i) {
+      this.$refs[
+        'center-image-mobile'
       ].style.backgroundImage = `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${
         i + 1
       }.png')`

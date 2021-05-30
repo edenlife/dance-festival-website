@@ -13,12 +13,21 @@
         <div class="hero__img">
           <div ref="center-image" class="center"></div>
           <div class="hero__img-container">
-            <div
-              v-for="(item, i) in 8"
+            <!-- <div
+              v-for="(item, i) in 9"
+              :ref="'spin-' + item"
               :key="i"
               :class="`dial dial-${i + 1}`"
               @click.prevent="changeCenter(i)"
-            ></div>
+            ></div> -->
+            <div class="dial dial-1" @click.prevent="changeCenter(1)"></div>
+            <div class="dial dial-2" @click.prevent="changeCenter(2)"></div>
+            <div class="dial dial-3" @click.prevent="changeCenter(3)"></div>
+            <div class="dial dial-4" @click.prevent="changeCenter(4)"></div>
+            <div class="dial dial-5" @click.prevent="changeCenter(5)"></div>
+            <div class="dial dial-6" @click.prevent="changeCenter(6)"></div>
+            <div class="dial dial-7" @click.prevent="changeCenter(7)"></div>
+            <div class="dial dial-8" @click.prevent="changeCenter(8)"></div>
           </div>
         </div>
         <div class="hero__header">
@@ -40,11 +49,44 @@
           <div class="hero__header--img">
             <div ref="center-image-mobile" class="center"></div>
             <div class="hero__header--img-container">
-              <div
+              <!-- <div
                 v-for="(item, i) in 8"
+                :ref="'mobilespin-' + item"
                 :key="i"
                 :class="`dial dial-${i + 1}`"
                 @click.prevent="changeCenterMobile(i)"
+              ></div> -->
+              <div
+                class="dial dial-1"
+                @click.prevent="changeCenterMobile(1)"
+              ></div>
+              <div
+                class="dial dial-2"
+                @click.prevent="changeCenterMobile(2)"
+              ></div>
+              <div
+                class="dial dial-3"
+                @click.prevent="changeCenterMobile(3)"
+              ></div>
+              <div
+                class="dial dial-4"
+                @click.prevent="changeCenterMobile(4)"
+              ></div>
+              <div
+                class="dial dial-5"
+                @click.prevent="changeCenterMobile(5)"
+              ></div>
+              <div
+                class="dial dial-6"
+                @click.prevent="changeCenterMobile(6)"
+              ></div>
+              <div
+                class="dial dial-7"
+                @click.prevent="changeCenterMobile(7)"
+              ></div>
+              <div
+                class="dial dial-8"
+                @click.prevent="changeCenterMobile(8)"
               ></div>
             </div>
           </div>
@@ -402,6 +444,9 @@ export default {
       allMeal: [],
       mealsInCategory: [],
       loading: false,
+      defaultImage: 9,
+      setInitialImage: null,
+      setLastIndex: null,
     }
   },
   mounted() {
@@ -558,18 +603,76 @@ export default {
       window.open(url, '_blank')
     },
     changeCenter(i) {
+      const root = document.querySelector(':root')
+      const element = document.querySelector(`.dial-${i}`)
+      getComputedStyle(element, '::before')
+      const centerImage = getComputedStyle(element, '::before')[
+        'background-image'
+      ]
+      const getIndex = centerImage.substring(
+        centerImage.indexOf('signuphero-') + 11
+      )[0]
+      const imageIndex = parseInt(getIndex)
+
+      if (imageIndex === 9) {
+        root.style.setProperty(
+          `--psuedo-image-${i}`,
+          `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${this.defaultImage}.png')`
+        )
+        this.$refs[
+          'center-image'
+        ].style.backgroundImage = `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${imageIndex}.png')`
+
+        this.defaultImage = imageIndex
+        return
+      }
+
+      root.style.setProperty(
+        `--psuedo-image-${i}`,
+        `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${this.defaultImage}.png')`
+      )
+
       this.$refs[
         'center-image'
-      ].style.backgroundImage = `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${
-        i + 1
-      }.png')`
+      ].style.backgroundImage = `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${imageIndex}.png')`
+
+      this.defaultImage = imageIndex
     },
     changeCenterMobile(i) {
+      const root = document.querySelector(':root')
+      const element = document.querySelector(`.dial-${i}`)
+      getComputedStyle(element, '::before')
+      const centerImage = getComputedStyle(element, '::before')[
+        'background-image'
+      ]
+      const getIndex = centerImage.substring(
+        centerImage.indexOf('signuphero-') + 11
+      )[0]
+      const imageIndex = parseInt(getIndex)
+
+      if (imageIndex === 9) {
+        root.style.setProperty(
+          `--psuedo-image-${i}`,
+          `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${this.defaultImage}.png')`
+        )
+        this.$refs[
+          'center-image-mobile'
+        ].style.backgroundImage = `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${imageIndex}.png')`
+
+        this.defaultImage = imageIndex
+        return
+      }
+
+      root.style.setProperty(
+        `--psuedo-image-${i}`,
+        `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${this.defaultImage}.png')`
+      )
+
       this.$refs[
         'center-image-mobile'
-      ].style.backgroundImage = `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${
-        i + 1
-      }.png')`
+      ].style.backgroundImage = `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${imageIndex}.png')`
+
+      this.defaultImage = imageIndex
     },
   },
 }
@@ -577,4 +680,155 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/pages/_signup.scss';
+</style>
+
+<style>
+:root {
+  --psuedo-image-1: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-1.png');
+  --psuedo-image-2: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-2.png');
+  --psuedo-image-3: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-3.png');
+  --psuedo-image-4: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-4.png');
+  --psuedo-image-5: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-5.png');
+  --psuedo-image-6: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-6.png');
+  --psuedo-image-7: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-7.png');
+  --psuedo-image-8: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-8.png');
+}
+
+.dial-1:before {
+  background: var(--psuedo-image-1) center / 92px;
+  width: 92px;
+  height: 92px;
+  background-size: contain;
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+.dial-2:before {
+  background: var(--psuedo-image-2) center / 92px;
+  width: 92px;
+  height: 92px;
+  background-size: contain;
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+.dial-3:before {
+  background: var(--psuedo-image-3) center / 92px;
+  width: 92px;
+  height: 92px;
+  background-size: contain;
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+.dial-4:before {
+  background: var(--psuedo-image-4) center / 92px;
+  width: 92px;
+  height: 92px;
+  background-size: contain;
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+.dial-5:before {
+  background: var(--psuedo-image-5) center / 92px;
+  width: 92px;
+  height: 92px;
+  background-size: contain;
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+.dial-6:before {
+  background: var(--psuedo-image-6) center / 92px;
+  width: 92px;
+  height: 92px;
+  background-size: contain;
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+.dial-7:before {
+  background: var(--psuedo-image-7) center / 92px;
+  width: 92px;
+  height: 92px;
+  background-size: contain;
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+.dial-8:before {
+  background: var(--psuedo-image-8) center / 92px;
+  width: 92px;
+  height: 92px;
+  background-size: contain;
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+@media only screen and (max-width: 48em) {
+  .dial-1:before {
+    background: var(--psuedo-image-1) center / 46px;
+    width: 46px;
+    height: 46px;
+  }
+
+  .dial-2:before {
+    background: var(--psuedo-image-2) center / 46px;
+    width: 46px;
+    height: 46px;
+  }
+
+  .dial-3:before {
+    background: var(--psuedo-image-3) center / 46px;
+    width: 46px;
+    height: 46px;
+  }
+
+  .dial-4:before {
+    background: var(--psuedo-image-4) center / 46px;
+    width: 46px;
+    height: 46px;
+  }
+  .dial-5:before {
+    background: var(--psuedo-image-5) center / 46px;
+    width: 46px;
+    height: 46px;
+  }
+  .dial-6:before {
+    background: var(--psuedo-image-6) center / 46px;
+    width: 46px;
+    height: 46px;
+  }
+  .dial-7:before {
+    background: var(--psuedo-image-7) center / 46px;
+    width: 46px;
+    height: 46px;
+  }
+  .dial-8:before {
+    background: var(--psuedo-image-8) center / 46px;
+    width: 46px;
+    height: 46px;
+  }
+}
 </style>

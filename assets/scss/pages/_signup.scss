@@ -26,6 +26,7 @@
     }
   }
 }
+
 .header {
   margin: 0 auto;
   width: 83%;
@@ -38,6 +39,7 @@
     margin: 0 auto;
   }
 }
+
 .hero {
   margin: 0 auto;
   width: 83%;
@@ -56,7 +58,7 @@
     top: 14%;
     .center {
       position: absolute;
-      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-0.png');
+      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622194661/eden-website-v2/signuphero-9.png');
       top: 50%;
       left: 50%;
       background-size: contain;
@@ -87,19 +89,21 @@
             transform: rotate($rotate);
             $rotate: ($rotate + $angle);
             z-index: $i;
+            transition: all 0.5s ease-in-out;
           }
-          &-#{$i}:before {
-            background: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-#{$i}.png')
-              center /
-              92px;
-            width: 92px;
-            height: 92px;
-            background-size: contain;
-            content: '';
-            position: absolute;
-            transform: translate(-50%, -50%);
-            z-index: 1;
-          }
+          // &-#{$i}:before {
+          //   background: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-#{$i}.png')
+          //     center /
+          //     92px;
+          //   width: 92px;
+          //   height: 92px;
+          //   background-size: contain;
+          //   content: '';
+          //   position: absolute;
+          //   transform: translate(-50%, -50%);
+          //   z-index: 1;
+          //   // z-index: $i;
+          // }
         }
       }
 
@@ -281,7 +285,7 @@
         margin-top: $gap * 8;
         .center {
           position: absolute;
-          background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-0.png');
+          background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622194661/eden-website-v2/signuphero-9.png');
           top: 44%;
           left: 50%;
           background-size: contain;
@@ -313,18 +317,18 @@
                 $rotate: ($rotate + $angle);
                 z-index: $i;
               }
-              &-#{$i}:before {
-                background: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-#{$i}.png')
-                  center /
-                  46px;
-                width: 46px;
-                height: 46px;
-                background-size: contain;
-                content: '';
-                position: absolute;
-                transform: translate(-50%, -50%);
-                z-index: 1;
-              }
+              // &-#{$i}:before {
+              //   background: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-#{$i}.png')
+              //     center /
+              //     46px;
+              //   width: 46px;
+              //   height: 46px;
+              //   background-size: contain;
+              //   content: '';
+              //   position: absolute;
+              //   transform: translate(-50%, -50%);
+              //   z-index: 1;
+              // }
             }
           }
 
@@ -439,6 +443,10 @@
     .carousel-container {
       display: flex;
       width: 100%;
+
+      .owl-carousel {
+        display: grid;
+      }
       .prev,
       .next {
         z-index: 100;

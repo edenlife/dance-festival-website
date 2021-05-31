@@ -204,7 +204,7 @@
               <img :src="require(`~/assets/images/emojis/wow.png`)" alt="" />
             </div>
             <div class="description__details-item--text">
-              <h5>It's budget-friendly</h5>
+              <h5>It's perfect for your busy lifestyle</h5>
               <p>
                 You don't have to do anything at all. We'll handle everything
                 from shopping to cooking to delivery.

@@ -133,8 +133,17 @@
                   :class="{ 'has-error': $v.form.phone_number.$error }"
                 />
               </div>
-              <button class="hero__form-btn" @click="sendUserInfoIntercom">
-                Get Started at 20% Off
+              <button
+                class="hero__form-btn"
+                :disabled="loading"
+                @click.prevent="getStarted()"
+              >
+                <svg v-if="loading">
+                  <use
+                    xlink:href="@/assets/images/loading-icon.svg#loading-icon"
+                  ></use>
+                </svg>
+                <span v-else> Get Started at 20% Off</span>
               </button>
             </div>
             <!-- <p class="note">
@@ -408,6 +417,35 @@
         </div>
       </footer>
     </div>
+
+    <modal v-if="showEmailModal" :show-modal="showEmailModal" class="modal">
+      <div slot="header"></div>
+      <div slot="body" class="modal__body">
+        <div class="lead__modal">
+          <div class="lead__modal-title"></div>
+          <div class="lead__modal-body">
+            <img
+              class="email-img"
+              :src="require(`~/assets/images/email-modal.svg`)"
+              alt="email"
+            />
+            <h5>You’ve got mail!</h5>
+            <p>
+              We’ve sent an email to <b> {{ form.email }}</b
+              >. Please check your mail for next steps.
+            </p>
+            <button
+              type="submit"
+              class="btn--submit"
+              @click.prevent="openApp()"
+            >
+              Got it!
+            </button>
+          </div>
+        </div>
+      </div>
+      <div slot="footer"></div>
+    </modal>
   </div>
 </template>
 
@@ -417,6 +455,8 @@ import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 import dayjs from 'dayjs'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { placeholderColorMix } from '~/static/functions'
+import { signupApi } from '~/request/all.api'
+
 export default {
   Loader: () => import('@/components/Loader.vue'),
   mixins: [validationMixin],
@@ -457,6 +497,7 @@ export default {
       defaultImage: 9,
       setInitialImage: null,
       setLastIndex: null,
+      showEmailModal: false,
     }
   },
   mounted() {
@@ -580,33 +621,76 @@ export default {
           class_category && class_category.includes(category)
       )
     },
-    sendUserInfoIntercom() {
-      mixpanelTrackEvent('Sign up button clicked', 'Lead page')
-      this.loading = true
+    async getStarted() {
       this.$v.form.$touch()
       if (!this.$v.form.$error) {
-        this.$intercom('update', {
-          email: this.form.email,
-          name: this.form.name,
-          phone_number: this.form.phone_number,
-        })
-        const metadata = {
-          email: this.form.email,
-          name: this.form.name,
-          phone_number: this.form.phone_number,
-        }
-        this.$intercom('trackEvent', 'lead-genaration-signup', metadata)
-        setTimeout(() => {
-          this.$nextTick(() => {
-            this.$v.form.$reset()
-            this.form.email = ''
-            this.form.name = ''
-            this.form.phone_number = ''
-            this.loading = false
-            this.$router.push('/')
+        try {
+          mixpanelTrackEvent('Sign up button clicked', 'Lead page')
+          this.loading = true
+          this.$intercom('update', {
+            email: this.form.email,
+            name: this.form.name,
+            phone_number: this.form.phone_number,
           })
-        }, 500)
+          const metadata = {
+            email: this.form.email,
+            name: this.form.name,
+            phone_number: this.form.phone_number,
+          }
+          this.$intercom('trackEvent', 'lead-genaration-signup', metadata)
+
+          const payload = {
+            email: this.form.email,
+            plan_details: {
+              meal: {
+                frequency: 'daily',
+                item: null,
+                qty: 1,
+                service_day: ['mon-fri'],
+                amount: 44000,
+              },
+            },
+            discounted_amount: 35200,
+          }
+          await signupApi(payload)
+          this.showEmailModal = true
+          this.loading = false
+        } catch (error) {
+          this.loading = false
+        }
       }
+    },
+    openApp() {
+      this.form.email = ''
+      this.form.name = ''
+      this.form.phone_number = ''
+      this.showEmailModal = !this.showEmailModal
+      this.$v.$reset()
+      this.goToApp()
+    },
+    goToApp() {
+      mixpanelTrackEvent(`Get Started - Lead page`)
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera
+      // Windows Phone must come first because its UA also contains "Android"
+      if (/windows phone/i.test(userAgent)) {
+        this.$router.push('/')
+        return
+      }
+
+      if (/android/i.test(userAgent)) {
+        window.open(
+          ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`
+        )
+        return
+      }
+
+      // iOS detection from: http://stackoverflow.com/a/9039885/177710
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.open(`https://apps.apple.com/us/app/eden-life/id1482373755?ls=1`)
+        return
+      }
+
+      this.$router.push('/')
     },
     openSocialMedia(name, url) {
       mixpanelTrackEvent(`${name} icon clicked - Lead page`)

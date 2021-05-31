@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div ref="hero" class="container--hero">
+    <div class="container--hero">
       <header class="header">
         <nuxt-link :to="{ path: '/' }" class="header__logo">
           <img
@@ -90,7 +90,7 @@
               ></div>
             </div>
           </div>
-          <div class="hero__form">
+          <div ref="hero" class="hero__form">
             <div class="hero__form-title">
               <h3>Start your Eden lunch plan today</h3>
               <p>
@@ -171,7 +171,13 @@
         </div>
         <div class="description__details">
           <div class="description__details-item">
-            <h5 class="description__details-item--icon">💰</h5>
+            <div class="description__details-item--icon">
+              <img
+                :src="require(`~/assets/images/emojis/moneybag.png`)"
+                alt=""
+              />
+            </div>
+
             <div class="description__details-item--text">
               <h5>It's budget-friendly</h5>
               <p>
@@ -182,7 +188,9 @@
             </div>
           </div>
           <div class="description__details-item">
-            <h5 class="description__details-item--icon">🚀</h5>
+            <div class="description__details-item--icon">
+              <img :src="require(`~/assets/images/emojis/rocket.png`)" alt="" />
+            </div>
             <div class="description__details-item--text">
               <h5>It's a monthly subscription</h5>
               <p>
@@ -192,7 +200,9 @@
             </div>
           </div>
           <div class="description__details-item">
-            <h5 class="description__details-item--icon">🤩</h5>
+            <div class="description__details-item--icon">
+              <img :src="require(`~/assets/images/emojis/wow.png`)" alt="" />
+            </div>
             <div class="description__details-item--text">
               <h5>It's budget-friendly</h5>
               <p>

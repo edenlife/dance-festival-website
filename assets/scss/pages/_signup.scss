@@ -703,14 +703,18 @@
       }
 
       &--icon {
-        @include font-size(4xl);
-        line-height: 30px;
-        @include font-weight(bold);
         margin-right: $gap * 2.8;
         padding: $gap;
         background: #caf7de;
         border-radius: 8px;
         margin-top: $gap * 2;
+        display: flex;
+        justify-content: center;
+        img {
+          width: 28px;
+          height: 28px;
+          object-fit: contain;
+        }
       }
       &--text {
         color: color(eden-neutral-1);

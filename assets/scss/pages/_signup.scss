@@ -241,6 +241,10 @@
         }
       }
     }
+    .error-message {
+      @include font-size(sm);
+      color: color(eden-red);
+    }
     .note {
       position: absolute;
       bottom: -8%;

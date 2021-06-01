@@ -133,6 +133,9 @@
                   :class="{ 'has-error': $v.form.phone_number.$error }"
                 />
               </div>
+              <p v-if="responseMessage.length" class="error-message">
+                {{ responseMessage }}
+              </p>
               <button
                 class="hero__form-btn"
                 :disabled="loading"
@@ -498,6 +501,7 @@ export default {
       setInitialImage: null,
       setLastIndex: null,
       showEmailModal: false,
+      responseMessage: '',
     }
   },
   mounted() {
@@ -655,8 +659,10 @@ export default {
           await signupApi(payload)
           this.showEmailModal = true
           this.loading = false
+          this.responseMessage = ''
         } catch (error) {
           this.loading = false
+          this.responseMessage = error.response.data.message
         }
       }
     },

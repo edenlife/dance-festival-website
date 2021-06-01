@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div ref="hero" class="container--hero">
+    <div class="container--hero">
       <header class="header">
         <nuxt-link :to="{ path: '/' }" class="header__logo">
           <img
@@ -10,82 +10,221 @@
         </nuxt-link>
       </header>
       <div class="hero">
-        <div class="hero__title">
-          <h1>
-            <span class="pay"> *Pay Once.</span> <br />
-            Get Lunch.<br />
-            All Month.
-          </h1>
-          <p>
-            Subscribe to our lunch plan and get chef-cooked meals delivered.
-            <span class="bold">Monday to Friday. </span> You work so hard and
-            deserve better.
-            <br />
-            <br />
-            Start your Eden lunch plan today
-            <span class="bold"> and get 20% off your first month.</span>
-          </p>
-          <img
-            src="https://res.cloudinary.com/eden-life-inc/image/upload/v1619608257/eden-website-v2/Food_IMG_ptb5mk.png"
-            alt=""
-          />
+        <div class="hero__img">
+          <div ref="center-image" class="center"></div>
+          <div class="hero__img-container">
+            <!-- <div
+              v-for="(item, i) in 9"
+              :ref="'spin-' + item"
+              :key="i"
+              :class="`dial dial-${i + 1}`"
+              @click.prevent="changeCenter(i)"
+            ></div> -->
+            <div class="dial dial-1" @click.prevent="changeCenter(1)"></div>
+            <div class="dial dial-2" @click.prevent="changeCenter(2)"></div>
+            <div class="dial dial-3" @click.prevent="changeCenter(3)"></div>
+            <div class="dial dial-4" @click.prevent="changeCenter(4)"></div>
+            <div class="dial dial-5" @click.prevent="changeCenter(5)"></div>
+            <div class="dial dial-6" @click.prevent="changeCenter(6)"></div>
+            <div class="dial dial-7" @click.prevent="changeCenter(7)"></div>
+            <div class="dial dial-8" @click.prevent="changeCenter(8)"></div>
+          </div>
         </div>
-        <div class="hero__form">
-          <div class="hero__form-title">
-            <h3>Start Your Eden Life</h3>
+        <div class="hero__header">
+          <div class="hero__header-title">
+            <h1>
+              <span class="pay"> *Pay Once.</span> <br />
+              Get Lunch.<br />
+              All Month.
+            </h1>
             <p>
-              Enter your details and we'll email you about the next steps. Let's
-              go!
+              Subscribe to our lunch plan and get chef-cooked meals delivered
+              straight to you.
+              <span class="bold">Monday to Friday. </span>
+              <br />
+              The perfect fuel for your hard-work 💚
             </p>
+            <p class="discount">Enjoy 20% off your first month!</p>
           </div>
-          <div class="hero__form-body">
-            <div class="hero__form-input">
-              <label for="name">Full Name</label>
-              <input
-                id=""
-                v-model="form.name"
-                type="text"
-                name=""
-                placeholder="First & Last Name"
-                :class="{ 'has-error': $v.form.name.$error }"
-              />
+          <div class="hero__header--img">
+            <div ref="center-image-mobile" class="center"></div>
+            <div class="hero__header--img-container">
+              <!-- <div
+                v-for="(item, i) in 8"
+                :ref="'mobilespin-' + item"
+                :key="i"
+                :class="`dial dial-${i + 1}`"
+                @click.prevent="changeCenterMobile(i)"
+              ></div> -->
+              <div
+                class="dial dial-1"
+                @click.prevent="changeCenterMobile(1)"
+              ></div>
+              <div
+                class="dial dial-2"
+                @click.prevent="changeCenterMobile(2)"
+              ></div>
+              <div
+                class="dial dial-3"
+                @click.prevent="changeCenterMobile(3)"
+              ></div>
+              <div
+                class="dial dial-4"
+                @click.prevent="changeCenterMobile(4)"
+              ></div>
+              <div
+                class="dial dial-5"
+                @click.prevent="changeCenterMobile(5)"
+              ></div>
+              <div
+                class="dial dial-6"
+                @click.prevent="changeCenterMobile(6)"
+              ></div>
+              <div
+                class="dial dial-7"
+                @click.prevent="changeCenterMobile(7)"
+              ></div>
+              <div
+                class="dial dial-8"
+                @click.prevent="changeCenterMobile(8)"
+              ></div>
             </div>
-            <div class="hero__form-input">
-              <label for="email">Email</label>
-              <input
-                id=""
-                v-model="form.email"
-                type="email"
-                name=""
-                placeholder="email@example.com"
-                :class="{ 'has-error': $v.form.email.$error }"
-              />
-            </div>
-            <div class="hero__form-input">
-              <label for="address">Address</label>
-              <input
-                id=""
-                v-model="form.address"
-                type="text"
-                name=""
-                placeholder="Where you’ll receive your meals"
-                :class="{ 'has-error': $v.form.address.$error }"
-              />
-            </div>
-            <button class="hero__form-btn" @click="sendUserInfoIntercom">
-              <svg v-if="loading">
-                <use
-                  xlink:href="@/assets/images/loading-icon.svg#loading-icon"
-                ></use>
-              </svg>
-              <span v-else> Get Started at 20% Off</span>
-            </button>
           </div>
-          <p class="note">
-            *₦1,760 per meal on our first month. (Delivery costs included)
-          </p>
+          <div ref="hero" class="hero__form">
+            <div class="hero__form-title">
+              <h3>Start your Eden lunch plan today</h3>
+              <p>
+                Enter your details and we'll reach out to you about the next
+                steps. Let's go!
+              </p>
+            </div>
+            <div class="hero__form-body">
+              <div class="hero__form-input">
+                <label for="name">Full Name</label>
+                <input
+                  id=""
+                  v-model="form.name"
+                  type="text"
+                  name=""
+                  placeholder="First & Last Name"
+                  :class="{ 'has-error': $v.form.name.$error }"
+                />
+              </div>
+              <div class="hero__form-input">
+                <label for="email">Email</label>
+                <input
+                  id=""
+                  v-model="form.email"
+                  type="email"
+                  name=""
+                  placeholder="email@example.com"
+                  :class="{ 'has-error': $v.form.email.$error }"
+                />
+              </div>
+              <div class="hero__form-input">
+                <label for="phone number">Phone Number</label>
+                <input
+                  id=""
+                  v-model.trim="$v.form.phone_number.$model"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                  type="text"
+                  name=""
+                  placeholder="08123456789"
+                  :class="{ 'has-error': $v.form.phone_number.$error }"
+                />
+              </div>
+              <p v-if="responseMessage.length" class="error-message">
+                {{ responseMessage }}
+              </p>
+              <button
+                class="hero__form-btn"
+                :disabled="loading"
+                @click.prevent="getStarted()"
+              >
+                <svg v-if="loading">
+                  <use
+                    xlink:href="@/assets/images/loading-icon.svg#loading-icon"
+                  ></use>
+                </svg>
+                <span v-else> Get Started at 20% Off</span>
+              </button>
+            </div>
+            <!-- <p class="note">
+              *₦1,760 per meal on our first month. (Delivery costs included)
+            </p> -->
+          </div>
         </div>
       </div>
+    </div>
+    <div class="container--description">
+      <section class="description">
+        <div class="description__title">
+          <h3>Why let Eden worry about lunchtime?</h3>
+          <div class="card">
+            <a :href="testimonial.tweetLink" target="_blank">
+              <div class="card__title">
+                <div class="card__title-img">
+                  <img
+                    :src="
+                      require(`~/assets/images/customer-${testimonial.image}.png`)
+                    "
+                    :alt="testimonial.name"
+                  />
+                </div>
+
+                <div class="">
+                  <p class="card__title-name">{{ testimonial.name }}</p>
+                  <p class="card__title-handle">@{{ testimonial.handle }}</p>
+                </div>
+              </div>
+              <p class="card__description" v-html="testimonial.description"></p>
+            </a>
+          </div>
+        </div>
+        <div class="description__details">
+          <div class="description__details-item">
+            <div class="description__details-item--icon">
+              <img
+                :src="require(`~/assets/images/emojis/moneybag.png`)"
+                alt=""
+              />
+            </div>
+
+            <div class="description__details-item--text">
+              <h5>It's budget-friendly</h5>
+              <p>
+                We asked around, crunched some numbers, and found out that
+                Eden's food plans save our customers as much as 68% of their
+                monthly food bill!
+              </p>
+            </div>
+          </div>
+          <div class="description__details-item">
+            <div class="description__details-item--icon">
+              <img :src="require(`~/assets/images/emojis/rocket.png`)" alt="" />
+            </div>
+            <div class="description__details-item--text">
+              <h5>It's a monthly subscription</h5>
+              <p>
+                You pay once and get fresh food all through the month. Once you
+                subscribe, you're good for the whole month.
+              </p>
+            </div>
+          </div>
+          <div class="description__details-item">
+            <div class="description__details-item--icon">
+              <img :src="require(`~/assets/images/emojis/wow.png`)" alt="" />
+            </div>
+            <div class="description__details-item--text">
+              <h5>It's perfect for your busy lifestyle</h5>
+              <p>
+                You don't have to do anything at all. We'll handle everything
+                from shopping to cooking to delivery.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
     <div class="container--menu">
       <section class="menu">
@@ -281,15 +420,46 @@
         </div>
       </footer>
     </div>
+
+    <modal v-if="showEmailModal" :show-modal="showEmailModal" class="modal">
+      <div slot="header"></div>
+      <div slot="body" class="modal__body">
+        <div class="lead__modal">
+          <div class="lead__modal-title"></div>
+          <div class="lead__modal-body">
+            <img
+              class="email-img"
+              :src="require(`~/assets/images/email-modal.svg`)"
+              alt="email"
+            />
+            <h5>You’ve got mail!</h5>
+            <p>
+              We’ve sent an email to <b> {{ form.email }}</b
+              >. Please check your mail for next steps.
+            </p>
+            <button
+              type="submit"
+              class="btn--submit"
+              @click.prevent="openApp()"
+            >
+              Got it!
+            </button>
+          </div>
+        </div>
+      </div>
+      <div slot="footer"></div>
+    </modal>
   </div>
 </template>
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 import dayjs from 'dayjs'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { placeholderColorMix } from '~/static/functions'
+import { signupApi } from '~/request/all.api'
+
 export default {
   Loader: () => import('@/components/Loader.vue'),
   mixins: [validationMixin],
@@ -298,15 +468,27 @@ export default {
     form: {
       email: { required, email },
       name: { required },
-      address: { required },
+      phone_number: {
+        required,
+        minLength: minLength(11),
+        maxLength: maxLength(11),
+      },
     },
   },
   data() {
     return {
+      testimonial: {
+        name: 'Jinchūriki of the Spirit.',
+        image: 'nicelegs',
+        description: `Working on projects while <span style="color:#03A84E"> @ouredenlife </span> does the chores, talk about maximum productivity >>>>>>>>>>>>>> <br><br> Please I'm not lazy I just don't like stress besides it's called delegating for a reason 😁`,
+        handle: 'ms_nicelegs',
+        tweetLink:
+          'https://twitter.com/ms_nicelegs/status/1276445141906141185?s=20',
+      },
       form: {
         email: '',
         name: '',
-        address: '',
+        phone_number: '',
       },
       tabs: [],
       activeTabIndex: null,
@@ -315,6 +497,11 @@ export default {
       allMeal: [],
       mealsInCategory: [],
       loading: false,
+      defaultImage: 9,
+      setInitialImage: null,
+      setLastIndex: null,
+      showEmailModal: false,
+      responseMessage: '',
     }
   },
   mounted() {
@@ -364,11 +551,7 @@ export default {
       this.firstDateFormat = dayjs(new Date())
         .startOf('week')
         .format('DD MMM YYYY')
-      //   const dateData = dayjs(
-      //   new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7)
-      // ).format('DD-MM-YYYY')
       const dateData = dayjs(new Date()).format('DD-MM-YYYY')
-      // TODO change to staging
       fetch(
         `https://api.edenlife.ng/api/v2/meal/items/all?current_date=${dateData}`
       )
@@ -438,38 +621,154 @@ export default {
           class_category && class_category.includes(category)
       )
     },
-    sendUserInfoIntercom() {
-      mixpanelTrackEvent('Sign up button clicked', 'Lead page')
+    async getStarted() {
       this.$v.form.$touch()
       if (!this.$v.form.$error) {
-        this.loading = true
-        this.$intercom('update', {
-          email: this.form.email,
-          name: this.form.name,
-          address: this.form.address,
-        })
-        const metadata = {
-          email: this.form.email,
-          name: this.form.name,
-          address: this.form.address,
-        }
-        this.$intercom('trackEvent', 'lead-generation-signup', metadata)
-        setTimeout(() => {
-          this.$nextTick(() => {
-            this.$v.form.$reset()
-            this.form.email = ''
-            this.form.name = ''
-            this.form.address = ''
-            this.loading = false
-            this.$router.push('/')
+        try {
+          mixpanelTrackEvent('Sign up button clicked', 'Lead page')
+          this.loading = true
+          this.$intercom('update', {
+            email: this.form.email,
+            name: this.form.name,
+            phone_number: this.form.phone_number,
           })
-        }, 500)
+          const metadata = {
+            email: this.form.email,
+            name: this.form.name,
+            phone_number: this.form.phone_number,
+          }
+          this.$intercom('trackEvent', 'lead-genaration-signup', metadata)
+
+          const payload = {
+            email: this.form.email,
+            plan_details: {
+              meal: {
+                frequency: 'daily',
+                item: null,
+                qty: 1,
+                service_day: ['mon-fri'],
+                amount: 44000,
+              },
+            },
+            discounted_amount: 35200,
+          }
+          await signupApi(payload)
+          this.showEmailModal = true
+          this.loading = false
+          this.responseMessage = ''
+        } catch (error) {
+          this.loading = false
+          this.responseMessage = error.response.data.message
+        }
       }
     },
+    openApp() {
+      this.form.email = ''
+      this.form.name = ''
+      this.form.phone_number = ''
+      this.showEmailModal = !this.showEmailModal
+      this.$v.$reset()
+      this.goToApp()
+    },
+    goToApp() {
+      mixpanelTrackEvent(`Get Started - Lead page`)
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera
+      // Windows Phone must come first because its UA also contains "Android"
+      if (/windows phone/i.test(userAgent)) {
+        this.$router.push('/')
+        return
+      }
 
+      if (/android/i.test(userAgent)) {
+        window.open(
+          ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`
+        )
+        return
+      }
+
+      // iOS detection from: http://stackoverflow.com/a/9039885/177710
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.open(`https://apps.apple.com/us/app/eden-life/id1482373755?ls=1`)
+        return
+      }
+
+      this.$router.push('/')
+    },
     openSocialMedia(name, url) {
       mixpanelTrackEvent(`${name} icon clicked - Lead page`)
       window.open(url, '_blank')
+    },
+    changeCenter(i) {
+      const root = document.querySelector(':root')
+      const element = document.querySelector(`.dial-${i}`)
+      getComputedStyle(element, '::before')
+      const centerImage = getComputedStyle(element, '::before')[
+        'background-image'
+      ]
+      const getIndex = centerImage.substring(
+        centerImage.indexOf('signuphero-') + 11
+      )[0]
+      const imageIndex = parseInt(getIndex)
+
+      if (imageIndex === 9) {
+        root.style.setProperty(
+          `--psuedo-image-${i}`,
+          `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${this.defaultImage}.png')`
+        )
+        this.$refs[
+          'center-image'
+        ].style.backgroundImage = `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${imageIndex}.png')`
+
+        this.defaultImage = imageIndex
+        return
+      }
+
+      root.style.setProperty(
+        `--psuedo-image-${i}`,
+        `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${this.defaultImage}.png')`
+      )
+
+      this.$refs[
+        'center-image'
+      ].style.backgroundImage = `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${imageIndex}.png')`
+
+      this.defaultImage = imageIndex
+    },
+    changeCenterMobile(i) {
+      const root = document.querySelector(':root')
+      const element = document.querySelector(`.dial-${i}`)
+      getComputedStyle(element, '::before')
+      const centerImage = getComputedStyle(element, '::before')[
+        'background-image'
+      ]
+      const getIndex = centerImage.substring(
+        centerImage.indexOf('signuphero-') + 11
+      )[0]
+      const imageIndex = parseInt(getIndex)
+
+      if (imageIndex === 9) {
+        root.style.setProperty(
+          `--psuedo-image-${i}`,
+          `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${this.defaultImage}.png')`
+        )
+        this.$refs[
+          'center-image-mobile'
+        ].style.backgroundImage = `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${imageIndex}.png')`
+
+        this.defaultImage = imageIndex
+        return
+      }
+
+      root.style.setProperty(
+        `--psuedo-image-${i}`,
+        `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${this.defaultImage}.png')`
+      )
+
+      this.$refs[
+        'center-image-mobile'
+      ].style.backgroundImage = `url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-${imageIndex}.png')`
+
+      this.defaultImage = imageIndex
     },
   },
 }
@@ -477,4 +776,155 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/pages/_signup.scss';
+</style>
+
+<style>
+:root {
+  --psuedo-image-1: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-1.png');
+  --psuedo-image-2: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-2.png');
+  --psuedo-image-3: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-3.png');
+  --psuedo-image-4: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-4.png');
+  --psuedo-image-5: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-5.png');
+  --psuedo-image-6: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-6.png');
+  --psuedo-image-7: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-7.png');
+  --psuedo-image-8: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-8.png');
+}
+
+.dial-1:before {
+  background: var(--psuedo-image-1) center / 92px;
+  width: 92px;
+  height: 92px;
+  background-size: contain;
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+.dial-2:before {
+  background: var(--psuedo-image-2) center / 92px;
+  width: 92px;
+  height: 92px;
+  background-size: contain;
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+.dial-3:before {
+  background: var(--psuedo-image-3) center / 92px;
+  width: 92px;
+  height: 92px;
+  background-size: contain;
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+.dial-4:before {
+  background: var(--psuedo-image-4) center / 92px;
+  width: 92px;
+  height: 92px;
+  background-size: contain;
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+.dial-5:before {
+  background: var(--psuedo-image-5) center / 92px;
+  width: 92px;
+  height: 92px;
+  background-size: contain;
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+.dial-6:before {
+  background: var(--psuedo-image-6) center / 92px;
+  width: 92px;
+  height: 92px;
+  background-size: contain;
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+.dial-7:before {
+  background: var(--psuedo-image-7) center / 92px;
+  width: 92px;
+  height: 92px;
+  background-size: contain;
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+.dial-8:before {
+  background: var(--psuedo-image-8) center / 92px;
+  width: 92px;
+  height: 92px;
+  background-size: contain;
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+@media only screen and (max-width: 48em) {
+  .dial-1:before {
+    background: var(--psuedo-image-1) center / 46px;
+    width: 46px;
+    height: 46px;
+  }
+
+  .dial-2:before {
+    background: var(--psuedo-image-2) center / 46px;
+    width: 46px;
+    height: 46px;
+  }
+
+  .dial-3:before {
+    background: var(--psuedo-image-3) center / 46px;
+    width: 46px;
+    height: 46px;
+  }
+
+  .dial-4:before {
+    background: var(--psuedo-image-4) center / 46px;
+    width: 46px;
+    height: 46px;
+  }
+  .dial-5:before {
+    background: var(--psuedo-image-5) center / 46px;
+    width: 46px;
+    height: 46px;
+  }
+  .dial-6:before {
+    background: var(--psuedo-image-6) center / 46px;
+    width: 46px;
+    height: 46px;
+  }
+  .dial-7:before {
+    background: var(--psuedo-image-7) center / 46px;
+    width: 46px;
+    height: 46px;
+  }
+  .dial-8:before {
+    background: var(--psuedo-image-8) center / 46px;
+    width: 46px;
+    height: 46px;
+  }
+}
 </style>

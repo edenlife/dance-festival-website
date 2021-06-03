@@ -1,0 +1,85 @@
+@import '../../style.scss';
+
+.container {
+  width: 100%;
+  &--error {
+    background: #fafffc url('~@/assets/images/error-bg.svg') no-repeat;
+
+    .error__message {
+      margin: 0 auto;
+      width: 83%;
+      padding: $gap * 30 0 $gap * 20 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      &--icon {
+        width: 60px;
+        height: 60px;
+        img {
+          width: 100%;
+          height: auto;
+          object-fit: contain;
+        }
+      }
+      &--description {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: color(eden-neutral-1);
+      }
+      &--text {
+        display: flex;
+        align-items: center;
+        p {
+          padding: $gap + 6;
+          box-shadow: 0px 2px 4px rgba(147, 162, 155, 0.161);
+          background-color: color(eden-neutral-7);
+          border-radius: 8px;
+        }
+        &--arrow {
+          border-width: 10px;
+          border-style: solid;
+          border-color: transparent whitesmoke transparent transparent;
+        }
+      }
+      &--btn {
+        margin-top: $gap * 6.4;
+        @include font-size(lg);
+        line-height: 23px;
+        background-color: color(eden-green-primary);
+        color: color(eden-neutral-7);
+        padding: $gap * 1.4 $gap * 3.2;
+        border-radius: 4px;
+        transition: all 0.4s ease-in-out;
+        width: 250px;
+        &:hover {
+          box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
+          background-color: color(eden-green-250);
+          color: color(eden-neutral-7);
+        }
+        &:active {
+          background-image: radial-gradient(
+            circle at center right,
+            rgba(0, 141, 64, 0.1) 50%,
+            #008d40 50%
+          );
+        }
+      }
+      @include respond(md) {
+        width: 90%;
+        &--text {
+          p {
+            padding: $gap;
+            @include font-size(sm);
+            text-align: center;
+          }
+        }
+      }
+      @include respond(xxl) {
+        max-width: 1440px;
+        margin: 0 auto;
+      }
+    }
+  }
+}

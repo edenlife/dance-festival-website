@@ -209,6 +209,16 @@ export default {
     transpile: ['gsap'],
   },
 
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'custom',
+        path: '*',
+        component: resolve(__dirname, 'pages/404.vue'),
+      })
+    },
+  },
+
   sitemap: {
     hostname: 'https://ouredenlife.com',
     gzip: true,

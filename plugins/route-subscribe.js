@@ -3,7 +3,7 @@ export default ({ app }, inject) => {
     const origin = document.referrer
     console.log({ origin })
     if (origin.includes('facebook')) {
-      app.router.push('/signup')
+      app.router.push('/lunch')
     }
   })
 }

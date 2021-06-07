@@ -630,12 +630,12 @@ export default {
           this.$intercom('update', {
             email: this.form.email,
             name: this.form.name,
-            phone_number: this.form.phone_number,
+            phone: this.form.phone_number,
           })
           const metadata = {
             email: this.form.email,
             name: this.form.name,
-            phone_number: this.form.phone_number,
+            phone: this.form.phone_number,
           }
           this.$intercom('trackEvent', 'lead-genaration-signup', metadata)
 

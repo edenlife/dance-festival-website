@@ -33,7 +33,7 @@
         <div class="hero__header">
           <div class="hero__header-title">
             <h1>
-              <span class="pay"> *Pay Once.</span> <br />
+              Pay Once. <br />
               Get Lunch.<br />
               All Month.
             </h1>

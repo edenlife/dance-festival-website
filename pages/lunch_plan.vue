@@ -313,7 +313,7 @@ export default {
     }
   },
   mounted() {
-    mixpanelTrackEvent('Lead page')
+    mixpanelTrackEvent('Lead page v1')
     this.fetchMeal()
   },
   methods: {
@@ -359,9 +359,6 @@ export default {
       this.firstDateFormat = dayjs(new Date())
         .startOf('week')
         .format('DD MMM YYYY')
-      //   const dateData = dayjs(
-      //   new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7)
-      // ).format('DD-MM-YYYY')
       const dateData = dayjs(new Date()).format('DD-MM-YYYY')
       // TODO change to staging
       fetch(
@@ -434,7 +431,7 @@ export default {
       )
     },
     sendUserInfoIntercom() {
-      mixpanelTrackEvent('Sign up button clicked', 'Lead page')
+      mixpanelTrackEvent('Sign up button clicked', 'Lead page v1')
       this.loading = true
       this.$v.form.$touch()
       if (!this.$v.form.$error) {
@@ -463,7 +460,7 @@ export default {
     },
 
     openSocialMedia(name, url) {
-      mixpanelTrackEvent(`${name} icon clicked - Lead page`)
+      mixpanelTrackEvent(`${name} icon clicked - Lead page v1`)
       window.open(url, '_blank')
     },
   },

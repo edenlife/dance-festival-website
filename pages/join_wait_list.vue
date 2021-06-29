@@ -455,6 +455,7 @@ export default {
     sendUserInfoIntercom() {
       // mixpanelTrackEvent('Sign up button clicked', 'Lead page v1')
       this.loading = true
+
       this.$v.form.$touch()
       if (!this.$v.form.$error) {
         const metadata = {

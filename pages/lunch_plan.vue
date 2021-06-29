@@ -62,6 +62,18 @@
               />
             </div>
             <div class="hero__form-input">
+              <label for="phone number">Phone Number</label>
+              <input
+                id=""
+                v-model.trim="$v.form.phone_number.$model"
+                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                type="text"
+                name=""
+                placeholder="08123456789"
+                :class="{ 'has-error': $v.form.phone_number.$error }"
+              />
+            </div>
+            <div class="hero__form-input">
               <label for="address">Address</label>
               <input
                 id=""
@@ -72,7 +84,10 @@
                 :class="{ 'has-error': $v.form.address.$error }"
               />
             </div>
-            <button class="hero__form-btn" @click="sendUserInfoIntercom">
+            <button
+              class="hero__form-btn"
+              @click.prevent="sendUserInfoIntercom"
+            >
               Get Started at 20% Off
             </button>
           </div>
@@ -281,10 +296,11 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 import dayjs from 'dayjs'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { placeholderColorMix } from '~/static/functions'
+import { createLead } from '~/request/airtable'
 export default {
   Loader: () => import('@/components/Loader.vue'),
   mixins: [validationMixin],
@@ -294,6 +310,11 @@ export default {
       email: { required, email },
       name: { required },
       address: { required },
+      phone_number: {
+        required,
+        minLength: minLength(11),
+        maxLength: maxLength(11),
+      },
     },
   },
   data() {
@@ -302,6 +323,7 @@ export default {
         email: '',
         name: '',
         address: '',
+        phone_number: '',
       },
       tabs: [],
       activeTabIndex: null,
@@ -431,29 +453,29 @@ export default {
       )
     },
     sendUserInfoIntercom() {
-      mixpanelTrackEvent('Sign up button clicked', 'Lead page v1')
+      // mixpanelTrackEvent('Sign up button clicked', 'Lead page v1')
       this.loading = true
       this.$v.form.$touch()
       if (!this.$v.form.$error) {
-        this.$intercom('update', {
-          email: this.form.email,
-          name: this.form.name,
-          address: this.form.address,
-        })
         const metadata = {
-          email: this.form.email,
-          name: this.form.name,
-          address: this.form.address,
+          Name: this.form.name,
+          Email: this.form.email,
+          Address: this.form.address,
+          'Phone number': this.form.phone_number,
+          Service: ['meal'],
         }
-        this.$intercom('trackEvent', 'lead-generation-signup', metadata)
+
+        createLead(metadata)
+
         setTimeout(() => {
           this.$nextTick(() => {
             this.$v.form.$reset()
             this.form.email = ''
             this.form.name = ''
             this.form.address = ''
+            this.form.phone_number = ''
             this.loading = false
-            this.$router.push('/')
+            // this.$router.push('/')
           })
         }, 500)
       }

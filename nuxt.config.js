@@ -93,6 +93,7 @@ export default {
     RAVE_KEY_TEST: 'FLWPUBK_TEST-f35584e887ccd845a97f7c45c84fbac9-X',
     MAILCHIMP_USERID: '8d551f5341eee34aa00432838',
     MAILCHIMP_LISTID: '987fa4d39c',
+    AIRTABLE_KEY: process.env.VUE_APP_AIRTABLEKEY,
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins

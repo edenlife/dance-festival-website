@@ -138,6 +138,15 @@
                 Companies
               </nuxt-link>
             </li>
+            <li @click="trackLink('Pricing')">
+              <nuxt-link
+                :to="{ path: '/pricing' }"
+                class="footer__bottom-logo"
+                @click.prevent="trackLink('Pricing')"
+              >
+                Pricing
+              </nuxt-link>
+            </li>
           </ul>
 
           <ul>

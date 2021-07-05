@@ -82,6 +82,14 @@ export default {
         body: true,
         defer: true,
       },
+
+      // setup linkedIn
+      {
+        innerHTML: `(function(l) { if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])}; window.lintrk.q=[]} var s = document.getElementsByTagName("script")[0]; var b = document.createElement("script"); b.type = "text/javascript";b.async = true; b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js"; s.parentNode.insertBefore(b, s);})(window.lintrk);`,
+        type: 'text/javascript',
+        body: true,
+        defer: true,
+      },
     ],
 
     title: 'Eden | Say Goodbye To Chores Forever',
@@ -192,6 +200,14 @@ export default {
     'nuxt-intercom',
 
     '@nuxtjs/sitemap',
+
+    // linkedin
+    [
+      'nuxt-linkedin-insight-tag',
+      {
+        linkedin_id: '3689585',
+      },
+    ],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

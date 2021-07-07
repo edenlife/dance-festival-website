@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div ref="hero" class="container--hero">
+    <div class="container--hero">
       <header class="header">
         <nuxt-link :to="{ path: '/' }" class="header__logo">
           <img
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <div class="container--pricing">
+    <div ref="custom" class="container--pricing">
       <section class="pricing">
         <div class="pricing__left">
           <div class="pricing__form">
@@ -120,7 +120,117 @@
             </div>
           </div>
         </div>
-        <div class="pricing__right"></div>
+        <div class="pricing__right">
+          <div class="pricing__header">
+            <div class="pricing__header-title">
+              <h3>Our plans are flexible.</h3>
+            </div>
+
+            <div class="pricing__header-input">
+              <ul>
+                <li
+                  v-for="(service, index) in services"
+                  :key="index"
+                  :value="service.name"
+                  class="service"
+                  :class="{
+                    selected: selectedService.includes(service.name),
+                  }"
+                >
+                  <input
+                    :id="service.name"
+                    type="checkbox"
+                    :name="service.name"
+                    :value="service.name"
+                    @change="changeService(service)"
+                  />
+                  <label
+                    :for="service"
+                    :class="{
+                      checkmark: selectedService.includes(service.name),
+                    }"
+                  >
+                    {{ service.name }}</label
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="pricing__header-slider">
+              <div class="pricing__header-slider--title">
+                <p>Choose Your Monthly Budget</p>
+                <h3>₦{{ formatNumber(estimatedPrice) }}</h3>
+              </div>
+              <div v-show="!loading" class="range">
+                <input
+                  id="range"
+                  v-model="estimate"
+                  type="range"
+                  min="0"
+                  max="4"
+                  steps="1"
+                  value="1"
+                  class="range-input"
+                  @input="getEstimate"
+                />
+                <ul id="range-labels" class="range-labels">
+                  <li class="selected">a</li>
+                  <li class="selected">b</li>
+                  <li class="selected">c</li>
+                  <li>d</li>
+                  <li>e</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="pricing__plan">
+            <p class="pricing__plan-title">
+              For <span>₦{{ formatNumber(estimatedPrice) }}</span> monthly, you
+              can get:
+            </p>
+            <transition name="slide-fade">
+              <ul v-if="selectedService.includes('Food')">
+                <p>
+                  <span>Food plan</span>
+                  <span>₦{{ formatNumber(services[0].price) }}</span>
+                </p>
+                <li v-for="(item, i) in foodSummary" :key="i">{{ item }}</li>
+              </ul>
+            </transition>
+            <transition name="slide-fade">
+              <ul v-if="selectedService.includes('Laundry')">
+                <p>
+                  <span>Laundry plan</span>
+                  <span>₦{{ formatNumber(services[1].price) }}</span>
+                </p>
+                <li v-for="(item, i) in laundrySummary" :key="i">{{ item }}</li>
+              </ul>
+            </transition>
+            <transition name="slide-fade">
+              <ul v-if="selectedService.includes('Cleaning')">
+                <p>
+                  <span class="cleaning">Cleaning plan </span>
+                  <span>₦{{ formatNumber(services[2].price) }}</span>
+                </p>
+                <li v-for="(item, i) in cleaningSummary" :key="i">
+                  {{ item }}
+                </li>
+              </ul>
+            </transition>
+            <p class="pricing__plan-subtotal">
+              <span>Subtotal</span>
+              <span>₦ {{ formatNumber(subtotalPrice) }}</span>
+            </p>
+            <p class="pricing__plan-discount">
+              <span>Discount (20% discount off your first month)</span>
+              <span>- ₦ {{ formatNumber(discountPrice) }}</span>
+            </p>
+            <p class="pricing__plan-total">
+              <span>Total</span> <span>₦ {{ formatNumber(totalPrice) }}</span>
+            </p>
+          </div>
+        </div>
       </section>
     </div>
 
@@ -306,7 +416,7 @@
             </figcaption>
           </figure>
         </div>
-        <button class="menu-btn" @click.prevent="scrollToTop('hero')">
+        <button class="menu-btn" @click.prevent="scrollToTop('custom')">
           Get Started at 20% Off
         </button>
       </section>
@@ -853,10 +963,16 @@ import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 import dayjs from 'dayjs'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
-import { placeholderColorMix } from '~/static/functions'
+import {
+  placeholderColorMix,
+  currencyFormat,
+  formatNumber,
+} from '~/static/functions'
+import customPricing from '~/mixins/customPricing'
+
 export default {
   Loader: () => import('@/components/Loader.vue'),
-  mixins: [validationMixin],
+  mixins: [validationMixin, customPricing],
   layout: 'lead',
   validations: {
     form: {
@@ -891,7 +1007,7 @@ export default {
         },
         {
           name: 'Lami',
-          image: 'nicelegs',
+          image: 'lami',
           description: `Eden is my new best friend. All chores I need to sort out is easily done.`,
           handle: 'LamiFunds',
           tweetLink:
@@ -906,9 +1022,12 @@ export default {
   },
   methods: {
     placeholderColorMix,
+    currencyFormat,
+    formatNumber,
     scrollToTop(ref) {
       this.$refs[ref].scrollIntoView()
     },
+
     optimizeImage(imgUrl, index) {
       const imageUrlTrim = imgUrl.substring(0, imgUrl.indexOf('/upload'))
       const imageFormat = imgUrl.substring(imgUrl.indexOf('/upload') + 7)

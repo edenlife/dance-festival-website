@@ -29,6 +29,9 @@ export default {
       ],
     }
   },
+  mounted() {
+    this.$intercom('show')
+  },
 }
 </script>
 

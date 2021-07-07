@@ -30,7 +30,7 @@ export default {
     }
   },
   mounted() {
-    this.$intercom('show')
+    this.$intercom('hide')
   },
 }
 </script>

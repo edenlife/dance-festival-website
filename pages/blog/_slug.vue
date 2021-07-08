@@ -527,6 +527,7 @@ export default {
       align-self: center;
     }
     a.wp-block-button__link {
+      text-decoration: none;
       line-height: 23px;
       @include font-size(lg);
       background-color: color(eden-green-primary);

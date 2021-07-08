@@ -521,6 +521,10 @@ export default {
         color: color(eden-green-primary);
       }
     }
+    // .wp-block-button__link {
+    //   background: white;
+    //   color: color(eden-green-primary);
+    // }
 
     .mc4wp-form,
     .mc4wp-form-128 {

@@ -35,7 +35,10 @@
           </div>
         </div>
         <div class="hero__img">
-          <img :src="require(`~/assets/images/lead-bg1.png`)" alt="" />
+          <img
+            :src="`https://res.cloudinary.com/eden-life-inc/image/upload/v1625727938/eden-website-v2/lead-hero-${servicesHero[0]}.png`"
+            :alt="servicesHero[0]"
+          />
         </div>
       </div>
     </div>
@@ -88,7 +91,20 @@
                   :class="{ 'has-error': $v.form.phone_number.$error }"
                 />
               </div>
-              <button class="pricing__form-btn" @click="sendUserInfoIntercom">
+              <p v-if="responseMessage.length" class="error-message">
+                {{ responseMessage }}
+              </p>
+              <!-- <div class="pricing__form-input">
+                <label for="discount">Referral Code (if any)</label>
+                <input
+                  id=""
+                  v-model="form.discount"
+                  type="text"
+                  name=""
+                  placeholder="EDENX2019"
+                />
+              </div> -->
+              <button class="pricing__form-btn" @click.prevent="getStarted()">
                 Get Started at 20% Off Today
               </button>
             </div>
@@ -254,6 +270,20 @@
                   outsource, the less time you spend worrying.
                 </p>
               </div>
+            </div>
+            <div class="description__inner-img">
+              <img
+                :src="`https://res.cloudinary.com/eden-life-inc/image/upload/v1625727926/eden-website-v2/lead-desc-${serviceOption}.png`"
+                :alt="serviceOption"
+              />
+            </div>
+            <div class="description__inner-control">
+              <button @click.prevent="prevImg">
+                <img :src="require(`~/assets/images/arrow-left.png`)" alt="" />
+              </button>
+              <button @click.prevent="nextImg">
+                <img :src="require(`~/assets/images/arrow-right.png`)" alt="" />
+              </button>
             </div>
           </div>
           <div class="description__details">
@@ -955,6 +985,35 @@
         </div>
       </footer>
     </div>
+
+    <modal v-if="showEmailModal" :show-modal="showEmailModal" class="modal">
+      <div slot="header"></div>
+      <div slot="body" class="modal__body">
+        <div class="lead__modal">
+          <div class="lead__modal-title"></div>
+          <div class="lead__modal-body">
+            <img
+              class="email-img"
+              :src="require(`~/assets/images/email-modal.svg`)"
+              alt="email"
+            />
+            <h5>You’ve got mail!</h5>
+            <p>
+              We’ve sent an email to <b> {{ form.email }}</b
+              >. Please check your mail for next steps.
+            </p>
+            <button
+              type="submit"
+              class="btn--submit"
+              @click.prevent="openApp()"
+            >
+              Got it!
+            </button>
+          </div>
+        </div>
+      </div>
+      <div slot="footer"></div>
+    </modal>
   </div>
 </template>
 
@@ -969,6 +1028,7 @@ import {
   formatNumber,
 } from '~/static/functions'
 import customPricing from '~/mixins/customPricing'
+import { signupApi } from '~/request/all.api'
 
 export default {
   Loader: () => import('@/components/Loader.vue'),
@@ -983,10 +1043,12 @@ export default {
   },
   data() {
     return {
+      showEmailModal: false,
       form: {
         email: '',
         name: '',
         phone_number: '',
+        discount: '',
       },
       tabs: [],
       activeTabIndex: null,
@@ -1014,11 +1076,18 @@ export default {
             'https://twitter.com/ms_nicelegs/status/1276445141906141185?s=20',
         },
       ],
+      servicesHero: ['food', 'laundry', 'cleaning'],
+      servicesOption: ['food', 'laundry', 'cleaning'],
+      serviceOption: 'food',
+      responseMessage: '',
     }
   },
   mounted() {
     mixpanelTrackEvent('Lead page v3')
     this.fetchMeal()
+    window.setInterval(() => {
+      this.changeService()
+    }, 2300)
   },
   methods: {
     placeholderColorMix,
@@ -1027,7 +1096,20 @@ export default {
     scrollToTop(ref) {
       this.$refs[ref].scrollIntoView()
     },
-
+    changeService() {
+      const first = this.servicesHero.shift()
+      this.servicesHero = this.servicesHero.concat(first)
+    },
+    prevImg() {
+      this.serviceOption = this.servicesOption[1]
+      const first = this.servicesOption.shift()
+      this.servicesOption = this.servicesOption.concat(first)
+    },
+    nextImg() {
+      const first = this.servicesOption.shift()
+      this.serviceOption = this.servicesOption[0]
+      this.servicesOption = this.servicesOption.concat(first)
+    },
     optimizeImage(imgUrl, index) {
       const imageUrlTrim = imgUrl.substring(0, imgUrl.indexOf('/upload'))
       const imageFormat = imgUrl.substring(imgUrl.indexOf('/upload') + 7)
@@ -1137,33 +1219,78 @@ export default {
           class_category && class_category.includes(category)
       )
     },
-    sendUserInfoIntercom() {
-      mixpanelTrackEvent('Sign up button clicked', 'Lead page v3')
-      this.loading = true
+    async getStarted() {
       this.$v.form.$touch()
       if (!this.$v.form.$error) {
-        this.$intercom('update', {
-          email: this.form.email,
-          name: this.form.name,
-          phone_number: this.form.phone_number,
-        })
-        const metadata = {
-          email: this.form.email,
-          name: this.form.name,
-          phone_number: this.form.phone_number,
-        }
-        this.$intercom('trackEvent', 'lead-generation-signup', metadata)
-        setTimeout(() => {
-          this.$nextTick(() => {
-            this.$v.form.$reset()
-            this.form.email = ''
-            this.form.name = ''
-            this.form.phone_number = ''
-            this.loading = false
-            this.$router.push('/')
+        try {
+          mixpanelTrackEvent('Sign up button clicked', 'Lead page v3')
+          this.loading = true
+          this.$intercom('update', {
+            email: this.form.email,
+            name: this.form.name,
+            phone: this.form.phone_number,
           })
-        }, 500)
+          const metadata = {
+            email: this.form.email,
+            name: this.form.name,
+            phone: this.form.phone_number,
+          }
+          this.$intercom('trackEvent', 'lead-generation-v3', metadata)
+
+          const payload = {
+            email: this.form.email,
+            plan_details: {
+              meal: {
+                frequency: 'daily',
+                item: null,
+                qty: 1,
+                service_day: ['mon-fri'],
+                amount: 44000,
+              },
+            },
+            discounted_amount: 35200,
+          }
+          await signupApi(payload)
+          this.showEmailModal = true
+          this.loading = false
+          this.responseMessage = ''
+        } catch (error) {
+          this.loading = false
+          this.responseMessage = error.response.data.message
+        }
       }
+    },
+    openApp() {
+      this.form.email = ''
+      this.form.name = ''
+      this.form.phone_number = ''
+      this.showEmailModal = !this.showEmailModal
+      this.$v.$reset()
+      this.goToApp()
+    },
+    goToApp() {
+      mixpanelTrackEvent(`Get Started - Lead page v3`)
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera
+      // Windows Phone must come first because its UA also contains "Android"
+      if (/windows phone/i.test(userAgent)) {
+        this.$router.push('/')
+        return
+      }
+
+      if (/android/i.test(userAgent)) {
+        window.open(
+          ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`
+        )
+        return
+      }
+
+      // iOS detection from: http://stackoverflow.com/a/9039885/177710
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.open(`https://apps.apple.com/us/app/eden-life/id1482373755?ls=1`)
+        return
+      }
+
+      this.$router.push('/')
     },
     expandQuestion(item) {
       if (this.questions.length && this.questions.includes(item)) {

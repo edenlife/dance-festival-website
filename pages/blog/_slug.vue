@@ -521,10 +521,33 @@ export default {
         color: color(eden-green-primary);
       }
     }
-    // .wp-block-button__link {
-    //   background: white;
-    //   color: color(eden-green-primary);
-    // }
+    .wp-block-button {
+      display: flex;
+      justify-content: center;
+      align-self: center;
+    }
+    a.wp-block-button__link {
+      line-height: 23px;
+      @include font-size(lg);
+      background-color: color(eden-green-primary);
+      color: color(eden-neutral-7);
+      border-radius: 4px;
+      transition: all 0.4s ease-in-out;
+      padding: $gap * 1.6 $gap * 2.9;
+      margin-top: 0;
+      &:hover {
+        box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
+        background-color: color(eden-green-250);
+        color: color(eden-neutral-7);
+      }
+      &:active {
+        background-image: radial-gradient(
+          circle at center right,
+          rgba(0, 141, 64, 0.1) 50%,
+          #008d40 50%
+        );
+      }
+    }
 
     .mc4wp-form,
     .mc4wp-form-128 {

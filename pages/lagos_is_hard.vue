@@ -1019,7 +1019,7 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import {
   placeholderColorMix,
@@ -1038,7 +1038,11 @@ export default {
     form: {
       email: { required, email },
       name: { required },
-      phone_number: { required },
+      phone_number: {
+        required,
+        minLength: minLength(11),
+        maxLength: maxLength(11),
+      },
     },
   },
   data() {
@@ -1079,7 +1083,7 @@ export default {
   mounted() {
     mixpanelTrackEvent('Lead page v3')
     window.setInterval(() => {
-      this.changeService()
+      this.changeHeroImg()
     }, 2300)
   },
   methods: {
@@ -1089,7 +1093,7 @@ export default {
     scrollToTop(ref) {
       this.$refs[ref].scrollIntoView()
     },
-    changeService() {
+    changeHeroImg() {
       const first = this.servicesHero.shift()
       this.servicesHero = this.servicesHero.concat(first)
     },
@@ -1124,16 +1128,19 @@ export default {
           const payload = {
             email: this.form.email,
             plan_details: {
-              meal: {
-                frequency: 'daily',
-                item: null,
-                qty: 1,
-                service_day: ['mon-fri'],
-                amount: 44000,
-              },
+              ...(this.selectedService.includes('Food') && {
+                meal: this.totalFoodSummary,
+              }),
+              ...(this.selectedService.includes('Laundry') && {
+                laundry: this.totalLaundrySummary,
+              }),
+              ...(this.selectedService.includes('Cleaning') && {
+                cleaning: this.totalCleaningSummary,
+              }),
             },
-            discounted_amount: 35200,
+            discounted_amount: parseInt(this.totalPrice),
           }
+          // console.log(payload)
           await signupApi(payload)
           this.showEmailModal = true
           this.loading = false

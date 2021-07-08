@@ -253,7 +253,7 @@
     <div class="container--description">
       <section class="description">
         <div class="description__title">
-          <h3>Why you should let Eden <br />make Lagos easier?</h3>
+          <h3>Why you should let Eden <br />make Lagos easier.</h3>
         </div>
         <div class="description__inner">
           <div class="description__inner-left">
@@ -1058,20 +1058,28 @@ export default {
       questions: ['one'],
       testimonials: [
         {
-          name: 'Jinchūriki of the Spirit.',
-          image: 'nicelegs',
-          description: `Working on projects while <span style="color:#03A84E"> @ouredenlife </span> does the chores, talk about maximum productivity >>>>>>>>>>>>>> <br><br> Please I'm not lazy I just don't like stress besides it's called delegating for a reason 😁`,
-          handle: 'ms_nicelegs',
+          name: 'Eyitemi',
+          image: 'eyitemi',
+          description: `With all the chao is Lagos, Edenlife helps to improve your life expectancy and reduce your stress levels.`,
+          handle: 'eeyitemi',
           tweetLink:
-            'https://twitter.com/ms_nicelegs/status/1276445141906141185?s=20',
+            'https://twitter.com/eeyitemi/status/1293604745148534792?s=20](https://twitter.com/eeyitemi/status/1293604745148534792?s=20',
         },
         {
-          name: 'Lami',
-          image: 'lami',
-          description: `Eden is my new best friend. All chores I need to sort out is easily done.`,
-          handle: 'LamiFunds',
+          name: 'HOE',
+          image: 'hoe',
+          description: `Got one win today and put a propsal for another project. It's safe to say it's been a blessed week. <span style="color:#03A84E"> @ouredenlife </span> been making my stay in Lagos worthwhile. <br/> Tonight we Netflix cause tomorrow is back tothe streets.`,
+          handle: 'OsasenagaEno',
           tweetLink:
-            'https://twitter.com/ms_nicelegs/status/1276445141906141185?s=20',
+            'https://twitter.com/OsasenagaEno/status/1316432226813390853?s=20',
+        },
+        {
+          name: 'Kyane "Omowale" Kassiri',
+          image: 'kassiri',
+          description: `At this point, if you live in Lagos and you don't use <span style="color:#03A84E"> @ouredenlife </span>, you're really punishing yourself.`,
+          handle: 'kyanekassiri',
+          tweetLink:
+            'https://twitter.com/kyanekassiri/status/1395010079439589376?s=20',
         },
       ],
       servicesHero: ['food', 'laundry', 'cleaning'],

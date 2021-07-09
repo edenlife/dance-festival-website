@@ -128,7 +128,7 @@
           <ShareNetwork
             network="Email"
             :url="`https://ouredenlife.com${singleUrl}`"
-            :title="article.title.rendered"
+            :title="article.title.rendered.replace(/(<([^>]+)>)/gi, '')"
             :description="article.excerpt.rendered.replace(/(<([^>]+)>)/gi, '')"
             class="link"
           >
@@ -306,7 +306,7 @@ export default {
 
   head() {
     return {
-      title: this.article.title.rendered,
+      title: this.article.title.rendered.replace(/(<([^>]+)>)/gi, ''),
       meta: [...this.meta],
       link: [
         {
@@ -322,7 +322,7 @@ export default {
     meta() {
       const metaData = {
         type: 'article',
-        title: this.article.title.rendered,
+        title: this.article.title.rendered.replace(/(<([^>]+)>)/gi, ''),
         description: this.article.excerpt.rendered.replace(/(<([^>]+)>)/gi, ''),
         url: `https://ouredenlife.com${this.$route.fullPath}`,
         mainImage: this.article._embedded['wp:featuredmedia'][0].source_url,

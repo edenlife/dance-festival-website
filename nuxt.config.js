@@ -218,6 +218,7 @@ export default {
     manifest: {
       lang: 'en',
     },
+    icon: false, // disables the icon module
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

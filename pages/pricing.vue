@@ -1493,7 +1493,7 @@ export default {
         this.cleaningType = 'Light cleaning'
         this.cleaningFrequency = 'Every two weeks'
         this.cleaningQtyOption[0].qty = 1
-        this.cleaningQtyOption[1].qty = 1
+        this.cleaningQtyOption[2].qty = 1
         this.cleaningQtyOption[4].qty = 0
         this.cleaningQtyOption[5].qty = 0
         this.getEstimateRoomTypes()
@@ -1535,7 +1535,7 @@ export default {
           this.cleaningType = 'Light cleaning'
           this.cleaningFrequency = 'Every two weeks'
           this.cleaningQtyOption[0].qty = 1
-          this.cleaningQtyOption[1].qty = 1
+          this.cleaningQtyOption[2].qty = 1
           this.cleaningQtyOption[4].qty = 0
           this.cleaningQtyOption[5].qty = 0
           this.getEstimateRoomTypes()
@@ -1559,7 +1559,7 @@ export default {
           this.setCleaningArea('light cleaning')
           this.cleaningInfo.item = 'light-cleaning'
           this.cleaningQtyOption[0].qty = 1
-          this.cleaningQtyOption[1].qty = 1
+          this.cleaningQtyOption[2].qty = 1
           this.cleaningQtyOption[4].qty = 0
           this.cleaningQtyOption[5].qty = 0
           this.getEstimateRoomTypes()
@@ -1600,7 +1600,7 @@ export default {
           this.cleaningType = 'Light cleaning'
           this.cleaningFrequency = 'Every two weeks'
           this.cleaningQtyOption[0].qty = 2
-          this.cleaningQtyOption[1].qty = 3
+          this.cleaningQtyOption[2].qty = 3
           this.cleaningQtyOption[4].qty = 0
           this.cleaningQtyOption[5].qty = 0
           this.getEstimateRoomTypes()
@@ -1635,7 +1635,7 @@ export default {
             this.cleaningType = 'Light cleaning'
             this.cleaningFrequency = 'Every two weeks'
             this.cleaningQtyOption[0].qty = 2
-            this.cleaningQtyOption[1].qty = 3
+            this.cleaningQtyOption[2].qty = 3
             this.cleaningQtyOption[4].qty = 0
             this.cleaningQtyOption[5].qty = 0
             this.getEstimateRoomTypes()
@@ -1657,7 +1657,7 @@ export default {
             this.cleaningType = 'Light cleaning'
             this.cleaningFrequency = 'Every two weeks'
             this.cleaningQtyOption[0].qty = 2
-            this.cleaningQtyOption[1].qty = 3
+            this.cleaningQtyOption[2].qty = 3
             this.cleaningQtyOption[4].qty = 0
             this.cleaningQtyOption[5].qty = 0
             this.getEstimateRoomTypes()
@@ -1680,7 +1680,7 @@ export default {
           this.cleaningType = 'Deep cleaning'
           this.cleaningFrequency = 'Every two weeks'
           this.cleaningQtyOption[0].qty = 2
-          this.cleaningQtyOption[1].qty = 3
+          this.cleaningQtyOption[2].qty = 3
           this.cleaningQtyOption[4].qty = 0
           this.cleaningQtyOption[5].qty = 0
           this.getEstimateRoomTypes()
@@ -1706,7 +1706,7 @@ export default {
           this.cleaningType = 'Deep cleaning'
           this.cleaningFrequency = 'Once a month'
           this.cleaningQtyOption[0].qty = 1
-          this.cleaningQtyOption[1].qty = 1
+          this.cleaningQtyOption[2].qty = 1
           this.cleaningQtyOption[4].qty = 0
           this.cleaningQtyOption[5].qty = 0
           this.getEstimateRoomTypes()
@@ -1743,7 +1743,7 @@ export default {
             this.setCleaningArea('deep cleaning')
             this.cleaningInfo.item = 'deep-cleaning'
             this.cleaningQtyOption[0].qty = 1
-            this.cleaningQtyOption[1].qty = 1
+            this.cleaningQtyOption[2].qty = 1
             this.cleaningQtyOption[4].qty = 0
             this.cleaningQtyOption[5].qty = 0
             this.getEstimateRoomTypes()
@@ -1765,7 +1765,7 @@ export default {
             this.setCleaningArea('deep cleaning')
             this.cleaningInfo.item = 'deep-cleaning'
             this.cleaningQtyOption[0].qty = 1
-            this.cleaningQtyOption[1].qty = 1
+            this.cleaningQtyOption[2].qty = 1
             this.cleaningQtyOption[4].qty = 0
             this.cleaningQtyOption[5].qty = 0
             this.getEstimateRoomTypes()
@@ -1788,7 +1788,7 @@ export default {
           this.setCleaningArea('deep cleaning')
           this.cleaningInfo.item = 'deep-cleaning'
           this.cleaningQtyOption[0].qty = 1
-          this.cleaningQtyOption[1].qty = 1
+          this.cleaningQtyOption[2].qty = 1
           this.cleaningQtyOption[4].qty = 0
           this.cleaningQtyOption[5].qty = 0
           this.getEstimateRoomTypes()
@@ -1812,7 +1812,7 @@ export default {
           this.cleaningType = 'Light cleaning'
           this.cleaningFrequency = 'Once a week'
           this.cleaningQtyOption[0].qty = 3
-          this.cleaningQtyOption[1].qty = 4
+          this.cleaningQtyOption[2].qty = 4
           this.cleaningQtyOption[4].qty = 0
           this.cleaningQtyOption[5].qty = 0
           this.getEstimateRoomTypes()
@@ -1846,7 +1846,7 @@ export default {
             this.cleaningType = 'Light cleaning'
             this.cleaningFrequency = 'Once a week'
             this.cleaningQtyOption[0].qty = 4
-            this.cleaningQtyOption[1].qty = 5
+            this.cleaningQtyOption[2].qty = 5
             this.cleaningQtyOption[4].qty = 1
             this.cleaningQtyOption[5].qty = 1
             this.getEstimateRoomTypes()
@@ -1868,7 +1868,7 @@ export default {
             this.cleaningType = 'Deep cleaning'
             this.cleaningFrequency = 'Once a month'
             this.cleaningQtyOption[0].qty = 4
-            this.cleaningQtyOption[1].qty = 5
+            this.cleaningQtyOption[2].qty = 5
             this.cleaningQtyOption[4].qty = 1
             this.cleaningQtyOption[5].qty = 1
             this.getEstimateRoomTypes()
@@ -1891,7 +1891,7 @@ export default {
           this.cleaningType = 'Deep cleaning'
           this.cleaningFrequency = 'Every two weeks'
           this.cleaningQtyOption[0].qty = 4
-          this.cleaningQtyOption[1].qty = 5
+          this.cleaningQtyOption[2].qty = 5
           this.cleaningQtyOption[4].qty = 2
           this.cleaningQtyOption[5].qty = 2
           this.getEstimateRoomTypes()

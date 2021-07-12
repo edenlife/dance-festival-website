@@ -521,7 +521,7 @@
           <transition name="slide-fade">
             <div v-if="period === 'monthly'" class="plan__price-monthly">
               <div class="plan__price-item">
-                <p>How many meals do you want every week?</p>
+                <p>Number of meals per delivery?</p>
                 <div class="btn--group">
                   <button
                     class="btn--item minus"
@@ -816,7 +816,7 @@ export default {
       exploreService: '',
       messageList: foodMessages,
       mealsPerDay: 1,
-      mealsPerWeek: 10,
+      mealsPerWeek: 5,
       deliveryPerWeek: 1,
       totalDailyPrice: null,
       totalWeeklyPrice: null,
@@ -869,7 +869,7 @@ export default {
       meal: { item: null, frequency: 'daily', qty: this.mealsPerDay },
     })
     this.totalWeeklyPrice = pricing({
-      meal: { item: null, frequency: 'weekly', qty: this.mealsPerWeek },
+      meal: { item: null, frequency: 'weekly', qty: this.mealsPerWeek * 2 },
     })
     this.fetchMeal()
 
@@ -1046,7 +1046,7 @@ export default {
         this.mealsPerWeek++
         const freq = this.deliveryPerWeek === 1 ? 'weekly' : 'weekly-twodays'
         this.totalWeeklyPrice = pricing({
-          meal: { item: null, frequency: freq, qty: this.mealsPerWeek },
+          meal: { item: null, frequency: freq, qty: this.mealsPerWeek * 2 },
         })
       }
     },
@@ -1067,7 +1067,7 @@ export default {
 
         const freq = this.deliveryPerWeek === 1 ? 'weekly' : 'weekly-twodays'
         this.totalWeeklyPrice = pricing({
-          meal: { item: null, frequency: freq, qty: this.mealsPerWeek },
+          meal: { item: null, frequency: freq, qty: this.mealsPerWeek * 2 },
         })
       }
     },
@@ -1078,7 +1078,7 @@ export default {
         this.deliveryPerWeek++
         const freq = this.deliveryPerWeek === 1 ? 'weekly' : 'weekly-twodays'
         this.totalWeeklyPrice = pricing({
-          meal: { item: null, frequency: freq, qty: this.mealsPerWeek },
+          meal: { item: null, frequency: freq, qty: this.mealsPerWeek * 2 },
         })
       }
     },
@@ -1089,7 +1089,7 @@ export default {
         this.deliveryPerWeek--
         const freq = this.deliveryPerWeek === 1 ? 'weekly' : 'weekly-twodays'
         this.totalWeeklyPrice = pricing({
-          meal: { item: null, frequency: freq, qty: this.mealsPerWeek },
+          meal: { item: null, frequency: freq, qty: this.mealsPerWeek * 2 },
         })
       }
     },

@@ -49,7 +49,7 @@
           <div class="pricing__form">
             <div class="pricing__form-title">
               <h3>
-                Start your Eden Life today and get 20% of your first Month.
+                Start your Eden Life today and get 20% off your first Month.
               </h3>
               <p>
                 Enter your details and we’ll email you about the next steps.

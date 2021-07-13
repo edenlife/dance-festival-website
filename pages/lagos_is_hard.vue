@@ -1131,7 +1131,7 @@ export default {
             name: this.form.name,
             phone: this.form.phone_number,
           }
-          this.$intercom('trackEvent', 'lead-generation-v3', metadata)
+          this.$intercom('trackEvent', 'lagos-is-hard', metadata)
 
           const payload = {
             email: this.form.email,
@@ -1148,7 +1148,6 @@ export default {
             },
             discounted_amount: parseInt(this.totalPrice),
           }
-          // console.log(payload)
           await signupApi(payload)
           this.showEmailModal = true
           this.loading = false

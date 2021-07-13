@@ -643,7 +643,41 @@
     border-radius: 8px;
     background-color: color(eden-neutral-7);
     padding: 0 $gap * 5.2;
-    ul {
+    &-description {
+      background-color: #f7f8fe;
+      border: 1px solid #7189ff;
+      padding: $gap * 2.4;
+      border-radius: 8px;
+      margin-top: $gap * 3.2;
+      margin-bottom: $gap * 1.2;
+      color: color(eden-neutral-1);
+
+      &-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h5 {
+          @include font-size(base);
+          @include font-weight(medium);
+          color: color(eden-neutral-1);
+          @include font-family(cerebri);
+        }
+      }
+      &--list {
+        li {
+          display: flex;
+          justify-content: space-between;
+          &:first-child {
+            margin-top: $gap * 2.4;
+          }
+          margin-top: $gap + 6;
+          color: color(eden-neutral-1);
+          margin-left: $gap * 2.4;
+          margin-right: $gap * 2.4;
+        }
+      }
+    }
+    &--list {
       padding: $gap * 3.2 0 $gap + 2 0;
       display: flex;
       justify-content: space-around;
@@ -867,8 +901,23 @@
     &__price {
       width: 100%;
       padding: 0 $gap * 2.4;
+      &-description {
+        padding: $gap * 2 $gap + 5;
 
-      ul {
+        &-title {
+          h5 {
+            @include font-size(sm);
+          }
+        }
+        &--list {
+          li {
+            @include font-size(sm);
+            margin-left: $gap;
+            margin-right: $gap;
+          }
+        }
+      }
+      &--list {
         padding: $gap * 2.5 0 $gap + 2 0;
         margin-bottom: $gap * 2.4;
         @include font-size(sm);

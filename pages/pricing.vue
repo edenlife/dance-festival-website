@@ -147,7 +147,7 @@
                   <span class="cleaning"
                     >Cleaning plan
                     <span @click="showCleaningModal = true">
-                      What do I get?
+                      What will each cleaning entail?
                     </span>
                   </span>
                   <span>₦{{ formatNumber(services[2].price) }}</span>
@@ -607,7 +607,7 @@
                   <p>
                     Cleaning plan
                     <span @click="showCleaningModal = true">
-                      What do I get from Cleaning?</span
+                      What will each cleaning entail?</span
                     >
                   </p>
                   <button
@@ -978,7 +978,7 @@
       <div slot="body" class="modal__body">
         <div class="pricing__modal">
           <div class="pricing__modal-title">
-            <h5>What do I get from Cleaning?</h5>
+            <h5>What will each cleaning entail?</h5>
             <button class="btn btn--success" @click="showCleaningModal = false">
               <svg
                 width="32"

@@ -1167,6 +1167,11 @@
           justify-content: space-between;
           align-items: center;
           margin-bottom: $gap * 1.6;
+          .cleaning {
+            span {
+              margin-left: 1px;
+            }
+          }
         }
         li {
           margin-bottom: $gap + 6;

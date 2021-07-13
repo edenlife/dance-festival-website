@@ -290,7 +290,7 @@
         </div>
 
         <div class="plan__price">
-          <ul>
+          <ul class="plan__price--list">
             <li
               :class="{ active: plan === 'washDry' }"
               @click.prevent="plan = 'washDry'"
@@ -328,6 +328,77 @@
           <transition name="slide-fade">
             <div v-if="plan === 'washDry'" class="plan__price-washDry">
               <div class="plan__price-item">
+                <div class="plan__price-description">
+                  <div class="plan__price-description-title">
+                    <h5>Items that will cost you extra</h5>
+                    <button
+                      type="button"
+                      class="expand"
+                      @click.prevent="
+                        showAdditionalLaundryCost = !showAdditionalLaundryCost
+                      "
+                    >
+                      <svg
+                        v-if="showAdditionalLaundryCost"
+                        width="22"
+                        height="22"
+                        viewBox="0 0 22 22"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                          stroke="#7189ff"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+
+                        <path
+                          d="M7 11H15"
+                          stroke="#7189ff"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <svg
+                        v-else
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                          stroke="#7189ff"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M12 8V16"
+                          stroke="#7189ff"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M8 12H16"
+                          stroke="#7189ff"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  <ul
+                    v-if="showAdditionalLaundryCost"
+                    class="plan__price-description--list"
+                  >
+                    <li v-for="desc in extraLaundryCost" :key="desc">
+                      <span>{{ desc.item }}</span>
+                      <span>&#8358; {{ desc.cost }}</span>
+                    </li>
+                  </ul>
+                </div>
                 <p>
                   <span class="number">Number of laundry bags</span>
                   <span class="bag">Approx 30 items per bag</span>
@@ -429,6 +500,77 @@
           <transition name="slide-fade">
             <div v-if="plan === 'washIron'" class="plan__price-washDry">
               <div class="plan__price-item">
+                <div class="plan__price-description">
+                  <div class="plan__price-description-title">
+                    <h5>Items that will cost you extra</h5>
+                    <button
+                      type="button"
+                      class="expand"
+                      @click.prevent="
+                        showAdditionalLaundryCost = !showAdditionalLaundryCost
+                      "
+                    >
+                      <svg
+                        v-if="showAdditionalLaundryCost"
+                        width="22"
+                        height="22"
+                        viewBox="0 0 22 22"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                          stroke="#7189ff"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+
+                        <path
+                          d="M7 11H15"
+                          stroke="#7189ff"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <svg
+                        v-else
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                          stroke="#7189ff"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M12 8V16"
+                          stroke="#7189ff"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M8 12H16"
+                          stroke="#7189ff"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  <ul
+                    v-if="showAdditionalLaundryCost"
+                    class="plan__price-description--list"
+                  >
+                    <li v-for="desc in extraLaundryCost" :key="desc">
+                      <span>{{ desc.item }}</span>
+                      <span>&#8358; {{ desc.cost }}</span>
+                    </li>
+                  </ul>
+                </div>
                 <p>
                   <span class="number">Number of laundry bags</span>
                   <span class="bag">Approx 30 items per bag</span>
@@ -710,6 +852,17 @@ export default {
       plan: 'washDry',
       totalWashDryPrice: null,
       totalWashIronPrice: null,
+      showAdditionalLaundryCost: false,
+      extraLaundryCost: [
+        { item: 'Extra item', cost: '250' },
+        { item: 'Big size towel (2 items)', cost: '500' },
+        { item: 'Bedsheet (3 items)', cost: '750' },
+        { item: 'Blanket (3 items)', cost: '750' },
+        { item: '3 piece Agbada (5 items) ', cost: '1500' },
+        { item: 'Curtain (8 items)', cost: '2000' },
+        { item: 'Duvet (10 items)', cost: '2500' },
+        { item: 'A pair of suit (10 items)', cost: '2500' },
+      ],
     }
   },
   head() {

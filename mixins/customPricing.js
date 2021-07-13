@@ -4,8 +4,8 @@ import { getCleaningServiceTypes } from '~/request/all.api'
 export default {
   data() {
     return {
-      estimate: 1,
-      estimatedPrice: '20000',
+      estimate: 2,
+      estimatedPrice: '50000',
       priceList: ['10000', '20000', '50000', '100000', '150000'],
       foodSummary: [],
       laundrySummary: [],
@@ -344,7 +344,7 @@ export default {
           this.setCleaningArea('light cleaning')
           this.cleaningInfo.item = 'light-cleaning'
           this.cleaningInfo.frequency = 'bi-weekly'
-          this.cleaningSavedTime = '1 hours 45 minutes every week'
+          this.cleaningSavedTime = '1 hours 15 minutes every week'
           this.calculateCleaningPrice()
         } else if (this.selectedService.length === 2) {
           if (
@@ -383,7 +383,7 @@ export default {
             this.setCleaningArea('light cleaning')
             this.cleaningInfo.item = 'light-cleaning'
             this.cleaningInfo.frequency = 'bi-weekly'
-            this.cleaningSavedTime = '1 hours 45 minutes every week'
+            this.cleaningSavedTime = '1 hours 15 minutes every week'
             this.calculateCleaningPrice()
           }
           if (
@@ -407,7 +407,7 @@ export default {
             this.setCleaningArea('light cleaning')
             this.cleaningInfo.item = 'light-cleaning'
             this.cleaningInfo.frequency = 'bi-weekly'
-            this.cleaningSavedTime = '1 hours 45 minutes every week'
+            this.cleaningSavedTime = '1 hours 15 minutes every week'
             this.calculateCleaningPrice()
           }
         } else if (this.selectedService.length === 1) {
@@ -462,7 +462,7 @@ export default {
           this.setCleaningArea('deep cleaning')
           this.cleaningInfo.item = 'deep-cleaning'
           this.cleaningInfo.frequency = 'monthly'
-          this.cleaningSavedTime = '1 hours 5 minutes every month'
+          this.cleaningSavedTime = '2 hours 30 minutes every month'
           this.calculateCleaningPrice()
         } else if (this.selectedService.length === 2) {
           if (
@@ -501,7 +501,7 @@ export default {
             this.setCleaningArea('deep cleaning')
             this.cleaningInfo.item = 'deep-cleaning'
             this.cleaningInfo.frequency = 'monthly'
-            this.cleaningSavedTime = '1 hours 5 minutes every month'
+            this.cleaningSavedTime = '2 hours 30 minutes every month'
             this.calculateCleaningPrice()
           }
           if (
@@ -525,7 +525,7 @@ export default {
             this.setCleaningArea('deep cleaning')
             this.cleaningInfo.item = 'deep-cleaning'
             this.cleaningInfo.frequency = 'bi-weekly'
-            this.cleaningSavedTime = '2 hours 10 minutes every month'
+            this.cleaningSavedTime = '2 hours 30 minutes every month'
             this.calculateCleaningPrice()
           }
         } else if (this.selectedService.length === 1) {

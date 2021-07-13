@@ -1060,7 +1060,7 @@ export default {
         {
           name: 'Eyitemi',
           image: 'eyitemi',
-          description: `With all the chao is Lagos, Edenlife helps to improve your life expectancy and reduce your stress levels.`,
+          description: `With all the chaos that is Lagos, EdenLife helps to improve your life expectancy and reduce your stress levels. <br/> 💯 Recommend.`,
           handle: 'eeyitemi',
           tweetLink:
             'https://twitter.com/eeyitemi/status/1293604745148534792?s=20](https://twitter.com/eeyitemi/status/1293604745148534792?s=20',
@@ -1068,7 +1068,7 @@ export default {
         {
           name: 'HOE',
           image: 'hoe',
-          description: `Got one win today and put a propsal for another project. It's safe to say it's been a blessed week. <span style="color:#03A84E"> @ouredenlife </span> been making my stay in Lagos worthwhile. <br/> Tonight we Netflix cause tomorrow is back tothe streets.`,
+          description: `Got one win today and put a proposal for another project. It's safe to say it's been a blessed week. <span style="color:#03A84E"> @ouredenlife </span> been making my stay in Lagos worthwhile. Tonight we Netflix cause tomorrow is back to the streets.`,
           handle: 'OsasenagaEno',
           tweetLink:
             'https://twitter.com/OsasenagaEno/status/1316432226813390853?s=20',

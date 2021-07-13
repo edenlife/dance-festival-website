@@ -861,6 +861,7 @@ export default {
         { item: '3 piece Agbada (5 items) ', cost: '1500' },
         { item: 'Curtain (8 items)', cost: '2000' },
         { item: 'Duvet (10 items)', cost: '2500' },
+        { item: 'A pair of suit (10 items)', cost: '2500' },
       ],
     }
   },

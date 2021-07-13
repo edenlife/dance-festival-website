@@ -340,7 +340,7 @@
               <div class="plan__price-item">
                 <div class="plan__price-description">
                   <div class="plan__price-description-title">
-                    <h5>What do I get from Light Cleaning?</h5>
+                    <h5>What will light cleaning entail?</h5>
                     <button
                       type="button"
                       class="expand"
@@ -551,7 +551,7 @@
               <div class="plan__price-item">
                 <div class="plan__price-description">
                   <div class="plan__price-description-title">
-                    <h5>What do I get from Deep Cleaning?</h5>
+                    <h5>What will deep cleaning entail?</h5>
                     <button
                       type="button"
                       class="expand"

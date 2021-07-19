@@ -114,6 +114,9 @@
             </button>
           </div>
         </transition>
+
+        <!-- Summary -->
+
         <transition name="slide-fade">
           <div
             v-if="estimate !== '5' && !reconfigurePlan"
@@ -218,6 +221,9 @@
             </transition>
           </div>
         </transition>
+
+        <!-- calculator -->
+
         <transition name="slide-fade">
           <div v-if="reconfigurePlan" class="pricing__calculator">
             <p class="pricing__calculator-title">

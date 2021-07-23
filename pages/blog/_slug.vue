@@ -9,28 +9,30 @@
           <span
             :style="getColor(postDetails._embedded['wp:term'][0][0].slug)"
             class="hero__date-category"
-            @click.prevent="getCategory(article._embedded['wp:term'][0][0].id)"
+            @click.prevent="
+              getCategory(postDetails._embedded['wp:term'][0][0].id)
+            "
           >
-            {{ article._embedded['wp:term'][0][0].name }}
+            {{ postDetails._embedded['wp:term'][0][0].name }}
           </span>
           <span class="dot">&#8226;</span>
-          <span>{{ dateFormatter(article.date) }}</span>
+          <span>{{ dateFormatter(postDetails.date) }}</span>
         </div>
-        <h1 class="hero__title" v-html="article.title.rendered"></h1>
+        <h1 class="hero__title" v-html="postDetails.title.rendered"></h1>
         <div class="hero__author">
           <img
             :src="
-              article._embedded.author[0].description === ''
+              postDetails._embedded.author[0].description === ''
                 ? `https://res.cloudinary.com/eden-life-inc/image/upload/v1617954733/eden-website-v2/empty-male-member_j0cqu4.svg`
-                : article._embedded.author[0].description
+                : postDetails._embedded.author[0].description
             "
             alt=""
           />
-          <p>{{ article._embedded.author[0].name }}</p>
+          <p>{{ postDetails._embedded.author[0].name }}</p>
         </div>
         <div class="hero__featured">
           <img
-            :src="article._embedded['wp:featuredmedia'][0].source_url"
+            :src="postDetails._embedded['wp:featuredmedia'][0].source_url"
             alt=""
           />
         </div>
@@ -152,7 +154,7 @@
             </svg>
           </ShareNetwork>
         </div>
-        <div class="content__slug" v-html="article.content.rendered"></div>
+        <div class="content__slug" v-html="postDetails.content.rendered"></div>
         <script
           async
           src="https://platform.twitter.com/widgets.js"
@@ -336,13 +338,15 @@ export default {
       email: { required, email },
     },
   },
-
-  async mounted() {
-    mixpanelTrackEvent(` ${this.article.title.rendered}`)
+  created() {
     this.singleUrl = this.$route.fullPath
     const slug = this.$route.params.slug.split('-')
     this.blogId = slug[slug.length - 1]
-    await this.getSingleArticle(this.blogId)
+    this.getSingleArticle(this.blogId)
+  },
+
+  mounted() {
+    mixpanelTrackEvent(` ${this.article.title.rendered}`)
     this.userId = process.env.MAILCHIMP_USERID
     this.listId = process.env.MAILCHIMP_LISTID
     fbSdk()

@@ -829,17 +829,6 @@ export default {
     },
   },
 
-  async fetch() {
-    await this.fetchFeaturedPost()
-    await this.fetchRecommendedPost()
-    await this.fetchPopularPost()
-    await this.fetchHomePost()
-    await this.fetchLifePost()
-    await this.fetchEdenPost()
-    await this.fetchFoodPost()
-    await this.fetchAllPosts()
-  },
-
   head() {
     return {
       title: 'The Good Life | One-stop blog for all things home',
@@ -891,6 +880,16 @@ export default {
     edenPosts() {
       return this.$store.getters.getEdenPosts
     },
+  },
+  created() {
+    this.fetchFeaturedPost()
+    this.fetchRecommendedPost()
+    this.fetchPopularPost()
+    this.fetchHomePost()
+    this.fetchLifePost()
+    this.fetchEdenPost()
+    this.fetchFoodPost()
+    this.fetchAllPosts()
   },
   destroyed() {
     this.$store.commit('blogNavId', null)
@@ -1007,7 +1006,7 @@ export default {
       this.latestPost = posts.slice(0, 8)
     },
     async fetchFeaturedPost() {
-      if (this.featuredPost !== null) return
+      // if (this.featuredPost !== null) return
       this.isLoading = true
       let post = await fetch(
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?tags=8&_embed=1`
@@ -1030,7 +1029,7 @@ export default {
       this.isLoading = false
     },
     async fetchRecommendedPost() {
-      if (this.recommendedPost.length) return
+      // if (this.recommendedPost.length) return
       this.isLoading = true
       let post = await fetch(
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?tags=6&_embed=1`
@@ -1053,7 +1052,7 @@ export default {
       this.isLoading = false
     },
     async fetchPopularPost() {
-      if (this.popularPost.length) return
+      // if (this.popularPost.length) return
       this.isLoading = true
       let post = await fetch(
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?tags=7&_embed=1`
@@ -1076,7 +1075,7 @@ export default {
       this.isLoading = false
     },
     async fetchHomePost() {
-      if (this.homePosts.length) return
+      // if (this.homePosts.length) return
       this.isLoading = true
       let posts = await fetch(
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?categories=2&_embed=1`
@@ -1099,7 +1098,7 @@ export default {
       this.isLoading = false
     },
     async fetchLifePost() {
-      if (this.lifePosts.length) return
+      // if (this.lifePosts.length) return
       this.isLoading = true
       let posts = await fetch(
         `https://wordpress.edenlife.ng/wp-json/wp/v2/posts?categories=5&_embed=1`
@@ -1122,7 +1121,7 @@ export default {
       this.isLoading = false
     },
     async fetchEdenPost() {
-      if (this.edenPosts.length) return
+      // if (this.edenPosts.length) return
       this.isLoading = true
 
       let posts = await fetch(
@@ -1146,7 +1145,7 @@ export default {
       this.isLoading = false
     },
     async fetchFoodPost() {
-      if (this.foodPosts.length) return
+      // if (this.foodPosts.length) return
       this.isLoading = true
 
       let posts = await fetch(

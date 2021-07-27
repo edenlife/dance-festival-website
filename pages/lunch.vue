@@ -522,7 +522,7 @@ export default {
             name: this.form.name,
             phone: this.form.phone_number,
           }
-          this.$intercom('trackEvent', 'lead-generation-lunch', metadata)
+          this.$intercom('trackEvent', 'lead-genaration-signup', metadata)
 
           const payload = {
             email: this.form.email,

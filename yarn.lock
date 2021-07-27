@@ -1586,9 +1586,9 @@
     "@types/node" "*"
 
 "@types/intercom-web@^2.8.10":
-  version "2.8.11"
-  resolved "https://registry.yarnpkg.com/@types/intercom-web/-/intercom-web-2.8.11.tgz#c8e342cfd890ef8b4016ec0508994b18907b5a0a"
-  integrity sha512-9oJQiACRVQ1A61CJ+oXcLywOAxar4X5s8Lau4SI+WvgWRCB83wfmMVjdYceexySVQH+i9FOVYNKpZixeENJNbQ==
+  version "2.8.12"
+  resolved "https://registry.yarnpkg.com/@types/intercom-web/-/intercom-web-2.8.12.tgz#d4f976c13fceaae924254df5e7ecb71109e74a1c"
+  integrity sha512-GopaHy3AxRHZRcUVaBJ98LS6BsaJ3oT4Ldp6Sl3sKq0JcPVRDgejdt7lGED1fThgrmU6GcOhlI6xgnXWXlzxeg==
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.3"

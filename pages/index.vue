@@ -180,7 +180,7 @@
               />
             </div>
           </div>
-          <div
+          <!-- <div
             class="services__type-item services__type-gifting"
             @mouseenter.stop="exploreService = 'gifting'"
             @mouseleave.stop="exploreService = ''"
@@ -218,7 +218,7 @@
                 alt="gifting"
               />
             </div>
-          </div>
+          </div> -->
         </div>
       </section>
     </div>

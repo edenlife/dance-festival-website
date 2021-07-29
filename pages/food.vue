@@ -740,7 +740,7 @@
               />
             </div>
           </div>
-          <div
+          <!-- <div
             class="options__service-item options__service-gifting"
             @mouseenter.stop="exploreService = 'gifting'"
             @mouseleave.stop="exploreService = ''"
@@ -778,7 +778,7 @@
                 alt="gifting"
               />
             </div>
-          </div>
+          </div> -->
         </div>
       </section>
     </div>

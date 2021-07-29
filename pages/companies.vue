@@ -118,7 +118,7 @@
               />
             </div>
           </div>
-          <div class="services__type-item services__type-gifting">
+          <!-- <div class="services__type-item services__type-gifting">
             <h3>🎁</h3>
             <h5>Gifts</h5>
             <p>A giftbox full of love & everything else.</p>
@@ -129,7 +129,7 @@
                 alt="gifting"
               />
             </div>
-          </div>
+          </div> -->
         </div>
       </section>
     </div>

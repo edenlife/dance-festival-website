@@ -180,7 +180,7 @@
                 Laundry
               </nuxt-link>
             </li>
-            <li @click="trackLink('Gifting')">
+            <!-- <li @click="trackLink('Gifting')">
               <nuxt-link
                 :to="{ path: '/gifts' }"
                 class="footer__bottom-logo"
@@ -188,7 +188,7 @@
               >
                 Gifts
               </nuxt-link>
-            </li>
+            </li> -->
           </ul>
 
           <ul>

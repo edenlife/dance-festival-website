@@ -49,7 +49,8 @@
           <div class="pricing__form">
             <div class="pricing__form-title">
               <h3>
-                Start your Eden Life today and get 20% off your first Month.
+                Start your Eden Life today and use the code LIH10 to get 10% off
+                your first month.
               </h3>
               <p>
                 Enter your details and we’ll email you about the next steps.
@@ -105,7 +106,7 @@
                 />
               </div> -->
               <button class="pricing__form-btn" @click.prevent="getStarted()">
-                Get Started at 20% Off Today
+                Use LIH10 for 10% Off Today
               </button>
             </div>
           </div>
@@ -234,14 +235,14 @@
                 </li>
               </ul>
             </transition>
-            <p class="pricing__plan-subtotal">
+            <!-- <p class="pricing__plan-subtotal">
               <span>Subtotal</span>
               <span>₦ {{ formatNumber(subtotalPrice) }}</span>
             </p>
             <p class="pricing__plan-discount">
               <span>Discount (20% discount off your first month)</span>
               <span>- ₦ {{ formatNumber(discountPrice) }}</span>
-            </p>
+            </p> -->
             <p class="pricing__plan-total">
               <span>Total</span> <span>₦ {{ formatNumber(totalPrice) }}</span>
             </p>
@@ -447,7 +448,7 @@
           </figure>
         </div>
         <button class="menu-btn" @click.prevent="scrollToTop('custom')">
-          Get Started at 20% Off
+          Use LIH10 for 10% Off Today
         </button>
       </section>
     </div>
@@ -1146,7 +1147,6 @@ export default {
                 cleaning: this.totalCleaningSummary,
               }),
             },
-            discounted_amount: parseInt(this.totalPrice),
           }
           await signupApi(payload)
           this.showEmailModal = true

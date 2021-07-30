@@ -197,11 +197,7 @@ export default {
         const valInt = parseInt(val.price)
         return acc + valInt
       }, 0)
-
-      this.subtotalPrice = subtotal.toString()
-      const discount = subtotal * 0.2
-      this.discountPrice = discount.toString()
-      this.totalPrice = (subtotal - discount).toString()
+      this.totalPrice = subtotal.toString()
     },
     changeService(service) {
       // estimated price 10,000

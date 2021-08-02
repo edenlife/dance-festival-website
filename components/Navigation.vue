@@ -217,7 +217,7 @@
                       </svg>
                     </nuxt-link>
                   </li>
-                  <li
+                  <!-- <li
                     :class="{ gifting: service === 'gifting' }"
                     @click="trackLink('Gifting')"
                     @mouseenter.stop="service = 'gifting'"
@@ -270,7 +270,7 @@
                         />
                       </svg>
                     </nuxt-link>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
             </transition>

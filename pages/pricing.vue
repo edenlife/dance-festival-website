@@ -157,14 +157,14 @@
                 </li>
               </ul>
             </transition>
-            <p class="pricing__plan-subtotal">
+            <!-- <p class="pricing__plan-subtotal">
               <span>Subtotal</span>
               <span>₦ {{ formatNumber(subtotalPrice) }}</span>
             </p>
             <p class="pricing__plan-discount">
               <span>Discount (20% discount off your first month)</span>
               <span>- ₦ {{ formatNumber(discountPrice) }}</span>
-            </p>
+            </p> -->
             <p class="pricing__plan-total">
               <span>Total</span> <span>₦ {{ formatNumber(totalPrice) }}</span>
             </p>
@@ -183,7 +183,7 @@
                 class="pricing__plan-btn"
                 @click.prevent="displayForm = !displayForm"
               >
-                Subscribe (20% off)
+                Start your Eden Life today
               </button>
             </div>
             <transition name="slide-fade">
@@ -852,14 +852,14 @@
                 </div>
               </div>
             </transition>
-            <p class="pricing__calculator-subtotal">
+            <!-- <p class="pricing__calculator-subtotal">
               <span>Subtotal</span>
               <span>₦ {{ formatNumber(subtotalPrice) }}</span>
             </p>
             <p class="pricing__calculator-discount">
               <span>Discount (20% discount off your first month)</span>
               <span>- ₦ {{ formatNumber(discountPrice) }}</span>
-            </p>
+            </p> -->
             <p class="pricing__calculator-total">
               <span>Total</span> <span>₦ {{ formatNumber(totalPrice) }}</span>
             </p>
@@ -874,7 +874,7 @@
                 class="pricing__calculator-btn"
                 @click.prevent="setReconfigureSummary()"
               >
-                Subscribe (20% off)
+                Start your Eden Life today
               </button>
             </div>
           </div>
@@ -1296,8 +1296,7 @@ export default {
               ...(this.selectedService.includes('Cleaning') && {
                 cleaning: this.totalCleaningSummary,
               }),
-            },
-            discounted_amount: parseInt(this.totalPrice),
+            }
           }
 
           await signupApi(payload)
@@ -1474,7 +1473,7 @@ export default {
       this.subtotalPrice = subtotal.toString()
       const discount = subtotal * 0.2
       this.discountPrice = discount.toString()
-      this.totalPrice = (subtotal - discount).toString()
+      this.totalPrice = this.subtotalPrice
     },
     changeService(service) {
       // estimated price 10,000

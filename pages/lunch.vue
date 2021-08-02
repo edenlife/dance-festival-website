@@ -44,7 +44,7 @@
               <br />
               The perfect fuel for your hard-work 💚
             </p>
-            <p class="discount">Enjoy 20% off your first month!</p>
+            <p class="discount">Use EDENLUNCH20 for 20% Off Your First Month!</p>
           </div>
           <div class="hero__header--img">
             <div ref="center-image-mobile" class="center"></div>
@@ -146,7 +146,7 @@
                     xlink:href="@/assets/images/loading-icon.svg#loading-icon"
                   ></use>
                 </svg>
-                <span v-else> Get Started at 20% Off</span>
+                <span v-else> Use EDENLUNCH20 for 20% Off </span>
               </button>
             </div>
             <!-- <p class="note">
@@ -334,7 +334,7 @@
           </figure>
         </div>
         <button class="menu-btn" @click.prevent="scrollToTop('hero')">
-          Get Started at 20% Off
+         Use EDENLUNCH20 for 20% Off
         </button>
       </section>
     </div>
@@ -534,8 +534,7 @@ export default {
                 service_day: ['mon-fri'],
                 amount: 44000,
               },
-            },
-            discounted_amount: 35200,
+            }
           }
           await signupApi(payload)
           this.showEmailModal = true

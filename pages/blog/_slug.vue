@@ -338,14 +338,12 @@ export default {
       email: { required, email },
     },
   },
-  created() {
+
+  mounted() {
     this.singleUrl = this.$route.fullPath
     const slug = this.$route.params.slug.split('-')
     this.blogId = slug[slug.length - 1]
     this.getSingleArticle(this.blogId)
-  },
-
-  mounted() {
     mixpanelTrackEvent(` ${this.article.title.rendered}`)
     this.userId = process.env.MAILCHIMP_USERID
     this.listId = process.env.MAILCHIMP_LISTID

@@ -392,7 +392,7 @@
                       <span>Cleaning</span>
                     </nuxt-link>
                   </li>
-                  <li
+                  <!-- <li
                     class="menu--list-item gifting"
                     @click.prevent="handleToggle('Gifting')"
                   >
@@ -400,7 +400,7 @@
                       <span class="icon">🎁</span>
                       <span>Gifts</span>
                     </nuxt-link>
-                  </li>
+                  </li> -->
                 </ul>
               </transition>
             </li>

@@ -49,8 +49,7 @@
           <div class="pricing__form">
             <div class="pricing__form-title">
               <h3>
-                Start your Eden Life today and use the code LIH10 to get 10% off
-                your first month.
+               Start your Eden Life today and save enough time to enjoy the best of Lagos.
               </h3>
               <p>
                 Enter your details and we’ll email you about the next steps.
@@ -106,7 +105,7 @@
                 />
               </div> -->
               <button class="pricing__form-btn" @click.prevent="getStarted()">
-                Use LIH10 for 10% Off Today
+               Start your Eden Life today
               </button>
             </div>
           </div>
@@ -448,7 +447,7 @@
           </figure>
         </div>
         <button class="menu-btn" @click.prevent="scrollToTop('custom')">
-          Use LIH10 for 10% Off Today
+         Start your Eden Life today
         </button>
       </section>
     </div>

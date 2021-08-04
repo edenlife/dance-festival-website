@@ -44,7 +44,7 @@
               <br />
               The perfect fuel for your hard-work 💚
             </p>
-            <p class="discount">Use EDENLUNCH20 for 20% Off Your First Month!</p>
+            <p class="discount">Never have to worry about lunch again!</p>
           </div>
           <div class="hero__header--img">
             <div ref="center-image-mobile" class="center"></div>
@@ -146,7 +146,7 @@
                     xlink:href="@/assets/images/loading-icon.svg#loading-icon"
                   ></use>
                 </svg>
-                <span v-else> Use EDENLUNCH20 for 20% Off </span>
+                <span v-else> Start Your Eden Life Today </span>
               </button>
             </div>
             <!-- <p class="note">

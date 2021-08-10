@@ -270,18 +270,20 @@
 
                           <div :class="{ hidden: !visible.includes('food') }">
                             <transition name="slide-fade">
-                              <ul>
-                                <li
-                                  v-for="(item, i) in mealTypeOption"
-                                  :key="i"
-                                >
-                                  <span
-                                    class="select--item"
-                                    @click.prevent="getMealPrice(item)"
-                                    >{{ item.name }}</span
+                              <div class="selector-drop">
+                                <ul>
+                                  <li
+                                    v-for="(item, i) in mealTypeOption"
+                                    :key="i"
                                   >
-                                </li>
-                              </ul>
+                                    <span
+                                      class="select--item"
+                                      @click.prevent="getMealPrice(item)"
+                                      >{{ item.name }}</span
+                                    >
+                                  </li>
+                                </ul>
+                              </div>
                             </transition>
                           </div>
                         </div>
@@ -457,18 +459,20 @@
                             }"
                           >
                             <transition name="slide-fade">
-                              <ul>
-                                <li
-                                  v-for="(item, i) in laundryTypeOption"
-                                  :key="i"
-                                >
-                                  <span
-                                    class="select--item"
-                                    @click.prevent="getLaundryPrice(item)"
-                                    >{{ item.name }}</span
+                              <div class="selector-drop">
+                                <ul>
+                                  <li
+                                    v-for="(item, i) in laundryTypeOption"
+                                    :key="i"
                                   >
-                                </li>
-                              </ul>
+                                    <span
+                                      class="select--item"
+                                      @click.prevent="getLaundryPrice(item)"
+                                      >{{ item.name }}</span
+                                    >
+                                  </li>
+                                </ul>
+                              </div>
                             </transition>
                           </div>
                         </div>
@@ -509,18 +513,20 @@
                             }"
                           >
                             <transition name="slide-fade">
-                              <ul>
-                                <li
-                                  v-for="(item, i) in frequencyOption"
-                                  :key="i"
-                                >
-                                  <span
-                                    class="select--item"
-                                    @click.prevent="getLaundryPrice(item)"
-                                    >{{ item.name }}</span
+                              <div class="selector-drop">
+                                <ul>
+                                  <li
+                                    v-for="(item, i) in frequencyOption"
+                                    :key="i"
                                   >
-                                </li>
-                              </ul>
+                                    <span
+                                      class="select--item"
+                                      @click.prevent="getLaundryPrice(item)"
+                                      >{{ item.name }}</span
+                                    >
+                                  </li>
+                                </ul>
+                              </div>
                             </transition>
                           </div>
                         </div>
@@ -668,18 +674,20 @@
                             }"
                           >
                             <transition name="slide-fade">
-                              <ul>
-                                <li
-                                  v-for="(item, i) in cleaningOptions"
-                                  :key="i"
-                                >
-                                  <span
-                                    class="select--item"
-                                    @click.prevent="getCleaningPrice(item)"
-                                    >{{ item.name }}</span
+                              <div class="selector-drop">
+                                <ul>
+                                  <li
+                                    v-for="(item, i) in cleaningOptions"
+                                    :key="i"
                                   >
-                                </li>
-                              </ul>
+                                    <span
+                                      class="select--item"
+                                      @click.prevent="getCleaningPrice(item)"
+                                      >{{ item.name }}</span
+                                    >
+                                  </li>
+                                </ul>
+                              </div>
                             </transition>
                           </div>
                         </div>
@@ -720,18 +728,20 @@
                             }"
                           >
                             <transition name="slide-fade">
-                              <ul>
-                                <li
-                                  v-for="(item, i) in frequencyOption"
-                                  :key="i"
-                                >
-                                  <span
-                                    class="select--item"
-                                    @click.prevent="getCleaningPrice(item)"
-                                    >{{ item.name }}</span
+                              <div class="selector-drop">
+                                <ul>
+                                  <li
+                                    v-for="(item, i) in frequencyOption"
+                                    :key="i"
                                   >
-                                </li>
-                              </ul>
+                                    <span
+                                      class="select--item"
+                                      @click.prevent="getCleaningPrice(item)"
+                                      >{{ item.name }}</span
+                                    >
+                                  </li>
+                                </ul>
+                              </div>
                             </transition>
                           </div>
                         </div>
@@ -774,72 +784,82 @@
                             }"
                           >
                             <transition name="slide-fade">
-                              <ul>
-                                <li
-                                  v-for="(item, i) in cleaningQtyOption"
-                                  :key="i"
-                                  class="control"
-                                >
-                                  <span>{{ item.cleaning_area_name }}</span>
-                                  <span class="control__item">
-                                    <button
-                                      class="control__item-btn"
-                                      @click.prevent="decreaseRoomQty(item, i)"
-                                    >
-                                      <svg
-                                        class="control__item-icon"
-                                        width="12"
-                                        height="2"
-                                        viewBox="0 0 12 2"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
+                              <div class="selector-drop">
+                                <ul>
+                                  <li
+                                    v-for="(item, i) in cleaningQtyOption"
+                                    :key="i"
+                                    class="control"
+                                  >
+                                    <span>{{ item.cleaning_area_name }}</span>
+                                    <span class="control__item">
+                                      <button
+                                        class="control__item-btn"
+                                        @click.prevent="
+                                          decreaseRoomQty(item, i)
+                                        "
                                       >
-                                        <path
+                                        <svg
                                           class="control__item-icon"
-                                          d="M1.3335 1H10.6668"
-                                          stroke="#21312A"
-                                          stroke-width="1.5"
-                                          stroke-linecap="round"
-                                          stroke-linejoin="round"
-                                        />
-                                      </svg>
-                                    </button>
-                                    <span class="control__item-qty">
-                                      {{ item.qty }}
+                                          width="12"
+                                          height="2"
+                                          viewBox="0 0 12 2"
+                                          fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            class="control__item-icon"
+                                            d="M1.3335 1H10.6668"
+                                            stroke="#21312A"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                          />
+                                        </svg>
+                                      </button>
+                                      <span class="control__item-qty">
+                                        {{ item.qty }}
+                                      </span>
+                                      <button
+                                        class="control__item-btn"
+                                        @click.prevent="
+                                          increaseRoomQty(item, i)
+                                        "
+                                      >
+                                        <svg
+                                          class="control__item-icon"
+                                          width="16"
+                                          height="16"
+                                          viewBox="0 0 16 16"
+                                          fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            class="control__item-icon"
+                                            d="M8 3.33301V12.6663"
+                                            stroke="#21312A"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                          />
+                                          <path
+                                            class="control__item-icon"
+                                            d="M3.3335 8H12.6668"
+                                            stroke="#21312A"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                          />
+                                        </svg>
+                                      </button>
                                     </span>
-                                    <button
-                                      class="control__item-btn"
-                                      @click.prevent="increaseRoomQty(item, i)"
-                                    >
-                                      <svg
-                                        class="control__item-icon"
-                                        width="16"
-                                        height="16"
-                                        viewBox="0 0 16 16"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
-                                        <path
-                                          class="control__item-icon"
-                                          d="M8 3.33301V12.6663"
-                                          stroke="#21312A"
-                                          stroke-width="1.5"
-                                          stroke-linecap="round"
-                                          stroke-linejoin="round"
-                                        />
-                                        <path
-                                          class="control__item-icon"
-                                          d="M3.3335 8H12.6668"
-                                          stroke="#21312A"
-                                          stroke-width="1.5"
-                                          stroke-linecap="round"
-                                          stroke-linejoin="round"
-                                        />
-                                      </svg>
-                                    </button>
-                                  </span>
-                                </li>
-                              </ul>
+                                  </li>
+                                </ul>
+
+                                <button class="pricing__calculator-btn btn-sm">
+                                  Done
+                                </button>
+                              </div>
                             </transition>
                           </div>
                         </div>
@@ -1297,7 +1317,7 @@ export default {
               ...(this.selectedService.includes('Cleaning') && {
                 cleaning: this.totalCleaningSummary,
               }),
-            }
+            },
           }
 
           await signupApi(payload)

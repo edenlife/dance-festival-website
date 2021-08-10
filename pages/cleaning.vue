@@ -443,67 +443,72 @@
                         }"
                       >
                         <transition name="slide-fade">
-                          <ul class="selector--room">
-                            <li
-                              v-for="(item, i) in cleaningQtyOption"
-                              :key="i"
-                              class="control"
-                            >
-                              <span>{{ item.cleaning_area_name }}</span>
-                              <span class="control__item">
-                                <button
-                                  class="control__item-btn"
-                                  @click.prevent="decreaseRoomQty(item, i)"
-                                >
-                                  <svg
-                                    width="12"
-                                    height="2"
-                                    viewBox="0 0 12 2"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
+                          <div class="selector--room">
+                            <ul>
+                              <li
+                                v-for="(item, i) in cleaningQtyOption"
+                                :key="i"
+                                class="control"
+                              >
+                                <span>{{ item.cleaning_area_name }}</span>
+                                <span class="control__item">
+                                  <button
+                                    class="control__item-btn"
+                                    @click.prevent="decreaseRoomQty(item, i)"
                                   >
-                                    <path
-                                      d="M1.3335 1H10.6668"
-                                      stroke="#21312A"
-                                      stroke-width="1.5"
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                    />
-                                  </svg>
-                                </button>
-                                <span class="control__item-qty">
-                                  {{ item.qty }}
+                                    <svg
+                                      width="12"
+                                      height="2"
+                                      viewBox="0 0 12 2"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M1.3335 1H10.6668"
+                                        stroke="#21312A"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      />
+                                    </svg>
+                                  </button>
+                                  <span class="control__item-qty">
+                                    {{ item.qty }}
+                                  </span>
+                                  <button
+                                    class="control__item-btn"
+                                    @click.prevent="increaseRoomQty(item, i)"
+                                  >
+                                    <svg
+                                      width="16"
+                                      height="16"
+                                      viewBox="0 0 16 16"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M8 3.33301V12.6663"
+                                        stroke="#21312A"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      />
+                                      <path
+                                        d="M3.3335 8H12.6668"
+                                        stroke="#21312A"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      />
+                                    </svg>
+                                  </button>
                                 </span>
-                                <button
-                                  class="control__item-btn"
-                                  @click.prevent="increaseRoomQty(item, i)"
-                                >
-                                  <svg
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 16 16"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M8 3.33301V12.6663"
-                                      stroke="#21312A"
-                                      stroke-width="1.5"
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                    />
-                                    <path
-                                      d="M3.3335 8H12.6668"
-                                      stroke="#21312A"
-                                      stroke-width="1.5"
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                    />
-                                  </svg>
-                                </button>
-                              </span>
-                            </li>
-                          </ul>
+                              </li>
+                            </ul>
+                            <button class="pricing__calculator-btn btn-sm" @click="toggle('light')">
+                              Done
+                            </button>
+                          </div>
                         </transition>
                       </div>
                     </div>
@@ -661,67 +666,72 @@
                         }"
                       >
                         <transition name="slide-fade">
-                          <ul class="selector--room">
-                            <li
-                              v-for="(item, i) in cleaningQtyOption"
-                              :key="i"
-                              class="control"
-                            >
-                              <span>{{ item.cleaning_area_name }}</span>
-                              <span class="control__item">
-                                <button
-                                  class="control__item-btn"
-                                  @click.prevent="decreaseRoomQty(item, i)"
-                                >
-                                  <svg
-                                    width="12"
-                                    height="2"
-                                    viewBox="0 0 12 2"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
+                          <div class="selector--room">
+                            <ul>
+                              <li
+                                v-for="(item, i) in cleaningQtyOption"
+                                :key="i"
+                                class="control"
+                              >
+                                <span>{{ item.cleaning_area_name }}</span>
+                                <span class="control__item">
+                                  <button
+                                    class="control__item-btn"
+                                    @click.prevent="decreaseRoomQty(item, i)"
                                   >
-                                    <path
-                                      d="M1.3335 1H10.6668"
-                                      stroke="#21312A"
-                                      stroke-width="1.5"
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                    />
-                                  </svg>
-                                </button>
-                                <span class="control__item-qty">
-                                  {{ item.qty }}
+                                    <svg
+                                      width="12"
+                                      height="2"
+                                      viewBox="0 0 12 2"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M1.3335 1H10.6668"
+                                        stroke="#21312A"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      />
+                                    </svg>
+                                  </button>
+                                  <span class="control__item-qty">
+                                    {{ item.qty }}
+                                  </span>
+                                  <button
+                                    class="control__item-btn"
+                                    @click.prevent="increaseRoomQty(item, i)"
+                                  >
+                                    <svg
+                                      width="16"
+                                      height="16"
+                                      viewBox="0 0 16 16"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M8 3.33301V12.6663"
+                                        stroke="#21312A"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      />
+                                      <path
+                                        d="M3.3335 8H12.6668"
+                                        stroke="#21312A"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      />
+                                    </svg>
+                                  </button>
                                 </span>
-                                <button
-                                  class="control__item-btn"
-                                  @click.prevent="increaseRoomQty(item, i)"
-                                >
-                                  <svg
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 16 16"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M8 3.33301V12.6663"
-                                      stroke="#21312A"
-                                      stroke-width="1.5"
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                    />
-                                    <path
-                                      d="M3.3335 8H12.6668"
-                                      stroke="#21312A"
-                                      stroke-width="1.5"
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                    />
-                                  </svg>
-                                </button>
-                              </span>
-                            </li>
-                          </ul>
+                              </li>
+                            </ul>
+                            <button class="pricing__calculator-btn btn-sm" @click="toggle('deep')">
+                              Done
+                            </button>
+                          </div>
                         </transition>
                       </div>
                     </div>

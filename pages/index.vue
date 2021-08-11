@@ -770,7 +770,7 @@
           </div>
           <div class="questions__description-item">
             <div class="questions__description-title">
-              <h5>Does my Gardener service me alone?</h5>
+              <h5>Does my Gardener handle just my Eden account?</h5>
               <button
                 type="button"
                 class="expand"

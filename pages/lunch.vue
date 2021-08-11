@@ -334,7 +334,7 @@
           </figure>
         </div>
         <button class="menu-btn" @click.prevent="scrollToTop('hero')">
-         Use EDENLUNCH20 for 20% Off
+        Start Your Eden Life Today
         </button>
       </section>
     </div>

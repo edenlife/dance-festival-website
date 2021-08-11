@@ -449,7 +449,7 @@
         </div>
         <div class="faq__questions-item">
           <div class="faq__questions-title">
-            <h5>Does my Gardener service me alone?</h5>
+            <h5>Does my Gardener handle just my Eden account?</h5>
             <button
               type="button"
               class="expand"

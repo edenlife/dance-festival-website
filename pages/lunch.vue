@@ -252,7 +252,7 @@
             }"
           >
             <template slot="prev"
-              ><span class="prev">
+              ><span class="prev" @click="previousCategory()">
                 <svg
                   width="6"
                   height="10"
@@ -291,7 +291,7 @@
             </div>
 
             <template slot="next">
-              <span class="next">
+              <span class="next" @click="nextCategory()">
                 <svg
                   width="6"
                   height="10"

@@ -256,7 +256,7 @@
             }"
           >
             <template slot="prev"
-              ><span class="prev">
+              ><span class="prev" @click="previousCategory()">
                 <svg
                   width="6"
                   height="10"
@@ -295,7 +295,7 @@
             </div>
 
             <template slot="next">
-              <span class="next">
+              <span class="next" @click="nextCategory()">
                 <svg
                   width="6"
                   height="10"
@@ -1004,6 +1004,15 @@ export default {
     changeCategory(val) {
       this.activeTabIndex = val
       this.mealsInCategory = this.getMealsInEachCategory(this.allMeal, val)
+    },
+
+    previousCategory() {
+      let activeIndex = this.tabs.indexOf(this.activeTabIndex)
+      this.changeCategory(this.tabs[activeIndex - 1])
+    },
+    nextCategory() {
+      let activeIndex = this.tabs.indexOf(this.activeTabIndex)
+      this.changeCategory(this.tabs[activeIndex + 1])
     },
     getMealsInEachCategory(items, category) {
       return items.filter(

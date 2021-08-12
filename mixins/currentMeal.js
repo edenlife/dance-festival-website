@@ -111,12 +111,21 @@ export default {
         return acc
       }, [])
       this.tabs = [...new Set(mapped)]
-      this.activeTabIndex = this.tabs[0]
+       this.activeTabIndex = this.tabs[0]
       this.changeCategory(this.activeTabIndex)
     },
     changeCategory(val) {
       this.activeTabIndex = val
       this.mealsInCategory = this.getMealsInEachCategory(this.allMeal, val)
+    },
+
+    previousCategory() {
+      let activeIndex = this.tabs.indexOf(this.activeTabIndex)
+      this.changeCategory(this.tabs[activeIndex - 1])
+    },
+    nextCategory() {
+      let activeIndex = this.tabs.indexOf(this.activeTabIndex)
+      this.changeCategory(this.tabs[activeIndex + 1])
     },
     getMealsInEachCategory(items, category) {
       return items.filter(

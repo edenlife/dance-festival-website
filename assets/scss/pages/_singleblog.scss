@@ -124,10 +124,25 @@
     flex-direction: column;
     align-items: center;
     margin-right: $gap * 6;
+    transition: opacity 0.3s ease-in-out;
     &-title {
       color: color(eden-neutral-1);
       line-height: 26px;
       margin-bottom: $gap * 2;
+    }
+
+    &.fixed {
+      position: fixed;
+      top: 40%;
+       left: 50px;
+    }
+
+    &.mobile{
+      display: none;
+    }
+
+    &.hide {
+      opacity: 0;
     }
     .link {
       margin-bottom: $gap * 2;
@@ -170,12 +185,22 @@
     &__social {
       width: 80%;
       flex-direction: row;
+      left: 10px !important;
+      background: rgba(255, 255, 255, 0.7);
       justify-content: space-between;
       align-items: center;
       margin-right: 0;
       margin-bottom: $gap * 4;
       .link {
         margin-bottom: 0;
+      }
+      &.mobile{
+        display: flex;
+        margin: $gap;
+        margin-top: $gap * 3;
+      }
+      &:not(.mobile) {
+        display: none;
       }
       &-title {
         @include font-size(sm);

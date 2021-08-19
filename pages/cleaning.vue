@@ -303,7 +303,7 @@
           <ul class="plan__price-option">
             <li
               :class="{ active: plan === 'light-cleaning' }"
-              @click.prevent="setCleaningType('light-cleaning')"
+              @click.prevent="setCleaningConfig('light-cleaning')"
             >
               <span> Light Cleaning</span>
               <svg
@@ -319,7 +319,7 @@
             </li>
             <li
               :class="{ active: plan === 'deep-cleaning' }"
-              @click.prevent="setCleaningType('deep-cleaning')"
+              @click.prevent="setCleaningConfig('deep-cleaning')"
             >
               <span> Deep Cleaning </span>
               <svg
@@ -505,7 +505,10 @@
                                 </span>
                               </li>
                             </ul>
-                            <button class="pricing__calculator-btn btn-sm" @click="toggle('light')">
+                            <button
+                              class="pricing__calculator-btn btn-sm"
+                              @click="toggle('light')"
+                            >
                               Done
                             </button>
                           </div>
@@ -728,7 +731,10 @@
                                 </span>
                               </li>
                             </ul>
-                            <button class="pricing__calculator-btn btn-sm" @click="toggle('deep')">
+                            <button
+                              class="pricing__calculator-btn btn-sm"
+                              @click="toggle('deep')"
+                            >
                               Done
                             </button>
                           </div>
@@ -1086,6 +1092,26 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
       this.cleaningQtyOption[2].qty = 1
       this.cleaningQtyOption[3].qty = 1
       this.setCleaningArea('light cleaning')
+      this.calculateCleaningPrice()
+    },
+    setCleaningConfig(plan) {
+      this.plan = plan
+      this.cleaningInfo.item = plan
+      this.cleaningInfo.itemAreas = {}
+      this.cleaningInfo.itemAreasPrice = {}
+      const planType = plan.replace('-', ' ')
+      const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
+        ({ name }) => name.toLowerCase() === planType
+      )
+      this.cleaningQtyOption = cleaning_areas.map((obj) => ({
+        ...obj,
+        qty: 0,
+      }))
+      this.cleaningQtyOption[0].qty = 1
+      this.cleaningQtyOption[1].qty = 1
+      this.cleaningQtyOption[2].qty = 1
+      this.cleaningQtyOption[3].qty = 1
+      this.setCleaningArea(planType)
       this.calculateCleaningPrice()
     },
     calculateCleaningPrice() {

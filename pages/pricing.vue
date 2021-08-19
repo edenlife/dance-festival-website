@@ -1220,11 +1220,6 @@ export default {
           value: 'deep-cleaning',
           type: 'cleaning',
         },
-        {
-          name: 'Fumigation',
-          value: 'fumigation',
-          type: 'cleaning',
-        },
       ],
       roomTypes: null,
       cleaningQtyOption: [],
@@ -1442,6 +1437,7 @@ export default {
       this.selectedService = ['Food', 'Laundry', 'Cleaning']
       this.selectedDays = ['monday-friday']
       this.setCustom = true
+      this.setCleaningConfig('deep cleaning')
       this.getEstimate()
       mixpanelTrackEvent('Customise plan clicked', 'pricing page')
     },
@@ -2233,17 +2229,11 @@ export default {
         this.cleaningTypeValue = plan.value
         if (plan.value === 'light-cleaning') {
           this.cleaningInfo.item = plan.value
-          this.setCleaningArea('light cleaning')
+          this.setCleaningConfig('light cleaning')
         }
         if (plan.value === 'deep-cleaning') {
           this.cleaningInfo.item = plan.value
-          this.setCleaningArea('deep cleaning')
-        }
-        if (plan.value === 'fumigation') {
-          this.cleaningInfo.item = plan.value
-          this.cleaningInfo.qty = this.cleaningQtyOption.reduce((acc, val) => {
-            return acc + val.qty
-          }, 0)
+          this.setCleaningConfig('deep cleaning')
         }
         this.toggle('cleaningType')
         this.calculateCleaningPrice()
@@ -2289,6 +2279,24 @@ export default {
         return item.qty + ' ' + item.cleaning_area_name
       })
       this.roomTypes = rooms.join(', ')
+    },
+    setCleaningConfig(plan) {
+      this.cleaningInfo.itemAreas = {}
+      this.cleaningInfo.itemAreasPrice = {}
+      const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
+        ({ name }) => name.toLowerCase() === plan
+      )
+      this.cleaningQtyOption = cleaning_areas.map((obj) => ({
+        ...obj,
+        qty: 0,
+      }))
+      this.cleaningQtyOption[0].qty = 1
+      this.cleaningQtyOption[1].qty = 1
+      this.cleaningQtyOption[2].qty = 1
+      this.cleaningQtyOption[3].qty = 1
+      this.setCleaningArea(plan)
+      this.calculateCleaningPrice()
+      this.getEstimateRoomTypes()
     },
   },
 }

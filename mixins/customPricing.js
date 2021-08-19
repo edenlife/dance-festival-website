@@ -92,11 +92,6 @@ export default {
           value: 'deep-cleaning',
           type: 'cleaning',
         },
-        {
-          name: 'Fumigation',
-          value: 'fumigation',
-          type: 'cleaning',
-        },
       ],
       laundryTypeValue: 'wash-and-fold',
       laundryFreqValue: 'bi-weekly',
@@ -966,12 +961,6 @@ export default {
         if (plan.value === 'deep-cleaning') {
           this.cleaningInfo.item = plan.value
           this.setCleaningArea('deep cleaning')
-        }
-        if (plan.value === 'fumigation') {
-          this.cleaningInfo.item = plan.value
-          this.cleaningInfo.qty = this.cleaningQtyOption.reduce((acc, val) => {
-            return acc + val.qty
-          }, 0)
         }
         this.toggle('cleaningType')
         this.calculateCleaningPrice()

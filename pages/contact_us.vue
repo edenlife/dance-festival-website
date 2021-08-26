@@ -43,7 +43,7 @@
       <div class="contact__office-address">
         <h5>Eden Office</h5>
         <p>
-          Block D3 Flat 5, Jacob Mews Estate, <br />Adebisi Street, Yaba,<br />
+          Block C7 Unit 3, Jacob Mews Estate, <br />Adebisi Street, Yaba,<br />
           Lagos, Nigeria.
         </p>
         <div class="email">

@@ -86,7 +86,7 @@ export default {
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919024/eden-website-v2/bukola_c0lmjo.png',
       name: 'Olubukola Ajayi',
-      role: 'Happiness Engineering (HR) (HR)',
+      role: 'Happiness Engineering (HR)',
     },
     {
       id: 13,

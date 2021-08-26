@@ -86,7 +86,7 @@ export default {
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919024/eden-website-v2/bukola_c0lmjo.png',
       name: 'Olubukola Ajayi',
-      role: 'Happiness Engineering (HR)',
+      role: 'Happiness Engineering (HR) (HR)',
     },
     {
       id: 13,
@@ -144,7 +144,7 @@ export default {
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919016/eden-website-v2/gbenga_bxailj.png',
       name: 'Gbenga Osowe',
-      role: 'Supply',
+      role: 'Operations/Supply',
     },
     {
       id: 21,
@@ -158,7 +158,7 @@ export default {
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919013/eden-website-v2/miracle_q36pyk.png',
       name: 'Miracle Adoghe',
-      role: 'Food Production',
+      role: 'Customer Success',
     },
     {
       id: 23,
@@ -172,7 +172,7 @@ export default {
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919008/eden-website-v2/michael_ddqpot.png',
       name: 'Michael Obasesan',
-      role: 'Supply',
+      role: 'Operations/Supply',
     },
     {
       id: 25,
@@ -187,7 +187,7 @@ export default {
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919005/eden-website-v2/noah_ouy5f2.png',
       name: 'Noah Jolayemi',
-      role: 'Customer Success',
+      role: 'Operations/Supply',
     },
     {
       id: 27,
@@ -222,7 +222,7 @@ export default {
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919004/eden-website-v2/olabowale_jaeb96.png',
       name: 'Olabowale Adetoye',
-      role: 'Food Production',
+      role: 'Customer Success',
     },
 
     {
@@ -251,7 +251,7 @@ export default {
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1615990428/eden-website-v2/Adedeji_Abidoye_Happiness_Engineering_blrta5.jpg',
       name: 'Adedeji Abidoye',
-      role: 'Happiness Engineering',
+      role: 'Happiness Engineering (HR)',
     },
     {
       id: 36,
@@ -278,9 +278,9 @@ export default {
     {
       id: 40,
       image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962889/Diseye_Amy_Naasin_Happiness_Engineering_rcxnwy.jpg',
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629965521/Diseye_Amy_Naasin_Happiness_Engineering_bbcpxm.jpg',
       name: 'Diseye Amy Naasin',
-      role: 'Happiness Engineering',
+      role: 'Happiness Engineering (HR)',
     },
     {
       id: 41,
@@ -294,21 +294,21 @@ export default {
         image:
           'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962905/Shakira_Fari_Awaiye_Supply_xcu0bw.jpg',
         name: 'Shakirah Fari-Awaiye',
-        role: 'Supply',
+        role: 'Operations/Supply',
       },
       {
         id: 43,
         image:
           'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962900/Presley_Tukpe_Supply_judkn5.jpg',
         name: 'Presley Tukpe',
-        role: 'Supply',
+        role: 'Operations/Supply',
       },
       {
         id: 44,
         image:
           'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962155/Adeyemi_Martins_Supply_zwcshb.jpg',
         name: 'Adeyemi Martins',
-        role: 'Supply',
+        role: 'Operations/Supply',
       },
       {
         id: 45,
@@ -322,7 +322,7 @@ export default {
         image:
           'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962894/Ndane_Ndazhaga_Happiness_Engineering_igdbp3.jpg',
         name: 'Ndane Ndazhaga',
-        role: 'Happiness Engineering',
+        role: 'Data',
       },
       {
         id: 47,
@@ -376,17 +376,12 @@ export default {
         name: 'Dorcas Olawale',
         role: 'Customer Success',
       },
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-    //   image: "https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962155/Adeyemi_Martins_Supply_zwcshb.jpg",
+      {
+        id: 54,
+        image:
+          'https://res.cloudinary.com/eden-life-inc/image/upload/v1617954733/eden-website-v2/empty-male-member_j0cqu4.svg',
+        name: 'Douglas Franklin Idamezhim',
+        role: 'Growth',
+      },
   ],
 }

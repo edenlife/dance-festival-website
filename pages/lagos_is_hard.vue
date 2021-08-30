@@ -12,7 +12,7 @@
       <div class="hero">
         <div class="hero__title">
           <h1>Lagos is Hard.</h1>
-          <h3 class="primary">Let’s save you 20hrs/week.</h3>
+          <h3 class="primary"> Save 20hrs/week.</h3>
           <div>
             <p class="bold">Pay once, and for a month, you get:</p>
             <ul>

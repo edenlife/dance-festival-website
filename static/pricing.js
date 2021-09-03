@@ -90,7 +90,7 @@ export const pricing = (services) => {
       }
 
       const monthlyFrequency = TIMES_PER_MONTH[frequency]
-      const unitPrice = areasTotalPrice - discount
+      const unitPrice = areasTotalPrice  
       if (unitPrice === 0) {
         return 0
       }

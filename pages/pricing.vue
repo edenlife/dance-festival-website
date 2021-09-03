@@ -1733,10 +1733,10 @@ export default {
             this.mealFrequency = 'Twice a week'
             this.selectedDays = ['monday', 'thursday']
             this.calculateFoodPrice()
-            this.laundryFreqName = 'weekly'
-            this.laundryType = 'Wash & Iron'
-            this.laundryTypeValue = 'wash-and-iron'
-            this.laundryFreqValue = 'weekly'
+            this.laundryFreqName = 'every two weeks'
+            this.laundryType = 'Wash & Fold'
+            this.laundryTypeValue = 'wash-and-fold'
+            this.laundryFreqValue = 'bi-weekly'
             this.laundryQty = 1
             this.calculateLaundryPrice()
           }
@@ -1793,10 +1793,10 @@ export default {
           this.laundryFreqValue = 'bi-weekly'
           this.laundryQty = 3
           this.calculateLaundryPrice()
-          this.cleaningType = 'Light cleaning'
-          this.cleaningFrequency = 'Once a week'
-          this.setCleaningArea('light cleaning')
-          this.cleaningInfo.item = 'light-cleaning'
+          this.cleaningType = 'Deep cleaning'
+          this.cleaningFrequency = 'Weekly'
+          this.setCleaningArea('deep cleaning')
+          this.cleaningInfo.item = 'deep-cleaning'
           this.cleaningQtyOption[0].qty = 2
           this.cleaningQtyOption[1].qty = 3
           this.cleaningQtyOption[2].qty = 1
@@ -1812,7 +1812,7 @@ export default {
         if (this.selectedService.length === 3) {
           this.mealQty = 3
           this.mealFrequency = 'Twice a week'
-          this.selectedDays = ['monday','thursday']
+          this.selectedDays = ['monday', 'thursday']
           this.calculateFoodPrice()
           this.laundryFreqName = 'weekly'
           this.laundryType = 'Wash & Iron'
@@ -1853,6 +1853,7 @@ export default {
           ) {
             this.mealQty = 2
             this.mealFrequency = 'Daily'
+            this.selectedDays = ['monday-friday']
             this.calculateFoodPrice()
             this.cleaningType = 'Light cleaning'
             this.cleaningFrequency = 'Once a week'

@@ -305,7 +305,7 @@
               :class="{ active: plan === 'light-cleaning' }"
               @click.prevent="setCleaningConfig('light-cleaning')"
             >
-              <span> Light Cleaning</span>
+              <span> Standard  Cleaning</span>
               <svg
                 v-if="plan === 'light-cleaning'"
                 width="6"
@@ -340,7 +340,7 @@
               <div class="plan__price-item">
                 <div class="plan__price-description">
                   <div class="plan__price-description-title">
-                    <h5>What will light cleaning entail?</h5>
+                    <h5>What will standard cleaning entail?</h5>
                     <button
                       type="button"
                       class="expand"

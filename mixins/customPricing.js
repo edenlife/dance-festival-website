@@ -80,10 +80,10 @@ export default {
       ],
       laundryQty: 1,
       cleaningFrequency: 'Every two weeks',
-      cleaningType: 'Light cleaning',
+      cleaningType: 'Standard cleaning',
       cleaningOptions: [
         {
-          name: 'Light Cleaning',
+          name: 'Standard Cleaning',
           value: 'light-cleaning',
           type: 'cleaning',
         },
@@ -209,7 +209,7 @@ export default {
         this.laundryQty = 1
         this.laundrySavedTime = '2 hours 15 minutes every week'
         this.calculateLaundryPrice()
-        this.cleaningType = 'Light cleaning'
+        this.cleaningType = 'Standard cleaning'
         this.cleaningFrequency = 'Every two weeks'
         this.cleaningQtyOption[0].qty = 1
         this.cleaningQtyOption[2].qty = 1

@@ -1035,7 +1035,7 @@
                 :class="{ active: cleaningPlanType === 'light-cleaning' }"
                 @click.prevent="cleaningPlanType = 'light-cleaning'"
               >
-                <span> Light Cleaning</span>
+                <span> Standard Cleaning</span>
                 <svg
                   v-if="cleaningPlanType === 'light-cleaning'"
                   width="6"
@@ -1208,7 +1208,7 @@ export default {
       ],
       laundryQty: 1,
       cleaningFrequency: 'Every two weeks',
-      cleaningType: 'Light cleaning',
+      cleaningType: 'Standard cleaning',
       cleaningOptions: [
         {
           name: 'Light Cleaning',
@@ -1505,7 +1505,7 @@ export default {
         this.laundryFreqValue = 'bi-weekly'
         this.laundryQty = 1
         this.calculateLaundryPrice()
-        this.cleaningType = 'Light cleaning'
+        this.cleaningType = 'Standard cleaning'
         this.cleaningFrequency = 'Every two weeks'
         this.cleaningQtyOption[0].qty = 1
         this.cleaningQtyOption[2].qty = 1
@@ -1547,7 +1547,7 @@ export default {
           this.laundryFreqValue = 'bi-weekly'
           this.laundryQty = 1
           this.calculateLaundryPrice()
-          this.cleaningType = 'Light cleaning'
+          this.cleaningType = 'Standard cleaning'
           this.cleaningFrequency = 'Every two weeks'
           this.cleaningQtyOption[0].qty = 1
           this.cleaningQtyOption[1].qty = 0
@@ -1571,7 +1571,7 @@ export default {
           this.laundryFreqValue = 'bi-weekly'
           this.laundryQty = 1
           this.calculateLaundryPrice()
-          this.cleaningType = 'Light cleaning'
+          this.cleaningType = 'Standard cleaning'
           this.cleaningFrequency = 'Every two weeks'
           this.setCleaningArea('light cleaning')
           this.cleaningInfo.item = 'light-cleaning'
@@ -1614,7 +1614,7 @@ export default {
           this.laundryFreqValue = 'bi-weekly'
           this.laundryQty = 1
           this.calculateLaundryPrice()
-          this.cleaningType = 'Light cleaning'
+          this.cleaningType = 'Standard cleaning'
           this.cleaningFrequency = 'Every two weeks'
           this.cleaningQtyOption[0].qty = 1
           this.cleaningQtyOption[1].qty = 1
@@ -1650,7 +1650,7 @@ export default {
             this.mealFrequency = 'Weekly'
             this.selectedDays = ['monday']
             this.calculateFoodPrice()
-            this.cleaningType = 'Light cleaning'
+            this.cleaningType = 'Standard cleaning'
             this.cleaningFrequency = 'Every two weeks'
             this.cleaningQtyOption[0].qty = 1
             this.cleaningQtyOption[1].qty = 0
@@ -1672,7 +1672,7 @@ export default {
             this.laundryFreqValue = 'bi-weekly'
             this.laundryQty = 1
             this.calculateLaundryPrice()
-            this.cleaningType = 'Light cleaning'
+            this.cleaningType = 'Standard cleaning'
             this.cleaningFrequency = 'Every two weeks'
             this.cleaningQtyOption[0].qty = 1
             this.cleaningQtyOption[1].qty = 0
@@ -1695,7 +1695,7 @@ export default {
           this.laundryFreqValue = 'bi-weekly'
           this.laundryQty = 2
           this.calculateLaundryPrice()
-          this.cleaningType = 'Light cleaning'
+          this.cleaningType = 'Standard cleaning'
           this.cleaningFrequency = 'Once a week'
           this.cleaningQtyOption[0].qty = 1
           this.cleaningQtyOption[1].qty = 1
@@ -1722,7 +1722,7 @@ export default {
           this.laundryFreqValue = 'bi-weekly'
           this.laundryQty = 1
           this.calculateLaundryPrice()
-          this.cleaningType = 'Light cleaning'
+          this.cleaningType = 'Standard cleaning'
           this.cleaningFrequency = 'Once a week'
           this.cleaningQtyOption[0].qty = 1
           this.cleaningQtyOption[1].qty = 1
@@ -1758,7 +1758,7 @@ export default {
             this.mealFrequency = 'Daily'
             this.selectedDays = ['monday-friday']
             this.calculateFoodPrice()
-            this.cleaningType = 'Light cleaning'
+            this.cleaningType = 'Standard cleaning'
             this.cleaningFrequency = 'Once a week'
             this.setCleaningArea('light cleaning')
             this.cleaningInfo.item = 'light-cleaning'
@@ -1780,7 +1780,7 @@ export default {
             this.laundryFreqValue = 'bi-weekly'
             this.laundryQty = 3
             this.calculateLaundryPrice()
-            this.cleaningType = 'Light cleaning'
+            this.cleaningType = 'Standard cleaning'
             this.cleaningFrequency = 'Once a week'
             this.setCleaningArea('light cleaning')
             this.cleaningInfo.item = 'deep-cleaning'
@@ -1830,7 +1830,7 @@ export default {
           this.laundryFreqValue = 'weekly'
           this.laundryQty = 1
           this.calculateLaundryPrice()
-          this.cleaningType = 'Light cleaning'
+          this.cleaningType = 'Standard cleaning'
           this.cleaningFrequency = 'Once a week'
           this.cleaningQtyOption[0].qty = 2
           this.cleaningQtyOption[1].qty = 2
@@ -1865,7 +1865,7 @@ export default {
             this.mealFrequency = 'Daily'
             this.selectedDays = ['monday-friday']
             this.calculateFoodPrice()
-            this.cleaningType = 'Light cleaning'
+            this.cleaningType = 'Standard cleaning'
             this.cleaningFrequency = 'Once a week'
             this.cleaningQtyOption[0].qty = 2
             this.cleaningQtyOption[1].qty = 1
@@ -1889,7 +1889,7 @@ export default {
             this.laundryFreqValue = 'bi-weekly'
             this.laundryQty = 3
             this.calculateLaundryPrice()
-            this.cleaningType = 'Light cleaning'
+            this.cleaningType = 'Standard cleaning'
             this.cleaningFrequency = 'Once a week'
             this.cleaningQtyOption[0].qty = 2
             this.cleaningQtyOption[1].qty = 2

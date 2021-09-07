@@ -365,7 +365,7 @@
               A lot. Think of your Gardener as your link to an ever-expanding
               world of Eden services you can take advantage of. Your Gardener
               helps you access services like<strong>
-                meals, house cleaning (light and deep cleaning), and laundry
+                meals, house cleaning (standard and deep cleaning), and laundry
                 services.</strong
               >
               And that's just the beginning.

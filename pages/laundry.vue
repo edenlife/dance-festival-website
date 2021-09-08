@@ -5,7 +5,7 @@
         <div class="hero__title">
           <h1>
             Save your <span> {{ headerText[0] }}</span> <br />
-            clean clothes on repeat.
+            clean Clothes, in 48 hours or less.
           </h1>
           <p>
             Getting an Eden laundry plan means we'll pick up your dirty laundry
@@ -18,7 +18,7 @@
               class="hero__button-solid"
               @click.prevent="scrollToFooter('#get-the-app', 'laundry - hero')"
             >
-              Start Your Eden Life
+              Pick Up My Laundry
             </button>
           </div>
         </div>
@@ -158,25 +158,27 @@
             </div>
             <div class="description__slider-text">
               <div class="one">
-                <h5>Choose your plan</h5>
+                <h5>You Choose Your Plan</h5>
                 <p>
-                  Sign-up on the Eden Life app. Choose the number of laundry
-                  bags you need cleaned. Select how often you'd like us to do
-                  your laundry in a month, and pay.
+                  Sign up on the Eden app. Choose a laundry schedule that works
+                  for you; when you want it, how you want it. It takes less than
+                  5 minutes!
                 </p>
               </div>
               <div class="two">
-                <h5>We pickup and clean</h5>
+                <h5>We Pickup and Execute</h5>
                 <p>
-                  We come over to your home/office and pick up your dirty
-                  laundry. Then we wash, dry, and press to perfection.
+                  We pick up your dirty clothes and beddings. Our professional
+                  laundry partners wash, dry-clean, and iron all your clothing
+                  items.
                 </p>
               </div>
               <div class="three">
-                <h5>We deliver!</h5>
+                <h5>We Deliver</h5>
                 <p>
-                  That's it. Your fresh clothes are ready and on their way to
-                  you. All within 48 hrs.
+                  We QC and make sure all your clothes are intact and perfectly
+                  laundered. And that's it! Your clothes are on their way to
+                  you. All within 24 hours.
                 </p>
               </div>
               <button
@@ -268,15 +270,15 @@
             <li>
               <h5 class="icon icon--one">👀</h5>
               <div class="icon--text">
-                <h5>No hidden payments.</h5>
-                <p>Yessir.</p>
+                <h5>We'll pick up up and deliver</h5>
+                <p>in 48 hours or less.</p>
               </div>
             </li>
             <li>
               <h5 class="icon icon--two">🚛</h5>
               <div class="icon--text">
-                <h5>No hidden delivery fees.</h5>
-                <p>100%</p>
+                <h5>We'll replace damaged items.</h5>
+                <p>No questions asked.</p>
               </div>
             </li>
             <li>
@@ -688,7 +690,9 @@
           >
             <h3>🧺</h3>
             <h5>Food</h5>
-            <p>Your chef-cooked meals, delivered to you. Daily or weekly.</p>
+            <p>
+              Chef-cooked meals you'll enjoy. Delivered fresh and on schedule.
+            </p>
             <nuxt-link :to="{ path: '/food' }" class="btn">
               {{
                 exploreService === 'food' || setExploreService ? 'Explore' : ''
@@ -721,7 +725,7 @@
           >
             <h3>🏠</h3>
             <h5>Home Cleaning</h5>
-            <p>Professional cleaning at your doorstep. Up to thrice a week.</p>
+            <p>Professional home cleaning you can trust.</p>
             <nuxt-link :to="{ path: '/cleaning' }" class="btn">
               {{
                 exploreService === 'cleaning' || setExploreService
@@ -802,7 +806,7 @@ import getSiteMeta from '~/utils/getSiteMeta'
 export default {
   data() {
     return {
-      headerText: ['time', 'energy', 'money'],
+      headerText: ['time', 'energy'],
       LaundryMessage: [
         {
           name: 'justin irabor',

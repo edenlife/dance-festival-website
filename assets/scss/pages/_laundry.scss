@@ -4,8 +4,7 @@
   width: 100%;
   &--hero {
     background: color(eden-purple-50)
-      url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611849815/eden-website-v2/eden-stamp_trgxux.svg')
-      no-repeat bottom 6% left 2%;
+     ;
     @include respond(md) {
       background: color(eden-purple-50)
         url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611849815/eden-website-v2/eden-stamp_trgxux.svg')

@@ -12,7 +12,7 @@
       <div class="hero">
         <div class="hero__title">
           <h1>Lagos is Hard.</h1>
-          <h3 class="primary"> Save 20hrs/week.</h3>
+          <h3 class="primary">Save Up to 20hrs/week.</h3>
           <div>
             <p class="bold">Pay once, and for a month, you get:</p>
             <ul>
@@ -29,6 +29,12 @@
                 ><span>Trained cleaners keeping your space clean</span>
               </li>
             </ul>
+            <button
+              @click.prevent="scrollToTop('custom')"
+              class="pricing__form-btn"
+            >
+              I Want an Easy Life
+            </button>
             <p class="highlight">
               You can pick one. You can pick all. No hidden delivery charges.
             </p>
@@ -48,12 +54,10 @@
         <div class="pricing__left">
           <div class="pricing__form">
             <div class="pricing__form-title">
-              <h3>
-               Start your Eden Life today and save enough time to enjoy the best of Lagos.
-              </h3>
+              <h3>Start your Eden Life Today and save up to 20hrs/week</h3>
               <p>
-                Enter your details and we’ll email you about the next steps.
-                Let’s go!
+                Relax while the professionals handle your chores. Enter your
+                details and we'll reach out about next steps.
               </p>
             </div>
             <div class="pricing__form-body">
@@ -105,7 +109,7 @@
                 />
               </div> -->
               <button class="pricing__form-btn" @click.prevent="getStarted()">
-               Start your Eden Life today
+                Save up to 20hrs with Eden
               </button>
             </div>
           </div>
@@ -302,22 +306,7 @@
               </div>
             </div>
 
-            <div class="description__details-item">
-              <div class="description__details-item--icon">
-                <img
-                  :src="require(`~/assets/images/emojis/moneybag.png`)"
-                  alt=""
-                />
-              </div>
-
-              <div class="description__details-item--text">
-                <h5>It's budget-friendly</h5>
-                <p>
-                  We asked around and crunched the numbers, and some of our
-                  customers save up to 68% on their monthly food bill!
-                </p>
-              </div>
-            </div>
+       
 
             <div class="description__details-item">
               <div class="description__details-item--icon">
@@ -447,7 +436,7 @@
           </figure>
         </div>
         <button class="menu-btn" @click.prevent="scrollToTop('custom')">
-         Start your Eden Life today
+         Save up to 20hrs with Eden
         </button>
       </section>
     </div>
@@ -819,8 +808,8 @@
                 A lot. Think of your Gardener as your link to an ever-expanding
                 world of Eden services you can take advantage of. Your Gardener
                 helps you access services like<strong>
-                  meals, house cleaning (standard and deep cleaning), and laundry
-                  services.</strong
+                  meals, house cleaning (standard and deep cleaning), and
+                  laundry services.</strong
                 >
                 And that's just the beginning.
                 <br />

@@ -12,12 +12,12 @@
             <span> {{ headerText[0] }}</span>
           </h1>
           <p>
-            Let Eden handle your home's self-care routine.
+            Our professional cleaners will scrub your toilets, mop your floors,
+            wipe your surfaces, do your dishes, and keep your home sparkling all
+            month.
             <br />
             <br />
-
-            Use Eden to keep your home clean, your toilets scrubbed and your
-            dishes done all through the month!
+            Save your weekend for fun.
           </p>
           <div class="hero__button">
             <button
@@ -25,7 +25,7 @@
               class="hero__button-solid"
               @click.prevent="scrollToFooter('#get-the-app', 'cleaning - hero')"
             >
-              Sign up for a Clean home
+              I Want a Clean Home
             </button>
           </div>
         </div>
@@ -166,11 +166,11 @@
 
             <div class="description__slider-text">
               <div class="one">
-                <h5>Choose your plan</h5>
+                <h5>You Choose Your Plan</h5>
                 <p>
-                  Sign-up on the Eden Life app. Then choose the type of cleaning
-                  you want, select how often you'd like your home cleaned, and
-                  pay.
+                  Sign up on the Eden app. Choose the type of cleaning you want;
+                  standard or deep cleaning. Select a schedule that works for
+                  you. It takes less than 5 minutes!
                 </p>
               </div>
               <div class="two">
@@ -182,11 +182,11 @@
                 </p>
               </div>
               <div class="three">
-                <h5>We supervise</h5>
+                <h5>You relax</h5>
                 <p>
-                  Your assigned home manager ensures that the cleaning is done
-                  excellently, so there's no need for you to even supervise.
-                  Just come home to a speckless space.
+                  In no time, our cleaners are done and you can relax in your
+                  clean home. Your weekends are now free for whatever your idea
+                  of fun is.
                 </p>
               </div>
               <button
@@ -278,15 +278,15 @@
             <li>
               <h5 class="icon icon--one">👀</h5>
               <div class="icon--text">
-                <h5>No hidden payments.</h5>
-                <p>Yessir.</p>
+                <h5>Our cleaners are professionals</h5>
+                <p>Thoroughly trained.</p>
               </div>
             </li>
             <li>
               <h5 class="icon icon--two">🚛</h5>
               <div class="icon--text">
-                <h5>No hidden delivery fees.</h5>
-                <p>100%</p>
+                <h5>You can trust them</h5>
+                <p>We guarantee it.</p>
               </div>
             </li>
             <li>
@@ -799,7 +799,9 @@
           >
             <h3>🧺</h3>
             <h5>Food</h5>
-            <p>Your chef-cooked meals, delivered to you. Daily or weekly.</p>
+            <p>
+              Chef-cooked meals you'll enjoy. Delivered fresh and on schedule.
+            </p>
             <nuxt-link :to="{ path: '/food' }" class="btn">
               {{
                 exploreService === 'food' || setExploreService ? 'Explore' : ''
@@ -832,10 +834,7 @@
           >
             <h3>🧺</h3>
             <h5>Laundry</h5>
-            <p>
-              Your clothes, picked up, laundered and delivered to you in 48
-              hours or less.
-            </p>
+            <p>Fresh laundry, carefully executed in 48 hours or less.</p>
             <nuxt-link :to="{ path: '/laundry' }" class="btn">
               {{
                 exploreService === 'laundry' || setExploreService
@@ -940,33 +939,32 @@ export default {
         {
           name: 'Enogieru Osasenaga',
           image: 'enogieru',
-          description: ` Got one win today and put a proposal for another project. It’s safe to say it’s been a blessed week. 
-<span style="color:#03A84E"> @ouredenlife </span>
- been making my stay in Lagos worthwhile. 
-Tonight we Netflix cause tomorrow is back to the streets.`,
+          description: `You see that household cleaning, it helped me score major points from madam when we moved from Abuja. Got the liberty to work on weekends 😩
+`,
           handle: `OsasenagaEno
 `,
           tweetLink:
-            'https://twitter.com/OsasenagaEno/status/1316432226813390853?s=20',
+            'https://twitter.com/OsasenagaEno/status/1404883417590865921?s=20',
         },
         {
-          name: 'ifeanyi',
-          image: 'ifeanyi',
-          description: ` A friend recently told me about  
-<span style="color:#03A84E"> @ouredenlife </span>
- and basically they help you automate your chores(laundry,meals, cleaning etc). If you’re the type too busy(or lazy) to do it yourself then check them out.`,
-          handle: `ifeanyi_uu`,
+          name: 'Fola',
+          image: 'fola',
+          description: `Tolu. Sign up with <span style="color:#03A84E"> @ouredenlife </span>. They have changed my life. They not just deliver food, they clean and do chores.`,
+          handle: `TheFavoredWoman`,
           tweetLink:
-            'https://twitter.com/ifeanyi_uu/status/1299012714644283393',
+            'https://twitter.com/TheFavoredWoman/status/1239876707542167555?s=20',
         },
         {
-          name: 'Olaniyan Ibukunoluwa',
-          image: 'olaniyan',
-          description: ` Have you checked out 
+          name: 'Nengi Adoki',
+          image: 'adoki',
+          description: `This deep cleaning 
 <span style="color:#03A84E"> @ouredenlife </span>
- . They do this and are professionals. You can tailor it to suit you.`,
-          handle: `fohrin2`,
-          tweetLink: 'https://twitter.com/fohrin2/status/1303295606102937600',
+ did at my house is….I have no words 😭 😭 😭 
+ 
+ 🤌 🤌 🤌 🤌`,
+          handle: `TheNengers`,
+          tweetLink:
+            'https://twitter.com/TheNengers/status/1423042588165251075?s=20',
         },
       ],
       exploreService: '',

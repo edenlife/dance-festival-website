@@ -463,11 +463,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     margin-bottom: $gap * 8.4;
     h3 {
       color: color(eden-neutral-1);
       @include font-size(6xl);
       line-height: 63px;
+      margin-bottom: $gap + 2;
       @include font-weight(bold);
     }
     &-image {
@@ -572,7 +574,7 @@
         @include font-size(3xl);
         line-height: 36px;
         text-align: center;
-      }
+       }
       &-image {
         gap: $gap * 2 $gap * 4;
         grid-template-columns: repeat(3, 80px);

@@ -4,8 +4,8 @@
       <div class="pricing__form-container">
         <div class="pricing__form">
           <div class="pricing__form-title">
-            <h2>Find A Plan. Made For You.</h2>
-            <p>Flexible. Straightforward. No hidden costs.</p>
+            <h2>Enjoy convenience and relief on your budget.</h2>
+            <p>Whatever plan you choose, our expert team is ready to lighten your load. Subscribe and save up to 20hrs/week.</p>
           </div>
           <div
             v-show="!reconfigurePlan && !setCustom"
@@ -186,7 +186,7 @@
                 class="pricing__plan-btn"
                 @click.prevent="displayForm = !displayForm"
               >
-                Start your Eden Life today
+              I Want an Easy Life
               </button>
             </div>
             <transition name="slide-fade">
@@ -215,7 +215,7 @@
                   :disabled="isLoading"
                   @click.prevent="getStarted()"
                 >
-                  Start your Eden Life
+                I Want an Easy Life
                 </button>
               </div>
             </transition>
@@ -899,7 +899,7 @@
                 class="pricing__calculator-btn"
                 @click.prevent="setReconfigureSummary()"
               >
-                Start your Eden Life today
+              I Want an Easy Life
               </button>
             </div>
           </div>

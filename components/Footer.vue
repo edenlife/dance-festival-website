@@ -2,8 +2,8 @@
   <div id="get-the-app" ref="get-the-app">
     <section class="footer__top">
       <div class="footer__top-title">
-        <h3>Get the app!</h3>
-        <p>Sign up on the Eden Life app. Be happy.</p>
+        <h3>Download the app!</h3>
+        <p>It takes less than 5 minutes to sign up!</p>
         <div class="footer__top-link">
           <a
             href="https://play.google.com/store/apps/details?id=com.ouredenlife.app"

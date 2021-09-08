@@ -98,7 +98,7 @@
           <div class="services__type-item services__type-laundry">
             <h3>🧺</h3>
             <h5>Laundry</h5>
-            <p>Picked up & delivered in 48 hours or less.</p>
+            <p>Fresh laundry, carefully executed in 48 hours or less.</p>
             <div class="services__type-bg">
               <img
                 src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611306544/eden-website-v2/laundry-img1_ijsx4k.png"

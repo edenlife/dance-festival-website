@@ -598,6 +598,12 @@
         text-transform: capitalize;
       }
     }
+
+    +button{
+      width: $gap * 20;
+      padding:  $gap + 6;
+      margin: $gap * 3 auto;
+    }
   }
   &__loader {
     display: flex;

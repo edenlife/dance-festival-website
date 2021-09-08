@@ -305,7 +305,7 @@
               :class="{ active: plan === 'light-cleaning' }"
               @click.prevent="setCleaningConfig('light-cleaning')"
             >
-              <span> Standard  Cleaning</span>
+              <span> Standard Cleaning</span>
               <svg
                 v-if="plan === 'light-cleaning'"
                 width="6"
@@ -1104,14 +1104,7 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
       const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
         ({ name }) => name.toLowerCase() === planType
       )
-      this.cleaningQtyOption = cleaning_areas.map((obj) => ({
-        ...obj,
-        qty: 0,
-      }))
-      this.cleaningQtyOption[0].qty = 1
-      this.cleaningQtyOption[1].qty = 1
-      this.cleaningQtyOption[2].qty = 1
-      this.cleaningQtyOption[3].qty = 1
+      this.cleaningQtyOption = this.cleaningQtyOption
       this.setCleaningArea(planType)
       this.calculateCleaningPrice()
     },

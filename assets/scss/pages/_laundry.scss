@@ -68,9 +68,16 @@
         box-shadow: inset 0 -23px 0 #dae0ff;
       }
     }
+    ul{
+      padding: $gap * 2 ;
+      li{
+        margin: $gap 0;
+        font-size: 1.125rem;
+      }
+    }
     p {
-      margin: $gap * 3.2 0 $gap * 4 0;
-      line-height: 29px;
+      margin: $gap 0 $gap * 4 0;
+      line-height: 30px;
       @include font-size(lg);
       width: 80%;
     }

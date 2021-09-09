@@ -5,13 +5,15 @@
         <div class="hero__title">
           <h1>
             Save your <span> {{ headerText[0] }}</span> <br />
-            clean Clothes, in 48 hours or less.
+            Fresh laundry, in 48 hrs.
           </h1>
-          <p>
-            Getting an Eden laundry plan means we'll pick up your dirty laundry
-            and bring back your clean clothes, folded or ironed, within 48
-            hours.
-          </p>
+
+          <ul>
+            <li>Get an Eden laundry plan ✔️</li>
+            <li>We pick up your dirty laundry ✔️</li>
+            <li>We launder, iron, and QC ✔️</li>
+            <li>We deliver your clean clothes, within 48 hours. ✔️</li>
+          </ul>
           <div class="hero__button">
             <button
               type="button"
@@ -257,11 +259,7 @@
     <div id="laundry-plan" class="container--plan">
       <section class="plan">
         <div class="plan__title">
-          <h3>
-            The Laundry Plans:<br />
-            We handle the laundry.<br />
-            You enjoy the leisure.
-          </h3>
+          <h3>The Laundry Plans:<br /></h3>
           <p>
             Each laundry bag contains up to 30 clothing items, and you can track
             your order on the app.
@@ -270,8 +268,8 @@
             <li>
               <h5 class="icon icon--one">👀</h5>
               <div class="icon--text">
-                <h5>We'll pick up up and deliver</h5>
-                <p>in 48 hours or less.</p>
+                <h5>We'll pick up and deliver</h5>
+                <p>in 48 hours.</p>
               </div>
             </li>
             <li>

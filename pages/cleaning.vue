@@ -11,14 +11,18 @@
             Spend your energy on
             <span> {{ headerText[0] }}</span>
           </h1>
-          <p>
-            Our professional cleaners will scrub your toilets, mop your floors,
-            wipe your surfaces, do your dishes, and keep your home sparkling all
-            month.
-            <br />
-            <br />
-            Save your weekend for fun.
-          </p>
+
+          <p> Our team of professional cleaners: </p>
+          <ul>
+            <li>
+              Are thoroughly vetted by us to keep you and your home safe ✔️
+            </li>
+            <li>Scrub, mop, wipe, and keep your home clean all month ✔️</li>
+            <li>
+              Save you hours of backbreaking work. Spend the time on fun ✔️
+            </li>
+          </ul>
+
           <div class="hero__button">
             <button
               type="button"
@@ -267,8 +271,7 @@
         <div class="plan__title">
           <h3>
             The Cleaning Plans:<br />
-            Sparkling space.<br />
-            Zero stress.
+            
           </h3>
           <p>
             You deserve a home where you just sit back and relax.<br />

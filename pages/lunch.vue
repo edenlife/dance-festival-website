@@ -45,7 +45,7 @@
               The perfect fuel for your hard-work 💚
             </p>
             <button @click.prevent="scrollToTop('hero')" class="hero__form-btn">
-              I want an Eden Lunch plan
+              I Want an Eden Lunch plan
             </button>
 
             <p class="discount">Never have to worry about lunch again!</p>
@@ -96,8 +96,13 @@
           </div>
           <div ref="hero" class="hero__form">
             <div class="hero__form-title">
-              <h3>Start your Eden lunch plan today</h3>
-              <p>Get one step closer to never worrying about lunch again.</p>
+              <h3>
+                You're one step closer to never worrying about lunch again.
+              </h3>
+              <p>
+                Enter your details and we'll reach out to you about the next
+                steps. Let's go!
+              </p>
             </div>
             <div class="hero__form-body">
               <div class="hero__form-input">
@@ -147,7 +152,7 @@
                     xlink:href="@/assets/images/loading-icon.svg#loading-icon"
                   ></use>
                 </svg>
-                <span v-else>   I Want an Eden Lunch Plan </span>
+                <span v-else> I Want an Eden Lunch Plan </span>
               </button>
             </div>
             <!-- <p class="note">
@@ -179,7 +184,12 @@
                 </div>
               </div>
               <p class="card__description" v-html="testimonial.description"></p>
-              <img class="card__description__image" v-if="testimonial.food_img" :src="(require(`~/assets/images/${testimonial.food_img}.jpeg`))" :alt="testimonial.name">
+              <img
+                class="card__description__image"
+                v-if="testimonial.food_img"
+                :src="require(`~/assets/images/${testimonial.food_img}.jpeg`)"
+                :alt="testimonial.name"
+              />
             </a>
           </div>
         </div>
@@ -195,7 +205,7 @@
             <div class="description__details-item--text">
               <h5>It saves you precious time</h5>
               <p>
-              By opting for an Eden lunch plan, rather than placing orders every day, our customers go from spending up to 15 hours weekly worrying about lunch to spending only 5 minutes picking.
+               By choosing an Eden lunch plan, you go from spending up to 15 hours weekly worrying about lunch to spending only 5 minutes picking your meals.
               </p>
             </div>
           </div>
@@ -334,7 +344,7 @@
           </figure>
         </div>
         <button class="menu-btn" @click.prevent="scrollToTop('hero')">
-         I Want an Eden Lunch Plan
+          I Want an Eden Lunch Plan
         </button>
       </section>
     </div>

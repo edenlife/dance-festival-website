@@ -11,14 +11,12 @@
             Enjoy <span> {{ headerText[0] }}</span> <br />
             ready in <br />5 minutes
           </h1>
-          <p>
-            Get fresh chef-cooked meals delivered to you: daily, once a week, or
-            twice a week.
-            <br />
-            <br />
-            No market runs. No prep-time. No extra delivery fees. Just heat and
-            eat."
-          </p>
+          <ul>
+            <li>Fresh chef-cooked meals delivered to you ✔️</li>
+            <li>No market runs. No prep-time. No extra delivery fees ✔️</li>
+            <li>Just heat and eat ✔️</li>
+          </ul>
+
           <div class="hero__button">
             <button
               type="button"
@@ -385,8 +383,6 @@
         <div class="plan__title">
           <h3>
             The Food Plans:<br />
-            Don't Stress.<br />
-            Just Eat.
           </h3>
           <p>
             Enjoy all the deliciousness of healthy food, right on time, with
@@ -396,15 +392,15 @@
             <li>
               <h5 class="icon icon--one">👀</h5>
               <div class="icon--text">
-                <h5>Save Up to 14 Hours Every Week</h5>
-                <p>Yessir.</p>
+                <h5>Save Time</h5>
+                <p>Up to 14 hours every week</p>
               </div>
             </li>
             <li>
               <h5 class="icon icon--two">🚛</h5>
               <div class="icon--text">
-                <h5>No hidden delivery fees.</h5>
-                <p>100%</p>
+                <h5>One Monthly Payment.</h5>
+                <p>No hidden delivery fees</p>
               </div>
             </li>
             <li>

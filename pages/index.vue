@@ -10,11 +10,12 @@
             }}</span>
             <br />forever
           </h1>
-          <p>
-            Chef-cooked meals: delivered fresh. Laundry: picked up and
-            delivered. Home cleaning: executed by professional cleaners.
-            Schedule them, and never worry about them again. Ever.
-          </p>
+          <ul>
+            <li>Chef-cooked meals: delivered fresh. ✔️</li>
+            <li>Laundry: picked up and delivered. ✔️</li>
+            <li>Home cleaning: executed by professional cleaners. ✔️</li>
+          </ul>
+          <p>Schedule them, and never worry about them again. Ever.</p>
           <div class="hero__button">
             <button
               type="button"
@@ -246,7 +247,7 @@
           <h3>The wall of 💚</h3>
 
           <div>
-            <h3>We've served</h3>
+           
             <div class="customers__title-image">
               <img
                 src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/cowrywise_wtcvv5.svg"

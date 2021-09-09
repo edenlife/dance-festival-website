@@ -4,8 +4,8 @@
       <div class="pricing__form-container">
         <div class="pricing__form">
           <div class="pricing__form-title">
-            <h2>Enjoy convenience and relief on your budget.</h2>
-            <p>Whatever plan you choose, our expert team is ready to lighten your load. Subscribe and save up to 20hrs/week.</p>
+            <h2>Convenience and Quality on your Budget</h2>
+            <p>Whatever plan you choose, our expert team is ready to lighten your load.</p>
           </div>
           <div
             v-show="!reconfigurePlan && !setCustom"

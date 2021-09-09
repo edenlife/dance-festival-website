@@ -11,20 +11,21 @@
             Enjoy <span> {{ headerText[0] }}</span> <br />
             ready in <br />5 minutes
           </h1>
-          <p>
-            A food subscription on Eden Life gets you delicious meals prepared
-            by our team of chefs.
-            <br />
-            <br />
-            No market runs. No prep-time. No delivery fees. Just heat and eat.
-          </p>
+          <ul>
+            <li>Fresh chef-cooked meals delivered to you ✔️</li>
+            <li>No market runs. No prep-time. No extra delivery fees ✔️</li>
+            <li>Just heat and eat ✔️</li>
+          </ul>
+
           <div class="hero__button">
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="scrollTo('menu-options')"
+              @click.prevent="
+                scrollToFooter('#get-the-app', 'I want a meal plan')
+              "
             >
-              See our menu
+              I Want a Meal Plan
             </button>
           </div>
         </div>
@@ -166,23 +167,23 @@
               <div class="one">
                 <h5>Choose your plan</h5>
                 <p>
-                  Sign-up on the Eden Life app. Then choose the meals you want
-                  from our menu for the week, select how often you'd like your
-                  meals, and pay.
+                  Sign up on the Eden app. Choose a meal schedule that works for
+                  you; when you want it, how you want it. It takes less than 5
+                  minutes.
                 </p>
               </div>
               <div class="two">
-                <h5>We get cookin'</h5>
+                <h5>We Cook and Deliver</h5>
                 <p>
-                  Our team of expert chefs take it from here, preparing your
-                  culinary fantasies with the freshest ingredients.
+                  We cook up your picks from our rich menu and deliver them to
+                  you on schedule. At no extra delivery costs.
                 </p>
               </div>
               <div class="three">
-                <h5>We deliver!</h5>
+                <h5>You Heat and Eat</h5>
                 <p>
-                  Food is ready and on it's way to you. You can eat immediately
-                  or freeze for later. Oh...and no extra delivery charge!
+                  It's ready to eat in 5 minutes. Or you can refrigerate for
+                  later!
                 </p>
               </div>
               <button
@@ -313,6 +314,7 @@
             ></template>
           </carousel>
         </nav>
+
         <div id="load-more" class="menu__list">
           <figure v-for="(item, i) in mealsInCategory" :key="i">
             <div v-if="!item.image" class="menu__list-img fallback">
@@ -337,6 +339,14 @@
             </figcaption>
           </figure>
         </div>
+        <button
+          v-if="tabs.length"
+          type="button"
+          class="hero__button-solid"
+          @click.prevent="scrollToFooter('#get-the-app', 'I want a meal plan')"
+        >
+          I Want a Meal Plan
+        </button>
       </section>
     </div>
 
@@ -373,8 +383,6 @@
         <div class="plan__title">
           <h3>
             The Food Plans:<br />
-            Don't Stress.<br />
-            Just Eat.
           </h3>
           <p>
             Enjoy all the deliciousness of healthy food, right on time, with
@@ -384,22 +392,22 @@
             <li>
               <h5 class="icon icon--one">👀</h5>
               <div class="icon--text">
-                <h5>No hidden payments.</h5>
-                <p>Yessir.</p>
+                <h5>Save Time</h5>
+                <p>Up to 14 hours every week</p>
               </div>
             </li>
             <li>
               <h5 class="icon icon--two">🚛</h5>
               <div class="icon--text">
-                <h5>No hidden delivery fees.</h5>
-                <p>100%</p>
+                <h5>One Monthly Payment.</h5>
+                <p>No hidden delivery fees</p>
               </div>
             </li>
             <li>
               <h5 class="icon icon--three">👼</h5>
               <div class="icon--text">
                 <h5>Pause anytime.</h5>
-                <p>On God!</p>
+                <p>Out of town? You can skip a service</p>
               </div>
             </li>
           </ul>
@@ -675,10 +683,7 @@
           >
             <h3>🧺</h3>
             <h5>Laundry</h5>
-            <p>
-              Your clothes, picked up, laundered and delivered to you in 48
-              hours or less.
-            </p>
+            <p>Fresh laundry, carefully executed in 48 hours or less.</p>
             <nuxt-link :to="{ path: '/laundry' }" class="btn">
               {{
                 exploreService === 'laundry' || setExploreService
@@ -713,7 +718,7 @@
           >
             <h3>🏠</h3>
             <h5>Home Cleaning</h5>
-            <p>Professional cleaning at your doorstep. Up to thrice a week.</p>
+            <p>Professional home cleaning you can trust.</p>
             <nuxt-link :to="{ path: '/cleaning' }" class="btn">
               {{
                 exploreService === 'cleaning' || setExploreService

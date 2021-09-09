@@ -174,7 +174,7 @@
           >
             <h3>🏠</h3>
             <h5>Home Cleaning</h5>
-            <p>Professional cleaning at your doorstep. Up to thrice a week.</p>
+            <p>Professional home cleaning you can trust.</p>
             <nuxt-link :to="{ path: '/cleaning' }" class="btn">
               {{
                 exploreService === 'cleaning' || setExploreService

@@ -80,10 +80,10 @@ export default {
       ],
       laundryQty: 1,
       cleaningFrequency: 'Every two weeks',
-      cleaningType: 'Standard cleaning',
+      cleaningType: 'Light cleaning',
       cleaningOptions: [
         {
-          name: 'Standard Cleaning',
+          name: 'Light Cleaning',
           value: 'light-cleaning',
           type: 'cleaning',
         },
@@ -209,7 +209,7 @@ export default {
         this.laundryQty = 1
         this.laundrySavedTime = '2 hours 15 minutes every week'
         this.calculateLaundryPrice()
-        this.cleaningType = 'Standard cleaning'
+        this.cleaningType = 'Light cleaning'
         this.cleaningFrequency = 'Every two weeks'
         this.cleaningQtyOption[0].qty = 1
         this.cleaningQtyOption[2].qty = 1
@@ -933,7 +933,7 @@ export default {
       this.services[2].price = total.toString()
       this.getTotalPrice(this.services, this.selectedService)
       this.cleaningSummary = [
-        `${this.cleaningType}`,
+        `${this.cleaningType.includes("Light") ? 'Standard Cleaning' : this.cleaningType}`,
         `${this.roomTypes}`,
         `${this.cleaningFrequency}`,
         `Saves ${this.cleaningSavedTime}`,

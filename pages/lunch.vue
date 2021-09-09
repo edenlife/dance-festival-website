@@ -44,6 +44,10 @@
               <br />
               The perfect fuel for your hard-work 💚
             </p>
+            <button @click.prevent="scrollToTop('hero')" class="hero__form-btn">
+              I Want an Eden Lunch plan
+            </button>
+
             <p class="discount">Never have to worry about lunch again!</p>
           </div>
           <div class="hero__header--img">
@@ -92,7 +96,9 @@
           </div>
           <div ref="hero" class="hero__form">
             <div class="hero__form-title">
-              <h3>Start your Eden lunch plan today</h3>
+              <h3>
+                You're one step closer to never worrying about lunch again.
+              </h3>
               <p>
                 Enter your details and we'll reach out to you about the next
                 steps. Let's go!
@@ -146,7 +152,7 @@
                     xlink:href="@/assets/images/loading-icon.svg#loading-icon"
                   ></use>
                 </svg>
-                <span v-else> Start Your Eden Life Today </span>
+                <span v-else> I Want an Eden Lunch Plan </span>
               </button>
             </div>
             <!-- <p class="note">
@@ -178,6 +184,12 @@
                 </div>
               </div>
               <p class="card__description" v-html="testimonial.description"></p>
+              <img
+                class="card__description__image"
+                v-if="testimonial.food_img"
+                :src="require(`~/assets/images/${testimonial.food_img}.jpeg`)"
+                :alt="testimonial.name"
+              />
             </a>
           </div>
         </div>
@@ -191,11 +203,9 @@
             </div>
 
             <div class="description__details-item--text">
-              <h5>It's budget-friendly</h5>
+              <h5>It saves you precious time</h5>
               <p>
-                We asked around, crunched some numbers, and found out that
-                Eden's food plans save our customers as much as 68% of their
-                monthly food bill!
+               By choosing an Eden lunch plan, you go from spending up to 15 hours weekly worrying about lunch to spending only 5 minutes picking your meals.
               </p>
             </div>
           </div>
@@ -334,7 +344,7 @@
           </figure>
         </div>
         <button class="menu-btn" @click.prevent="scrollToTop('hero')">
-        Start Your Eden Life Today
+          I Want an Eden Lunch Plan
         </button>
       </section>
     </div>
@@ -478,12 +488,14 @@ export default {
   data() {
     return {
       testimonial: {
-        name: 'Jinchūriki of the Spirit.',
-        image: 'nicelegs',
-        description: `Working on projects while <span style="color:#03A84E"> @ouredenlife </span> does the chores, talk about maximum productivity >>>>>>>>>>>>>> <br><br> Please I'm not lazy I just don't like stress besides it's called delegating for a reason 😁`,
-        handle: 'ms_nicelegs',
+        name: 'ĘjåLėë⁷ { ♛ }',
+        image: 'codechills',
+        description: ` Hey <span style="color:#03A84E"> @ouredenlife </span> this is good! Can’t wait to open this up at lunchtime 😅 It came in 1hour earlier!
+ `,
+        food_img: 'customer-codechills_meal',
+        handle: 'codechills',
         tweetLink:
-          'https://twitter.com/ms_nicelegs/status/1276445141906141185?s=20',
+          'https://twitter.com/codechills/status/1394256176808927240?s=20',
       },
       form: {
         email: '',
@@ -534,7 +546,7 @@ export default {
                 service_day: ['mon-fri'],
                 amount: 44000,
               },
-            }
+            },
           }
           await signupApi(payload)
           this.showEmailModal = true

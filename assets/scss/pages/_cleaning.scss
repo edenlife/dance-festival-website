@@ -66,8 +66,16 @@
         display: none;
       }
     }
+
+    ul{
+      padding: 0 $gap * 2 $gap * 2 ;
+      li{
+        margin: $gap 0;
+        font-size: 1.125rem;
+      }
+    }
     p {
-      margin: $gap * 3.2 0 $gap * 4 0;
+      margin:  $gap * 2 0 0;
       line-height: 29px;
       @include font-size(lg);
       width: 85%;
@@ -536,9 +544,7 @@
         line-height: 21px;
       }
 
-      &:nth-child(3) {
-        margin-top: -$gap * 4;
-      }
+      
     }
   }
 

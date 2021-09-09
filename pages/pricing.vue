@@ -4,8 +4,8 @@
       <div class="pricing__form-container">
         <div class="pricing__form">
           <div class="pricing__form-title">
-            <h2>Find A Plan. Made For You.</h2>
-            <p>Flexible. Straightforward. No hidden costs.</p>
+            <h2>Convenience and Quality on your Budget</h2>
+            <p>Whatever plan you choose, our expert team is ready to lighten your load.</p>
           </div>
           <div
             v-show="!reconfigurePlan && !setCustom"
@@ -183,7 +183,7 @@
                 class="pricing__plan-btn"
                 @click.prevent="displayForm = !displayForm"
               >
-                Start your Eden Life today
+              I Want an Easy Life
               </button>
             </div>
             <transition name="slide-fade">
@@ -217,7 +217,8 @@
                       xlink:href="@/assets/images/loading-icon.svg#loading-icon"
                     ></use>
                   </svg>
-                  <span v-else>Start your Eden Life</span>
+                  <span v-else> I Want an Easy Life</span>
+               
                 </button>
               </div>
             </transition>
@@ -645,7 +646,11 @@
                       <div class="select">
                         <div class="selector">
                           <div class="label" @click="toggle('cleaningType')">
-                            <span class="label--text">{{ cleaningType }}</span>
+                            <span class="label--text">{{
+                              cleaningType.includes('Light')
+                                ? 'Standard Cleaning'
+                                : cleaningType
+                            }}</span>
                           </div>
                           <svg
                             class="arrow"
@@ -894,7 +899,7 @@
                 class="pricing__calculator-btn"
                 @click.prevent="setReconfigureSummary()"
               >
-                Start your Eden Life today
+              I Want an Easy Life
               </button>
             </div>
           </div>
@@ -1208,10 +1213,10 @@ export default {
       ],
       laundryQty: 1,
       cleaningFrequency: 'Every two weeks',
-      cleaningType: 'Standard cleaning',
+      cleaningType: 'Light cleaning',
       cleaningOptions: [
         {
-          name: 'Light Cleaning',
+          name: 'Standard Cleaning',
           value: 'light-cleaning',
           type: 'cleaning',
         },
@@ -1505,7 +1510,7 @@ export default {
         this.laundryFreqValue = 'bi-weekly'
         this.laundryQty = 1
         this.calculateLaundryPrice()
-        this.cleaningType = 'Standard cleaning'
+        this.cleaningType = 'Light cleaning'
         this.cleaningFrequency = 'Every two weeks'
         this.cleaningQtyOption[0].qty = 1
         this.cleaningQtyOption[2].qty = 1
@@ -1547,7 +1552,7 @@ export default {
           this.laundryFreqValue = 'bi-weekly'
           this.laundryQty = 1
           this.calculateLaundryPrice()
-          this.cleaningType = 'Standard cleaning'
+          this.cleaningType = 'Light cleaning'
           this.cleaningFrequency = 'Every two weeks'
           this.cleaningQtyOption[0].qty = 1
           this.cleaningQtyOption[1].qty = 0
@@ -1571,7 +1576,7 @@ export default {
           this.laundryFreqValue = 'bi-weekly'
           this.laundryQty = 1
           this.calculateLaundryPrice()
-          this.cleaningType = 'Standard cleaning'
+          this.cleaningType = 'Light cleaning'
           this.cleaningFrequency = 'Every two weeks'
           this.setCleaningArea('light cleaning')
           this.cleaningInfo.item = 'light-cleaning'
@@ -1614,7 +1619,7 @@ export default {
           this.laundryFreqValue = 'bi-weekly'
           this.laundryQty = 1
           this.calculateLaundryPrice()
-          this.cleaningType = 'Standard cleaning'
+          this.cleaningType = 'Light cleaning'
           this.cleaningFrequency = 'Every two weeks'
           this.cleaningQtyOption[0].qty = 1
           this.cleaningQtyOption[1].qty = 1
@@ -1650,7 +1655,7 @@ export default {
             this.mealFrequency = 'Weekly'
             this.selectedDays = ['monday']
             this.calculateFoodPrice()
-            this.cleaningType = 'Standard cleaning'
+            this.cleaningType = 'Light cleaning'
             this.cleaningFrequency = 'Every two weeks'
             this.cleaningQtyOption[0].qty = 1
             this.cleaningQtyOption[1].qty = 0
@@ -1672,7 +1677,7 @@ export default {
             this.laundryFreqValue = 'bi-weekly'
             this.laundryQty = 1
             this.calculateLaundryPrice()
-            this.cleaningType = 'Standard cleaning'
+            this.cleaningType = 'Light cleaning'
             this.cleaningFrequency = 'Every two weeks'
             this.cleaningQtyOption[0].qty = 1
             this.cleaningQtyOption[1].qty = 0
@@ -1695,7 +1700,7 @@ export default {
           this.laundryFreqValue = 'bi-weekly'
           this.laundryQty = 2
           this.calculateLaundryPrice()
-          this.cleaningType = 'Standard cleaning'
+          this.cleaningType = 'Light cleaning'
           this.cleaningFrequency = 'Once a week'
           this.cleaningQtyOption[0].qty = 1
           this.cleaningQtyOption[1].qty = 1
@@ -1722,7 +1727,7 @@ export default {
           this.laundryFreqValue = 'bi-weekly'
           this.laundryQty = 1
           this.calculateLaundryPrice()
-          this.cleaningType = 'Standard cleaning'
+          this.cleaningType = 'Light cleaning'
           this.cleaningFrequency = 'Once a week'
           this.cleaningQtyOption[0].qty = 1
           this.cleaningQtyOption[1].qty = 1
@@ -1758,7 +1763,7 @@ export default {
             this.mealFrequency = 'Daily'
             this.selectedDays = ['monday-friday']
             this.calculateFoodPrice()
-            this.cleaningType = 'Standard cleaning'
+            this.cleaningType = 'Light cleaning'
             this.cleaningFrequency = 'Once a week'
             this.setCleaningArea('light cleaning')
             this.cleaningInfo.item = 'light-cleaning'
@@ -1780,7 +1785,7 @@ export default {
             this.laundryFreqValue = 'bi-weekly'
             this.laundryQty = 3
             this.calculateLaundryPrice()
-            this.cleaningType = 'Standard cleaning'
+            this.cleaningType = 'Light cleaning'
             this.cleaningFrequency = 'Once a week'
             this.setCleaningArea('light cleaning')
             this.cleaningInfo.item = 'deep-cleaning'
@@ -1830,7 +1835,7 @@ export default {
           this.laundryFreqValue = 'weekly'
           this.laundryQty = 1
           this.calculateLaundryPrice()
-          this.cleaningType = 'Standard cleaning'
+          this.cleaningType = 'Light cleaning'
           this.cleaningFrequency = 'Once a week'
           this.cleaningQtyOption[0].qty = 2
           this.cleaningQtyOption[1].qty = 2
@@ -1865,7 +1870,7 @@ export default {
             this.mealFrequency = 'Daily'
             this.selectedDays = ['monday-friday']
             this.calculateFoodPrice()
-            this.cleaningType = 'Standard cleaning'
+            this.cleaningType = 'Light cleaning'
             this.cleaningFrequency = 'Once a week'
             this.cleaningQtyOption[0].qty = 2
             this.cleaningQtyOption[1].qty = 1
@@ -1889,7 +1894,7 @@ export default {
             this.laundryFreqValue = 'bi-weekly'
             this.laundryQty = 3
             this.calculateLaundryPrice()
-            this.cleaningType = 'Standard cleaning'
+            this.cleaningType = 'Light cleaning'
             this.cleaningFrequency = 'Once a week'
             this.cleaningQtyOption[0].qty = 2
             this.cleaningQtyOption[1].qty = 2
@@ -2165,11 +2170,13 @@ export default {
       this.loading = true
       const cleaningResponse = await getCleaningServiceTypes()
       this.cleaningServiceTypes = cleaningResponse.data.data
+
       const [{ name: optionName }] = this.cleaningOptions.filter(
         ({ value }) => value === 'light-cleaning'
       )
+
       const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
-        ({ name }) => name === optionName
+        ({ name }) => name === 'Deep Cleaning'
       )
       this.cleaningQtyOption = cleaning_areas.map((obj) => ({
         ...obj,
@@ -2210,7 +2217,11 @@ export default {
       this.services[2].price = total.toString()
       this.getTotalPrice(this.services, this.selectedService)
       this.cleaningSummary = [
-        `${this.cleaningType}`,
+        `${
+          this.cleaningType.includes('Deep')
+            ? this.cleaningType
+            : 'Standard Cleaning'
+        }`,
         `${this.roomTypes}`,
         `${this.cleaningFrequency}`,
       ]
@@ -2238,7 +2249,10 @@ export default {
     },
     getCleaningPrice(plan) {
       if (plan.type === 'cleaning') {
-        this.cleaningType = plan.name
+        plan.name.includes('Standard')
+          ? (this.cleaningType = 'Light Cleaning')
+          : (this.cleaningType = plan.name)
+
         this.cleaningTypeValue = plan.value
         if (plan.value === 'light-cleaning') {
           this.cleaningInfo.item = plan.value
@@ -2299,14 +2313,7 @@ export default {
       const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
         ({ name }) => name.toLowerCase() === plan
       )
-      this.cleaningQtyOption = cleaning_areas.map((obj) => ({
-        ...obj,
-        qty: 0,
-      }))
-      this.cleaningQtyOption[0].qty = 1
-      this.cleaningQtyOption[1].qty = 1
-      this.cleaningQtyOption[2].qty = 1
-      this.cleaningQtyOption[3].qty = 1
+
       this.setCleaningArea(plan)
       this.calculateCleaningPrice()
       this.getEstimateRoomTypes()

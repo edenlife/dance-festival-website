@@ -72,11 +72,18 @@
       @include font-size(8xl);
       @include font-weight(bold);
     }
+    ul{
+      padding: $gap * 2 ;
+      li{
+        margin: $gap 0;
+        font-size: 1.125rem;
+      }
+    }
     p {
-      margin: $gap * 3.6 0 $gap * 4 0;
+      margin: $gap  0 $gap * 2;
       line-height: 29px;
       @include font-size(lg);
-      width: 80%;
+     // width: 80%;
     }
   }
   &__button {
@@ -463,11 +470,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     margin-bottom: $gap * 8.4;
     h3 {
       color: color(eden-neutral-1);
       @include font-size(6xl);
       line-height: 63px;
+      margin-bottom: $gap + 2;
       @include font-weight(bold);
     }
     &-image {
@@ -572,7 +581,7 @@
         @include font-size(3xl);
         line-height: 36px;
         text-align: center;
-      }
+       }
       &-image {
         gap: $gap * 2 $gap * 4;
         grid-template-columns: repeat(3, 80px);

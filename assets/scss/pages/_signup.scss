@@ -1,24 +1,23 @@
-@import '../../style.scss';
+@import "../../style.scss";
 
 .container {
   width: 100%;
   &--hero {
-    background: color(eden-green-senary) url('~@/assets/images/signup-bg.svg')
-      no-repeat;
+    background: color(eden-green-senary) url("~@/assets/images/signup-bg.svg") no-repeat;
   }
   &--description {
     background: #f0fff8
-      url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611834564/eden-website-v2/bg-8_d0hgzi.svg')
-      no-repeat bottom -10% left -3% / 10%;
+      url("https://res.cloudinary.com/eden-life-inc/image/upload/v1611834564/eden-website-v2/bg-8_d0hgzi.svg") no-repeat
+      bottom -10% left -3% / 10%;
     @include respond(md) {
       background: #f0fff8
-        url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611834564/eden-website-v2/bg-8_d0hgzi.svg')
+        url("https://res.cloudinary.com/eden-life-inc/image/upload/v1611834564/eden-website-v2/bg-8_d0hgzi.svg")
         no-repeat bottom -4% left -20% / 30%;
     }
   }
   &--footer {
     background: color(eden-green-senary)
-      url('https://res.cloudinary.com/eden-life-inc/image/upload/v1619608256/eden-website-v2/Ogbono_Soup___Eba___Grilled_Goat_Meat__Plate___Bowl_1_fykhzb.png')
+      url("https://res.cloudinary.com/eden-life-inc/image/upload/v1619608256/eden-website-v2/Ogbono_Soup___Eba___Grilled_Goat_Meat__Plate___Bowl_1_fykhzb.png")
       no-repeat center 40%;
     background-size: contain;
     @include respond(md) {
@@ -58,7 +57,7 @@
     top: 14%;
     .center {
       position: absolute;
-      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622194661/eden-website-v2/signuphero-9.png');
+      background-image: url("https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622194661/eden-website-v2/signuphero-9.png");
       top: 50%;
       left: 50%;
       background-size: contain;
@@ -159,11 +158,7 @@
     flex: 0 0 48%;
     border: 1px solid #e4e8e6;
     padding: $gap * 4.8;
-    background: radial-gradient(
-      100% 100% at 0% 0%,
-      rgba(255, 255, 255, 0.4) 0%,
-      rgba(255, 255, 255, 0) 100%
-    );
+    background: radial-gradient(100% 100% at 0% 0%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
     backdrop-filter: blur(8px);
     border-radius: 16px;
     position: relative;
@@ -204,11 +199,7 @@
         color: color(eden-neutral-7);
       }
       &:active {
-        background-image: radial-gradient(
-          circle at center right,
-          rgba(0, 141, 64, 0.1) 50%,
-          #008d40 50%
-        );
+        background-image: radial-gradient(circle at center right, rgba(0, 141, 64, 0.1) 50%, #008d40 50%);
       }
       svg {
         width: 20px;
@@ -297,7 +288,7 @@
         margin-top: $gap * 8;
         .center {
           position: absolute;
-          background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622194661/eden-website-v2/signuphero-9.png');
+          background-image: url("https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622194661/eden-website-v2/signuphero-9.png");
           top: 44%;
           left: 50%;
           background-size: contain;
@@ -579,11 +570,7 @@
       color: color(eden-neutral-7);
     }
     &:active {
-      background-image: radial-gradient(
-        circle at center right,
-        rgba(0, 141, 64, 0.1) 50%,
-        #008d40 50%
-      );
+      background-image: radial-gradient(circle at center right, rgba(0, 141, 64, 0.1) 50%, #008d40 50%);
     }
   }
   @include respond(xl) {
@@ -700,6 +687,14 @@
         color: color(eden-neutral-2);
         @include font-size(sm);
         line-height: 21px;
+
+        &__image {
+          width: 100%;
+          height: 400px;
+          object-fit: cover;
+          object-position: top;
+          margin: $gap * 2 0 0;
+        }
       }
     }
   }
@@ -861,11 +856,7 @@
           color: color(eden-neutral-7);
         }
         &:active {
-          background-image: radial-gradient(
-            circle at center right,
-            rgba(0, 141, 64, 0.1) 50%,
-            #008d40 50%
-          );
+          background-image: radial-gradient(circle at center right, rgba(0, 141, 64, 0.1) 50%, #008d40 50%);
         }
       }
     }

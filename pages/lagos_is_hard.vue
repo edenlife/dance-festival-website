@@ -12,7 +12,7 @@
       <div class="hero">
         <div class="hero__title">
           <h1>Lagos is Hard.</h1>
-          <h3 class="primary"> Save 20hrs/week.</h3>
+          <h3 class="primary">with "You've Found The Easy Way</h3>
           <div>
             <p class="bold">Pay once, and for a month, you get:</p>
             <ul>
@@ -29,8 +29,14 @@
                 ><span>Trained cleaners keeping your space clean</span>
               </li>
             </ul>
+            <button
+              @click.prevent="scrollToTop('custom')"
+              class="pricing__form-btn"
+            >
+              I Want an Easy Life
+            </button>
             <p class="highlight">
-              You can pick one. You can pick all. No hidden delivery charges.
+             Save up to 20hrs/week. You can pick all. No hidden delivery charges.
             </p>
           </div>
         </div>
@@ -48,13 +54,8 @@
         <div class="pricing__left">
           <div class="pricing__form">
             <div class="pricing__form-title">
-              <h3>
-               Start your Eden Life today and save enough time to enjoy the best of Lagos.
-              </h3>
-              <p>
-                Enter your details and we’ll email you about the next steps.
-                Let’s go!
-              </p>
+              <h3>You're a Few Steps Closer to the Easy Life</h3>
+              <p>Enter your details and we'll reach out about next steps.</p>
             </div>
             <div class="pricing__form-body">
               <div class="pricing__form-input">
@@ -105,7 +106,7 @@
                 />
               </div> -->
               <button class="pricing__form-btn" @click.prevent="getStarted()">
-               Start your Eden Life today
+                I'm Ready
               </button>
             </div>
           </div>
@@ -139,7 +140,9 @@
         <div class="pricing__right">
           <div class="pricing__header">
             <div class="pricing__header-title">
-              <h3>Our plans are flexible.</h3>
+              <h3>
+                You can pick one. You can pick all. No hidden delivery charge.
+              </h3>
             </div>
 
             <div class="pricing__header-input">
@@ -257,20 +260,6 @@
         </div>
         <div class="description__inner">
           <div class="description__inner-left">
-            <div class="description__details-item">
-              <div class="description__details-item--icon">
-                <img :src="require(`~/assets/images/emojis/time.png`)" alt="" />
-              </div>
-
-              <div class="description__details-item--text">
-                <h5>You get back your time</h5>
-                <p>
-                  If you live in Lagos, chances are that you spend too much time
-                  on things that don't matter. You deserve better. The more you
-                  outsource, the less time you spend worrying.
-                </p>
-              </div>
-            </div>
             <div class="description__inner-img">
               <img
                 :src="`https://res.cloudinary.com/eden-life-inc/image/upload/v1625727926/eden-website-v2/lead-desc-${serviceOption}.png`"
@@ -289,6 +278,20 @@
           <div class="description__details">
             <div class="description__details-item">
               <div class="description__details-item--icon">
+                <img :src="require(`~/assets/images/emojis/time.png`)" alt="" />
+              </div>
+
+              <div class="description__details-item--text">
+                <h5>You get back your time</h5>
+                <p>
+                  If you live in Lagos, chances are that you spend too much time
+                  on things that don't matter. You deserve better. The more you
+                  outsource, the less time you spend worrying.
+                </p>
+              </div>
+            </div>
+            <div class="description__details-item">
+              <div class="description__details-item--icon">
                 <img :src="require(`~/assets/images/emojis/wow.png`)" alt="" />
               </div>
               <div class="description__details-item--text">
@@ -298,23 +301,6 @@
                   laundry. Our cleaners will show up with their own cleaning
                   materials and leave it squeaky clean. You won't have to do
                   anything.
-                </p>
-              </div>
-            </div>
-
-            <div class="description__details-item">
-              <div class="description__details-item--icon">
-                <img
-                  :src="require(`~/assets/images/emojis/moneybag.png`)"
-                  alt=""
-                />
-              </div>
-
-              <div class="description__details-item--text">
-                <h5>It's budget-friendly</h5>
-                <p>
-                  We asked around and crunched the numbers, and some of our
-                  customers save up to 68% on their monthly food bill!
                 </p>
               </div>
             </div>
@@ -447,7 +433,7 @@
           </figure>
         </div>
         <button class="menu-btn" @click.prevent="scrollToTop('custom')">
-         Start your Eden Life today
+          I Want an Eden Life
         </button>
       </section>
     </div>
@@ -819,8 +805,8 @@
                 A lot. Think of your Gardener as your link to an ever-expanding
                 world of Eden services you can take advantage of. Your Gardener
                 helps you access services like<strong>
-                  meals, house cleaning (standard and deep cleaning), and laundry
-                  services.</strong
+                  meals, house cleaning (standard and deep cleaning), and
+                  laundry services.</strong
                 >
                 And that's just the beginning.
                 <br />

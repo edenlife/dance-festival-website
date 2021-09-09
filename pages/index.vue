@@ -10,17 +10,19 @@
             }}</span>
             <br />forever
           </h1>
-          <p>
-            We take care of your chores, so you can get more out of life. It's
-            what you've always dreamed of.
-          </p>
+          <ul>
+            <li>Chef-cooked meals: delivered fresh. ✔️</li>
+            <li>Laundry: picked up and delivered. ✔️</li>
+            <li>Home cleaning: executed by professional cleaners. ✔️</li>
+          </ul>
+          <p>Schedule them, and never worry about them again. Ever.</p>
           <div class="hero__button">
             <button
               type="button"
               class="hero__button-solid"
               @click.prevent="scrollTo('#get-the-app', 'homepage')"
             >
-              Start Your Eden Life
+              I Want An Easy Life
             </button>
             <button
               type="button"
@@ -81,7 +83,9 @@
           >
             <h3>🥘</h3>
             <h5>Food</h5>
-            <p>Your chef-cooked meals, delivered to you. Daily or weekly.</p>
+            <p>
+              Chef-cooked meals you'll enjoy. Delivered fresh and on schedule.
+            </p>
             <nuxt-link :to="{ path: '/food' }" class="btn">
               {{
                 exploreService === 'food' || setExploreService ? 'Explore' : ''
@@ -114,10 +118,7 @@
           >
             <h3>🧺</h3>
             <h5>Laundry</h5>
-            <p>
-              Your clothes, picked up, laundered and delivered to you in 48
-              hours or less.
-            </p>
+            <p>Fresh laundry, carefully executed in 48 hours or less.</p>
             <nuxt-link :to="{ path: '/laundry' }" class="btn">
               {{
                 exploreService === 'laundry' || setExploreService
@@ -152,7 +153,7 @@
           >
             <h3>🏠</h3>
             <h5>Home Cleaning</h5>
-            <p>Professional cleaning at your doorstep. Up to thrice a week.</p>
+            <p>Professional home cleaning you can trust.</p>
             <nuxt-link :to="{ path: '/cleaning' }" class="btn">
               {{
                 exploreService === 'cleaning' || setExploreService
@@ -244,31 +245,35 @@
       <section class="customers">
         <div class="customers__title">
           <h3>The wall of 💚</h3>
-          <div class="customers__title-image">
-            <img
-              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/cowrywise_wtcvv5.svg"
-              alt="cowrywise"
-            />
-            <img
-              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/flutterwave_cmhzbz.svg"
-              alt="flutterwave"
-            />
-            <img
-              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/paystack_zez4ir.svg"
-              alt="paystack"
-            />
-            <img
-              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/kuda_irz12h.svg"
-              alt="kuda"
-            />
-            <img
-              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/buycoins_bkcrvh.svg"
-              alt="buycoins"
-            />
-            <img
-              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/piggyvest_wyio8s.svg"
-              alt="piggyvest"
-            />
+
+          <div>
+           
+            <div class="customers__title-image">
+              <img
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/cowrywise_wtcvv5.svg"
+                alt="cowrywise"
+              />
+              <img
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/flutterwave_cmhzbz.svg"
+                alt="flutterwave"
+              />
+              <img
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/paystack_zez4ir.svg"
+                alt="paystack"
+              />
+              <img
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/kuda_irz12h.svg"
+                alt="kuda"
+              />
+              <img
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/buycoins_bkcrvh.svg"
+                alt="buycoins"
+              />
+              <img
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/piggyvest_wyio8s.svg"
+                alt="piggyvest"
+              />
+            </div>
           </div>
         </div>
 
@@ -757,8 +762,8 @@
                 A lot. Think of your Gardener as your link to an ever-expanding
                 world of Eden services you can take advantage of. Your Gardener
                 helps you access services like<strong>
-                  meals, house cleaning (standard and deep cleaning), and laundry
-                  services.</strong
+                  meals, house cleaning (standard and deep cleaning), and
+                  laundry services.</strong
                 >
                 And that's just the beginning.
                 <br />

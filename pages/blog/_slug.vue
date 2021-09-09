@@ -38,7 +38,7 @@
         </div>
       </header>
     </div>
-    <!--  -->
+
     <div class="container--content" id="main-article-content">
       <div class="content">
         <div class="content__social fixed hide" id="social-content">

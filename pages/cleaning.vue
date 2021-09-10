@@ -19,7 +19,7 @@
             </li>
             <li>Scrub, mop, wipe, and keep your home clean all month ✔️</li>
             <li>
-              Save you hours of backbreaking work. Spend the time on fun ✔️
+              Save you hours of backbreaking work. ✔️
             </li>
           </ul>
 
@@ -295,7 +295,7 @@
             <li>
               <h5 class="icon icon--three">👼</h5>
               <div class="icon--text">
-                <h5>Pause anytime.</h5>
+                <h5>Pause Anytime.</h5>
                 <p>On God!</p>
               </div>
             </li>

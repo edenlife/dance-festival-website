@@ -9,8 +9,7 @@
           </h1>
 
           <ul>
-            <li>Get an Eden laundry plan ✔️</li>
-            <li>We pick up your dirty laundry ✔️</li>
+             <li>We pick up your dirty laundry ✔️</li>
             <li>We launder, iron, and QC ✔️</li>
             <li>We deliver your clean clothes, within 48 hours. ✔️</li>
           </ul>
@@ -282,7 +281,7 @@
             <li>
               <h5 class="icon icon--three">👼</h5>
               <div class="icon--text">
-                <h5>Pause anytime.</h5>
+                <h5>Pause Anytime.</h5>
                 <p>On God!</p>
               </div>
             </li>

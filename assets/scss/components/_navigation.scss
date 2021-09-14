@@ -32,6 +32,7 @@
       line-height: 24px;
       @include font-size(base);
       color: color(eden-neutral-1);
+      cursor: pointer;
       transition: all 0.4s ease-in-out;
       &:hover {
         color: color(eden-green-primary);
@@ -97,6 +98,7 @@
           flex: 0 0 55%;
           padding: $gap + 6 0 $gap + 6 $gap * 3.2;
 
+          
           h3 {
             margin-bottom: $gap + 2;
             @include font-size(lg);
@@ -116,6 +118,18 @@
           background-color: rgba(228, 232, 230, 0.4);
           padding: $gap + 6 0;
           border-radius: 0px 16px 16px 0px;
+
+          &.contact{
+            li{
+              padding: 16px;
+              color: color(eden-green-primary);
+              &:hover {
+                color: color(eden-green-250);
+
+              }
+            }
+          }
+         
           li {
             list-style: none;
             padding: $gap + 6 $gap * 3.2;
@@ -313,6 +327,7 @@
             @include font-weight(regular);
             padding: $gap + 6 $gap * 2.4;
             color: color(eden-neutral-1);
+            cursor: pointer;
             line-height: 24px;
             .icon {
               @include font-size(xl);
@@ -321,6 +336,14 @@
               padding: 5px 9px;
               text-align: center;
               margin-right: $gap + 6;
+            }
+
+            &.contact{
+              color: color(eden-green-primary);
+              &:hover {
+                color: color(eden-green-250);
+
+              }
             }
             &.food {
               padding-top: $gap * 2.4;

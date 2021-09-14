@@ -12,7 +12,7 @@
       <div class="hero">
         <div class="hero__title">
           <h1>Lagos is Hard.</h1>
-          <h3 class="primary">with "You've Found The Easy Way</h3>
+          <h3 class="primary">Choose The Easy Way</h3>
           <div>
             <p class="bold">Pay once, and for a month, you get:</p>
             <ul>
@@ -36,7 +36,7 @@
               I Want an Easy Life
             </button>
             <p class="highlight">
-             Save up to 20hrs/week. You can pick all. No hidden delivery charges.
+             Save up to 20hrs/week.
             </p>
           </div>
         </div>

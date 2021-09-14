@@ -72,18 +72,18 @@
       @include font-size(8xl);
       @include font-weight(bold);
     }
-    ul{
-      padding: $gap * 2 ;
-      li{
+    ul {
+      padding: $gap * 2;
+      li {
         margin: $gap 0;
         font-size: 1.125rem;
       }
     }
     p {
-      margin: $gap  0 $gap * 2;
+      margin: $gap 0 $gap * 2;
       line-height: 29px;
       @include font-size(lg);
-     // width: 80%;
+      // width: 80%;
     }
   }
   &__button {
@@ -153,6 +153,9 @@
       h1 {
         line-height: 47px;
         @include font-size(5xl);
+      }
+      ul {
+        list-style: none;
       }
       p {
         line-height: 24px;
@@ -581,7 +584,7 @@
         @include font-size(3xl);
         line-height: 36px;
         text-align: center;
-       }
+      }
       &-image {
         gap: $gap * 2 $gap * 4;
         grid-template-columns: repeat(3, 80px);

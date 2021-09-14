@@ -33,17 +33,16 @@
         <div class="hero__header">
           <div class="hero__header-title">
             <h1>
-              <span class="pay"> *Pay Once.</span> <br />
-              Get Lunch.<br />
-              All Month.
+              <span class="pay"> Chef-Cooked Meals. </span> <br />
+              Delivered to You Daily.<br />
             </h1>
-            <p>
-              Subscribe to our lunch plan and get chef-cooked meals delivered
-              straight to you.
-              <span class="bold">Monday to Friday. </span>
-              <br />
-              The perfect fuel for your hard-work 💚
-            </p>
+
+            <ul>
+              <li>You pay once a month ✔️</li>
+              <li>We deliver lunch to you, Monday to Friday ✔️</li>
+              <li>Gain 10+ hours of extra productivity, weekly ✔️</li>
+            </ul>
+
             <button @click.prevent="scrollToTop('hero')" class="hero__form-btn">
               I Want an Eden Lunch plan
             </button>
@@ -205,7 +204,9 @@
             <div class="description__details-item--text">
               <h5>It saves you precious time</h5>
               <p>
-               By choosing an Eden lunch plan, you go from spending up to 15 hours weekly worrying about lunch to spending only 5 minutes picking your meals.
+                By choosing an Eden lunch plan, you go from spending up to 15
+                hours weekly worrying about lunch to spending only 5 minutes
+                picking your meals.
               </p>
             </div>
           </div>
@@ -672,6 +673,31 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/pages/_signup.scss';
+
+.hero__header-title {
+  h1 {
+    width: 100%;
+
+    .pay {
+      margin-left: 0;
+    }
+  }
+
+  ul {
+    padding: $gap * 2;
+    li {
+      margin: $gap 0;
+      font-size: 1.125rem;
+    }
+  }
+
+  @include respond(md) {
+    ul {
+      list-style: none;
+      text-align: center;
+    }
+  }
+}
 </style>
 
 <style>

@@ -8,7 +8,7 @@
       <section class="faq__questions">
         <div class="faq__questions-item">
           <div class="faq__questions-title">
-            <h5>What is Eden?</h5>
+            <h5>Who are we?</h5>
             <button
               type="button"
               class="expand"
@@ -66,19 +66,14 @@
           </div>
           <transition name="slide-fade">
             <p v-if="questions.includes('one')">
-              Easy. We're bringing the convenience of room service to homes
-              across Africa – but starting with Lagos. Home tasks are routine
-              activities that should be outsourced, so you can focus on the
-              things with the most impact in your life. It could be making time
-              for work that matters, or for enjoyment. You deserve to live well
-              without the extra effort. <br />Some people call us the
-              <strong>Concierge of Comfort </strong>– they're correct.
+              We are a service delivery company that brings the convenience of
+              room service to homes across Africa, starting with Lagos.
             </p>
           </transition>
         </div>
         <div class="faq__questions-item">
           <div class="faq__questions-title">
-            <h5>A laundry service, cleaning service or food service?</h5>
+            <h5>What do we do</h5>
             <button
               type="button"
               class="expand"
@@ -137,13 +132,14 @@
           </div>
           <transition name="slide-fade">
             <p v-if="questions.includes('two')">
-              We do all three. But you get to decide which works best for you.
-              If you need food, we'll get you delicious meals everyday, once a
-              week, or every two weeks. Dirty laundry? We'll pick them up and
-              bring back your clothes, freshly washed folded/ironed. Does your
-              home need cleaning? We'll get that done efficiently as well.
-              <br />You can even subscribe for more than one service, and we'll
-              run it. Perfectly.
+              Our company assists you with Laundry, Food and House Cleaning
+              services which you can access from the comfort of your bedroom.
+              Our objective is to help you handle all your home chores while you
+              focus on other important things in your life for your benefit and
+              leisure.
+
+              <br />People call us the <strong>Concierge of Comfort </strong>–
+              they're correct.
             </p>
           </transition>
         </div>
@@ -208,24 +204,30 @@
           </div>
           <transition name="slide-fade">
             <p v-if="questions.includes('three')">
-              When you sign up on
+              To access our services, download the
               <a
                 href="#"
                 style="color: #03a84e"
                 @click.prevent="scrollTo('#get-the-app', 'faq')"
-                >Eden</a
-              >, you can configure a plan that fits your needs, then you get
-              assigned a Gardener to help you manage your home. The app takes
-              your food, laundry, and home cleaning needs and turns them into
-              tasks that our Gardeners attend to on schedule. The only finger
-              you'll be lifting is the one scrolling through the app, monitoring
-              progress.
+                >Eden Life
+              </a>
+              Mobile App from the App Store on your mobile phone and sign-up as
+              a new customer. You can also click
+              <a
+                href="#"
+                style="color: #03a84e"
+                @click.prevent="scrollTo('#get-the-app', 'faq')"
+                >here</a
+              >
+              to begin. Then select a chore from the options available, make a
+              payment and be connected to a “Gardener” who will handle your
+              requests.
             </p>
           </transition>
         </div>
         <div class="faq__questions-item">
           <div class="faq__questions-title">
-            <h5>Who are Gardeners?</h5>
+            <h5>Why should I download the Mobile App?</h5>
             <button
               type="button"
               class="expand"
@@ -284,26 +286,24 @@
           </div>
           <transition name="slide-fade">
             <p v-if="questions.includes('four')">
-              Your Home Managers. They’re the human side of Eden:
-              carefully-screened people (we run full background checks on all
-              Gardeners) who are trained to handle your home requests with ease
-              and enthusiasm.
+              Through the Mobile app, you will be able to:
               <br />
-              Our Gardeners fit a profile. They’re detail-oriented, responsive,
-              responsible and friendly. They have one job, and that job is to
-              understand what the perfect home means for you specifically, then
-              work every day to provide you with exactly that.
+              1. Make and track your order requests
               <br />
+              2. Communicate regularly with your Gardener
 
-              When you sign up on Eden, you see a profile of your Gardener, and
-              you can get an impression of them before they start handling your
-              chores.
+              <br />
+              3. Make additional requests that are not provided by Eden Life
+
+              <br />
+              4. Provide feedback on service delivery and complaints.
             </p>
           </transition>
         </div>
+
         <div class="faq__questions-item">
           <div class="faq__questions-title">
-            <h5>How much are they good for?</h5>
+            <h5>Who are Gardeners?</h5>
             <button
               type="button"
               class="expand"
@@ -362,24 +362,26 @@
           </div>
           <transition name="slide-fade">
             <p v-if="questions.includes('five')">
-              A lot. Think of your Gardener as your link to an ever-expanding
-              world of Eden services you can take advantage of. Your Gardener
-              helps you access services like<strong>
-                meals, house cleaning (standard and deep cleaning), and laundry
-                services.</strong
-              >
-              And that's just the beginning.
+              These are your Home Managers. They are specially trained personnel
+              who will handle all your requests professionally, with ease and
+              enthusiasm.
               <br />
-              If there’s ever a service you wish your Gardener provided (that
-              they don’t, as yet), select the ‘Feedback’ option on the Gardener
-              profile, and we’ll get the message!
+              <br />
+              All our Gardeners are trained to be detail-oriented, responsive,
+              responsible and friendly. Be rest assured that extensive
+              background checks are conducted on each personnel as your safety
+              and the safety of your home is our utmost priority.
+              <br />
+
+              <br />
+              You will be able to connect directly with your Gardener via the
+              Mobile App once your subscription payment has been confirmed.
             </p>
           </transition>
         </div>
-        <!--  -->
         <div class="faq__questions-item">
           <div class="faq__questions-title">
-            <h5>I’d like to talk to my Gardener. How do I do that?</h5>
+            <h5>How do I connect to my Gardener?</h5>
             <button
               type="button"
               class="expand"
@@ -438,18 +440,16 @@
           </div>
           <transition name="slide-fade">
             <p v-if="questions.includes('six')">
-              There is a chat option in the Eden app that allows you to discuss
-              with your gardener. Leave them messages, add further instructions
-              or make a one-off modification to your schedule. If, however, you
-              want to give feedback on your gardener or services, use the
-              ‘feedback’ button, which gives us feedback and opens a customer
-              support ticket.
+              You can use the <strong>Chat option</strong> on the mobile app to
+              leave messages, make modifications to your requests/schedules and
+              give further instructions for your Gardener to carry out.
             </p>
           </transition>
         </div>
+        <!--  -->
         <div class="faq__questions-item">
           <div class="faq__questions-title">
-            <h5>Does my Gardener handle just my Eden account?</h5>
+            <h5>Can I choose more than one chore option?</h5>
             <button
               type="button"
               class="expand"
@@ -508,17 +508,14 @@
           </div>
           <transition name="slide-fade">
             <p v-if="questions.includes('seven')">
-              Your Gardener’s schedule is designed to give the best attention to
-              your chores, which gives them (based on our very trusty Eden math)
-              enough time to attend to a few other customers in the same area as
-              you. This means that our Gardeners attend to a handful of
-              customers, but are never swamped with requests.
+              Yes you can choose more than one service for our Gardener to
+              manage for you.
             </p>
           </transition>
         </div>
         <div class="faq__questions-item">
           <div class="faq__questions-title">
-            <h5>How do I download the Eden app?</h5>
+            <h5>How do I make payments for selected services?</h5>
             <button
               type="button"
               class="expand"
@@ -577,19 +574,14 @@
           </div>
           <transition name="slide-fade">
             <p v-if="questions.includes('eight')">
-              Get Started
-              <a
-                href="#"
-                style="color: #03a84e"
-                @click.prevent="scrollTo('#get-the-app', 'faq')"
-                >here</a
-              >. It takes 5 minutes to set up.
+              You can make payment through our mobile app after you have chosen
+              the services required.
             </p>
           </transition>
         </div>
         <div class="faq__questions-item">
           <div class="faq__questions-title">
-            <h5>What if I want a service that’s not yet on Eden?</h5>
+            <h5>How am I billed for services requested?</h5>
             <button
               type="button"
               class="expand"
@@ -648,10 +640,861 @@
           </div>
           <transition name="slide-fade">
             <p v-if="questions.includes('nine')">
-              We don't want to keep you waiting for long. If there's a service
-              you want that Eden doesn't currently provide, hit us up with the
-              <strong>‘Feedback’</strong>option on your Gardener’s profile, and
-              we’ll log your request!
+              You will be billed based on the number of chore options selected
+              and delivery frequency of the selected service.
+            </p>
+          </transition>
+        </div>
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>
+              Would I be notified prior to any deduction or charge made on my
+              account?
+            </h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('ten')"
+            >
+              <svg
+                v-if="questions.includes('ten')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('ten')">
+              Yes you will receive notification reminders 2 days before
+              subscription renewal is due with a message prompting you to renew
+              your subscription
+            </p>
+          </transition>
+        </div>
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>
+              What is our policy on items damaged or missing during service
+              delivery?
+            </h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('eleven')"
+            >
+              <svg
+                v-if="questions.includes('eleven')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('eleven')">
+              We have gone great lengths to ensure that our team members handle
+              your items with utmost care and caution, however we will replace
+              any item that is confirmed damaged or lost.
+            </p>
+          </transition>
+        </div>
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>
+              Is it safe to synchronise my financial cards to Eden Life for ease
+              of payments?
+            </h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('twelve')"
+            >
+              <svg
+                v-if="questions.includes('twelve')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('twelve')">
+              Yes you can synchronize your cards for ease of payment renewal, we
+              have partnered with financial payments solutions that offer the
+              highest form of security available.
+            </p>
+          </transition>
+        </div>
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>Can I subscribe for your services on a weekly basis?</h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('thirteen')"
+            >
+              <svg
+                v-if="questions.includes('thirteen')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('thirteen')">
+              We have a bouquet of Daily, Weekly and Monthly packages, your
+              convenience has been taken into consideration in developing the
+              service plans
+            </p>
+          </transition>
+        </div>
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>What services are offered</h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('fourteen')"
+            >
+              <svg
+                v-if="questions.includes('fourteen')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('fourteen')">
+              1. Home Cleaning: a scheduled service done by our team of
+              professionals, you can choose from 2 plans (Standard and Deep
+              cleaning) broken down into 3 packages (Weekly, Every 2 Weeks and
+              Once Monthly)
+              <br />
+              <br />
+              2. Laundry: Clothes picked up, washed and delivered within 48
+              hours.
+
+              <br />
+              <br />
+              3. Food: Freshly cooked meals delivered on schedule.
+            </p>
+          </transition>
+        </div>
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>Differentiate Standard vs Deep Cleaning</h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('fifteen')"
+            >
+              <svg
+                v-if="questions.includes('fifteen')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('fifteen')">
+              1. Standard cleaning involves sweeping, mopping, dusting and wiping
+              all surfaces, washing dirty dishes, arranging furniture, laying
+              beds and folding clothes, disinfecting, washing toilet and
+              urinals, then empty trash cans. Weeks and Once Monthly)
+              <br />
+              <br />
+              2. Deep cleaning involves everything done in Standard cleaning and
+              also, cleaning of cabinets, cupboards, AC vents, internal and
+              external parts of gas cooker, refrigerators and other home
+              appliances.
+            </p>
+          </transition>
+        </div>
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>How does the Food service work?</h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('sixteen')"
+            >
+              <svg
+                v-if="questions.includes('sixteen')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('sixteen')">
+              1. Sign up and choose a meal schedule, we cook and deliver freshly
+              made meals right on schedule at no extra delivery cost, you can
+              heat to eat or refrigerate for later. You can choose from our
+              single/multiple plan of daily, weekly or monthly deliveries.
+              <br />
+              <br />
+              2. Can I pause a service? Yes you can skip a service when not
+              available.
+
+              <br />
+              <br />
+              3. How is payment done? We offer a one monthly payment plan with no
+              hidden delivery fees.
+            </p>
+          </transition>
+        </div>
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>How does the laundry service work?</h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('seventeen')"
+            >
+              <svg
+                v-if="questions.includes('seventeen')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('seventeen')">
+              We offer two options: Wash & Fold and Wash & Iron, you can choose
+              between the Once Weekly, Every 2 weeks and Once Monthly package,
+              each option allows you to drop a laundry bag containing up to 30
+              clothing items. We pick up, do the laundry and deliver within 48
+              hours.
+            </p>
+          </transition>
+        </div>
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>What locations do we cover?</h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('eighteen')"
+            >
+              <svg
+                v-if="questions.includes('eighteen')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('eighteen')">
+              We currently offer our services in Lagos, Abuja and Port-Harcourt.
+              Other locations will be added soon.
+            </p>
+          </transition>
+        </div>
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>How do I get started?</h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('nineteen')"
+            >
+              <svg
+                v-if="questions.includes('nineteen')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('nineteen')">
+              You can start by downloading the
+              <a
+                href="#"
+                style="color: #03a84e"
+                @click.prevent="scrollTo('#get-the-app', 'faq')"
+                >Eden Life inc.
+              </a>
+              app from your PlayStore or App Store, register to create an
+              account on the app, update your profile and select the service
+              offerings, then pay your subscription and you are good to go
+            </p>
+          </transition>
+        </div>
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>How do I make payment??</h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('twenty')"
+            >
+              <svg
+                v-if="questions.includes('twenty')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('twenty')">
+              You can make payment using your debit card through the payment
+              link on the app once you have selected your service plan
+            </p>
+          </transition>
+        </div>
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>Is there a corporate package?</h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('twenty-one')"
+            >
+              <svg
+                v-if="questions.includes('twenty-one')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('twenty-one')">
+              Yes we do have a corporate set up that enables companies to treat
+              their team members/staff to an amazing experience, each team
+              member gets a personalized service. You can sign up for this by
+              completing the form via this
+              <nuxt-link                 style="color: #03a84e"
+                :to="{ path: '/companies' }"
+                @click.prevent="trackLink('Companies')"
+              >
+                link
+              </nuxt-link>
             </p>
           </transition>
         </div>

@@ -138,6 +138,9 @@
         line-height: 47px;
         @include font-size(5xl);
       }
+      ul {
+        list-style: none;
+      }
       p {
         line-height: 24px;
         @include font-size(base);

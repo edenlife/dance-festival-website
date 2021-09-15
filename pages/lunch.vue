@@ -33,14 +33,14 @@
         <div class="hero__header">
           <div class="hero__header-title">
             <h1>
-              <span class="pay"> Chef-Cooked Meals. </span> <br />
-              Delivered to You Daily.<br />
+              <span class="pay"> Chef-Cooked Meals </span> <br />
+              You Can Trust.<br />
             </h1>
-
+             <p>Pay once a month and get:</p>
             <ul>
-              <li>You pay once a month ✔️</li>
-              <li>We deliver lunch to you, Monday to Friday ✔️</li>
-              <li>Gain 10+ hours of extra productivity, weekly ✔️</li>
+              <li>Lunch delivered Monday to Friday before lunchtime ✔️</li>
+              <li>Your personal Customer Support champion ✔️</li>
+              <li>10+ hours of extra productivity ✔️</li>
             </ul>
 
             <button @click.prevent="scrollToTop('hero')" class="hero__form-btn">
@@ -673,28 +673,34 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/pages/_signup.scss';
+.hero {
+  width: 95%;
 
-.hero__header-title {
-  h1 {
-    width: 100%;
+  &__header {
+    flex: 0 0 40%;
 
-    .pay {
-      margin-left: 0;
-    }
-  }
+    &-title {
+      h1 {
+        width: 100%;
 
-  ul {
-    padding: $gap * 2;
-    li {
-      margin: $gap 0;
-      font-size: 1.125rem;
-    }
-  }
+        .pay {
+          margin-left: 0;
+        }
+      }
 
-  @include respond(md) {
-    ul {
-      list-style: none;
-      text-align: center;
+      ul {
+        padding: 0 $gap *2 $gap * 2;
+        li {
+          margin: $gap 0;
+          font-size: 1.125rem;
+        }
+      }
+      @include respond(md) {
+        ul {
+          list-style: none;
+          text-align: center;
+        }
+      }
     }
   }
 }

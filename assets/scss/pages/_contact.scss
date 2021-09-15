@@ -109,6 +109,7 @@
       a {
         @include font-size(lg);
         color: color(eden-green-primary);
+        cursor: pointer;
         line-height: 29px;
         margin-top: auto;
       }

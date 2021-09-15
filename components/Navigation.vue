@@ -27,7 +27,10 @@
               type="button"
               class="btn"
               :class="{ active: showService }"
-              @mouseenter.stop="showService = true"
+              @mouseenter.stop="
+                showService = true
+                showContact = false
+              "
             >
               <span>Services</span>
               <svg
@@ -321,8 +324,54 @@
             Cleaning Plans
           </button>
         </li>
-        <!--  -->
 
+        <li v-if="currentRoute !== 'contact_us'">
+          <div class="navigation__menu-item navigation__menu-service">
+            <button
+              type="button"
+              class="btn"
+              :class="{ active: showContact }"
+              @mouseenter.stop="
+                showContact = true
+                showService = false
+              "
+            >
+              <span>Contact Us</span>
+              <svg
+                width="10"
+                height="6"
+                viewBox="0 0 10 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 1L5 5L9 1"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+            <transition name="fade">
+              <div
+                v-if="showContact"
+                class="service"
+                @mouseleave.stop="showContact = false"
+              >
+                <div class="service__title contact">
+                  <h3>Want to talk?</h3>
+                  <p>Reach out to us and we'll respond as soon as possible.</p>
+                </div>
+                <ul class="service__list contact">
+                  <li class="navigation__menu-item" @click="trackLink('Contact Us')">  <a href="tel:+2349072671761"> +2349072671761</a>
+                   
+                  </li> 
+                  <li class="navigation__menu-item trigger-chat" @click="trackLink('Contact Us')">Chat</li>
+                </ul>
+              </div>
+            </transition>
+          </div>
+        </li>
         <li>
           <a
             href="#"
@@ -420,6 +469,47 @@
                 Pricing
               </nuxt-link>
             </li>
+            <li class="menu--list">
+              <div class="navigation__mobile-item service">
+                <div>Contact Us</div>
+                <div class="service--icon" @click="contactToggle()">
+                  <svg
+                    class="arrow"
+                    :class="{ expanded: contactVisible }"
+                    width="10"
+                    height="6"
+                    viewBox="0 0 10 6"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 1L5 5L9 1"
+                      stroke="#21312A"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <transition name="slide-fade">
+                <ul v-if="contactVisible" class="">
+                  <li
+                    class="menu--list-item contact"
+                    @click="trackLink('Contact Us')"
+                  >
+                  <a href="tel:+2349072671761"> +2349072671761</a>
+                   
+                  </li>
+                  <li
+                    class="menu--list-item contact trigger-chat"
+                    @click="trackLink('Contact Us')"
+                  >
+                    Chat
+                  </li>
+                </ul>
+              </transition>
+            </li>
             <li class="menu--list" @click.prevent="handleToggle()">
               <a
                 href="#"
@@ -446,7 +536,9 @@ export default {
       service: '',
       showService: false,
       showNavbar: false,
+      showContact: false,
       visible: false,
+      contactVisible: false,
       window: {
         width: 0,
         height: 0,
@@ -507,6 +599,9 @@ export default {
         scrollToApp(id, `homepage - Navbar`)
       } else scrollToApp(id, `${this.currentRoute} - Navbar`)
     },
+    goToChat(){
+console.log(this.$intercom)
+    },
     scrollToSection(id, service) {
       mixpanelTrackEvent(`${service} clicked - ${this.currentRoute} - Navbar`)
       const scrollToElement = document.querySelector(id)
@@ -514,6 +609,9 @@ export default {
     },
     serviceToggle() {
       this.visible = !this.visible
+    },
+    contactToggle() {
+      this.contactVisible = !this.contactVisible
     },
     handleToggle(menu) {
       if (menu) {

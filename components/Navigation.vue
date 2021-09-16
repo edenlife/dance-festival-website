@@ -373,7 +373,13 @@
                     class="navigation__menu-item trigger-chat"
                     @click="trackLink('Contact Us')"
                   >
-                    Chat
+                     <nuxt-link
+                      :to="{ path: '/contact_us' }"
+                      class="footer__bottom-logo"
+                      @click.prevent="trackLink('Contact us')"
+                    >
+                      Message
+                    </nuxt-link>
                   </li>
                 </ul>
               </div>
@@ -512,7 +518,13 @@
                     class="menu--list-item contact trigger-chat"
                     @click="trackLink('Contact Us')"
                   >
-                    Chat
+                    <nuxt-link
+                      :to="{ path: '/contact_us' }"
+                      class="footer__bottom-logo"
+                      @click.prevent="trackLink('Contact us')"
+                    >
+                      Message
+                    </nuxt-link>
                   </li>
                 </ul>
               </transition>

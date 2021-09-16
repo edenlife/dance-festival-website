@@ -359,14 +359,22 @@
                 @mouseleave.stop="showContact = false"
               >
                 <div class="service__title contact">
-                  <h3>Want to talk?</h3>
-                  <p>Reach out to us and we'll respond as soon as possible.</p>
+                  <h3>Get Help</h3>
+                  <p>Call or send us a message and we'll respond soonest.</p>
                 </div>
                 <ul class="service__list contact">
-                  <li class="navigation__menu-item" @click="trackLink('Contact Us')">  <a href="tel:+2349072671761"> +2349072671761</a>
-                   
-                  </li> 
-                  <li class="navigation__menu-item trigger-chat" @click="trackLink('Contact Us')">Chat</li>
+                  <li
+                    class="navigation__menu-item"
+                    @click="trackLink('Contact Us')"
+                  >
+                    <a href="tel:+2349072671761"> +2349072671761</a>
+                  </li>
+                  <li
+                    class="navigation__menu-item trigger-chat"
+                    @click="trackLink('Contact Us')"
+                  >
+                    Chat
+                  </li>
                 </ul>
               </div>
             </transition>
@@ -498,8 +506,7 @@
                     class="menu--list-item contact"
                     @click="trackLink('Contact Us')"
                   >
-                  <a href="tel:+2349072671761"> +2349072671761</a>
-                   
+                    <a href="tel:+2349072671761"> +2349072671761</a>
                   </li>
                   <li
                     class="menu--list-item contact trigger-chat"
@@ -599,8 +606,8 @@ export default {
         scrollToApp(id, `homepage - Navbar`)
       } else scrollToApp(id, `${this.currentRoute} - Navbar`)
     },
-    goToChat(){
-console.log(this.$intercom)
+    goToChat() {
+      console.log(this.$intercom)
     },
     scrollToSection(id, service) {
       mixpanelTrackEvent(`${service} clicked - ${this.currentRoute} - Navbar`)

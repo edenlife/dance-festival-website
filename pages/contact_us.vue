@@ -31,7 +31,9 @@
           For customer support, call
           <a href="tel:+2349072671761"> +2349072671761</a>
 
-          <!-- or    <a  class="trigger-chat"> chat</a> with us. -->
+          or
+          <a @click.prevent="launchIntercom()" class="trigger-chat"> chat</a>
+          with us.
         </p>
         <a
           href="#"
@@ -79,6 +81,9 @@ export default {
   methods: {
     scrollToFooter(id, label) {
       scrollToApp(id, label)
+    },
+    launchIntercom() {
+      this.$intercom('show')
     },
   },
 }

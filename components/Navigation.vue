@@ -371,15 +371,9 @@
                   </li>
                   <li
                     class="navigation__menu-item trigger-chat"
-                    @click="trackLink('Contact Us')"
+                    @click.prevent="launchIntercom()"
                   >
-                    <nuxt-link
-                      :to="{ path: '/contact_us' }"
-                      class="footer__bottom-logo"
-                      @click.prevent="trackLink('Contact us')"
-                    >
-                      Message
-                    </nuxt-link>
+                    Chat
                   </li>
                 </ul>
               </div>
@@ -516,7 +510,10 @@
                   </li>
                   <li
                     class="menu--list-item contact trigger-chat"
-                    @click.prevent="handleToggle('Contact Us')"
+                    @click.prevent="
+                      handleToggle('Contact Us')
+                      launchIntercom()
+                    "
                   >
                     <nuxt-link :to="{ path: '/contact_us' }">
                       Message
@@ -614,8 +611,8 @@ export default {
         scrollToApp(id, `homepage - Navbar`)
       } else scrollToApp(id, `${this.currentRoute} - Navbar`)
     },
-    goToChat() {
-      console.log(this.$intercom)
+    launchIntercom() {
+      this.$intercom('show')
     },
     scrollToSection(id, service) {
       mixpanelTrackEvent(`${service} clicked - ${this.currentRoute} - Navbar`)

@@ -89,13 +89,6 @@ export default {
       role: 'Happiness Engineering (HR)',
     },
     {
-      id: 13,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919020/eden-website-v2/Kabir_unsfyw.png',
-      name: 'Kabir Olagunju',
-      role: 'Food Production',
-    },
-    {
       id: 14,
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919022/eden-website-v2/prosper_uqgnxw.png',
@@ -137,14 +130,6 @@ export default {
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919011/eden-website-v2/Mosunmola_qqhkfk.png',
       name: 'Mosunmola Yusuf',
       role: 'Food Production',
-    },
-
-    {
-      id: 20,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919016/eden-website-v2/gbenga_bxailj.png',
-      name: 'Gbenga Osowe',
-      role: 'Operations/Supply',
     },
     {
       id: 21,
@@ -309,13 +294,6 @@ export default {
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962155/Adeyemi_Martins_Supply_zwcshb.jpg',
       name: 'Adeyemi Martins',
       role: 'Operations/Supply',
-    },
-    {
-      id: 45,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962890/Efosa_Ukhun_Food_Production_m2nz4h.jpg',
-      name: 'Efosa Ukhun',
-      role: 'Food Production',
     },
     {
       id: 46,

@@ -545,7 +545,7 @@ export default {
                 item: null,
                 qty: 1,
                 service_day: ['mon-fri'],
-                amount: 44000,
+                amount: 55000,
               },
             },
           }

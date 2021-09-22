@@ -557,7 +557,10 @@
               <label for="services"
                 >What plans would you like for your team?</label
               >
-              <div class="select">
+              <div
+                class="select"
+                :class="{ 'has-error': $v.companyForm.service.$error }"
+              >
                 <div class="selector">
                   <div class="label" @click="toggle()">
                     <span
@@ -593,29 +596,35 @@
 
                   <div :class="{ hidden: !visible, visible }">
                     <transition name="slide-fade">
-                      <ul>
-                        <li
-                          v-for="(service, index) in services"
-                          :key="index"
-                          :value="service"
-                        >
-                          <input
-                            :id="service"
-                            v-model="companyForm.service"
-                            type="checkbox"
-                            :name="service"
+                      <div class="selection">
+                        <ul>
+                          <li
+                            v-for="(service, index) in services"
+                            :key="index"
                             :value="service"
-                          />
-                          <label
-                            :for="service"
-                            :class="{
-                              checkmark: companyForm.service.includes(service),
-                            }"
                           >
-                            {{ service }}</label
-                          >
-                        </li>
-                      </ul>
+                            <input
+                              :id="service"
+                              v-model="companyForm.service"
+                              type="checkbox"
+                              :name="service"
+                              :value="service"
+                            />
+                            <label
+                              :for="service"
+                              :class="{
+                                checkmark:
+                                  companyForm.service.includes(service),
+                              }"
+                            >
+                              {{ service }}</label
+                            >
+                          </li>
+                        </ul>
+                        <button class="btn--submit" @click.prevent="toggle()">
+                          Done
+                        </button>
+                      </div>
                     </transition>
                   </div>
                 </div>
@@ -745,7 +754,7 @@
             <img :src="require(`~/assets/images/failed.svg`)" alt="failed" />
             <h5>Submission Failed</h5>
             <p>
-              Your comapny’s information was not successfully submitted. Please
+              Your company’s information was not successfully submitted. Please
               try again or reach us at <span>eve@edenlife.ng </span> or
               <span>+2348123456790</span>
             </p>
@@ -872,8 +881,8 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
     },
     async submit() {
       this.$v.companyForm.$touch()
-      this.companyForm.service = JSON.stringify(this.companyForm.service)
       if (!this.$v.companyForm.$error) {
+        this.companyForm.service = JSON.stringify(this.companyForm.service)
         try {
           this.loading = true
           await companiesApi(this.companyForm)
@@ -889,6 +898,7 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
           this.loading = false
           mixpanelTrackEvent('Company form - Companies page')
         } catch (error) {
+          this.companyForm.service = JSON.parse(this.companyForm.service)
           this.loading = false
           this.showFailedModal = true
         }

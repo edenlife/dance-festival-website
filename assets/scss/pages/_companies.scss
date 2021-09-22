@@ -994,6 +994,9 @@
           &:hover {
             border: 1px solid #e4e8e6;
           }
+          &.has-error {
+            border: 1px solid color(eden-red);
+          }
           .selector {
             position: relative;
             .arrow {
@@ -1031,8 +1034,10 @@
                 margin-right: 8px;
               }
             }
+
+           
           }
-          ul {
+          .selection {
             width: 110%;
             list-style-type: none;
             @include font-size(base);
@@ -1044,8 +1049,13 @@
             z-index: 1;
             background: color(eden-neutral-7);
             border-radius: 4px;
-            height: 195px;
             box-shadow: 0px 4px 8px rgba(121, 139, 131, 0.161);
+
+            .btn--submit {
+              margin: 24px 14px;
+              padding: $gap $gap + 4;
+              transition: none;
+            }
           }
           li {
             display: flex;

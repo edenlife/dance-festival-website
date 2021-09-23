@@ -613,8 +613,9 @@
                             <label
                               :for="service"
                               :class="{
-                                checkmark:
-                                  companyForm.service.includes(service),
+                                checkmark: companyForm.service.includes(
+                                  service
+                                ),
                               }"
                             >
                               {{ service }}</label
@@ -639,6 +640,7 @@
                 cols="30"
                 rows="10"
                 placeholder="Extra message"
+                :class="{ 'has-error': $v.companyForm.message.$error }"
               ></textarea>
             </div>
             <button
@@ -784,6 +786,7 @@ export default {
       company_name: { required },
       service: { required },
       phone_number: { required },
+      message: {required}
     },
   },
   data() {

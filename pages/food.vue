@@ -267,7 +267,7 @@
                 >
                   <path
                     d="M1 1L5 5L1 9"
-                    stroke="#61DB98"
+                    stroke="#03a84e" 
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   />
@@ -306,7 +306,7 @@
                 >
                   <path
                     d="M1 1L5 5L1 9"
-                    stroke="#61DB98"
+                    stroke="#03a84e"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   />

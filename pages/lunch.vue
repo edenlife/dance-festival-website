@@ -33,18 +33,18 @@
         <div class="hero__header">
           <div class="hero__header-title">
             <h1>
-              <span class="pay"> Chef-Cooked Meals </span> <br />
-              You Can Trust.<br />
+              <span class="pay"> Get Lunch Delivered </span> <br />
+              Daily.<br />
             </h1>
              <p>Pay once a month and get:</p>
             <ul>
-              <li>Lunch delivered Monday to Friday before lunchtime ✔️</li>
-              <li>Your personal Customer Support champion ✔️</li>
-              <li>10+ hours of extra productivity ✔️</li>
+              <li>Chef-cooked lunch delivered Monday to Friday ✔️</li>
+              <li>Your own assigned Customer Experience champion ✔️</li>
+              <li>10+ hours of productivity unlocked ✔️</li>
             </ul>
 
             <button @click.prevent="scrollToTop('hero')" class="hero__form-btn">
-              I Want an Eden Lunch plan
+              I Want an Eden Lunch Plan
             </button>
 
             <p class="discount">Never have to worry about lunch again!</p>

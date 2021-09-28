@@ -179,7 +179,7 @@
                 <p>
                   We QC and make sure all your clothes are intact and perfectly
                   laundered. And that's it! Your clothes are on their way to
-                  you. All within 24 hours.
+                  you. All within 48 hours.
                 </p>
               </div>
               <button

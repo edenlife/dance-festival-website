@@ -33,8 +33,8 @@
         <div class="hero__header">
           <div class="hero__header-title">
             <h1>
-              <span class="pay"> Get Lunch Delivered </span> <br />
-              Daily.<br />
+              <span class="pay"> Get Lunch <br/> Delivered
+              Daily.<br/> </span>
             </h1>
              <p>Pay once a month and get:</p>
             <ul>

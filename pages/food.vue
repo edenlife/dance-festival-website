@@ -267,7 +267,7 @@
                 >
                   <path
                     d="M1 1L5 5L1 9"
-                    stroke="#03a84e" 
+                    stroke="#03a84e"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   />
@@ -381,9 +381,7 @@
     <div class="container--plan">
       <section class="plan">
         <div class="plan__title">
-          <h3>
-            The Food Plans:<br />
-          </h3>
+          <h3>The Food Plans:<br /></h3>
           <p>
             Enjoy all the deliciousness of healthy food, right on time, with
             none of the stress.
@@ -898,27 +896,27 @@ export default {
       if (index % 4 === 0) {
         return (
           imageUrlTrim +
-          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_80,co_rgb:E4E1DD10' +
+          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_60,co_rgb:E4E1DD10' +
           imageFormat
         )
       }
       if (index % 3 === 0) {
         return (
           imageUrlTrim +
-          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_80,co_rgb:DDE0E410' +
+          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_60,co_rgb:DDE0E410' +
           imageFormat
         )
       }
       if (index % 2 === 0) {
         return (
           imageUrlTrim +
-          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_80,co_rgb:D7E3E510' +
+          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_60,co_rgb:D7E3E510' +
           imageFormat
         )
       } else {
         return (
           imageUrlTrim +
-          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_80,co_rgb:D7E3E510' +
+          '/upload/f_auto,q_auto,e_shadow:100,x_1,y_60,co_rgb:D7E3E510' +
           imageFormat
         )
       }

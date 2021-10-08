@@ -937,12 +937,17 @@ export default {
     },
     fetchMeal() {
       this.lastDateFormat = dayjs(new Date())
-        .endOf('week')
+        .add(9, 'day')
         .format('DD MMM YYYY')
       this.firstDateFormat = dayjs(new Date())
-        .startOf('week')
+        .add(2, 'day')
         .format('DD MMM YYYY')
-      const dateData = dayjs(new Date()).format('DD-MM-YYYY')
+      // const dateData = dayjs(new Date()).format('DD-MM-YYYY')
+      // TODO change to staging
+      const dateData = dayjs(new Date()).add(2, 'day')
+      // fetch(
+      //   `https://api.edenlife.ng/api/v2/meal/items/all?current_date=02-05-2021`
+      // )
       fetch(
         `https://api.edenlife.ng/api/v2/meal/items/all?current_date=${dateData}`
       )

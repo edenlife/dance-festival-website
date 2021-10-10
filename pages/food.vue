@@ -234,7 +234,7 @@
     <div id="menu-options" ref="menu-options" class="container--menu">
       <section class="menu">
         <div class="menu__title">
-          <h3>Next weeks menu</h3>
+          <h3>Current menu</h3>
           <p>{{ firstDateFormat }} - {{ lastDateFormat }}</p>
         </div>
         <div v-if="!allMeal.length" class="menu__loader">
@@ -937,14 +937,14 @@ export default {
     },
     fetchMeal() {
       this.lastDateFormat = dayjs(new Date())
-        .add(9, 'day')
+        .endOf('week')
         .format('DD MMM YYYY')
       this.firstDateFormat = dayjs(new Date())
-        .add(2, 'day')
+        .startOf('week')
         .format('DD MMM YYYY')
-      // const dateData = dayjs(new Date()).format('DD-MM-YYYY')
+      const dateData = dayjs(new Date()).format('DD-MM-YYYY')
       // TODO change to staging
-      const dateData = dayjs(new Date()).add(2, 'day')
+      //   const dateData = dayjs(new Date()).add(2, 'day')
       // fetch(
       //   `https://api.edenlife.ng/api/v2/meal/items/all?current_date=02-05-2021`
       // )

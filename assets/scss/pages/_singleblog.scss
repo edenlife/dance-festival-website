@@ -181,7 +181,7 @@
   @include respond(md) {
     width: 90%;
     flex-direction: column;
-    padding: $gap * 9 0 $gap * 10 0;
+    padding: $gap * 15 0 $gap * 10 0;
     &__social {
       width: 80%;
       flex-direction: row;

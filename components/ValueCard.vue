@@ -7,7 +7,11 @@
       <h5>{{ content.title }}</h5>
 
       <div v-if="content.layout.includes('column')">
-        <button v-if="content.button === 'modal'" class="btn-solid__modal">
+        <button
+          v-if="content.button === 'modal'"
+          class="btn-solid__modal"
+          @click="showModal"
+        >
           <svg
             width="24"
             height="24"
@@ -30,11 +34,7 @@
           </svg>
         </button>
 
-        <button
-          v-else
-          class="btn-solid__app"
-          @click.prevent="scrollToFooter('#get-the-app', 'Eden means easy')"
-        >
+        <button v-else class="btn-solid__app" @click="showModal">
           Download The App
         </button>
       </div>
@@ -44,7 +44,11 @@
       <div class="value__text">
         <h3 class="value__header">{{ content.header }}</h3>
         <p class="value__description">{{ content.description }}</p>
-        <button v-if="content.layout === 'row'" class="btn-solid__modal row">
+        <button
+          v-if="content.layout === 'row'"
+          class="btn-solid__modal row"
+          @click="showModal"
+        >
           <svg
             width="24"
             height="24"
@@ -94,12 +98,15 @@ export default {
 
   methods: {
     setStyles(content) {
-      const { shadow, background, layout, textPosition } = content
+      const { background } = content
 
       return `background: ${background};`
     },
     scrollToFooter(id, label) {
       scrollToApp(id, label)
+    },
+    showModal() {
+      this.$emit('show')
     },
   },
 }

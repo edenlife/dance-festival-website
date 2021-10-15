@@ -74,9 +74,8 @@
     }
   }
 
-  &:last-child{
+  &:last-child {
     padding-bottom: $gap * 10;
-
   }
   @include respond(md) {
     flex-direction: column;
@@ -132,5 +131,203 @@
     @include respond(md) {
       grid-template-columns: 1fr !important;
     }
+  }
+}
+
+.modal {
+  .modal-wrapper {
+    width: 90vw;
+    margin: auto;
+    max-width: 600px;
+  }
+}
+.modal__body {
+  .lead__modal {
+    @include font-family(cerebri);
+    &-title {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      align-items: center;
+      color: color(eden-neutral-1);
+      margin-bottom: $gap + 7;
+      h3 {
+        text-align: center;
+        @include font-size(2xl);
+        line-height: 32px;
+        @include font-weight(bold);
+        @include font-family(pt-serif);
+      }
+      .btn {
+        position: absolute;
+        top: -20px;
+        right: 0;
+      }
+    }
+
+    &__testimony {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .testimonial__card {
+    width: 368px;
+    padding: $gap * 2;
+    height: fit-content;
+    background-color: color(eden-neutral-7);
+    border: 1px solid rgba(228, 232, 230, 0.2);
+    box-shadow: 0px 0px 40px rgba(102, 102, 102, 0.08);
+    border-radius: 8px;
+    margin-top: $gap;
+    &:hover {
+      transform: scale(1.01);
+      transition: all 0.3s ease-in-out;
+    }
+    &__title {
+      display: flex;
+      align-items: center;
+      margin-bottom: $gap + 6;
+      &-img {
+        margin-right: $gap - 2;
+        width: 68px;
+        height: 68px;
+        img {
+          border-radius: 50%;
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+        }
+      }
+      &-name {
+        margin-bottom: 4px;
+        color: color(eden-neutral-1);
+        @include font-size(base);
+      }
+      &-handle {
+        line-height: 21px;
+        @include font-size(sm);
+        color: color(eden-green-primary);
+      }
+    }
+    &__description {
+      color: color(eden-neutral-2);
+      @include font-size(sm);
+      line-height: 21px;
+    }
+
+    &:nth-child(4) {
+      margin-top: -$gap * 7;
+    }
+    &:nth-child(5) {
+      margin-top: -$gap * 11;
+    }
+  }
+
+  .testimonial__form {
+    color: color(eden-neutral-1);
+    width: 384px;
+    margin: $gap * 4 auto 0;
+    &-body {
+      display: flex;
+      flex-direction: column;
+    }
+    &-input {
+      margin-bottom: $gap * 3;
+      display: flex;
+      flex-direction: column;
+      label {
+        @include font-size(sm);
+        line-height: 18px;
+        color: color(eden-neutral-2);
+      }
+      input {
+        background-color: color(eden-neutral-7);
+        border: 1px solid #c9d0cd;
+        border-radius: 4px;
+        width: 100%;
+        padding: $gap + 4 $gap + 6;
+        margin-top: $gap - 6;
+        outline: none;
+        @include font-size(sm);
+        @include font-family(cerebri);
+        &::placeholder {
+          color: #acb6b1;
+          @include font-weight(light);
+        }
+        &.has-error {
+          border: 1px solid color(eden-red);
+        }
+      }
+    }
+    &-btn {
+      margin-top: $gap + 8;
+      @include font-size(lg);
+      line-height: 29px;
+      background-color: color(eden-green-primary);
+      color: color(eden-neutral-7);
+      padding: $gap * 1.4 $gap * 3.2;
+      border-radius: 4px;
+      transition: all 0.4s ease-in-out;
+      &:hover {
+        box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
+        background-color: color(eden-green-250);
+        color: color(eden-neutral-7);
+      }
+      &:active {
+        background-image: radial-gradient(
+          circle at center right,
+          rgba(0, 141, 64, 0.1) 50%,
+          #008d40 50%
+        );
+      }
+    }
+    @include respond(md){
+      width: 90%;
+    }
+  }
+
+
+  .download__app{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+     width: 83%;
+    margin: 0 auto 0 auto;
+    z-index: 99;
+    height: 400px;
+    position: relative;
+    z-index: 2;
+    &-title {
+      h3 {
+        line-height: 44px;
+        @include font-size(4xl);
+        @include font-weight(bold);
+        color: color(eden-neutral-1);
+      }
+      p {
+        line-height: 28px;
+        @include font-size(lg);
+        @include font-weight(light);
+        color: color(eden-neutral-1);
+        margin: $gap + 2 0 $gap * 3.6 0;
+      }
+      @include respond(md){
+        text-align: center;
+      }
+    }
+    &-link {
+      display: flex;
+      a {
+        &:first-child {
+          margin-right: $gap * 2.6;
+        }
+      }
+      @include respond(md){
+        flex-direction: column;
+      }
+    }
+
   }
 }

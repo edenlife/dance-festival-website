@@ -31,26 +31,26 @@
 
     <div class="values">
       <div class="value__grid">
-        <value-card :content="valueReasons[0]" />
+        <value-card :content="valueReasons[0]" @show="setTestimonial(0)" />
       </div>
       <div class="value__grid">
-        <value-card :content="valueReasons[1]" />
-        <value-card :content="valueReasons[2]" />
+        <value-card :content="valueReasons[1]" @show="setTestimonial(1)" />
+        <value-card :content="valueReasons[2]" @show="setTestimonial(2)" />
       </div>
       <div class="value__grid">
-        <value-card :content="valueReasons[3]" />
-        <value-card :content="valueReasons[4]" />
+        <value-card :content="valueReasons[3]" @show="setTestimonial(3)" />
+        <value-card :content="valueReasons[4]" @show="setTestimonial(4)" />
       </div>
       <div class="value__grid">
-        <value-card :content="valueReasons[5]" />
+        <value-card :content="valueReasons[5]" @show="setTestimonial(5)" />
       </div>
       <div class="value__grid">
-        <value-card :content="valueReasons[6]" />
-        <value-card :content="valueReasons[7]" />
+        <value-card :content="valueReasons[6]" @show="setTestimonial(6)" />
+        <value-card :content="valueReasons[7]" @show="setTestimonial(7)" />
       </div>
       <div class="value__grid">
-        <value-card :content="valueReasons[8]" />
-        <value-card :content="valueReasons[9]" />
+        <value-card :content="valueReasons[8]" @show="setTestimonial(8)" />
+        <value-card :content="valueReasons[9]" @show="setTestimonial(9)" />
       </div>
     </div>
 
@@ -73,159 +73,205 @@
         </div>
       </div>
     </div>
+    <modal
+      v-if="showLeadModal"
+      :show-modal="showLeadModal"
+      class="modal modal-lead"
+    >
+      <div slot="header"></div>
+      <div slot="body" class="modal__body">
+        <div class="lead__modal">
+          <div class="lead__modal-title">
+            <h3 class="">{{ activeReason.text }}</h3>
+            <button class="btn" @click="closeLeadModal()">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="15.5"
+                  fill="white"
+                  stroke="#E4E8E6"
+                />
+                <path
+                  d="M20 12L12 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 12L20 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div class="lead__modal__testimony">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="56"
+              height="56"
+              fill="#03A84E"
+              class="bi bi-chat-left-quote"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M7.066 4.76A1.665 1.665 0 0 0 4 5.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 1 0 .6.58c1.486-1.54 1.293-3.214.682-4.112zm4 0A1.665 1.665 0 0 0 8 5.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 1 0 .6.58c1.486-1.54 1.293-3.214.682-4.112z"
+              />
+            </svg>
+            <div class="testimonial__card">
+              <a :href="activeReason.testimonial.tweetLink" target="_blank">
+                <div class="testimonial__card__title">
+                  <div class="testimonial__card__title-img">
+                    <img
+                      :src="
+                        require(`~/assets/images/${activeReason.testimonial.image}.jpg`)
+                      "
+                      :alt="activeReason.testimonial.name"
+                    />
+                  </div>
+                  <div class="">
+                    <p class="testimonial__card__title-name">
+                      {{ activeReason.testimonial.name }}
+                    </p>
+                    <p class="testimonial__card__title-handle">
+                      @{{ activeReason.testimonial.handle }}
+                    </p>
+                  </div>
+                </div>
+
+                <p
+                  class="testimonial__card__description"
+                  v-html="activeReason.testimonial.description"
+                ></p>
+              </a>
+            </div>
+          </div>
+
+          <div v-if="activeReason.showForm" class="testimonial__form">
+            <div class="testimonial__form-body">
+              <div class="testimonial__form-input">
+                <label for="name">Full Name</label>
+                <input
+                  id=""
+                  v-model="leadForm.name"
+                  type="text"
+                  name=""
+                  placeholder="Full Name"
+                  :class="{ 'has-error': $v.leadForm.name.$error }"
+                />
+              </div>
+              <div class="testimonial__form-input">
+                <label for="email">Email</label>
+                <input
+                  id=""
+                  v-model="leadForm.email"
+                  type="email"
+                  name=""
+                  placeholder="email@example.com"
+                  :class="{ 'has-error': $v.leadForm.email.$error }"
+                />
+              </div>
+              <div class="testimonial__form-input">
+                <label for="phone number">Phone Number</label>
+                <input
+                  id=""
+                  v-model.trim="$v.leadForm.phone_number.$model"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                  type="text"
+                  name=""
+                  placeholder="Enter phone number"
+                  :class="{ 'has-error': $v.leadForm.phone_number.$error }"
+                />
+              </div>
+              <!-- <p v-if="responseMessage.length" class="error-message">
+                {{ responseMessage }}
+              </p> -->
+
+              <button class="testimonial__form-btn">Sign up</button>
+            </div>
+          </div>
+          <div v-else class="download__app">
+            <div class="download__app-title">
+              <h3>Download the app!</h3>
+              <p>It takes less than 5 minutes to sign up!</p>
+            </div>
+            <div class="download__app-link">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.ouredenlife.app"
+                target="_blank"
+                @click.prevent="openPlayStore"
+              >
+                <img
+                  src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611338471/eden-website-v2/playstore_n43eju.svg"
+                  alt="playstore"
+                />
+              </a>
+              <a
+                href="https://apps.apple.com/us/app/eden-life/id1482373755?ls=1"
+                target="_blank"
+                @click.prevent="openAppleStore"
+              >
+                <img
+                  src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611338469/eden-website-v2/appstore_o1bj6d.svg"
+                  alt="appstore"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </modal>
   </div>
 </template>
 
 <script>
 import getSiteMeta from '~/utils/getSiteMeta'
 import { scrollToApp } from '~/static/functions'
+import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import values from '~/static/values'
+import { validationMixin } from 'vuelidate'
+import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 export default {
   components: {
     ValueCard: () => import('@/components/ValueCard.vue'),
+    Modal: () => import('@/components/Modal.vue'),
+  },
+  mixins: [validationMixin],
+  validations: {
+    leadForm: {
+      email: { required, email },
+      name: { required },
+      phone_number: {
+        required,
+        minLength: minLength(11),
+        maxLength: maxLength(11),
+      },
+    },
   },
   data() {
     return {
-      valueReasons: [
-        {
-          title: '1st Reason',
-          header: "Service Delivery You Can Trust  (We're promise keepers).",
-          description:
-            "When you trust us with a service, we deliver. Whether it's food, laundry, or cleaning, there are no buts, no ifs. Just done. Damaged items get replaced.",
-          shadow: true,
-          background: '#FFFFFF',
-          layout: 'row',
-          button: 'modal',
-          size: 'full',
-          img_size: 'large',
-          image: 'value-delivery',
-        },
-        {
-          title: '2nd Reason',
-          header: 'Eden Saves You Time.',
-          description:
-            "With a monthly subscription saving you up to 30 hours a week, every service you've chosen runs efficiently, and frees up your time to do the things that matter.",
-          shadow: true,
-          background: '#D1F2FA',
-          layout: 'column-reverse',
-          button: 'modal',
-          size: 'half',
-          textPosition: 'bottom',
-          img_size: 'small',
-          image: 'value-watch',
-        },
-        {
-          title: '3rd Reason',
-          header: 'One App To Run Them All.',
-          description:
-            'One app to select a service, schedule, pause, add extra stuff, get help, leave feedback, and so much more. One App.',
-          shadow: true,
-          background: '#D4F7E5',
-          layout: 'column',
-          button: 'app',
-          size: 'half',
-          textPosition: 'top',
-          img_size: 'medium',
-          image: 'value-selection',
-        },
-        {
-          title: '4th Reason',
-          header: 'You Get Your Own Personal Person.',
-          description:
-            'Every customer is assigned a manager who is proactive and effective. They are your champions inside Eden who make ensure you get the best experience. We call them Gardeners.',
-          shadow: true,
-          background: '#FFF3CC',
-          layout: 'column',
-          button: 'modal',
-          size: 'half',
-          textPosition: 'top',
-          image: 'value-gardener',
-          img_size: 'medium',
-        },
-        {
-          title: '5th Reason',
-          header: 'One Payment, All Month.',
-          description:
-            "For a monthly subscription, you never have to worry about getting these things done when the mid-month sapa hits. You're covered.",
-          shadow: true,
-          background: '#CCD5FF;',
-          layout: 'column-reverse',
-          button: 'modal',
-          size: 'half',
-          textPosition: 'top',
-          img_size: 'small',
-          image: 'value-payment',
-        },
-        {
-          title: '6th Reason',
-          header: "Eden Works When You're Working.",
-          description:
-            'Your food is delivered, your clean laundry is ironed and folded, and the your bathroom is scrubbed. Dedicate your active hours to solving actual problems.',
-          shadow: true,
-          background: '#FFFFFF',
-          layout: 'row',
-          button: 'modal',
-          size: 'full',
-          img_size: 'large',
-          image: 'value-work',
-        },
-        {
-          title: '7th Reason',
-          header: "Eden Works When You Feel 'Lazy'.",
-          description:
-            "On days when you don't feel like doing anything, Eden will still work for you to keep your clothes and space clean, and your body nourished.",
-          shadow: true,
-          background: '#D4F7E5',
-          layout: 'column',
-          button: 'modal',
-          size: 'half',
-          textPosition: 'top',
-          img_size: 'large',
-          image: 'value-works',
-        },
-        {
-          title: '8th Reason',
-          header: "It's The Perfect Gift For People You Love.",
-          description:
-            'Few actions say "I care for you" like gifting an Eden plan to a person you love. With one gift, you save them time, give them relief, grant them access to quality service delivered at their own pace.',
-          shadow: true,
-          background: '#D1F2FA',
-          layout: 'column-reverse',
-          button: 'modal',
-          size: 'half',
-          textPosition: 'top',
-          img_size: 'small',
-          image: 'gift',
-        },
-        {
-          title: '9th Reason',
-          header: 'Conscious Eaters Choose Eden.',
-          description:
-            'With a diverse menu to choose from and a calorie counter on meals, you can now measure what goes into your body, and build your lifestyle around it.',
-          shadow: true,
-          background: '#FFF3CC',
-          layout: 'column',
-          button: 'modal',
-          size: 'half',
-          textPosition: 'top',
-          img_size: 'large',
-          image: 'value-meal',
-        },
-
-        {
-          title: '10th Reason',
-          header: 'Happy and Productive Teams Use Eden.',
-          description:
-            "For a monthly subscription, you never have to worry about getting these things done when the mid-month sapa hits. You're covered.",
-          shadow: true,
-          background: '#CCD5FF',
-          layout: 'column',
-          button: 'modal',
-          size: 'quarter',
-          textPosition: 'bottom',
-          img_size: 'large',
-          image: 'work-group',
-        },
-      ],
+      valueReasons: values,
+      showLeadModal: false,
+      activeReason: {
+        text: '',
+        testimonial: {},
+        showForm: false,
+      },
+      leadForm: {
+        email: '',
+        name: { required },
+        name: '',
+        phone_number: '',
+      },
     }
   },
   head() {
@@ -254,6 +300,42 @@ export default {
   methods: {
     scrollToFooter(id, label) {
       scrollToApp(id, label)
+    },
+    setTestimonial(index) {
+      console.log('a')
+      const { modal_text, modal_testimonial, modal_form } = this.valueReasons[
+        index
+      ]
+
+      this.activeReason = {
+        text: modal_text,
+        testimonial: modal_testimonial,
+        showForm: modal_form,
+      }
+
+      this.showLeadModal = true
+    },
+    closeLeadModal() {
+      this.showLeadModal = false
+      this.activeReason = {
+        text: '',
+        testimonial: {},
+        showForm: false,
+      }
+    },
+     openPlayStore() {
+      window.open(
+        ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`,
+        '_blank'
+      )
+      mixpanelTrackEvent('Get the app(playstore) clicked')
+    },
+    openAppleStore() {
+      window.open(
+        `https://apps.apple.com/us/app/eden-life/id1482373755?ls=1`,
+        '_blank'
+      )
+      mixpanelTrackEvent('Get the app(applestore) clicked')
     },
   },
 }

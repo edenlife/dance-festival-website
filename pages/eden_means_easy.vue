@@ -156,7 +156,12 @@
             </div>
           </div>
 
-          <div v-if="activeReason.showForm" class="testimonial__form">
+          <div
+            v-if="
+              activeReason.showForm && activeReason.form_type === 'individual'
+            "
+            class="testimonial__form"
+          >
             <div class="testimonial__form-body">
               <div class="testimonial__form-input">
                 <label for="name">Full Name</label>
@@ -196,10 +201,60 @@
                 {{ responseMessage }}
               </p> -->
 
-              <button class="testimonial__form-btn">Sign up</button>
+              <button class="testimonial__form-btn">
+                {{ activeReason.cta }}
+              </button>
             </div>
           </div>
-          <div v-else class="download__app">
+          <div
+            v-if="activeReason.showForm && activeReason.form_type === 'company'"
+            class="testimonial__form"
+          >
+            <div class="testimonial__form-body">
+              <div class="testimonial__form-input">
+                <label for="name">Full Name</label>
+                <input
+                  id=""
+                  v-model="leadCompanyForm.name"
+                  type="text"
+                  name=""
+                  placeholder="Company Name"
+                  :class="{ 'has-error': $v.leadCompanyForm.company_name.$error }"
+                />
+              </div>
+              <div class="testimonial__form-input">
+                <label for="email">Email</label>
+                <input
+                  id=""
+                  v-model="leadForm.email"
+                  type="email"
+                  name=""
+                  placeholder="email@example.com"
+                  :class="{ 'has-error': $v.leadForm.email.$error }"
+                />
+              </div>
+              <div class="testimonial__form-input">
+                <label for="phone number">Phone Number</label>
+                <input
+                  id=""
+                  v-model.trim="$v.leadForm.phone_number.$model"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                  type="text"
+                  name=""
+                  placeholder="Enter phone number"
+                  :class="{ 'has-error': $v.leadForm.phone_number.$error }"
+                />
+              </div>
+              <!-- <p v-if="responseMessage.length" class="error-message">
+                {{ responseMessage }}
+              </p> -->
+
+              <button class="testimonial__form-btn">
+                {{ activeReason.cta }}
+              </button>
+            </div>
+          </div>
+          <div v-if="!activeReason.showForm" class="download__app">
             <div class="download__app-title">
               <h3>Download the app!</h3>
               <p>It takes less than 5 minutes to sign up!</p>
@@ -256,6 +311,16 @@ export default {
         maxLength: maxLength(11),
       },
     },
+    leadCompanyForm: {
+      company_name: { required },
+      company_person: { required },
+      company_email: { required, email },
+     company_phonw: {
+        required,
+        minLength: minLength(11),
+        maxLength: maxLength(11),
+      },
+    },
   },
   data() {
     return {
@@ -265,12 +330,22 @@ export default {
         text: '',
         testimonial: {},
         showForm: false,
+        cta: '',
+        form_type: '',
       },
       leadForm: {
         email: '',
         name: { required },
         name: '',
         phone_number: '',
+      },
+      leadCompanyForm: {
+        company_name: '',
+        company_person: '',
+        company_email: '',
+        company_phone: '',
+        services: [],
+        extra_message: '',
       },
     }
   },
@@ -303,14 +378,20 @@ export default {
     },
     setTestimonial(index) {
       console.log('a')
-      const { modal_text, modal_testimonial, modal_form } = this.valueReasons[
-        index
-      ]
+      const {
+        modal_text,
+        modal_testimonial,
+        modal_form,
+        cta,
+        form_type,
+      } = this.valueReasons[index]
 
       this.activeReason = {
         text: modal_text,
         testimonial: modal_testimonial,
         showForm: modal_form,
+        cta: cta,
+        form_type: form_type,
       }
 
       this.showLeadModal = true
@@ -321,9 +402,11 @@ export default {
         text: '',
         testimonial: {},
         showForm: false,
+        cta: '',
+        form_type: '',
       }
     },
-     openPlayStore() {
+    openPlayStore() {
       window.open(
         ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`,
         '_blank'

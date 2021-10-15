@@ -280,7 +280,7 @@
           </div>
         </li>
         <li
-          v-if="serviceNav && currentRoute !== 'eden_means_easy'"
+          v-if="serviceNav && !hideCompanies"
           @mouseenter.stop="showService = false"
           @click="trackLink('Companies')"
         >
@@ -461,7 +461,7 @@
                 </ul>
               </transition>
             </li>
-            <li v-if="currentRoute !== 'eden_means_easy'" class="menu--list" @click.prevent="handleToggle('Companies')">
+            <li v-if="!hideCompanies" class="menu--list" @click.prevent="handleToggle('Companies')">
               <nuxt-link
                 :to="{ path: '/companies' }"
                 class="navigation__mobile-item"
@@ -571,6 +571,14 @@ export default {
         return true
       }
     },
+    hideCompanies(){
+      if(this.currentRoute === "eden_means_easy"){
+        return true
+      } else {
+        return false
+      }
+    }
+    
   },
   watch: {
     $route() {

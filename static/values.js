@@ -22,6 +22,8 @@ export default  [
           'https://twitter.com/mukoshy/status/1138582426438000645?s=20',
       },
       modal_form: true,
+      cta: "Enjoy Quality Service",
+      form_type: "individual"
     },
     {
       title: '2nd Reason',
@@ -47,6 +49,9 @@ export default  [
           'https://twitter.com/yoruba_dev/status/1408760501878804486?s=20',
       },
       modal_form: true,
+      cta: "Free Up My Time",
+      form_type: "individual"
+
     },
     {
       title: '3rd Reason',
@@ -97,6 +102,9 @@ export default  [
           'https://twitter.com/emeka_boris/status/1436384117646635013?s=20',
       },
       modal_form: true,
+      cta: "Meet Your Gardener",
+      form_type: "individual"
+
     },
     {
       title: '5th Reason',
@@ -122,6 +130,9 @@ export default  [
           'https://twitter.com/funmioyatogun/status/1415912296958857218?s=20',
       },
       modal_form: true,
+      cta: "Start Your First Subscription",
+      form_type: "individual"
+
     },
     {
       title: '6th Reason',
@@ -146,6 +157,9 @@ export default  [
           'https://twitter.com/ms_nicelegs/status/1276445141906141185?s=20',
       },
       modal_form: true,
+      cta: "Let Eden Work",
+      form_type: "individual"
+
     },
     {
       title: '7th Reason',
@@ -171,6 +185,9 @@ export default  [
           'https://twitter.com/eeyitemi/status/1293604745148534792?s=20',
       },
       modal_form: true,
+      cta: "Enjoy Quality Service",
+      form_type: "individual"
+
     },
     {
       title: '8th Reason',
@@ -196,6 +213,9 @@ export default  [
           'https://twitter.com/AdoraNwodo/status/1267800995268100104?s=20',
       },
       modal_form: true,
+      cta: "Gift an Eden Plan",
+      form_type: "individual"
+
     },
     {
       title: '9th Reason',
@@ -221,6 +241,9 @@ export default  [
           'https://twitter.com/TheOnlyIbukun/status/1302874463814529024?s=20',
       },
       modal_form: true,
+      cta: "Start Eating Healthy",
+      form_type: "individual"
+
     },
 
     {
@@ -247,6 +270,7 @@ export default  [
           'https://twitter.com/MAwonowo/status/1341345849390055424?s=20',
       },
       modal_form: true,
+      form_type: "company"
     },
   ]
   

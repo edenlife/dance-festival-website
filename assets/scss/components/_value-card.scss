@@ -1,0 +1,150 @@
+@import '../../style.scss';
+
+.value {
+  &__card {
+    position: relative;
+    color: color(eden-neutral-0);
+    display: flex;
+    flex-direction: column;
+    padding: $gap * 2.6 $gap * 2.6 $gap * 3.6;
+    border-radius: $gap * 1.6;
+
+    &.shadowed {
+      box-shadow: 0px 0px 40px rgba(102, 102, 102, 0.08);
+    }
+
+    &.full {
+      width: 100%;
+    }
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &.extra-padding {
+      padding: 0 $gap * 3;
+    }
+    h5 {
+      line-height: $gap * 3.2;
+      @include font-weight(bold);
+      @include font-size(xl);
+    }
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    &.column {
+      flex-direction: column;
+      justify-content: flex-start;
+
+      .value__image {
+        .image {
+          margin-bottom: -28px;
+          margin-top: 0;
+        }
+      }
+    }
+
+    &.column-reverse {
+      flex-direction: column-reverse;
+      padding: $gap * 6 $gap * 2 0;
+    }
+  }
+
+  &__header {
+    margin-top: $gap * 2;
+    margin-bottom: $gap * 1.6;
+    line-height: $gap * 5.6;
+    width: 80%;
+    @include font-size(6xl);
+    @include font-weight(bold);
+  }
+
+  &__text {
+    flex: 0 0 40%;
+  }
+  &__description {
+    color: color(eden-neutral-8);
+    line-height: 28.8px;
+    margin-bottom: $gap * 8.4;
+    @include font-size(lg);
+    @include font-weight(light);
+  }
+
+  &__image {
+    flex: 0 0 55%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .image {
+      width: 100%;
+      border-radius: 8px;
+      margin: 0 auto;
+      &.large {
+        max-width: 600px;
+      }
+
+      &.medium {
+        max-width: 305px;
+      }
+      &.small {
+        max-width: 148px;
+      }
+    }
+  }
+
+  @include respond(xl) {
+    &__title {
+      padding: 0 !important;
+    }
+    &__content {
+      flex-wrap: wrap;
+
+      &.column-reverse,
+      &.column {
+        flex-direction: row;
+        padding: $gap * 6 $gap * 2 0;
+      }
+    }
+    &__header {
+      width: 100%;
+    }
+    &__text,
+    &__image {
+      flex: 0 0 100%;
+    }
+  }
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  &.btn-solid__modal {
+    border-radius: 50%;
+    background-color: color(eden-green-primary);
+    color: color(eden-neutral-7);
+    line-height: 20.32px;
+    @include font-size(base);
+    @include respond(xl) {
+      &.row {
+        position: absolute;
+        top: $gap * 2.2;
+        right: $gap;
+      }
+    }
+  }
+
+  &.btn-solid__app {
+    border-radius: 4px;
+    background-color: color(eden-green-primary);
+    color: color(eden-neutral-7);
+    line-height: 20.32px;
+    padding: $gap * 1.4 $gap * 3.2;
+
+    @include font-size(base);
+  }
+}

@@ -349,13 +349,6 @@ export default {
       role: 'Customer Success',
     },
     {
-      id: 54,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/v1617954733/eden-website-v2/empty-male-member_j0cqu4.svg',
-      name: 'Douglas Franklin Idamezhim',
-      role: 'Growth',
-    },
-    {
       id: 55,
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1631093617/Ayodeji_Fatilewa_Food_Production_uy5mcr.jpg',

@@ -116,13 +116,7 @@ export default {
       name: 'Olawore Temiloluwa',
       role: 'Customer Success',
     },
-    {
-      id: 18,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919025/eden-website-v2/olamide_tfmcyc.png',
-      name: 'Olamide Akomolafe',
-      role: 'Product',
-    },
+   
 
     {
       id: 19,
@@ -486,6 +480,27 @@ export default {
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1631093627/Saviour_Otu_Supply_oyepqr.jpg',
       name: 'Saviour Otu',
       role: 'Supply',
+    },
+    {
+      id: 73,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1634300068/Edosa_Aighobahi_Food_Production_rwy0he.jpg',
+      name: 'Edosa Aighobahi',
+      role: 'Food Production',
+    },
+    {
+      id: 74,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1634300066/Stephen_Tong_Food_Production_fvg19r.jpg',
+      name: 'Stephen Tong',
+      role: 'Food Production',
+    },
+    {
+      id: 75,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1634300066/Damilola_Bankole_Growth_shjdpm.jpg',
+      name: 'Damilola Bankole',
+      role: 'Growth',
     },
   ],
 }

@@ -168,6 +168,10 @@
     &__testimony {
       display: flex;
       justify-content: center;
+
+      svg:first-child{
+transform: rotate(180deg);
+      }
     }
   }
 

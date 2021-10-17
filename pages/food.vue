@@ -938,13 +938,12 @@ export default {
     },
     fetchMeal() {
       this.lastDateFormat = dayjs(new Date())
-        .add(9, 'day')
+        .endOf('week')
         .format('DD MMM YYYY')
       this.firstDateFormat = dayjs(new Date())
-        .add(2, 'day')
+        .startOf('week')
         .format('DD MMM YYYY')
-      const dateData = dayjs(new Date()).add(2, 'day')
-      // const dateData = dayjs(new Date()).format('DD-MM-YYYY')
+      const dateData = dayjs(new Date()).format('DD-MM-YYYY') // const dateData = dayjs(new Date()).format('DD-MM-YYYY')
       // TODO change to staging
       //   const dateData = dayjs(new Date()).add(2, 'day')
       // fetch(

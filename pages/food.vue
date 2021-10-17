@@ -234,7 +234,7 @@
     <div id="menu-options" ref="menu-options" class="container--menu">
       <section class="menu">
         <div class="menu__title">
-          <h3>Next weeks menu</h3>
+          <h3>Current menu</h3>
 
           <p>{{ firstDateFormat }} - {{ lastDateFormat }}</p>
         </div>

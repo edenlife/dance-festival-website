@@ -336,6 +336,22 @@
                 <circle cx="3" cy="3" r="3" fill="#61DB98" />
               </svg>
             </li>
+             <li
+              :class="{ active: plan === 'post-construction-cleaning' }"
+              @click.prevent="setCleaningConfig('post-construction-cleaning')"
+            >
+              <span> Post Construction Cleaning </span>
+              <svg
+                v-if="plan === 'post-construction-cleaning'"
+                width="6"
+                height="6"
+                viewBox="0 0 6 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="3" cy="3" r="3" fill="#61DB98" />
+              </svg>
+            </li>
           </ul>
           <!--  -->
           <transition name="slide-fade">
@@ -343,7 +359,7 @@
               <div class="plan__price-item">
                 <div class="plan__price-description">
                   <div class="plan__price-description-title">
-                    <h5>What will standard cleaning entail?</h5>
+                    <h5>What will Standard Cleaning entail?</h5>
                     <button
                       type="button"
                       class="expand"
@@ -562,7 +578,7 @@
               <div class="plan__price-item">
                 <div class="plan__price-description">
                   <div class="plan__price-description-title">
-                    <h5>What will deep cleaning entail?</h5>
+                    <h5>What will Deep Cleaning entail?</h5>
                     <button
                       type="button"
                       class="expand"
@@ -783,6 +799,232 @@
               </div>
             </div>
           </transition>
+             <transition name="slide-fade">
+            <div v-if="plan === 'post-construction-cleaning'" class="plan__price-light">
+              <div class="plan__price-item">
+                <div class="plan__price-description">
+                  <div class="plan__price-description-title">
+                    <h5>What will Post-Construction entail?</h5>
+                    <button
+                      type="button"
+                      class="expand"
+                      @click.prevent="
+                        showCleaningDescription = !showCleaningDescription
+                      "
+                    >
+                      <svg
+                        v-if="showCleaningDescription"
+                        width="22"
+                        height="22"
+                        viewBox="0 0 22 22"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                          stroke="#FFAC76"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+
+                        <path
+                          d="M7 11H15"
+                          stroke="#FFAC76"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <svg
+                        v-else
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                          stroke="#FFAC76"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M12 8V16"
+                          stroke="#FFAC76"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M8 12H16"
+                          stroke="#FFAC76"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+
+                  <div  v-if="showCleaningDescription" class="plan__price-description-extra">
+
+                    Post construction is the cleaning done to new or renovated buildings. This kind of cleaning is done to the whole house or facility from top to bottom.
+                  </div>
+                  <ul v-if="showCleaningDescription">
+                    <li>Scraping of cements and paint stains on the floor, windows and doors</li>
+                    <li>Washing of windows and doors</li>
+                    <li>Scraping of POP from wall tiles</li>
+                    <li>Washing of the walls</li>
+                    <li>Dusting and wiping of all surfaces</li>
+                    <li>Sweeping and mopping of the floor</li>
+                    <li>Cobweb removal from all surfaces</li>
+                    <li>Resurfacing of the tiles to maintain quality</li>
+                    <li>Polishing of all wooden surfaces</li>
+                   
+                  </ul>
+                </div>
+                <div class="calculator__input">
+                  <label for="">Tell us about your home</label>
+                  <div class="select">
+                    <div class="selector">
+                      <div class="label" @click="toggle('post')">
+                        <span>{{ roomTypes }}</span>
+                      </div>
+                      <svg
+                        class="arrow"
+                        :class="{
+                          expanded: visible.includes('post'),
+                        }"
+                        width="10"
+                        height="6"
+                        viewBox="0 0 10 6"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        @click="toggle('deep')"
+                      >
+                        <path
+                          d="M1 1L5 5L9 1"
+                          stroke="#93A29B"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+
+                      <div
+                        :class="{
+                          hidden: !visible.includes('post'),
+                        }"
+                      >
+                        <transition name="slide-fade">
+                          <div class="selector--room">
+                            <ul>
+                              <li
+                                v-for="(item, i) in cleaningQtyOption"
+                                :key="i"
+                                class="control"
+                              >
+                                <span>{{ item.cleaning_area_name }}</span>
+                                <span class="control__item">
+                                  <button
+                                    class="control__item-btn"
+                                    @click.prevent="decreaseRoomQty(item, i)"
+                                  >
+                                    <svg
+                                      width="12"
+                                      height="2"
+                                      viewBox="0 0 12 2"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M1.3335 1H10.6668"
+                                        stroke="#21312A"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      />
+                                    </svg>
+                                  </button>
+                                  <span class="control__item-qty">
+                                    {{ item.qty }}
+                                  </span>
+                                  <button
+                                    class="control__item-btn"
+                                    @click.prevent="increaseRoomQty(item, i)"
+                                  >
+                                    <svg
+                                      width="16"
+                                      height="16"
+                                      viewBox="0 0 16 16"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <path
+                                        d="M8 3.33301V12.6663"
+                                        stroke="#21312A"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      />
+                                      <path
+                                        d="M3.3335 8H12.6668"
+                                        stroke="#21312A"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      />
+                                    </svg>
+                                  </button>
+                                </span>
+                              </li>
+                            </ul>
+                            <button
+                              class="pricing__calculator-btn btn-sm"
+                              @click="toggle('post')"
+                            >
+                              Done
+                            </button>
+                          </div>
+                        </transition>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="plan__price-item">
+                <p><span class="number">Frequency</span></p>
+                <div class="btn--group">
+                  <button
+                    class="btn--freq"
+                    :class="{ active: frequency === 'weekly' }"
+                    @click.prevent="calculateFrequency('weekly')"
+                  >
+                    Once a week
+                  </button>
+                  <button
+                    class="btn--freq"
+                    :class="{ active: frequency === 'bi-weekly' }"
+                    @click.prevent="calculateFrequency('bi-weekly')"
+                  >
+                    Every 2 weeks
+                  </button>
+                  <button
+                    class="btn--freq"
+                    :class="{ active: frequency === 'monthly' }"
+                    @click.prevent="calculateFrequency('monthly')"
+                  >
+                    Once a month
+                  </button>
+                </div>
+              </div>
+              <div class="plan__price-bottom">
+                <h5>
+                  <span class="price">Price </span>
+                  <span class="icon">👉 </span> NGN
+                  {{ currencyFormat(totalPrice) }}
+                </h5>
+                <p>Monthly</p>
+              </div>
+            </div>
+          </transition>
         </div>
       </section>
     </div>
@@ -864,45 +1106,6 @@
               />
             </div>
           </div>
-          <!-- <div
-            class="options__service-item options__service-gifting"
-            @mouseenter.stop="exploreService = 'gifting'"
-            @mouseleave.stop="exploreService = ''"
-            @click="trackLink('Gifting')"
-          >
-            <h3>🎁</h3>
-            <h5>Gifts</h5>
-            <p>
-              Gift cards and gift boxes for every occasion, right at your
-              fingertips.
-            </p>
-            <nuxt-link :to="{ path: '/gifts' }" class="btn">
-              {{
-                exploreService === 'gifting' || setExploreService
-                  ? 'Explore'
-                  : ''
-              }}
-
-              <svg
-                width="14"
-                height="10"
-                viewBox="0 0 14 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8.85625 0.673433C8.61719 0.907808 8.61719 1.29687 8.85156 1.53593L11.7016 4.39062H0.854688C0.521875 4.39062 0.25 4.6625 0.25 5C0.25 5.3375 0.521875 5.60937 0.854688 5.60937H11.6969L8.84687 8.46406C8.6125 8.70312 8.61719 9.0875 8.85156 9.32656C9.09062 9.56093 9.47031 9.56094 9.70937 9.32187L13.5719 5.43125C13.6234 5.375 13.6656 5.31406 13.6984 5.23906C13.7312 5.16406 13.7453 5.08437 13.7453 5.00468C13.7453 4.84531 13.6844 4.69531 13.5719 4.57812L9.70937 0.687496C9.47969 0.443746 9.09531 0.439058 8.85625 0.673433Z"
-                  fill="#0099BB"
-                />
-              </svg>
-            </nuxt-link>
-            <div class="options__service-bg">
-              <img
-                src="https://res.cloudinary.com/eden-life-inc/image/upload/q_auto/v1612286532/eden-website-v2/giftimage_xjioyo.jpg"
-                alt="gifting"
-              />
-            </div>
-          </div> -->
         </div>
       </section>
     </div>
@@ -1044,9 +1247,10 @@ export default {
       }
     },
     setCleaningType(plan) {
+      console.log(plan);
       this.plan = plan
       this.cleaningInfo.item = plan
-      const planType = plan.replace('-', ' ')
+      const planType = plan.replaceAll('-', ' ')
       this.setCleaningArea(planType)
       this.calculateCleaningPrice()
     },
@@ -1081,6 +1285,7 @@ export default {
     // Cleaning calculator
     async fetchCleaningServiceTypes() {
       const cleaningResponse = await getCleaningServiceTypes()
+      console.log(cleaningResponse.data.data);
       this.cleaningServiceTypes = cleaningResponse.data.data
       const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
         ({ name }) => name.toLowerCase() === 'light cleaning'
@@ -1097,12 +1302,12 @@ export default {
       this.calculateCleaningPrice()
     },
     setCleaningConfig(plan) {
-      this.plan = plan
+       this.plan = plan
       this.cleaningInfo.item = plan
       this.cleaningInfo.itemAreas = {}
       this.cleaningInfo.itemAreasPrice = {}
-      const planType = plan.replace('-', ' ')
-      const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
+      const planType = plan.replaceAll('-', ' ')
+       const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
         ({ name }) => name.toLowerCase() === planType
       )
       this.cleaningQtyOption = this.cleaningQtyOption
@@ -1110,6 +1315,7 @@ export default {
       this.calculateCleaningPrice()
     },
     calculateCleaningPrice() {
+      console.log(this.cleaningInfo);
       const {
         item,
         itemAreas,

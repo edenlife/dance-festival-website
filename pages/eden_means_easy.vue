@@ -1,33 +1,33 @@
 <template>
   <div class="container--hero">
-    <header class="hero">
-      <div class="hero__title">
+    <header class="hero hero__head">
+      <div class="hero__title mid__title">
         <h1>
           <span>10 Reasons</span>
-          <br />
-          Why Eden Means Easy
+          Why<br />
+          Eden Means Easy
         </h1>
 
-        <p>
-          We'll pick up and deliver your laundry 🎽. We'll have professional
-          cleaners take care of your house 🏠. We'll cook and deliver quality
-          meals to you 🥘. On Schedule.
-        </p>
+        <ul>
+          <li>Your laundry picked up and dropped off within 48 hours 👔</li>
+          <li>Professional cleaners scrubbing and sweeping your home 🏡</li>
+          <li>
+            Chef-made meals delivered from a menu of over 100 delicious meal
+            choices 🥘.
+          </li>
+        </ul>
 
-        <div>
-          <button class="hero__button">
-            <span class="share__icon">
-              <img
-                src="@/assets/images/share.svg"
-                alt="share"
-                class="share__icon__img"
-              />
-            </span>
-            <span> Share page </span>
-          </button>
-        </div>
+        <div></div>
+      </div>
+      <div class="hero__img">
+        <img
+          src="@/assets/images/easy-hero-image.png"
+          alt="phone"
+          class="hero__img-bg1"
+        />
       </div>
     </header>
+    <h1 class="values__head">All on schedule too. But there's more. 🌱</h1>
 
     <div class="values">
       <div class="value__grid">
@@ -70,6 +70,69 @@
           >
             <span>Start Your Eden Life </span>
           </button>
+        </div>
+        <div class="hero__button">
+          <span> Spread the word </span>
+
+          <ShareNetwork
+            class="share__icon"
+            network="whatsapp"
+            :url="`https://ouredenlifev2-staging.netlify.app${pageUrl}`"
+            title=""
+            description=""
+          >
+            <svg
+              width="17"
+              height="17"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              @click.prevent="openSocialMedia('Whatsapp')"
+            >
+              <path
+                d="M2.00401 22L3.35601 17.032C2.46515 15.5049 1.99711 13.768 2.00001 12C2.00001 6.477 6.47701 2 12 2C17.523 2 22 6.477 22 12C22 17.523 17.523 22 12 22C10.2328 22.0029 8.49667 21.5352 6.97001 20.645L2.00401 22ZM8.39101 7.308C8.26188 7.31602 8.13569 7.35003 8.02001 7.408C7.91153 7.46943 7.81251 7.54622 7.72601 7.636C7.60601 7.749 7.53801 7.847 7.46501 7.942C7.09542 8.423 6.89662 9.01342 6.90001 9.62C6.90201 10.11 7.03001 10.587 7.23001 11.033C7.63901 11.935 8.31201 12.89 9.20101 13.775C9.41501 13.988 9.62401 14.202 9.84901 14.401C10.9524 15.3725 12.2673 16.073 13.689 16.447L14.258 16.534C14.443 16.544 14.628 16.53 14.814 16.521C15.1053 16.506 15.3896 16.4271 15.647 16.29C15.813 16.202 15.891 16.158 16.03 16.07C16.03 16.07 16.073 16.042 16.155 15.98C16.29 15.88 16.373 15.809 16.485 15.692C16.568 15.606 16.64 15.505 16.695 15.39C16.773 15.227 16.851 14.916 16.883 14.657C16.907 14.459 16.9 14.351 16.897 14.284C16.893 14.177 16.804 14.066 16.707 14.019L16.125 13.758C16.125 13.758 15.255 13.379 14.724 13.137C14.668 13.1126 14.608 13.0987 14.547 13.096C14.4786 13.089 14.4095 13.0967 14.3443 13.1186C14.2791 13.1405 14.2193 13.1761 14.169 13.223V13.221C14.164 13.221 14.097 13.278 13.374 14.154C13.3325 14.2098 13.2754 14.2519 13.2098 14.2751C13.1443 14.2982 13.0733 14.3013 13.006 14.284C12.9409 14.2666 12.877 14.2445 12.815 14.218C12.691 14.166 12.648 14.146 12.563 14.109L12.558 14.107C11.9859 13.8572 11.4562 13.5198 10.988 13.107C10.862 12.997 10.745 12.877 10.625 12.761C10.2316 12.3842 9.88873 11.958 9.60501 11.493L9.54601 11.398C9.50364 11.3342 9.46937 11.2653 9.44401 11.193C9.40601 11.046 9.50501 10.928 9.50501 10.928C9.50501 10.928 9.74801 10.662 9.86101 10.518C9.9551 10.3983 10.0429 10.2738 10.124 10.145C10.242 9.955 10.279 9.76 10.217 9.609C9.93701 8.925 9.64701 8.244 9.34901 7.568C9.29001 7.434 9.11501 7.338 8.95601 7.319C8.90201 7.313 8.84801 7.307 8.79401 7.303C8.65972 7.29633 8.52515 7.29766 8.39101 7.307V7.308Z"
+                fill=""
+              />
+            </svg>
+          </ShareNetwork>
+          <ShareNetwork
+            class="share__icon"
+            network="twitter"
+            :url="`https://ouredenlifev2-staging.netlify.app${pageUrl}`"
+            title=""
+            description=""
+          >
+            <img
+              @click.prevent="openSocialMedia('Twitter')"
+              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341806/eden-website-v2/twitter_pxdich.svg"
+              alt="twitter"
+              class="share__icon__img"
+            />
+          </ShareNetwork>
+          <a
+            class="share__icon"
+            :href="`https://www.facebook.com/sharer/sharer.php?u=https://ouredenlifev2-staging.netlify.app${pageUrl}`"
+            target="_blank"
+          >
+            <img
+              @click="openSocialMedia('facebook')"
+              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341806/eden-website-v2/facebook_cqsjdf.svg"
+              alt="facebook"
+              class="share__icon__img"
+            />
+          </a>
+          <a
+            class="share__icon"
+            :href="`https://www.linkedin.com/sharing/share-offsite/?url=https://ouredenlifev2-staging.netlify.app${pageUrl}`"
+            target="_blank"
+          >
+            <img
+              @click="openSocialMedia('LinkedIn')"
+              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341816/eden-website-v2/linkedin_utcbna.svg"
+              alt="linkedin"
+              class="share__icon__img"
+            />
+          </a>
         </div>
       </div>
     </div>
@@ -114,7 +177,13 @@
             </button>
           </div>
 
-          <div class="lead__modal__testimony">
+          <div
+            :class="`lead__modal__testimony ${
+              activeReason.testimonial.name === 'Nadayar'
+                ? 'shadow'
+                : 'noshadow'
+            }`"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="56"
@@ -127,7 +196,84 @@
                 d="M7.066 4.76A1.665 1.665 0 0 0 4 5.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 1 0 .6.58c1.486-1.54 1.293-3.214.682-4.112zm4 0A1.665 1.665 0 0 0 8 5.668a1.667 1.667 0 0 0 2.561 1.406c-.131.389-.375.804-.777 1.22a.417.417 0 1 0 .6.58c1.486-1.54 1.293-3.214.682-4.112z"
               />
             </svg>
-            <div class="testimonial__card">
+            <div
+              v-if="activeReason.testimonial.name === 'Nadayar'"
+              class="testimonial__card no__shadow"
+            >
+              <p
+                class="testimonial__card__description"
+                v-html="activeReason.testimonial.description"
+              ></p>
+
+              <p class="testimonial__card__description handle">
+                - {{ activeReason.testimonial.handle }}
+              </p>
+
+              <div class="hero__button">
+                <span> Share Nad's Promise: </span>
+
+                <ShareNetwork
+                  class="share__icon"
+                  network="whatsapp"
+                  :url="`https://ouredenlifev2-staging.netlify.app${pageUrl}`"
+                  title=""
+                  description=""
+                >
+                  <svg
+                    width="17"
+                    height="17"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    @click.prevent="openSocialMedia('Whatsapp')"
+                  >
+                    <path
+                      d="M2.00401 22L3.35601 17.032C2.46515 15.5049 1.99711 13.768 2.00001 12C2.00001 6.477 6.47701 2 12 2C17.523 2 22 6.477 22 12C22 17.523 17.523 22 12 22C10.2328 22.0029 8.49667 21.5352 6.97001 20.645L2.00401 22ZM8.39101 7.308C8.26188 7.31602 8.13569 7.35003 8.02001 7.408C7.91153 7.46943 7.81251 7.54622 7.72601 7.636C7.60601 7.749 7.53801 7.847 7.46501 7.942C7.09542 8.423 6.89662 9.01342 6.90001 9.62C6.90201 10.11 7.03001 10.587 7.23001 11.033C7.63901 11.935 8.31201 12.89 9.20101 13.775C9.41501 13.988 9.62401 14.202 9.84901 14.401C10.9524 15.3725 12.2673 16.073 13.689 16.447L14.258 16.534C14.443 16.544 14.628 16.53 14.814 16.521C15.1053 16.506 15.3896 16.4271 15.647 16.29C15.813 16.202 15.891 16.158 16.03 16.07C16.03 16.07 16.073 16.042 16.155 15.98C16.29 15.88 16.373 15.809 16.485 15.692C16.568 15.606 16.64 15.505 16.695 15.39C16.773 15.227 16.851 14.916 16.883 14.657C16.907 14.459 16.9 14.351 16.897 14.284C16.893 14.177 16.804 14.066 16.707 14.019L16.125 13.758C16.125 13.758 15.255 13.379 14.724 13.137C14.668 13.1126 14.608 13.0987 14.547 13.096C14.4786 13.089 14.4095 13.0967 14.3443 13.1186C14.2791 13.1405 14.2193 13.1761 14.169 13.223V13.221C14.164 13.221 14.097 13.278 13.374 14.154C13.3325 14.2098 13.2754 14.2519 13.2098 14.2751C13.1443 14.2982 13.0733 14.3013 13.006 14.284C12.9409 14.2666 12.877 14.2445 12.815 14.218C12.691 14.166 12.648 14.146 12.563 14.109L12.558 14.107C11.9859 13.8572 11.4562 13.5198 10.988 13.107C10.862 12.997 10.745 12.877 10.625 12.761C10.2316 12.3842 9.88873 11.958 9.60501 11.493L9.54601 11.398C9.50364 11.3342 9.46937 11.2653 9.44401 11.193C9.40601 11.046 9.50501 10.928 9.50501 10.928C9.50501 10.928 9.74801 10.662 9.86101 10.518C9.9551 10.3983 10.0429 10.2738 10.124 10.145C10.242 9.955 10.279 9.76 10.217 9.609C9.93701 8.925 9.64701 8.244 9.34901 7.568C9.29001 7.434 9.11501 7.338 8.95601 7.319C8.90201 7.313 8.84801 7.307 8.79401 7.303C8.65972 7.29633 8.52515 7.29766 8.39101 7.307V7.308Z"
+                      fill=""
+                    />
+                  </svg>
+                </ShareNetwork>
+                <ShareNetwork
+                  class="share__icon"
+                  network="twitter"
+                  :url="`https://ouredenlifev2-staging.netlify.app${pageUrl}`"
+                  title=""
+                  description=""
+                >
+                  <img
+                    @click.prevent="openSocialMedia('Twitter')"
+                    src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341806/eden-website-v2/twitter_pxdich.svg"
+                    alt="twitter"
+                    class="share__icon__img"
+                  />
+                </ShareNetwork>
+                <a
+                  class="share__icon"
+                  :href="`https://www.facebook.com/sharer/sharer.php?u=https://ouredenlifev2-staging.netlify.app${pageUrl}`"
+                  target="_blank"
+                >
+                  <img
+                    @click="openSocialMedia('facebook')"
+                    src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341806/eden-website-v2/facebook_cqsjdf.svg"
+                    alt="facebook"
+                    class="share__icon__img"
+                  />
+                </a>
+                <a
+                  class="share__icon"
+                  :href="`https://www.linkedin.com/sharing/share-offsite/?url=https://ouredenlifev2-staging.netlify.app${pageUrl}`"
+                  target="_blank"
+                >
+                  <img
+                    @click="openSocialMedia('LinkedIn')"
+                    src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341816/eden-website-v2/linkedin_utcbna.svg"
+                    alt="linkedin"
+                    class="share__icon__img"
+                  />
+                </a>
+              </div>
+            </div>
+            <div v-else class="testimonial__card">
               <a :href="activeReason.testimonial.tweetLink" target="_blank">
                 <div class="testimonial__card__title">
                   <div class="testimonial__card__title-img">
@@ -219,7 +365,9 @@
                   type="text"
                   name=""
                   placeholder="Company Name"
-                  :class="{ 'has-error': $v.leadCompanyForm.company_name.$error }"
+                  :class="{
+                    'has-error': $v.leadCompanyForm.company_name.$error,
+                  }"
                 />
               </div>
               <div class="testimonial__form-input">
@@ -230,20 +378,119 @@
                   type="email"
                   name=""
                   placeholder="email@example.com"
-                  :class="{ 'has-error': $v.leadForm.email.$error }"
+                  :class="{
+                    'has-error': $v.leadCompanyForm.company_email.$error,
+                  }"
                 />
               </div>
               <div class="testimonial__form-input">
                 <label for="phone number">Phone Number</label>
                 <input
                   id=""
-                  v-model.trim="$v.leadForm.phone_number.$model"
+                  v-model.trim="$v.leadCompanyForm.company_phone.$model"
                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                   type="text"
                   name=""
                   placeholder="Enter phone number"
-                  :class="{ 'has-error': $v.leadForm.phone_number.$error }"
+                  :class="{
+                    'has-error': $v.leadCompanyForm.company_phone.$error,
+                  }"
                 />
+              </div>
+              <div class="testimonial__form-input">
+                <label for="services"
+                  >What plans would you like for your team?</label
+                >
+                <div
+                  class="select"
+                  :class="{ 'has-error': $v.leadCompanyForm.services.$error }"
+                >
+                  <div class="selector">
+                    <div class="label" @click="toggle()">
+                      <span
+                        v-if="
+                          leadCompanyForm.services &&
+                          !leadCompanyForm.services.length
+                        "
+                        class="placeholder"
+                      >
+                        Select services
+                      </span>
+                      <span
+                        v-for="(item, i) in leadCompanyForm.services"
+                        :key="i"
+                        class="label--text"
+                        >{{ item }}</span
+                      >
+                    </div>
+                    <svg
+                      class="arrow"
+                      :class="{ expanded: visible }"
+                      width="10"
+                      height="6"
+                      viewBox="0 0 10 6"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      @click="toggle()"
+                    >
+                      <path
+                        d="M1 1L5 5L9 1"
+                        stroke="#93A29B"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+
+                    <div :class="{ hidden: !visible, visible }">
+                      <transition name="slide-fade">
+                        <div class="selection">
+                          <ul>
+                            <li
+                              v-for="(service, index) in services"
+                              :key="index"
+                              :value="service"
+                            >
+                              <input
+                                :id="service"
+                                v-model="leadCompanyForm.services"
+                                type="checkbox"
+                                :name="service"
+                                :value="service"
+                              />
+                              <label
+                                :for="service"
+                                :class="{
+                                  checkmark: leadCompanyForm.services.includes(
+                                    service
+                                  ),
+                                }"
+                              >
+                                {{ service }}</label
+                              >
+                            </li>
+                          </ul>
+                          <button class="btn--submit" @click.prevent="toggle()">
+                            Done
+                          </button>
+                        </div>
+                      </transition>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial__form-input">
+                <label for="message"
+                  >Anything else you’d like us to know?</label
+                >
+                <textarea
+                  id=""
+                  v-model="leadCompanyForm.message"
+                  name=""
+                  cols="30"
+                  rows="10"
+                  placeholder="Extra message"
+                  :class="{ 'has-error': $v.leadCompanyForm.message.$error }"
+                ></textarea>
               </div>
               <!-- <p v-if="responseMessage.length" class="error-message">
                 {{ responseMessage }}
@@ -254,7 +501,13 @@
               </button>
             </div>
           </div>
-          <div v-if="!activeReason.showForm" class="download__app">
+          <div
+            v-if="
+              !activeReason.showForm &&
+              activeReason.testimonial.name !== 'Nadayar'
+            "
+            class="download__app"
+          >
             <div class="download__app-title">
               <h3>Download the app!</h3>
               <p>It takes less than 5 minutes to sign up!</p>
@@ -315,16 +568,19 @@ export default {
       company_name: { required },
       company_person: { required },
       company_email: { required, email },
-     company_phonw: {
+      company_phone: {
         required,
         minLength: minLength(11),
         maxLength: maxLength(11),
       },
+      services: { required },
+      message: { required },
     },
   },
   data() {
     return {
       valueReasons: values,
+      pageUrl: '',
       showLeadModal: false,
       activeReason: {
         text: '',
@@ -347,6 +603,14 @@ export default {
         services: [],
         extra_message: '',
       },
+      serviceName: 'Select services',
+      services: [
+        'Team Lunch',
+        'Team Careboxes',
+        'Team Laundry',
+        'Team Housecleaning',
+      ],
+      visible: false,
     }
   },
   head() {
@@ -362,6 +626,9 @@ export default {
       ],
     }
   },
+  mounted() {
+    this.pageUrl = this.$route.fullPath
+  },
   computed: {
     meta() {
       const metaData = {
@@ -375,6 +642,12 @@ export default {
   methods: {
     scrollToFooter(id, label) {
       scrollToApp(id, label)
+    },
+    openSocialMedia(name) {
+      mixpanelTrackEvent(`${name} share icon clicked`)
+    },
+    toggle() {
+      this.visible = !this.visible
     },
     setTestimonial(index) {
       console.log('a')

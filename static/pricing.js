@@ -52,6 +52,8 @@ export const pricing = (services) => {
     cleaning: ({ item, itemAreas, itemAreasPrice, frequency, qty }) => {
       let areasTotalPrice = 0
       let discount = 0
+      console.log(item)
+
       if (item !== 'fumigation') {
         areasTotalPrice = Object.keys(itemAreas).reduce((total, area) => {
           const areaQuantity = itemAreas[area]
@@ -61,7 +63,6 @@ export const pricing = (services) => {
       } else {
         areasTotalPrice = UNIT_PRICE_MAP.CLEANING[parseInt(qty)]
       }
-
       switch (item) {
         case 'light-cleaning':
           if (areasTotalPrice >= 15000) {
@@ -83,6 +84,18 @@ export const pricing = (services) => {
             discount = 5000
           }
           break
+          case 'post-construction-cleaning':
+            console.log();
+            if (areasTotalPrice >= 106000) {
+              discount = 20000
+            } else if (areasTotalPrice >= 75000) {
+              discount = 15000
+            } else if (areasTotalPrice >= 46000) {
+              discount = 10000
+            } else if (areasTotalPrice >= 44000) {
+              discount = 5000
+            }
+            break
         case 'fumigation':
           break
         default:

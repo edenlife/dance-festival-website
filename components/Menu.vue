@@ -8,7 +8,7 @@
         <small class="menu__action" 
         v-if="(title.includes('Current') && nextMeals.length) || title.includes('Next')"
         @click="toggleMenu">
-          {{ title.includes('Current') ? 'Next weeks Menu' : 'Current Menu' }}
+          {{ title.includes('Current') ? 'View Next weeks Menu' : 'View Current Menu' }}
         </small>
       </div>
       <nav v-if="tabs.length" class="menu__nav">

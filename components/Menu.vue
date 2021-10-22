@@ -15,7 +15,7 @@
         >
           {{
             title.includes('Current')
-              ? 'View Next weeks Menu'
+              ? "View Next week's Menu"
               : 'View Current Menu'
           }}
         </small>

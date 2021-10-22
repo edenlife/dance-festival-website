@@ -358,10 +358,10 @@
           >
             <div class="testimonial__form-body">
               <div class="testimonial__form-input">
-                <label for="name">Full Name</label>
+                <label for="name">Company Name</label>
                 <input
                   id=""
-                  v-model="leadCompanyForm.name"
+                  v-model="leadCompanyForm.company_name"
                   type="text"
                   name=""
                   placeholder="Company Name"
@@ -371,15 +371,28 @@
                 />
               </div>
               <div class="testimonial__form-input">
-                <label for="email">Email</label>
+                <label for="name">Contact Person</label>
                 <input
                   id=""
-                  v-model="leadForm.email"
+                  v-model="leadCompanyForm.contact_name"
+                  type="text"
+                  name=""
+                  placeholder="Enter Name"
+                  :class="{
+                    'has-error': $v.leadCompanyForm.contact_name.$error,
+                  }"
+                />
+              </div>
+              <div class="testimonial__form-input">
+                <label for="email">Contact person email address</label>
+                <input
+                  id=""
+                  v-model="leadCompanyForm.email"
                   type="email"
                   name=""
                   placeholder="email@example.com"
                   :class="{
-                    'has-error': $v.leadCompanyForm.company_email.$error,
+                    'has-error': $v.leadCompanyForm.email.$error,
                   }"
                 />
               </div>
@@ -387,13 +400,13 @@
                 <label for="phone number">Phone Number</label>
                 <input
                   id=""
-                  v-model.trim="$v.leadCompanyForm.company_phone.$model"
+                  v-model.trim="$v.leadCompanyForm.phone_number.$model"
                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                   type="text"
                   name=""
                   placeholder="Enter phone number"
                   :class="{
-                    'has-error': $v.leadCompanyForm.company_phone.$error,
+                    'has-error': $v.leadCompanyForm.phone_number.$error,
                   }"
                 />
               </div>
@@ -403,21 +416,21 @@
                 >
                 <div
                   class="select"
-                  :class="{ 'has-error': $v.leadCompanyForm.services.$error }"
+                  :class="{ 'has-error': $v.leadCompanyForm.service.$error }"
                 >
                   <div class="selector">
                     <div class="label" @click="toggle()">
                       <span
                         v-if="
-                          leadCompanyForm.services &&
-                          !leadCompanyForm.services.length
+                          leadCompanyForm.service &&
+                          !leadCompanyForm.service.length
                         "
                         class="placeholder"
                       >
                         Select services
                       </span>
                       <span
-                        v-for="(item, i) in leadCompanyForm.services"
+                        v-for="(item, i) in leadCompanyForm.service"
                         :key="i"
                         class="label--text"
                         >{{ item }}</span
@@ -452,7 +465,7 @@
                             >
                               <input
                                 :id="service"
-                                v-model="leadCompanyForm.services"
+                                v-model="leadCompanyForm.service"
                                 type="checkbox"
                                 :name="service"
                                 :value="service"
@@ -460,7 +473,7 @@
                               <label
                                 :for="service"
                                 :class="{
-                                  checkmark: leadCompanyForm.services.includes(
+                                  checkmark: leadCompanyForm.service.includes(
                                     service
                                   ),
                                 }"
@@ -496,7 +509,7 @@
                 {{ responseMessage }}
               </p> -->
 
-              <button class="testimonial__form-btn">
+              <button @click="companySubmit" class="testimonial__form-btn">
                 {{ activeReason.cta }}
               </button>
             </div>
@@ -538,6 +551,108 @@
         </div>
       </div>
     </modal>
+    <modal v-if="showSuccessModal" :show-modal="showSuccessModal" class="modal">
+      <div slot="header"></div>
+      <div slot="body" class="modal__body">
+        <div class="lead__modal">
+          <div class="lead__modal-title">
+            <button class="btn btn--success" @click="showSuccessModal = false">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="15.5"
+                  fill="white"
+                  stroke="#E4E8E6"
+                />
+                <path
+                  d="M20 12L12 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 12L20 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="lead__modal-body">
+            <img
+              :src="require(`~/assets/images/successful.svg`)"
+              alt="failed"
+            />
+            <h5>Information Submitted</h5>
+            <p>
+              {{ successModalText }}
+            </p>
+            <button
+              type="submit"
+              class="btn--submit"
+              :disabled="loading"
+              @click="showSuccessModal = false"
+            >
+              Continue Browsing
+            </button>
+          </div>
+        </div>
+      </div>
+      <div slot="footer"></div>
+    </modal>
+    <modal v-if="showFailedModal" :show-modal="showFailedModal" class="modal">
+      <div slot="header"></div>
+      <div slot="body" class="modal__body">
+        <div class="lead__modal">
+          <div class="lead__modal-title">
+            <button class="btn btn--success" @click="showFailedModal = false">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="15.5"
+                  fill="white"
+                  stroke="#E4E8E6"
+                />
+                <path
+                  d="M20 12L12 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 12L20 20"
+                  stroke="#798B83"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div class="lead__modal-body">
+            <img :src="require(`~/assets/images/failed.svg`)" alt="failed" />
+            <h5>Submission Failed</h5>
+            <p v-html="failModalText"></p>
+          </div>
+        </div>
+      </div>
+      <div slot="footer"></div>
+    </modal>
   </div>
 </template>
 
@@ -548,6 +663,8 @@ import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import values from '~/static/values'
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
+import { companiesApi } from '~/request/all.api'
+
 export default {
   components: {
     ValueCard: () => import('@/components/ValueCard.vue'),
@@ -566,14 +683,14 @@ export default {
     },
     leadCompanyForm: {
       company_name: { required },
-      company_person: { required },
-      company_email: { required, email },
-      company_phone: {
+      contact_name: { required },
+      email: { required, email },
+     phone_number: {
         required,
         minLength: minLength(11),
         maxLength: maxLength(11),
       },
-      services: { required },
+      service: { required },
       message: { required },
     },
   },
@@ -597,10 +714,10 @@ export default {
       },
       leadCompanyForm: {
         company_name: '',
-        company_person: '',
-        company_email: '',
-        company_phone: '',
-        services: [],
+        contact_name: '',
+        email: '',
+       phone_number: '',
+        service: [],
         extra_message: '',
       },
       serviceName: 'Select services',
@@ -611,6 +728,11 @@ export default {
         'Team Housecleaning',
       ],
       visible: false,
+      loading: false,
+      showFailedModal: false,
+      showSuccessModal: false,
+      successModalText: '',
+      failModalText: '',
     }
   },
   head() {
@@ -650,7 +772,6 @@ export default {
       this.visible = !this.visible
     },
     setTestimonial(index) {
-      console.log('a')
       const {
         modal_text,
         modal_testimonial,
@@ -692,6 +813,40 @@ export default {
         '_blank'
       )
       mixpanelTrackEvent('Get the app(applestore) clicked')
+    },
+
+    async companySubmit() {
+      this.$v.leadCompanyForm.$touch()
+      if (!this.$v.leadCompanyForm.$error) {
+        this.leadCompanyForm.service = JSON.stringify(
+          this.leadCompanyForm.service
+        )
+        try {
+          this.loading = true
+          await companiesApi(this.leadCompanyForm)
+          Object.keys(this.leadCompanyForm).forEach(
+            (key) => (this.leadCompanyForm[key] = '')
+          )
+          this.$nextTick(() => {
+            this.$v.leadCompanyForm.$reset()
+            this.leadCompanyForm.service = []
+          })
+          this.successModalText =
+            'You have successfully submitted your company’s information. We will reach out to you within the next 48 hours.'
+          this.showSuccessModal = true
+          this.closeLeadModal()
+          this.loading = false
+          mixpanelTrackEvent('Company form - Eden Means Easy page')
+        } catch (error) {
+          this.leadCompanyForm.service = JSON.parse(
+            this.leadCompanyForm.service
+          )
+          this.failModalText =
+            "Your company’s information was not successfully submitted. Please try again or reach us at <span style='color:#03A84E'>eve@edenlife.ng </span> or <span style='color:#03A84E'>+2348123456790</span>"
+          this.loading = false
+          this.showFailedModal = true
+        }
+      }
     },
   },
 }

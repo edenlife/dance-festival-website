@@ -67,15 +67,15 @@
       }
     }
 
-    ul{
-      padding: 0 $gap * 2 $gap * 2 ;
-      li{
+    ul {
+      padding: 0 $gap * 2 $gap * 2;
+      li {
         margin: $gap 0;
         font-size: 1.125rem;
       }
     }
     p {
-      margin:  $gap * 2 0 0;
+      margin: $gap * 2 0 0;
       line-height: 29px;
       @include font-size(lg);
       width: 85%;
@@ -547,8 +547,6 @@
         @include font-size(sm);
         line-height: 21px;
       }
-
-      
     }
   }
 
@@ -672,6 +670,14 @@
           color: color(eden-neutral-1);
           @include font-family(cerebri);
         }
+      }
+
+      &-extra {
+        background: #f9fbfa;
+        border: 1px solid #cbd8d2;
+        border-radius: 8px;
+        padding: $gap * 1.4;
+        margin: $gap * 2.4 0;
       }
       ul {
         li {
@@ -898,7 +904,7 @@
                 border-radius: 8px;
                 box-shadow: 0px 4px 8px rgba(121, 139, 131, 0.161);
 
-                .pricing__calculator-btn{
+                .pricing__calculator-btn {
                   align-self: flex-end;
                   color: color(eden-green-primary);
                   @include font-size(base);
@@ -913,7 +919,6 @@
                   padding: 8px 16px;
                   transition: none;
                 }
-    
               }
               li {
                 display: flex;

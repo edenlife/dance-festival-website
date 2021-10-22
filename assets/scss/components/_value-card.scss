@@ -6,7 +6,7 @@
     color: color(eden-neutral-0);
     display: flex;
     flex-direction: column;
-    padding: $gap * 2.6 $gap * 2.6 $gap * 3.6;
+    padding: $gap * 4.8;
     border-radius: $gap * 1.6;
 
     &.shadowed {
@@ -16,15 +16,47 @@
     &.full {
       width: 100%;
     }
+
+    &.video__content {
+      height: 750px;
+      overflow: hidden;
+
+      &:nth-child(1) {
+        height: 950px;
+      }
+
+      .value__image {
+        justify-content: center;
+      }
+      @include respond(xl) {
+        height: unset  !important;
+
+       
+        .value__image {
+          video {
+            margin: 0 !important;
+          }
+        }
+      }
+    }
+    @include respond(xl) {
+      padding: $gap * 2 $gap * 2;
+
+    }
+
+    @include respond(md) {
+      justify-content: center;
+       width: 80vw;
+        max-width: 320px;
+        margin: auto;
+    }
   }
 
   &__title {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    &.extra-padding {
-      padding: 0 $gap * 3;
-    }
+
     h5 {
       line-height: $gap * 3.2;
       @include font-weight(bold);
@@ -35,9 +67,14 @@
   &__content {
     display: flex;
     justify-content: center;
+    align-items: flex-end;
     &.column {
       flex-direction: column;
       justify-content: flex-start;
+      align-items: baseline;
+      .value__text {
+        flex: 0;
+      }
 
       .value__image {
         .image {
@@ -48,8 +85,15 @@
     }
 
     &.column-reverse {
+      align-items: center;
       flex-direction: column-reverse;
-      padding: $gap * 6 $gap * 2 0;
+      padding-top: $gap * 6;
+    }
+
+    &.row {
+      .value__image {
+        margin-top: -30px;
+      }
     }
   }
 
@@ -57,13 +101,12 @@
     margin-top: $gap * 2;
     margin-bottom: $gap * 1.6;
     line-height: $gap * 5.6;
-    width: 80%;
     @include font-size(6xl);
     @include font-weight(bold);
   }
 
   &__text {
-    flex: 0 0 40%;
+    flex: 0 0 50%;
   }
   &__description {
     color: color(eden-neutral-8);
@@ -74,24 +117,30 @@
   }
 
   &__image {
-    flex: 0 0 55%;
+    flex: 0 0 50%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    position: relative;
     .image {
       width: 100%;
-      border-radius: 8px;
+      border-radius: 4px;
       margin: 0 auto;
       &.large {
-        max-width: 600px;
+        width: 530px;
       }
 
       &.medium {
         max-width: 305px;
       }
       &.small {
-        max-width: 148px;
+        width: 148px;
       }
+    }
+    video {
+      margin: 0 $gap * 19.5 0 !important;
+      border-radius: $gap * 3 !important;
+      border: $gap * 1.3 solid color(eden-neutral-0);
     }
   }
 
@@ -113,7 +162,24 @@
     }
     &__text,
     &__image {
+      flex: 0 0 100% !important;
+    }
+  }
+  @include respond(md) {
+    &__image {
       flex: 0 0 100%;
+      .image {
+        &.large {
+          width: 100%;
+        }
+
+        &.medium {
+          max-width: 305px;
+        }
+        &.small {
+          max-width: 148px;
+        }
+      }
     }
   }
 }
@@ -123,17 +189,45 @@ button {
   align-items: center;
   justify-content: center;
   padding: 4px;
-  &.btn-solid__modal {
-    border-radius: 50%;
-    background-color: color(eden-green-primary);
-    color: color(eden-neutral-7);
-    line-height: 20.32px;
+
+  &.btn__modal {
+    color: color(eden-neutral-0);
     @include font-size(base);
+
+    .btn__modal-solid {
+      border-radius: 50%;
+      background-color: color(eden-green-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: color(eden-neutral-7);
+      line-height: 20.32px;
+      width: $gap * 4.8;
+      height: $gap * 4.8;
+    }
+    &.row {
+      margin-top: 116px;
+      // margin-bottom: 40px;
+    }
     @include respond(xl) {
       &.row {
         position: absolute;
         top: $gap * 2.2;
         right: $gap;
+        margin-top: 0;
+      }
+
+      .btn__modal-solid {
+        width: $gap * 3.2;
+        height: $gap * 3.2;
+
+        img {
+          width: 16px;
+          height: 16px;
+        }
+      }
+      span {
+        display: none;
       }
     }
   }
@@ -146,5 +240,8 @@ button {
     padding: $gap * 1.4 $gap * 3.2;
 
     @include font-size(base);
+  }
+  span {
+    margin-left: 12px;
   }
 }

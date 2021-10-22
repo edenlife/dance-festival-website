@@ -1,37 +1,24 @@
 <template>
   <div
-    :class="`value__card ${content.shadow && 'shadowed'}`"
+    :class="`value__card ${content.shadow && 'shadowed'} ${content.media.type === 'video' && 'video__content'}`"
     :style="setStyles(content)"
   >
     <div :class="`value__title ${content.layout === 'row' && 'extra-padding'}`">
-      <h5>{{ content.title }}</h5>
+      <h5 v-html="content.title"></h5>
 
       <div v-if="content.layout.includes('column')">
         <button
           v-if="content.button === 'modal'"
-          class="btn-solid__modal"
+          class="btn__modal"
           @click="showModal"
         >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12 8V16"
-              stroke="#ffffff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+          <div class="btn__modal-solid">
+            <img
+              src="@/assets/images/eden-logo.svg"
+              alt="action-btn"
+              class="image"
             />
-            <path
-              d="M8 12H16"
-              stroke="#ffffff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+          </div>
         </button>
 
         <button v-else class="btn-solid__app" @click="showModal">
@@ -42,42 +29,45 @@
 
     <div :class="`value__content ${content.layout}`">
       <div class="value__text">
-        <h3 class="value__header">{{ content.header }}</h3>
-        <p class="value__description">{{ content.description }}</p>
+        <h3 v-html="content.header" class="value__header"></h3>
+        <p class="value__description" v-html="content.description"></p>
         <button
           v-if="content.layout === 'row'"
-          class="btn-solid__modal row"
+          class="btn__modal row"
           @click="showModal"
         >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12 8V16"
-              stroke="#ffffff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+          <div class="btn__modal-solid">
+            <img
+              src="@/assets/images/eden-logo.svg"
+              alt="action-btn"
+              class="image"
             />
-            <path
-              d="M8 12H16"
-              stroke="#ffffff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+          </div>
+
+          <span v-if="content.title=== 'The 1st Reason'"> Read our CEO's Promise.</span>
+
+          <span v-else> View Testimonial </span>
         </button>
       </div>
 
       <div class="value__image">
         <img
-          :src="require(`~/assets/images/${content.image}.svg`)"
+          v-if="content.media.type === 'image'"
+          :src="require(`~/assets/images/${content.media.src}.png`)"
           alt="value-image"
-          :class="`image ${content.img_size}`"
+          :class="`image ${content.media.size}`"
         />
+        <video
+          :class="`image ${content.media.size}`"
+          ref="videoRef"
+          muted
+          playsinline
+           autoplay
+          loop
+          v-if="content.media.type === 'video'"
+        >
+          <source :src="content.media.src" type="video/mp4" />
+        </video>
       </div>
     </div>
   </div>

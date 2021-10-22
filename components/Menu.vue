@@ -5,10 +5,19 @@
         <h3>{{ title }}</h3>
         <p>{{ firstDateFormat }} - {{ lastDateFormat }}</p>
 
-        <small class="menu__action" 
-        v-if="(title.includes('Current') && nextMeals.length) || title.includes('Next')"
-        @click="toggleMenu">
-          {{ title.includes('Current') ? 'View Next weeks Menu' : 'View Current Menu' }}
+        <small
+          class="menu__action"
+          v-if="
+            (title.includes('Current') && nextMeals.length) ||
+            title.includes('Next')
+          "
+          @click="toggleMenu"
+        >
+          {{
+            title.includes('Current')
+              ? 'View Next weeks Menu'
+              : 'View Current Menu'
+          }}
         </small>
       </div>
       <nav v-if="tabs.length" class="menu__nav">
@@ -86,14 +95,14 @@
       </nav>
       <div id="load-more" class="menu__list">
         <figure v-for="(item, i) in mealsInCategory" :key="i">
-          <div v-if="!item.image_url" class="menu__list-img fallback">
+          <div v-if="!item.image" class="menu__list-img fallback">
             <img
               src="https://res.cloudinary.com/eden-life-inc/image/upload/v1612250107/eden-website-v2/food-fallback_gnwkhu.png"
               :alt="item.name"
             />
           </div>
           <div v-else class="menu__list-img" :style="placeholderColorMix(i)">
-            <img :src="optimizeImage(item.image_url, i)" :alt="item.name" />
+            <img :src="optimizeImage(item.image, i)" :alt="item.name" />
           </div>
           <figcaption>
             <p>
@@ -157,7 +166,7 @@ export default {
     placeholderColorMix,
     toggleMenu() {
       if (this.title.includes('Current')) {
-         this.$emit('showNext')
+        this.$emit('showNext')
       } else {
         this.$emit('showCurrent')
       }
@@ -248,7 +257,7 @@ export default {
     },
     changeCategory(val) {
       this.activeTabIndex = val
-      this.mealsInCategory = this.getMealsInEachCategory(this.meals, val)
+      this.mealsInCategory = this.getMealsInEachCategory(this.displayMeals, val)
       console.log(this.mealsInCategory)
     },
 

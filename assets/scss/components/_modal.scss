@@ -1,5 +1,23 @@
 @import '../../style.scss';
 
+.modal-lead {
+  .modal-wrapper{
+max-height: 100%;
+  }
+  .modal-container {
+    width: 90vw;
+    margin: auto;
+    max-width: 600px;
+    padding: 10px 24px;
+    @include respond(md) {
+      padding: 10px 20px;
+      width: 500px;
+    }
+    @include respond(xs) {
+       width: 90vw;
+    }
+  }
+}
 .modal-mask {
   position: fixed;
   z-index: 99998;

@@ -232,118 +232,37 @@
     </div>
 
     <div id="menu-options" ref="menu-options" class="container--menu">
-      <section class="menu">
-        <div class="menu__title">
-          <h3>Current menu</h3>
+      <div v-if="!currentMeals.length" class="menu__loader">
+        <Loader />
+        <p>Loading menu...</p>
+      </div>
+      <transition name="slide-fade">
+        <Menu
+          v-if="currentMeals.length && showCurrentMenu"
+          :meals="currentMeals"
+          :nextMeals="nextWeekMeals"
+          :title="'Current Menu'"
+          :firstDateFormat="firstDateFormat"
+          :lastDateFormat="lastDateFormat"
+          @showNext="toggleMenu('next')"
+        />
+      </transition>
 
-          <p>{{ firstDateFormat }} - {{ lastDateFormat }}</p>
-        </div>
-        <div v-if="!allMeal.length" class="menu__loader">
-          <Loader />
-          <p>Loading menu...</p>
-        </div>
-        <nav v-if="tabs.length" class="menu__nav">
-          <carousel
-            class="carousel-container"
-            :nav="false"
-            :dots="false"
-            :loop="false"
-            :responsive="{
-              0: {
-                items: 1,
-              },
-              600: {
-                items: 8,
-              },
-            }"
-          >
-            <template slot="prev"
-              ><span class="prev" @click="previousCategory()">
-                <svg
-                  width="6"
-                  height="10"
-                  viewBox="0 0 6 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1 1L5 5L1 9"
-                    stroke="#03a84e"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg> </span
-            ></template>
-
-            <div
-              v-for="(tab, index) in tabs"
-              :key="index"
-              class="menu__nav-item"
-              @click.prevent="changeCategory(tab)"
-            >
-              <p :class="`${activeTabIndex === tab ? 'active' : ''}`">
-                {{ tab }}
-              </p>
-              <svg
-                v-if="activeTabIndex === tab"
-                width="6"
-                height="6"
-                viewBox="0 0 6 6"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="3" cy="3" r="3" fill="#61DB98" />
-              </svg>
-            </div>
-
-            <template slot="next">
-              <span class="next" @click="nextCategory()">
-                <svg
-                  width="6"
-                  height="10"
-                  viewBox="0 0 6 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1 1L5 5L1 9"
-                    stroke="#03a84e"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg> </span
-            ></template>
-          </carousel>
-        </nav>
-
-        <div id="load-more" class="menu__list">
-          <figure v-for="(item, i) in mealsInCategory" :key="i">
-            <div v-if="!item.image" class="menu__list-img fallback">
-              <img
-                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1612250107/eden-website-v2/food-fallback_gnwkhu.png"
-                :alt="item.name"
-              />
-            </div>
-            <div v-else class="menu__list-img" :style="placeholderColorMix(i)">
-              <img :src="optimizeImage(item.image, i)" :alt="item.name" />
-            </div>
-            <figcaption>
-              <p>
-                {{
-                  `${item.name}${
-                    item.main_sides ? ', ' + item.main_sides : ''
-                  }${item.protein_sides ? ', ' + item.protein_sides : ''}${
-                    item.other_sides ? ', ' + item.other_sides : ''
-                  }`
-                }}
-              </p>
-            </figcaption>
-          </figure>
-        </div>
+      <transition name="slide-fade">
+        <Menu
+          v-if="showNextMenu"
+          :meals="nextWeekMeals"
+          :title="'Next weeks Menu'"
+          :firstDateFormat="nextFirstDateFormat"
+          :lastDateFormat="nextLastDateFormat"
+          @showCurrent="toggleMenu('current')"
+        />
+      </transition>
+      <section v-if="currentMeals.length" class="menu">
         <button
-          v-if="tabs.length"
+          v-if="currentMeals.length"
           type="button"
-          class="hero__button-solid"
+          class="btn"
           @click.prevent="scrollToFooter('#get-the-app', 'I want a meal plan')"
         >
           I Want a Meal Plan
@@ -449,12 +368,6 @@
           </ul>
           <transition name="slide-fade">
             <div v-if="period === 'weekly'" class="plan__price-weekly">
-              <!-- <div>
-                <img
-                  src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611757237/eden-website-v2/food-image1_cppzzn.png"
-                  alt="Meal"
-                />
-              </div> -->
               <div class="plan__price-item one">
                 <p>How many meals do you want daily?</p>
                 <div class="btn--group">
@@ -804,7 +717,9 @@ import getSiteMeta from '~/utils/getSiteMeta'
 export default {
   components: {
     Loader: () => import('@/components/Loader.vue'),
+    Menu: () => import('@/components/Menu.vue'),
   },
+
   data() {
     return {
       headerText: [
@@ -831,8 +746,15 @@ export default {
       },
       firstDateFormat: null,
       lastDateFormat: null,
+      nextFirstDateFormat: null,
+      nextLastDateFormat: null,
+      currentDay: null,
       allMeal: [],
+      currentMeals: [],
+      nextWeekMeals: [],
       mealsInCategory: [],
+      showCurrentMenu: true,
+      showNextMenu: false,
     }
   },
   head() {
@@ -876,7 +798,6 @@ export default {
       meal: { item: null, frequency: 'weekly', qty: this.mealsPerWeek },
     })
     this.fetchMeal()
-
     // scroll to menu
     const getRoute = this.$nuxt.$route.fullPath
     if (getRoute.includes('current-menu')) {
@@ -891,6 +812,15 @@ export default {
   methods: {
     currencyFormat,
     placeholderColorMix,
+    toggleMenu(menu) {
+      if (menu === 'next') {
+        this.showCurrentMenu = false
+        this.showNextMenu = true
+      } else {
+        this.showNextMenu = false
+        this.showCurrentMenu = true
+      }
+    },
     optimizeImage(imgUrl, index) {
       const imageUrlTrim = imgUrl.substring(0, imgUrl.indexOf('/upload'))
       const imageFormat = imgUrl.substring(imgUrl.indexOf('/upload') + 7)
@@ -936,66 +866,67 @@ export default {
         document.querySelector('svg.eee').setAttribute('class', 'timeline--e')
       }
     },
-    fetchMeal() {
+    async fetchMeal() {
+      const dateData = dayjs(new Date()).format('DD-MM-YYYY')
+      let nextDateData
+      this.currentDay = dayjs().day()
       this.lastDateFormat = dayjs(new Date())
         .endOf('week')
         .format('DD MMM YYYY')
       this.firstDateFormat = dayjs(new Date())
         .startOf('week')
         .format('DD MMM YYYY')
-      const dateData = dayjs(new Date()).format('DD-MM-YYYY') // const dateData = dayjs(new Date()).format('DD-MM-YYYY')
-      // TODO change to staging
-      //   const dateData = dayjs(new Date()).add(2, 'day')
-      // fetch(
-      //   `https://api.edenlife.ng/api/v2/meal/items/all?current_date=02-05-2021`
-      // )
+
+      switch (this.currentDay) {
+        case 4:
+          this.nextLastDateFormat = dayjs(new Date())
+            .add(9, 'day')
+            .format('DD MMM YYYY')
+          this.nextFirstDateFormat = dayjs(new Date())
+            .add(3, 'day')
+            .format('DD MMM YYYY')
+          nextDateData = dayjs(new Date()).add(3, 'day').format('DD MMM YYYY')
+          break
+        case 5:
+          this.nextLastDateFormat = dayjs(new Date())
+            .add(8, 'day')
+            .format('DD MMM YYYY')
+          this.nextFirstDateFormat = dayjs(new Date())
+            .add(2, 'day')
+            .format('DD MMM YYYY')
+          nextDateData = dayjs(new Date()).add(2, 'day').format('DD MMM YYYY')
+          break
+        case 6:
+          this.nextLastDateFormat = dayjs(new Date())
+            .add(7, 'day')
+            .format('DD MMM YYYY')
+          this.nextFirstDateFormat = dayjs(new Date())
+            .add(1, 'day')
+            .format('DD MMM YYYY')
+          nextDateData = dayjs(new Date()).add(1, 'day').format('DD MMM YYYY')
+          break
+
+        default:
+          break
+      }
+
       fetch(
         `https://api.edenlife.ng/api/v2/meal/items/all?current_date=${dateData}`
       )
         .then((res) => res.json())
         .then((meals) => {
-          this.allMeal = meals.data
-          const combo = []
-          this.allMeal.map((item) => {
-            return item.preset_combos_full.map((el) => {
-              if (el.visible === true) {
-                combo.push({
-                  name: item.name,
-                  class_category: item.class_category,
-                  ...el,
-                })
-              }
-              return combo
-            })
-          })
-          this.allMeal.map((item) => {
-            if (
-              item.class_category.includes('juice') &&
-              item.combo_image_url !== null &&
-              item.id !== 3864
-            ) {
-              combo.push({
-                name: item.name,
-                class_category: item.class_category,
-                image: item.combo_image_url,
-              })
-            }
-            return combo
-          })
-          this.allMeal.map((item) => {
-            if (item.class_category.includes('smoothies')) {
-              combo.push({
-                name: item.name,
-                class_category: item.class_category,
-                image: item.image_url,
-              })
-            }
-            return combo
-          })
-
-          this.allMeal = combo
-          this.getMealCategories(this.allMeal)
+          this.currentMeals = meals.data
         })
+
+      if (this.currentDay >= 4) {
+        fetch(
+          `https://api.edenlife.ng/api/v2/meal/items/all?current_date=${nextDateData}`
+        )
+          .then((res) => res.json())
+          .then((meals) => {
+            this.nextWeekMeals = meals.data
+          })
+      }
     },
     getMealCategories(items) {
       const mapped = items.reduce((acc, { class_category }) => {

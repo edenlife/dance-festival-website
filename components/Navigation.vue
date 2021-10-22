@@ -280,7 +280,7 @@
           </div>
         </li>
         <li
-          v-if="serviceNav"
+          v-if="serviceNav && !hideCompanies"
           @mouseenter.stop="showService = false"
           @click="trackLink('Companies')"
         >
@@ -385,7 +385,7 @@
             href="#"
             class="navigation__menu-item navigation__menu-link"
             @click.prevent="scrollTo('#get-the-app')"
-            >Get Started</a
+            > {{ currentRoute === 'eden_means_easy' ? 'Sign Up Now': 'Get Started'}} </a
           >
         </li>
       </ul>
@@ -461,7 +461,7 @@
                 </ul>
               </transition>
             </li>
-            <li class="menu--list" @click.prevent="handleToggle('Companies')">
+            <li v-if="!hideCompanies" class="menu--list" @click.prevent="handleToggle('Companies')">
               <nuxt-link
                 :to="{ path: '/companies' }"
                 class="navigation__mobile-item"
@@ -527,7 +527,7 @@
                 href="#"
                 class="navigation__mobile-item navigation__mobile-link"
                 @click.prevent="scrollTo('#get-the-app')"
-                >Get Started</a
+                > {{ currentRoute === 'eden_means_easy' ? 'Sign Up Now': 'Get Started'}} </a
               >
             </li>
           </ul>
@@ -572,6 +572,14 @@ export default {
         return true
       }
     },
+    hideCompanies(){
+      if(this.currentRoute === "eden_means_easy"){
+        return true
+      } else {
+        return false
+      }
+    }
+    
   },
   watch: {
     $route() {

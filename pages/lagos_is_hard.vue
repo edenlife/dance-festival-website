@@ -35,9 +35,7 @@
             >
               I Want an Easy Life
             </button>
-            <p class="highlight">
-             Save up to 20hrs/week.
-            </p>
+            <p class="highlight">Save up to 20hrs/week.</p>
           </div>
         </div>
         <div class="hero__img">
@@ -326,112 +324,32 @@
     </div>
 
     <div class="container--menu">
-      <section class="menu">
-        <div class="menu__title">
-          <h3>Current menu</h3>
-          <p>{{ firstDateFormat }} - {{ lastDateFormat }}</p>
-        </div>
-        <div v-if="!allMeal.length" class="menu__loader">
-          <Loader />
-          <p>Loading menu...</p>
-        </div>
-        <nav v-if="tabs.length" class="menu__nav">
-          <carousel
-            class="carousel-container"
-            :nav="false"
-            :dots="false"
-            :loop="false"
-            :responsive="{
-              0: {
-                items: 1,
-              },
-              600: {
-                items: 8,
-              },
-            }"
-          >
-            <template slot="prev"
-              ><span class="prev" @click="previousCategory()">
-                <svg
-                  width="6"
-                  height="10"
-                  viewBox="0 0 6 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1 1L5 5L1 9"
-                    stroke="#61DB98"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg> </span
-            ></template>
-
-            <div
-              v-for="(tab, index) in tabs"
-              :key="index"
-              class="menu__nav-item"
-              @click.prevent="changeCategory(tab)"
-            >
-              <p :class="`${activeTabIndex === tab ? 'active' : ''}`">
-                {{ tab }}
-              </p>
-              <svg
-                v-if="activeTabIndex === tab"
-                width="6"
-                height="6"
-                viewBox="0 0 6 6"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="3" cy="3" r="3" fill="#61DB98" />
-              </svg>
-            </div>
-
-            <template slot="next">
-              <span class="next" @click="nextCategory()">
-                <svg
-                  width="6"
-                  height="10"
-                  viewBox="0 0 6 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1 1L5 5L1 9"
-                    stroke="#61DB98"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg> </span
-            ></template>
-          </carousel>
-        </nav>
-        <div class="menu__list">
-          <figure v-for="(item, i) in mealsInCategory" :key="i">
-            <div v-if="!item.image" class="menu__list-img fallback">
-              <img
-                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1612250107/eden-website-v2/food-fallback_gnwkhu.png"
-                :alt="item.name"
-              />
-            </div>
-            <div v-else class="menu__list-img" :style="placeholderColorMix(i)">
-              <img :src="optimizeImage(item.image, i)" :alt="item.name" />
-            </div>
-            <figcaption>
-              <p>
-                {{
-                  `${item.name}${
-                    item.main_sides ? ', ' + item.main_sides : ''
-                  }${item.protein_sides ? ', ' + item.protein_sides : ''}${
-                    item.other_sides ? ', ' + item.other_sides : ''
-                  }`
-                }}
-              </p>
-            </figcaption>
-          </figure>
-        </div>
+      <div v-if="!currentMeals.length" class="menu__loader">
+        <Loader />
+        <p>Loading menu...</p>
+      </div>
+      <transition name="slide-fade">
+        <Menu
+          v-if="currentMeals.length && showCurrentMenu"
+          :meals="currentMeals"
+          :nextMeals="nextWeekMeals"
+          :title="'Current Menu'"
+          :firstDateFormat="firstDateFormat"
+          :lastDateFormat="lastDateFormat"
+          @showNext="toggleMenu('next')"
+        />
+      </transition>
+      <transition name="slide-fade">
+        <Menu
+          v-if="showNextMenu"
+          :meals="nextWeekMeals"
+          :title="'Next weeks Menu'"
+          :firstDateFormat="nextFirstDateFormat"
+          :lastDateFormat="nextLastDateFormat"
+          @showCurrent="toggleMenu('current')"
+        />
+      </transition>
+      <section v-if="currentMeals.length" class="menu">
         <button class="menu-btn" @click.prevent="scrollToTop('custom')">
           I Want an Eden Life
         </button>
@@ -1017,7 +935,10 @@ import currentMeal from '~/mixins/currentMeal'
 import { signupApi } from '~/request/all.api'
 
 export default {
-  Loader: () => import('@/components/Loader.vue'),
+  components: {
+    Loader: () => import('@/components/Loader.vue'),
+    Menu: () => import('@/components/Menu.vue'),
+  },
   mixins: [validationMixin, customPricing, currentMeal],
   layout: 'lead',
   validations: {
@@ -1195,4 +1116,17 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/pages/_lagos_is_hard.scss';
+
+.menu {
+  padding: 0;
+  margin: 0 auto $gap;
+
+  .menu-btn {
+    margin-top: 0 !important;
+  }
+}
+
+.menu__loader {
+  padding: 20px;
+}
 </style>

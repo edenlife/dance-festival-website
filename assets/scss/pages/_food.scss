@@ -475,8 +475,8 @@
 
 .menu {
   width: 83%;
-  margin: 0 auto;
-  padding: $gap * 8 0;
+  margin: 0 auto $gap;
+  padding: 0;
   display: flex;
   flex-direction: column;
   &__title {
@@ -621,9 +621,14 @@
     }
   }
   .btn {
-    color: color(eden-green-primary);
+    align-self: center;
     @include font-size(lg);
-    line-height: 23px;
+    line-height: 29px;
+    background-color: color(eden-green-primary);
+    color: color(eden-neutral-7);
+    padding: $gap * 1.4 $gap * 3.2;
+    border-radius: 4px;
+    transition: all 0.4s ease-in-out;
     cursor: pointer;
   }
   @include respond(xl) {

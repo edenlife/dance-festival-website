@@ -631,6 +631,8 @@ export default {
 }
 .menu {
   padding: 0 !important;
+  margin: 0 auto $gap;
+
   .menu-btn {
     margin-top: 0 !important;
   }

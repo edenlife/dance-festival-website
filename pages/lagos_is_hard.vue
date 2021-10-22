@@ -1119,12 +1119,14 @@ export default {
 
 .menu {
   padding: 0;
+  margin: 0 auto $gap;
+
   .menu-btn {
     margin-top: 0 !important;
   }
 }
 
-.menu__loader{
+.menu__loader {
   padding: 20px;
 }
 </style>

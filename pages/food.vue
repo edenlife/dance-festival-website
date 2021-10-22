@@ -262,7 +262,7 @@
         <button
           v-if="currentMeals.length"
           type="button"
-          class="hero__button-solid"
+          class="btn"
           @click.prevent="scrollToFooter('#get-the-app', 'I want a meal plan')"
         >
           I Want a Meal Plan

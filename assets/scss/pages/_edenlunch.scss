@@ -385,6 +385,7 @@
     flex-direction: column;
     align-items: center;
     margin-top: $gap * 4;
+    padding: 20px;
     p {
       @include font-size(sm);
       @include font-weight(light);

@@ -7,8 +7,15 @@ export default {
       activeTabIndex: null,
       firstDateFormat: null,
       lastDateFormat: null,
+      nextFirstDateFormat: null,
+      nextLastDateFormat: null,
+      currentDay: null,
       allMeal: [],
+      currentMeals: [],
+      nextWeekMeals: [],
       mealsInCategory: [],
+      showCurrentMenu: true,
+      showNextMenu: false,
     }
   },
   mounted() {
@@ -46,61 +53,75 @@ export default {
         )
       }
     },
+    toggleMenu(menu) {
+      if (menu === 'next') {
+        this.showCurrentMenu = false
+        this.showNextMenu = true
+      } else {
+        this.showNextMenu = false
+        this.showCurrentMenu = true
+      }
+    },
     fetchMeal() {
+      const dateData = dayjs(new Date()).format('DD-MM-YYYY')
+      let nextDateData
+      this.currentDay = dayjs().day()
       this.lastDateFormat = dayjs(new Date())
         .endOf('week')
         .format('DD MMM YYYY')
       this.firstDateFormat = dayjs(new Date())
         .startOf('week')
         .format('DD MMM YYYY')
-      const dateData = dayjs(new Date()).format('DD-MM-YYYY')
-      // TODO change to staging
+
+      switch (this.currentDay) {
+        case 4:
+          this.nextLastDateFormat = dayjs(new Date())
+            .add(9, 'day')
+            .format('DD MMM YYYY')
+          this.nextFirstDateFormat = dayjs(new Date())
+            .add(3, 'day')
+            .format('DD MMM YYYY')
+          nextDateData = dayjs(new Date()).add(3, 'day').format('DD MMM YYYY')
+          break
+        case 5:
+          this.nextLastDateFormat = dayjs(new Date())
+            .add(8, 'day')
+            .format('DD MMM YYYY')
+          this.nextFirstDateFormat = dayjs(new Date())
+            .add(2, 'day')
+            .format('DD MMM YYYY')
+          nextDateData = dayjs(new Date()).add(2, 'day').format('DD MMM YYYY')
+          break
+        case 6:
+          this.nextLastDateFormat = dayjs(new Date())
+            .add(7, 'day')
+            .format('DD MMM YYYY')
+          this.nextFirstDateFormat = dayjs(new Date())
+            .add(1, 'day')
+            .format('DD MMM YYYY')
+          nextDateData = dayjs(new Date()).add(1, 'day').format('DD MMM YYYY')
+          break
+
+        default:
+          break
+      }
+
       fetch(
         `https://api.edenlife.ng/api/v2/meal/items/all?current_date=${dateData}`
       )
         .then((res) => res.json())
         .then((meals) => {
-          this.allMeal = meals.data
-          const combo = []
-          this.allMeal.map((item) => {
-            return item.preset_combos_full.map((el) => {
-              if (el.visible === true) {
-                combo.push({
-                  name: item.name,
-                  class_category: item.class_category,
-                  ...el,
-                })
-              }
-              return combo
-            })
-          })
-          this.allMeal.map((item) => {
-            if (
-              item.class_category.includes('juice') &&
-              item.combo_image_url !== null &&
-              item.id !== 3864
-            ) {
-              combo.push({
-                name: item.name,
-                class_category: item.class_category,
-                image: item.combo_image_url,
-              })
-            }
-            return combo
-          })
-          this.allMeal.map((item) => {
-            if (item.class_category.includes('smoothies')) {
-              combo.push({
-                name: item.name,
-                class_category: item.class_category,
-                image: item.image_url,
-              })
-            }
-            return combo
-          })
-          this.allMeal = combo
-          this.getMealCategories(this.allMeal)
+          this.currentMeals = meals.data
         })
+      if (this.currentDay >= 4) {
+        fetch(
+          `https://api.edenlife.ng/api/v2/meal/items/all?current_date=${nextDateData}`
+        )
+          .then((res) => res.json())
+          .then((meals) => {
+            this.nextWeekMeals = meals.data
+          })
+      }
     },
     getMealCategories(items) {
       const mapped = items.reduce((acc, { class_category }) => {
@@ -111,7 +132,7 @@ export default {
         return acc
       }, [])
       this.tabs = [...new Set(mapped)]
-       this.activeTabIndex = this.tabs[0]
+      this.activeTabIndex = this.tabs[0]
       this.changeCategory(this.activeTabIndex)
     },
     changeCategory(val) {

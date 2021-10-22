@@ -258,15 +258,16 @@
           @showCurrent="toggleMenu('current')"
         />
       </transition>
-
-      <!-- <button
-        v-if="currentMeals.length"
-        type="button"
-        class="hero__button-solid"
-        @click.prevent="scrollToFooter('#get-the-app', 'I want a meal plan')"
-      >
-        I Want a Meal Plan
-      </button> -->
+      <section v-if="currentMeals.length" class="menu">
+        <button
+          v-if="currentMeals.length"
+          type="button"
+          class="hero__button-solid"
+          @click.prevent="scrollToFooter('#get-the-app', 'I want a meal plan')"
+        >
+          I Want a Meal Plan
+        </button>
+      </section>
     </div>
 
     <div class="container--wall">
@@ -927,8 +928,7 @@ export default {
           })
       }
     },
-
-     getMealCategories(items) {
+    getMealCategories(items) {
       const mapped = items.reduce((acc, { class_category }) => {
         if (class_category) {
           const classes = class_category.split(',')

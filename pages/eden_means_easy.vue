@@ -343,11 +343,8 @@
                   :class="{ 'has-error': $v.leadForm.phone_number.$error }"
                 />
               </div>
-              <!-- <p v-if="responseMessage.length" class="error-message">
-                {{ responseMessage }}
-              </p> -->
 
-              <button class="testimonial__form-btn">
+              <button class="testimonial__form-btn" @click="individualSubmit">
                 {{ activeReason.cta }}
               </button>
             </div>
@@ -505,9 +502,6 @@
                   :class="{ 'has-error': $v.leadCompanyForm.message.$error }"
                 ></textarea>
               </div>
-              <!-- <p v-if="responseMessage.length" class="error-message">
-                {{ responseMessage }}
-              </p> -->
 
               <button @click="companySubmit" class="testimonial__form-btn">
                 {{ activeReason.cta }}
@@ -685,7 +679,7 @@ export default {
       company_name: { required },
       contact_name: { required },
       email: { required, email },
-     phone_number: {
+      phone_number: {
         required,
         minLength: minLength(11),
         maxLength: maxLength(11),
@@ -716,7 +710,7 @@ export default {
         company_name: '',
         contact_name: '',
         email: '',
-       phone_number: '',
+        phone_number: '',
         service: [],
         extra_message: '',
       },
@@ -822,6 +816,8 @@ export default {
           this.leadCompanyForm.service
         )
         try {
+          mixpanelTrackEvent('Company form - Eden Means Easy page')
+
           this.loading = true
           await companiesApi(this.leadCompanyForm)
           Object.keys(this.leadCompanyForm).forEach(
@@ -836,13 +832,43 @@ export default {
           this.showSuccessModal = true
           this.closeLeadModal()
           this.loading = false
-          mixpanelTrackEvent('Company form - Eden Means Easy page')
         } catch (error) {
           this.leadCompanyForm.service = JSON.parse(
             this.leadCompanyForm.service
           )
           this.failModalText =
             "Your company’s information was not successfully submitted. Please try again or reach us at <span style='color:#03A84E'>eve@edenlife.ng </span> or <span style='color:#03A84E'>+2348123456790</span>"
+          this.loading = false
+          this.showFailedModal = true
+        }
+      }
+    },
+    async individualSubmit() {
+      this.$v.leadForm.$touch()
+      if (!this.$v.leadForm.$error) {
+        try {
+          mixpanelTrackEvent(
+            `${this.activeReason.cta} button clicked`,
+            'Eden Means Easy Page'
+          )
+          this.loading = true
+          const metadata = {
+            email: this.leadForm.email,
+            name: this.leadForm.name,
+            phone: this.leadForm.phone_number,
+          }
+           this.$intercom('trackEvent', 'lead-generation-signup', metadata)
+          this.$nextTick(() => {
+            this.$v.leadForm.$reset()
+          })
+          this.successModalText =
+            'You have successfully submitted your information. We will reach out to you within the next 48 hours.'
+          this.showSuccessModal = true
+          this.closeLeadModal()
+          this.loading = false
+        } catch (error) {
+          this.failModalText =
+            "Your information was not successfully submitted. Please try again or reach us at <span style='color:#03A84E'>eve@edenlife.ng </span> or <span style='color:#03A84E'>+2348123456790</span>"
           this.loading = false
           this.showFailedModal = true
         }

@@ -52,7 +52,7 @@
         </p>
         <div class="email">
           <p>Email: support@edenlife.ng</p>
-          <p>Phone number: +234 701 567 5705</p>
+          <p>Phone number: +234 814 675 7886</p>
         </div>
         <a
           href="https://www.google.com/maps/search/?api=1&query=Eden,+Adebisi+Street,+Lagos"

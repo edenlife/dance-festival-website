@@ -29,7 +29,7 @@
         <h5>Customer Support</h5>
         <p>
           For customer support, call
-          <a href="tel:+2349072671761"> +2349072671761</a>
+          <a href="tel:+2348146757886"> +2348146757886</a>
 
           or
           <a @click.prevent="launchIntercom()" class="trigger-chat"> chat</a>

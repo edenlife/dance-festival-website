@@ -336,7 +336,7 @@
                 <circle cx="3" cy="3" r="3" fill="#61DB98" />
               </svg>
             </li>
-             <li
+             <!-- <li
               :class="{ active: plan === 'post-construction-cleaning' }"
               @click.prevent="setCleaningConfig('post-construction-cleaning')"
             >
@@ -351,7 +351,7 @@
               >
                 <circle cx="3" cy="3" r="3" fill="#61DB98" />
               </svg>
-            </li>
+            </li> -->
           </ul>
           <!--  -->
           <transition name="slide-fade">

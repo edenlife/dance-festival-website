@@ -309,7 +309,7 @@ export default {
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962887/Judith_Azi_Azong_Customer_Success_zzef5d.jpg',
       name: 'Judith Azi Azong',
-      role: 'Customer Success',
+      role: 'Growth',
     },
 
     {

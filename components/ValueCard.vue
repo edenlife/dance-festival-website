@@ -1,27 +1,15 @@
 <template>
   <div
-    :class="`value__card ${content.shadow && 'shadowed'} ${content.media.type === 'video' && 'video__content'}`"
+    :class="`value__card ${content.shadow && 'shadowed'} ${
+      content.media.type === 'video' && 'video__content'
+    }`"
     :style="setStyles(content)"
   >
     <div :class="`value__title ${content.layout === 'row' && 'extra-padding'}`">
       <h5 v-html="content.title"></h5>
 
-      <div v-if="content.layout.includes('column')">
-        <button
-          v-if="content.button === 'modal'"
-          class="btn__modal"
-          @click="showModal"
-        >
-          <div class="btn__modal-solid">
-            <img
-              src="@/assets/images/eden-logo.svg"
-              alt="action-btn"
-              class="image"
-            />
-          </div>
-        </button>
-
-        <button v-else class="btn-solid__app" @click="showModal">
+      <div v-if="content.title === '3rd Reason'">
+        <button class="btn-solid__app" @click="showModal">
           Download The App
         </button>
       </div>
@@ -32,7 +20,7 @@
         <h3 v-html="content.header" class="value__header"></h3>
         <p class="value__description" v-html="content.description"></p>
         <button
-          v-if="content.layout === 'row'"
+          v-if="content.title === 'The 1st Reason'"
           class="btn__modal row"
           @click="showModal"
         >
@@ -44,9 +32,7 @@
             />
           </div>
 
-          <span v-if="content.title=== 'The 1st Reason'"> Read our CEO's Promise.</span>
-
-          <span v-else> View Testimonial </span>
+          <span> Read our CEO's Promise.</span>
         </button>
       </div>
 
@@ -62,7 +48,7 @@
           ref="videoRef"
           muted
           playsinline
-           autoplay
+          autoplay
           loop
           v-if="content.media.type === 'video'"
         >

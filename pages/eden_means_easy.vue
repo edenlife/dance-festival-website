@@ -330,7 +330,7 @@
             </div>
           </transition>
         </div>
-        <div class="hero__button">
+        <div class="hero__button share">
           <span>Share </span>
 
           <ShareNetwork

@@ -5,7 +5,7 @@
         <h1>
           <span>10 Reasons</span>
           Why<br />
-          Eden Means Easy
+          Eden Means Easy.
         </h1>
 
         <ul>
@@ -98,7 +98,7 @@
         </div>
       </section>
     </div>
-    <div class="hero">
+    <div class="hero hero__bottom">
       <div class="hero__title">
         <h1>
           The best time to start your Eden life was yesterday, the second best
@@ -330,7 +330,7 @@
             </div>
           </transition>
         </div>
-        <div class="hero__button share">
+        <div class="hero__button share hide" id="social-content">
           <span>Share </span>
 
           <ShareNetwork
@@ -1004,6 +1004,7 @@ export default {
   },
   mounted() {
     this.pageUrl = this.$route.fullPath
+    window.addEventListener('scroll', this.handleScroll)
   },
   computed: {
     meta() {
@@ -1016,6 +1017,21 @@ export default {
     },
   },
   methods: {
+    handleScroll() {
+      const socialContent = document.querySelector('#social-content')
+      const minBreakpoint = 400
+      if (
+        window.scrollY <= minBreakpoint &&
+        !socialContent.classList.contains('hide')
+      ) {
+        socialContent.classList.add('hide')
+      } else if (
+        window.scrollY > minBreakpoint &&
+        socialContent.classList.contains('hide')
+      ) {
+        socialContent.classList.remove('hide')
+      }
+    },
     scrollToFooter(id, label) {
       scrollToApp(id, label)
     },

@@ -5,7 +5,9 @@
     }`"
     :style="setStyles(content)"
   >
-    <div :class="`value__title ${content.layout === 'row' && 'extra-padding'}`">
+    <div
+      :class="`value__title ${content.padding === 'pad' && 'extra-padding'}`"
+    >
       <h5 v-html="content.title"></h5>
 
       <div v-if="content.title === '3rd Reason'">
@@ -41,7 +43,7 @@
           v-if="content.media.type === 'image'"
           :src="require(`~/assets/images/${content.media.src}.png`)"
           alt="value-image"
-          :class="`image ${content.media.size}`"
+          :class="`image ${content.media.size} ${content.align_image}`"
         />
         <video
           :class="`image ${content.media.size}`"
@@ -54,7 +56,29 @@
         >
           <source :src="content.media.src" type="video/mp4" />
         </video>
+        <div v-if="content.media.type === 'images'" :class="`image grid ${content.media.margin}`">
+          <div class="child" v-for="(image, index) in content.media.src" :key="index">
+              <span v-if="image.emoji" :class="`emoji ${content.media.emoji_bg} ${image.emoji.position}`"> {{image.emoji.src}} </span>
+            <img :src="image.image" alt="value-image" />
+          
+          </div>
+        </div>
       </div>
+      <button
+        v-if="content.title === 'The 1st Reason'"
+        class="btn__modal row mobile"
+        @click="showModal"
+      >
+        <div class="btn__modal-solid">
+          <img
+            src="@/assets/images/eden-logo.svg"
+            alt="action-btn"
+            class="image"
+          />
+        </div>
+
+        <span> Read our CEO's Promise.</span>
+      </button>
     </div>
   </div>
 </template>

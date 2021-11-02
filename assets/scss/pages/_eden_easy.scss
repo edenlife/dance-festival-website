@@ -32,9 +32,9 @@
     }
   }
 
-  &__bottom{
+  &__bottom {
     width: 100%;
-   }
+  }
   &__title {
     color: color(eden-neutral-1);
     flex: 0 0 55%;
@@ -76,24 +76,60 @@
     }
   }
 
+  .carousel-container-lead {
+     width: 50%;
+  }
+
+  // &__images {
+  //   flex: 0 0 55%;
+  // }
   &__img {
     border: 1px solid #000000;
     box-shadow: 0px 0px 31.0869px rgba(102, 102, 102, 0.08);
-    height: fit-content;
-    padding: 10px;
+    height: 442px;
+    width: 400px;
+    padding: 0px;
     position: relative;
+    background: #fff;
+    margin-top: 20px;
+    // display: none;
     label {
       font-size: 14px;
       line-height: 24px;
       color: #000000;
       position: absolute;
       background: white;
-      top: -3%;
+      top: -12px;
       right: 45%;
     }
     img {
       height: 442px;
-      object-fit: none;
+    }
+
+    &.active {
+      display: block;
+    }
+
+    &::before,
+    .hero__img-holder {
+      position: absolute;
+      top: 17px;
+      left: 17px;
+      background: #fff;
+      border: 1px solid #000;
+      content: '';
+      height: 100%;
+      padding-bottom: 5px;
+      padding-right: 5px;
+      //   transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) 1.1s;
+      width: 100%;
+      z-index: -3;
+    }
+
+    &::before {
+      left: 30px;
+      top: 30px;
+      z-index: -8;
     }
   }
   &__button {
@@ -173,7 +209,7 @@
   &__form {
     margin-bottom: 32px;
     &-option {
-      padding: 0  !important;
+      padding: 0 !important;
       display: flex;
       padding-bottom: 0 !important;
       justify-content: space-between;
@@ -220,6 +256,9 @@
     flex-direction: column;
     width: 100%;
 
+    &__head {
+      flex-direction: column-reverse;
+    }
     .mid__title {
       text-align: left;
       margin: auto;
@@ -240,23 +279,22 @@
         width: 75%;
       }
     }
-
+ 
     &__img {
-      display: block;
       width: fit-content;
-      margin: auto;
-      padding: 12px;
-      label {
-        top: -4%;
-      }
-      img {
-        width: 276px;
-        height: 300px;
-      }
+       padding: 0;
     }
 
     &__button {
       @include font-size(base);
+    }
+  }
+  @include respond(xl) {
+    .carousel-container-lead {
+      margin: auto;
+      width: 400px;
+      margin-bottom: 48px;
+
     }
   }
   @include respond(xxl) {
@@ -313,7 +351,7 @@
       }
       &:nth-child(5) {
         .value__card {
-          padding: 36px; 
+          padding: 36px;
         }
       }
     }

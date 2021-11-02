@@ -3,3 +3,16 @@
 @import './helpers/base';
 @import './helpers/mixins';
 @import './helpers/functions';
+
+.carousel-container-lead {
+  .owl-stage-outer {
+    height: 500px;
+  }
+
+//   .owl-item{
+//       width: 0 !important;
+//       &.active{
+//         width: 400px !important;
+//     }
+//   }
+}

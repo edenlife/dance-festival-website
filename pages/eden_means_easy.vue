@@ -20,51 +20,39 @@
         <div></div>
       </div>
 
-      <div class="hero__images">
-        <carousel
-          :nav="false"
-          :dots="false"
-          :loop="true"
-         
-          :items="1"
-          :autoHeight="true"
-          :autoplay="true"
-          :autoplayTimeout="3000"
-          class="carousel-container-lead"
-        >
-          <template slot="prev"> </template>
-          <div class="hero__img">
-            <label for="hero__img-bg1" class="hero__img-label">LAUNDRY</label>
-            <img
-              src="@/assets/images/easy-hero-header.png"
-              alt="phone"
-              class="hero__img-bg1"
-            />
-            <div class="hero__img-holder"></div>
-          </div>
-
-          <div class="hero__img">
-            <label class="hero__img-label">MEAL</label>
-            <img
-              src="@/assets/images/easy-hero-meal.png"
-              alt="phone"
-              class="hero__img-bg1"
-            />
-            <div class="hero__img-holder"></div>
-          </div>
-
-          <div class="hero__img">
-            <label for="hero__img-bg1" class="hero__img-label">CLEANING</label>
-            <img
-              src="@/assets/images/easy-hero-cleaning.png"
-              alt="phone"
-              class="hero__img-bg1"
-            />
-            <div class="hero__img-holder"></div>
-          </div>
-          <template slot="next"> </template>
-        </carousel>
-      </div>
+      <transition name="slide-fade">
+        <div v-if="header === 'one'" class="hero__img">
+          <label for="hero__img-bg1" class="hero__img-label">LAUNDRY</label>
+          <img
+            src="@/assets/images/easy-hero-header.png"
+            alt="phone"
+            class="hero__img-bg1"
+          />
+          <div class="hero__img-holder"></div>
+        </div>
+      </transition>
+      <transition name="slide-fade">
+        <div v-if="header === 'two'" class="hero__img">
+          <label class="hero__img-label">MEAL</label>
+          <img
+            src="@/assets/images/easy-hero-meal.png"
+            alt="phone"
+            class="hero__img-bg1"
+          />
+          <div class="hero__img-holder"></div>
+        </div>
+      </transition>
+      <transition name="slide-fade">
+        <div v-if="header === 'three'" class="hero__img">
+          <label for="hero__img-bg1" class="hero__img-label">CLEANING</label>
+          <img
+            src="@/assets/images/easy-hero-cleaning.png"
+            alt="phone"
+            class="hero__img-bg1"
+          />
+          <div class="hero__img-holder"></div>
+        </div>
+      </transition>
     </header>
     <h1 class="values__head">All on schedule too. But there's more. 🌱</h1>
 
@@ -1045,7 +1033,7 @@ export default {
     this.pageUrl = this.$route.fullPath
     window.addEventListener('scroll', this.handleScroll)
 
-    // this.animateHeader()
+    this.animateHeader()
   },
   computed: {
     meta() {
@@ -1059,8 +1047,6 @@ export default {
   },
   methods: {
     animateHeader() {
-      //   const headers = document.querySelectorAll('.hero__img')
-
       setInterval(() => {
         if (this.header === 'one') {
           setTimeout(() => {
@@ -1077,22 +1063,6 @@ export default {
             this.header = 'one'
           }, 1500)
         }
-        // if (headers[0].classList.contains('active')) {
-        //   setTimeout(() => {
-        //     headers[0].classList.remove('active')
-        //     headers[1].classList.add('active')
-        //   }, 2000)
-        // } else if (headers[1].classList.contains('active')) {
-        //   setTimeout(() => {
-        //     headers[1].classList.remove('active')
-        //     headers[2].classList.add('active')
-        //   }, 2000)
-        // } else if (headers[2].classList.contains('active')) {
-        //   setTimeout(() => {
-        //     headers[2].classList.remove('active')
-        //     headers[0].classList.add('active')
-        //   }, 2000)
-        // }
       }, 3000)
     },
     handleScroll() {

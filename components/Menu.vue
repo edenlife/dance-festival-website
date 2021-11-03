@@ -258,8 +258,7 @@ export default {
     changeCategory(val) {
       this.activeTabIndex = val
       this.mealsInCategory = this.getMealsInEachCategory(this.displayMeals, val)
-      console.log(this.mealsInCategory)
-    },
+     },
 
     previousCategory() {
       let activeIndex = this.tabs.indexOf(this.activeTabIndex)

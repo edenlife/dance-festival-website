@@ -1,27 +1,17 @@
 <template>
   <div
-    :class="`value__card ${content.shadow && 'shadowed'} ${content.media.type === 'video' && 'video__content'}`"
+    :class="`value__card ${content.shadow && 'shadowed'} ${
+      content.media.type === 'video' && 'video__content'
+    }`"
     :style="setStyles(content)"
   >
-    <div :class="`value__title ${content.layout === 'row' && 'extra-padding'}`">
+    <div
+      :class="`value__title ${content.padding === 'pad' && 'extra-padding'}`"
+    >
       <h5 v-html="content.title"></h5>
 
-      <div v-if="content.layout.includes('column')">
-        <button
-          v-if="content.button === 'modal'"
-          class="btn__modal"
-          @click="showModal"
-        >
-          <div class="btn__modal-solid">
-            <img
-              src="@/assets/images/eden-logo.svg"
-              alt="action-btn"
-              class="image"
-            />
-          </div>
-        </button>
-
-        <button v-else class="btn-solid__app" @click="showModal">
+      <div v-if="content.title === '3rd Reason'">
+        <button class="btn-solid__app" @click="showModal">
           Download The App
         </button>
       </div>
@@ -32,7 +22,7 @@
         <h3 v-html="content.header" class="value__header"></h3>
         <p class="value__description" v-html="content.description"></p>
         <button
-          v-if="content.layout === 'row'"
+          v-if="content.title === 'The 1st Reason'"
           class="btn__modal row"
           @click="showModal"
         >
@@ -44,9 +34,7 @@
             />
           </div>
 
-          <span v-if="content.title=== 'The 1st Reason'"> Read our CEO's Promise.</span>
-
-          <span v-else> View Testimonial </span>
+          <span> Read our CEO's Promise.</span>
         </button>
       </div>
 
@@ -55,20 +43,42 @@
           v-if="content.media.type === 'image'"
           :src="require(`~/assets/images/${content.media.src}.png`)"
           alt="value-image"
-          :class="`image ${content.media.size}`"
+          :class="`image ${content.media.size} ${content.align_image}`"
         />
         <video
           :class="`image ${content.media.size}`"
           ref="videoRef"
           muted
           playsinline
-           autoplay
+          autoplay
           loop
           v-if="content.media.type === 'video'"
         >
           <source :src="content.media.src" type="video/mp4" />
         </video>
+        <div v-if="content.media.type === 'images'" :class="`image grid ${content.media.margin}`">
+          <div class="child" v-for="(image, index) in content.media.src" :key="index">
+              <span v-if="image.emoji" :class="`emoji ${content.media.emoji_bg} ${image.emoji.position}`"> {{image.emoji.src}} </span>
+            <img :src="image.image" alt="value-image" />
+          
+          </div>
+        </div>
       </div>
+      <button
+        v-if="content.title === 'The 1st Reason'"
+        class="btn__modal row mobile"
+        @click="showModal"
+      >
+        <div class="btn__modal-solid">
+          <img
+            src="@/assets/images/eden-logo.svg"
+            alt="action-btn"
+            class="image"
+          />
+        </div>
+
+        <span> Read our CEO's Promise.</span>
+      </button>
     </div>
   </div>
 </template>

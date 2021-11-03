@@ -5,7 +5,7 @@
         <h1>
           <span>10 Reasons</span>
           Why<br />
-          Eden Means Easy
+          Eden Means Easy.
         </h1>
 
         <ul>
@@ -19,13 +19,40 @@
 
         <div></div>
       </div>
-      <div class="hero__img">
-        <img
-          src="@/assets/images/easy-hero-image.png"
-          alt="phone"
-          class="hero__img-bg1"
-        />
-      </div>
+
+      <transition name="slide-fade">
+        <div v-if="header === 'one'" class="hero__img">
+          <label for="hero__img-bg1" class="hero__img-label">LAUNDRY</label>
+          <img
+            src="@/assets/images/easy-hero-header.png"
+            alt="phone"
+            class="hero__img-bg1"
+          />
+          <div class="hero__img-holder"></div>
+        </div>
+      </transition>
+      <transition name="slide-fade">
+        <div v-if="header === 'two'" class="hero__img">
+          <label class="hero__img-label">MEAL</label>
+          <img
+            src="@/assets/images/easy-hero-meal.png"
+            alt="phone"
+            class="hero__img-bg1"
+          />
+          <div class="hero__img-holder"></div>
+        </div>
+      </transition>
+      <transition name="slide-fade">
+        <div v-if="header === 'three'" class="hero__img">
+          <label for="hero__img-bg1" class="hero__img-label">CLEANING</label>
+          <img
+            src="@/assets/images/easy-hero-cleaning.png"
+            alt="phone"
+            class="hero__img-bg1"
+          />
+          <div class="hero__img-holder"></div>
+        </div>
+      </transition>
     </header>
     <h1 class="values__head">All on schedule too. But there's more. 🌱</h1>
 
@@ -53,8 +80,51 @@
         <value-card :content="valueReasons[9]" @show="setTestimonial(9)" />
       </div>
     </div>
+    <div class="container--wall">
+      <section class="wall">
+        <div class="wall__title">
+          <h3>What Our Customers Say 💚</h3>
+        </div>
+        <div class="wall__messages">
+          <div
+            v-for="(item, i) in valueReasons"
+            :key="i"
+            :class="`card ${i === 0 ? 'hide' : 'show'}`"
+          >
+            <a
+              v-if="i !== 0"
+              :href="item.modal_testimonial.tweetLink"
+              target="_blank"
+            >
+              <div class="card__title">
+                <div class="card__title-img">
+                  <img
+                    :src="
+                      require(`~/assets/images/${item.modal_testimonial.image}.jpg`)
+                    "
+                    :alt="item.modal_testimonial.name"
+                  />
+                </div>
 
-    <div class="hero">
+                <div class="">
+                  <p class="card__title-name">
+                    {{ item.modal_testimonial.name }}
+                  </p>
+                  <p class="card__title-handle">
+                    {{ item.modal_testimonial.handle }}
+                  </p>
+                </div>
+              </div>
+              <p
+                class="card__description"
+                v-html="item.modal_testimonial.description"
+              ></p>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="hero hero__bottom">
       <div class="hero__title">
         <h1>
           The best time to start your Eden life was yesterday, the second best
@@ -63,16 +133,231 @@
 
         <p>There's an Eden plan for you</p>
 
-        <div>
-          <button
-            class="hero__button-solid"
-            @click.prevent="scrollToFooter('#get-the-app', 'Eden means easy')"
-          >
-            <span>Start Your Eden Life </span>
-          </button>
+        <div class="hero__form">
+          <ul class="hero__form-option">
+            <li
+              :class="{ active: activeForm === 'individual' }"
+              @click.prevent="activeForm = 'individual'"
+            >
+              Individual
+            </li>
+            <li
+              :class="{ active: activeForm === 'team' }"
+              @click.prevent="activeForm = 'team'"
+            >
+              Team
+            </li>
+          </ul>
+
+          <transition name="slide-fade">
+            <div v-if="activeForm === 'individual'" class="testimonial__form">
+              <div class="testimonial__form-body">
+                <div class="testimonial__form-input">
+                  <label for="name">Full Name</label>
+                  <input
+                    id=""
+                    v-model="leadForm.name"
+                    type="text"
+                    name=""
+                    placeholder="Full Name"
+                    :class="{ 'has-error': $v.leadForm.name.$error }"
+                  />
+                </div>
+                <div class="testimonial__form-input">
+                  <label for="email">Email</label>
+                  <input
+                    id=""
+                    v-model="leadForm.email"
+                    type="email"
+                    name=""
+                    placeholder="email@example.com"
+                    :class="{ 'has-error': $v.leadForm.email.$error }"
+                  />
+                </div>
+                <div class="testimonial__form-input">
+                  <label for="phone number">Phone Number</label>
+                  <input
+                    id=""
+                    v-model.trim="$v.leadForm.phone_number.$model"
+                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                    type="text"
+                    name=""
+                    placeholder="Enter phone number"
+                    :class="{ 'has-error': $v.leadForm.phone_number.$error }"
+                  />
+                </div>
+
+                <button class="testimonial__form-btn" @click="individualSubmit">
+                  Enjoy Quality Service
+                </button>
+              </div>
+            </div>
+          </transition>
+
+          <transition name="slide-fade">
+            <div v-if="activeForm === 'team'" class="testimonial__form">
+              <div class="testimonial__form-body">
+                <div class="testimonial__form-input">
+                  <label for="name">Company Name</label>
+                  <input
+                    id=""
+                    v-model="leadCompanyForm.company_name"
+                    type="text"
+                    name=""
+                    placeholder="Company Name"
+                    :class="{
+                      'has-error': $v.leadCompanyForm.company_name.$error,
+                    }"
+                  />
+                </div>
+                <div class="testimonial__form-input">
+                  <label for="name">Contact Person</label>
+                  <input
+                    id=""
+                    v-model="leadCompanyForm.contact_name"
+                    type="text"
+                    name=""
+                    placeholder="Enter Name"
+                    :class="{
+                      'has-error': $v.leadCompanyForm.contact_name.$error,
+                    }"
+                  />
+                </div>
+                <div class="testimonial__form-input">
+                  <label for="email">Contact person email address</label>
+                  <input
+                    id=""
+                    v-model="leadCompanyForm.email"
+                    type="email"
+                    name=""
+                    placeholder="email@example.com"
+                    :class="{
+                      'has-error': $v.leadCompanyForm.email.$error,
+                    }"
+                  />
+                </div>
+                <div class="testimonial__form-input">
+                  <label for="phone number">Phone Number</label>
+                  <input
+                    id=""
+                    v-model.trim="$v.leadCompanyForm.phone_number.$model"
+                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                    type="text"
+                    name=""
+                    placeholder="Enter phone number"
+                    :class="{
+                      'has-error': $v.leadCompanyForm.phone_number.$error,
+                    }"
+                  />
+                </div>
+                <div class="testimonial__form-input">
+                  <label for="services"
+                    >What plans would you like for your team?</label
+                  >
+                  <div
+                    class="select"
+                    :class="{ 'has-error': $v.leadCompanyForm.service.$error }"
+                  >
+                    <div class="selector">
+                      <div class="label" @click="toggle()">
+                        <span
+                          v-if="
+                            leadCompanyForm.service &&
+                            !leadCompanyForm.service.length
+                          "
+                          class="placeholder"
+                        >
+                          Select services
+                        </span>
+                        <span
+                          v-for="(item, i) in leadCompanyForm.service"
+                          :key="i"
+                          class="label--text"
+                          >{{ item }}</span
+                        >
+                      </div>
+                      <svg
+                        class="arrow"
+                        :class="{ expanded: visible }"
+                        width="10"
+                        height="6"
+                        viewBox="0 0 10 6"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        @click="toggle()"
+                      >
+                        <path
+                          d="M1 1L5 5L9 1"
+                          stroke="#93A29B"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+
+                      <div :class="{ hidden: !visible, visible }">
+                        <transition name="slide-fade">
+                          <div class="selection">
+                            <ul>
+                              <li
+                                v-for="(service, index) in services"
+                                :key="index"
+                                :value="service"
+                              >
+                                <input
+                                  :id="service"
+                                  v-model="leadCompanyForm.service"
+                                  type="checkbox"
+                                  :name="service"
+                                  :value="service"
+                                />
+                                <label
+                                  :for="service"
+                                  :class="{
+                                    checkmark: leadCompanyForm.service.includes(
+                                      service
+                                    ),
+                                  }"
+                                >
+                                  {{ service }}</label
+                                >
+                              </li>
+                            </ul>
+                            <button
+                              class="btn--submit"
+                              @click.prevent="toggle()"
+                            >
+                              Done
+                            </button>
+                          </div>
+                        </transition>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="testimonial__form-input">
+                  <label for="message"
+                    >Anything else you’d like us to know?</label
+                  >
+                  <textarea
+                    id=""
+                    v-model="leadCompanyForm.message"
+                    name=""
+                    cols="30"
+                    rows="10"
+                    placeholder="Extra message"
+                    :class="{ 'has-error': $v.leadCompanyForm.message.$error }"
+                  ></textarea>
+                </div>
+
+                <button @click="companySubmit" class="testimonial__form-btn">
+                  Enjoy Quality Service
+                </button>
+              </div>
+            </div>
+          </transition>
         </div>
-        <div class="hero__button">
-          <span> Spread the word </span>
+        <div class="hero__button share hide" id="social-content">
+          <span>Share </span>
 
           <ShareNetwork
             class="share__icon"
@@ -721,12 +1006,14 @@ export default {
         'Team Laundry',
         'Team Housecleaning',
       ],
+      activeForm: 'individual',
       visible: false,
       loading: false,
       showFailedModal: false,
       showSuccessModal: false,
       successModalText: '',
       failModalText: '',
+      header: 'one',
     }
   },
   head() {
@@ -744,6 +1031,9 @@ export default {
   },
   mounted() {
     this.pageUrl = this.$route.fullPath
+    window.addEventListener('scroll', this.handleScroll)
+
+    this.animateHeader()
   },
   computed: {
     meta() {
@@ -756,6 +1046,40 @@ export default {
     },
   },
   methods: {
+    animateHeader() {
+      setInterval(() => {
+        if (this.header === 'one') {
+          setTimeout(() => {
+            this.header = 'two'
+          }, 1500)
+        }
+        if (this.header === 'two') {
+          setTimeout(() => {
+            this.header = 'three'
+          }, 1500)
+        }
+        if (this.header === 'three') {
+          setTimeout(() => {
+            this.header = 'one'
+          }, 1500)
+        }
+      }, 3000)
+    },
+    handleScroll() {
+      const socialContent = document.querySelector('#social-content')
+      const minBreakpoint = 400
+      if (
+        window.scrollY <= minBreakpoint &&
+        !socialContent.classList.contains('hide')
+      ) {
+        socialContent.classList.add('hide')
+      } else if (
+        window.scrollY > minBreakpoint &&
+        socialContent.classList.contains('hide')
+      ) {
+        socialContent.classList.remove('hide')
+      }
+    },
     scrollToFooter(id, label) {
       scrollToApp(id, label)
     },
@@ -857,7 +1181,7 @@ export default {
             name: this.leadForm.name,
             phone: this.leadForm.phone_number,
           }
-           this.$intercom('trackEvent', 'lead-generation-signup', metadata)
+          this.$intercom('trackEvent', 'lead-generation-signup', metadata)
           this.$nextTick(() => {
             this.$v.leadForm.$reset()
           })

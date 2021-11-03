@@ -10,69 +10,9 @@ export default [
     button: 'modal',
     size: 'full',
     media: {
-      type: 'images',
-      emoji_bg: 'green',
-      src: [
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629965521/Diseye_Amy_Naasin_Happiness_Engineering_bbcpxm.jpg',
-          emoji: {
-            src: '💚',
-            position: 'top-right',
-          },
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962155/Adeyemi_Martins_Supply_zwcshb.jpg',
-          emoji: null,
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1631093602/Joseph_Zogo_Food_Production_hrjoqo.jpg',
-          emoji: null,
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962876/Kofo_Shote_Makinde_Food_Production_qahopx.jpg',
-          emoji: null,
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962887/Judith_Azi_Azong_Customer_Success_zzef5d.jpg',
-          emoji: null,
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962900/Presley_Tukpe_Supply_judkn5.jpg',
-          emoji: {
-            src: '🥘',
-            position: 'top-left',
-          },
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962899/Prisca_Edigbe_Finance_lv2xez.jpg',
-          emoji: {
-            src: '🏠',
-            position: 'top-right',
-          },
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962905/Opeyemi_Malomo_Finance_nsktgc.jpg',
-          emoji: null,
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919036/eden-website-v2/fuad_rpmeic.png',
-          emoji: {
-            src: '🧺',
-            position: 'top-right',
-          },
-        },
-      ],
+      type: 'image',
+      src: 'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958860/value-promise_but1al.png',
       size: 'large',
-      margin: 'top',
     },
     modal_text: "We're Promise Keepers.",
     modal_testimonial: {
@@ -100,7 +40,7 @@ export default [
     textPosition: 'bottom',
     media: {
       type: 'image',
-      src: 'value-time',
+      src: 'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958860/value-time_cracbw.png',
       size: 'small',
     },
     padding: 'pad',
@@ -132,7 +72,7 @@ export default [
     media: {
       type: 'video',
       src:
-        'https://res.cloudinary.com/eden-life-inc/video/upload/v1634619583/value-selection_ql76ml.mp4',
+        'https://res.cloudinary.com/eden-life-inc/video/upload/f_auto,q_auto/v1634619583/value-selection_ql76ml.mp4',
       size: 'medium',
     },
     padding: 'pad',
@@ -162,54 +102,9 @@ export default [
     textPosition: 'top',
 
     media: {
-      type: 'images',
-      emoji_bg: 'white',
-      src: [
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919018/eden-website-v2/jennifer_a5e5fi.png',
-          emoji: null,
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919013/eden-website-v2/chinwe_howvon.png',
-          emoji: {
-            src: '💚',
-            position: 'top-right',
-          },
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919004/eden-website-v2/orogun_amvia9.png',
-          emoji: {
-            src: '🥘',
-            position: 'bottom-left',
-          },
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962886/Dorcas_Olawale_Customer_Success_adtbjf.jpg',
-          emoji: {
-            src: '🏠',
-            position: 'bottom-left',
-          },
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919026/eden-website-v2/goke_pwdcwr.png',
-          emoji: {
-            src: '🧺',
-            position: 'top-left',
-          },
-        },
-        {
-          image:
-            'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919010/eden-website-v2/perpetual_fcb9uf.png',
-          emoji: null,
-        },
-      ],
+      type: 'image',
+      src: 'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958860/value-gardener_uf7jat.png',
       size: 'large',
-      margin: 'bottom',
     },
     padding: 'pad',
 
@@ -242,7 +137,7 @@ export default [
     textPosition: 'top',
     media: {
       type: 'image',
-      src: 'value-payment',
+      src: 'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958861/value-payment_bwfzsd.png',
       size: 'small',
     },
     padding: 'pad',
@@ -273,7 +168,7 @@ export default [
     size: 'full',
     media: {
       type: 'image',
-      src: 'value-work',
+      src: 'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958861/value-work_l9gu8t.png',
       size: 'large',
     },
     modal_text: "Eden works when you're working.",
@@ -304,7 +199,7 @@ export default [
 
     media: {
       type: 'image',
-      src: 'value-works',
+      src: 'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958859/value-works_y0qbnh.png',
       size: 'large',
     },
     padding: 'pad',
@@ -336,7 +231,7 @@ export default [
     textPosition: 'top',
     media: {
       type: 'image',
-      src: 'value-gift',
+      src: 'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958861/value-gift_o5hob1.png',
       size: 'small',
     },
     modal_text: "It's The Perfect Gift For People You Love.",
@@ -367,7 +262,7 @@ export default [
     media: {
       type: 'video',
       src:
-        'https://res.cloudinary.com/eden-life-inc/video/upload/v1635796302/calorie-counter-exploration_gvbbeh.mp4',
+        'https://res.cloudinary.com/eden-life-inc/video/upload/f_auto,q_auto/v1635796302/calorie-counter-exploration_gvbbeh.mp4',
       size: 'medium',
     },
     padding: 'pad',
@@ -400,7 +295,7 @@ export default [
     textPosition: 'bottom',
     media: {
       type: 'image',
-      src: 'work-group',
+      src: 'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958856/work-group_pwro3s.png',
       size: 'large',
     },
     padding: 'pad',

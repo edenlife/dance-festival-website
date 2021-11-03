@@ -9,52 +9,48 @@
         </h1>
 
         <ul>
-          <li>Your laundry picked up and dropped off within 48 hours 👔</li>
-          <li>Professional cleaners scrubbing and sweeping your home 🏡</li>
+          <li>Your laundry picked up and dropped off within 48 hours. 👔</li>
+          <li>Professional cleaners scrubbing and sweeping your home. 🏡</li>
           <li>
             Chef-made meals delivered from a menu of over 100 delicious meal
-            choices 🥘.
+            choices. 🥘
           </li>
         </ul>
 
         <div></div>
       </div>
 
-      <transition name="slide-fade">
-        <div v-if="header === 'one'" class="hero__img">
-          <label for="hero__img-bg1" class="hero__img-label">LAUNDRY</label>
-          <img
-            src="@/assets/images/easy-hero-header.png"
-            alt="phone"
-            class="hero__img-bg1"
-          />
-          <div class="hero__img-holder"></div>
-        </div>
-      </transition>
-      <transition name="slide-fade">
-        <div v-if="header === 'two'" class="hero__img">
-          <label class="hero__img-label">MEAL</label>
-          <img
-            src="@/assets/images/easy-hero-meal.png"
-            alt="phone"
-            class="hero__img-bg1"
-          />
-          <div class="hero__img-holder"></div>
-        </div>
-      </transition>
-      <transition name="slide-fade">
-        <div v-if="header === 'three'" class="hero__img">
-          <label for="hero__img-bg1" class="hero__img-label">CLEANING</label>
-          <img
-            src="@/assets/images/easy-hero-cleaning.png"
-            alt="phone"
-            class="hero__img-bg1"
-          />
-          <div class="hero__img-holder"></div>
-        </div>
-      </transition>
+      <div v-if="header === 'one'" class="hero__img">
+        <label for="hero__img-bg1" class="hero__img-label">LAUNDRY</label>
+        <img
+          src="https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958859/easy-hero-header_higxen.png"
+          alt="laundry"
+          class="hero__img-bg1"
+        />
+        <div class="hero__img-holder"></div>
+      </div>
+
+      <div v-if="header === 'two'" class="hero__img">
+        <label class="hero__img-label">MEAL</label>
+        <img
+          src="https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958858/easy-hero-meal_llzkej.png"
+          alt="meal"
+          class="hero__img-bg1"
+        />
+        <div class="hero__img-holder"></div>
+      </div>
+
+      <div v-if="header === 'three'" class="hero__img">
+        <label for="hero__img-bg1" class="hero__img-label">CLEANING</label>
+        <img
+          src="https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_autov1635958860/easy-hero-cleaning_yp9dhz.png"
+          alt="cleaning"
+          class="hero__img-bg1"
+        />
+        <div class="hero__img-holder"></div>
+      </div>
     </header>
-    <h1 class="values__head">All on schedule too. But there's more. 🌱</h1>
+    <h1 class="values__head">All on schedule too. But there's more. 👇🏽</h1>
 
     <div class="values">
       <div class="value__grid">
@@ -124,7 +120,7 @@
         </div>
       </section>
     </div>
-    <div class="hero hero__bottom">
+    <div id="eden-easy-form" class="hero hero__bottom">
       <div class="hero__title">
         <h1>
           The best time to start your Eden life was yesterday, the second best
@@ -133,7 +129,7 @@
 
         <p>There's an Eden plan for you</p>
 
-        <div class="hero__form">
+        <div  class="hero__form">
           <ul class="hero__form-option">
             <li
               :class="{ active: activeForm === 'individual' }"

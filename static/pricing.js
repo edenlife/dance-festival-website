@@ -85,8 +85,7 @@ export const pricing = (services) => {
           }
           break
           case 'post-construction-cleaning':
-            console.log();
-            if (areasTotalPrice >= 106000) {
+             if (areasTotalPrice >= 106000) {
               discount = 20000
             } else if (areasTotalPrice >= 75000) {
               discount = 15000

@@ -385,8 +385,11 @@
             href="#"
             class="navigation__menu-item navigation__menu-link"
             @click.prevent="scrollTo('#get-the-app')"
-            > {{ currentRoute === 'eden_means_easy' ? 'Sign Up Now': 'Get Started'}} </a
           >
+            {{
+              currentRoute === 'eden_means_easy' ? 'Sign Up Now' : 'Get Started'
+            }}
+          </a>
         </li>
       </ul>
       <button class="navigation__btn" type="button" @click="handleToggle()">
@@ -461,7 +464,11 @@
                 </ul>
               </transition>
             </li>
-            <li v-if="!hideCompanies" class="menu--list" @click.prevent="handleToggle('Companies')">
+            <li
+              v-if="!hideCompanies"
+              class="menu--list"
+              @click.prevent="handleToggle('Companies')"
+            >
               <nuxt-link
                 :to="{ path: '/companies' }"
                 class="navigation__mobile-item"
@@ -527,8 +534,13 @@
                 href="#"
                 class="navigation__mobile-item navigation__mobile-link"
                 @click.prevent="scrollTo('#get-the-app')"
-                > {{ currentRoute === 'eden_means_easy' ? 'Sign Up Now': 'Get Started'}} </a
               >
+                {{
+                  currentRoute === 'eden_means_easy'
+                    ? 'Sign Up Now'
+                    : 'Get Started'
+                }}
+              </a>
             </li>
           </ul>
         </div>
@@ -572,14 +584,13 @@ export default {
         return true
       }
     },
-    hideCompanies(){
-      if(this.currentRoute === "eden_means_easy"){
+    hideCompanies() {
+      if (this.currentRoute === 'eden_means_easy') {
         return true
       } else {
         return false
       }
-    }
-    
+    },
   },
   watch: {
     $route() {
@@ -617,7 +628,11 @@ export default {
     scrollTo(id) {
       if (this.currentRoute === '') {
         scrollToApp(id, `homepage - Navbar`)
-      } else scrollToApp(id, `${this.currentRoute} - Navbar`)
+      } else {
+        if (this.currentRoute.includes('easy')) {
+          scrollToApp('#eden-easy-form')
+        } else scrollToApp(id, `${this.currentRoute} - Navbar`)
+      }
     },
     launchIntercom() {
       this.$intercom('show')

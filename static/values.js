@@ -3,7 +3,7 @@ export default [
     title: 'The 1st Reason',
     header: "We're promise keepers.",
     description:
-      "When you trust us with a service, we deliver. Whether<br> it's food, laundry, or cleaning, there are no buts, no ifs. <br> Just done. Damaged items get replaced.",
+      "When you trust us with a service, we deliver. Whether<br> it's food, laundry, or cleaning, there are no buts, no ifs. Just done. Damaged items get replaced.",
     shadow: true,
     background: '#FFFFFF',
     layout: 'row',
@@ -11,7 +11,8 @@ export default [
     size: 'full',
     media: {
       type: 'image',
-      src: 'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958860/value-promise_but1al.png',
+      src:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958860/value-promise_but1al.png',
       size: 'large',
     },
     modal_text: "We're Promise Keepers.",
@@ -40,7 +41,8 @@ export default [
     textPosition: 'bottom',
     media: {
       type: 'image',
-      src: 'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958860/value-time_cracbw.png',
+      src:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958860/value-time_cracbw.png',
       size: 'small',
     },
     padding: 'pad',
@@ -62,7 +64,7 @@ export default [
     title: '3rd Reason',
     header: 'One App To Run <br> Them All.',
     description:
-      'One app to select a service, schedule, pause, add extra stuff,<br> get help, leave feedback, and so much more. One App.',
+      'One app to select a service, schedule, pause, add extra stuff, get help, leave feedback, and so much more. One App.',
     shadow: false,
     background: '#D4F7E5',
     layout: 'column',
@@ -93,7 +95,7 @@ export default [
     title: '4th Reason',
     header: 'You Get Your Own<br> Personal Person.',
     description:
-      "Every customer is assigned a manager who is proactive<br> and effective. They are your champions inside Eden<br> who make ensure you get the best experience.<br> We call them <span style='color:#03A84E'>Gardeners</span>",
+      "Every customer is assigned a manager who is proactive and effective. They are your champions inside Eden who make ensure you get the best experience. We call them <span style='color:#03A84E'>Gardeners</span>",
     shadow: false,
     background: '#D1F2FA',
     layout: 'column',
@@ -103,7 +105,8 @@ export default [
 
     media: {
       type: 'image',
-      src: 'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958860/value-gardener_uf7jat.png',
+      src:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958860/value-gardener_uf7jat.png',
       size: 'large',
     },
     padding: 'pad',
@@ -128,7 +131,7 @@ export default [
     title: '5th Reason',
     header: 'One Payment,<br> All Month.',
     description:
-      "For a monthly subscription, you never have to worry about getting these things done when the mid-month sapa hits.<br> You're covered.",
+      "For a monthly subscription, you never have to worry about getting these things done when the mid-month sapa hits. You're covered.",
     shadow: false,
     background: '#CCD5FF;',
     layout: 'column-reverse',
@@ -137,7 +140,8 @@ export default [
     textPosition: 'top',
     media: {
       type: 'image',
-      src: 'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958861/value-payment_bwfzsd.png',
+      src:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958861/value-payment_bwfzsd.png',
       size: 'small',
     },
     padding: 'pad',
@@ -160,7 +164,7 @@ export default [
     title: '6th Reason',
     header: "Eden Works When<br> You're Working.",
     description:
-      'Your food is delivered, your clean laundry is ironed and folded, and  your bathroom is scrubbed.<br> Dedicate your active hours to solving actual problems.',
+      'Your food is delivered, your clean laundry is ironed and folded,  and your bathroom is scrubbed.<br> Dedicate your active hours to solving actual problems.',
     shadow: true,
     background: '#FFFFFF',
     layout: 'row',
@@ -168,7 +172,8 @@ export default [
     size: 'full',
     media: {
       type: 'image',
-      src: 'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958861/value-work_l9gu8t.png',
+      src:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958861/value-work_l9gu8t.png',
       size: 'large',
     },
     modal_text: "Eden works when you're working.",
@@ -189,7 +194,7 @@ export default [
     title: '7th Reason',
     header: "Eden Works<br> When You Feel 'Lazy'.",
     description:
-      "On days when you don't feel like doing anything, Eden will still work for<br> you to keep your clothes and space clean, and your body nourished.",
+      "On days when you don't feel like doing anything, Eden will still work for you to keep your clothes and space clean, and your body nourished.",
     shadow: false,
     background: '#D1F2FA;',
     layout: 'column',
@@ -199,7 +204,8 @@ export default [
 
     media: {
       type: 'image',
-      src: 'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958859/value-works_y0qbnh.png',
+      src:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958859/value-works_y0qbnh.png',
       size: 'large',
     },
     padding: 'pad',
@@ -221,7 +227,7 @@ export default [
     title: '8th Reason',
     header: "It's The Perfect<br> Gift For People<br> You Love.",
     description:
-      'Few actions say "I care for you" like gifting<br> an Eden plan to a person you love. With<br> one gift, you save them time, give them<br> relief, grant them access to quality<br> service delivered at their own pace.',
+      'Few actions say "I care for you" like gifting<br> an Eden plan to a person you love. With one gift, you save them time, give them relief, grant them access to quality service delivered at their own pace.',
     shadow: false,
     background: '#CFF9F2',
     layout: 'column-reverse',
@@ -231,7 +237,8 @@ export default [
     textPosition: 'top',
     media: {
       type: 'image',
-      src: 'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958861/value-gift_o5hob1.png',
+      src:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958861/value-gift_o5hob1.png',
       size: 'small',
     },
     modal_text: "It's The Perfect Gift For People You Love.",
@@ -252,7 +259,7 @@ export default [
     title: '9th Reason',
     header: 'Conscious Eaters<br> Choose Eden.',
     description:
-      'With a diverse menu to choose from and a calorie counter on meals, you can now measure what goes into your body, and <br/> build your lifestyle around it.',
+      'With a diverse menu to choose from and a calorie counter on meals, you can now measure what goes into your body, and build your lifestyle around it.',
     shadow: false,
     background: '#FFF3CC',
     layout: 'column',
@@ -286,7 +293,7 @@ export default [
     title: '10th Reason',
     header: 'Happy and<br> Productive<br> Teams Use Eden.',
     description:
-      "For a monthly subscription, you never have to worry about getting these things done when the mid-month sapa hits.<br> You're covered.",
+      "For a monthly subscription, you never have to worry about getting these things done when the mid-month sapa hits. You're covered.",
     shadow: false,
     background: '#D4F7E5',
     layout: 'column',
@@ -295,7 +302,8 @@ export default [
     textPosition: 'bottom',
     media: {
       type: 'image',
-      src: 'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958856/work-group_pwro3s.png',
+      src:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1635958856/work-group_pwro3s.png',
       size: 'large',
     },
     padding: 'pad',

@@ -41,7 +41,7 @@
       <div class="value__image">
         <img
           v-if="content.media.type === 'image'"
-          :src="require(`~/assets/images/${content.media.src}.png`)"
+          :src="content.media.src"
           alt="value-image"
           :class="`image ${content.media.size} ${content.align_image}`"
         />

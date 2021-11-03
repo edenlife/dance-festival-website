@@ -36,8 +36,10 @@
           video {
             margin: 0 !important;
             height: 400px;
-            width: 200px;
-          }
+            margin-top: -55px !important;
+            width: 250px;
+            object-fit: cover;
+           }
         }
       }
     }
@@ -159,6 +161,16 @@
         width: 100px;
         border-radius: 50%;
         object-fit: cover;
+      }
+      @include respond(md) {
+        img {
+          height: 75px;
+          width: 75px;
+        }
+        .top-right {
+          top: 0;
+          left: 50px !important;
+        }
       }
     }
     @media only screen and (min-width: 1200px) {

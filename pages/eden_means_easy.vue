@@ -12,7 +12,7 @@
           <li>Your laundry picked up and dropped off within 48 hours. 👔</li>
           <li>Professional cleaners scrubbing and sweeping your home. 🏡</li>
           <li>
-            Chef-made meals delivered from a menu of over 100 <br />
+            Chef-made meals delivered from a menu of over 100 
             delicious meal choices. 🥘
           </li>
         </ul>

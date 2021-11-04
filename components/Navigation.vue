@@ -629,7 +629,7 @@ export default {
         scrollToApp(id, `homepage - Navbar`)
       } else {
         if (this.currentRoute.includes('easy')) {
-          scrollToApp('#eden-easy-form')
+          this.scrollToSection('#eden-easy-form', 'Get Started')
         } else scrollToApp(id, `${this.currentRoute} - Navbar`)
       }
     },

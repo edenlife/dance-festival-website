@@ -528,6 +528,9 @@
       svg.bi.bi-chat-left-quote {
         transform: rotate(180deg);
       }
+      @include respond(md) {
+        margin-left: -20px;
+      }
     }
     &-body {
       display: flex;
@@ -599,7 +602,6 @@
         font-size: 1.125rem;
         line-height: 28px;
         @include font-weight(light);
-        // @include font-family(cerebri);
 
         &.handle {
           margin: $gap * 4.8 0;
@@ -608,9 +610,17 @@
       }
 
       .hero__button {
-        gap: 0;
-        justify-content: space-between;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
         @include font-weight(light);
+
+        .hero__socials {
+          display: flex;
+          gap: 0;
+          justify-content: space-between;
+        }
+
       }
     }
 
@@ -685,6 +695,9 @@
       }
       @include respond(md) {
         text-align: center;
+        p {
+          width: 80%;
+        }
       }
     }
     &-link {

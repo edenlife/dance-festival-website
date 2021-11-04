@@ -21,7 +21,7 @@ export default [
       handle: 'Nadayar Enegesi',
       image: 'lead-mukoshy',
       description:
-        "Since starting Eden in 2019, we've been driven by a singular purpose: <strong>Make the quality of life 10 times better.</strong> <br> As CEO and a customer who depends on Eden to make my personal life better, I promise to make sure that you get the best service, and that we continue to improve on it, relentlessly.",
+        "Since starting Eden in 2019, we've been driven by a singular purpose: <br/> <strong>Make the quality of life 10 times better.</strong> <br> As CEO and a customer who depends on Eden to make my personal life better, I promise to make sure that you get the best service, and that we continue to improve on it, relentlessly.",
       tweetLink: 'https://twitter.com/mukoshy/status/1138582426438000645?s=20',
     },
     modal_form: false,

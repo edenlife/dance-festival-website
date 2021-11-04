@@ -3,7 +3,7 @@ export default [
     title: 'The 1st Reason',
     header: "We're promise keepers.",
     description:
-      "When you trust us with a service, we deliver. Whether<br> it's food, laundry, or cleaning, there are no buts, no ifs. Just done. Damaged items get replaced.",
+      "When you trust us with a service, we deliver. Whether it's food, laundry, or cleaning, there are no buts, no ifs. Just done. Damaged items get replaced.",
     shadow: true,
     background: '#FFFFFF',
     layout: 'row',
@@ -227,7 +227,7 @@ export default [
     title: '8th Reason',
     header: "It's The Perfect<br> Gift For People<br> You Love.",
     description:
-      'Few actions say "I care for you" like gifting<br> an Eden plan to a person you love. With one gift, you save them time, give them relief, grant them access to quality service delivered at their own pace.',
+      'Few actions say "I care for you" like gifting an Eden plan to a person you love. With one gift, you save them time, give them relief, grant them access to quality service delivered at their own pace.',
     shadow: false,
     background: '#CFF9F2',
     layout: 'column-reverse',

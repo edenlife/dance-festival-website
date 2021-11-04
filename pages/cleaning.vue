@@ -865,8 +865,7 @@
                   </div>
 
                   <div  v-if="showCleaningDescription" class="plan__price-description-extra">
-
-                    Post construction is the cleaning done to new or renovated buildings. This kind of cleaning is done to the whole house or facility from top to bottom.
+                   Post construction is the cleaning done to new or renovated buildings. This kind of cleaning is done to the whole of an apartment, house or facility from top to bottom.
                   </div>
                   <ul v-if="showCleaningDescription">
                     <li>Scraping of cements and paint stains on the floor, windows and doors</li>

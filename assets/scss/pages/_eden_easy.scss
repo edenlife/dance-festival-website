@@ -655,7 +655,6 @@
       }
     }
     &__description {
-      color: color(eden-neutral-2);
       @include font-size(sm);
       line-height: 21px;
     }
@@ -695,9 +694,7 @@
       }
       @include respond(md) {
         text-align: center;
-        p {
-          width: 80%;
-        }
+       
       }
     }
     &-link {
@@ -709,6 +706,11 @@
       }
       @include respond(md) {
         flex-direction: column;
+        a {
+          &:first-child {
+            margin-right: 0;
+          }
+        }
       }
     }
   }

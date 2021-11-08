@@ -135,7 +135,7 @@ export default {
     {
       id: 22,
       image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919013/eden-website-v2/miracle_q36pyk.png',
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1636389813/Miracle_Adoghe_sh4bfu.jpg',
       name: 'Miracle Adoghe',
       role: 'Customer Success',
     },
@@ -199,7 +199,7 @@ export default {
     {
       id: 31,
       image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919004/eden-website-v2/olabowale_jaeb96.png',
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1636389813/Bowale_Adetoye_v8qezr.jpg',
       name: 'Olabowale Adetoye',
       role: 'Customer Success',
     },
@@ -267,13 +267,6 @@ export default {
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962899/Prisca_Edigbe_Finance_lv2xez.jpg',
       name: 'Prisca Edigbe',
       role: 'Finance',
-    },
-    {
-      id: 42,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962905/Shakira_Fari_Awaiye_Supply_xcu0bw.jpg',
-      name: 'Shakirah Fari-Awaiye',
-      role: 'Operations/Supply',
     },
     {
       id: 43,
@@ -369,13 +362,7 @@ export default {
       name: 'Ayooluwa Okunloju',
       role: 'Food Production',
     },
-    {
-      id: 58,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1631093599/David_Brendan_Food_Production_m89hv8.jpg',
-      name: 'David Brendan',
-      role: 'Food Production',
-    },
+   
     {
       id: 59,
       image:
@@ -397,13 +384,7 @@ export default {
       name: 'Funmilayo Babayemi',
       role: 'Food Production',
     },
-    {
-      id: 62,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1631093606/Habeeb_Agboola_Food_Production_ttwwav.jpg',
-      name: 'Habeeb Agboola',
-      role: 'Food Production',
-    },
+   
     {
       id: 63,
       image:
@@ -494,6 +475,27 @@ export default {
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1634300066/Damilola_Bankole_Growth_shjdpm.jpg',
       name: 'Damilola Bankole',
       role: 'Growth',
+    },
+    {
+      id: 76,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1636389840/Ajoke_Yusuf_g9vzxg.jpg',
+      name: 'Ajoke Yusuf',
+      role: 'Customer Success',
+    },
+    {
+      id: 77,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1636389833/Ibrahim_Alausa_yyrufa.jpg',
+      name: 'Ibrahim Alausa',
+      role: 'Engineering',
+    },
+    {
+      id: 78,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1636389822/Wisdom_Okon_se8eta.jpg',
+      name: 'Wisdom Okon',
+      role: 'Food Production',
     },
   ],
 }

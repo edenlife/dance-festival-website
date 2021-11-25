@@ -18,9 +18,17 @@
       <ul class="navigation__menu">
         <li
           v-if="serviceNav"
-          class="fallback"
           @mouseenter.stop="showService = false"
-        ></li>
+          @click="trackLink('Eden Means ~Easy')"
+        >
+          <nuxt-link
+            :to="{ path: '/eden_means_easy' }"
+            class="navigation__menu-item"
+          >
+            Why Eden?
+          </nuxt-link>
+        </li>
+
         <li v-if="serviceNav">
           <div class="navigation__menu-item navigation__menu-service">
             <button
@@ -400,6 +408,17 @@
       <transition name="slide">
         <div v-if="showNavbar" class="navigation__mobile">
           <ul class="menu">
+            <li
+              class="menu--list"
+              @click.prevent="handleToggle('Eden Means Easy')"
+            >
+              <nuxt-link
+                :to="{ path: '/eden_means_easy' }"
+                class="navigation__mobile-item"
+              >
+                Why Eden?
+              </nuxt-link>
+            </li>
             <li class="menu--list">
               <div class="navigation__mobile-item service">
                 <div>Service</div>

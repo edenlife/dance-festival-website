@@ -104,6 +104,8 @@ export default {
     { src: 'plugins/route-subscribe.js', ssr: false }, // Only works on client side
     { src: '~/plugins/vue-persist.js', ssr: false },
     { src: 'plugins/vue-owl-carousel.js', ssr: false }, // Only works on client side
+    '~/plugins/vue-date-picker.js'
+
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

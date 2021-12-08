@@ -5,12 +5,29 @@
         <div class="hero__title">
           <h1>
             Time Is The
-            <img src="@/assets/images/gif-demo.png" alt="food" /> Greatest Gift
+           <video
+              ref="videoRef"
+              muted
+              playsinline
+              autoplay
+              loop
+             >
+              <source src="https://res.cloudinary.com/eden-life-inc/video/upload/v1638955063/gift-header-hero_a3qp7n.mp4" type="video/mp4" />
+            </video> Greatest Gift
             Of All
           </h1>
           <h1 class="mobile">
             <span> Time is the </span>
-            <img src="@/assets/images/gif-demo.png" alt="food" />
+            <video
+              ref="videoRef"
+              muted
+              playsinline
+              autoplay
+              loop
+             >
+              <source src="https://res.cloudinary.com/eden-life-inc/video/upload/v1638955063/gift-header-hero_a3qp7n.mp4" type="video/mp4" />
+            </video>
+          
             <span> greatest gift of all </span>
           </h1>
           <p>
@@ -22,7 +39,7 @@
 
         <div class="hero__img">
           <img
-            src="@/assets/images/gift-header-demo.png"
+            src="@/assets/images/gift-header-demo.jpg"
             alt="phone"
             class="hero__img-bg1"
           />

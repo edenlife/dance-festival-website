@@ -43,7 +43,7 @@ export default [
 
   },
   {
-    image: 'laundry-bundle',
+    image: 'lunch-bundle',
     title: 'Clean Clothes Club',
     description:
       "Nobody likes laundry day. It's wet, wastes time, and sometimes, you even have to iron. <br/> <br/> This gift will save someone from a month of laundry days. We pick up and deliver, so it works for everyone.",
@@ -65,7 +65,7 @@ export default [
 
   },
   {
-    image: 'cleaning-bundle',
+    image: 'lunch-bundle',
     title: 'Spruced Space',
     description:
       "This is the perfect present for the person who's always busy and overwhelmed. They deserve a clean space to unwind.<br/> <br/> 'Home Sweet Home,' that's how your gift feels as soon as they walk in the door.",
@@ -125,7 +125,7 @@ export default [
 
   },
   {
-    image: 'laundry-bundle',
+    image: 'lunch-bundle',
     title: 'Clothed and Cleaned',
     description:
       "It's been a long long year. <br />  <br/> Gift your fave a bundle of well-deserved rest and relaxation. For a whole month, this present reserves their weekends for fun.",

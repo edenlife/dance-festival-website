@@ -41,18 +41,19 @@
     h1 {
       line-height: 62px;
       margin-bottom: 40px;
-      @include font-size(7xl);
+      @include font-size(9xl);
       @include font-weight(bold);
+
+      video{
+        height: 72px;
+        width: 212px;
+        transform: translateY(10px);
+      }
       &.mobile {
         display: none;
       }
-      span {
-        // color: color(eden-purple-250);
-        // box-shadow: inset 0 -23px 0 #dae0ff;
-      }
     }
     p {
-      //   margin: $gap * 3.2 0 $gap * 4 0;
       margin-bottom: $gap * 4.7;
       line-height: 29px;
       @include font-size(lg);
@@ -60,6 +61,11 @@
 
     @include respond(xl) {
       width: 60%;
+
+      video{
+        width: 150px !important;
+        height: unset !important;
+      }
     }
     @include respond(xxl) {
       max-width: 1440px;
@@ -137,6 +143,9 @@
 
     img {
       border-radius: 8px;
+      width: 80%;
+      height: 600px;
+      object-fit: cover;
     }
     &-bg1 {
     }
@@ -153,8 +162,6 @@
         display: none;
         line-height: 47px;
         @include font-size(5xl);
-
-        // margin: 0 auto;
         &.mobile {
           display: block;
         }
@@ -178,6 +185,7 @@
 
       img {
         width: 90%;
+        height: 400px;
         object-fit: cover;
         margin: auto;
       }

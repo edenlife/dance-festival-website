@@ -2,7 +2,7 @@
   <div class="gift--bundle">
     <div>
       <img
-        :src="require(`~/assets/images/${giftPlan.image}.png`)"
+        :src="require(`~/assets/images/${giftPlan.image}.jpg`)"
         :alt="giftPlan.image"
         class="bundle--image"
       />

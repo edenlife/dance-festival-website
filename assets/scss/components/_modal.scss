@@ -1,8 +1,8 @@
 @import '../../style.scss';
 
 .modal-lead {
-  .modal-wrapper{
-max-height: 100%;
+  .modal-wrapper {
+    max-height: 100%;
   }
   .modal-container {
     width: 90vw;
@@ -14,7 +14,7 @@ max-height: 100%;
       width: 500px;
     }
     @include respond(xs) {
-       width: 90vw;
+      width: 90vw;
     }
   }
 }

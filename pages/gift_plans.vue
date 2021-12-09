@@ -5,29 +5,23 @@
         <div class="hero__title">
           <h1>
             Time Is The
-           <video
-              ref="videoRef"
-              muted
-              playsinline
-              autoplay
-              loop
-             >
-              <source src="https://res.cloudinary.com/eden-life-inc/video/upload/v1638955063/gift-header-hero_a3qp7n.mp4" type="video/mp4" />
-            </video> Greatest Gift
-            Of All
+            <video ref="videoRef" muted playsinline autoplay loop>
+              <source
+                src="https://res.cloudinary.com/eden-life-inc/video/upload/v1638955063/gift-header-hero_a3qp7n.mp4"
+                type="video/mp4"
+              />
+            </video>
+            Greatest Gift Of All
           </h1>
           <h1 class="mobile">
             <span> Time is the </span>
-            <video
-              ref="videoRef"
-              muted
-              playsinline
-              autoplay
-              loop
-             >
-              <source src="https://res.cloudinary.com/eden-life-inc/video/upload/v1638955063/gift-header-hero_a3qp7n.mp4" type="video/mp4" />
+            <video ref="videoRef" muted playsinline autoplay loop>
+              <source
+                src="https://res.cloudinary.com/eden-life-inc/video/upload/v1638955063/gift-header-hero_a3qp7n.mp4"
+                type="video/mp4"
+              />
             </video>
-          
+
             <span> greatest gift of all </span>
           </h1>
           <p>
@@ -173,6 +167,7 @@
                     for="anonymous"
                     :class="{
                       checkmark: bundleForm.anonymous === true,
+                      'has-error': $v.bundleForm.anonymous.$error,
                     }"
                   >
                     Yes
@@ -189,6 +184,7 @@
                     for="not-anonymous"
                     :class="{
                       checkmark: bundleForm.anonymous === false,
+                      'has-error': $v.bundleForm.anonymous.$error,
                     }"
                   >
                     No
@@ -216,6 +212,7 @@
                     for="date"
                     :class="{
                       checkmark: checkDate,
+                      'has-error': $v.bundleForm.date.$error,
                     }"
                   >
                     Immediately
@@ -225,12 +222,24 @@
                   Later
 
                   <div class="dates">
-                    <span v-if="dateChecked" class="date--texts">
+                    <span
+                      v-if="dateChecked"
+                      class="date--texts"
+                      :class="{
+                        'has-error': $v.bundleForm.date.$error,
+                      }"
+                    >
                       <span> DD </span>
                       <span> MM </span>
                       <span> YYYY </span>
                     </span>
-                    <span v-else class="date--texts">
+                    <span
+                      v-else
+                      class="date--texts"
+                      :class="{
+                        'has-error': $v.bundleForm.date.$error,
+                      }"
+                    >
                       <span> {{ bundleForm.date.split('-')[0] || 'DD' }} </span>
                       <span> {{ bundleForm.date.split('-')[1] || 'MM' }} </span>
                       <span>
@@ -311,6 +320,9 @@
           <button
             type="submit"
             class="btn--submit"
+            :class="{
+              loading: loading,
+            }"
             :disabled="loading || !selectedPlan"
             @click.prevent="submit('plan')"
           >
@@ -420,11 +432,11 @@
               <div class="select">
                 <div class="selector">
                   <div class="label" @click="toggle()">
-                    <span v-if="!customForm.plan" class="placeholder">
+                    <span v-if="!customForm.plan_name" class="placeholder">
                       Select plan
                     </span>
                     <span v-else class="label--text">{{
-                      customForm.plan.title
+                      customForm.plan_name
                     }}</span>
                   </div>
                   <svg
@@ -465,8 +477,7 @@
                               :for="service.title"
                               :class="{
                                 checkmark:
-                                  customForm.plan &&
-                                  customForm.plan.title === service.title,
+                                  customForm.plan_name === service.title,
                               }"
                             >
                               {{ service.title }}</label
@@ -538,10 +549,6 @@
               alt="failed"
             />
             <h5>Information Submitted</h5>
-            <p>
-              You have successfully submitted your company’s information. We
-              will reach out to you within the next 48 hours.
-            </p>
             <button
               type="submit"
               class="btn--submit"
@@ -561,7 +568,7 @@
       <div slot="body" class="modal__body">
         <div class="company__modal">
           <div class="company__modal-title">
-            <button class="btn btn--success" @click="showFailedModal = false">
+            <button class="btn btn--success" @click="showFailedModal = false; showCustomPlan = false">
               <svg
                 width="32"
                 height="32"
@@ -596,8 +603,7 @@
             <img :src="require(`~/assets/images/failed.svg`)" alt="failed" />
             <h5>Submission Failed</h5>
             <p>
-              Your company’s information was not successfully submitted. Please
-              try again or reach us at <span>eve@edenlife.ng </span> or
+              Please try again or reach us at <span>eve@edenlife.ng </span> or
               <span>+2348123456790</span>
             </p>
           </div>
@@ -610,9 +616,9 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
-//import { companiesApi } from '~/request/all.api'
+import { createGiftPlan, createCustomPlan } from '~/request/airtable'
 import giftBundles from '~/static/giftBundles'
 
 export default {
@@ -625,15 +631,30 @@ export default {
     customForm: {
       name: { required },
       email: { required, email },
-      plan: { required },
-      phone_number: { required },
+      phone_number: {
+        required,
+        minLength: minLength(11),
+        maxLength: maxLength(11),
+      },
     },
     bundleForm: {
       giver_name: { required },
       giver_email: { required, email },
-      giver_phone_number: { required },
+      giver_phone_number: {
+        required,
+        minLength: minLength(11),
+        maxLength: maxLength(11),
+      },
       receiver_name: { required },
-      receiver_phone_number: { required },
+      receiver_phone_number: {
+        required,
+        minLength: minLength(11),
+        maxLength: maxLength(11),
+      },
+      anonymous: { required },
+      date: { required },
+      plan_description: { required },
+      plan_name: { required },
     },
   },
   data() {
@@ -644,7 +665,8 @@ export default {
       loading: false,
       customForm: {
         name: '',
-        plan: null,
+        plan_description: '',
+        plan_name: '',
         email: '',
         phone_number: '',
       },
@@ -653,12 +675,13 @@ export default {
         giver_email: '',
         message: '',
         giver_phone_number: '',
-        anonymous: false,
+        anonymous: null,
         date: '',
         receiver_name: '',
         receiver_email: '',
         receiver_phone_number: '',
-        plan: null,
+        plan_description: '',
+        plan_name: '',
       },
       visible: false,
 
@@ -693,9 +716,12 @@ export default {
     },
     selectPlan(val) {
       this.selectedPlan = val
+      this.bundleForm.plan_description = this.selectedPlan.details.join(' ')
+      this.bundleForm.plan_name = this.selectedPlan.title
     },
     setCustomPlan(plan) {
-      this.customForm.plan = plan
+      this.customForm.plan_name = plan.title
+      this.customForm.plan_description = plan.details.join(' ')
     },
     closeModal() {
       this.showSuccessModal = !this.showSuccessModal
@@ -718,22 +744,34 @@ export default {
     async submitCustom() {
       this.$v.customForm.$touch()
       if (!this.$v.customForm.$error) {
-        this.customForm.plan = JSON.stringify(this.customForm.plan.plan)
         try {
-          console.log('a')
           this.loading = true
-          // await companiesApi(this.companyForm)
-          // Object.keys(this.companyForm).forEach(
-          //   (key) => (this.companyForm[key] = '')
-          // )
-          // this.$nextTick(() => {
-          //   this.$v.companyForm.$reset()
-          //   this.companyForm.service = []
-          // })
-          // this.showSuccessModal = true
-          // this.showModalCompany = !this.showModalCompany
-          // this.loading = false
-          // mixpanelTrackEvent('Company form - Companies page')
+          const metaData = {
+            Name: this.customForm.name,
+            Email: this.customForm.email,
+            Phone: this.customForm.phone_number,
+            'Plan Description': this.customForm.plan_description,
+            'Plan Name': this.customForm.plan_name,
+          }
+          createCustomPlan(metaData).then(
+            (res) => {
+              this.loading = false
+              setTimeout(() => {
+                Object.keys(this.customForm).forEach(
+                  (key) => (this.customForm[key] = '')
+                )
+                this.$nextTick(() => {
+                  this.$v.customForm.$reset()
+                  this.loading = false
+                  this.showSuccessModal = true
+                })
+              }, 500)
+            },
+            (err) => {
+              this.loading = false
+              this.showFailedModal = true
+            }
+          )
         } catch (error) {
           this.loading = false
           this.showFailedModal = true
@@ -742,23 +780,45 @@ export default {
     },
     async submitPlan() {
       this.$v.bundleForm.$touch()
+
       if (!this.$v.bundleForm.$error) {
-        this.bundleForm.plan = JSON.stringify(this.selectedPlan.plan)
         try {
-          console.log('a')
           this.loading = true
-          // await companiesApi(this.companyForm)
-          // Object.keys(this.companyForm).forEach(
-          //   (key) => (this.companyForm[key] = '')
-          // )
-          // this.$nextTick(() => {
-          //   this.$v.companyForm.$reset()
-          //   this.companyForm.service = []
-          // })
-          // this.showSuccessModal = true
-          // this.showModalCompany = !this.showModalCompany
-          // this.loading = false
-          // mixpanelTrackEvent('Company form - Companies page')
+          const metaData = {
+            'Giver Name': this.bundleForm.giver_name,
+            'Giver Email': this.bundleForm.giver_email,
+            'Giver Phone': this.bundleForm.giver_phone_number,
+            'Anonymous Giver': this.bundleForm.anonymous ? 'Yes' : 'No',
+            Message: this.bundleForm.message,
+            'Contact Receiver': this.dateChecked
+              ? 'Immediately'
+              : this.bundleForm.date,
+            'Receiver Name': this.bundleForm.receiver_name,
+            'Receiver Email': this.bundleForm.receiver_email,
+            'Receiver Phone': this.bundleForm.receiver_phone_number,
+            'Plan Description': this.bundleForm.plan_description,
+            'Plan Name': this.bundleForm.plan_name,
+          }
+          createGiftPlan(metaData).then(
+            (res) => {
+              this.loading = false
+              setTimeout(() => {
+                Object.keys(this.bundleForm).forEach(
+                  (key) => (this.bundleForm[key] = '')
+                )
+                this.$nextTick(() => {
+                  this.$v.bundleForm.$reset()
+                  this.selectedPlan = null
+                  this.loading = false
+                  this.showSuccessModal = true
+                })
+              }, 500)
+            },
+            (err) => {
+              this.loading = false
+              this.showFailedModal = true
+            }
+          )
         } catch (error) {
           this.loading = false
           this.showFailedModal = true

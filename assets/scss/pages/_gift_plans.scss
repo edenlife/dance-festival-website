@@ -44,7 +44,7 @@
       @include font-size(9xl);
       @include font-weight(bold);
 
-      video{
+      video {
         height: 72px;
         width: 212px;
         transform: translateY(10px);
@@ -62,7 +62,7 @@
     @include respond(xl) {
       width: 60%;
 
-      video{
+      video {
         width: 150px !important;
         height: unset !important;
       }
@@ -214,7 +214,7 @@
           margin-bottom: 16px;
         }
 
-        p{
+        p {
           width: 50%;
           margin: auto auto 40px;
         }
@@ -301,8 +301,6 @@
             position: relative;
             height: 48px;
 
-       
-
             label {
               color: #1d352a;
               @include font-size(base);
@@ -318,6 +316,13 @@
                 border-radius: 4px;
                 border: 1px solid #93a29b;
                 transition: border 200ms ease-in-out;
+              }
+
+              &.has-error {
+                &::before {
+                  background-color: color(eden-neutral-7);
+                  border: 1px solid color(eden-red);
+                }
               }
               &.checkmark {
                 color: color(eden-neutral-1);
@@ -374,7 +379,11 @@
               padding: 5px;
               color: #4b6358;
               cursor: pointer;
-
+              &.has-error {
+                span {
+                  border-bottom: 1px solid color(eden-red);
+                }
+              }
               span {
                 border-bottom: 1px solid #cbd8d2;
                 margin-right: 10px;
@@ -400,9 +409,8 @@
           opacity: 0;
         }
 
-        @include respond(xl){
+        @include respond(xl) {
           width: 90%;
-
         }
       }
       .btn--submit {
@@ -411,7 +419,8 @@
         background-color: color(eden-green-primary);
         color: color(eden-neutral-7);
         border-radius: 4px;
-        transition: all 0.4s ease-in-out;
+        transition: all 0.8s ease-in-out;
+
         padding: $gap * 1.6 $gap * 2.9;
         margin: $gap * 4 auto $gap * 6.4;
         width: 90%;
@@ -421,16 +430,21 @@
           background-color: color(eden-green-250);
           color: color(eden-neutral-7);
         }
-        &:active {
-          background-image: radial-gradient(
-            circle at center right,
-            rgba(0, 141, 64, 0.1) 50%,
-            #008d40 50%
+        &:active,
+        &.loading {
+          background: linear-gradient(
+            to right,
+            color(eden-green-primary) 10%,
+            color(eden-green-250) 50%,
+            color(eden-green-primary) 60%
           );
+          background-size: 500px;
+
+          animation: buttonAnimate 1s linear infinite forwards;
         }
 
-        &:disabled{
-          cursor: not-allowed
+        &:disabled {
+          cursor: not-allowed;
         }
       }
       .info--text {
@@ -483,7 +497,7 @@
         margin-bottom: $gap * 6.4;
       }
 
-      .confetti{
+      .confetti {
         width: 80%;
       }
       p {
@@ -492,7 +506,7 @@
         @include font-weight(light);
         margin: auto auto $gap * 8;
         width: 40%;
-        color: #4B6358;
+        color: #4b6358;
       }
     }
 
@@ -735,12 +749,17 @@
         background-color: color(eden-green-250);
         color: color(eden-neutral-7);
       }
-      &:active {
-        background-image: radial-gradient(
-          circle at center right,
-          rgba(0, 141, 64, 0.1) 50%,
-          #008d40 50%
+      &:active,
+      &.loading {
+        background: linear-gradient(
+          to right,
+          color(eden-green-primary) 10%,
+          color(eden-green-250) 50%,
+          color(eden-green-primary) 60%
         );
+        background-size: 500px;
+
+        animation: buttonAnimate 1s linear infinite forwards;
       }
     }
   }
@@ -1059,177 +1078,6 @@
   }
 }
 
-.customers {
-  margin: 0 auto;
-  width: 83%;
-  padding: $gap * 10 0 $gap * 16 0;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: $gap * 18;
-  &__title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: $gap * 8.4;
-    h3 {
-      color: color(eden-neutral-1);
-      @include font-size(6xl);
-      line-height: 63px;
-      @include font-weight(bold);
-    }
-    &-image {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: $gap * 4 $gap * 6;
-    }
-  }
-  &__testimonials {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: masonry;
-    gap: $gap * 2.4;
-
-    .card {
-      width: 384px;
-      padding: $gap * 2;
-      height: fit-content;
-      background-color: color(eden-neutral-7);
-      border: 1px solid rgba(228, 232, 230, 0.2);
-      border-radius: 8px;
-      &:hover {
-        transform: scale(1.01);
-        transition: all 0.3s ease-in-out;
-      }
-      &__title {
-        display: flex;
-        align-items: center;
-        margin-bottom: $gap + 6;
-        &-img {
-          margin-right: $gap - 2;
-          width: 68px;
-          height: 68px;
-          img {
-            border-radius: 50%;
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-          }
-        }
-        &-name {
-          margin-bottom: 4px;
-          color: color(eden-neutral-1);
-          @include font-size(base);
-        }
-        &-handle {
-          line-height: 21px;
-          @include font-size(sm);
-          color: color(eden-green-primary);
-        }
-      }
-      &__description {
-        color: color(eden-neutral-2);
-        @include font-size(sm);
-        line-height: 21px;
-      }
-
-      &:nth-child(4) {
-        margin-top: -$gap * 7;
-      }
-      &:nth-child(5) {
-        margin-top: -$gap * 11;
-      }
-    }
-  }
-  .btn {
-    margin-top: $gap * 4;
-    line-height: 23px;
-    @include font-size(lg);
-    background-color: color(eden-green-primary);
-    color: color(eden-neutral-7);
-    border-radius: 4px;
-    transition: all 0.4s ease-in-out;
-    padding: $gap * 2 $gap * 3.2;
-    align-self: center;
-    &:hover {
-      box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
-      background-color: color(eden-green-250);
-      color: color(eden-neutral-7);
-    }
-    &:active {
-      background-image: radial-gradient(
-        circle at center right,
-        rgba(0, 141, 64, 0.1) 50%,
-        #008d40 50%
-      );
-    }
-  }
-  @include respond(md) {
-    padding: $gap * 6 0 $gap * 6 0;
-    width: 90%;
-
-    &__title {
-      flex-direction: column;
-      margin-bottom: $gap * 8;
-      h3 {
-        @include font-size(3xl);
-        line-height: 36px;
-        text-align: center;
-      }
-      &-image {
-        margin-left: $gap * 2.4;
-        gap: $gap * 2 $gap * 2;
-        grid-template-columns: repeat(4, 60px);
-        margin-top: $gap * 4;
-        img {
-          width: 100%;
-          height: auto;
-        }
-      }
-    }
-    &__testimonials {
-      gap: $gap * 2.3 $gap + 2;
-      overflow: auto;
-      grid-template-columns: repeat(3, 1fr);
-      .card {
-        width: 307px;
-        padding: $gap + 6 $gap + 9;
-        &:hover {
-          transform: scale(1.01);
-          transition: all 0.2s ease-in;
-        }
-        &:nth-child(4) {
-          margin-top: -$gap * 10;
-        }
-        &:nth-child(5) {
-          margin-top: -$gap * 14;
-        }
-      }
-    }
-  }
-  @media only screen and (min-width: 48em) and (max-width: 75em) {
-    &__title {
-      &-image {
-        grid-template-columns: repeat(4, 80px);
-        img {
-          width: 100%;
-          height: auto;
-        }
-      }
-    }
-    &__testimonials {
-      overflow: auto;
-    }
-  }
-  @include respond(xxl) {
-    max-width: 1440px;
-    margin: 0 auto;
-    &__testimonials {
-      max-width: 1240px;
-      margin: 0 auto;
-    }
-  }
-}
-
 .modal__body {
   // background-color: color(eden-neutral-7);
   .company__modal {
@@ -1266,7 +1114,7 @@
         margin-top: $gap * 3.2;
         width: 70%;
         margin: auto auto 20px;
-        
+
         label {
           @include font-size(xs);
           line-height: 19px;
@@ -1484,12 +1332,16 @@
           background-color: color(eden-green-250);
           color: color(eden-neutral-7);
         }
-        &:active {
-          background-image: radial-gradient(
-            circle at center right,
-            rgba(0, 141, 64, 0.1) 50%,
-            #008d40 50%
+        &:active,
+        &.loading {
+          background: linear-gradient(
+            to right,
+            color(eden-green-primary) 10%,
+            color(eden-green-250) 50%,
+            color(eden-green-primary) 60%
           );
+          background-size: 500px;
+          animation: buttonAnimate 1s linear infinite forwards;
         }
       }
     }
@@ -1542,5 +1394,14 @@
         }
       }
     }
+  }
+}
+
+@keyframes buttonAnimate {
+  0% {
+    background-position: -50% 0;
+  }
+  100% {
+    background-position: 50% 0;
   }
 }

@@ -205,7 +205,7 @@
     .bundle--form {
       background-image: url('~@/assets/images/bundle-form-bg.svg');
       width: 50%;
-      background-size: cover;
+      background-size: contain;
       margin: auto;
 
       .bundle__title {
@@ -457,6 +457,19 @@
         text-align: center;
       }
     }
+
+    @include respond(xl) {
+      .bundle--form {
+        .bundle__title {
+          .plan--card {
+            width: 90%;
+            max-width: 400px;
+            font-size: 14px;
+            line-height: 20px;
+          }
+        }
+      }
+    }
     @include respond(md) {
       padding: 20px 0 20px 0;
       .bundle--form {
@@ -465,10 +478,7 @@
         .bundle__title {
           padding: 80px 30px;
           .plan--card {
-            width: 90%;
             max-width: 319px;
-            font-size: 14px;
-            line-height: 20px;
           }
         }
       }

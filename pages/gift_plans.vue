@@ -43,7 +43,7 @@
             type="button"
             class="hero__button-solid"
             @click.prevent="
-              scrollToFooter('Get the Perfect Perk clicked', 'companies - hero')
+              scrollTo('step-one')
             "
           >
             <span> Gift an Eden Plan in 3 Steps </span>
@@ -54,7 +54,7 @@
       </header>
     </div>
 
-    <div class="container--bundles">
+    <div id="step-one" class="container--bundles">
       <div class="bundle__title">
         <h3>Step 1: Choose a Gift Bundle</h3>
       </div>
@@ -332,7 +332,7 @@
       </div>
     </div>
 
-    <div class="container--bundles">
+    <div id="success-section" class="container--bundles">
       <div class="bundle__title">
         <img src="@/assets/images/gift-confetti.svg" alt="" class="confetti" />
         <h3>Step 3: We'll Take It From Here</h3>
@@ -568,7 +568,13 @@
       <div slot="body" class="modal__body">
         <div class="company__modal">
           <div class="company__modal-title">
-            <button class="btn btn--success" @click="showFailedModal = false; showCustomPlan = false">
+            <button
+              class="btn btn--success"
+              @click="
+                showFailedModal = false
+                showCustomPlan = false
+              "
+            >
               <svg
                 width="32"
                 height="32"
@@ -763,7 +769,7 @@ export default {
                 this.$nextTick(() => {
                   this.$v.customForm.$reset()
                   this.loading = false
-                  this.showSuccessModal = true
+                  this.scrollTo('success-section')
                 })
               }, 500)
             },
@@ -810,6 +816,7 @@ export default {
                   this.$v.bundleForm.$reset()
                   this.selectedPlan = null
                   this.loading = false
+                  this.showCustomPlan =  false
                   this.showSuccessModal = true
                 })
               }, 500)
@@ -824,6 +831,10 @@ export default {
           this.showFailedModal = true
         }
       }
+    },
+
+    scrollTo(id) {
+      document.getElementById(id).scrollIntoView()
     },
 
     scrollToFooter(label) {

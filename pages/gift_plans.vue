@@ -31,33 +31,26 @@
           </p>
         </div>
 
-        <div class="hero__img">
-          <img
-            src="@/assets/images/gift-header-demo.jpg"
-            alt="phone"
-            class="hero__img-bg1"
-          />
-        </div>
         <div class="hero__button">
           <button
             type="button"
             class="hero__button-solid"
-            @click.prevent="
-              scrollTo('step-one')
-            "
+            @click.prevent="scrollTo('step-one')"
           >
             <span> Gift an Eden Plan in 3 Steps </span>
             <img src="@/assets/images/value-gift.svg" alt="food" />
             <span>👇🏽</span>
           </button>
         </div>
-      </header>
-    </div>
 
-    <div id="step-one" class="container--bundles">
-      <div class="bundle__title">
+        <div class="arrow"></div>
+      </header>
+      <div id="step-one" class="bundle__title">
         <h3>Step 1: Choose a Gift Bundle</h3>
       </div>
+    </div>
+
+    <div  class="container--bundles">
       <section class="bundle__types">
         <bundle
           v-for="(bundle, index) in gift_bundles"
@@ -335,7 +328,7 @@
     <div id="success-section" class="container--bundles">
       <div class="bundle__title">
         <img src="@/assets/images/gift-confetti.svg" alt="" class="confetti" />
-        <h3>Step 3: We'll Take It From Here</h3>
+        <h3 class="m-fit">Step 3: We'll Take It From Here</h3>
 
         <p>
           We'll reach out to the person you're gifting whenever you want us to,
@@ -816,7 +809,7 @@ export default {
                   this.$v.bundleForm.$reset()
                   this.selectedPlan = null
                   this.loading = false
-                  this.showCustomPlan =  false
+                  this.showCustomPlan = false
                   this.showSuccessModal = true
                 })
               }, 500)

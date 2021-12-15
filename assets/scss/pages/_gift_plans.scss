@@ -3,6 +3,51 @@
 .container {
   width: 100%;
 
+  &--hero {
+    background: color(eden-green-primary);
+
+    .bundle__title {
+      background-image: url('~@/assets/images/bundle-hero-bg.svg');
+      height: 150px;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+
+      h3 {
+        background: #ffffff;
+        border-radius: 32px 32px 0px 0px;
+        border: 6px solid #98dcaf;
+        padding: 20px;
+        height: 77px;
+        max-width: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        min-width: 400px;
+        border-bottom: 0;
+        @include font-size(5xl);
+        line-height: 47px;
+      }
+      @include respond(xl) {
+        h3 {
+          @include font-size(3xl);
+          line-height: 32px;
+          min-width: 330px;
+        }
+      }
+
+      @include respond(md) {
+        h3 {
+          @include font-size(xl);
+          line-height: 32px;
+          min-width: 330px;
+        }
+      }
+    }
+  }
+
   &--description {
     background-color: #f6fffa;
     @include respond(md) {
@@ -32,12 +77,14 @@
 .hero {
   margin: 0 auto;
   width: 100%;
-  padding: $gap * 20 0 $gap * 12.8 0;
+  padding: $gap * 20 0 0 0;
+  z-index: 0;
+  opacity: 0.9;
   &__title {
-    color: color(eden-neutral-1);
+    color: color(eden-neutral-7);
     width: 40%;
     text-align: center;
-    margin: auto;
+    margin: auto auto $gap * 10.4;
     h1 {
       line-height: 62px;
       margin-bottom: 40px;
@@ -47,20 +94,22 @@
       video {
         height: 72px;
         width: 212px;
+        border-radius: 100px;
         transform: translateY(10px);
+        object-fit: cover;
       }
       &.mobile {
         display: none;
       }
     }
     p {
-      margin-bottom: $gap * 4.7;
       line-height: 29px;
       @include font-size(lg);
     }
 
     @include respond(xl) {
       width: 60%;
+      margin: auto auto $gap * 4;
 
       video {
         width: 150px !important;
@@ -73,11 +122,14 @@
     }
   }
   &__button {
+    position: relative;
+    margin-bottom: 90px !important;
     &-solid {
       position: relative;
       line-height: 23px;
       @include font-size(xl);
-      background-color: #14b757;
+      background-color: color(eden-green-primary);
+      border: 1px solid #98dcaf;
       color: color(eden-neutral-7);
       border-radius: 33px;
       transition: all 0.4s ease-in-out;
@@ -106,15 +158,16 @@
 
       &::after {
         position: absolute;
-        background: #d4f7e5;
+        background: #98dcaf;
         top: 45%;
         content: '';
         width: 352px;
         height: 59px;
         border-radius: 33px;
+        border: 0;
         left: -1%;
         transform: rotate(10deg);
-        z-index: -20;
+        z-index: -2;
       }
 
       @include respond(xl) {
@@ -139,7 +192,7 @@
   &__img {
     position: relative;
     text-align: center;
-    margin-bottom: $gap * 4.9;
+    margin-bottom: $gap * 12.4;
 
     img {
       border-radius: 8px;
@@ -151,9 +204,37 @@
     }
   }
 
+  .arrow {
+    width: 0;
+    padding: 0px;
+    height: 80px;
+    margin: auto;
+    border: 1px solid #98dcaf;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: -5px;
+      width: 0;
+      height: 0;
+      top: 100%;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      bottom: 0;
+      border-top: 15px solid #98dcaf;
+    }
+  }
+  @include respond(xl) {
+    .bundle__title h3 {
+      @include font-size(3xl);
+      line-height: 32px;
+      min-width: 330px;
+    }
+  }
+
   @include respond(md) {
     flex-direction: column;
-    padding: $gap * 20 0 $gap * 10 0;
 
     &__title {
       width: 100% !important;
@@ -190,6 +271,12 @@
         margin: auto;
       }
     }
+
+    .bundle__title h3 {
+      @include font-size(xl);
+      line-height: 32px;
+      min-width: 330px;
+    }
   }
 }
 
@@ -216,6 +303,7 @@
 
         p {
           width: 50%;
+          min-width: 250px;
           margin: auto auto 40px;
         }
         .plan--card {
@@ -498,7 +586,11 @@
         @include font-size(5xl);
         line-height: 47px;
         @include font-weight(bold);
-        margin-bottom: $gap * 6.4;
+        margin-bottom: $gap * 11.6;
+
+        &.m-fit {
+          margin-bottom: 16px;
+        }
       }
       h4 {
         @include font-size(3xl);
@@ -508,7 +600,7 @@
       }
 
       .confetti {
-        width: 80%;
+        width: 50%;
       }
       p {
         @include font-size(lg);
@@ -570,6 +662,7 @@
         h3 {
           @include font-size(3xl);
           line-height: 28px;
+          margin-bottom: $gap * 6.4;
         }
         h4 {
           @include font-size(lg);
@@ -585,6 +678,21 @@
       }
       &__divider {
         display: none;
+      }
+    }
+  }
+  @include respond(md) {
+    .bundle {
+      &__title {
+        h3 {
+          @include font-size(xl);
+          line-height: 32px;
+        }
+        h4 {
+          @include font-size(lg);
+          line-height: 28px;
+          @include font-weight(bold);
+        }
       }
     }
   }

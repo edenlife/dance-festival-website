@@ -2,6 +2,7 @@
   <div
     id="navigation-container"
     class="container"
+    :class="{ 'primary-bg': currentRoute === 'gift_plans' }"
     :style="getNavigationColor(routeUpdate)"
   >
     <nav
@@ -11,6 +12,12 @@
     >
       <nuxt-link :to="{ path: '/' }" class="navigation__logo">
         <img
+          v-if="lightLogo"
+          src="https://res.cloudinary.com/eden-life-inc/image/upload/v1639536164/eden-logo-white_miwuzx.svg"
+          alt="Eden logo"
+        />
+        <img
+          v-else
           src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611230252/eden-website-v2/eden-logo_lcepc6.svg"
           alt="Eden logo"
         />
@@ -588,6 +595,7 @@ export default {
       },
       currentRoute: '',
       routeUpdate: '',
+      lightLogo: false,
     }
   },
   computed: {
@@ -621,6 +629,7 @@ export default {
     window.addEventListener('resize', this.handleResize)
     const getRoute = this.$nuxt.$route.path
     this.currentRoute = getRoute.replace('/', '')
+    if (this.currentRoute === 'gift_plans') this.lightLogo = true
   },
   methods: {
     getNavigationColor,
@@ -632,11 +641,18 @@ export default {
       }
     },
     handleScroll() {
+      const navigation = document.querySelector('#navigation-container')
       if (window.scrollY > 20) {
-        document.querySelector('#navigation-container').className =
-          'container scroll'
+        navigation.className = 'container scroll'
+        if (navigation.classList.contains('primary-bg'))
+          navigation.classList.remove('primary-bg')
+        this.lightLogo = false
       } else {
-        document.querySelector('#navigation-container').className = 'container'
+        navigation.className = 'container'
+        if (this.currentRoute === 'gift_plans') {
+          navigation.classList.add('primary-bg')
+          this.lightLogo = true
+        }
       }
     },
     trackLink(service) {

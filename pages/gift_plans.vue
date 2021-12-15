@@ -80,7 +80,7 @@
           </p>
 
           <div v-if="selectedPlan" class="plan--card">
-            {{ selectedPlan.title }} | {{ selectedPlan.details[0] }} | ₦{{
+            {{ selectedPlan.title }} | {{ selectedPlan.plan_detail }} | ₦{{
               selectedPlan.amount
             }}
           </div>
@@ -716,9 +716,7 @@ export default {
     selectPlan(val) {
       this.selectedPlan = val
       this.bundleForm.plan_description = this.selectedPlan.details.join(' ')
-      console.log(this.selectedPlan.details.join(' '));
-       console.log(this.selectedPlan.details);
-      this.bundleForm.plan_name = this.selectedPlan.title
+        this.bundleForm.plan_name = this.selectedPlan.title
     },
     setCustomPlan(plan) {
       this.customForm.plan_name = plan.title

@@ -10,6 +10,7 @@ export default [
       'Delivered Monday to Friday.',
       ' ₦55,000 per month.',
     ],
+    plan_detail: '1 meal per day.',
     plan: {
       meal: {
         frequency: 'daily',
@@ -32,6 +33,8 @@ export default [
       'Delivered  twice a week.',
       '₦58,000 per month',
     ],
+    plan_detail: '6 meals per week.',
+
     plan: {
       meal: {
         frequency: 'weekly-twodays',
@@ -53,6 +56,8 @@ export default [
       'Picked up and delivered every 2 weeks.',
       ' ₦24,000 per month ',
     ],
+    plan_detail: 'Wash and iron 1 laundry bag of 30 items.',
+
     plan: {
       laundry: {
         frequency: 'bi-weekly',
@@ -75,6 +80,8 @@ export default [
       'Every week.',
       ' ₦26,000 per month.',
     ],
+    plan_detail: 'Standard cleaning for a 2 bedroom apartment.',
+
     plan: {
       cleaning: {
         frequency: 'weekly',
@@ -107,6 +114,7 @@ export default [
       'Laundry picked up and delivered every 2 weeks.',
       ' ₦24,500 per month. ',
     ],
+    plan_detail: '1 meal per week delivered once a week. Wash and fold 1 laundry bag of 30 items.',
     plan: {
       meal: {
         frequency: 'weekly',
@@ -130,10 +138,12 @@ export default [
       "It's been a long long year. <br />  <br/> Gift your fave a bundle of well-deserved rest and relaxation. For a whole month, this present reserves their weekends for fun.",
 
     details: [
-      'Wash and fold 1 bag of 30 items, Laundry picked up and delivered every ',
+      'Wash and fold 1 bag of 30 items, Laundry picked up and delivered every week ',
       'Standard cleaning for a 1 bedroom apartment, done every two weeks.',
       ' ₦23,500 per month. ',
     ],
+    plan_detail: 'Wash and fold 1 bag of 30 items,Standard cleaning for a 1 bedroom apartment ',
+
     plan: {
       cleaning: {
         frequency: 'bi-weekly',

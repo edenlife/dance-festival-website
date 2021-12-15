@@ -12,6 +12,25 @@
   }
 }
 
+.primary-bg {
+  .navigation {
+    &__menu {
+      &-item,
+      &-service .btn {
+        color: color(eden-neutral-7);
+
+        &:hover {
+          color: color(eden-neutral-6);
+        }
+      }
+
+      &-service .btn svg {
+        stroke: color(eden-neutral-7);
+      }
+    }
+  }
+}
+
 .navigation {
   display: flex;
   justify-content: space-between;
@@ -26,6 +45,21 @@
     list-style: none;
     display: flex;
     justify-content: space-between;
+
+    &.light {
+      .navigation__menu-item,
+      .navigation__menu-service .btn {
+        color: color(eden-neutral-7);
+
+        &:hover {
+          color: color(eden-neutral-6);
+        }
+      }
+
+      .navigation__menu-service .btn svg {
+        stroke: color(eden-neutral-7);
+      }
+    }
 
     &-item {
       margin: 0 $gap * 3;
@@ -98,7 +132,6 @@
           flex: 0 0 55%;
           padding: $gap + 6 0 $gap + 6 $gap * 3.2;
 
-          
           h3 {
             margin-bottom: $gap + 2;
             @include font-size(lg);
@@ -119,17 +152,16 @@
           padding: $gap + 6 0;
           border-radius: 0px 16px 16px 0px;
 
-          &.contact{
-            li{
+          &.contact {
+            li {
               padding: 16px;
               color: color(eden-green-primary);
               &:hover {
                 color: color(eden-green-250);
-
               }
             }
           }
-         
+
           li {
             list-style: none;
             padding: $gap + 6 $gap * 3.2;
@@ -338,11 +370,10 @@
               margin-right: $gap + 6;
             }
 
-            &.contact{
+            &.contact {
               color: color(eden-green-primary);
               &:hover {
                 color: color(eden-green-250);
-
               }
             }
             &.food {

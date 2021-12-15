@@ -620,8 +620,14 @@ export default {
   },
   watch: {
     $route() {
+      const navigation = document.querySelector('#navigation-container')
+
       this.routeUpdate = this.$nuxt.$route.path
       this.currentRoute = this.routeUpdate.replace('/', '')
+      if (this.currentRoute.includes('gift_plans')) {
+        navigation.classList.add('primary-bg')
+        this.lightLogo = true
+      }
     },
   },
   mounted() {
@@ -629,7 +635,6 @@ export default {
     window.addEventListener('resize', this.handleResize)
     const getRoute = this.$nuxt.$route.path
     this.currentRoute = getRoute.replace('/', '')
-    if (this.currentRoute === 'gift_plans') this.lightLogo = true
   },
   methods: {
     getNavigationColor,
@@ -649,7 +654,7 @@ export default {
         this.lightLogo = false
       } else {
         navigation.className = 'container'
-        if (this.currentRoute === 'gift_plans') {
+        if (this.currentRoute.includes('gift_plans')) {
           navigation.classList.add('primary-bg')
           this.lightLogo = true
         }

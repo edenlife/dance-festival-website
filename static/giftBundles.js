@@ -114,7 +114,7 @@ export default [
       'Laundry picked up and delivered every 2 weeks.',
       ' ₦24,500 per month. ',
     ],
-    plan_detail: '1 meal per week delivered once a week. Wash and fold 1 laundry bag of 30 items.',
+    plan_detail: '1 meal per week delivered once a week + Wash and fold 1 laundry bag of 30 items.',
     plan: {
       meal: {
         frequency: 'weekly',
@@ -142,7 +142,7 @@ export default [
       'Standard cleaning for a 1 bedroom apartment, done every two weeks.',
       ' ₦23,500 per month. ',
     ],
-    plan_detail: 'Wash and fold 1 bag of 30 items,Standard cleaning for a 1 bedroom apartment ',
+    plan_detail: 'Wash and fold 1 bag of 30 items + Standard cleaning for a 1 bedroom apartment ',
 
     plan: {
       cleaning: {

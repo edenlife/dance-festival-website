@@ -13,7 +13,7 @@
       display: flex;
       align-items: flex-end;
       justify-content: center;
-
+      background-size: cover;
       h3 {
         background: #ffffff;
         border-radius: 32px 32px 0px 0px;
@@ -107,6 +107,7 @@
       @include font-size(lg);
     }
 
+   
     @include respond(xl) {
       width: 60%;
       margin: auto auto $gap * 4;
@@ -116,6 +117,15 @@
         height: unset !important;
       }
     }
+
+    @include respond(md) {
+      video {
+        width: 117px !important;
+        height: unset !important;
+        transform: translateY(6px) !important;
+      }
+    }
+
     @include respond(xxl) {
       max-width: 1440px;
       margin: 0 auto;
@@ -625,13 +635,23 @@
       }
 
       &::before {
-        height: 115vh;
+        height: 130vh;
         content: '';
         bottom: 79%;
+
+        @include respond(xxl){
+          height: 70vh;
+
+        }
       }
       &::after {
         height: 280vh;
         top: 75%;
+
+        @include respond(xxl){
+          height: 150vh;
+
+        }
       }
       img {
       }
@@ -1444,7 +1464,7 @@
         transition: all 0.4s ease-in-out;
         padding: $gap * 1.6 $gap * 2.9;
         margin: $gap * 2.4 auto;
-        width: 70%;
+        width: 90%;
         &:hover {
           box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
           background-color: color(eden-green-250);

@@ -25,7 +25,7 @@
             <span> greatest gift of all </span>
           </h1>
           <p>
-            An Eden plan buys back time for your loved ones. Time to chill, time
+            An Eden plan buys back time for your loved ones. <br/> Time to chill, time
             to grow, and time for you. Everyone wants more time, so give the
             perfect gift today.
           </p>
@@ -716,6 +716,8 @@ export default {
     selectPlan(val) {
       this.selectedPlan = val
       this.bundleForm.plan_description = this.selectedPlan.details.join(' ')
+      console.log(this.selectedPlan.details.join(' '));
+       console.log(this.selectedPlan.details);
       this.bundleForm.plan_name = this.selectedPlan.title
     },
     setCustomPlan(plan) {

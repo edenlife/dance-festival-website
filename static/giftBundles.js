@@ -103,8 +103,7 @@ export default [
       'Treat someone special to this convenient combo. <br/> <br/> One day free from struggling for food every week, and no more laundry worries. All month.',
 
     details: [
-      '1 meal per week delivered once a week.',
-      'Wash and fold 1 laundry bag of 30 items.',
+      '1 meal per week delivered once a week. Wash and fold 1 laundry bag of 30 items.',
       'Laundry picked up and delivered every 2 weeks.',
       ' ₦24,500 per month. ',
     ],
@@ -131,8 +130,7 @@ export default [
       "It's been a long long year. <br />  <br/> Gift your fave a bundle of well-deserved rest and relaxation. For a whole month, this present reserves their weekends for fun.",
 
     details: [
-      'Wash and fold 1 bag of 30 items.',
-      'Laundry picked up and delivered every ',
+      'Wash and fold 1 bag of 30 items, Laundry picked up and delivered every ',
       'Standard cleaning for a 1 bedroom apartment, done every two weeks.',
       ' ₦23,500 per month. ',
     ],

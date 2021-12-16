@@ -26,7 +26,7 @@
           </h1>
           <p>
             An Eden plan buys back time for your loved ones. <br/> Time to chill, time
-            to grow, and time for you. Everyone wants more time, so give the
+            to grow, and time for you. <br/>Everyone wants more time, so give the
             perfect gift today.
           </p>
         </div>
@@ -59,10 +59,6 @@
           @plan="selectPlan"
         />
       </section>
-      <div class="bundle__divider">
-        <img src="@/assets/images/bundle-logo.svg" alt="" />
-      </div>
-
       <div class="bundle__title">
         <a @click="showCustomPlan = true">
           <h3>I want a plan that's not here</h3></a

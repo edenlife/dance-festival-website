@@ -113,15 +113,14 @@
       margin: auto auto $gap * 4;
 
       video {
-        width: 150px !important;
-        height: unset !important;
+        width: 132px !important;
+        height: 45px !important;
       }
     }
 
     @include respond(md) {
       video {
-        width: 117px !important;
-        height: unset !important;
+      
         transform: translateY(6px) !important;
       }
     }
@@ -640,7 +639,7 @@
         bottom: 79%;
 
         @include respond(xxl){
-          height: 70vh;
+          height: 50vh;
 
         }
       }
@@ -649,7 +648,7 @@
         top: 75%;
 
         @include respond(xxl){
-          height: 150vh;
+          height: 100vh;
 
         }
       }

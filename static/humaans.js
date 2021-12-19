@@ -359,7 +359,7 @@ export default {
       id: 57,
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1631093610/Ayooluwa_Okunjolu_Food_Production_poxv0t.jpg',
-      name: 'Ayooluwa Okunloju',
+      name: 'Ayooluwa Okunjolu',
       role: 'Food Production',
     },
    
@@ -495,7 +495,7 @@ export default {
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1636389822/Wisdom_Okon_se8eta.jpg',
       name: 'Wisdom Okon',
-      role: 'Food Production',
+      role: 'Supply',
     },
   ],
 }

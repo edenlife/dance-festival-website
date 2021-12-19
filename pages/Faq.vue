@@ -1279,7 +1279,7 @@
           </div>
           <transition name="slide-fade">
             <p v-if="questions.includes('eighteen')">
-              We currently offer our services in Lagos, Abuja and Port-Harcourt.
+              We currently offer our services in Lagos.
               Other locations will be added soon.
             </p>
           </transition>

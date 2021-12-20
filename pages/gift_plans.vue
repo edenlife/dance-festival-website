@@ -537,9 +537,11 @@
               :src="require(`~/assets/images/successful.svg`)"
               alt="failed"
             />
-            <h5>Information Submitted</h5>
 
-            <div v-if="showPayment">
+            <div class="payment" v-if="showPayment">
+              <h5>Order Summary</h5>
+
+              <h6>{{ selectedPlan.title }}</h6>
               <ul>
                 <li
                   v-for="(detail, index) in selectedPlan.details"
@@ -557,15 +559,18 @@
               </button>
             </div>
 
-            <button
-              v-else
-              type="submit"
-              class="btn--submit"
-              :disabled="loading"
-              @click.prevent="closeModal"
-            >
-              Continue Browsing
-            </button>
+            <div v-else>
+              <h5>Information Submitted</h5>
+
+              <button
+                type="submit"
+                class="btn--submit"
+                :disabled="loading"
+                @click.prevent="closeModal"
+              >
+                Continue Browsing
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -731,7 +736,7 @@ export default {
         .replaceAll('/', '-')
     },
     selectPlan(val) {
-      this.selectedPlan = val
+       this.selectedPlan = val
       this.bundleForm.plan_description = this.selectedPlan.details.join(' ')
       this.bundleForm.plan_name = this.selectedPlan.title
     },
@@ -794,7 +799,7 @@ export default {
                   this.showSuccessModal = true
                 })
               }, 500)
-             },
+            },
             (err) => {
               this.loading = false
               this.showFailedModal = true

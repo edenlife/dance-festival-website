@@ -1491,6 +1491,13 @@
         @include font-family(cerebri);
         margin-top: $gap * 4;
       }
+      h6 {
+        @include font-size(xl);
+        line-height: 24px;
+        @include font-weight(medium);
+        @include font-family(cerebri);
+        margin: $gap * 2;
+      }
       p {
         text-align: center;
         padding-top: $gap + 6;
@@ -1530,9 +1537,14 @@
   }
 
   &.success {
+    .payment {
+      h5 {
+        margin: $gap * 2 !important;
+      }
+    }
     ul {
-      margin: $gap * 2.4 0 $gap * 4;
-      padding: $gap * 2;
+      margin: 0 0 $gap * 4;
+      padding: 0 $gap * 4;
 
       li {
         line-height: 24px;

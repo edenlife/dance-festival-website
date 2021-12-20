@@ -107,7 +107,6 @@
       @include font-size(lg);
     }
 
-   
     @include respond(xl) {
       width: 60%;
       margin: auto auto $gap * 4;
@@ -120,7 +119,6 @@
 
     @include respond(md) {
       video {
-      
         transform: translateY(6px) !important;
       }
     }
@@ -638,18 +636,16 @@
         content: '';
         bottom: 79%;
 
-        @include respond(xxl){
+        @include respond(xxl) {
           height: 50vh;
-
         }
       }
       &::after {
         height: 280vh;
         top: 75%;
 
-        @include respond(xxl){
+        @include respond(xxl) {
           height: 100vh;
-
         }
       }
       img {
@@ -1530,6 +1526,29 @@
           );
         }
       }
+    }
+  }
+
+  &.success {
+    ul {
+      margin: $gap * 2.4 0 $gap * 4;
+      padding: $gap * 2;
+
+      li {
+        line-height: 24px;
+        margin-bottom: 10px;
+        @include font-weight(light);
+        @include font-size(base);
+
+        &:last-child {
+          @include font-weight(medium);
+        }
+      }
+    }
+
+    .btn--submit {
+      width: 100%;
+      margin: 20px auto;
     }
   }
 }

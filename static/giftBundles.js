@@ -19,6 +19,7 @@ export default [
       },
     },
     amount: '55,000',
+    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
 
   },
 
@@ -43,6 +44,7 @@ export default [
       },
     },
     amount: '58,000',
+    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
 
   },
   {
@@ -67,6 +69,7 @@ export default [
       },
     },
     amount: '24,000',
+    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
 
   },
   {
@@ -101,6 +104,7 @@ export default [
       },
     },
     amount: '26,000',
+    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
 
   },
   {
@@ -129,6 +133,7 @@ export default [
       },
     },
     amount: '24,500',
+    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
 
   },
   {
@@ -168,6 +173,7 @@ export default [
       },
     },
     amount: '23,500',
+    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
 
   },
 ]

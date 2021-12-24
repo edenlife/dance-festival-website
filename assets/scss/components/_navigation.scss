@@ -31,6 +31,21 @@
   }
 }
 
+.notify--banner {
+  background: #ffd34e;
+  color: color(eden-neutral-0);
+  line-height: 20px;
+  padding: 18px;
+  text-align: center;
+  @include font-family(cerebri);
+  @include font-weight(medium);
+  @include font-size(sm);
+
+  a{
+    text-decoration: underline;
+  }
+}
+
 .navigation {
   display: flex;
   justify-content: space-between;

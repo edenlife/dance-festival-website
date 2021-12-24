@@ -5,6 +5,20 @@
     :class="{ 'primary-bg': currentRoute === 'gift_plans' }"
     :style="getNavigationColor(routeUpdate)"
   >
+    <div class="notify--banner">
+      <span
+        >We are out of the office and we're pausing all our services from
+        <strong>22nd December, 2021</strong> till
+        <strong>2nd January, 2022.</strong> If you'd like to prepay now at
+        <strong> 15% off </strong> for a service in January,
+        <a
+          href="https://airtable.com/shra4OwYpAUTIL8Or"
+          target="_blank"
+          rel="noopener noreferrer"
+        > Click here</a>
+       </span
+      >
+    </div>
     <nav
       id="navigation-top"
       class="navigation"

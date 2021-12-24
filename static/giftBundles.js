@@ -19,7 +19,7 @@ export default [
       },
     },
     amount: '55,000',
-    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
+    payment_link: 'https://pay.edenlife.ng/pay/cd570c7a'
 
   },
 
@@ -44,7 +44,7 @@ export default [
       },
     },
     amount: '58,000',
-    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
+    payment_link: 'https://pay.edenlife.ng/pay/3d2c371b'
 
   },
   {
@@ -69,7 +69,7 @@ export default [
       },
     },
     amount: '24,000',
-    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
+    payment_link: 'https://pay.edenlife.ng/pay/ede6f1b2'
 
   },
   {
@@ -104,7 +104,7 @@ export default [
       },
     },
     amount: '26,000',
-    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
+    payment_link: 'https://pay.edenlife.ng/pay/03e6e8c9'
 
   },
   {
@@ -133,7 +133,7 @@ export default [
       },
     },
     amount: '24,500',
-    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
+    payment_link: 'https://pay.edenlife.ng/pay/aca1efaa'
 
   },
   {
@@ -173,7 +173,7 @@ export default [
       },
     },
     amount: '23,500',
-    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
+    payment_link: 'https://pay.edenlife.ng/pay/ca278a21'
 
   },
 ]

@@ -25,9 +25,9 @@
             <span> greatest gift of all </span>
           </h1>
           <p>
-            An Eden plan buys back time for your loved ones. <br/> Time to chill, time
-            to grow, and time for you. <br/>Everyone wants more time, so give the
-            perfect gift today.
+            An Eden plan buys back time for your loved ones. <br />
+            Time to chill, time to grow, and time for you. <br />Everyone wants
+            more time, so give the perfect gift today.
           </p>
         </div>
 
@@ -50,7 +50,7 @@
       </div>
     </div>
 
-    <div  class="container--bundles">
+    <div class="container--bundles">
       <section class="bundle__types">
         <bundle
           v-for="(bundle, index) in gift_bundles"
@@ -499,10 +499,10 @@
 
     <modal v-if="showSuccessModal" :show-modal="showSuccessModal" class="modal">
       <div slot="header"></div>
-      <div slot="body" class="modal__body">
+      <div slot="body" class="modal__body success">
         <div class="company__modal">
           <div class="company__modal-title">
-            <button class="btn btn--success" @click="showSuccessModal = false">
+            <button class="btn btn--success" @click="closeModal">
               <svg
                 width="32"
                 height="32"
@@ -537,15 +537,40 @@
               :src="require(`~/assets/images/successful.svg`)"
               alt="failed"
             />
-            <h5>Information Submitted</h5>
-            <button
-              type="submit"
-              class="btn--submit"
-              :disabled="loading"
-              @click.prevent="closeModal"
-            >
-              Continue Browsing
-            </button>
+
+            <div class="payment" v-if="showPayment">
+              <h5>Order Summary</h5>
+
+              <h6>{{ selectedPlan.title }}</h6>
+              <ul>
+                <li
+                  v-for="(detail, index) in selectedPlan.details"
+                  :key="index"
+                  v-html="detail"
+                ></li>
+              </ul>
+              <button
+                type="submit"
+                class="btn--submit"
+                :disabled="loading"
+                @click.prevent="openPaymentLink(selectedPlan.payment_link)"
+              >
+                Proceed to Payment
+              </button>
+            </div>
+
+            <div v-else>
+              <h5>Information Submitted</h5>
+
+              <button
+                type="submit"
+                class="btn--submit"
+                :disabled="loading"
+                @click.prevent="closeModal"
+              >
+                Continue Browsing
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -657,6 +682,7 @@ export default {
       showCustomPlan: false,
       showSuccessModal: false,
       showFailedModal: false,
+      showPayment: false,
       loading: false,
       customForm: {
         name: '',
@@ -710,16 +736,27 @@ export default {
         .replaceAll('/', '-')
     },
     selectPlan(val) {
-      this.selectedPlan = val
+       this.selectedPlan = val
       this.bundleForm.plan_description = this.selectedPlan.details.join(' ')
-        this.bundleForm.plan_name = this.selectedPlan.title
+      this.bundleForm.plan_name = this.selectedPlan.title
     },
     setCustomPlan(plan) {
       this.customForm.plan_name = plan.title
       this.customForm.plan_description = plan.details.join(' ')
     },
+    openPaymentLink(link) {
+      window.open(link)
+      this.$nextTick(() => {
+        this.$v.bundleForm.$reset()
+        this.selectedPlan = null
+        this.showPayment = false
+        this.closeModal()
+        this.scrollTo('success-section')
+      })
+    },
     closeModal() {
       this.showSuccessModal = !this.showSuccessModal
+      this.showPayment = false
     },
     toggle() {
       this.visible = !this.visible
@@ -758,7 +795,8 @@ export default {
                 this.$nextTick(() => {
                   this.$v.customForm.$reset()
                   this.loading = false
-                  this.scrollTo('success-section')
+                  this.showCustomPlan = false
+                  this.showSuccessModal = true
                 })
               }, 500)
             },
@@ -802,10 +840,9 @@ export default {
                   (key) => (this.bundleForm[key] = '')
                 )
                 this.$nextTick(() => {
-                  this.$v.bundleForm.$reset()
-                  this.selectedPlan = null
                   this.loading = false
                   this.showCustomPlan = false
+                  this.showPayment = true
                   this.showSuccessModal = true
                 })
               }, 500)

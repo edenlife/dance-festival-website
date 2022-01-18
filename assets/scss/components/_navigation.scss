@@ -41,7 +41,7 @@
   @include font-weight(medium);
   @include font-size(sm);
 
-  a{
+  a {
     text-decoration: underline;
   }
 }
@@ -86,6 +86,16 @@
       &:hover {
         color: color(eden-green-primary);
       }
+
+      @include respond(xl) {
+        margin: 0 $gap * 1.5;
+        font-size: 0.9rem;
+      }
+
+      @include respond(lg) {
+        margin: 0 $gap * 1;
+        @include font-size(sm);
+      }
     }
     &-service {
       position: relative;
@@ -116,6 +126,13 @@
           svg {
             stroke: color(eden-green-primary);
           }
+        }
+        @include respond(xl) {
+           font-size: 0.9rem;
+        }
+  
+        @include respond(lg) {
+           @include font-size(sm);
         }
       }
       .service {
@@ -443,6 +460,14 @@
         transform: translate3d(0%, 0, 0);
       }
     }
+  }
+
+  @include respond(lg) {
+    width: 85%;
+  }
+
+  @include respond(xl) {
+    width: 87%;
   }
   @include respond(xxl) {
     max-width: 1440px;

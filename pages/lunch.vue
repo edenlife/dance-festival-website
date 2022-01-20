@@ -469,7 +469,7 @@ export default {
                 frequency: 'daily',
                 item: null,
                 qty: 1,
-                service_day: ['mon-fri'],
+                service_day: ['monday-friday'],
                 amount: 55000,
               },
             },

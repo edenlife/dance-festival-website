@@ -325,6 +325,13 @@
       @include font-size(lg);
       @include font-weight(light);
       width: 38%;
+
+      a{
+        color: color(eden-green-primary);
+        text-decoration: underline;
+        font-weight: 500;
+
+      }
     }
   }
   &__role {

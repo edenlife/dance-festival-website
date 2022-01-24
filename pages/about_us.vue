@@ -91,11 +91,14 @@
         <div class="opening__title">
           <h3>Join the Humaans</h3>
           <p>
-            Interested in joining the team? Check out the available roles below.
+            Interested in joining the team? Check out the available roles
+            <a
+              href="https://edenlife.notion.site/Careers-at-Eden-Life-d11c387e84a043fca66001dcf67c70e3"
+              target="_blank"
+            >
+              here
+            </a>
           </p>
-        </div>
-        <div class="opening__role">
-          <p>Sorry, we don’t have any open positions at the moment.</p>
         </div>
       </section>
     </div>

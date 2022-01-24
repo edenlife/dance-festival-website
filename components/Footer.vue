@@ -147,6 +147,15 @@
                 Pricing
               </nuxt-link>
             </li>
+
+            <li @click="trackLink('Careers')">
+              <a
+                href="https://edenlife.notion.site/Careers-at-Eden-Life-d11c387e84a043fca66001dcf67c70e3"
+                target="_blank"
+              >
+                Careers
+              </a>
+            </li>
           </ul>
 
           <ul>

@@ -10,13 +10,14 @@
             stress-free life.
           </p>
           <div class="hero__button">
-            <button
-              type="button"
+            <a
+              @click="trackLink('Careers')"
+              href="https://edenlife.notion.site/Careers-at-Eden-Life-d11c387e84a043fca66001dcf67c70e3"
+              target="_blank"
               class="hero__button-solid"
-              @click.prevent="scrollTo('join-eden')"
             >
               Become Humaan - Join Eden Life
-            </button>
+            </a>
           </div>
         </div>
         <div class="hero__img">
@@ -93,6 +94,7 @@
           <p>
             Interested in joining the team? Check out the available roles
             <a
+              @click="trackLink('Careers')"
               href="https://edenlife.notion.site/Careers-at-Eden-Life-d11c387e84a043fca66001dcf67c70e3"
               target="_blank"
             >
@@ -121,6 +123,9 @@ export default {
     scrollTo(ref) {
       mixpanelTrackEvent('Join Eden clicked - contact page')
       this.$refs[ref].scrollIntoView()
+    },
+     trackLink(name) {
+      mixpanelTrackEvent(`${name} link clicked (footer - ${this.currentRoute})`)
     },
   },
 }

@@ -399,7 +399,9 @@
           <a
             href="#"
             class="navigation__menu-item navigation__menu-link"
+            :class="{ 'primary-red': currentRoute === 'gift_plans' }"
             @click.prevent="scrollTo('#get-the-app')"
+            id="get-started"
           >
             {{
               currentRoute === 'eden_means_easy' ? 'Sign Up Now' : 'Get Started'
@@ -631,6 +633,7 @@ export default {
     this.currentRoute = getRoute.replace('/', '')
     const navigation = document.querySelector('#navigation-container')
     if (this.currentRoute.includes('gift_plans')) {
+    document.querySelector('#get-started').classList.remove('primary-red')
       navigation.classList.add('primary-bg')
       this.lightLogo = true
     }
@@ -646,15 +649,19 @@ export default {
     },
     handleScroll() {
       const navigation = document.querySelector('#navigation-container')
+      const getStarted =  document.querySelector('#get-started')
+      console.log(getStarted);
       if (window.scrollY > 20) {
         navigation.className = 'container scroll'
         if (navigation.classList.contains('primary-bg'))
           navigation.classList.remove('primary-bg')
+        if(getStarted.classList.contains('primary-red')) getStarted.classList.remove('primary-red')
         this.lightLogo = false
       } else {
         navigation.className = 'container'
         if (this.currentRoute.includes('gift_plans')) {
           navigation.classList.add('primary-bg')
+          getStarted.classList.add('primary-red')
           this.lightLogo = true
         }
       }

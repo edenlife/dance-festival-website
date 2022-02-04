@@ -13,6 +13,7 @@
 }
 
 .primary-bg {
+  background-color: transparent;
   .navigation {
     &__menu {
       &-item,
@@ -258,6 +259,12 @@
           #008d40 50%
         );
       }
+
+      &.primary-red{
+        background-color: transparent;
+        border: 1px solid  #FFFFFF;
+        color:   #FFFFFF;
+      }
     }
     .fallback {
       width: 20px;
@@ -328,7 +335,7 @@
 
     &__mobile {
       min-height: 100vh;
-      width: 100vw;
+      width: 100%;
       left: 0;
       top: 0;
       position: absolute;

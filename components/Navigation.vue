@@ -633,7 +633,7 @@ export default {
     this.currentRoute = getRoute.replace('/', '')
     const navigation = document.querySelector('#navigation-container')
     if (this.currentRoute.includes('gift_plans')) {
-    document.querySelector('#get-started').classList.remove('primary-red')
+    document.querySelector('#get-started').classList.add('primary-red')
       navigation.classList.add('primary-bg')
       this.lightLogo = true
     }
@@ -650,8 +650,7 @@ export default {
     handleScroll() {
       const navigation = document.querySelector('#navigation-container')
       const getStarted =  document.querySelector('#get-started')
-      console.log(getStarted);
-      if (window.scrollY > 20) {
+       if (window.scrollY > 20) {
         navigation.className = 'container scroll'
         if (navigation.classList.contains('primary-bg'))
           navigation.classList.remove('primary-bg')

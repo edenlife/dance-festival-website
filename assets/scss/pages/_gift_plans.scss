@@ -4,10 +4,10 @@
   width: 100%;
 
   &--hero {
-    background: color(eden-green-primary);
+    background: #B30821;
 
     .bundle__title {
-      background-image: url('~@/assets/images/bundle-hero-bg.svg');
+      background-image: url('~@/assets/images/bundle-hero-valentine.svg');
       height: 150px;
       background-repeat: no-repeat;
       display: flex;
@@ -17,7 +17,7 @@
       h3 {
         background: #ffffff;
         border-radius: 32px 32px 0px 0px;
-        border: 6px solid #98dcaf;
+        border: 6px solid  #DF212E;
         padding: 20px;
         height: 77px;
         max-width: fit-content;
@@ -135,9 +135,9 @@
       position: relative;
       line-height: 23px;
       @include font-size(xl);
-      background-color: color(eden-green-primary);
-      border: 1px solid #98dcaf;
-      color: color(eden-neutral-7);
+      background-color:   #FFFFFF;
+      border: 1px solid #DF212E;
+      color: color(eden-neutral-0);
       border-radius: 33px;
       transition: all 0.4s ease-in-out;
       padding: $gap * 2 $gap * 3.2;
@@ -152,20 +152,20 @@
       }
       &:hover {
         box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
-        background-color: color(eden-green-primary);
+        background-color:#DF212E;
         color: color(eden-neutral-7);
       }
       &:active {
         background-image: radial-gradient(
           circle at center right,
           rgba(0, 141, 64, 0.1) 50%,
-          #008d40 50%
+          #DF212E 50%
         );
       }
 
       &::after {
         position: absolute;
-        background: #98dcaf;
+        background: #DF212E;
         top: 45%;
         content: '';
         width: 352px;
@@ -216,7 +216,7 @@
     padding: 0px;
     height: 80px;
     margin: auto;
-    border: 1px solid #98dcaf;
+    border: 1px solid #ffffff;
     position: relative;
 
     &::after {
@@ -229,7 +229,7 @@
       border-left: 5px solid transparent;
       border-right: 5px solid transparent;
       bottom: 0;
-      border-top: 15px solid #98dcaf;
+      border-top: 15px solid #ffffff;
     }
   }
   @include respond(xl) {
@@ -294,7 +294,7 @@
   position: relative;
 
   &.form__holder {
-    background: #fff3cc;
+    background: #B30821;
     width: 100%;
     .bundle--form {
       background-image: url('~@/assets/images/bundle-form-bg.svg');

@@ -454,11 +454,15 @@ export default {
             email: this.form.email,
             name: this.form.name,
             phone: this.form.phone_number,
+            lead_gen_page: window.location.href,
+            referrer: document.referrer,
           })
           const metadata = {
             email: this.form.email,
             name: this.form.name,
             phone: this.form.phone_number,
+            lead_gen_page: window.location.href,
+            referrer: document.referrer,
           }
           this.$intercom('trackEvent', 'lead-genaration-signup', metadata)
 

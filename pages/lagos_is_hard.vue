@@ -124,7 +124,7 @@
 
                   <div class="">
                     <p class="card__title-name">{{ testimonial.name }}</p>
-                    <p class="card__title-handle">@{{ testimonial.handle }}</p>
+                    <p class="card__title-handle">{{ testimonial.handle }}</p>
                   </div>
                 </div>
                 <p
@@ -923,7 +923,7 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength, alpha } from 'vuelidate/lib/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import {
   placeholderColorMix,
@@ -944,7 +944,7 @@ export default {
   validations: {
     form: {
       email: { required, email },
-      name: { required },
+      name: { required, alpha },
       phone_number: {
         required,
         minLength: minLength(11),
@@ -965,28 +965,30 @@ export default {
       questions: ['one'],
       testimonials: [
         {
-          name: 'Eyitemi',
-          image: 'eyitemi',
-          description: `With all the chaos that is Lagos, EdenLife helps to improve your life expectancy and reduce your stress levels. <br/> 💯 Recommend.`,
-          handle: 'eeyitemi',
+          name: 'ENJOYMENT KING',
+          image: 'arnold',
+          description:
+            'My apartment was cleaned by  <span style="color:#03A84E"> @ouredenlife </span>, now I have free time to do what matters. Get a cleaning subscription here and be free like me',
+          handle: 'ArnoldOlunja',
           tweetLink:
-            'https://twitter.com/eeyitemi/status/1293604745148534792?s=20](https://twitter.com/eeyitemi/status/1293604745148534792?s=20',
+            'https://twitter.com/arnoldolunja/status/1469609718599622657?s=21',
         },
         {
-          name: 'HOE',
-          image: 'hoe',
-          description: `Got one win today and put a proposal for another project. It's safe to say it's been a blessed week. <span style="color:#03A84E"> @ouredenlife </span> been making my stay in Lagos worthwhile. Tonight we Netflix cause tomorrow is back to the streets.`,
-          handle: 'OsasenagaEno',
+          name: 'Foundational Nigerian',
+          image: 'eno',
+          description:
+            '<span style="color:#03A84E"> @ouredenlife </span> has some great cleaners who do detailing. At one point we had to insist on a particular lady because of her thorough she was. She cleaned for months till she had to relocate.',
+          handle: '@OsasenagaEno',
           tweetLink:
-            'https://twitter.com/OsasenagaEno/status/1316432226813390853?s=20',
+            'https://twitter.com/osasenagaeno/status/1479600024606720003?s=21',
         },
         {
-          name: 'Kyane "Omowale" Kassiri',
-          image: 'kassiri',
-          description: `At this point, if you live in Lagos and you don't use <span style="color:#03A84E"> @ouredenlife </span>, you're really punishing yourself.`,
-          handle: 'kyanekassiri',
+          name: 'Philip Ese',
+          image: 'philip',
+          description: `I have to say <span style="color:#03A84E"> @ouredenlife </span>has simplified my life sha. From food to laundry and house cleaning. And I have the best gardener. Will gladly invest if I see the opportunity.`,
+          handle: '@KingRohv',
           tweetLink:
-            'https://twitter.com/kyanekassiri/status/1395010079439589376?s=20',
+            'https://twitter.com/kingrohv/status/1382790202045923331?s=21',
         },
       ],
       servicesHero: ['food', 'laundry', 'cleaning'],
@@ -1027,17 +1029,15 @@ export default {
       if (!this.$v.form.$error) {
         try {
           mixpanelTrackEvent('Sign up button clicked', 'Lead page v3')
-          this.loading = true
-          this.$intercom('update', {
+          this.loading = true;
+            const metadata = {
             email: this.form.email,
             name: this.form.name,
             phone: this.form.phone_number,
-          })
-          const metadata = {
-            email: this.form.email,
-            name: this.form.name,
-            phone: this.form.phone_number,
+            lead_gen_page: window.location.href,
+            referrer: document.referrer,
           }
+          this.$intercom('update',metadata)
           this.$intercom('trackEvent', 'lagos-is-hard', metadata)
 
           const payload = {

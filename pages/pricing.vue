@@ -880,14 +880,6 @@
                 </div>
               </div>
             </transition>
-            <!-- <p class="pricing__calculator-subtotal">
-              <span>Subtotal</span>
-              <span>₦ {{ formatNumber(subtotalPrice) }}</span>
-            </p>
-            <p class="pricing__calculator-discount">
-              <span>Discount (20% discount off your first month)</span>
-              <span>- ₦ {{ formatNumber(discountPrice) }}</span>
-            </p> -->
             <p class="pricing__calculator-total">
               <span>Total</span> <span>₦ {{ formatNumber(totalPrice) }}</span>
             </p>
@@ -1326,6 +1318,11 @@ export default {
           }
 
           await signupApi(payload)
+          this.$intercom('update', {
+            email: this.subscribeEmail,
+            lead_gen_page: window.location.href,
+            referrer: document.referrer,
+          })
 
           this.responseMessage = ''
           this.custumerStatus = false
@@ -1415,10 +1412,14 @@ export default {
         this.$intercom('update', {
           email: this.form.email,
           phone: this.form.phone_number,
+          lead_gen_page: window.location.href,
+          referrer: document.referrer,
         })
         const metadata = {
           phone_number: this.form.phone_number,
           email: this.form.email,
+          lead_gen_page: window.location.href,
+          referrer: document.referrer,
         }
         this.$intercom('trackEvent', 'request-custom-pricing', metadata)
         this.$nextTick(() => {

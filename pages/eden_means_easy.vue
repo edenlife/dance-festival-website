@@ -12,8 +12,8 @@
           <li>Your laundry picked up and dropped off within 48 hours. 👔</li>
           <li>Professional cleaners scrubbing and sweeping your home. 🏡</li>
           <li>
-            Chef-made meals delivered from a menu of over 100 
-            delicious meal choices. 🥘
+            Chef-made meals delivered from a menu of over 100 delicious meal
+            choices. 🥘
           </li>
         </ul>
 
@@ -918,7 +918,7 @@ import { scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import values from '~/static/values'
 import { validationMixin } from 'vuelidate'
-import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength, alpha } from 'vuelidate/lib/validators'
 import { companiesApi } from '~/request/all.api'
 
 export default {
@@ -930,7 +930,7 @@ export default {
   validations: {
     leadForm: {
       email: { required, email },
-      name: { required },
+      name: { required, alpha },
       phone_number: {
         required,
         minLength: minLength(11),
@@ -938,8 +938,8 @@ export default {
       },
     },
     leadCompanyForm: {
-      company_name: { required },
-      contact_name: { required },
+      company_name: { required, alpha },
+      contact_name: { required, alpha },
       email: { required, email },
       phone_number: {
         required,
@@ -1157,7 +1157,10 @@ export default {
             email: this.leadForm.email,
             name: this.leadForm.name,
             phone: this.leadForm.phone_number,
+            lead_gen_page: window.location.href,
+            referrer: document.referrer,
           }
+          this.$intercom('update', metadata)
           this.$intercom('trackEvent', 'lead-generation-signup', metadata)
           this.$nextTick(() => {
             this.$v.leadForm.$reset()

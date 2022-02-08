@@ -108,7 +108,7 @@
           @showCurrent="toggleMenu('current')"
         />
       </transition>
-      <section  v-if="currentMeals.length"  class="menu">
+      <section v-if="currentMeals.length" class="menu">
         <button class="menu-btn" @click.prevent="scrollToTop('hero')">
           Get Started at 20% Off
         </button>
@@ -201,7 +201,7 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email } from 'vuelidate/lib/validators'
+import { required, email, alpha } from 'vuelidate/lib/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { placeholderColorMix } from '~/static/functions'
 import currentMeal from '~/mixins/currentMeal'
@@ -216,7 +216,7 @@ export default {
   validations: {
     form: {
       email: { required, email },
-      name: { required },
+      name: { required, alpha },
       address: { required },
     },
   },
@@ -243,16 +243,14 @@ export default {
       this.loading = true
       this.$v.form.$touch()
       if (!this.$v.form.$error) {
-        this.$intercom('update', {
-          email: this.form.email,
-          name: this.form.name,
-          address: this.form.address,
-        })
         const metadata = {
           email: this.form.email,
           name: this.form.name,
           address: this.form.address,
+          lead_gen_page: window.location.href,
+          referrer: document.referrer,
         }
+        this.$intercom('update', metadata)
         this.$intercom('trackEvent', 'lead-generation-signup', metadata)
         setTimeout(() => {
           this.$nextTick(() => {

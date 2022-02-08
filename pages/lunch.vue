@@ -387,7 +387,13 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
+import {
+  required,
+  email,
+  minLength,
+  maxLength,
+  alpha,
+} from 'vuelidate/lib/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { placeholderColorMix } from '~/static/functions'
 import { signupApi } from '~/request/all.api'
@@ -403,7 +409,7 @@ export default {
   validations: {
     form: {
       email: { required, email },
-      name: { required },
+      name: { required, alpha },
       phone_number: {
         required,
         minLength: minLength(11),
@@ -450,13 +456,6 @@ export default {
         try {
           mixpanelTrackEvent('Sign up button clicked', 'Lead page')
           this.loading = true
-          this.$intercom('update', {
-            email: this.form.email,
-            name: this.form.name,
-            phone: this.form.phone_number,
-            lead_gen_page: window.location.href,
-            referrer: document.referrer,
-          })
           const metadata = {
             email: this.form.email,
             name: this.form.name,
@@ -464,6 +463,8 @@ export default {
             lead_gen_page: window.location.href,
             referrer: document.referrer,
           }
+          this.$intercom('update', metadata)
+
           this.$intercom('trackEvent', 'lead-genaration-signup', metadata)
 
           const payload = {

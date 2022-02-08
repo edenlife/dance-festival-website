@@ -770,7 +770,7 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email } from 'vuelidate/lib/validators'
+import { required, email, alpha } from 'vuelidate/lib/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { companiesApi } from '~/request/all.api'
 
@@ -781,9 +781,9 @@ export default {
   mixins: [validationMixin],
   validations: {
     companyForm: {
-      contact_name: { required },
+      contact_name: { required, alpha },
       email: { required, email },
-      company_name: { required },
+      company_name: { required, alpha },
       service: { required },
       phone_number: { required },
       message: {required}

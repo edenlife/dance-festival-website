@@ -923,7 +923,7 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength, alpha } from 'vuelidate/lib/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import {
   placeholderColorMix,
@@ -944,7 +944,7 @@ export default {
   validations: {
     form: {
       email: { required, email },
-      name: { required },
+      name: { required, alpha },
       phone_number: {
         required,
         minLength: minLength(11),

@@ -201,7 +201,7 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email } from 'vuelidate/lib/validators'
+import { required, email, alpha } from 'vuelidate/lib/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { placeholderColorMix } from '~/static/functions'
 import currentMeal from '~/mixins/currentMeal'
@@ -216,7 +216,7 @@ export default {
   validations: {
     form: {
       email: { required, email },
-      name: { required },
+      name: { required, alpha },
       address: { required },
     },
   },

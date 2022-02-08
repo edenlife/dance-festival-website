@@ -53,13 +53,6 @@ export default {
     },
 
     {
-      id: 8,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919026/eden-website-v2/goke_pwdcwr.png',
-      name: 'Adekanbi Adegoke',
-      role: 'Customer Success',
-    },
-    {
       id: 9,
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919024/eden-website-v2/ofafiri_xkh5ma.png',
@@ -407,6 +400,132 @@ export default {
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1636389822/Wisdom_Okon_se8eta.jpg',
       name: 'Wisdom Okon',
       role: 'Supply',
+    },
+    {
+      id: 79,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242324/Abdul-Rasheed_Adigun_-_Procurement_Manager_dvhcwi.jpg',
+      name: 'Rasheed Adigun',
+      role: 'Supply',
+    },
+    {
+      id: 80,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242324/Abimbola_Rukayat_-_Junior_Production_Assistant_p94ycq.jpg',
+      name: 'Abimbola Rukayat',
+      role: 'Food Production',
+    },
+    {
+      id: 81,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242326/Adegoke_Adekanbi_-_Finance_Associate_a9w0wa.jpg',
+      name: 'Adegoke Adekanbi',
+      role: 'Finance',
+    },
+    {
+      id: 82,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242330/Adewunmi_Martins_-_Order_Fulfilment_Associate_snjfvt.jpg',
+      name: 'Adewunmi Martins',
+      role: 'Supply',
+    },
+    {
+      id: 83,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242333/Basirat_Lateef_-_Junior_Production_Associate_asqmkg.jpg',
+      name: 'Basirat Lateef',
+      role: 'Food Production',
+    },
+    {
+      id: 84,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242338/Bunmi_Oluwoye_-_Talent_Acquisition_Specialist_l4n365.jpg',
+      name: 'Bunmi Oluwoye',
+      role: 'Happiness Engineering (HR)',
+    },
+    {
+      id: 85,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242345/Emem_Ekpo_-_Order_Fulfilment_Associate_bv6fu0.jpg',
+      name: 'Emem Ekpo',
+      role: 'Supply',
+    },
+    {
+      id: 86,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242351/Hannah_Johnson_-_Junior_Production_Assistant_knxhvd.jpg',
+      name: 'Hannah Johnson',
+      role: 'Food Production',
+    },
+    {
+      id: 87,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242360/Kovie_Raro-Edo_-_Gardener_l1l2lj.jpg',
+      name: 'Kovie Raro-Edo',
+      role: 'Customer Success',
+    },
+    {
+      id: 88,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242369/Michael_Amah_-_Junior_Production_Assistant_pjm3ns.jpg',
+      name: 'Michael Amah',
+      role: 'Food Production',
+    },
+    {
+      id: 89,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242384/Musa_Shittu_-_Junior_Production_Assistant_zwt0fz.jpg',
+      name: 'Musa Shittu',
+      role: 'Food Production',
+    },
+    {
+      id: 90,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242399/Ndubuisi_Onyemenam_-_Backend_Engineer_1_tiqni1.jpg',
+      name: 'Ndubuisi Onyemenam',
+      role: 'Engineering',
+    },
+    {
+      id: 91,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242420/Olajide_Gbadomisi_-_Assistant_Production_Manager_wzk0ic.jpg',
+      name: 'Olajide Gbadomisi',
+      role: 'Food Production',
+    },
+    {
+      id: 92,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242433/Oluwaseun_Aina_-_Gardener_xoe3bo.jpg',
+      name: 'Oluwaseun Aina',
+      role: 'Customer Success',
+    },
+    {
+      id: 94,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242462/Praise_Chidoziri_-_FPT_Coordinator_jniyya.jpg',
+      name: 'Praise Chidoziri',
+      role: 'Food Production',
+    },
+    {
+      id: 95,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242478/Promise_Nwalozie_-_Video_Content_Creator_gms9o8.jpg',
+      name: 'Promise Nwalozie',
+      role: 'Growth',
+    },
+    {
+      id: 96,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242495/Qudus_Shittu_-_Order_Fulfilment_Associate_stnjfe.jpg',
+      name: 'Qudus Shittu',
+      role: 'Supply',
+    },
+    {
+      id: 97,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/v1644242514/Tunmike_Olusoga_-_Gardener_g6dlaj.jpg',
+      name: 'Tunmike Olusoga',
+      role: 'Customer Success',
     },
   ],
 }

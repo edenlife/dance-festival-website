@@ -181,45 +181,6 @@
               />
             </div>
           </div>
-          <!-- <div
-            class="services__type-item services__type-gifting"
-            @mouseenter.stop="exploreService = 'gifting'"
-            @mouseleave.stop="exploreService = ''"
-            @click="trackLink('Gifting')"
-          >
-            <h3>🎁</h3>
-            <h5>Gifts</h5>
-            <p>
-              Gift cards and gift boxes for every occasion, right at your
-              fingertips.
-            </p>
-            <nuxt-link :to="{ path: '/gifts' }" class="btn">
-              {{
-                exploreService === 'gifting' || setExploreService
-                  ? 'Explore'
-                  : ''
-              }}
-
-              <svg
-                width="14"
-                height="10"
-                viewBox="0 0 14 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8.85625 0.673433C8.61719 0.907808 8.61719 1.29687 8.85156 1.53593L11.7016 4.39062H0.854688C0.521875 4.39062 0.25 4.6625 0.25 5C0.25 5.3375 0.521875 5.60937 0.854688 5.60937H11.6969L8.84687 8.46406C8.6125 8.70312 8.61719 9.0875 8.85156 9.32656C9.09062 9.56093 9.47031 9.56094 9.70937 9.32187L13.5719 5.43125C13.6234 5.375 13.6656 5.31406 13.6984 5.23906C13.7312 5.16406 13.7453 5.08437 13.7453 5.00468C13.7453 4.84531 13.6844 4.69531 13.5719 4.57812L9.70937 0.687496C9.47969 0.443746 9.09531 0.439058 8.85625 0.673433Z"
-                  fill="#0099BB"
-                />
-              </svg>
-            </nuxt-link>
-            <div class="services__type-bg">
-              <img
-                src="https://res.cloudinary.com/eden-life-inc/image/upload/q_auto/v1612286532/eden-website-v2/giftimage_xjioyo.jpg"
-                alt="gifting"
-              />
-            </div>
-          </div> -->
         </div>
       </section>
     </div>
@@ -230,12 +191,10 @@
           <h3>Why Eden?</h3>
         </div>
         <div class="video__item">
-          <video
-            src="https://res.cloudinary.com/eden-life-inc/video/upload/v1612616596/eden-website-v2/EDEN_LIFE__q1rgcz.mp4"
-            poster="https://res.cloudinary.com/eden-life-inc/image/upload/v1611319513/eden-website-v2/video-thumbnail_crnwew.png"
-            controls
-            muted
-            autoplay
+          <embed
+            src="https://www.youtube.com/embed/iTI4xPCL8ys"
+            width="600"
+            title="Eden in 2021"
           />
         </div>
       </section>
@@ -247,7 +206,6 @@
           <h3>The wall of 💚</h3>
 
           <div>
-           
             <div class="customers__title-image">
               <img
                 src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/cowrywise_wtcvv5.svg"
@@ -289,7 +247,7 @@
                 </div>
                 <div class="">
                   <p class="card__title-name">{{ item.name }}</p>
-                  <p class="card__title-handle">@{{ item.handle }}</p>
+                  <p class="card__title-handle">{{ item.handle }}</p>
                 </div>
               </div>
               <p class="card__description" v-html="item.description"></p

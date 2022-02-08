@@ -1029,17 +1029,15 @@ export default {
       if (!this.$v.form.$error) {
         try {
           mixpanelTrackEvent('Sign up button clicked', 'Lead page v3')
-          this.loading = true
-          this.$intercom('update', {
+          this.loading = true;
+            const metadata = {
             email: this.form.email,
             name: this.form.name,
             phone: this.form.phone_number,
-          })
-          const metadata = {
-            email: this.form.email,
-            name: this.form.name,
-            phone: this.form.phone_number,
+            lead_gen_page: window.location.href,
+            referrer: document.referrer,
           }
+          this.$intercom('update',metadata)
           this.$intercom('trackEvent', 'lagos-is-hard', metadata)
 
           const payload = {

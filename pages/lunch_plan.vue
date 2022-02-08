@@ -108,7 +108,7 @@
           @showCurrent="toggleMenu('current')"
         />
       </transition>
-      <section  v-if="currentMeals.length"  class="menu">
+      <section v-if="currentMeals.length" class="menu">
         <button class="menu-btn" @click.prevent="scrollToTop('hero')">
           Get Started at 20% Off
         </button>
@@ -243,16 +243,14 @@ export default {
       this.loading = true
       this.$v.form.$touch()
       if (!this.$v.form.$error) {
-        this.$intercom('update', {
-          email: this.form.email,
-          name: this.form.name,
-          address: this.form.address,
-        })
         const metadata = {
           email: this.form.email,
           name: this.form.name,
           address: this.form.address,
+          lead_gen_page: window.location.href,
+          referrer: document.referrer,
         }
+        this.$intercom('update', metadata)
         this.$intercom('trackEvent', 'lead-generation-signup', metadata)
         setTimeout(() => {
           this.$nextTick(() => {

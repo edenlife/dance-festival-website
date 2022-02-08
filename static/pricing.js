@@ -52,8 +52,6 @@ export const pricing = (services) => {
     cleaning: ({ item, itemAreas, itemAreasPrice, frequency, qty }) => {
       let areasTotalPrice = 0
       let discount = 0
-      console.log(item)
-
       if (item !== 'fumigation') {
         areasTotalPrice = Object.keys(itemAreas).reduce((total, area) => {
           const areaQuantity = itemAreas[area]

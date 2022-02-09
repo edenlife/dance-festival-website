@@ -221,7 +221,6 @@
                     ></use>
                   </svg>
                   <span v-else> I Want an Easy Life</span>
-               
                 </button>
               </div>
             </transition>
@@ -1318,24 +1317,18 @@ export default {
           }
 
           await signupApi(payload)
-          this.$intercom('update', {
+          const metadata = {
             email: this.subscribeEmail,
             lead_gen_page: window.location.href,
             referrer: document.referrer,
-          })
-
+          }
+          this.$intercom('update', metadata)
+          this.$intercom('trackEvent', 'lead-genaration-signup', metadata)
+          this.$intercom('trackEvent', 'pricing-page-onboarding', metadata)
           this.responseMessage = ''
           this.custumerStatus = false
           this.showEmailModal = true
           this.isLoading = false
-
-          this.$intercom('update', {
-            email: this.subscribeEmail,
-          })
-          const metadata = {
-            email: this.subscribeEmail,
-          }
-          this.$intercom('trackEvent', 'pricing-page-onboarding', metadata)
           mixpanelTrackEvent('get started button clicked', 'pricing page')
         } catch (error) {
           this.responseMessage = error.response.data.message

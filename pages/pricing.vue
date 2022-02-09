@@ -1323,7 +1323,11 @@ export default {
             lead_gen_page: window.location.href,
             referrer: document.referrer,
           }
-          this.$intercom('update', metadata)
+          this.$intercom('update', {
+              email: this.subscribeEmail,
+            lead_gen_page: window.location.href,
+            referrer: document.referrer,
+          })
           this.$intercom('trackEvent', 'lead-genaration-signup', metadata)
           this.responseMessage = ''
           this.custumerStatus = false

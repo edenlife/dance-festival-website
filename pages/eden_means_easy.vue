@@ -918,7 +918,8 @@ import { scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import values from '~/static/values'
 import { validationMixin } from 'vuelidate'
-import { required, email, minLength, maxLength, alpha } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
+import { notUrl } from '~/utils/validators'
 import { companiesApi } from '~/request/all.api'
 
 export default {
@@ -930,7 +931,7 @@ export default {
   validations: {
     leadForm: {
       email: { required, email },
-      name: { required, alpha },
+      name: { required, notUrl },
       phone_number: {
         required,
         minLength: minLength(11),
@@ -938,8 +939,8 @@ export default {
       },
     },
     leadCompanyForm: {
-      company_name: { required, alpha },
-      contact_name: { required, alpha },
+      company_name: { required, notUrl },
+      contact_name: { required, notUrl },
       email: { required, email },
       phone_number: {
         required,
@@ -1160,7 +1161,13 @@ export default {
             lead_gen_page: window.location.href,
             referrer: document.referrer,
           }
-          this.$intercom('update', metadata)
+          this.$intercom('update', {
+            email: this.leadForm.email,
+            name: this.leadForm.name,
+            phone: this.leadForm.phone_number,
+            lead_gen_page: window.location.href,
+            referrer: document.referrer,
+          })
           this.$intercom('trackEvent', 'lead-genaration-signup', metadata)
           this.$nextTick(() => {
             this.$v.leadForm.$reset()

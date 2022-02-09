@@ -201,7 +201,8 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email, alpha } from 'vuelidate/lib/validators'
+import { required, email } from 'vuelidate/lib/validators'
+import { notUrl } from '~/utils/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { placeholderColorMix } from '~/static/functions'
 import currentMeal from '~/mixins/currentMeal'
@@ -216,7 +217,7 @@ export default {
   validations: {
     form: {
       email: { required, email },
-      name: { required, alpha },
+      name: { required, notUrl },
       address: { required },
     },
   },
@@ -250,7 +251,13 @@ export default {
           lead_gen_page: window.location.href,
           referrer: document.referrer,
         }
-        this.$intercom('update', metadata)
+        this.$intercom('update', {
+          email: this.form.email,
+          name: this.form.name,
+          address: this.form.address,
+          lead_gen_page: window.location.href,
+          referrer: document.referrer,
+        })
         this.$intercom('trackEvent', 'lead-genaration-signup', metadata)
         setTimeout(() => {
           this.$nextTick(() => {

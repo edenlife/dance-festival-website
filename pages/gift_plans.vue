@@ -636,7 +636,8 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email, minLength, maxLength, alpha } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
+import { notUrl } from '~/utils/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { createGiftPlan, createCustomPlan } from '~/request/airtable'
 import giftBundles from '~/static/giftBundles'
@@ -649,7 +650,7 @@ export default {
   mixins: [validationMixin],
   validations: {
     customForm: {
-      name: { required, alpha },
+      name: { required, notUrl },
       email: { required, email },
       phone_number: {
         required,
@@ -658,14 +659,14 @@ export default {
       },
     },
     bundleForm: {
-      giver_name: { required, alpha },
+      giver_name: { required, notUrl },
       giver_email: { required, email },
       giver_phone_number: {
         required,
         minLength: minLength(11),
         maxLength: maxLength(11),
       },
-      receiver_name: { required, alpha },
+      receiver_name: { required, notUrl },
       receiver_phone_number: {
         required,
         minLength: minLength(11),
@@ -792,7 +793,13 @@ export default {
             lead_gen_page: window.location.href,
             referrer: document.referrer,
           }
-          this.$intercom('update', leadData)
+          this.$intercom('update', {
+            email: this.customForm.email,
+            name: this.customForm.name,
+            phone: this.customForm.phone_number,
+            lead_gen_page: window.location.href,
+            referrer: document.referrer,
+          })
           this.$intercom('trackEvent', 'lead-genaration-signup', leadData)
           createCustomPlan(metaData).then(
             (res) => {
@@ -848,7 +855,13 @@ export default {
             lead_gen_page: window.location.href,
             referrer: document.referrer,
           }
-          this.$intercom('update', leadData)
+          this.$intercom('update', {
+            email: this.bundleForm.giver_email,
+            name: this.bundleForm.receiver_name,
+            phone: this.bundleForm.receiver_phone_number,
+            lead_gen_page: window.location.href,
+            referrer: document.referrer,
+          })
           this.$intercom('trackEvent', 'lead-genaration-signup', leadData)
           createGiftPlan(metaData).then(
             (res) => {

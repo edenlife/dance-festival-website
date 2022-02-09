@@ -1060,7 +1060,7 @@ export default {
             referrer: document.referrer,
           }
           this.$intercom('update', metadata)
-          this.$intercom('trackEvent', 'lagos-is-hard', metadata)
+          this.$intercom('trackEvent', 'lead-genaration-signup', metadata)
           this.showEmailModal = true
           this.loading = false
           this.responseMessage = ''

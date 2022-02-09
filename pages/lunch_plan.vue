@@ -251,7 +251,7 @@ export default {
           referrer: document.referrer,
         }
         this.$intercom('update', metadata)
-        this.$intercom('trackEvent', 'lead-generation-signup', metadata)
+        this.$intercom('trackEvent', 'lead-genaration-signup', metadata)
         setTimeout(() => {
           this.$nextTick(() => {
             this.$v.form.$reset()

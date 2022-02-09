@@ -1324,7 +1324,7 @@ export default {
             referrer: document.referrer,
           }
           this.$intercom('update', metadata)
-          this.$intercom('trackEvent', 'pricing-page-onboarding', metadata)
+          this.$intercom('trackEvent', 'lead-genaration-signup', metadata)
           this.responseMessage = ''
           this.custumerStatus = false
           this.showEmailModal = true

@@ -923,7 +923,13 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email, minLength, maxLength, alpha } from 'vuelidate/lib/validators'
+import {
+  required,
+  email,
+  minLength,
+  maxLength,
+  alpha,
+} from 'vuelidate/lib/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import {
   placeholderColorMix,
@@ -1029,16 +1035,7 @@ export default {
       if (!this.$v.form.$error) {
         try {
           mixpanelTrackEvent('Sign up button clicked', 'Lead page v3')
-          this.loading = true;
-            const metadata = {
-            email: this.form.email,
-            name: this.form.name,
-            phone: this.form.phone_number,
-            lead_gen_page: window.location.href,
-            referrer: document.referrer,
-          }
-          this.$intercom('update',metadata)
-          this.$intercom('trackEvent', 'lagos-is-hard', metadata)
+          this.loading = true
 
           const payload = {
             email: this.form.email,
@@ -1055,6 +1052,15 @@ export default {
             },
           }
           await signupApi(payload)
+          const metadata = {
+            email: this.form.email,
+            name: this.form.name,
+            phone: this.form.phone_number,
+            lead_gen_page: window.location.href,
+            referrer: document.referrer,
+          }
+          this.$intercom('update', metadata)
+          this.$intercom('trackEvent', 'lagos-is-hard', metadata)
           this.showEmailModal = true
           this.loading = false
           this.responseMessage = ''

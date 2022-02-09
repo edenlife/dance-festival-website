@@ -636,7 +636,7 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength, alpha } from 'vuelidate/lib/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { createGiftPlan, createCustomPlan } from '~/request/airtable'
 import giftBundles from '~/static/giftBundles'
@@ -649,7 +649,7 @@ export default {
   mixins: [validationMixin],
   validations: {
     customForm: {
-      name: { required },
+      name: { required, alpha },
       email: { required, email },
       phone_number: {
         required,
@@ -658,14 +658,14 @@ export default {
       },
     },
     bundleForm: {
-      giver_name: { required },
+      giver_name: { required, alpha },
       giver_email: { required, email },
       giver_phone_number: {
         required,
         minLength: minLength(11),
         maxLength: maxLength(11),
       },
-      receiver_name: { required },
+      receiver_name: { required, alpha },
       receiver_phone_number: {
         required,
         minLength: minLength(11),
@@ -736,7 +736,7 @@ export default {
         .replaceAll('/', '-')
     },
     selectPlan(val) {
-       this.selectedPlan = val
+      this.selectedPlan = val
       this.bundleForm.plan_description = this.selectedPlan.details.join(' ')
       this.bundleForm.plan_name = this.selectedPlan.title
     },
@@ -785,6 +785,15 @@ export default {
             'Plan Description': this.customForm.plan_description,
             'Plan Name': this.customForm.plan_name,
           }
+          const leadData = {
+            email: this.customForm.email,
+            name: this.customForm.name,
+            phone: this.customForm.phone_number,
+            lead_gen_page: window.location.href,
+            referrer: document.referrer,
+          }
+          this.$intercom('update', leadData)
+          this.$intercom('trackEvent', 'lead-genaration-signup', leadData)
           createCustomPlan(metaData).then(
             (res) => {
               this.loading = false
@@ -832,6 +841,15 @@ export default {
             'Plan Description': this.bundleForm.plan_description,
             'Plan Name': this.bundleForm.plan_name,
           }
+          const leadData = {
+            email: this.bundleForm.giver_email,
+            name: this.bundleForm.receiver_name,
+            phone: this.bundleForm.receiver_phone_number,
+            lead_gen_page: window.location.href,
+            referrer: document.referrer,
+          }
+          this.$intercom('update', leadData)
+          this.$intercom('trackEvent', 'lead-genaration-signup', leadData)
           createGiftPlan(metaData).then(
             (res) => {
               this.loading = false

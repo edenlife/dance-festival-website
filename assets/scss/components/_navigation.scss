@@ -474,7 +474,7 @@
   }
 
   @include respond(xl) {
-    width: 87%;
+    width: 100%;
   }
   @include respond(xxl) {
     max-width: 1440px;

@@ -2,7 +2,7 @@
   <div
     id="navigation-container"
     class="container"
-    :class="{ 'primary-bg': currentRoute === 'gift_plans' }"
+    :class="{ 'primary-bg': currentRoute === 'gift' }"
     :style="getNavigationColor(routeUpdate)"
   >
     <nav
@@ -399,7 +399,7 @@
           <a
             href="#"
             class="navigation__menu-item navigation__menu-link"
-            :class="{ 'primary-red': currentRoute === 'gift_plans' }"
+            :class="{ 'primary-red': currentRoute === 'gift' }"
             @click.prevent="scrollTo('#get-the-app')"
             id="get-started"
           >
@@ -632,7 +632,7 @@ export default {
     const getRoute = this.$nuxt.$route.path
     this.currentRoute = getRoute.replace('/', '')
     const navigation = document.querySelector('#navigation-container')
-    if (this.currentRoute.includes('gift_plans')) {
+    if (this.currentRoute.includes('gift')) {
     document.querySelector('#get-started').classList.add('primary-red')
       navigation.classList.add('primary-bg')
       this.lightLogo = true
@@ -658,7 +658,7 @@ export default {
         this.lightLogo = false
       } else {
         navigation.className = 'container'
-        if (this.currentRoute.includes('gift_plans')) {
+        if (this.currentRoute.includes('gift')) {
           navigation.classList.add('primary-bg')
           getStarted.classList.add('primary-red')
           this.lightLogo = true

@@ -1066,7 +1066,7 @@
               <br />
               <br />
               2. Deep cleaning involves everything done in Standard cleaning and
-              also, cleaning of cabinets, cupboards, AC vents, internal and
+              also, cleaning of cabinets, cupboards, internal and
               external parts of gas cooker, refrigerators and other home
               appliances.
             </p>

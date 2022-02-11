@@ -1090,8 +1090,7 @@
                 Clean internal and external parts of home appliances (Gas
                 cooker, refrigerators etc)
               </li>
-              <li>Clean cupboards and cabinets</li>
-              <li>AC vents cleaned</li>
+              <li>Clean cupboards and cabinets</li>            
             </ul>
           </div>
         </div>

@@ -652,8 +652,7 @@
                       cooker, refrigerators etc)
                     </li>
                     <li>Clean cupboards and cabinets</li>
-                    <li>AC vents cleaned</li>
-                  </ul>
+                   </ul>
                 </div>
                 <div class="calculator__input">
                   <label for="">Tell us about your home</label>

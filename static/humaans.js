@@ -60,13 +60,6 @@ export default {
       role: 'Food Production',
     },
     {
-      id: 10,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919029/eden-website-v2/aisha_uwaq8c.png',
-      name: 'Aisha Oyegunle',
-      role: 'Engineering',
-    },
-    {
       id: 11,
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1611919025/eden-website-v2/nad_bzu7la.png',
@@ -523,9 +516,86 @@ export default {
     {
       id: 97,
       image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/v1644242514/Tunmike_Olusoga_-_Gardener_g6dlaj.jpg',
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242514/Tunmike_Olusoga_-_Gardener_g6dlaj.jpg',
       name: 'Tunmike Olusoga',
       role: 'Customer Success',
+    },
+    {
+      id: 98,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1645013056/David_Chiagoziem_-_Steward_eyxkze.jpg',
+      name: 'David Chiagoziem',
+      role: 'Food Production',
+    },
+    {
+      id: 99,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1645013056/Chibuzor_Mbika_-_Demi-Chef_de_Partie_z2c00o.jpg',
+      name: 'Chibuzor Mbika',
+      role: 'Food Production',
+    },
+    {
+      id: 100,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1645013058/Gloria_Chinecherem_-_Demi-Chef_de_Partie_wjxrqg.jpg',
+      name: 'Gloria Chinecherem',
+      role: 'Food Production',
+    },
+    {
+      id: 101,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1645013061/Jonathan_Ukwunna_-_Laundry_Lead_rwsw5x.jpg',
+      name: 'Jonathan Ukwunna',
+      role: 'Supply',
+    },
+    {
+      id: 102,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1645013066/Mark_Igbe_-_Steward_zrql9h.jpg',
+      name: 'Mark Igbe',
+      role: 'Food Production',
+    },
+    {
+      id: 103,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1645013066/Mark_Igbe_-_Steward_zrql9h.jpg',
+      name: 'Mark Igbe',
+      role: 'Food Production',
+    },
+    {
+      id: 104,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1645013070/Martha_Lawrence_-_Order_Fulfilment_Associate_gewibn.jpg',
+      name: 'Martha Lawrence',
+      role: 'Supply',
+    },
+    {
+      id: 105,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1645013077/Michael_Odeh_-_Laundry_Assistant_oi4f4o.jpg',
+      name: 'Michael Odeh',
+      role: 'Supply',
+    },
+    {
+      id: 106,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1645013084/Nneka_Nzekwe_-_Procurement_Analyst_hybu7f.jpg',
+      name: 'Nneka Nzekwe',
+      role: 'Supply',
+    },
+    {
+      id: 107,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1645013091/Ruth_Ojei_-_Gardener_s0pww9.jpg',
+      name: 'Ruth Ojei',
+      role: 'Customer Success',
+    },
+    {
+      id: 108,
+      image:
+        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1645013101/Theophilus_Ekok_-_Steward_xz9oqd.jpg',
+      name: 'Theophilus Ekok',
+      role: 'Supply',
     },
   ],
 }

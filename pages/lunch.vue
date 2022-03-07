@@ -387,12 +387,7 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import {
-  required,
-  email,
-  minLength,
-  maxLength,
- } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 import { notUrl } from '~/utils/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { placeholderColorMix } from '~/static/functions'
@@ -463,7 +458,7 @@ export default {
             lead_gen_page: window.location.href,
             referrer: document.referrer,
           }
-         this.$intercom('update', {
+          this.$intercom('update', {
             email: this.form.email,
             name: this.form.name,
             phone: this.form.phone_number,
@@ -479,8 +474,22 @@ export default {
               meal: {
                 frequency: 'daily',
                 item: null,
-                qty: 1,
-                service_day: ['monday-friday'],
+                qty: 5,
+                service_day: [
+                  'Monday',
+                  'Tuesday',
+                  'Wednesday',
+                  'Thursday',
+                  'Friday',
+                ],
+                meal_per_delivery: {
+                  same_number_per_delivery: true,
+                  monday: 1,
+                  tuesday: 1,
+                  wednesday: 1,
+                  thursday: 1,
+                  friday: 1,
+                },
                 amount: 55000,
               },
             },

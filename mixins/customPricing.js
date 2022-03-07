@@ -11,6 +11,7 @@ export default {
       laundrySummary: [],
       cleaningSummary: [],
       totalFoodSummary: {},
+      foodPayload: {},
       totalLaundrySummary: {},
       totalCleaningSummary: {},
       totalPrice: '',
@@ -559,7 +560,7 @@ export default {
         if (this.selectedService.length === 3) {
           this.mealQty = 3
           this.mealFrequency = 'Twice a week'
-          this.selectedDays = ['monday','thursday']
+          this.selectedDays = ['monday', 'thursday']
           this.foodSavedTime = '9 hours 20 minutes every week'
           this.calculateFoodPrice()
           this.laundryFreqName = 'weekly'
@@ -747,7 +748,14 @@ export default {
     },
     // Food claculator
     calculateFoodPrice() {
+      let days = []
+      const deliveryDays = {
+        same_number_per_delivery: true,
+      }
+      let frequency
+      let totalAmount
       if (this.mealFrequency.toLowerCase() === 'daily') {
+        frequency = 'daily'
         if (this.mealQty > 5) {
           this.mealQty = 5
         }
@@ -759,6 +767,8 @@ export default {
             serviceDay: this.selectedDays[0],
           },
         })
+        totalAmount = total
+
         this.services[0].price = isNaN(total) ? 0 : total.toString()
         this.getTotalPrice(this.services, this.selectedService)
         this.foodSummary = [
@@ -775,12 +785,16 @@ export default {
         }
       }
       if (this.mealFrequency.toLowerCase() === 'weekly') {
+        frequency = 'weekly'
+
         if (this.mealQty > 20) {
           this.mealQty = 20
         }
         const total = pricing({
           meal: { item: null, frequency: 'weekly', qty: this.mealQty },
         })
+        totalAmount = total
+
         this.services[0].price = total.toString()
         this.getTotalPrice(this.services, this.selectedService)
         this.foodSummary = [
@@ -798,6 +812,8 @@ export default {
         }
       }
       if (this.mealFrequency === 'Twice a week') {
+        frequency = 'weekly-twodays'
+
         if (this.mealQty > 10) {
           this.mealQty = 10
         }
@@ -808,6 +824,8 @@ export default {
             qty: this.mealQty * 2,
           },
         })
+        totalAmount = total
+
         this.services[0].price = total.toString()
         this.getTotalPrice(this.services, this.selectedService)
         this.foodSummary = [
@@ -823,6 +841,31 @@ export default {
           qty: this.mealQty * 2,
           service_day: this.selectedDays,
           amount: total,
+        }
+        if (frequency === 'daily') {
+          if (this.selectedDays[0] === 'monday-friday') {
+            days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+          } else if (this.selectedDays[0] === 'monday-saturday') {
+            days = [
+              'Monday',
+              'Tuesday',
+              'Wednesday',
+              'Thursday',
+              'Friday',
+              'Saturday',
+            ]
+          }
+        } else days = this.selectedDays
+        days.forEach((day) => {
+          deliveryDays[day.toLowerCase()] = this.mealQty
+        })
+        this.foodPayload = {
+          frequency,
+          item: null,
+          qty: days.length > 0 ? this.mealQty * days.length : days.length > 0,
+          service_day: days,
+          meal_per_delivery: deliveryDays,
+          amount: totalAmount,
         }
       }
     },
@@ -878,7 +921,7 @@ export default {
         frequency: this.laundryFreqValue,
         item: this.laundryTypeValue,
         qty: this.laundryQty,
-        service_day: [],
+        service_day: ['monday'],
         amount: total,
       }
     },
@@ -933,7 +976,11 @@ export default {
       this.services[2].price = total.toString()
       this.getTotalPrice(this.services, this.selectedService)
       this.cleaningSummary = [
-        `${this.cleaningType.includes("Light") ? 'Standard Cleaning' : this.cleaningType}`,
+        `${
+          this.cleaningType.includes('Light')
+            ? 'Standard Cleaning'
+            : this.cleaningType
+        }`,
         `${this.roomTypes}`,
         `${this.cleaningFrequency}`,
         `Saves ${this.cleaningSavedTime}`,
@@ -943,7 +990,7 @@ export default {
         item: this.cleaningInfo.item,
         item_areas: newItemAreas,
         qty: this.cleaningInfo.qty,
-        service_day: [],
+        service_day: ['monday'],
         amount: total,
       }
     },

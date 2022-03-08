@@ -240,6 +240,15 @@
                 Terms &amp; Conditions
               </nuxt-link>
             </li>
+             <li @click="trackLink('Privacy Policy')">
+              <nuxt-link
+                :to="{ path: '/privacy_policy' }"
+                class="footer__bottom-logo"
+                @click.prevent="trackLink('Privacy Policy')"
+              >
+               Privacy Policy
+              </nuxt-link>
+            </li>
           </ul>
         </div>
 

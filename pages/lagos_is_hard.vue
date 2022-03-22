@@ -1037,7 +1037,7 @@ export default {
             email: this.form.email,
             plan_details: {
               ...(this.selectedService.includes('Food') && {
-                meal: this.totalFoodSummary,
+                meal: this.foodPayload,
               }),
               ...(this.selectedService.includes('Laundry') && {
                 laundry: this.totalLaundrySummary,

@@ -2,7 +2,7 @@
   <div
     id="navigation-container"
     class="container"
-    :class="{ 'primary-bg': currentRoute === 'gift' }"
+    :class="{ 'primary-bg': giftLanding }"
     :style="getNavigationColor(routeUpdate)"
   >
     <nav
@@ -619,6 +619,10 @@ export default {
         return false
       }
     },
+
+    giftLanding(){
+      return this.currentRoute === 'gift' || this.currentRoute === 'ramadan'
+    }
   },
   watch: {
     $route() {
@@ -632,7 +636,7 @@ export default {
     const getRoute = this.$nuxt.$route.path
     this.currentRoute = getRoute.replace('/', '')
     const navigation = document.querySelector('#navigation-container')
-    if (this.currentRoute.includes('gift')) {
+    if (this.giftLanding ) {
     document.querySelector('#get-started').classList.add('primary-red')
       navigation.classList.add('primary-bg')
       this.lightLogo = true
@@ -658,7 +662,7 @@ export default {
         this.lightLogo = false
       } else {
         navigation.className = 'container'
-        if (this.currentRoute.includes('gift')) {
+        if (this.giftLanding) {
           navigation.classList.add('primary-bg')
           getStarted.classList.add('primary-red')
           this.lightLogo = true

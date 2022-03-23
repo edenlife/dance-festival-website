@@ -26,6 +26,7 @@
     "nuxt-intercom": "^1.0.8",
     "sass": "^1.32.5",
     "sass-loader": "^10.1.1",
+    "vue-animate-onscroll": "^1.0.8",
     "vue-mailchimp-subscribe": "^1.1.0",
     "vue-owl-carousel": "^2.0.3",
     "vue-paystack": "^2.0.4",

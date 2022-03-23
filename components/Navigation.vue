@@ -397,11 +397,11 @@
         </li>
         <li>
           <a
+            id="get-started"
             href="#"
             class="navigation__menu-item navigation__menu-link"
             :class="{ 'primary-red': currentRoute === 'gift' }"
             @click.prevent="scrollTo('#get-the-app')"
-            id="get-started"
           >
             {{
               currentRoute === 'eden_means_easy' ? 'Sign Up Now' : 'Get Started'
@@ -620,9 +620,12 @@ export default {
       }
     },
 
-    giftLanding(){
-      return this.currentRoute === 'gift' || this.currentRoute === 'ramadan'
-    }
+    giftLanding() {
+      return (
+        this.currentRoute.includes('gift') ||
+        this.currentRoute.includes('ramadan')
+      )
+    },
   },
   watch: {
     $route() {
@@ -636,8 +639,8 @@ export default {
     const getRoute = this.$nuxt.$route.path
     this.currentRoute = getRoute.replace('/', '')
     const navigation = document.querySelector('#navigation-container')
-    if (this.giftLanding ) {
-    document.querySelector('#get-started').classList.add('primary-red')
+    if (this.giftLanding) {
+      document.querySelector('#get-started').classList.add('primary-red')
       navigation.classList.add('primary-bg')
       this.lightLogo = true
     }
@@ -653,12 +656,13 @@ export default {
     },
     handleScroll() {
       const navigation = document.querySelector('#navigation-container')
-      const getStarted =  document.querySelector('#get-started')
-       if (window.scrollY > 20) {
+      const getStarted = document.querySelector('#get-started')
+      if (window.scrollY > 20) {
         navigation.className = 'container scroll'
         if (navigation.classList.contains('primary-bg'))
           navigation.classList.remove('primary-bg')
-        if(getStarted.classList.contains('primary-red')) getStarted.classList.remove('primary-red')
+        if (getStarted.classList.contains('primary-red'))
+          getStarted.classList.remove('primary-red')
         this.lightLogo = false
       } else {
         navigation.className = 'container'
@@ -676,11 +680,9 @@ export default {
     scrollTo(id) {
       if (this.currentRoute === '') {
         scrollToApp(id, `homepage - Navbar`)
-      } else {
-        if (this.currentRoute.includes('easy')) {
-          this.scrollToSection('#eden-easy-form', 'Get Started')
-        } else scrollToApp(id, `${this.currentRoute} - Navbar`)
-      }
+      } else if (this.currentRoute.includes('easy')) {
+        this.scrollToSection('#eden-easy-form', 'Get Started')
+      } else scrollToApp(id, `${this.currentRoute} - Navbar`)
     },
     launchIntercom() {
       this.$intercom('show')

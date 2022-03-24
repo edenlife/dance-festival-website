@@ -12,7 +12,73 @@
 $shadows-small: multiple-box-shadow(200);
 $shadows-medium: multiple-box-shadow(100);
 $shadows-big: multiple-box-shadow(100);
+$baseLeft: 10%;
 
+.star {
+  position: absolute;
+  // left: 50%;
+  animation: animationStar 30s linear infinite;
+   top: 40%;
+   z-index: 100;
+  &:first-of-type {
+    left: $baseLeft + 10;
+  }
+  &:nth-of-type(2) {
+    left: $baseLeft + 20;
+  }
+  &:nth-of-type(3) {
+    left: $baseLeft * 1;
+    top: $baseLeft + 50;
+  }
+  &:nth-of-type(4) {
+    left: $baseLeft + 50;
+    top: $baseLeft + 60;
+  }
+  &:nth-of-type(5) {
+    left: $baseLeft - 5;
+  }
+  &:nth-of-type(6) {
+    right: $baseLeft + 6;
+    top: $baseLeft + 10;
+  }
+  &:nth-of-type(7) {
+    left: $baseLeft + 15;
+    top: $baseLeft + 5;
+  }
+  &:nth-of-type(8) {
+    left: $baseLeft + 40;
+    top: $baseLeft + 70;
+  }
+  &:nth-of-type(9) {
+    left: $baseLeft + 2;
+    top: $baseLeft + 10;
+  }
+  &:nth-of-type(10) {
+    right: $baseLeft + 5;
+  }
+  &:nth-of-type(11) {
+    right: $baseLeft + 15;
+  }
+  &:nth-of-type(12) {
+    left: $baseLeft + 30;
+    top: $baseLeft + 10;
+  }
+  &:nth-of-type(13) {
+    right: $baseLeft + 25;
+    top: $baseLeft + 33;
+  }
+  &:nth-of-type(14) {
+    right: $baseLeft + 20;
+    top: $baseLeft + 5;
+  }
+  &:nth-of-type(15) {
+    right: $baseLeft + 5;
+    top: $baseLeft + 60;
+  }
+  &:nth-of-type(4) {
+    right: $baseLeft * 1;
+  }
+}
 #stars {
   width: 3px;
   height: 3px;
@@ -99,7 +165,7 @@ $shadows-big: multiple-box-shadow(100);
       align-items: flex-end;
       justify-content: center;
       background-size: cover;
-      img{
+      img {
         width: 100vw;
       }
     }
@@ -165,18 +231,16 @@ $shadows-big: multiple-box-shadow(100);
     }
   }
 
-
   &--description {
-    background:  #FAFFFC
+    background: #fafffc
       url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611834564/eden-website-v2/bg-8_d0hgzi.svg')
       no-repeat bottom -10% right 1% / 10%;
     @include respond(md) {
-      background:  #FAFFFC
+      background: #fafffc
         url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611834564/eden-website-v2/bg-8_d0hgzi.svg')
         no-repeat bottom -4% right 1% / 30%;
     }
   }
-
 }
 .hero {
   margin: 0 auto;
@@ -192,11 +256,11 @@ $shadows-big: multiple-box-shadow(100);
 
     .header--text {
       color: #efc074;
-      border-bottom: 3px solid #efc074;
+      //  border-bottom: 3px solid #efc074;
       box-shadow: #fee9ba 0px -20px 0px inset;
     }
     h1 {
-      line-height: 62px;
+      line-height: 80px;
       margin-bottom: 32px;
       @include font-size(9xl);
       @include font-weight(bold);
@@ -249,6 +313,8 @@ $shadows-big: multiple-box-shadow(100);
     &-solid {
       position: relative;
       line-height: 23px;
+      border-radius: 4px;
+
       @include font-size(xl);
       // background-color: #ffffff;
       border: 1px solid color(eden-green-primary);
@@ -316,7 +382,7 @@ $shadows-big: multiple-box-shadow(100);
       text-align: center;
       h1 {
         //  display: none;
-        line-height: 47px;
+        line-height: 60px;
         @include font-size(5xl);
         &.mobile {
           display: block;
@@ -367,9 +433,15 @@ $shadows-big: multiple-box-shadow(100);
       width: 50%;
       background-size: contain;
       margin: auto;
-      &.cover{
-          background-size: cover;
+      &.cover {
+        background-size: cover;
+        @include respond(xs) {
+           background-size: contain;
+        }
       }
+      @include respond(xs) {
+        width: 90vw;
+       }
     }
     .bundle__title {
       padding: 50px 30px;
@@ -380,7 +452,7 @@ $shadows-big: multiple-box-shadow(100);
       h5 {
         line-height: 36px;
         @include font-size(2xl);
-         width: 80%;
+        width: 80%;
         margin: auto auto 16px;
       }
       p {
@@ -449,8 +521,6 @@ $shadows-big: multiple-box-shadow(100);
 
       .bundle__title {
         padding: 0 !important;
-
-       
       }
       &__input {
         &:first-child {
@@ -637,6 +707,8 @@ $shadows-big: multiple-box-shadow(100);
         margin: $gap * 4 auto $gap * 6.4;
         width: 90%;
         max-width: 384px;
+        border-radius: 4px;
+
         &:hover:not(:disabled) {
           box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
           background-color: color(eden-green-250);
@@ -686,15 +758,16 @@ $shadows-big: multiple-box-shadow(100);
       padding: 20px 0 20px 0;
       .bundle--form {
         background-position: bottom;
-        width: 100%;
+      //  width: 100%;
         .bundle__title {
           padding: 80px 30px;
           .plan--card {
             max-width: 319px;
           }
 
-          h5{
-            @include font-size(4xl);line-height: 42px;
+          h5 {
+            @include font-size(4xl);
+            line-height: 42px;
           }
         }
       }
@@ -847,14 +920,12 @@ $shadows-big: multiple-box-shadow(100);
   &__title {
     margin-top: $gap * 3;
     color: color(eden-neutral-1);
-     h3 {
+    h3 {
       @include font-size(6xl);
       line-height: 55px;
       @include font-weight(bold);
       margin-bottom: $gap * 8;
       text-align: left;
-
-     
     }
   }
   &__inner {
@@ -871,22 +942,21 @@ $shadows-big: multiple-box-shadow(100);
       margin-top: -20px;
       img {
         width: 400px;
-    height: 200px;
+        height: 200px;
       }
     }
 
-    &-name{
+    &-name {
       @include font-family(cerebri);
       margin: 16px 0 0 50px;
-      p{
+      p {
         font-size: 16px;
         line-height: 24px;
-       
-      }span{
+      }
+      span {
         font-size: 14px;
         line-height: 20px;
-        @include font-weight(light)
-
+        @include font-weight(light);
       }
     }
     &-control {
@@ -1006,7 +1076,6 @@ $shadows-big: multiple-box-shadow(100);
   }
 }
 
-
 .modal__body {
   // background-color: color(eden-neutral-7);
   .company__modal {
@@ -1033,7 +1102,7 @@ $shadows-big: multiple-box-shadow(100);
         margin: $gap * 2.4 auto $gap * 4.7 auto;
         width: 75%;
         text-align: center;
-        @include font-weight(light)
+        @include font-weight(light);
       }
       .btn {
         margin-left: auto;
@@ -1161,6 +1230,8 @@ $shadows-big: multiple-box-shadow(100);
             box-shadow: 0px 4px 8px rgba(121, 139, 131, 0.161);
 
             .btn--submit {
+              border-radius: 4px;
+
               margin: 24px 14px;
               padding: $gap $gap + 4;
               transition: none;
@@ -1264,6 +1335,8 @@ $shadows-big: multiple-box-shadow(100);
         padding: $gap * 1.6 $gap * 2.9;
         margin: $gap * 2.4 auto;
         width: 90%;
+        border-radius: 4px;
+
         &:hover {
           box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
           background-color: color(eden-green-250);
@@ -1368,6 +1441,25 @@ $shadows-big: multiple-box-shadow(100);
     }
   }
 }
+
+@keyframes animationStar {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50%{
+    transform: translateY(-300px);
+  }
+
+  70%{
+    transform: translateY(10px) scale(0.3);
+  }
+  100% {
+     transform: translateY(0px) scale(0.6);
+
+  }
+}
+
 
 @keyframes animateStar {
   from {

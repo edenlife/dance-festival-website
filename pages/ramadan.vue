@@ -1,8 +1,39 @@
 <template>
   <div>
     <div class="container--hero">
-      <div id="stars"></div>
-      <div id="stars_2"></div>
+      <!-- <div id="stars">
+       
+      </div> -->
+
+      <img src="@/assets/images/star-20px.svg" alt="star" class="star" />
+
+      <img src="@/assets/images/star-12px.svg" alt="star" class="star" />
+
+      <img src="@/assets/images/star-18px.svg" alt="star" class="star" />
+
+      <img src="@/assets/images/star-12px.svg" alt="star" class="star" />
+
+      <img src="@/assets/images/star-20px.svg" alt="star" class="star" />
+
+      <img src="@/assets/images/star-12px.svg" alt="star" class="star" />
+
+      <img src="@/assets/images/star-18px.svg" alt="star" class="star" />
+
+      <img src="@/assets/images/star-18px.svg" alt="star" class="star" />
+
+      <img src="@/assets/images/star-12px.svg" alt="star" class="star" />
+      <img src="@/assets/images/star-20px.svg" alt="star" class="star" />
+
+      <img src="@/assets/images/star-12px.svg" alt="star" class="star" />
+
+      <img src="@/assets/images/star-18px.svg" alt="star" class="star" />
+      <img src="@/assets/images/star-20px.svg" alt="star" class="star" />
+      <img src="@/assets/images/star-20px.svg" alt="star" class="star" />
+      <img src="@/assets/images/star-18px.svg" alt="star" class="star" />
+
+      <img src="@/assets/images/star-12px.svg" alt="star" class="star" />
+
+      <!-- <div id="stars_2"></div> -->
       <!-- <div id="stars_3"></div> -->
 
       <div class="moon">
@@ -12,15 +43,16 @@
         <div class="hero__title">
           <h1>
             <span class="header--text">{{ ramadanOffer[0] }}</span>
-            ready to eat in 5 minutes
+            ready to eat <br />
+            In 5 minutes
           </h1>
 
           <p>
-            <img src="@/assets/images/praying.png" alt="pray" /> Never worry
-            about Iftar or Sahur. Just focus on Ibadah. <br />
-            <img src="@/assets/images/meal.png" alt="meal" /> Nourishing,
+            <img src="@/assets/images/pray.svg" alt="pray" /> Never worry about
+            Iftar or Sahur. Just focus on Ibadah. <br />
+            <img src="@/assets/images/food.svg" alt="meal" /> Nourishing,
             chef-cooked meals delivered to you on schedule. <br /><img
-              src="@/assets/images/man.png"
+              src="@/assets/images/office.svg"
               alt="man"
             />Personalized Customer Support.
           </p>
@@ -30,7 +62,7 @@
           <button
             type="button"
             class="hero__button-solid"
-            @click.prevent="scrollTo('step-one')"
+            @click.prevent="scrollTo('bundle-form')"
           >
             I want Sahur & Iftar
           </button>
@@ -425,7 +457,7 @@
             </div>
             <div class="description__inner-img">
               <img
-                :src="require(`~/assets/images/okunade-testimony.png`)"
+                :src="require(`~/assets/images/okunade-testimony.svg`)"
                 alt=""
               />
             </div>
@@ -440,7 +472,7 @@
           <div class="description__details">
             <div class="description__details-item">
               <div class="description__details-item--icon">
-                <img :src="require(`~/assets/images/praying.png`)" alt="" />
+                <img :src="require(`~/assets/images/pray.svg`)" alt="" />
               </div>
 
               <div

@@ -1,33 +1,28 @@
 <template>
   <div>
     <div class="container--hero">
+      <div id="stars"></div>
+      <div id="stars_2"></div>
+      <!-- <div id="stars_3"></div> -->
+
+      <div class="moon">
+        <img src="@/assets/images/moon.svg" alt="moon" />
+      </div>
       <header class="hero">
         <div class="hero__title">
           <h1>
-            Time Is The
-            <video ref="videoRef" muted playsinline autoplay loop>
-              <source
-                src="https://res.cloudinary.com/eden-life-inc/video/upload/v1638955063/gift-header-hero_a3qp7n.mp4"
-                type="video/mp4"
-              />
-            </video>
-            Greatest Gift Of All
+            <span class="header--text">{{ ramadanOffer[0] }}</span>
+            ready to eat in 5 minutes
           </h1>
-          <h1 class="mobile">
-            <span> Time is the </span>
-            <video ref="videoRef" muted playsinline autoplay loop>
-              <source
-                src="https://res.cloudinary.com/eden-life-inc/video/upload/v1638955063/gift-header-hero_a3qp7n.mp4"
-                type="video/mp4"
-              />
-            </video>
 
-            <span> greatest gift of all </span>
-          </h1>
           <p>
-            An Eden plan buys back time for your loved ones. <br />
-            Time to chill, time to grow, and time for you. <br />Everyone wants
-            more time, so give the perfect gift today.
+            <img src="@/assets/images/praying.png" alt="pray" /> Never worry
+            about Iftar or Sahur. Just focus on Ibadah. <br />
+            <img src="@/assets/images/meal.png" alt="meal" /> Nourishing,
+            chef-cooked meals delivered to you on schedule. <br /><img
+              src="@/assets/images/man.png"
+              alt="man"
+            />Personalized Customer Support.
           </p>
         </div>
 
@@ -37,56 +32,152 @@
             class="hero__button-solid"
             @click.prevent="scrollTo('step-one')"
           >
-            <span> Gift an Eden Plan in 3 Steps </span>
-            <img src="@/assets/images/value-gift.svg" alt="food" />
-            <span>👇🏽</span>
+            I want Sahur & Iftar
           </button>
         </div>
-
-        <div class="arrow"></div>
       </header>
-      <div id="step-one" class="bundle__title">
-        <h3>Step 1: Choose a Gift Bundle</h3>
-      </div>
-    </div>
-
-    <div class="container--bundles">
-      <section class="bundle__types">
-        <bundle
-          v-for="(bundle, index) in gift_bundles"
-          :key="index"
-          :gift-plan="bundle"
-          @plan="selectPlan"
-        />
-      </section>
       <div class="bundle__title">
-        <a @click="showCustomPlan = true">
-          <h3>I want a plan that's not here</h3></a
-        >
+        <img src="@/assets/images/ramadan-bundle-header.svg" alt="header" />
       </div>
     </div>
+    <div id="step-one" class="container--body">
+      <h3>How it works</h3>
 
-    <div class="container--bundles form__holder" id="bundle-form">
-      <div class="bundle--form">
-        <div class="bundle__title">
-          <h3>Step 2: Give the Perfect Gift</h3>
-          <p>
-            We need your information to process your gift. Don't worry, you can
-            stay anonymous if you want.
-          </p>
+      <div class="info--list">
+        <div
+          v-for="info in infoList"
+          :key="info.index"
+          v-animate-onscroll.repeat="'animated  fadeInDown'"
+          class="info--item"
+        >
+          <img
+            :src="require(`~/assets/images/image_${info.index}.png`)"
+            :alt="` image_${info.index}`"
+          />
 
-          <div v-if="selectedPlan" class="plan--card">
-            {{ selectedPlan.title }} | {{ selectedPlan.plan_detail }} | ₦{{
-              selectedPlan.amount
-            }}
+          <h4>{{ info.title }}</h4>
+
+          <p>{{ info.description }}</p>
+        </div>
+      </div>
+      <div class="hero__button">
+        <button
+          type="button"
+          class="hero__button-solid"
+          @click.prevent="scrollTo('bundle-form')"
+        >
+          I want Sahur & Iftar
+        </button>
+      </div>
+    </div>
+    <div id="bundle-form" class="container--bundles form__holder">
+      <div class="bundle__title">
+        <h3>Which applies to you?</h3>
+        <div class="gift--options">
+          <div
+            v-for="item in planOptions"
+            :key="item.value"
+            v-animate-onscroll="'animated fadeInDown'"
+            class="gift--option"
+            :class="{
+              active: selectedPlan.value === item.value,
+            }"
+            @click="setValue(item)"
+          >
+            <div
+              v-if="selectedPlan.value === item.value"
+              class="selected"
+            ></div>
+
+            <input
+              v-if="!selectedPlan.value || selectedPlan.value !== item.value"
+              id="select-gift"
+              type="radio"
+              name="gift"
+              for="gift"
+            />
+            <p>{{ item.description }}</p>
           </div>
-          <div v-else class="plan--card">No plan selected</div>
+        </div>
+      </div>
+
+      <div v-if="selectedPlan.value === 'personal'" class="bundle--form cover">
+        <div class="bundle__title">
+          <h5>
+            You're one step closer to not worrying about food this Ramadan.
+          </h5>
+          <p>
+            Enter your details and we'll reach out to you on the next steps.
+            Let's go!
+          </p>
         </div>
         <form class="form">
           <div class="form__input">
-            <label for="company name">
-              Name <span class="required">*</span>
-            </label>
+            <label for=" name"> Name <span class="required">*</span> </label>
+            <input
+              id=""
+              v-model="customForm.name"
+              type="text"
+              name=""
+              placeholder="Enter your name"
+              :class="{ 'has-error': $v.customForm.name.$error }"
+            />
+          </div>
+
+          <div class="form__input">
+            <label for="phone number"
+              >Phone number <span class="required">*</span></label
+            >
+            <input
+              id=""
+              v-model.trim="$v.customForm.phone_number.$model"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+              type="text"
+              name=""
+              placeholder="Enter your phone number"
+              :class="{ 'has-error': $v.customForm.phone_number.$error }"
+            />
+          </div>
+          <div class="form__input">
+            <label for="email"
+              >Email address <span class="required">*</span></label
+            >
+            <input
+              id=""
+              v-model="customForm.email"
+              type="email"
+              name=""
+              placeholder="Enter your email address"
+              :class="{ 'has-error': $v.customForm.email.$error }"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="btn--submit"
+            :class="{
+              loading: loading,
+            }"
+            :disabled="loading || !selectedPlan.value"
+            @click.prevent="submit('personal')"
+          >
+            I want Sahur & Iftar
+          </button>
+        </form>
+      </div>
+
+      <div v-else class="bundle--form">
+        <div class="bundle__title">
+          <h5>Give the perfect Ramadan gift.</h5>
+          <p>
+            We need your information to process the gifts, don’t worry, you can
+            stay anon. When you fill out this form, our customer success
+            representative will reach out to you on the next steps to take.
+          </p>
+        </div>
+        <form class="form">
+          <div class="form__input">
+            <label for=" name"> Name <span class="required">*</span> </label>
             <input
               id=""
               v-model="bundleForm.giver_name"
@@ -139,7 +230,7 @@
           </div>
 
           <div class="form__input">
-            <label for="message">
+            <label for="anonymous">
               Want to stay Anonymous? 👀 <span class="required">*</span>
             </label>
 
@@ -192,10 +283,10 @@
               <ul>
                 <li>
                   <input
-                    @click="setDate"
                     type="checkbox"
                     name="date"
                     :value="true"
+                    @click="setDate"
                   />
                   <label
                     for="date"
@@ -237,11 +328,11 @@
                     </span>
                     <date-picker
                       v-model="bundleForm.date"
-                      @change="dateChecked = false"
-                      valueType="format"
+                      value-type="format"
                       format="DD-MM-YYYY"
                       placeholder="MM DD YYYY"
-                         :disabled-date="disabledRange"
+                      :disabled-date="disabledRange"
+                      @change="dateChecked = false"
                     >
                     </date-picker>
                   </div>
@@ -256,7 +347,7 @@
             </div>
           </div>
           <div class="bundle__title">
-            <h4>Now, let's meet this special person. 💚</h4>
+            <h4>Now, let's know this someone 💚</h4>
           </div>
 
           <div class="form__input">
@@ -313,192 +404,100 @@
             :class="{
               loading: loading,
             }"
-            :disabled="loading || !selectedPlan"
-            @click.prevent="submit('plan')"
+            :disabled="loading || !selectedPlan.value"
+            @click.prevent="submit('gift')"
           >
-            Give the Gift of Time
+            Gift the perfect Ramadan gift
           </button>
         </form>
       </div>
     </div>
-
-    <div id="success-section" class="container--bundles">
-      <div class="bundle__title">
-        <img src="@/assets/images/gift-confetti.svg" alt="" class="confetti" />
-        <h3 class="m-fit">Step 3: We'll Take It From Here</h3>
-
-        <p>
-          We'll reach out to the person you're gifting whenever you want us to,
-          and start serving them as soon as they want us to.
-        </p>
-      </div>
-    </div>
-
-    <modal
-      v-if="showCustomPlan"
-      :show-modal="showCustomPlan"
-      class="modal-lead"
-    >
-      <div slot="header"></div>
-      <div slot="body" class="modal__body">
-        <div class="company__modal">
-          <button class="btn" @click="showCustomPlan = false">
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+    <div class="container--description">
+      <section class="description">
+        <div class="description__inner">
+          <div class="description__inner-left">
+            <div class="description__title">
+              <h3>
+                Why should Eden Life <br />
+                worry about your food <br />
+                this Ramadan?
+              </h3>
+            </div>
+            <div class="description__inner-img">
+              <img
+                :src="require(`~/assets/images/okunade-testimony.png`)"
+                alt=""
+              />
+            </div>
+            <div
+              v-animate-onscroll="'animated rollIn'"
+              class="description__inner-name"
             >
-              <circle cx="16" cy="16" r="15.5" fill="white" stroke="#E4E8E6" />
-              <path
-                d="M20 12L12 20"
-                stroke="#798B83"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M12 12L20 20"
-                stroke="#798B83"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
-          <div class="company__modal-title">
-            <h3 class="">Gift a Custom Plan</h3>
-
-            <p>
-              We need your information to process your gift. Whatever Eden plan
-              you want, we'll get it done. Just fill the form and we'll reach
-              out to you.
-            </p>
+              <p>Okunade Goodman</p>
+              <span>@OkunadeGoodMan</span>
+            </div>
           </div>
-          <form action="" class="form">
-            <div class="form__input">
-              <label for="company name">
-                Name <span class="required">*</span>
-              </label>
-              <input
-                id=""
-                v-model="customForm.name"
-                type="text"
-                name=""
-                placeholder="Enter your name"
-                :class="{ 'has-error': $v.customForm.name.$error }"
-              />
-            </div>
+          <div class="description__details">
+            <div class="description__details-item">
+              <div class="description__details-item--icon">
+                <img :src="require(`~/assets/images/praying.png`)" alt="" />
+              </div>
 
-            <div class="form__input">
-              <label for="phone number"
-                >Phone number <span class="required">*</span></label
+              <div
+                v-animate-onscroll.repeat="'animated fadeInDown'"
+                class="description__details-item--text"
               >
-              <input
-                id=""
-                v-model.trim="$v.customForm.phone_number.$model"
-                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                type="text"
-                name=""
-                placeholder="Enter phone number"
-                :class="{ 'has-error': $v.customForm.phone_number.$error }"
-              />
-            </div>
-            <div class="form__input">
-              <label for="email"
-                >Email address <span class="required">*</span></label
-              >
-              <input
-                id=""
-                v-model="customForm.email"
-                type="email"
-                name=""
-                placeholder="Enter email address"
-                :class="{ 'has-error': $v.customForm.email.$error }"
-              />
-            </div>
-
-            <div class="form__input">
-              <label for="services">Preferred Gift Plan (optional)</label>
-              <div class="select">
-                <div class="selector">
-                  <div class="label" @click="toggle()">
-                    <span v-if="!customForm.plan_name" class="placeholder">
-                      Select plan
-                    </span>
-                    <span v-else class="label--text">{{
-                      customForm.plan_name
-                    }}</span>
-                  </div>
-                  <svg
-                    class="arrow"
-                    :class="{ expanded: visible }"
-                    width="10"
-                    height="6"
-                    viewBox="0 0 10 6"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    @click="toggle()"
-                  >
-                    <path
-                      d="M1 1L5 5L9 1"
-                      stroke="#93A29B"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-
-                  <div :class="{ hidden: !visible, visible }">
-                    <transition name="slide-fade">
-                      <div class="selection">
-                        <ul>
-                          <li
-                            v-for="(service, index) in gift_bundles"
-                            :key="index"
-                            :value="service"
-                          >
-                            <input
-                              :id="service.title"
-                              @click="setCustomPlan(service)"
-                              type="checkbox"
-                              :name="service.title"
-                              :value="service.title"
-                            />
-                            <label
-                              :for="service.title"
-                              :class="{
-                                checkmark:
-                                  customForm.plan_name === service.title,
-                              }"
-                            >
-                              {{ service.title }}</label
-                            >
-                          </li>
-                        </ul>
-                        <button class="btn--submit" @click.prevent="toggle()">
-                          Done
-                        </button>
-                      </div>
-                    </transition>
-                  </div>
-                </div>
+                <h5>It saves you precious time</h5>
+                <p>
+                  By letting Eden worry about your Iftar or Sahur, you go from
+                  worrying about food during this Ramadan to having more time to
+                  get closer to Allah.
+                </p>
               </div>
             </div>
-
-            <button
-              type="submit"
-              class="btn--submit"
-              :disabled="loading"
-              @click.prevent="submit('custom')"
-            >
-              Get my Gift
-            </button>
-          </form>
+            <div class="description__details-item">
+              <div class="description__details-item--icon">
+                <img
+                  :src="require(`~/assets/images/emojis/rocket.png`)"
+                  alt=""
+                />
+              </div>
+              <div
+                v-animate-onscroll.repeat="'animated fadeInUp'"
+                class="description__details-item--text"
+              >
+                <h5>It's a monthly subscription</h5>
+                <p>
+                  You pay once and for four weeks, we take care of you, and your
+                  meals.
+                </p>
+              </div>
+            </div>
+            <div class="description__details-item">
+              <div class="description__details-item--icon">
+                <img :src="require(`~/assets/images/emojis/wow.png`)" alt="" />
+              </div>
+              <div
+                v-animate-onscroll.repeat="'animated fadeInDown'"
+                class="description__details-item--text"
+              >
+                <h5>It's perfect for your busy lifestyle</h5>
+                <p>
+                  You pay once and for four weeks, we take care of you, and your
+                  meals.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div slot="footer"></div>
-    </modal>
-
-    <modal v-if="showSuccessModal" :show-modal="showSuccessModal" class="modal">
+      </section>
+    </div>
+    <modal
+      v-if="showSuccessModal"
+      :show-modal="showSuccessModal"
+      class="modal"
+      @click="showSuccessModal = false"
+    >
       <div slot="header"></div>
       <div slot="body" class="modal__body success">
         <div class="company__modal">
@@ -535,43 +534,16 @@
           </div>
           <div class="company__modal-body">
             <img
-              :src="require(`~/assets/images/successful.svg`)"
-              alt="failed"
+              src="@/assets/images/gift-confetti.svg"
+              alt=""
+              class="confetti"
             />
 
-            <div class="payment" v-if="showPayment">
-              <h5>Order Summary</h5>
-
-              <h6>{{ selectedPlan.title }}</h6>
-              <ul>
-                <li
-                  v-for="(detail, index) in selectedPlan.details"
-                  :key="index"
-                  v-html="detail"
-                ></li>
-              </ul>
-              <button
-                type="submit"
-                class="btn--submit"
-                :disabled="loading"
-                @click.prevent="openPaymentLink(selectedPlan.payment_link)"
-              >
-                Proceed to Payment
-              </button>
-            </div>
-
-            <div v-else>
-              <h5>Information Submitted</h5>
-
-              <button
-                type="submit"
-                class="btn--submit"
-                :disabled="loading"
-                @click.prevent="closeModal"
-              >
-                Continue Browsing
-              </button>
-            </div>
+            <h3>Thank you!</h3>
+            <p>
+              A customer success representative will reach out to you on the
+              next steps to take.
+            </p>
           </div>
         </div>
       </div>
@@ -583,13 +555,7 @@
       <div slot="body" class="modal__body">
         <div class="company__modal">
           <div class="company__modal-title">
-            <button
-              class="btn btn--success"
-              @click="
-                showFailedModal = false
-                showCustomPlan = false
-              "
-            >
+            <button class="btn btn--success" @click="showFailedModal = false">
               <svg
                 width="32"
                 height="32"
@@ -638,17 +604,13 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
-import { notUrl } from '~/utils/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
-import { createGiftPlan, createCustomPlan } from '~/request/airtable'
-import giftBundles from '~/static/giftBundles'
+import { notUrl } from '~/utils/validators'
+import { createGiftSahur, createPersonalSahur } from '~/request/airtable'
 
 export default {
-  components: {
-    Modal: () => import('@/components/Modal.vue'),
-    Bundle: () => import('@/components/Bundle.vue'),
-  },
   mixins: [validationMixin],
+
   validations: {
     customForm: {
       name: { required, notUrl },
@@ -675,21 +637,51 @@ export default {
       },
       anonymous: { required },
       date: { required },
-      plan_description: { required },
-      plan_name: { required },
     },
   },
   data() {
     return {
-      showCustomPlan: false,
       showSuccessModal: false,
       showFailedModal: false,
-      showPayment: false,
+      disabledBefore: new Date(),
+
       loading: false,
+      infoList: [
+        {
+          index: 1,
+          title: 'Choose a plan',
+          description:
+            'Sign up in the form below and our Customer Support Champion will reach out to you. ',
+        },
+        {
+          index: 2,
+          title: 'We cook and deliver.',
+          description:
+            'We cook up your selections and deliver them to you as scheduled. At no extra cost. ',
+        },
+        {
+          index: 3,
+          title: 'You heat and eat.',
+          description:
+            'It’s ready to eat in five minutes. Or you can refrigerate for later! ',
+        },
+      ],
+      planOptions: [
+        {
+          description: 'I want Iftar and Sahur',
+          value: 'personal',
+        },
+        {
+          description: 'I want to gift someone Iftar and Sahur',
+          value: 'not-personal',
+        },
+      ],
+      selectedPlan: {
+        description: 'I want Iftar and Sahur',
+        value: 'personal',
+      },
       customForm: {
         name: '',
-        plan_description: '',
-        plan_name: '',
         email: '',
         phone_number: '',
       },
@@ -703,20 +695,11 @@ export default {
         receiver_name: '',
         receiver_email: '',
         receiver_phone_number: '',
-        plan_description: '',
-        plan_name: '',
       },
-      visible: false,
-
-      gift_bundles: giftBundles,
-      selectedPlan: null,
       dateChecked: false,
+      ramadanOffer: ['Sahur', 'Iftar'],
     }
   },
-  mounted() {
-    mixpanelTrackEvent('Gift Plans page')
-  },
-
   computed: {
     checkDate() {
       const date = new Date()
@@ -730,52 +713,45 @@ export default {
       return false
     },
   },
+  mounted() {
+    mixpanelTrackEvent('Ramadan Lead page')
+    window.setInterval(() => {
+      this.changeText()
+    }, 2300)
+  },
   methods: {
+    changeText() {
+      const first = this.ramadanOffer.shift()
+      this.ramadanOffer = this.ramadanOffer.concat(first)
+    },
+    disabledRange(date) {
+      return date < new Date()
+    },
+    setValue(option) {
+      this.selectedPlan = { ...option }
+    },
     setDate() {
       this.dateChecked = true
       this.bundleForm.date = new Date()
         .toLocaleDateString()
         .replaceAll('/', '-')
     },
-    selectPlan(val) {
-      this.selectedPlan = val
-      this.bundleForm.plan_description = this.selectedPlan.details.join(' ')
-      this.bundleForm.plan_name = this.selectedPlan.title
-    },
-    setCustomPlan(plan) {
-      this.customForm.plan_name = plan.title
-      this.customForm.plan_description = plan.details.join(' ')
-    },
-    openPaymentLink(link) {
-      window.open(link)
-      this.$nextTick(() => {
-        this.$v.bundleForm.$reset()
-        this.selectedPlan = null
-        this.showPayment = false
-        this.closeModal()
-        this.scrollTo('success-section')
-      })
-    },
-    closeModal() {
-      this.showSuccessModal = !this.showSuccessModal
-      this.showPayment = false
-    },
-    toggle() {
-      this.visible = !this.visible
+    scrollTo(id) {
+      document.getElementById(id).scrollIntoView()
     },
     async submit(form) {
       switch (form) {
-        case 'custom':
-          this.submitCustom()
+        case 'personal':
+          this.submitPersonal()
           break
-        case 'plan':
-          this.submitPlan()
+        case 'gift':
+          this.submitGift()
           break
         default:
           break
       }
     },
-    async submitCustom() {
+    async submitPersonal() {
       this.$v.customForm.$touch()
       if (!this.$v.customForm.$error) {
         try {
@@ -784,8 +760,6 @@ export default {
             Name: this.customForm.name,
             Email: this.customForm.email,
             Phone: this.customForm.phone_number,
-            'Plan Description': this.customForm.plan_description,
-            'Plan Name': this.customForm.plan_name,
           }
           const leadData = {
             email: this.customForm.email,
@@ -802,7 +776,7 @@ export default {
             referrer: document.referrer,
           })
           this.$intercom('trackEvent', 'lead-genaration-signup', leadData)
-          createCustomPlan(metaData).then(
+          createPersonalSahur(metaData).then(
             (res) => {
               this.loading = false
               setTimeout(() => {
@@ -811,9 +785,7 @@ export default {
                 )
                 this.$nextTick(() => {
                   this.$v.customForm.$reset()
-                  this.loading = false
-                  this.showCustomPlan = false
-                  this.showSuccessModal = true
+                  this.handleSubmitSuccess()
                 })
               }, 500)
             },
@@ -828,7 +800,7 @@ export default {
         }
       }
     },
-    async submitPlan() {
+    async submitGift() {
       this.$v.bundleForm.$touch()
 
       if (!this.$v.bundleForm.$error) {
@@ -846,8 +818,6 @@ export default {
             'Receiver Name': this.bundleForm.receiver_name,
             'Receiver Email': this.bundleForm.receiver_email,
             'Receiver Phone': this.bundleForm.receiver_phone_number,
-            'Plan Description': this.bundleForm.plan_description,
-            'Plan Name': this.bundleForm.plan_name,
           }
           const leadData = {
             email: this.bundleForm.giver_email,
@@ -864,7 +834,7 @@ export default {
             referrer: document.referrer,
           })
           this.$intercom('trackEvent', 'lead-genaration-signup', leadData)
-          createGiftPlan(metaData).then(
+          createGiftSahur(metaData).then(
             (res) => {
               this.loading = false
               setTimeout(() => {
@@ -872,10 +842,7 @@ export default {
                   (key) => (this.bundleForm[key] = '')
                 )
                 this.$nextTick(() => {
-                  this.loading = false
-                  this.showCustomPlan = false
-                  this.showPayment = true
-                  this.showSuccessModal = true
+                  this.handleSubmitSuccess()
                 })
               }, 500)
             },
@@ -890,21 +857,21 @@ export default {
         }
       }
     },
-  disabledRange(date) {
-      return date < new Date()
+    closeModal() {
+      this.showSuccessModal = !this.showSuccessModal
+      this.showPayment = false
     },
-    scrollTo(id) {
-      document.getElementById(id).scrollIntoView()
-    },
-
-    scrollToFooter(label) {
-      this.showModalCompany = !this.showModalCompany
-      mixpanelTrackEvent(label)
+    handleSubmitSuccess() {
+      this.loading = false
+      this.selectedPlan = this.planOptions[0]
+      document.body.scrollTop = 0
+      document.documentElement.scrollTop = 0
+      this.showSuccessModal = true
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/pages/_gift_plans.scss';
+@import '@/assets/scss/pages/_ramadan.scss';
 </style>

@@ -10742,6 +10742,11 @@ vue-analytics@^5.22.1:
   resolved "https://registry.yarnpkg.com/vue-analytics/-/vue-analytics-5.22.1.tgz#9d6b32da56daee1b9dfb23a267b50349a03f710f"
   integrity sha512-HPKQMN7gfcUqS5SxoO0VxqLRRSPkG1H1FqglsHccz6BatBatNtm/Vyy8brApktZxNCfnAkrSVDpxg3/FNDeOgQ==
 
+vue-animate-onscroll@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/vue-animate-onscroll/-/vue-animate-onscroll-1.0.8.tgz#7ce2570f62435031b906f38847550c4a9a3e7f50"
+  integrity sha512-uyb/lTudNmWaxT8W0UQIk75EyzX7wYM64hm7gsMCVhGICQkb5j/ynIZ/ZnSApsqvruUg4t3UxT1MUhN4sDU11Q==
+
 vue-client-only@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/vue-client-only/-/vue-client-only-2.0.0.tgz#ddad8d675ee02c761a14229f0e440e219de1da1c"

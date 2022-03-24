@@ -5,6 +5,8 @@ const base = new Airtable({ apiKey: process.env.AIRTABLE_KEY }).base(
 
 const giftingTable = base('Gifting - Specific Plan')
 const customTable = base('Gifting - Custom Plan')
+const personalSahurTable = base('Ramadan - Personal Sahur')
+const giftSahurTable = base('Ramadan - Gift Sahur')
 
 export const createGiftPlan = async (fields) => {
   const submitEntry = await giftingTable.create(fields)
@@ -15,3 +17,14 @@ export const createCustomPlan = async (fields) => {
   const customEntry = await customTable.create(fields)
   return customEntry
 }
+
+export const createPersonalSahur = async (fields) => {
+  const submitEntry = await personalSahurTable.create(fields)
+  return submitEntry
+}
+
+export const createGiftSahur = async (fields) => {
+  const customEntry = await giftSahurTable.create(fields)
+  return customEntry
+}
+

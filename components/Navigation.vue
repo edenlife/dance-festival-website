@@ -2,7 +2,7 @@
   <div
     id="navigation-container"
     class="container"
-    :class="{ 'primary-bg': currentRoute === 'gift' }"
+    :class="{ 'primary-bg': giftLanding }"
     :style="getNavigationColor(routeUpdate)"
   >
     <nav
@@ -397,11 +397,11 @@
         </li>
         <li>
           <a
+            id="get-started"
             href="#"
             class="navigation__menu-item navigation__menu-link"
             :class="{ 'primary-red': currentRoute === 'gift' }"
             @click.prevent="scrollTo('#get-the-app')"
-            id="get-started"
           >
             {{
               currentRoute === 'eden_means_easy' ? 'Sign Up Now' : 'Get Started'
@@ -620,6 +620,13 @@ export default {
         return false
       }
     },
+
+    giftLanding() {
+      return (
+        this.currentRoute.includes('gift') ||
+        this.currentRoute.includes('ramadan')
+      )
+    },
   },
   watch: {
     $route() {
@@ -633,8 +640,8 @@ export default {
     const getRoute = this.$nuxt.$route.path
     this.currentRoute = getRoute.replace('/', '')
     const navigation = document.querySelector('#navigation-container')
-    if (this.currentRoute.includes('gift')) {
-    document.querySelector('#get-started').classList.add('primary-red')
+    if (this.giftLanding) {
+      document.querySelector('#get-started').classList.add('primary-red')
       navigation.classList.add('primary-bg')
       this.lightLogo = true
     }
@@ -650,16 +657,17 @@ export default {
     },
     handleScroll() {
       const navigation = document.querySelector('#navigation-container')
-      const getStarted =  document.querySelector('#get-started')
-       if (window.scrollY > 20) {
+      const getStarted = document.querySelector('#get-started')
+      if (window.scrollY > 20) {
         navigation.className = 'container scroll'
         if (navigation.classList.contains('primary-bg'))
           navigation.classList.remove('primary-bg')
-        if(getStarted.classList.contains('primary-red')) getStarted.classList.remove('primary-red')
+        if (getStarted.classList.contains('primary-red'))
+          getStarted.classList.remove('primary-red')
         this.lightLogo = false
       } else {
         navigation.className = 'container'
-        if (this.currentRoute.includes('gift')) {
+        if (this.giftLanding) {
           navigation.classList.add('primary-bg')
           getStarted.classList.add('primary-red')
           this.lightLogo = true
@@ -673,11 +681,9 @@ export default {
     scrollTo(id) {
       if (this.currentRoute === '') {
         scrollToApp(id, `homepage - Navbar`)
-      } else {
-        if (this.currentRoute.includes('easy')) {
-          this.scrollToSection('#eden-easy-form', 'Get Started')
-        } else scrollToApp(id, `${this.currentRoute} - Navbar`)
-      }
+      } else if (this.currentRoute.includes('easy')) {
+        this.scrollToSection('#eden-easy-form', 'Get Started')
+      } else scrollToApp(id, `${this.currentRoute} - Navbar`)
     },
     launchIntercom() {
       this.$intercom('show')

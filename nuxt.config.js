@@ -149,6 +149,7 @@ export default {
   plugins: [
     '~/plugins/flutterwave',
     '~/plugins/vue-social-sharing.js',
+    '~/plugins/vue-animate-on-scroll.js',
     '~/plugins/vue-mailchimp-subscribe.js',
     { src: '~/plugins/hotjar', ssr: false },
     // { src: 'plugins/route-subscribe.js', ssr: false }, // Only works on client side

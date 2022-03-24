@@ -29,6 +29,13 @@
         stroke: color(eden-neutral-7);
       }
     }
+    &__btn {
+     
+      .line {
+        background-color: color(eden-neutral-7);
+      
+      }
+    }
   }
 }
 
@@ -316,6 +323,8 @@
     }
     .toggle {
       .line {
+        background-color: color(eden-neutral-0) !important;
+
         &.line1 {
           width: 22px;
           transform: rotate(45deg) translate(1px, -3px);

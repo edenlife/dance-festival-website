@@ -241,6 +241,7 @@
                       valueType="format"
                       format="DD-MM-YYYY"
                       placeholder="MM DD YYYY"
+                         :disabled-date="disabledRange"
                     >
                     </date-picker>
                   </div>
@@ -889,7 +890,9 @@ export default {
         }
       }
     },
-
+  disabledRange(date) {
+      return date < new Date()
+    },
     scrollTo(id) {
       document.getElementById(id).scrollIntoView()
     },

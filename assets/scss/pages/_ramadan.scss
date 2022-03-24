@@ -99,6 +99,9 @@ $shadows-big: multiple-box-shadow(100);
       align-items: flex-end;
       justify-content: center;
       background-size: cover;
+      img{
+        width: 100vw;
+      }
     }
   }
 

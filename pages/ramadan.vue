@@ -11,7 +11,7 @@
       <header class="hero">
         <div class="hero__title">
           <h1>
-            <span class="header--text">Sahur</span>
+            <span class="header--text">{{ ramadanOffer[0] }}</span>
             ready to eat in 5 minutes
           </h1>
 
@@ -113,9 +113,7 @@
         </div>
         <form class="form">
           <div class="form__input">
-            <label for=" name">
-              Name <span class="required">*</span>
-            </label>
+            <label for=" name"> Name <span class="required">*</span> </label>
             <input
               id=""
               v-model="customForm.name"
@@ -179,9 +177,7 @@
         </div>
         <form class="form">
           <div class="form__input">
-            <label for=" name">
-              Name <span class="required">*</span>
-            </label>
+            <label for=" name"> Name <span class="required">*</span> </label>
             <input
               id=""
               v-model="bundleForm.giver_name"
@@ -335,6 +331,7 @@
                       value-type="format"
                       format="DD-MM-YYYY"
                       placeholder="MM DD YYYY"
+                      :disabled-date="disabledRange"
                       @change="dateChecked = false"
                     >
                     </date-picker>
@@ -350,7 +347,7 @@
             </div>
           </div>
           <div class="bundle__title">
-            <h4> Now, let's know this someone 💚</h4>
+            <h4>Now, let's know this someone 💚</h4>
           </div>
 
           <div class="form__input">
@@ -495,7 +492,12 @@
         </div>
       </section>
     </div>
-    <modal v-if="showSuccessModal" :show-modal="showSuccessModal" class="modal" @click="showSuccessModal = false">
+    <modal
+      v-if="showSuccessModal"
+      :show-modal="showSuccessModal"
+      class="modal"
+      @click="showSuccessModal = false"
+    >
       <div slot="header"></div>
       <div slot="body" class="modal__body success">
         <div class="company__modal">
@@ -531,7 +533,11 @@
             </button>
           </div>
           <div class="company__modal-body">
-            <img src="@/assets/images/gift-confetti.svg" alt="" class="confetti" />
+            <img
+              src="@/assets/images/gift-confetti.svg"
+              alt=""
+              class="confetti"
+            />
 
             <h3>Thank you!</h3>
             <p>
@@ -637,6 +643,7 @@ export default {
     return {
       showSuccessModal: false,
       showFailedModal: false,
+      disabledBefore: new Date(),
 
       loading: false,
       infoList: [
@@ -690,6 +697,7 @@ export default {
         receiver_phone_number: '',
       },
       dateChecked: false,
+      ramadanOffer: ['Sahur', 'Iftar'],
     }
   },
   computed: {
@@ -707,8 +715,18 @@ export default {
   },
   mounted() {
     mixpanelTrackEvent('Ramadan Lead page')
+    window.setInterval(() => {
+      this.changeText()
+    }, 2300)
   },
   methods: {
+    changeText() {
+      const first = this.ramadanOffer.shift()
+      this.ramadanOffer = this.ramadanOffer.concat(first)
+    },
+    disabledRange(date) {
+      return date < new Date()
+    },
     setValue(option) {
       this.selectedPlan = { ...option }
     },
@@ -718,7 +736,7 @@ export default {
         .toLocaleDateString()
         .replaceAll('/', '-')
     },
-        scrollTo(id) {
+    scrollTo(id) {
       document.getElementById(id).scrollIntoView()
     },
     async submit(form) {

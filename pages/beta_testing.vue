@@ -19,12 +19,18 @@
           </div>
           <div class="cta__buttons">
             <div class="hero__button">
-              <button type="button" class="hero__button-solid" @click="scrollTo('signup')">
+              <button
+                type="button"
+                class="hero__button-solid"
+                @click="scrollTo('signup')"
+              >
                 Become a Tester
               </button>
             </div>
 
-            <div class="faq__link" @click="scrollTo('faq')"><span>Frequently Asked Questions</span></div>
+            <div class="faq__link" @click="scrollTo('faq')">
+              <span>Frequently Asked Questions</span>
+            </div>
           </div>
 
           <p>Requires having an iOS or Android device.</p>
@@ -41,14 +47,14 @@
     </div>
 
     <div class="container--body">
-      <div  v-animate-onscroll="'animated  fadeInDown'" class="about">
+      <div v-animate-onscroll="'animated  fadeInDown'" class="about">
         <img
           src="@/assets/images/message-cloud.svg"
           alt="message"
           class="hero__img-bg1"
         />
         <h3>About The Beta Program</h3>
-        <p  >
+        <p>
           The Eden Beta program offers you a simple way to try pre-release
           versions of our App, and test drive our new features. The feedback you
           provide will help us identify and fix issues, and make the platform
@@ -73,7 +79,7 @@
         <div class="form">
           <h4>Become a Tester</h4>
           <p>
-            Sign up to be a tester and we’ll contact you with further  
+            Sign up to be a tester and we’ll contact you with further
             information when we have new features ready to test!
           </p>
 
@@ -300,6 +306,8 @@
             <transition name="slide-fade">
               <p
                 v-if="questions.includes(item.index)"
+                :id="`faq-${item.index}`"
+                @click="scrollItems(item.index)"
                 v-html="item.description"
               ></p>
             </transition>
@@ -347,32 +355,31 @@ export default {
         },
         {
           description:
-            'The Eden  Beta Program is owned, managed, and operated solely by EdenLife Inc. Its purpose is to create a better, more reliable operating system and user experience (UX) for all, based on user feedback.<br/> <br/> As an Eden Life Beta Program participant, you can preview new features and UX for the latest iOS and  Android operating system version, and submit feedback about its performance, stability and usability.',
+            'There is no cost to participate in the Eden Life Beta Program. However, you are responsible for expenses related to using a data network connection to download the beta software or upload error logs.',
           title: 'What does it cost to participate in the program?',
           index: 'two',
         },
         {
           description:
-            'The Eden Life Beta Program is owned, managed, and operated solely by EdenLife Inc. Its purpose is to create a better, more reliable operating system and user experience (UX) for all, based on user feedback.<br/> <br/> As an Eden Life Beta Program participant, you can preview new features and UX for the latest iOS and  Android operating system version, and submit feedback about its performance, stability and usability.',
+            'The Eden Life Beta Program is an opt-in, voluntary program. Your reward for participation is swag items, product materials and an improved Eden App, because of your contribution.',
           title:
             'Is there any compensation for participation in the Eden Life beta program?',
           index: 'three',
         },
         {
-          description:
-            'The Eden Life Beta Program is owned, managed, and operated solely by EdenLife Inc. Its purpose is to create a better, more reliable operating system and user experience (UX) for all, based on user feedback.<br/> <br/> As an Eden Life Beta Program participant, you can preview new features and UX for the latest iOS and  Android operating system version, and submit feedback about its performance, stability and usability.',
+          description: `To participate in the EdenLife Beta Program, you must register through the <span style="color:#03A84E">registration link</span>  on this website and we’d send you further information once we qualify you.`,
           title: 'How do I participate in the Eden life Beta Program?',
           index: 'four',
         },
         {
           description:
-            'The Eden Life Beta Program is owned, managed, and operated solely by EdenLife Inc. Its purpose is to create a better, more reliable operating system and user experience (UX) for all, based on user feedback.<br/> <br/> As an Eden Life Beta Program participant, you can preview new features and UX for the latest iOS and  Android operating system version, and submit feedback about its performance, stability and usability.',
+            "Your feedback is extremely valuable to us. Please share your thoughts through the following channels:<br/> <br/> <span> •  Once you've had a chance to explore the latest Builds via Testflight/Playstore, use the <span style='color:#03A84E'>Feedback button</span> to let us know what you think of the latest updates, report issues, or suggest new features. This feedback goes directly to our Product and Engineering team working to improve Eden. User feedback is submitted through the link here. We’d address all bug issues submitted and send a follow through so you can see as we proceed.</span> <br/> <br/> <span>  •  To provide feedback on bugs, or errors in beta software, you can also go to TestFlight, select 'Beta feedback > Send feedback'.</span> <br/> <br/> <span>  •  Post your comments on the Eden Life Beta Program <span style='color:#03A84E'>community slack</span>. We may not respond to posts individually, but we are actively monitoring the feedback there. We’ll reach out to you directly if we need additional information.</span>",
           title: 'How do I send feedback to Eden?',
           index: 'five',
         },
         {
           description:
-            'The Eden Life Beta Program is owned, managed, and operated solely by EdenLife Inc. Its purpose is to create a better, more reliable operating system and user experience (UX) for all, based on user feedback.<br/> <br/> As an Eden Life Beta Program participant, you can preview new features and UX for the latest iOS and  Android operating system version, and submit feedback about its performance, stability and usability.',
+            'To ask a question about the Eden Life Beta Program, send an email to silm@edenlife.ng',
           title:
             'I have more questions about the Beta program, where do I ask them?',
           index: 'six',
@@ -407,8 +414,30 @@ export default {
         this.questions.push(item)
       }
     },
-      scrollTo(id) {
+    scrollTo(id) {
       document.getElementById(id).scrollIntoView()
+    },
+
+    scrollItems(index) {
+      switch (index) {
+        case 'four':
+          this.scrollTo('signup')
+          break
+        // case 'five':
+        //   console.log('');
+        //   let scrollDiv = this.registerSeparateScrollEvents('faq-five')
+        //  scrollDiv.firstElementChild.addEventListener('click', function(e){
+        //    this.scrollTo('scrollDiv')
+        //  })
+        // //  this.scrollTo(scrollDiv)
+        // break;
+        default:
+          break
+      }
+    },
+    registerSeparateScrollEvents(index) {
+      const i = document.getElementById(index)
+      return i
     },
   },
 }

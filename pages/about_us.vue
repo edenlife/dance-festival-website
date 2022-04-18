@@ -11,10 +11,10 @@
           </p>
           <div class="hero__button">
             <a
-              @click="trackLink('Careers')"
               href="https://edenlife.notion.site/Careers-at-Eden-Life-d11c387e84a043fca66001dcf67c70e3"
               target="_blank"
               class="hero__button-solid"
+              @click="trackLink('Careers')"
             >
               Become Humaan - Join Eden Life
             </a>
@@ -68,8 +68,8 @@
         <div class="humaans__title">
           <h3>Meet the <span>Humaans 💚</span></h3>
         </div>
-        <div class="humaans__gallery">
-          <figure v-for="item in humaans" :key="item.id">
+        <div ref="latest-container" class="humaans__gallery">
+          <figure v-for="item in paginatedHumaans" :key="item.id">
             <div
               class="humaans__gallery-img"
               :class="{ empty: item.image.includes('empty') }"
@@ -84,6 +84,11 @@
             </figcaption>
           </figure>
         </div>
+        <!-- <div class="posts__pagination">
+          <Pagination :pagination="pagination" @paginate="controlPage" />
+        </div> --><client-only>
+          <Pagination :pagination="pagination" @paginate="controlPage" />
+        </client-only>
       </section>
     </div>
 
@@ -94,9 +99,9 @@
           <p>
             Interested in joining the team? Check out the available roles
             <a
-              @click="trackLink('Careers')"
               href="https://edenlife.notion.site/Careers-at-Eden-Life-d11c387e84a043fca66001dcf67c70e3"
               target="_blank"
+              @click="trackLink('Careers')"
             >
               here
             </a>
@@ -108,24 +113,51 @@
 </template>
 
 <script>
-import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import humaans from '@/static/humaans'
+import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 export default {
+  components: {
+    Pagination: () => import('@/components/Pagination.vue'),
+  },
   data() {
     return {
       humaans: humaans.humaans,
+      paginatedHumaans: [],
+      pagination: {},
     }
   },
   mounted() {
     mixpanelTrackEvent('About Us page')
+    this.setData()
   },
   methods: {
     scrollTo(ref) {
       mixpanelTrackEvent('Join Eden clicked - contact page')
       this.$refs[ref].scrollIntoView()
     },
-     trackLink(name) {
+    trackLink(name) {
       mixpanelTrackEvent(`${name} link clicked (footer - ${this.currentRoute})`)
+    },
+    setData() {
+      if (this.humaans.length) {
+        console.log(this.humaans.length);
+        const quotient = Math.floor(this.humaans.length / 12)
+        const remainder = this.humaans.length % 12
+        remainder > 0
+          ? (this.pageCount = quotient + 1)
+          : (this.pageCount = quotient)
+        this.pagination = {
+          last_page: this.pageCount,
+          current_page: 1,
+        }
+        this.paginatedHumaans = this.humaans.slice(0, 12)
+      }
+    },
+    controlPage(pageNum) {
+      const min = pageNum * 12 - 12
+      this.paginatedHumaans = this.humaans.slice(min, pageNum * 12)
+      this.pagination.current_page = pageNum
+      this.$refs['latest-container'].scrollIntoView()
     },
   },
 }

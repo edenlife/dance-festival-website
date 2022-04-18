@@ -119,6 +119,12 @@
   }
 }
 
+.posts__pagination {
+  grid-column: 1/4;
+  grid-row: 6;
+  padding-top: $gap * 4;
+  margin-top: $gap * 6;
+}
 .description {
   margin: 0 auto;
   width: 83%;

@@ -517,8 +517,7 @@ cursor: pointer;
           color(eden-green-primary) 60%
         );
         background-size: 500px;
-
-        animation: buttonAnimate 1s linear infinite forwards;
+        animation: buttonAnimate 2s linear infinite forwards;
       }
 
       &.light{

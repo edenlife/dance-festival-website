@@ -439,6 +439,7 @@ export default {
           createBeta(metaData).then(
             (res) => {
               this.loading = false
+              mixpanelTrackEvent('Beta form submitted')
               setTimeout(() => {
                 Object.keys(this.testerForm).forEach(
                   (key) => (this.testerForm[key] = '')

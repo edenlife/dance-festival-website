@@ -128,6 +128,22 @@
             </div>
 
             <div class="form__input">
+              <label for="email"
+                >Email address <span class="required">*</span>
+              </label>
+              <input
+                id=""
+                v-model="testerForm.email"
+                type="email"
+                name=""
+                placeholder="Enter  email address"
+                :class="{
+                  'has-error': $v.testerForm.email.$error,
+                }"
+              />
+            </div>
+
+            <div class="form__input">
               <label for="device">
                 What device will you be using to test?
                 <span class="required">*</span>
@@ -196,10 +212,14 @@
               class="btn--submit"
               :class="{
                 loading: loading,
+                light: submitted,
               }"
               :disabled="loading"
+              @click.prevent="submit"
             >
-              Become a Tester
+              {{
+                submitted ? '    Thanks! We’ll be in touch.' : 'Become a Tester'
+              }}
             </button>
           </form>
         </div>
@@ -323,18 +343,20 @@ import { validationMixin } from 'vuelidate'
 import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { notUrl } from '~/utils/validators'
+import { createBeta } from '~/request/airtable'
+
 export default {
   mixins: [validationMixin],
   validations: {
     testerForm: {
       first_name: { required, notUrl },
-      last_name: { required, email },
+      last_name: { required, notUrl },
       phone_number: {
         required,
         minLength: minLength(11),
         maxLength: maxLength(11),
       },
-
+      email: { required, email },
       device: { required },
       publicize: { required },
     },
@@ -343,7 +365,7 @@ export default {
     return {
       showSuccessModal: false,
       showFailedModal: false,
-
+      submitted: false,
       loading: false,
 
       faQs: [
@@ -392,6 +414,7 @@ export default {
         phone_number: '',
         publicize: true,
         device: 'apple',
+        email: '',
       },
       questions: ['one'],
     }
@@ -400,9 +423,55 @@ export default {
     mixpanelTrackEvent('Beta Tester page')
   },
   methods: {
+    async submit() {
+      this.$v.testerForm.$touch()
+      if (this.$v.testerForm.$error) return
+      if (!this.$v.testerForm.$error) {
+        try {
+          this.loading = true
+          const metaData = {
+            'First Name': this.testerForm.first_name,
+            'Last Name': this.testerForm.last_name,
+            Email: this.testerForm.email,
+            Phone: this.testerForm.phone_number,
+            Device: this.testerForm.device,
+          }
+          createBeta(metaData).then(
+            (res) => {
+              this.loading = false
+              setTimeout(() => {
+                Object.keys(this.testerForm).forEach(
+                  (key) => (this.testerForm[key] = '')
+                )
+                this.$nextTick(() => {
+                  this.$v.testerForm.$reset()
+                  this.handleSubmitSuccess()
+                })
+              }, 500)
+            },
+            (err) => {
+              this.loading = false
+              this.showFailedModal = true
+            }
+          )
+        } catch (error) {
+          this.loading = false
+          this.showFailedModal = true
+        }
+      }
+    },
+
+    handleSubmitSuccess() {
+      this.loading = false
+      this.submitted = true
+
+      setTimeout(() => {
+        this.submitted = false
+      }, 5000)
+    },
     setItem(item) {
       this.testerForm.device = item
-      console.log(this.testerForm)
+      //  console.log(this.testerForm)
     },
     expandQuestion(item) {
       if (this.questions.length && this.questions.includes(item)) {

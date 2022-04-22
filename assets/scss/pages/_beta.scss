@@ -521,6 +521,13 @@ cursor: pointer;
         animation: buttonAnimate 1s linear infinite forwards;
       }
 
+      &.light{
+        background: #E9FBF2;
+        border: 1px solid #03A84E;
+        color: #0F241B;
+        border-radius: 4px;
+      }
+
       &:disabled {
         cursor: not-allowed;
       }

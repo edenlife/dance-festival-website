@@ -249,13 +249,6 @@ export default {
     },
 
     {
-      id: 50,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962905/Opeyemi_Malomo_Finance_nsktgc.jpg',
-      name: 'Opeyemi Malomo',
-      role: 'Finance',
-    },
-    {
       id: 51,
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962870/Adeyinka_Awe_Growth_uy5fh1.jpg',
@@ -324,20 +317,6 @@ export default {
     },
 
     {
-      id: 68,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1631093624/Michael_Odeh_Supply_dct2nv.jpg',
-      name: 'Michael Odeh',
-      role: 'Supply',
-    },
-    {
-      id: 69,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1631093615/Nafisat_Adebayo_Food_Production_atm4qg.jpg',
-      name: 'Nafisat Adebayo',
-      role: 'Food Production',
-    },
-    {
       id: 70,
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1631093607/Racheal_Alphonsus_Food_Production_h8ftnv.jpg',
@@ -394,13 +373,7 @@ export default {
       name: 'Wisdom Okon',
       role: 'Supply',
     },
-    {
-      id: 79,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242324/Abdul-Rasheed_Adigun_-_Procurement_Manager_dvhcwi.jpg',
-      name: 'Rasheed Adigun',
-      role: 'Supply',
-    },
+   
     {
       id: 80,
       image:
@@ -443,13 +416,7 @@ export default {
       name: 'Emem Ekpo',
       role: 'Supply',
     },
-    {
-      id: 86,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242351/Hannah_Johnson_-_Junior_Production_Assistant_knxhvd.jpg',
-      name: 'Hannah Johnson',
-      role: 'Food Production',
-    },
+    
     {
       id: 87,
       image:
@@ -541,13 +508,7 @@ export default {
       name: 'Nneka Nzekwe',
       role: 'Supply',
     },
-    {
-      id: 101,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1650259555/Michael_Odeh_-_Laundry_Assistant_lnj54z.jpg',
-      name: 'Michael Odeh',
-      role: 'Supply',
-    },
+    
     {
       id: 102,
       image:
@@ -555,13 +516,7 @@ export default {
       name: 'Martha Lawrence',
       role: 'Supply',
     },
-    {
-      id: 103,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1650259484/Mark_Igbe_-_Steward_fynvv0.jpg',
-      name: 'Mark Igbe',
-      role: 'Food Production',
-    },
+    
     {
       id: 104,
       image:
@@ -576,13 +531,7 @@ export default {
       name: 'Gloria Chinecherem',
       role: 'Food Production',
     },
-    {
-      id: 106,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1650259384/David_Chiagoziem_-_Steward_qltezq.jpg',
-      name: 'David Chiagoziem',
-      role: 'Food Production',
-    },
+   
     {
       id: 107,
       image:
@@ -626,13 +575,7 @@ export default {
       name: 'Sunday Odeh',
       role: 'Supply',
     },
-    {
-      id: 113,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1650258767/Sunkanmi_Fagbamagbe_-_Junior_Production_Assistant_zonyuq.jpg',
-      name: 'Sunkanmi Fagbamagbe',
-      role: 'Food Production',
-    },
+    
     {
       id: 114,
       image:

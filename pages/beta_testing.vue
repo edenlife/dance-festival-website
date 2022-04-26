@@ -136,15 +136,31 @@
                 v-model="testerForm.email"
                 type="email"
                 name=""
-                placeholder="Enter  email address"
+                placeholder="Enter email address"
                 :class="{
                   'has-error': $v.testerForm.email.$error,
                 }"
               />
             </div>
+            
+            <div class="form__input">
+              <label for="email"
+                >Apple ID <span>(Optional)</span>
+              </label>
+              <input
+                id=""
+                v-model="testerForm.appleId"
+                type="email"
+                name=""
+                placeholder="Enter your apple id"
+                :class="{
+                  'has-error': $v.testerForm.appleId.$error,
+                }"
+              />
+            </div>
 
             <div class="form__input">
-              <label for="device">
+              <label for="device" class="device_font">
                 What device will you be using to test?
                 <span class="required">*</span>
               </label>
@@ -185,7 +201,7 @@
                       Android
                     </label>
                   </li>
-                  <li>
+                  <li class="publicize_margin">
                     <input
                       v-model="testerForm.publicize"
                       type="checkbox"
@@ -357,6 +373,7 @@ export default {
         maxLength: maxLength(11),
       },
       email: { required, email },
+      appleId: {email},
       device: { required },
       publicize: { required },
     },
@@ -415,6 +432,7 @@ export default {
         publicize: true,
         device: 'apple',
         email: '',
+        appleId: ''
       },
       questions: ['one'],
     }
@@ -435,6 +453,7 @@ export default {
             Email: this.testerForm.email,
             Phone: this.testerForm.phone_number,
             Device: this.testerForm.device,
+            'Apple Id': this.testerForm.appleId
           }
           createBeta(metaData).then(
             (res) => {
@@ -468,7 +487,7 @@ export default {
 
       setTimeout(() => {
         this.submitted = false
-      }, 5000)
+      }, 10000)
     },
     setItem(item) {
       this.testerForm.device = item

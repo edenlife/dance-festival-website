@@ -241,10 +241,10 @@ cursor: pointer;
   }
   .alert {
     background: #fffdf5;
-
     border: 1px solid #ffebb2;
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 90%;
     max-width: 800px;
     margin: 40px auto;
@@ -265,14 +265,12 @@ cursor: pointer;
   flex-wrap: wrap;
   padding: 10px;
   padding-top: 162px;
-  .form {
-  }
+  margin: 0 54px;
 
   .form {
     display: flex;
     flex-direction: column;
     width: 95%;
-    margin: auto;
     // padding: 10px;
     color: color(eden-neutral-8);
     flex: 0 0 40%;
@@ -295,6 +293,9 @@ cursor: pointer;
       width: 90%;
      // max-width: 384px;
       margin: auto 0 36px;
+      .device_font{
+        font-size: 1rem;
+      }
       label {
         @include font-size(xs);
         line-height: 19px;
@@ -350,6 +351,10 @@ cursor: pointer;
           padding: 0 $gap + 2;
           position: relative;
           height: 48px;
+
+          &.publicize_margin {
+            margin-top: 20px;
+          }
 
           label {
             color: #1d352a;

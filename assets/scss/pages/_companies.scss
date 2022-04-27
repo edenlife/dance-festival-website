@@ -41,7 +41,7 @@
   align-items: center;
   &__title {
     color: color(eden-neutral-1);
-    flex: 0 0 50%;
+    flex: 0 0 60%;
     h1 {
       line-height: 62px;
       @include font-size(7xl);
@@ -63,7 +63,7 @@
   }
   &__button {
     display: flex;
-    gap: $gap * 2.4;
+    gap: $gap * 4.4;
     &-solid {
       line-height: 23px;
       @include font-size(lg);
@@ -93,11 +93,14 @@
       line-height: 29px;
       @include font-size(lg);
       color: color(eden-green-primary);
+      &:hover {
+        color: color(eden-green-250);
+      }
     }
   }
   &__img {
     position: relative;
-    flex: 0 0 50%;
+    flex: 0 0 40%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -160,6 +163,7 @@
       line-height: 47px;
       @include font-weight(bold);
       margin-bottom: $gap * 3.2;
+      text-align: center;
     }
     p {
       @include font-size(lg);
@@ -169,10 +173,41 @@
       width: 40%;
     }
   }
+  &__slider {
+    margin-top: 88px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    &-option {
+      overflow: hidden;
+      position: absolute;
+      ul {
+        display: flex;
+        list-style: none;
+        width: calc(250px * 14);
+        .slide {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          animation: translateinfinite 30s linear infinite;
+        }
+      }
+    }
+  }
+  @keyframes translateinfinite {
+    0% { 
+      transform: translateX(0); 
+    }
+    100% { 
+      transform: translateX(calc(-250px * 7))
+    }
+  }
   &__card {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 121px;
     &-item {
       display: flex;
       flex-direction: column;
@@ -327,6 +362,16 @@
         animation-delay: 9s;
       }
 
+      .ten {
+        fill: none;
+        stroke: #61db98;
+        stroke-width: 11;
+        stroke-dasharray: 390;
+        stroke-dashoffset: 390;
+        animation: dash 3s linear forwards;
+        animation-delay: 9s;
+      }
+
       @keyframes dash {
         to {
           stroke-dashoffset: 0;
@@ -353,6 +398,11 @@
         fill: color(eden-neutral-6);
         animation: circleScale 1s linear forwards;
         animation-delay: 10.5s;
+      }
+      .eleven {
+        fill: color(eden-neutral-6);
+        animation: circleScale 1s linear forwards;
+        animation-delay: 13.5s;
       }
       @keyframes circleScale {
         to {
@@ -398,6 +448,11 @@
         color: color(eden-neutral-5);
         animation: move 2s linear forwards;
         animation-delay: 10s;
+      }
+      .six {
+        color: color(eden-neutral-5);
+        animation: move 2s linear forwards;
+        animation-delay: 13s;
       }
       @keyframes move {
         to {
@@ -678,7 +733,7 @@
     &-food {
       background-color: color(eden-green-quinary);
       .services__type-bg {
-        box-shadow: 8px 8px 0px#a2f0c5;
+        box-shadow: 8px 8px 0px #a2f0c5;
       }
     }
     &-laundry {
@@ -751,7 +806,6 @@
   padding: $gap * 10 0 $gap * 16 0;
   display: flex;
   flex-direction: column;
-  margin-bottom: $gap * 18;
   &__title {
     display: flex;
     justify-content: space-between;
@@ -916,24 +970,23 @@
   }
 }
 
-.modal__body {
-  // background-color: color(eden-neutral-7);
-  .company__modal {
-    @include font-family(cerebri);
+.company{
+  background-color: color(eden-blue-50);
+  padding: $gap * 18 $gap * 32.5 ;
+   &__form{
+    background-color: color(eden-neutral-7);
+    padding: $gap * 6.4 $gap * 10.2;
     &-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: color(eden-neutral-1);
-      margin-bottom: $gap + 7;
+      text-align: center;
       h3 {
-        @include font-size(xl);
-        line-height: 32px;
-        @include font-weight(medium);
-        @include font-family(cerebri);
+        font-size: 1.5rem;
+        span {
+          color: color(eden-green-primary);
+        }
       }
-      .btn {
-        margin-left: auto;
+      p {
+        margin-top: $gap + 6;
+        margin-bottom: $gap * 4;
       }
     }
     .form {
@@ -945,13 +998,17 @@
         }
         display: flex;
         flex-direction: column;
-        margin-top: $gap * 3.2;
+        margin-top: $gap * 2.4;
         label {
-          @include font-size(xs);
+          @include font-size(sm);
           line-height: 19px;
           @include font-weight(light);
           color: color(eden-neutral-4);
           margin-bottom: 4px;
+          .required {
+            transform: translateY(-10px);
+            color: red;
+          }
         }
         input,
         textarea {
@@ -969,6 +1026,7 @@
           &::placeholder {
             color: color(eden-neutral-4);
             @include font-weight(light);
+            @include font-size(base);
           }
           &:focus {
             outline: none;
@@ -1145,6 +1203,20 @@
           opacity: 0;
         }
       }
+      .alert {
+        background: #fffdf5;
+        border: 1px solid #ffebb2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        max-width: 800px;
+        border-radius: 8px;
+        padding: 16px;
+        .img-bg1 {
+          margin-right: $gap + 4;
+        }
+      }
       .btn--submit {
         line-height: 23px;
         @include font-size(lg);
@@ -1153,7 +1225,7 @@
         border-radius: 4px;
         transition: all 0.4s ease-in-out;
         padding: $gap * 1.6 $gap * 2.9;
-        margin-top: $gap * 2.4;
+        margin-top: $gap * 4.4;
         &:hover {
           box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
           background-color: color(eden-green-250);
@@ -1166,6 +1238,37 @@
             #008d40 50%
           );
         }
+      }
+      &.light{
+        background: #E9FBF2;
+        border: 1px solid #03A84E;
+        color: #0F241B;
+        border-radius: 4px;
+      }
+    }
+   }
+
+
+}
+
+.modal__body {
+  // background-color: color(eden-neutral-7);
+  .company__modal {
+    @include font-family(cerebri);
+    &-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: color(eden-neutral-1);
+      margin-bottom: $gap + 7;
+      h3 {
+        @include font-size(xl);
+        line-height: 32px;
+        @include font-weight(medium);
+        @include font-family(cerebri);
+      }
+      .btn {
+        margin-left: auto;
       }
     }
 

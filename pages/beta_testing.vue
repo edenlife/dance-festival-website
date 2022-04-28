@@ -145,7 +145,7 @@
             
             <div class="form__input">
               <label for="email"
-                >Apple ID <span>(Optional)</span>
+                >Apple ID <span>(For Apple users)</span>
               </label>
               <input
                 id=""

@@ -104,8 +104,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    &-bg1 {
-    }
   }
 
   @include respond(md) {
@@ -153,10 +151,7 @@
 }
 
 .team {
-  margin: 0 auto;
-  width: 83%;
   padding: $gap * 10 0 $gap * 8 0;
-
   &__title {
     h3 {
       @include font-size(5xl);
@@ -174,13 +169,13 @@
     }
   }
   &__slider {
-    margin-top: 88px;
+    margin-top: $gap * 9.3;
     display: flex;
     justify-content: center;
     width: 100%;
     &-option {
       overflow: hidden;
-      position: absolute;
+      position: relative;
       ul {
         display: flex;
         list-style: none;
@@ -204,20 +199,19 @@
     }
   }
   &__card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 121px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 80px;
+    grid-row-gap: 0px;
+    margin: 0 auto;
+    width: 83%;
+    padding-top: $gap * 12.9;
     &-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      flex: 0 0 28%;
       padding: 0 $gap * 2;
-      &:nth-child(3) {
-        flex: 0 0 30%;
-      }
-
       &.efficiency {
         h3 {
           background-color: color(eden-red-50);
@@ -240,6 +234,7 @@
         @include font-size(6xl);
       }
       h5 {
+        text-align: center;
         margin: $gap * 3.2 0 $gap + 2;
         @include font-size(xl);
         line-height: 26px;
@@ -1030,7 +1025,8 @@
           }
           &:focus {
             outline: none;
-            border: 1px solid #21312a;
+            border: 1px solid #03a84e;
+            background-color: color(eden-neutral-7);
           }
         }
         textarea {
@@ -1209,7 +1205,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 90%;
+        width: 100%;
         max-width: 800px;
         border-radius: 8px;
         padding: 16px;
@@ -1231,6 +1227,13 @@
           background-color: color(eden-green-250);
           color: color(eden-neutral-7);
         }
+        &:hover:not(:disabled) {
+          box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
+          color: color(eden-neutral-7);
+        }
+        &:disabled {
+          cursor: not-allowed;
+        }
         &:active {
           background-image: radial-gradient(
             circle at center right,
@@ -1238,17 +1241,63 @@
             #008d40 50%
           );
         }
+        &.loading {
+          background: linear-gradient(
+            to right,
+            color(eden-green-primary) 10%,
+            color(eden-green-250) 50%,
+            color(eden-green-primary) 60%
+          );
+          background-size: 500px;
+          animation: buttonAnimate 1s linear infinite forwards;
+        }
       }
-      &.light{
+      .back--btn {
+        color: color(eden-green-primary);
+        @include font-size(lg);
+        transition: all 0.4s ease-in-out;
+        margin-top: $gap * 3.2;
+      }
+      .hide {
+          display: none;
+      }
+      .light{
         background: #E9FBF2;
         border: 1px solid #03A84E;
         color: #0F241B;
         border-radius: 4px;
       }
     }
+    &-indicator {
+      margin-top: $gap * 4;
+      margin-bottom: $gap * 4;
+      text-align: center;
+     .dot {
+      height: 8px;
+      width: 8px;
+      background-color: #E2E9E6;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+      &.active {
+        background-color: #03a84e;
+      }
+     }
+    }
    }
-
-
+   @include respond(md) {
+    padding: $gap * 11 $gap * 3.9;
+    &__form{
+      padding: $gap * 5.5;
+     }
+   }
+   @include respond(xxl) {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  @include respond(xl) {
+    padding: $gap * 9;
+  }
 }
 
 .modal__body {

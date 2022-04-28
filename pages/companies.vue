@@ -24,7 +24,7 @@
               Get Eden
             </button>
             <a
-                href="https://calendar.google.com/calendar/u/0/r?pli=1"
+                href="https://calendly.com/edenlife-companies/30min"
                 target="_blank"
                 class="hero__button-link"
               > Request a demo
@@ -171,24 +171,24 @@
             <h3>💯</h3>
             <h5>Increased Efficiency</h5>
             <p>
-              Less time and energy spent on chores = more time and energy
-              invested in work and leisure.
+              With Eden, your team gets increased productivity, better retention, and reduced welfare workload. 
+              We have measured an average 91.28% increased productivity rate for our clients.
             </p>
           </div>
           <div class="team__card-item experience">
             <h3>🤝</h3>
-            <h5>Seamless Experience</h5>
+            <h5>Unbeatable Pricing</h5>
             <p>
-              We handle the bulk of your gifting needs, end-to-end. From
-              creating the perfect plan, to delivering excellently.
+              We offer you the best prices and our friendly, subscription pricing model is unbeatable in the market. 
+              Your team’s lunch, laundry and cleaning services are on autopilot.
             </p>
           </div>
           <div class="team__card-item sport">
             <h3>💚</h3>
-            <h5>Appreciate Value</h5>
+            <h5>Hands-On-support</h5>
             <p>
-              And with a subscription to any of our plans, your team members can
-              see that they're highly valued by your organization.
+              We are very big on excellent customer service. 
+              That is why every employee is assigned an Eden Life manager who is proactive and effective at all times.
             </p>
           </div>
         </div>
@@ -581,7 +581,16 @@
                 </p>
              </div>
 
-            <form action="" class="form" v-if=!showForm>
+             <div class="company__form-indicator">
+                 <span class="dot"
+                  :class="{ 'active' : !showForm}"
+                  @click="previousForm()"></span>
+                 <span class="dot"
+                  :class="{ 'active' : showForm}"
+                  @click="nextForm()"></span>
+             </div>
+
+            <div class="form" v-if="!showForm">
             <div class="form__input">
               <label for="company name"> Company Name<span class="required">*</span></label>
               <input
@@ -714,9 +723,9 @@
             >
               Next
             </button>
-          </form>
+          </div>
 
-        <form action="" class="form" v-if="showForm">
+        <div class="form" v-else>
            <div class="form__input">
               <label for="contact name"> Contact Person <span class="required">*</span> </label>
               <input
@@ -785,20 +794,21 @@
               @click.prevent="submit()"
             >
               {{
-                submitted ? '    Thanks! We’ll be in touch.' : 'Get Started!'
+                submitted ? 'Thanks! We’ll be in touch.' : 'Get Started!'
               }}
             </button>
-            <div>
               <button
+                class="back--btn"
                 :disabled="loading"
-                v-if="showForm"
+                :class="{
+                  hide : submitted
+                  }"
+                @click.prevent="previousForm()"
               >
-              Back
+                  Go Back
               </button>
-            </div>
-          </form>
-
           </div>
+        </div>
        </section>
     </div>
 
@@ -856,9 +866,8 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
-import { companiesApi } from '~/request/all.api'
 import { createWorkersDay } from '~/request/airtable'
 import { notUrl } from '~/utils/validators'
 export default {
@@ -875,7 +884,11 @@ export default {
       company_name: { required, notUrl },
       service: { required },
       role: { required },
-      phone_number: { required },
+       phone_number: {
+        required,
+        minLength: minLength(11),
+        maxLength: maxLength(11),
+      },
     },
   },
   data() {
@@ -883,10 +896,11 @@ export default {
       showModalCompany: false,
       submitted: false,
       showForm: false,
-      // showSuccessModal: false,
+      hasError: false,
       showFailedModal: false,
       submitted: false,
       loading: false,
+      isHideBtn: false,
       serviceName: 'Select services',
       TeamMessageList: [
         {
@@ -993,7 +1007,7 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
           createWorkersDay(metaData).then(
             (res) => {
               this.loading = false
-              mixpanelTrackEvent('Beta form submitted')
+              mixpanelTrackEvent('Companies form submitted')
               setTimeout(() => {
                 Object.keys(this.companyForm).forEach(
                   (key) => (this.companyForm[key] = '')
@@ -1017,15 +1031,22 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
     },
     scrollToFooter(id) {
        document.getElementById(id).scrollIntoView()
-      // mixpanelTrackEvent(label)
     },
     nextForm() {
-      this.showForm = !this.showForm
+      this.$v.companyForm.$touch()
+      if (this.$v.companyForm.company_name.$error || this.$v.companyForm.service.$error || this.$v.companyForm.employees_number.$error) {
+         return
+      } 
+         this.showForm = true
+         document.getElementById('getEden').scrollIntoView()
+    },
+    previousForm() {
+      this.showForm = false
+      document.getElementById('getEden').scrollIntoView()
     },
     handleSubmitSuccess() {
       this.loading = false
       this.submitted = true
-
       setTimeout(() => {
         this.submitted = false
       }, 10000)

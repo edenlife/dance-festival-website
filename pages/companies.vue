@@ -55,7 +55,7 @@
 
             <div class="services__type-bg">
               <img
-                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611318743/eden-website-v2/food-img1_ls530a.png"
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1651163849/jollof_rice_BBQ_wings_fried_plantain_1_lxgnha.png"
                 alt="food"
               />
             </div>
@@ -66,7 +66,7 @@
             <p>Fresh laundry, carefully executed in 48 hours or less.</p>
             <div class="services__type-bg">
               <img
-                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611306544/eden-website-v2/laundry-img1_ijsx4k.png"
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1651163803/Laundry_4_1_s59fbc.png"
                 alt="laundry"
               />
             </div>
@@ -78,7 +78,7 @@
 
             <div class="services__type-bg">
               <img
-                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611318736/eden-website-v2/cleaning-img1_ldwcml.png"
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1651163803/Cleaning_2_1_cmd2ub.png"
                 alt="cleaning"
               />
             </div>
@@ -176,7 +176,7 @@
             </p>
           </div>
           <div class="team__card-item experience">
-            <h3>🤝</h3>
+            <h3>💰</h3>
             <h5>Unbeatable Pricing</h5>
             <p>
               We offer you the best prices and our friendly, subscription pricing model is unbeatable in the market. 

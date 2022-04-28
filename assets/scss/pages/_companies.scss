@@ -254,7 +254,7 @@
     width: 100%;
     padding: $gap * 6.4 0 $gap * 8 0;
     &__card {
-      display: block;
+      display: block
     }
     &__title {
       text-align: center;
@@ -275,7 +275,7 @@
       &-item {
         padding: 0 $gap;
         align-items: center;
-
+        margin-top: 50px;
         h3 {
           align-self: center;
         }
@@ -1385,11 +1385,3 @@
   }
 }
 
-@include respond(md) {
-  .footer {
-    margin-top: 90px !important;
-    &__top {
-      margin-top: 90px;
-    } 
-  }
-}

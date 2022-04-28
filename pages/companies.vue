@@ -90,7 +90,7 @@
 
             <div class="services__type-bg">
               <img
-                src="https://res.cloudinary.com/eden-life-inc/image/upload/q_auto/v1612286532/eden-website-v2/giftimage_xjioyo.jpg"
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1651164577/Image_from_iOS_uh8uvc.jpg"
                 alt="gifting"
               />
             </div>

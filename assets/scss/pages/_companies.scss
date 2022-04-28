@@ -509,6 +509,7 @@
       align-items: center;
       &-timeline {
         margin-top: $gap * 5;
+        width: 85%;
         .vertical {
           display: none;
         }
@@ -550,6 +551,15 @@
             stroke-dashoffset: 390;
             animation: dash 3s linear forwards;
             animation-delay: 9s;
+          }
+          &--j {
+            fill: none;
+            stroke: #61db98;
+            stroke-width: 11;
+            stroke-dasharray: 390;
+            stroke-dashoffset: 390;
+            animation: dash 3s linear forwards;
+            animation-delay: 12s;
           }
 
           @keyframes dash {
@@ -1290,7 +1300,8 @@
    @include respond(md) {
     padding: $gap * 11 $gap * 3.9;
     &__form{
-      padding: $gap * 4.2;
+      padding: $gap * 2;
+      margin-bottom: $gap * 7.6;
      }
    }
    @include respond(xxl) {
@@ -1371,5 +1382,14 @@
         }
       }
     }
+  }
+}
+
+@include respond(md) {
+  .footer {
+    margin-top: 90px !important;
+    &__top {
+      margin-top: 90px;
+    } 
   }
 }

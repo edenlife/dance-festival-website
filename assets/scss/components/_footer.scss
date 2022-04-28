@@ -50,8 +50,6 @@
         }
       }
     }
-    &-image {
-    }
     @include respond(md) {
       flex-direction: column;
       width: 90%;

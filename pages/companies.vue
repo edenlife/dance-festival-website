@@ -1,31 +1,35 @@
+
 <template>
   <div>
     <div class="container--hero">
       <header class="hero">
         <div class="hero__title">
           <h1 class="">
-            The perfect perk <br />for <span> {{ headerText[0] }}</span>
+            Employee benefits at its finest <br /> - <span> Increasing Productivity </span>
           </h1>
           <h1 class="mobile">
-            The perfect perk for <span> {{ headerText[0] }}</span>
+            Employee benefits at its finest <span> Increasing Productivity </span>
           </h1>
           <p>
-            CEO, Hiring Manager or Team Lead? Eden is the best way to reward
-            your team's good work while staying on budget.
+            Eden Life is the excellent choice for increased productivity. 
+            With office lunch, laundry and cleaning plans for employees, gift vouchers to reward performance, we become your company's Employee Perks Manager.
           </p>
           <div class="hero__button">
             <button
               type="button"
               class="hero__button-solid"
               @click.prevent="
-                scrollToFooter(
-                  'Get the Perfect Perk clicked',
-                  'companies - hero'
-                )
+                scrollToFooter('getEden')
               "
             >
               Get Eden
             </button>
+            <a
+                href="https://calendly.com/edenlife-companies/30min"
+                target="_blank"
+                class="hero__button-link"
+              > Request a demo
+            </a>
           </div>
         </div>
         <div class="hero__img">
@@ -38,49 +42,11 @@
       </header>
     </div>
 
-    <div class="container--team">
-      <section class="team">
-        <div class="team__title">
-          <h3>Your Team Needs Eden</h3>
-          <p>
-            With Eden, your team gets increased productivity, better retention,
-            and reduced welfare workload. How?
-          </p>
-        </div>
-        <div class="team__card">
-          <div class="team__card-item efficiency">
-            <h3>💯</h3>
-            <h5>Increased Efficiency</h5>
-            <p>
-              Less time and energy spent on chores = more time and energy
-              invested in work and leisure.
-            </p>
-          </div>
-          <div class="team__card-item experience">
-            <h3>🤝</h3>
-            <h5>Seamless Experience</h5>
-            <p>
-              We handle the bulk of your gifting needs, end-to-end. From
-              creating the perfect plan, to delivering excellently.
-            </p>
-          </div>
-          <div class="team__card-item sport">
-            <h3>💚</h3>
-            <h5>Appreciate Value</h5>
-            <p>
-              And with a subscription to any of our plans, your team members can
-              see that they're highly valued by your organization.
-            </p>
-          </div>
-        </div>
-      </section>
-    </div>
-
     <div class="container--service">
       <section class="services">
         <div class="services__title">
           <h3>Team Perks</h3>
-          <p>A happy team is a productive team</p>
+          <p>A happy team is a productive team!</p>
         </div>
         <div class="services__type">
           <div class="services__type-item services__type-food">
@@ -90,7 +56,7 @@
 
             <div class="services__type-bg">
               <img
-                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611318743/eden-website-v2/food-img1_ls530a.png"
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1651163849/jollof_rice_BBQ_wings_fried_plantain_1_lxgnha.png"
                 alt="food"
               />
             </div>
@@ -101,7 +67,7 @@
             <p>Fresh laundry, carefully executed in 48 hours or less.</p>
             <div class="services__type-bg">
               <img
-                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611306544/eden-website-v2/laundry-img1_ijsx4k.png"
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1651163803/Laundry_4_1_s59fbc.png"
                 alt="laundry"
               />
             </div>
@@ -113,26 +79,123 @@
 
             <div class="services__type-bg">
               <img
-                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611318736/eden-website-v2/cleaning-img1_ldwcml.png"
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1651163803/Cleaning_2_1_cmd2ub.png"
                 alt="cleaning"
               />
             </div>
           </div>
-          <!-- <div class="services__type-item services__type-gifting">
+          <div class="services__type-item services__type-gifting">
             <h3>🎁</h3>
-            <h5>Gifts</h5>
-            <p>A giftbox full of love & everything else.</p>
+            <h5>Careboxes</h5>
+            <p>Snack/gift boxes to reward your employees.</p>
 
             <div class="services__type-bg">
               <img
-                src="https://res.cloudinary.com/eden-life-inc/image/upload/q_auto/v1612286532/eden-website-v2/giftimage_xjioyo.jpg"
+                src="https://res.cloudinary.com/eden-life-inc/image/upload/v1651164577/Image_from_iOS_uh8uvc.jpg"
                 alt="gifting"
               />
             </div>
-          </div> -->
+          </div>
         </div>
       </section>
     </div>
+
+     <div class="container--team">
+      <section class="team">
+        <div class="team__title">
+          <h3>Why Employers are choosing Eden <br/> for Employee Benefits</h3>
+        </div>
+        <div class="team__slider">
+          <div class="team__slider-option">
+            <ul>
+              <li class="slide">
+                <img
+                  src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611859999/eden-website-v2/cocreations_k8zyc1.svg"
+                  alt="co-creation"
+                />
+              </li>
+
+              <li class="slide">
+                 <img
+                    src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/cowrywise_wtcvv5.svg"
+                    alt="cowrywise"
+                  />
+              </li>
+
+              <li class="slide">
+               <img
+                  src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/flutterwave_cmhzbz.svg"
+                  alt="flutterwave"
+                />
+              </li>
+
+              <li class="slide">
+                <img
+                    src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/paystack_zez4ir.svg"
+                    alt="paystack"
+                  />
+              </li>
+
+              <li class="slide">
+                <img
+                  src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611859999/eden-website-v2/microsoft_alkv1a.svg"
+                  alt="microsoft"
+                />
+              </li>
+
+              <li class="slide">
+                 <img
+                    src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/kuda_irz12h.svg"
+                    alt="kuda"
+                  />
+              </li>
+
+              <li class="slide">
+               <img
+                  src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/buycoins_bkcrvh.svg"
+                  alt="buycoins"
+                />
+              </li>
+
+              <li class="slide">
+                 <img
+                  src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/piggyvest_wyio8s.svg"
+                  alt="piggyvest"
+                />
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="team__card">
+          <div class="team__card-item efficiency">
+            <h3>💯</h3>
+            <h5>Increased Efficiency</h5>
+            <p>
+              With Eden, your team gets increased productivity, better retention, and reduced welfare workload. 
+              We have measured an average 91.28% increased productivity rate for our clients.
+            </p>
+          </div>
+          <div class="team__card-item experience">
+            <h3>💰</h3>
+            <h5>Unbeatable Pricing</h5>
+            <p>
+              We offer you the best prices and our friendly, subscription pricing model is unbeatable in the market. 
+              Your team’s lunch, laundry and cleaning services are on autopilot.
+            </p>
+          </div>
+          <div class="team__card-item sport">
+            <h3>💚</h3>
+            <h5>Hands-On-support</h5>
+            <p>
+              We are very big on excellent customer service. 
+              That is why every employee is assigned an Eden Life manager who is proactive and effective at all times.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
     <div class="container--description">
       <section class="description">
         <div class="description__title">
@@ -225,6 +288,26 @@
                 </svg>
                 <svg
                   class="nine"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" />
+                </svg>
+                <svg
+                  class="ten"
+                  width="2"
+                  height="90"
+                  viewBox="0 0 2 190"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                <path d="M0 0H2V190H0V0Z" fill="#E4E8E6" />
+                </svg>
+               <svg
+                  class="eleven"
                   width="8"
                   height="8"
                   viewBox="0 0 8 8"
@@ -338,6 +421,29 @@
                 >
                   <circle cx="4" cy="4" r="4" />
                 </svg>
+                <svg
+                  class="horizontal--j"
+                  width="70"
+                  height="3"
+                  viewBox="0 0 160 3"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M-0.000488281 2.23755V0.237549H160V2.23755H-0.000488281Z"
+                    fill="#E4E8E6"
+                  />
+                </svg>
+                <svg
+                  class="horizontal--k"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="4" cy="4" r="4" />
+                </svg>
               </div>
             </div>
             <div class="description__slider-text">
@@ -345,25 +451,25 @@
                 <h5>Fill the form on this page</h5>
               </div>
               <div class="two">
-                <h5>You get an Eden plan for your team</h5>
+                <h5>Enter your discount code</h5>
               </div>
               <div class="three">
-                <h5>We'll set up your team's accounts</h5>
+                <h5>You get an Eden plan for your team</h5>
               </div>
               <div class="four">
-                <h5>Every team member gets personalized service</h5>
+                <h5>We'll set up your team's accounts</h5>
               </div>
               <div class="five">
-                <h5>You monitor/evaluate team satisfaction.</h5>
+                <h5>Every team member gets personalized service</h5>
+              </div>
+              <div class="six">
+                <h5>You monitor/evaluate team satisfaction.(Coming soon)</h5>
               </div>
               <button
                 type="button"
                 class="btn"
                 @click.prevent="
-                  scrollToFooter(
-                    'Get the Perfect Perk clicked',
-                    'companies - how it works'
-                  )
+                  scrollToFooter('getEden')
                 "
               >
                 Get Eden
@@ -373,10 +479,7 @@
               type="button"
               class="btn--mobile"
               @click.prevent="
-                scrollToFooter(
-                  'Get the Perfect Perk clicked',
-                  'companies - how it works'
-                )
+                scrollToFooter('getEden')
               "
             >
               Get Eden
@@ -459,56 +562,38 @@
           type="button"
           class="btn"
           @click.prevent="
-            scrollToFooter(
-              'Get the Perfect Perk clicked',
-              'companies - testimonial'
-            )
+            scrollToFooter('getEden')
           "
         >
-          Get the Perfect Perk
+          Get Eden
         </button>
       </section>
     </div>
 
-    <modal v-if="showModalCompany" :show-modal="showModalCompany" class="modal">
-      <div slot="header"></div>
-      <div slot="body" class="modal__body">
-        <div class="company__modal">
-          <div class="company__modal-title">
-            <h3 class="">Become a Rockstar Company</h3>
-            <button class="btn" @click="showModalCompany = false">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="16"
-                  cy="16"
-                  r="15.5"
-                  fill="white"
-                  stroke="#E4E8E6"
-                />
-                <path
-                  d="M20 12L12 20"
-                  stroke="#798B83"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M12 12L20 20"
-                  stroke="#798B83"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-          <form action="" class="form">
+    <div class="container--form">
+       <section class="company" id="getEden">
+          <div class="company__form">
+             <div class="company__form-title">
+               <h3>Get Eden Life for employee benefits <br />
+                  that go the <span> extra mile</span>.
+               </h3>
+               <p>Hi! We need the following details to reach out to you about the next steps. <br />
+                    Let's get started!
+                </p>
+             </div>
+
+             <div class="company__form-indicator">
+                 <span class="dot"
+                  :class="{ 'active' : !showForm}"
+                  @click="previousForm()"></span>
+                 <span class="dot"
+                  :class="{ 'active' : showForm}"
+                  @click="nextForm()"></span>
+             </div>
+
+            <div class="form" v-if="!showForm">
             <div class="form__input">
-              <label for="company name"> Company name</label>
+              <label for="company name"> Company Name<span class="required">*</span></label>
               <input
                 id=""
                 v-model="companyForm.company_name"
@@ -520,42 +605,21 @@
             </div>
 
             <div class="form__input">
-              <label for="contact name"> Contact person</label>
+              <label for="contact name"> Number of employees <span class="required">*</span> </label>
               <input
                 id=""
-                v-model="companyForm.contact_name"
-                type="text"
-                name=""
-                placeholder="Enter name"
-                :class="{ 'has-error': $v.companyForm.contact_name.$error }"
-              />
-            </div>
-            <div class="form__input">
-              <label for="email">Contact person email address</label>
-              <input
-                id=""
-                v-model="companyForm.email"
-                type="email"
-                name=""
-                placeholder="Enter email address"
-                :class="{ 'has-error': $v.companyForm.email.$error }"
-              />
-            </div>
-            <div class="form__input">
-              <label for="phone number">Phone number</label>
-              <input
-                id=""
-                v-model.trim="$v.companyForm.phone_number.$model"
+                v-model="companyForm.employees_number"
                 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                 type="text"
                 name=""
-                placeholder="Enter phone number"
-                :class="{ 'has-error': $v.companyForm.phone_number.$error }"
+                placeholder="Enter number"
+                :class="{ 'has-error': $v.companyForm.employees_number.$error }"
               />
             </div>
+
             <div class="form__input">
               <label for="services"
-                >What plans would you like for your team?</label
+                >What plans will you like for your team?<span class="required">*</span></label
               >
               <div
                 class="select"
@@ -632,6 +696,84 @@
               </div>
             </div>
             <div class="form__input">
+              <label for="message">Discount Code (if any)</label>
+              <input
+                id=""
+                v-model="companyForm.discount_code"
+                type="text"
+                name=""
+              />
+            </div>
+            <div class="form__input">
+              <div class="alert">
+                <img
+                  src="@/assets/images/alert.svg"
+                  alt="alert"
+                  class="img-bg1"
+                />
+                <span
+                  >Enjoy a <b> 15% discount </b> on all our services when you use the code <b>WORKERSDAY </b> to sign up for your team. <br/>
+                   This offer lasts until the <b> 8th of May 2022</b>.</span
+                >
+              </div>
+            </div>
+            <button
+              type="submit"
+              class="btn--submit"
+              :disabled="loading"
+              @click.prevent="nextForm()"
+            >
+              Next
+            </button>
+          </div>
+
+        <div class="form" v-else>
+           <div class="form__input">
+              <label for="contact name"> Contact Person <span class="required">*</span> </label>
+              <input
+                id=""
+                v-model="companyForm.contact_name"
+                type="text"
+                name=""
+                placeholder="Enter name"
+                :class="{ 'has-error': $v.companyForm.contact_name.$error }"
+              />
+            </div>
+            <div class="form__input">
+              <label for="email">Contact Person’s Email <span class="required">*</span> </label>
+              <input
+                id=""
+                v-model="companyForm.email"
+                type="email"
+                name=""
+                placeholder="Enter email address"
+                :class="{ 'has-error': $v.companyForm.email.$error }"
+              />
+            </div>
+            <div class="form__input">
+              <label for="email">Contact Person’s Job Role <span class="required">*</span> </label>
+              <input
+                id=""
+                v-model="companyForm.role"
+                type="text"
+                name=""
+                placeholder="Enter job role"
+                :class="{ 'has-error': $v.companyForm.role.$error }"
+              />
+            </div>
+            <div class="form__input">
+              <label for="phone number">Contact Person’s Phone Number <span class="required">*</span></label>
+              <input
+                id=""
+                v-model.trim="$v.companyForm.phone_number.$model"
+                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                type="text"
+                name=""
+                placeholder="08123456789"
+                :class="{ 'has-error': $v.companyForm.phone_number.$error }"
+              />
+            </div>
+            <div class="form__input">
               <label for="message">Anything else you’d like us to know?</label>
               <textarea
                 id=""
@@ -639,84 +781,40 @@
                 name=""
                 cols="30"
                 rows="10"
-                placeholder="Extra message"
-                :class="{ 'has-error': $v.companyForm.message.$error }"
+                placeholder="Type here"
               ></textarea>
             </div>
+
             <button
               type="submit"
               class="btn--submit"
+              :class="{
+                loading: loading,
+                light: submitted,
+              }"
               :disabled="loading"
               @click.prevent="submit()"
             >
-              Submit
+              {{
+                submitted ? 'Thanks! We’ll be in touch.' : 'Get Started!'
+              }}
             </button>
-          </form>
-        </div>
-      </div>
-      <div slot="footer"></div>
-    </modal>
-
-    <modal v-if="showSuccessModal" :show-modal="showSuccessModal" class="modal">
-      <div slot="header"></div>
-      <div slot="body" class="modal__body">
-        <div class="company__modal">
-          <div class="company__modal-title">
-            <button class="btn btn--success" @click="showSuccessModal = false">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+              <button
+                class="back--btn"
+                :disabled="loading"
+                :class="{
+                  hide : submitted
+                  }"
+                @click.prevent="previousForm()"
               >
-                <circle
-                  cx="16"
-                  cy="16"
-                  r="15.5"
-                  fill="white"
-                  stroke="#E4E8E6"
-                />
-                <path
-                  d="M20 12L12 20"
-                  stroke="#798B83"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M12 12L20 20"
-                  stroke="#798B83"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-          <div class="company__modal-body">
-            <img
-              :src="require(`~/assets/images/successful.svg`)"
-              alt="failed"
-            />
-            <h5>Information Submitted</h5>
-            <p>
-              You have successfully submitted your company’s information. We
-              will reach out to you within the next 48 hours.
-            </p>
-            <button
-              type="submit"
-              class="btn--submit"
-              :disabled="loading"
-              @click.prevent="closeModal"
-            >
-              Continue Browsing
-            </button>
+                  Go Back
+              </button>
           </div>
         </div>
-      </div>
-      <div slot="footer"></div>
-    </modal>
+       </section>
+    </div>
 
-    <modal v-if="showFailedModal" :show-modal="showFailedModal" class="modal">
+      <modal v-if="showFailedModal" :show-modal="showFailedModal" class="modal">
       <div slot="header"></div>
       <div slot="body" class="modal__body">
         <div class="company__modal">
@@ -770,9 +868,9 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
-import { companiesApi } from '~/request/all.api'
+import { createWorkersDay } from '~/request/airtable'
 import { notUrl } from '~/utils/validators'
 export default {
   components: {
@@ -782,21 +880,29 @@ export default {
   validations: {
     companyForm: {
       contact_name: { required, notUrl },
+      employees_number: {required, numeric},
       email: { required, email },
       company_name: { required, notUrl },
       service: { required },
-      phone_number: { required },
-      message: { required },
+      role: { required },
+       phone_number: {
+        required,
+        minLength: minLength(11),
+        maxLength: maxLength(11),
+      },
     },
   },
   data() {
     return {
       showModalCompany: false,
-      showSuccessModal: false,
+      submitted: false,
+      showForm: false,
+      hasError: false,
       showFailedModal: false,
+      submitted: false,
       loading: false,
+      isHideBtn: false,
       serviceName: 'Select services',
-      headerText: ['rockstar companies', 'thoughtful teams'],
       TeamMessageList: [
         {
           name: 'Oyechukwu 😎',
@@ -851,16 +957,19 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
       ],
       services: [
         'Team Lunch',
-        'Team Careboxes',
         'Team Laundry',
-        'Team Housecleaning',
+        'Team Home Cleaning',
+        'Team Careboxes',
       ],
       companyForm: {
         company_name: '',
         contact_name: '',
         service: [],
+        employees_number: '',
         email: '',
         message: '',
+        role: '',
+        discount_code: '',
         phone_number: '',
       },
       visible: false,
@@ -871,9 +980,6 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
       this.descriptionControl()
     }, 10)
     mixpanelTrackEvent('Companies page')
-    window.setInterval(() => {
-      this.changeText()
-    }, 2300)
   },
   methods: {
     closeModal() {
@@ -888,32 +994,63 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
         this.companyForm.service = JSON.stringify(this.companyForm.service)
         try {
           this.loading = true
-          await companiesApi(this.companyForm)
-          Object.keys(this.companyForm).forEach(
-            (key) => (this.companyForm[key] = '')
+          const metaData = {
+            'Company Name': this.companyForm.company_name,
+            'Employees Count': this.companyForm.employees_number,
+            'Team Plan': JSON.parse(this.companyForm.service).toString(),
+            'Discount Code': this.companyForm.discount_code,
+            'Contact Person': this.companyForm.contact_name,
+            'Email': this.companyForm.email,
+            'Job Role': this.companyForm.role,
+            'Phone number': this.companyForm.phone_number,
+            'Message': this.companyForm.message
+          }
+          createWorkersDay(metaData).then(
+            (res) => {
+              this.loading = false
+              mixpanelTrackEvent('Companies form submitted')
+              setTimeout(() => {
+                Object.keys(this.companyForm).forEach(
+                  (key) => (this.companyForm[key] = '')
+                )
+                this.$nextTick(() => {
+                  this.$v.companyForm.$reset()
+                  this.handleSubmitSuccess()
+                })
+              }, 500)
+            },
+            (err) => {
+              this.loading = false
+              this.showFailedModal = true
+            }
           )
-          this.$nextTick(() => {
-            this.$v.companyForm.$reset()
-            this.companyForm.service = []
-          })
-          this.showSuccessModal = true
-          this.showModalCompany = !this.showModalCompany
-          this.loading = false
-          mixpanelTrackEvent('Company form - Companies page')
         } catch (error) {
-          this.companyForm.service = JSON.parse(this.companyForm.service)
           this.loading = false
           this.showFailedModal = true
         }
       }
     },
-    changeText() {
-      const first = this.headerText.shift()
-      this.headerText = this.headerText.concat(first)
+    scrollToFooter(id) {
+       document.getElementById(id).scrollIntoView()
     },
-    scrollToFooter(label) {
-      this.showModalCompany = !this.showModalCompany
-      mixpanelTrackEvent(label)
+    nextForm() {
+      this.$v.companyForm.$touch()
+      if (this.$v.companyForm.company_name.$error || this.$v.companyForm.service.$error || this.$v.companyForm.employees_number.$error) {
+         return
+      } 
+         this.showForm = true
+         document.getElementById('getEden').scrollIntoView()
+    },
+    previousForm() {
+      this.showForm = false
+      document.getElementById('getEden').scrollIntoView()
+    },
+    handleSubmitSuccess() {
+      this.loading = false
+      this.submitted = true
+      setTimeout(() => {
+        this.submitted = false
+      }, 10000)
     },
     descriptionControl() {
       let count = 0

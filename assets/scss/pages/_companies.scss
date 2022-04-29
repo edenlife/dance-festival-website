@@ -169,16 +169,13 @@
   }
   &__slider {
     margin-top: $gap * 9.3;
-    display: flex;
-    justify-content: center;
-    width: 100%;
     &-option {
       overflow: hidden;
       position: relative;
       ul {
         display: flex;
         list-style: none;
-        width: calc(250px * 14);
+        width: calc(242px * 14);
         .slide {
           flex: 1;
           display: flex;
@@ -639,7 +636,7 @@
       }
     }
     &__video {
-      order: -1;
+    margin-top: $gap * 6;
       &-item {
         width: 166px;
         height: 399px;

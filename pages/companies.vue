@@ -608,6 +608,7 @@
               <input
                 id=""
                 v-model="companyForm.employees_number"
+                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                 type="text"
                 name=""
                 placeholder="Enter number"
@@ -866,7 +867,7 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
+import { required, email, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { createWorkersDay } from '~/request/airtable'
 import { notUrl } from '~/utils/validators'
@@ -879,7 +880,7 @@ export default {
   validations: {
     companyForm: {
       contact_name: { required, notUrl },
-      employees_number: {required},
+      employees_number: {required, numeric},
       email: { required, email },
       company_name: { required, notUrl },
       service: { required },

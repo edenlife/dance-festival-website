@@ -1302,6 +1302,7 @@
     &__form{
       padding: $gap * 2;
       margin-bottom: $gap * 7.6;
+      padding-top: $gap * 11.0;
      }
    }
    @include respond(xxl) {

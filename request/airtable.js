@@ -8,6 +8,7 @@ const customTable = base('Gifting - Custom Plan')
 const personalSahurTable = base('Ramadan - Personal Sahur')
 const giftSahurTable = base('Ramadan - Gift Sahur')
 const BetaTestTable = base('Beta Testing')
+const WorkersDayTable = base('Workers Day')
 
 export const createGiftPlan = async (fields) => {
   const submitEntry = await giftingTable.create(fields)
@@ -33,5 +34,9 @@ export const createBeta = async (fields) => {
   return customEntry
 }
 
+export const createWorkersDay = async (fields) => {
+  const customEntry = await WorkersDayTable.create(fields)
+  return customEntry
+}
 
 //https://airtable.com/appMoikF7UFpTFiHy/tblSwImE3sIU4JIbV/viwqKyunDaYFE9M6G?blocks=hide airtable link

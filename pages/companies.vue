@@ -712,7 +712,7 @@
                 />
                 <span
                   >Enjoy a <b> 15% discount </b> on all our services when you use the code <b>WORKERSDAY </b> to sign up for your team. <br/>
-                   This offer lasts until the <b> 8th of May 2022</b>.</span
+                   This offer lasts until the <b> 15th May, 2022</b>.</span
                 >
               </div>
             </div>

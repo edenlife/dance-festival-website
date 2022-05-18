@@ -777,7 +777,7 @@ export default {
       id: 145,
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/v1652801842/eden-website-v2/Joshua_Paul_-_Junior_Backned_Engineer_uy2okr.jpg',
-      name: 'Joshuan Paul',
+      name: 'Joshua Paul',
       role: 'Engineering',
     },
     {
@@ -791,7 +791,7 @@ export default {
       id: 147,
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/v1652801767/eden-website-v2/Afeez_Adebayo_-_Lead_Acquisition_Specialist_st3rqn.jpg',
-      name: 'Afeez Adebay',
+      name: 'Afeez Adebayo',
       role: 'Growth',
     },
   ],

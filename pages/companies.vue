@@ -994,17 +994,21 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
         this.companyForm.service = JSON.stringify(this.companyForm.service)
         try {
           this.loading = true
-          const metaData = {
-            'Company Name': this.companyForm.company_name,
-            'Employees Count': this.companyForm.employees_number,
-            'Team Plan': JSON.parse(this.companyForm.service).toString(),
-            'Discount Code': this.companyForm.discount_code,
-            'Contact Person': this.companyForm.contact_name,
-            'Email': this.companyForm.email,
-            'Job Role': this.companyForm.role,
-            'Phone number': this.companyForm.phone_number,
-            'Message': this.companyForm.message
+          const leadMetaData = {
+            name: this.companyForm.company_name,
+            email: this.companyForm.email,
+            phone: this.companyForm.phone_number,
+            lead_gen_page: window.location.href,
+            referrer: document.referrer,
           }
+          this.$intercom('update', {
+            name: this.leadCompanyForm.company_name,
+            email: this.leadCompanyForm.email,
+            phone: this.leadCompanyForm.phone_number,
+            lead_gen_page: window.location.href,
+            referrer: document.referrer,
+          })
+          this.$intercom('trackEvent', 'lead-genaration-signup', leadMetaData)
           createWorkersDay(metaData).then(
             (res) => {
               this.loading = false

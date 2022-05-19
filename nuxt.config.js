@@ -36,12 +36,23 @@ export default {
         defer: true,
       },
       {
-        hid: 'gtag-script2',
+        hid: 'universal-analytics',
         innerHTML: `window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
       
         gtag('config', 'UA-140804740-1');`,
+        type: 'text/javascript',
+        charset: 'utf-8',
+      },
+
+      {
+        hid: 'ga-4',
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-4D4KNBN5JH',
+        innerHTML: `window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-4D4KNBN5JH')`,
         type: 'text/javascript',
         charset: 'utf-8',
       },
@@ -56,10 +67,24 @@ export default {
       {
         hid: 'gtm-script2',
         innerHTML: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-566V4B2');`,
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-566V4B2');`,
+        body: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-566V4B2"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
+        type: 'text/javascript',
+        charset: 'utf-8',
+      },
+
+      //Google ads
+      {
+        hid: 'google-ads',
+        src: 'https://www.googletagmanager.com/gtag/js?id=AW-354367770',
+        innerHTML: `window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-354367770');`,
         type: 'text/javascript',
         charset: 'utf-8',
       },

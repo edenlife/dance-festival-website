@@ -1119,7 +1119,15 @@ export default {
         )
         try {
           mixpanelTrackEvent('Company form - Eden Means Easy page')
-
+          this.$intercom('update', {
+            company_name: this.leadCompanyForm.company_name,
+            contact_name: this.leadCompanyForm.contact_name,
+            email: this.leadCompanyForm.email,
+            phone_number: this.leadCompanyForm.phone_number,
+            service: this.leadCompanyForm.service,
+            extra_message: thisleadCompanyForm.extra_message,
+          })
+          this.$intercom('trackEvent', 'lead-genaration-signup', leadCompanyForm)
           this.loading = true
           await companiesApi(this.leadCompanyForm)
           Object.keys(this.leadCompanyForm).forEach(

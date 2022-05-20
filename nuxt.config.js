@@ -288,4 +288,7 @@ export default {
     routes: dynamicRoutes,
     fallback: true,
   },
+  server: {
+    host: '0' // default: localhost
+  }
 }

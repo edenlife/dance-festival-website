@@ -26,7 +26,13 @@ export default {
     __dangerouslyDisableSanitizersByTagID: {
       'gtag-script2': ['innerHTML'],
       'gtm-script2': ['innerHTML'],
+      'gtag-script1': ['innerHTML'],
+      'universal-analytics': ['innerHTML'],
+      'ga-4': ['innerHTML'],
+      'gtm-script1': ['innerHTML'],
+      'google-ads': ['innerHTML'],
     },
+    __dangerouslyDisableSanitizers: ['noscript', 'innerHTML'],
 
     script: [
       // Global site tag (gtag.js) - Google Analytics
@@ -69,13 +75,6 @@ export default {
         type: 'text/javascript',
         defer: true,
       },
-      {
-        hid: 'gtm-script2',
-        body: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-566V4B2"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
-        type: 'text/javascript',
-        charset: 'utf-8',
-      },
 
       //Google ads
       {
@@ -106,6 +105,17 @@ export default {
         type: 'text/javascript',
         body: true,
         defer: true,
+      },
+    ],
+
+    noscript: [
+      {
+        hid: 'gtm-script2',
+        src: 'https://www.googletagmanager.com/ns.html?id=GTM-566V4B2',
+        innerHTML: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-566V4B2"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
+        body: true,
+        type: 'text/javascript',
       },
     ],
 

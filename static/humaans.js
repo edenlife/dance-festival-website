@@ -485,7 +485,7 @@ export default {
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1650259592/Nneka_Nzekwe_-_Procurement_Analyst_lyxk5w.jpg',
       name: 'Nneka Nzekwe',
-      role: 'Supply',
+      role: 'Food Production',
     },
     
     {
@@ -743,7 +743,7 @@ export default {
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/v1652801863/eden-website-v2/Opeyemi_Amusan_-_Associate_Product_Manager_neyuws.jpg',
       name: 'Opeyemi Amusan',
-      role: 'Food Production',
+      role: 'Product',
     },
     {
       id: 141,

@@ -104,20 +104,20 @@
             <div
               class="description__inner-left-img1"
             >
-              <img
+              <!-- <img
                v-animate-onscroll="'animated fadeInDown'"
-                src="~/assets/images/laundry-image.png"
+                src="/assets/images/laundry-image.png"
                 alt=""
-              />
+              /> -->
             </div>
             <div
               class="description__inner-left-img2"
             >
-              <img
+              <!-- <img
                v-animate-onscroll="'animated fadeInUp'"
                 src="~/assets/images/laundry 2.png"
                 alt=""
-              />
+              /> -->
             </div>
           </div>
         </div>

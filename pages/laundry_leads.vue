@@ -106,7 +106,7 @@
             >
               <img
                v-animate-onscroll="'animated fadeInDown'"
-                :src="require(`~/assets/images/laundry-image.png`)"
+                src="~/assets/images/laundry-image.png"
                 alt=""
               />
             </div>
@@ -115,7 +115,7 @@
             >
               <img
                v-animate-onscroll="'animated fadeInUp'"
-                :src="require(`~/assets/images/laundry 2.png`)"
+                src="~/assets/images/laundry 2.png"
                 alt=""
               />
             </div>

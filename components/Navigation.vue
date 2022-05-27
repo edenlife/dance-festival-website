@@ -330,6 +330,14 @@
             Laundry Plans
           </button>
         </li>
+         <li v-if="currentRoute === 'laundry_leads'">
+           <nuxt-link
+                :to="{ path: '/eden_means_easy' }"
+                class="navigation__mobile-item"
+              >
+                Why Eden?
+              </nuxt-link>
+        </li>
         <!-- cleaning -->
         <li v-if="currentRoute === 'cleaning'">
           <button
@@ -604,6 +612,7 @@ export default {
     serviceNav() {
       if (
         this.currentRoute === 'laundry' ||
+        this.currentRoute === 'laundry_leads' ||
         this.currentRoute === 'cleaning' ||
         this.currentRoute === 'food'
       ) {

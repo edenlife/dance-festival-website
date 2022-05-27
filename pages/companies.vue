@@ -982,9 +982,6 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
     mixpanelTrackEvent('Companies page')
   },
   methods: {
-    closeModal() {
-      this.showSuccessModal = !this.showSuccessModal
-    },
     toggle() {
       this.visible = !this.visible
     },

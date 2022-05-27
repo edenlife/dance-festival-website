@@ -104,20 +104,20 @@
             <div
               class="description__inner-left-img1"
             >
-              <!-- <img
+              <img
                v-animate-onscroll="'animated fadeInDown'"
-                src="/assets/images/laundry-image.png"
-                alt=""
-              /> -->
+                src="@/assets/images/laundry-image.png"
+                alt="laundry-image"
+              />
             </div>
             <div
               class="description__inner-left-img2"
             >
-              <!-- <img
+              <img
                v-animate-onscroll="'animated fadeInUp'"
-                src="~/assets/images/laundry 2.png"
-                alt=""
-              /> -->
+                src="@/assets/images/laundry 2.png"
+                alt="laundry-image"
+              />
             </div>
           </div>
         </div>
@@ -629,7 +629,7 @@
           <div class="company__modal-body">
             <img
               src="@/assets/images/gift-confetti.svg"
-              alt=""
+              alt="confetti"
               class="confetti"
             />
 

@@ -115,7 +115,7 @@
             >
               <img
                v-animate-onscroll="'animated fadeInUp'"
-                src="@/assets/images/laundry 2.png"
+                src="@/assets/images/laundry-2.png"
                 alt="laundry-image"
               />
             </div>

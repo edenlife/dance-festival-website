@@ -999,9 +999,9 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
             referrer: document.referrer,
           }
           this.$intercom('update', {
-            name: this.leadCompanyForm.company_name,
-            email: this.leadCompanyForm.email,
-            phone: this.leadCompanyForm.phone_number,
+            name: this.companyForm.company_name,
+            email: this.companyForm.email,
+            phone: this.companyForm.phone_number,
             lead_gen_page: window.location.href,
             referrer: document.referrer,
           })

@@ -1019,7 +1019,6 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
           createWorkersDay(metaData).then(
             (res) => {
               this.loading = false
-              console.log(metaData)
               mixpanelTrackEvent('Companies form submitted')
               setTimeout(() => {
                 Object.keys(this.companyForm).forEach(

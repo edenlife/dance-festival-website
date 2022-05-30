@@ -612,7 +612,6 @@ export default {
     serviceNav() {
       if (
         this.currentRoute === 'laundry' ||
-        this.currentRoute === 'laundry_leads' ||
         this.currentRoute === 'cleaning' ||
         this.currentRoute === 'food'
       ) {

@@ -206,13 +206,11 @@ export default {
       const combo = []
       this.meals.map((item) => {
         return item.preset_combos_full.map((el) => {
-          if (el.visible === true) {
-            combo.push({
+           combo.push({
               name: item.name,
               class_category: item.class_category,
               ...el,
             })
-          }
           return combo
         })
       })

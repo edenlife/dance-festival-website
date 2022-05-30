@@ -565,7 +565,6 @@ export default {
             color: '#5571FF',
           }
         default:
-          console.log('default')
       }
     },
     getBgColor(category) {

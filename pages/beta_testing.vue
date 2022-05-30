@@ -491,7 +491,6 @@ export default {
     },
     setItem(item) {
       this.testerForm.device = item
-      //  console.log(this.testerForm)
     },
     expandQuestion(item) {
       if (this.questions.length && this.questions.includes(item)) {
@@ -513,7 +512,6 @@ export default {
           this.scrollTo('signup')
           break
         // case 'five':
-        //   console.log('');
         //   let scrollDiv = this.registerSeparateScrollEvents('faq-five')
         //  scrollDiv.firstElementChild.addEventListener('click', function(e){
         //    this.scrollTo('scrollDiv')

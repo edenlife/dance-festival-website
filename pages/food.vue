@@ -928,18 +928,6 @@ export default {
           })
       }
     },
-    getMealCategories(items) {
-      const mapped = items.reduce((acc, { class_category }) => {
-        if (class_category) {
-          const classes = class_category.split(',')
-          acc.push(...classes)
-        }
-        return acc
-      }, [])
-      this.tabs = [...new Set(mapped)]
-      this.activeTabIndex = this.tabs[0]
-      this.changeCategory(this.activeTabIndex)
-    },
     changeCategory(val) {
       this.activeTabIndex = val
       this.mealsInCategory = this.getMealsInEachCategory(this.allMeal, val)

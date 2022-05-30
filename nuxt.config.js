@@ -218,6 +218,10 @@ export default {
       },
     ],
 
+    [
+      "@nuxtjs/gtm",
+    ],
+
     // Facebook pixel setup
     [
       'nuxt-facebook-pixel-module',
@@ -242,6 +246,12 @@ export default {
       },
     ],
   ],
+
+  gtm: {
+    id: 'GTM-566V4B2', // Used as fallback if no runtime config is provided
+  },
+
+
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},

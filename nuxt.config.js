@@ -25,27 +25,17 @@ export default {
   head: {
     __dangerouslyDisableSanitizersByTagID: {
       'gtag-script2': ['innerHTML'],
-      'gtm-script2': ['innerHTML'],
+      // 'gtm-script2': ['innerHTML'],
       'gtag-script1': ['innerHTML'],
       'universal-analytics': ['innerHTML'],
       'ga-4': ['innerHTML'],
-      'gtm-script1': ['innerHTML'],
+      // 'gtm-script1': ['innerHTML'],
       'google-ads': ['innerHTML'],
     },
     __dangerouslyDisableSanitizers: ['noscript', 'innerHTML'],
 
     script: [
       // Global site tag (gtag.js) - Google Analytics
-      {
-        hid: 'gtm-script1',
-        src: 'https://www.googletagmanager.com/ns.html?id=GTM-566V4B2',
-        innerHTML: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-566V4B2');`,
-        type: 'text/javascript',
-      },
 
       {
         hid: 'gtag-script1',
@@ -110,16 +100,16 @@ export default {
       },
     ],
 
-    noscript: [
-      {
-        hid: 'gtm-script2',
-        src: 'https://www.googletagmanager.com/ns.html?id=GTM-566V4B2',
-        innerHTML: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-566V4B2"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
-        body: true,
-        type: 'text/javascript',
-      },
-    ],
+    // noscript: [
+    //   {
+    //     hid: 'gtm-script2',
+    //     src: 'https://www.googletagmanager.com/ns.html?id=GTM-566V4B2',
+    //     innerHTML: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-566V4B2"
+    //     height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
+    //     body: true,
+    //     type: 'text/javascript',
+    //   },
+    // ],
 
     title: 'Eden | Say Goodbye To Chores Forever',
 

@@ -140,7 +140,6 @@ export default {
     },
     setData() {
       if (this.humaans.length) {
-        console.log(this.humaans.length);
         const quotient = Math.floor(this.humaans.length / 12)
         const remainder = this.humaans.length % 12
         remainder > 0

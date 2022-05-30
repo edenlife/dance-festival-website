@@ -1247,7 +1247,6 @@ export default {
       }
     },
     setCleaningType(plan) {
-      console.log(plan);
       this.plan = plan
       this.cleaningInfo.item = plan
       const planType = plan.replaceAll('-', ' ')
@@ -1285,7 +1284,6 @@ export default {
     // Cleaning calculator
     async fetchCleaningServiceTypes() {
       const cleaningResponse = await getCleaningServiceTypes()
-      console.log(cleaningResponse.data.data);
       this.cleaningServiceTypes = cleaningResponse.data.data
       const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
         ({ name }) => name.toLowerCase() === 'light cleaning'
@@ -1315,7 +1313,6 @@ export default {
       this.calculateCleaningPrice()
     },
     calculateCleaningPrice() {
-      console.log(this.cleaningInfo);
       const {
         item,
         itemAreas,

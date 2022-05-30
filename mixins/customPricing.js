@@ -711,7 +711,6 @@ export default {
         case '5':
           break
         default:
-          console.log('default')
       }
     },
     getEstimate() {

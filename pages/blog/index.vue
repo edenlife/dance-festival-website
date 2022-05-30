@@ -1191,7 +1191,6 @@ export default {
             color: '#5571FF',
           }
         default:
-          console.log('default')
       }
     },
     openSocialMedia(name, url) {

@@ -919,10 +919,8 @@ export default {
       this.$v.laundryForm.$touch()
       if (this.$v.laundryForm.$error) return
       if (!this.$v.laundryForm.$error) {
-        console.log(this.$v.laundryForm.$error, "fail")
         try {
           this.loading = true
-          console.log(!this.$v.laundryForm.$error, "pass")
           const metaData = {
             'Full Name': this.laundryForm.full_name,
             'Email Address': this.laundryForm.email,
@@ -943,11 +941,9 @@ export default {
             referrer: document.referrer,
           })
           this.$intercom('trackEvent', 'lead-genaration-signup', leadMetaData)
-          console.log(metaData)
           createLaundryLeads(metaData).then(
             (res) => {
               this.loading = false
-              console.log(metaData)
               mixpanelTrackEvent('Laundry Leads form submitted')
               setTimeout(() => {
                 Object.keys(this.laundryForm).forEach(

@@ -895,7 +895,6 @@ export default {
   data() {
     return {
       showModalCompany: false,
-      submitted: false,
       showForm: false,
       hasError: false,
       showFailedModal: false,
@@ -991,6 +990,17 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
         this.companyForm.service = JSON.stringify(this.companyForm.service)
         try {
           this.loading = true
+          const metaData = {
+            'Company Name': this.companyForm.company_name,
+            'Employees Count': this.companyForm.employees_number,
+            'Team Plan': JSON.parse(this.companyForm.service).toString(),
+            'Discount Code': this.companyForm.discount_code,
+            'Contact Person': this.companyForm.contact_name,
+            'Email': this.companyForm.email,
+            'Job Role': this.companyForm.role,
+            'Phone number': this.companyForm.phone_number,
+            'Message': this.companyForm.message
+          }
           const leadMetaData = {
             name: this.companyForm.company_name,
             email: this.companyForm.email,
@@ -1009,6 +1019,7 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
           createWorkersDay(metaData).then(
             (res) => {
               this.loading = false
+              console.log(metaData)
               mixpanelTrackEvent('Companies form submitted')
               setTimeout(() => {
                 Object.keys(this.companyForm).forEach(

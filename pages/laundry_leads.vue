@@ -904,7 +904,7 @@ export default {
                 )
                 this.$nextTick(() => {
                   this.$v.laundryForm.$reset()
-                   this.$router.push('success_page')
+                   this.$router.push('/success_page')
                 })
               }, 500)
             },

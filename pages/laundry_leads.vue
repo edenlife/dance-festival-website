@@ -1,7 +1,14 @@
 <template>
-  <div>
     <div class="container--hero">
-      <header class="hero">
+      <header class="header">
+        <nuxt-link :to="{ path: '/' }" class="header__logo">
+          <img
+            src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611230252/eden-website-v2/eden-logo_lcepc6.svg"
+            alt="Eden logo"
+          />
+        </nuxt-link>
+      </header>
+      <div class="hero">
         <div class="hero__title">
         <h1>
              Laundry picked up and delivered in <span> {{ headerText }}</span>.
@@ -27,7 +34,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="scrollToFooter('#getEden', 'laundry-leads - hero')"
+              @click.prevent="goToApp()"
             >
               I want an Eden Life Laundry plan
             </button>
@@ -40,11 +47,9 @@
               class="hero__img-bg1"
             />
         </div>
-      </header>
+      </div>
       <div class="hero__img"></div>
-    </div>
 
-  
     <div class="container--description">
       <section class="description">
          <div class="description__title">
@@ -559,7 +564,7 @@
             </div>
 
            <div class="form__input">
-              <label for="phone number">Contact Person’s Phone Number <span class="required">*</span></label>
+              <label for="phone number">Contact Person’s Phone Number</label>
               <input
                 id=""
                 v-model.trim="$v.laundryForm.phone_number.$model"
@@ -585,63 +590,6 @@
         </div>
        </section>
     </div>
-
-    <modal
-      v-if="showSuccessModal"
-      :show-modal="showSuccessModal"
-      class="modal"
-      @click="showSuccessModal = false"
-    >
-      <div slot="header"></div>
-      <div slot="body" class="modal__body success">
-        <div class="company__modal">
-          <div class="company__modal-title">
-            <button class="btn btn--success" @click="closeModal">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="16"
-                  cy="16"
-                  r="15.5"
-                  fill="white"
-                  stroke="#E4E8E6"
-                />
-                <path
-                  d="M20 12L12 20"
-                  stroke="#798B83"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M12 12L20 20"
-                  stroke="#798B83"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-          <div class="company__modal-body">
-            <img
-              src="@/assets/images/gift-confetti.svg"
-              alt="confetti"
-              class="confetti"
-            />
-
-            <h3>Thank you!</h3>
-            <p>
-              Someone from our team will reach out to you in the next 24-48 hours.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div slot="footer"></div>
-    </modal>
 
     <modal v-if="showFailedModal" :show-modal="showFailedModal" class="modal">
       <div slot="header"></div>
@@ -692,6 +640,8 @@
       <div slot="footer"></div>
     </modal>
 
+    <lead-gen-footer />
+
   </div>
 </template>
 
@@ -704,9 +654,12 @@ import { createLaundryLeads } from '~/request/airtable'
 import { notUrl } from '~/utils/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import getSiteMeta from '~/utils/getSiteMeta'
+import LeadGenFooter from '~/components/LeadGenFooter.vue'
 
 export default {
+  components: { LeadGenFooter },
   mixins: [validationMixin],
+  layout: 'lead',
   validations: {
     laundryForm: {
       full_name: { required, notUrl },
@@ -761,7 +714,7 @@ export default {
   },
   head() {
     return {
-      title: 'Eden | Laundry-leads',
+      title: 'Eden | Laundry Leads',
       meta: [...this.meta],
       link: [
         {
@@ -951,7 +904,7 @@ export default {
                 )
                 this.$nextTick(() => {
                   this.$v.laundryForm.$reset()
-                  this.showSuccessModal = true
+                   this.$router.push('/success_page')
                 })
               }, 500)
             },
@@ -966,6 +919,23 @@ export default {
         }
       }
     },
+   goToApp() {
+      mixpanelTrackEvent(`Get Started - Lead page v3`)
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera
+      if (/android/i.test(userAgent)) {
+        window.open(
+          ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`
+        )
+        return
+      }
+
+      // iOS detection from: http://stackoverflow.com/a/9039885/177710
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.open(`https://apps.apple.com/us/app/eden-life/id1482373755?ls=1`)
+        return
+      }
+       this.scrollToFooter('#getEden', 'laundry-leads - hero')
+    },
     },
 }
 </script>
@@ -976,19 +946,6 @@ export default {
 
 .mt-4 {
   margin-top: 25px;
-}
-
-.footer  {
-    &__top {
-        bottom: 10rem;
-    }
-    &__bottom {
-        padding: 262px 0 48px 0;
-    }
-}
-
-section.footer__top {
-   bottom: 10rem;
 }
 
 </style>

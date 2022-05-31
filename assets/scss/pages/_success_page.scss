@@ -1,0 +1,94 @@
+@import '../../style.scss';
+
+.header {
+    margin: 0 auto;
+    width: 83%;
+    padding-top: $gap * 3;
+    @include respond(md) {
+      width: 90%;
+    }
+    @include respond(xxl) {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+}
+
+.success {
+    padding-bottom: 114px;
+    .company {
+        &__modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 75vh;
+            margin: 0 auto;
+            &-body {
+                &-card {
+                    border: 1px solid #E2E9E6;
+                    padding: $gap * 5.4;
+                    width: 480px;
+                    margin: 0 auto; 
+                    p {
+                        margin-top: $gap;
+                    }
+                }
+                &-text {
+                    margin: 0 auto;
+                    margin-top: $gap * 7;
+                    padding-bottom: $gap * 5.1;
+                    width: 83%;
+                    @include font-size(xl);
+                    @include font-weight(semi-bold);
+                    span {
+                        color: color(eden-green-primary);
+                    }
+                }
+            }
+        }
+        @include respond(md) {
+            &__modal {
+                &-body {
+                    padding: 0;
+                    width: 90%;
+                    margin: 0 auto;
+                    &-card {
+                        border: none;
+                        padding: 0;
+                        width: 100%;
+                        h3 {
+                            margin-top: $gap * 3.5;
+                        }
+                        p{
+                            margin-top: $gap * 3;
+                        }
+                    }
+                    &-text {
+                        display: none;
+                    }
+                }
+            }
+        }
+        @include respond(xxl) {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+    }
+    @include respond(md) {
+        padding: 0;
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+
+
+.mobile {
+    @include respond(md) {
+        display: none;
+      }
+      @include respond(xxl) {
+        max-width: 1440px;
+        margin: 0 auto;
+      }
+}

@@ -1,0 +1,48 @@
+@import '../../style.scss';
+
+.hero {
+    &__header {
+        flex: 0 0 44%;
+        &-title  {
+            h1 {
+                width: 100%;
+            }
+        }
+    }
+    &__img {
+      flex: 0 0 45%;
+    }
+    &-title {
+        h1 {
+          width: 100%;
+  
+          .pay {
+            margin-left: 0;
+          }
+        }
+  
+        ul {
+          padding: 0 $gap * 2 $gap * 2;
+          li {
+            margin: $gap 0;
+            font-size: 1.125rem;
+          }
+        }
+        @include respond(md) {
+          ul {
+            list-style: none;
+            text-align: center;
+          }
+        }
+      
+    }
+  } 
+  
+.menu {
+    padding: 0 !important;
+    margin: 0 auto $gap;
+
+    .menu-btn {
+        margin-top: 0 !important;
+    }
+}

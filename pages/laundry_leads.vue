@@ -720,7 +720,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/laundry-leads`,
+          href: `https://ouredenlife.com/laundry`,
         },
       ],
     }
@@ -731,9 +731,9 @@ export default {
         title: 'Eden | Laundry Leads',
         description:
           'Your clothes, picked up, laundered and delivered to you in 48 hours or less.',
-        url: `https://ouredenlifev2-staging.netlify.app/laundry-leads`,
+        url: `https://ouredenlife.com/laundry`,
         mainImage:
-          'https://ouredenlifev2-staging.netlify.app/edencardlaundry.png',
+          'https://ouredenlife.com/edencardlaundry.png',
       }
       return getSiteMeta(metaData)
     },

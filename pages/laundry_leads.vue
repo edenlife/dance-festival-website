@@ -10,9 +10,12 @@
       </header>
       <div class="hero">
         <div class="hero__title">
-        <h1>
+          <h1 class="d-lg">
+             Laundry picked up and <br> delivered in <span> {{ headerText }}</span>.
+          </h1>
+          <h1 class="mobile">
              Laundry picked up and delivered in <span> {{ headerText }}</span>.
-            </h1>
+          </h1>
           <div>
               <p class="bold"> Pay once a month and get:</p>
               <ul>

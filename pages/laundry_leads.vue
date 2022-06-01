@@ -37,7 +37,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="goToApp()"
+              @click.prevent="scrollToFooter('getEden', 'laundry-leads - hero')"
             >
               I want an Eden Life Laundry plan
             </button>
@@ -422,7 +422,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="scrollToFooter('#getEden', 'laundry-leads - plan')"
+              @click.prevent="scrollToFooter('getEden', 'laundry-leads - plan')"
             >
               I want an Eden Life Laundry plan
             </button>
@@ -650,7 +650,7 @@
 
 <script>
 import { pricing } from '~/static/pricing'
-import { currencyFormat, scrollToApp } from '~/static/functions'
+import { currencyFormat } from '~/static/functions'
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 import { createLaundryLeads } from '~/request/airtable'
@@ -788,11 +788,11 @@ export default {
         this.setExploreService = true
       } else this.setExploreService = false
     },
-    scrollToFooter(id, label) {
-      scrollToApp(id, label)
+    scrollToFooter(id) {
+      document.getElementById(id).scrollIntoView()
     },
     increaseOrder(order) {
-      mixpanelTrackEvent(`Increase ${order} order clicked - laundry page`)
+      mixpanelTrackEvent(`Increase ${order} order clicked - laundry leads page`)
 
       if (order === 'washDry') {
         this.washDry++
@@ -817,7 +817,7 @@ export default {
       }
     },
     decreaseOrder(order) {
-      mixpanelTrackEvent(`Decrease ${order} order clicked - laundry page`)
+      mixpanelTrackEvent(`Decrease ${order} order clicked - laundry leads page`)
 
       if (order === 'washDry' && this.washDry > 1) {
         this.washDry--
@@ -842,7 +842,7 @@ export default {
       }
     },
     laundryDryFrequency(freq) {
-      mixpanelTrackEvent(` ${freq} wash&dry frequency clicked - laundry page`)
+      mixpanelTrackEvent(` ${freq} wash&dry frequency clicked - laundry leads page`)
 
       this.washDryFrequency = freq
       this.totalWashDryPrice = pricing({
@@ -854,7 +854,7 @@ export default {
       })
     },
     laundryIronFrequency(freq) {
-      mixpanelTrackEvent(` ${freq} wash&iron frequency clicked - laundry page`)
+      mixpanelTrackEvent(` ${freq} wash&iron frequency clicked - laundry leads page`)
 
       this.washIronFrequency = freq
       this.totalWashIronPrice = pricing({
@@ -920,24 +920,6 @@ export default {
           this.loading = false
           this.showFailedModal = true
         }
-      }
-    },
-   goToApp() {
-      mixpanelTrackEvent(`Get Started - Lead page v3`)
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera
-      if (/android/i.test(userAgent)) {
-        window.open(
-          ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`
-        )
-        return
-      }
-
-      // iOS detection from: http://stackoverflow.com/a/9039885/177710
-      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        window.open(`https://apps.apple.com/us/app/eden-life/id1482373755?ls=1`)
-        return
-      }else {
-        this.scrollToFooter('#getEden', 'laundry-leads - hero')
       }
     },
     },

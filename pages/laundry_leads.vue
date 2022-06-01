@@ -79,7 +79,7 @@
                 />
               </div>
               <div
-                v-animate-onscroll.repeat="'animated fadeInUp'"
+                v-animate-onscroll.repeat="'animated fadeInLeft'"
                 class="description__details-item--text"
               >
                 <h5>We pick and do our magic.</h5>
@@ -933,8 +933,9 @@ export default {
       if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
         window.open(`https://apps.apple.com/us/app/eden-life/id1482373755?ls=1`)
         return
+      }else {
+        this.scrollToFooter('#getEden', 'laundry-leads - hero')
       }
-       this.scrollToFooter('#getEden', 'laundry-leads - hero')
     },
     },
 }

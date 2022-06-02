@@ -318,7 +318,7 @@
                   <p>per 4 weeks</p>
                 </div>
                 <div class="plan__price-alert">
-                  <p>You will get 5 meals delivered once a week for 4 weeks.</p>
+                  <p>You will get {{mealsPerDay}} meals delivered once a week for 4 weeks.</p>
                 </div>
                 <button @click.prevent="scrollToFooter('getEden')" class="hero__form-btn">
                   Give me a food plan
@@ -462,7 +462,7 @@
                 <p>per 4 weeks</p>
               </div>
                  <div class="plan__price-alert">
-                    <p>You will get 5 meals delivered once a week for 4 weeks.</p>
+                    <p>You will get {{mealsPerWeek}} meals delivered once a week for 4 weeks.</p>
                  </div>
                   <button @click.prevent="scrollToFooter('getEden')" class="hero__form-btn">
                     Give me a food plan

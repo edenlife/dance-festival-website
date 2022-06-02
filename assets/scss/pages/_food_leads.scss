@@ -2,39 +2,37 @@
 
 .hero {
     &__header {
-        flex: 0 0 44%;
-        &-title  {
-            h1 {
-                width: 100%;
-            }
-        }
-    }
-    &__img {
-      flex: 0 0 45%;
-    }
-    &-title {
-        h1 {
-          width: 100%;
-  
+        flex: 0 0 45%;
+        &-title {
+          h1 {
+            width: 100%;
+            @include font-size(4xl);
+            line-height: $gap * 5;
+          } 
           .pay {
             margin-left: 0;
           }
-        }
-  
-        ul {
-          padding: 0 $gap * 2 $gap * 2;
-          li {
-            margin: $gap 0;
-            font-size: 1.125rem;
-          }
-        }
-        @include respond(md) {
           ul {
-            list-style: none;
-            text-align: center;
+            padding: 0;
+          li {
+              margin: $gap 0;
+              list-style: none;
+              @include font-size(base);
+              .icon {
+                margin-right: 8px;
+              }
+            }
           }
-        }
-      
+          @include respond(md) {
+            ul {
+              list-style: none;
+              text-align: center;
+            }
+          }     
+      }
+    }
+    &__img {
+      flex: 0 0 45%;
     }
   } 
   

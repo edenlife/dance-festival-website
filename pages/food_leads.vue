@@ -14,20 +14,25 @@
           <div class="hero__header-title">
             <h1>
                 Spend less time worrying about what to eat and more time enjoying life.
-              <!-- <span class="pay">
-                Get Lunch <br />
-                Delivered Daily.<br />
-              </span> -->
-            </h1>
+            </h1>  
             <p>Pay once a month and get:</p>
             <ul>
-              <li>Chef-cooked lunch delivered Monday to Friday ✔️</li>
-              <li>Your own assigned Customer Experience champion ✔️</li>
-              <li>10+ hours of productivity unlocked ✔️</li>
+              <li>
+                 <span class="icon"> 🥘 </span>
+                Delicious meals delivered to your doorstep where and how you want it.
+             </li>
+              <li>
+                 <span class="icon"> 👩🏽‍🦰 </span>
+                 A dedicated Customer Support representative.
+              </li>
+              <li>
+                 <span class="icon"> 🍝 </span>
+                Over 100 meal combos to pick from weekly. 
+            </li>
             </ul>
 
             <button @click.prevent="scrollToTop('hero')" class="hero__form-btn">
-              I Want an Eden Lunch Plan
+              Give me a food plan
             </button>
 
             <p class="discount">Never have to worry about lunch again!</p>
@@ -134,7 +139,7 @@
                     xlink:href="@/assets/images/loading-icon.svg#loading-icon"
                   ></use>
                 </svg>
-                <span v-else> I Want an Eden Lunch Plan </span>
+                <span v-else> Give me a food plan </span>
               </button>
             </div>
             <!-- <p class="note">
@@ -268,7 +273,7 @@
       </transition>
       <section v-if="currentMeals.length" class="menu">
         <button class="menu-btn" @click.prevent="scrollToTop('hero')">
-          I Want an Eden Lunch Plan
+          Give me a food plan
         </button>
       </section>
     </div>

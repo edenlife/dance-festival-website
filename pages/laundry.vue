@@ -392,7 +392,7 @@
                     v-if="showAdditionalLaundryCost"
                     class="plan__price-description--list"
                   >
-                    <li v-for="desc in extraLaundryCost" :key="desc">
+                    <li v-for="desc in extraLaundryCostWashDry" :key="desc">
                       <span>{{ desc.item }}</span>
                       <span>&#8358; {{ desc.cost }}</span>
                     </li>
@@ -859,10 +859,20 @@ export default {
         { item: 'Big size towel (2 items)', cost: '750' },
         { item: 'Bedsheet (3 items)', cost: '1125' },
         { item: 'Blanket (3 items)', cost: '1125' },
-        { item: '3 piece Agbada (5 items) ', cost: '18750' },
+        { item: '3 piece Agbada (5 items) ', cost: '1875' },
         { item: 'Curtain (8 items)', cost: '3000' },
         { item: 'Duvet (10 items)', cost: '3750' },
         { item: 'A pair of suit (10 items)', cost: '3750' },
+      ],
+      extraLaundryCostWashDry: [
+        { item: 'Extra item', cost: '250' },
+        { item: 'Big size towel (2 items)', cost: '500' },
+        { item: 'Bedsheet (3 items)', cost: '750' },
+        { item: 'Blanket (3 items)', cost: '750' },
+        { item: '3 piece Agbada (5 items) ', cost: '1500' },
+        { item: 'Curtain (8 items)', cost: '2000' },
+        { item: 'Duvet (10 items)', cost: '2500' },
+        { item: 'A pair of suit (10 items)', cost: '2500' },
       ],
     }
   },

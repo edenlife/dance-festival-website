@@ -896,13 +896,13 @@ export default {
   },
     head() {
     return {
-      title: 'Eden | Food',
+      title: 'Eden | Food Leads',
       meta: [...this.meta],
       link: [
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/food`,
+          href: `https://ouredenlifev2-staging.netlify.app/food_leads`,
         },
       ],
     }
@@ -910,10 +910,10 @@ export default {
   computed: {
     meta() {
       const metaData = {
-        title: 'Eden | Food',
+        title: 'Eden | Food Leads',
         description:
           'Your chef-cooked meals, delivered to you. Daily or weekly.',
-        url: `https://ouredenlifev2-staging.netlify.app/food`,
+        url: `https://ouredenlifev2-staging.netlify.app/food_leads`,
         mainImage: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
       }
       return getSiteMeta(metaData)

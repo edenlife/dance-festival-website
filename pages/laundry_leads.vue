@@ -922,7 +922,7 @@ export default {
         }
       }
     },
-    },
+  },
 }
 </script>
 

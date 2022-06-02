@@ -10,6 +10,7 @@ const giftSahurTable = base('Ramadan - Gift Sahur')
 const BetaTestTable = base('Beta Testing')
 const WorkersDayTable = base('Companies')
 const LaundryLeadsTable = base('Laundry Leads')
+const FoodLeadsTable = base('Food Leads')
 
 export const createGiftPlan = async (fields) => {
   const submitEntry = await giftingTable.create(fields)
@@ -42,6 +43,11 @@ export const createWorkersDay = async (fields) => {
 
 export const createLaundryLeads = async (fields) => {
   const customEntry = await LaundryLeadsTable.create(fields)
+  return customEntry
+}
+
+export const createFoodLeads = async (fields) => {
+  const customEntry = await FoodLeadsTable.create(fields)
   return customEntry
 }
 

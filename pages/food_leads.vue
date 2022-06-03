@@ -720,82 +720,6 @@
       <div slot="footer"></div>
     </modal>
 
-    <!-- <div class="container--description">
-      <section class="description">
-        <div class="description__title">
-          <h3>Why let Eden worry about lunchtime?</h3>
-          <div class="card">
-            <a :href="testimonial.tweetLink" target="_blank">
-              <div class="card__title">
-                <div class="card__title-img">
-                  <img
-                    :src="
-                      require(`~/assets/images/customer-${testimonial.image}.png`)
-                    "
-                    :alt="testimonial.name"
-                  />
-                </div>
-
-                <div class="">
-                  <p class="card__title-name">{{ testimonial.name }}</p>
-                  <p class="card__title-handle">@{{ testimonial.handle }}</p>
-                </div>
-              </div>
-              <p class="card__description" v-html="testimonial.description"></p>
-              <img
-                class="card__description__image"
-                v-if="testimonial.food_img"
-                :src="require(`~/assets/images/${testimonial.food_img}.jpeg`)"
-                :alt="testimonial.name"
-              />
-            </a>
-          </div>
-        </div>
-        <div class="description__details">
-          <div class="description__details-item">
-            <div class="description__details-item--icon">
-              <img
-                :src="require(`~/assets/images/emojis/moneybag.png`)"
-                alt=""
-              />
-            </div>
-
-            <div class="description__details-item--text">
-              <h5>It saves you precious time</h5>
-              <p>
-                By choosing an Eden lunch plan, you go from spending up to 15
-                hours weekly worrying about lunch to spending only 5 minutes
-                picking your meals.
-              </p>
-            </div>
-          </div>
-          <div class="description__details-item">
-            <div class="description__details-item--icon">
-              <img :src="require(`~/assets/images/emojis/rocket.png`)" alt="" />
-            </div>
-            <div class="description__details-item--text">
-              <h5>It's a monthly subscription</h5>
-              <p>
-                You pay once and get fresh food all through the month. Once you
-                subscribe, you're good for the whole month.
-              </p>
-            </div>
-          </div>
-          <div class="description__details-item">
-            <div class="description__details-item--icon">
-              <img :src="require(`~/assets/images/emojis/wow.png`)" alt="" />
-            </div>
-            <div class="description__details-item--text">
-              <h5>It's perfect for your busy lifestyle</h5>
-              <p>
-                You don't have to do anything at all. We'll handle everything
-                from shopping to cooking to delivery.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div> -->
     <div class="container--menu">
       <div v-if="!currentMeals.length" class="menu__loader">
         <Loader />
@@ -1148,14 +1072,14 @@ export default {
 
 <style>
 :root {
-  --psuedo-image-1: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256390/eden-website-v2/Roasted-plantain-_-tomato-_-pepper-beef-sauce-_1_baurlu.png');
-  --psuedo-image-2: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256454/eden-website-v2/Jollof_spagetti_spicy_BBQ_wings_fried_plantain_j6ojph.png');
-  --psuedo-image-3: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256390/eden-website-v2/chicken-_-egg-fried-rice-_-grilled-peppered-croaker-_-fried-plantain_sbzasg.png');
-  --psuedo-image-4: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256390/eden-website-v2/ewa-agonyin-_-fried-chilli-barracuda-_-fried-plantain_htr1ym.png');
-  --psuedo-image-5: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256390/eden-website-v2/Poundo-_-Egusi-soup-_-Cowlegg_yf4szb.png');
-  --psuedo-image-6: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256392/eden-website-v2/stir-fry-vegetable-pasta-_-peppered-beef-_-fried-plantain-_1_ddgqra.png');
-  --psuedo-image-7: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256390/eden-website-v2/pancake-_-scrambled-eggs-_-baked-beans-_1_d0in4h.png');
-  --psuedo-image-8: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256392/eden-website-v2/Teriyaki-Chicken-salad-_pajkcb.png');
+  --psuedo-image-1: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-1.png');
+  --psuedo-image-2: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-2.png');
+  --psuedo-image-3: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-3.png');
+  --psuedo-image-4: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-4.png');
+  --psuedo-image-5: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-5.png');
+  --psuedo-image-6: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-6.png');
+  --psuedo-image-7: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-7.png');
+  --psuedo-image-8: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-8.png');
 }
 
 .dial-1:before {

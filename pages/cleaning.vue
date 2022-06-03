@@ -1286,7 +1286,7 @@ export default {
       const cleaningResponse = await getCleaningServiceTypes()
       this.cleaningServiceTypes = cleaningResponse.data.data
       const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
-        ({ name }) => name.toLowerCase() === 'light cleaning'
+        ({ name }) => name.toLowerCase() === 'standard cleaning'
       )
       this.cleaningQtyOption = cleaning_areas.map((obj) => ({
         ...obj,
@@ -1296,11 +1296,12 @@ export default {
       this.cleaningQtyOption[1].qty = 1
       this.cleaningQtyOption[2].qty = 1
       this.cleaningQtyOption[3].qty = 1
-      this.setCleaningArea('light cleaning')
+      this.setCleaningArea('standard cleaning')
       this.calculateCleaningPrice()
     },
     setCleaningConfig(plan) {
        this.plan = plan
+       console.log(this.plan)
       this.cleaningInfo.item = plan
       this.cleaningInfo.itemAreas = {}
       this.cleaningInfo.itemAreasPrice = {}

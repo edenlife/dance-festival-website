@@ -11,17 +11,17 @@
       <div class="hero">
         <div class="hero__title">
           <h1 class="d-lg">
-             Laundry picked up and <br> delivered in <span> {{ headerText }}</span>.
+             Get rid of the stress of house-cleaning with our <span> {{ headerText }}</span>
           </h1>
           <h1 class="mobile">
-             Laundry picked up and delivered in <span> {{ headerText }}</span>.
+            Get rid of the stress of house-cleaning with our <span> {{ headerText }}</span>.
           </h1>
           <div>
               <p class="bold"> Pay once a month and get:</p>
               <ul>
                 <li>
-                  <span class="icon"> 🧺 </span>
-                  Free pickup and delivery at your convenience at no extra cost.
+                  <span class="icon"> 🏠 </span>
+                  Free-time back while we take care of all the cleaning needs. 
                 </li>
                 <li>
                   <span class="icon"> 👩🏽‍🦰 </span>
@@ -37,15 +37,15 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="scrollToFooter('getEden', 'laundry-leads - hero')"
+              @click.prevent="scrollToFooter('getEden', 'cleaning-leads - hero')"
             >
-              I want an Eden Life Laundry plan
+              Clean for me
             </button>
           </div>
          </div>
          <div class="hero__img-laundry">
               <img
-              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1653654223/eden-website-v2/Laundry_cvdqbw.png"
+              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1654267602/eden-website-v2/Cleaning_4_pemevm.png"
               alt="laundry tag"
               class="hero__img-bg1"
             />
@@ -70,7 +70,9 @@
               >
                 <h5>You choose a plan that works for you.</h5>
                 <p>
-                  Sign up on the Eden app, choose a laundry schedule that works for you. It takes less than 5 minutes!
+                 Sign up on the Eden app. 
+                 Choose the type of cleaning you want. 
+                 Select a schedule that works for you. It takes less than 5 minutes!
                 </p>
               </div>
             </div>
@@ -85,10 +87,11 @@
                 v-animate-onscroll.repeat="'animated fadeInLeft'"
                 class="description__details-item--text"
               >
-                <h5>We pick and do our magic.</h5>
+                <h5>We get scrubbin'.</h5>
                 <p>
-                  We pick up your dirty clothes. We wash or iron as per your request and 
-                  return them to you clean and smelling great!
+                  Our team of trained cleaners visit your home, polishing surfaces, 
+                  mopping floors, scrubbing dishes, and making sure your home looks spotless. 
+                  You don’t have to provide any cleaning materials except water. 
                 </p>
               </div>
             </div>
@@ -100,10 +103,10 @@
                 v-animate-onscroll.repeat="'animated fadeInDown'"
                 class="description__details-item--text"
               >
-                <h5>We deliver.</h5>
+                <h5>You relax.</h5>
                 <p>
-                  We make sure all your clothes are intact and perfectly laundered. 
-                  All within 48 hours. Delivery at no extra cost!
+                  In no time, our cleaners are done and you can relax in your clean home. 
+                  Your weekends are now free for whatever your idea of fun is.
                 </p>
               </div>
             </div>
@@ -114,8 +117,8 @@
             >
               <img
                v-animate-onscroll="'animated fadeInDown'"
-                src="@/assets/images/laundry-image.png"
-                alt="laundry-image"
+                src="@/assets/images/Cleaning 1.png"
+                alt="cleaning-image"
               />
             </div>
             <div
@@ -123,8 +126,8 @@
             >
               <img
                v-animate-onscroll="'animated fadeInUp'"
-                src="@/assets/images/laundry-2.png"
-                alt="laundry-image"
+                src="@/assets/images/Cleaning 2.png"
+                alt="cleaning-image"
               />
             </div>
           </div>
@@ -145,23 +148,23 @@
           </p>
           <ul>
             <li>
-              <h5 class="icon icon--one">👀</h5>
+              <h5 class="icon icon--one">🧑‍💼</h5>
               <div class="icon--text">
-                <h5>Our cleaners are professionals</h5>
+                <h5>Our cleaners are professionals.</h5>
                 <p>Thoroughly trained.</p>
               </div>
             </li>
             <li>
-              <h5 class="icon icon--two">🚛</h5>
+              <h5 class="icon icon--two">👌</h5>
               <div class="icon--text">
-                <h5>You can trust them</h5>
+                <h5>You can trust them.</h5>
                 <p>We guarantee it.</p>
               </div>
             </li>
             <li>
-              <h5 class="icon icon--three">👼</h5>
+              <h5 class="icon icon--three">⏸</h5>
               <div class="icon--text">
-                <h5>Pause Anytime.</h5>
+                <h5>Pause your subscription anytime.</h5>
                 <p>On God!</p>
               </div>
             </li>
@@ -435,7 +438,7 @@
                   <span class="icon">👉 </span> NGN
                   {{ currencyFormat(totalPrice) }}
                 </h5>
-                <p>Monthly</p>
+                <p>per 4 weeks</p>
               </div>
             </div>
           </transition>
@@ -661,7 +664,7 @@
                   <span class="icon">👉 </span> NGN
                   {{ currencyFormat(totalPrice) }}
                 </h5>
-                <p>Monthly</p>
+                <p>per 4 weeks</p>
               </div>
             </div>
           </transition>
@@ -887,7 +890,7 @@
                   <span class="icon">👉 </span> NGN
                   {{ currencyFormat(totalPrice) }}
                 </h5>
-                <p>Monthly</p>
+                <p>per 4 weeks</p>
               </div>
             </div>
           </transition>
@@ -898,92 +901,91 @@
     <div class="container--wall">
       <section class="wall">
         <div class="wall__title">
-          <h3>Why should I let Eden Life do my laundry?</h3>
+          <h3>Why should I let Eden Life do my cleaning?</h3>
         </div>
         <div class="wall__messages">
           <div class="wall__messages-first-box">
              <div class="wall__messages-title">
-               <h3>Bye Bye to the <i>wahala </i> of going to the laundromats.</h3>
+               <h3>Our job is to make sure your house is spotless.</h3>
              </div>
-             <p class="card__description">Let us do the dirty laundry and use the free time to do what you love.</p>
+             <p class="card__description">We will do anything to make sure your house or space is spotless.</p>
               <div class="card">
-                <a href="https://twitter.com/Yesmina_T/status/1309270002722365441?s=20" target="_blank">
+                <a href="https://twitter.com/Anagazo/status/1514576172864221191?s=20&t=i_QLeckfJVf7cjje-ME7Zg" target="_blank">
                   <div class="card__title">
                     <div class="card__title-img">
                       <img
-                        :src="require(`~/assets/images/customer-tolu.png`)"
-                        alt="customer-tolu"
+                        :src="require(`~/assets/images/customer-anagazo.png`)"
+                        alt="customer-anagazo"
                       />
                     </div>
                     <div class="">
-                      <p class="card__title-name">Tolu Ajiboye</p>
-                      <p class="card__title-handle">@Yesmina_T</p>
+                      <p class="card__title-name">Anagazo</p>
+                      <p class="card__title-handle">@Anagazo</p>
                     </div>
                   </div>
                   <p class="card__description">
-                    Bruh the actual worst. I haven’t done my own laundry in years. It’s even so stress-free now that I use <span style="color:#03A84E"> @ouredenlife </span>.
-                     I literally just put every single item into my laundry bag and they come pick it up and drop it back.
+                    I’m always excited when <span style="color:#03A84E"> @ouredenlife </span> sends male cleaners. 
+                    Them dey always do like say them get something to prove. <br>
+                    <br>
+                    “Sir can I sweep the ceiling?”<br>
+                    “Sir is the sun too hot, can I reduce it”<br>
+                    “I will mop the excess oxygen shortly”<br>
+                    😂 it’s always an experience.
                   </p>
                 </a>
-                <div class="mt-4">
-                  <img
-                        :src="require(`~/assets/images/clothes.png`)"
-                        alt="customer-laundry"
-                      />
-                </div>
               </div>
           </div>
           
           <div class="wall__messages-second_card">
              <div class="wall__messages-first-box">
                 <div class="wall__messages-title">
-                  <h3>It just works. You don’t have to worry about your clothes.</h3>    
+                  <h3>We take cleaning to another special level.</h3>    
                 </div> 
-                <p class="card__description">Turn your laundry over to Eden Life. You don't have to do anything at all. It just works.</p>
+                <p class="card__description">Sparkle and glow with Eden Life’s cleaners.  We’ll shine up your homes and items. That’s what we do. </p>
                   <div class="card">
-                    <a href="https://twitter.com/timigod/status/1190320551837020165?s=20" target="_blank">
+                    <a href="https://twitter.com/TheVunderkind/status/1527384189821079552?s=20&t=i_QLeckfJVf7cjje-ME7Zg" target="_blank">
                       <div class="card__title">
                         <div class="card__title-img">
                           <img
-                            :src="require(`~/assets/images/customer-timi.png`)"
-                            alt="customer-timi"
+                            :src="require(`~/assets/images/customer-vunderkind.png`)"
+                            alt="customer-vunderkind"
                           />
                         </div>
 
                         <div class="">
-                          <p class="card__title-name">Timi Ajiboye</p>
-                          <p class="card__title-handle">@timigod</p>
+                          <p class="card__title-name">mogwai.</p>
+                          <p class="card__title-handle">@TheVunderkind</p>
                         </div>
                       </div>
                       <p class="card__description">
-                          Things “just working” with little input from me, makes me happy. I really like my laundry process now (<span style="color:#03A84E"> @ouredenlife </span> is a big part of that)<br><br>
+                          My Eden cleaner cleaned one ancient kettle in the kitchen and this shit is gleaming like Aladdin’s lamp
                       </p>
                     </a>
                   </div>
               </div>
               <div class="wall__messages-first-box">
                 <div class="wall__messages-title">
-                  <h3>Professionals like no other.</h3>
+                  <h3>It's perfect for your busy lifestyle.</h3>
                   </div>
-                  <p class="card__description">Your laundry will be cleaned with the utmost care and handled by professionals. From pickup to delivery, we do the work so you don’t have to.</p>
+                  <p class="card__description">You just let our cleaners do the job, so you attend to other important things.</p>
                     <div class="card">
-                      <a href="https://twitter.com/LifeOfMogwai/status/1274748508269154308?s=20" target="_blank">
+                      <a href="https://twitter.com/KingRohv/status/1382790202045923331?s=20&t=i_QLeckfJVf7cjje-ME7Zg" target="_blank">
                         <div class="card__title">
                           <div class="card__title-img">
                             <img
-                              :src="require(`~/assets/images/customer-justin.png`)"
-                              alt="customer-justin"
+                              :src="require(`~/assets/images/customer-philip.png`)"
+                              alt="customer-philip"
                             />
                           </div>
 
                           <div class="">
-                            <p class="card__title-name">justin irabor</p>
-                            <p class="card__title-handle">@LifeOfMogwai</p>
+                            <p class="card__title-name">Philip Ese </p>
+                            <p class="card__title-handle">@KingRohv</p>
                           </div>
                         </div>
                         <p class="card__description">
-                          Your laundry will be cleaned with the utmost care and handled by professionals. 
-                          From pickup to delivery, we do the work so you don’t have to.<br><br>
+                          I have to say  <span style="color:#03A84E"> @ouredenlife </span> has simplified my life sha. From food to laundry and house cleaning. And I have the best gardener. 
+                          Will gladly invest if I see the opportunity..<br><br>
                         </p>
                       </a>
                     </div>
@@ -1050,7 +1052,7 @@
               :disabled="loading"
               @click.prevent="submit()"
             >
-               I want an Eden Life Laundry plan
+               I want an Eden Life Cleaning plan
             </button>
           </div>
         </div>
@@ -1140,7 +1142,7 @@ export default {
   },
   data() {
     return {
-      headerText: '48 hours',
+      headerText: 'professional cleaners.',
       showSuccessModal: false,
       showFailedModal: false,
       setExploreService: false,
@@ -1308,7 +1310,7 @@ export default {
       const cleaningResponse = await getCleaningServiceTypes()
       this.cleaningServiceTypes = cleaningResponse.data.data
       const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
-        ({ name }) => name.toLowerCase() === 'light cleaning'
+        ({ name }) => name.toLowerCase() === 'standard cleaning'
       )
       this.cleaningQtyOption = cleaning_areas.map((obj) => ({
         ...obj,
@@ -1318,8 +1320,7 @@ export default {
       this.cleaningQtyOption[1].qty = 1
       this.cleaningQtyOption[2].qty = 1
       this.cleaningQtyOption[3].qty = 1
-      this.setCleaningArea('light cleaning')
-      this.calculateCleaningPrice()
+      this.setCleaningArea('standard cleaning')
     },
     setCleaningConfig(plan) {
        this.plan = plan
@@ -1352,6 +1353,7 @@ export default {
         },
       })
       this.getEstimateRoomTypes()
+      console.log(this.getEstimateRoomTypes())
     },
     setCleaningArea(area) {
       const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
@@ -1409,7 +1411,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// @import '@/assets/scss/pages/_laundry.scss';
 @import '@/assets/scss/pages/_cleaning_leads.scss';
 
 .mt-4 {

@@ -102,7 +102,7 @@
     margin-top: $gap * 6;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: $gap * 3;
+    gap: $gap * 2.3;
     padding-bottom: $gap * 5;
     figure {
       display: flex;
@@ -113,7 +113,7 @@
       padding: $gap;
       background-color: #eeeeee;
       border-radius: 8px;
-      width: 400px;
+      width: 350px;
       height: 350px;
       img {
         width: 100%;
@@ -203,8 +203,8 @@
       padding-bottom: 0;
 
       &-img {
-        height: 250px;
-        width: 200px;
+        width: 164px;
+        height: 200px;
         padding: $gap * 3 $gap + 4;
 
         img {

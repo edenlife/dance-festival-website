@@ -318,7 +318,7 @@
                   <p>per 4 weeks</p>
                 </div>
                 <div class="plan__price-alert">
-                  <p>You will get {{mealsPerDay}} meals delivered once a week for 4 weeks.</p>
+                  <p>You will get {{mealsPerDay}} meals delivered daily for 4 weeks.</p>
                 </div>
                 <button @click.prevent="scrollToFooter('getEden')" class="hero__form-btn">
                   Give me a food plan
@@ -1005,6 +1005,7 @@ export default {
           meal: { item: null, frequency: freq, qty: this.mealsPerWeek * 2 },
         })
       }
+      console.log(freq)
     },
     scrollToFooter(id) {
       document.getElementById(id).scrollIntoView()
@@ -1147,18 +1148,18 @@ export default {
 
 <style>
 :root {
-  --psuedo-image-1: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654242553/eden-website-v2/Roasted_plantain_tomato_pepper_beef_sauce_1_ay9c54.png');
-  --psuedo-image-2: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654242547/eden-website-v2/Jollof_spagetti_spicy_BBQ_wings_fried_plantain_1_lz5f1m.png');
-  --psuedo-image-3: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654242550/eden-website-v2/chicken_egg_fried_rice_grilled_peppered_croaker_fried_plantain_1_t1jpa0.png');
-  --psuedo-image-4: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654242520/eden-website-v2/ewa_agonyin_fried_chilli_barracuda_fried_plantain_1_plusvt.png');
-  --psuedo-image-5: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654242540/eden-website-v2/Poundo_Egusi_soup_Cowlegg_1_syjhkw.png');
-  --psuedo-image-6: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654242552/eden-website-v2/stir_fry_vegetable_pasta_peppered_beef_fried_plantain_1_idwoa3.png');
-  --psuedo-image-7: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654242518/eden-website-v2/pancake_scrambled_eggs_baked_beans_1_xzfqfu.png');
-  --psuedo-image-8: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654242549/eden-website-v2/Teriyaki_Chicken_salad_1_j3uvjh.png');
+  --psuedo-image-1: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256390/eden-website-v2/Roasted-plantain-_-tomato-_-pepper-beef-sauce-_1_baurlu.png');
+  --psuedo-image-2: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256454/eden-website-v2/Jollof_spagetti_spicy_BBQ_wings_fried_plantain_j6ojph.png');
+  --psuedo-image-3: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256390/eden-website-v2/chicken-_-egg-fried-rice-_-grilled-peppered-croaker-_-fried-plantain_sbzasg.png');
+  --psuedo-image-4: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256390/eden-website-v2/ewa-agonyin-_-fried-chilli-barracuda-_-fried-plantain_htr1ym.png');
+  --psuedo-image-5: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256390/eden-website-v2/Poundo-_-Egusi-soup-_-Cowlegg_yf4szb.png');
+  --psuedo-image-6: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256392/eden-website-v2/stir-fry-vegetable-pasta-_-peppered-beef-_-fried-plantain-_1_ddgqra.png');
+  --psuedo-image-7: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256390/eden-website-v2/pancake-_-scrambled-eggs-_-baked-beans-_1_d0in4h.png');
+  --psuedo-image-8: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256392/eden-website-v2/Teriyaki-Chicken-salad-_pajkcb.png');
 }
 
 .dial-1:before {
-  background: var(--psuedo-image-1) center / 92px;
+  background: var(--psuedo-image-1) center / 202px;
   width: 92px;
   height: 92px;
   background-size: contain;

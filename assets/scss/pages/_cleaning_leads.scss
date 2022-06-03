@@ -1,4 +1,19 @@
 @import '../../style.scss';
+.container {
+  &--form {
+    width: 100%;
+    background-color: #FFF3DF;
+  }
+  &-plan {
+    background-color: #fffbf5;
+  }
+  &--plan {
+    background-color: #fffbf5;
+  }
+  &--footer {
+    background: color(eden-neutral-7);
+  }
+}
 
 .header {
   margin: 0 auto;
@@ -21,7 +36,7 @@
   grid-row-gap: 0px;
   width: 83%;
   margin: 0 auto;
-  padding: $gap * 2 0 $gap * 9 0;
+  padding: $gap * 8 0 $gap * 9 0;
   &__title {
     margin: 0;
     width: 82%;
@@ -88,10 +103,9 @@
     background-color: #ffe7bf;
     bottom: 8rem;
     margin-left: 0;
-    height: $gap * 78;
+    height: $gap * 73;
     position: absolute;
     width: 34%;
-    height: 690px;
     right: 0;
     top: 0px;
     &-laundry {
@@ -189,13 +203,13 @@
   &__messages {
     display: flex;
     justify-content: space-between;
+    gap: $gap * 3;
     &-first-box {
       background-color: #f7fdff;
       padding: $gap * 4;
       border-radius: $gap * 2.4;
-    }
-    &-first-box {
       margin-top: 24px;
+      height: $gap * 51.5;
     }
     &-title {
       @include font-size(xl);
@@ -492,6 +506,7 @@
           padding: $gap - 2 $gap + 2;
           line-height: 31px;
           @include font-size(2xl);
+          background-color: #FFE7BF;
           &--text {
             h5 {
               @include font-size(lg);
@@ -503,15 +518,6 @@
               line-height: 23px;
               width: 100%;
             }
-          }
-          &--one {
-            background-color: color(eden-laundary);
-          }
-          &--two {
-            background-color: color(eden-gifting);
-          }
-          &--three {
-            background-color: color(eden-cleaning);
           }
         }
       }
@@ -588,8 +594,6 @@
           color: color(eden-green-primary);
         }
       }
-    }
-    &-light {
     }
     &-deep {
       .plan__price-item {

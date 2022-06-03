@@ -29,6 +29,7 @@
   overflow: hidden;
   &__header {
     flex: 0 0 46%;
+    margin-top: 0;
     &-title {
       h1 {
         width: 100%;
@@ -86,6 +87,7 @@
   }
   &__img {
     flex: 0 0 50%;
+    margin-top: 0;
   }
   @include respond(md) {
     overflow: hidden;

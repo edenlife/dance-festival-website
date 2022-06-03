@@ -720,7 +720,7 @@
       <div slot="footer"></div>
     </modal>
 
-     <div class="container--menu">
+    <div class="container--menu">
       <div v-if="!currentMeals.length" class="menu__loader">
         <Loader />
         <p>Loading menu...</p>
@@ -1072,14 +1072,14 @@ export default {
 
 <style>
 :root {
-  --psuedo-image-1: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256390/eden-website-v2/Roasted-plantain-_-tomato-_-pepper-beef-sauce-_1_baurlu.png');
-  --psuedo-image-2: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256454/eden-website-v2/Jollof_spagetti_spicy_BBQ_wings_fried_plantain_j6ojph.png');
-  --psuedo-image-3: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256390/eden-website-v2/chicken-_-egg-fried-rice-_-grilled-peppered-croaker-_-fried-plantain_sbzasg.png');
-  --psuedo-image-4: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256390/eden-website-v2/ewa-agonyin-_-fried-chilli-barracuda-_-fried-plantain_htr1ym.png');
-  --psuedo-image-5: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256390/eden-website-v2/Poundo-_-Egusi-soup-_-Cowlegg_yf4szb.png');
-  --psuedo-image-6: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256392/eden-website-v2/stir-fry-vegetable-pasta-_-peppered-beef-_-fried-plantain-_1_ddgqra.png');
-  --psuedo-image-7: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256390/eden-website-v2/pancake-_-scrambled-eggs-_-baked-beans-_1_d0in4h.png');
-  --psuedo-image-8: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1654256392/eden-website-v2/Teriyaki-Chicken-salad-_pajkcb.png');
+  --psuedo-image-1: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-1.png');
+  --psuedo-image-2: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-2.png');
+  --psuedo-image-3: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-3.png');
+  --psuedo-image-4: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-4.png');
+  --psuedo-image-5: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-5.png');
+  --psuedo-image-6: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-6.png');
+  --psuedo-image-7: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-7.png');
+  --psuedo-image-8: url('https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1622192212/eden-website-v2/signuphero-8.png');
 }
 
 .dial-1:before {

@@ -257,7 +257,7 @@
                     @click.prevent="decreaseOrder('weekly')"
                   >
                     <svg
-                      width="24"
+                      width="20"
                       height="24"
                       viewBox="0 0 24 24"
                       fill="none"
@@ -285,7 +285,7 @@
                     @click.prevent="increaseOrder('weekly')"
                   >
                     <svg
-                      width="24"
+                      width="20"
                       height="24"
                       viewBox="0 0 24 24"
                       fill="none"
@@ -335,7 +335,7 @@
                     @click.prevent="decreaseOrder('monthly')"
                   >
                     <svg
-                      width="24"
+                      width="20"
                       height="24"
                       viewBox="0 0 24 24"
                       fill="none"
@@ -363,7 +363,7 @@
                     @click.prevent="increaseOrder('monthly')"
                   >
                     <svg
-                      width="24"
+                      width="20"
                       height="24"
                       viewBox="0 0 24 24"
                       fill="none"
@@ -400,7 +400,7 @@
                     @click.prevent="decreaseFrequency()"
                   >
                     <svg
-                      width="24"
+                      width="20"
                       height="24"
                       viewBox="0 0 24 24"
                       fill="none"
@@ -429,7 +429,7 @@
                     @click.prevent="increaseFrequency()"
                   >
                     <svg
-                      width="24"
+                      width="20"
                       height="24"
                       viewBox="0 0 24 24"
                       fill="none"

@@ -45,6 +45,7 @@
       p {
         @include font-size(lg);
         @include font-weight(semi-bold);
+        margin-top: $gap * 3;
       }
       ul {
         padding: 0;

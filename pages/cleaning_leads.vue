@@ -174,12 +174,12 @@
         <div class="plan__price">
           <ul class="plan__price-option">
             <li
-              :class="{ active: plan === 'light-cleaning' }"
-              @click.prevent="setCleaningConfig('light-cleaning')"
+              :class="{ active: plan === 'standard-cleaning' }"
+              @click.prevent="setCleaningConfig('standard-cleaning')"
             >
               <span> Standard Cleaning</span>
               <svg
-                v-if="plan === 'light-cleaning'"
+                v-if="plan === 'standard-cleaning'"
                 width="6"
                 height="6"
                 viewBox="0 0 6 6"
@@ -224,7 +224,7 @@
           </ul>
           <!--  -->
           <transition name="slide-fade">
-            <div v-if="plan === 'light-cleaning'" class="plan__price-light">
+            <div v-if="plan === 'standard-cleaning'" class="plan__price-light">
               <div class="plan__price-item">
                 <div class="plan__price-description">
                   <div class="plan__price-description-title">
@@ -1011,11 +1011,11 @@
               <label for="company name"> Full Name</label>
               <input
                 id=""
-                v-model="laundryForm.full_name"
+                v-model="cleaningForm.full_name"
                 type="text"
                 name=""
                 placeholder="Your first & last name"
-                :class="{ 'has-error': $v.laundryForm.full_name.$error }"
+                :class="{ 'has-error': $v.cleaningForm.full_name.$error }"
               />
             </div>
 
@@ -1023,11 +1023,11 @@
               <label for="email">Email Address </label>
               <input
                 id=""
-                v-model="laundryForm.email"
+                v-model="cleaningForm.email"
                 type="email"
                 name=""
                 placeholder="email@example.com"
-                :class="{ 'has-error': $v.laundryForm.email.$error }"
+                :class="{ 'has-error': $v.cleaningForm.email.$error }"
               />
             </div>
 
@@ -1035,12 +1035,12 @@
               <label for="phone number">Contact Person’s Phone Number</label>
               <input
                 id=""
-                v-model.trim="$v.laundryForm.phone_number.$model"
+                v-model.trim="$v.cleaningForm.phone_number.$model"
                 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                 type="text"
                 name=""
                 placeholder="08123456789"
-                :class="{ 'has-error': $v.laundryForm.phone_number.$error }"
+                :class="{ 'has-error': $v.cleaningForm.phone_number.$error }"
               />
             </div>
             <button
@@ -1118,7 +1118,7 @@ import { pricing } from '~/static/pricing'
 import { currencyFormat } from '~/static/functions'
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
-import { createLaundryLeads } from '~/request/airtable'
+import { createCleaningLeads } from '~/request/airtable'
 import { notUrl } from '~/utils/validators'
 import { getCleaningServiceTypes } from '~/request/all.api'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
@@ -1130,7 +1130,7 @@ export default {
   mixins: [validationMixin],
   layout: 'lead',
   validations: {
-    laundryForm: {
+    cleaningForm: {
       full_name: { required, notUrl },
       email: { required, email },
        phone_number: {
@@ -1157,7 +1157,9 @@ export default {
       phone_number: '',
       loading: false,
       exploreService: '',
-      plan: 'light-cleaning',
+      light: 1,
+      deep: 1,
+      plan: 'standard-cleaning',
       frequency: 'weekly',
       totalPrice: null,
       visible: [],
@@ -1165,13 +1167,13 @@ export default {
       cleaningQtyOption: [],
       cleaningServiceTypes: [],
       cleaningInfo: {
-        item: 'light-cleaning',
+        item: 'standard-cleaning',
         itemAreas: {},
         itemAreasPrice: {},
         frequency: 'weekly',
         qty: 4,
       },
-      laundryForm: {
+      cleaningForm: {
         full_name: '',
         email: '',
         phone_number: '',
@@ -1180,13 +1182,13 @@ export default {
   },
   head() {
     return {
-      title: 'Eden | Laundry Leads',
+      title: 'Eden | Cleaning Leads',
       meta: [...this.meta],
       link: [
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/laundry_leads`,
+          href: `https://ouredenlifev2-staging.netlify.app/cleaning_leads`,
         },
       ],
     }
@@ -1194,21 +1196,18 @@ export default {
   computed: {
     meta() {
       const metaData = {
-        title: 'Eden | Laundry Leads',
+        title: 'Eden | Cleaning Leads',
         description:
-          'Your clothes, picked up, laundered and delivered to you in 48 hours or less.',
-        url: `https://ouredenlifev2-staging.netlify.app/laundry_leads`,
+          'Professional cleaning at your doorstep. Up to thrice a week.',
+        url: `https://ouredenlifev2-staging.netlify.app/cleaning_leads`,
         mainImage:
-          'https://ouredenlifev2-staging.netlify.app/edencardlaundry.png',
+          'https://ouredenlifev2-staging.netlify.app/edencardcleaning.png',
       }
       return getSiteMeta(metaData)
     },
   },
   mounted() {
-    window.addEventListener('scroll', this.isInViewport)
     mixpanelTrackEvent('Laundry Leads page')
-    window.addEventListener('resize', this.handleResize)
-    this.handleResize() 
     this.fetchCleaningServiceTypes()
     },
   destroyed() {
@@ -1224,72 +1223,58 @@ export default {
             this.visible.push(plan)
         }
     },
-    isInViewport() {
-      const element = document.querySelector('#laundry-video')
-      const { top, bottom } = element.getBoundingClientRect()
-      const vHeight =
-        window.innerHeight || document.documentElement.clientHeight
-      const isInView = (top > 0 || bottom > 0) && top < vHeight
-      if (isInView) {
-        this.playVideo()
-        document.querySelector('svg.bee').setAttribute('class', 'timeline--b')
-        document.querySelector('svg.cee').setAttribute('class', 'timeline--c')
-        document.querySelector('svg.dee').setAttribute('class', 'timeline--d')
-        document.querySelector('svg.eee').setAttribute('class', 'timeline--e')
-      }
-    },
-    handleResize() {
-      this.window.width = window.innerWidth
-      this.window.height = window.innerHeight
-      if (this.window.width < '768') {
-        this.setExploreService = true
-      } else this.setExploreService = false
+    setCleaningType(plan) {
+      this.plan = plan
+      this.cleaningInfo.item = plan
+      const planType = plan.replaceAll('-', ' ')
+      this.setCleaningArea(planType)
+      this.calculateCleaningPrice()
     },
     scrollToFooter(id) {
       document.getElementById(id).scrollIntoView()
     },
     trackLink(service) {
-      mixpanelTrackEvent(`${service} clicked - Laundry (more options)`)
+      mixpanelTrackEvent(`${service} clicked - Cleaning Leads (more options)`)
     },
      closeModal() {
       this.showSuccessModal = !this.showSuccessModal
     },
     async submit() {
-      this.$v.laundryForm.$touch()
-      if (this.$v.laundryForm.$error) return
-      if (!this.$v.laundryForm.$error) {
+      this.$v.cleaningForm.$touch()
+      if (this.$v.cleaningForm.$error) return
+      if (!this.$v.cleaningForm.$error) {
         try {
           this.loading = true
           const metaData = {
-            'Full Name': this.laundryForm.full_name,
-            'Email Address': this.laundryForm.email,
-            'Phone Number': this.laundryForm.phone_number,
+            'Full Name': this.cleaningForm.full_name,
+            'Email Address': this.cleaningForm.email,
+            'Phone Number': this.cleaningForm.phone_number,
           }
           const leadMetaData = {
-           name: this.laundryForm.full_name,
-           email: this.laundryForm.email,
-           phone: this.laundryForm.phone_number,
+           name: this.cleaningForm.full_name,
+           email: this.cleaningForm.email,
+           phone: this.cleaningForm.phone_number,
             lead_gen_page: window.location.href,
             referrer: document.referrer,
           }
           this.$intercom('update', {
-            name: this.laundryForm.full_name,
-            email: this.laundryForm.email,
-            phone: this.laundryForm.phone_number,
+            name: this.cleaningForm.full_name,
+            email: this.cleaningForm.email,
+            phone: this.cleaningForm.phone_number,
             lead_gen_page: window.location.href,
             referrer: document.referrer,
           })
           this.$intercom('trackEvent', 'lead-genaration-signup', leadMetaData)
-          createLaundryLeads(metaData).then(
+          createCleaningLeads(metaData).then(
             (res) => {
               this.loading = false
               mixpanelTrackEvent('Laundry Leads form submitted')
               setTimeout(() => {
-                Object.keys(this.laundryForm).forEach(
-                  (key) => (this.laundryForm[key] = '')
+                Object.keys(this.cleaningForm).forEach(
+                  (key) => (this.cleaningForm[key] = '')
                 )
                 this.$nextTick(() => {
-                  this.$v.laundryForm.$reset()
+                  this.$v.cleaningForm.$reset()
                    this.$router.push('/success_page')
                 })
               }, 500)
@@ -1321,6 +1306,7 @@ export default {
       this.cleaningQtyOption[2].qty = 1
       this.cleaningQtyOption[3].qty = 1
       this.setCleaningArea('standard cleaning')
+      this.calculateCleaningPrice()
     },
     setCleaningConfig(plan) {
        this.plan = plan
@@ -1334,6 +1320,7 @@ export default {
       this.cleaningQtyOption = this.cleaningQtyOption
       this.setCleaningArea(planType)
       this.calculateCleaningPrice()
+       return cleaning_areas;
     },
     calculateCleaningPrice() {
       const {
@@ -1353,7 +1340,6 @@ export default {
         },
       })
       this.getEstimateRoomTypes()
-      console.log(this.getEstimateRoomTypes())
     },
     setCleaningArea(area) {
       const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(

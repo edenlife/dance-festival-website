@@ -305,12 +305,12 @@
         <div class="plan__price">
           <ul class="plan__price-option">
             <li
-              :class="{ active: plan === 'light-cleaning' }"
-              @click.prevent="setCleaningConfig('light-cleaning')"
+              :class="{ active: plan === 'standard-cleaning' }"
+              @click.prevent="setCleaningConfig('standard-cleaning')"
             >
               <span> Standard Cleaning</span>
               <svg
-                v-if="plan === 'light-cleaning'"
+                v-if="plan === 'standard-cleaning'"
                 width="6"
                 height="6"
                 viewBox="0 0 6 6"
@@ -355,7 +355,7 @@
           </ul>
           <!--  -->
           <transition name="slide-fade">
-            <div v-if="plan === 'light-cleaning'" class="plan__price-light">
+            <div v-if="plan === 'standard-cleaning'" class="plan__price-light">
               <div class="plan__price-item">
                 <div class="plan__price-description">
                   <div class="plan__price-description-title">
@@ -1181,7 +1181,7 @@ export default {
       },
       light: 1,
       deep: 1,
-      plan: 'light-cleaning',
+      plan: 'standard-cleaning',
       frequency: 'weekly',
       totalPrice: null,
       visible: [],
@@ -1189,7 +1189,7 @@ export default {
       cleaningQtyOption: [],
       cleaningServiceTypes: [],
       cleaningInfo: {
-        item: 'light-cleaning',
+        item: 'standard-cleaning',
         itemAreas: {},
         itemAreasPrice: {},
         frequency: 'weekly',
@@ -1301,7 +1301,6 @@ export default {
     },
     setCleaningConfig(plan) {
        this.plan = plan
-       console.log(this.plan)
       this.cleaningInfo.item = plan
       this.cleaningInfo.itemAreas = {}
       this.cleaningInfo.itemAreasPrice = {}
@@ -1312,6 +1311,7 @@ export default {
       this.cleaningQtyOption = this.cleaningQtyOption
       this.setCleaningArea(planType)
       this.calculateCleaningPrice()
+       return cleaning_areas;
     },
     calculateCleaningPrice() {
       const {

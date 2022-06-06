@@ -1207,7 +1207,7 @@ export default {
     },
   },
   mounted() {
-    mixpanelTrackEvent('Laundry Leads page')
+    mixpanelTrackEvent('Cleaning Leads page')
     this.fetchCleaningServiceTypes()
     },
   destroyed() {

@@ -62,7 +62,7 @@ export const pricing = (services) => {
         areasTotalPrice = UNIT_PRICE_MAP.CLEANING[parseInt(qty)]
       }
       switch (item) {
-        case 'light-cleaning':
+        case 'standard-cleaning':
           if (areasTotalPrice >= 15000) {
             discount = 3000
           } else if (areasTotalPrice >= 9000) {

@@ -1215,7 +1215,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/cleaning_leads`,
+          href: `https://ouredenlife.com/cleaning`,
         },
       ],
     }
@@ -1226,7 +1226,7 @@ export default {
         title: 'Eden | Cleaning Leads',
         description:
           'Professional cleaning at your doorstep. Up to thrice a week.',
-        url: `https://ouredenlifev2-staging.netlify.app/cleaning_leads`,
+        url: `https://ouredenlife.com/cleaning_leads`,
         mainImage:
           'https://ouredenlifev2-staging.netlify.app/edencardcleaning.png',
       }

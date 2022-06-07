@@ -826,7 +826,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlife.com/food_leads`,
+          href: `https://ouredenlife.com/food`,
         },
       ],
     }

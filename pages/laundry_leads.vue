@@ -24,11 +24,11 @@
                   Free pickup and delivery at your convenience at no extra cost.
                 </li>
                 <li>
-                  <span class="icon"> 👩🏽‍🦰 </span>
+                  <span class="icon"> 🧑‍💼 </span>
                   A dedicated Customer Support representative.
                 </li>
                 <li>
-                  <span class="icon"> 🤌🏽 </span>
+                  <span class="icon"> 🤌 </span>
                   Flexible plan to fit your needs (weekly, bi-weekly, or monthly).
                 </li>
               </ul>

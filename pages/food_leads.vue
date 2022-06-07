@@ -22,7 +22,7 @@
                 Delicious meals delivered to your doorstep where and how you want it.
              </li>
               <li>
-                 <span class="icon"> 👩🏽‍🦰 </span>
+                 <span class="icon"> 🧑‍💼 </span>
                  A dedicated Customer Support representative.
               </li>
               <li>
@@ -31,7 +31,7 @@
             </li>
             </ul>
 
-            <button @click.prevent="scrollToFooter('getEden')" class="hero__form-btn">
+            <button @click.prevent="scrollToFooter('getEden', 'food leads - hero')" class="hero__form-btn">
               Give me a food plan
             </button>
           </div>

@@ -24,11 +24,11 @@
                   Free-time back while we take care of all the cleaning needs. 
                 </li>
                 <li>
-                  <span class="icon"> 👩🏽‍🦰 </span>
+                  <span class="icon"> 🧑‍💼 </span>
                   A dedicated Customer Support representative.
                 </li>
                 <li>
-                  <span class="icon"> 🤌🏽 </span>
+                  <span class="icon"> 🤌 </span>
                   Flexible plan to fit your needs (weekly, bi-weekly, or monthly).
                 </li>
               </ul>

@@ -18,7 +18,7 @@
               type="button"
               class="hero__button-solid"
               @click.prevent="
-                scrollToFooter('getEden')
+                scrollToFooter('getEden', 'companies - hero')
               "
             >
               Get Eden
@@ -295,7 +295,7 @@
                 >
                   <circle cx="4" cy="4" r="4" />
                 </svg>
-                <svg
+                <!-- <svg
                   class="ten"
                   width="2"
                   height="90"
@@ -304,8 +304,8 @@
                   xmlns="http://www.w3.org/2000/svg"
                 >
                 <path d="M0 0H2V190H0V0Z" fill="#E4E8E6" />
-                </svg>
-               <svg
+                </svg> -->
+               <!-- <svg
                   class="eleven"
                   width="8"
                   height="8"
@@ -314,7 +314,7 @@
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <circle cx="4" cy="4" r="4" />
-                </svg>
+                </svg> -->
               </div>
 
               <div class="horizontal">
@@ -433,7 +433,7 @@
                     fill="#E4E8E6"
                   />
                 </svg>
-                <svg
+                <!-- <svg
                   class="horizontal--k"
                   width="8"
                   height="8"
@@ -442,26 +442,26 @@
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <circle cx="4" cy="4" r="4" />
-                </svg>
+                </svg> -->
               </div>
             </div>
             <div class="description__slider-text">
               <div class="one">
                 <h5>Fill the form on this page</h5>
               </div>
-              <div class="two">
+              <!-- <div class="two">
                 <h5>Enter your discount code</h5>
-              </div>
-              <div class="three">
+              </div> -->
+              <div class="two">
                 <h5>You get an Eden plan for your team</h5>
               </div>
-              <div class="four">
+              <div class="three">
                 <h5>We'll set up your team's accounts</h5>
               </div>
-              <div class="five">
+              <div class="four">
                 <h5>Every team member gets personalized service</h5>
               </div>
-              <div class="six">
+              <div class="five">
                 <h5>You monitor/evaluate team satisfaction.(Coming soon)</h5>
               </div>
               <button
@@ -694,7 +694,7 @@
                 </div>
               </div>
             </div>
-            <div class="form__input">
+            <!-- <div class="form__input">
               <label for="message">Discount Code (if any)</label>
               <input
                 id=""
@@ -702,8 +702,8 @@
                 type="text"
                 name=""
               />
-            </div>
-            <div class="form__input">
+            </div> -->
+            <!-- <div class="form__input">
               <div class="alert">
                 <img
                   src="@/assets/images/alert.svg"
@@ -715,7 +715,7 @@
                    This offer lasts until the <b> 15th May, 2022</b>.</span
                 >
               </div>
-            </div>
+            </div> -->
             <button
               type="submit"
               class="btn--submit"

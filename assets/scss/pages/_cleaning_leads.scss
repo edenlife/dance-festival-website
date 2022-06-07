@@ -887,6 +887,19 @@
       }
     }
 
+    &-light {
+      .hero__button {
+        margin: $gap * 4 0;
+         button{
+          width: 100%;
+          @include respond(md) {
+            margin: 0;
+          }
+        }
+      }
+    }
+
+
     .slide-fade-enter-active {
       transition: all 0.5s ease;
     }

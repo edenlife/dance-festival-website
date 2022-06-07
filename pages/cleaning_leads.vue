@@ -24,11 +24,11 @@
                   Free-time back while we take care of all the cleaning needs. 
                 </li>
                 <li>
-                  <span class="icon"> 👩🏽‍🦰 </span>
+                  <span class="icon"> 🧑‍💼 </span>
                   A dedicated Customer Support representative.
                 </li>
                 <li>
-                  <span class="icon"> 🤌🏽 </span>
+                  <span class="icon"> 🤌 </span>
                   Flexible plan to fit your needs (weekly, bi-weekly, or monthly).
                 </li>
               </ul>
@@ -165,7 +165,7 @@
               <h5 class="icon icon--three">⏸</h5>
               <div class="icon--text">
                 <h5>Pause your subscription anytime.</h5>
-                <p>On God!</p>
+                <p>Out of town? You can skip a service.</p>
               </div>
             </li>
           </ul>
@@ -440,6 +440,15 @@
                 </h5>
                 <p>per 4 weeks</p>
               </div>
+               <div class="hero__button">
+                    <button
+                    type="button"
+                    class="hero__button-solid"
+                    @click.prevent="scrollToFooter('getEden', 'Cleaning-leads - plan')"
+                    >
+                    Clean for me
+                    </button>
+                </div>
             </div>
           </transition>
           <transition name="slide-fade">
@@ -666,6 +675,15 @@
                 </h5>
                 <p>per 4 weeks</p>
               </div>
+              <div class="hero__button">
+                    <button
+                    type="button"
+                    class="hero__button-solid"
+                    @click.prevent="scrollToFooter('getEden', 'Cleaning-leads - plan')"
+                    >
+                    Clean for me
+                    </button>
+                </div>
             </div>
           </transition>
              <transition name="slide-fade">
@@ -892,6 +910,15 @@
                 </h5>
                 <p>per 4 weeks</p>
               </div>
+              <div class="hero__button">
+                    <button
+                    type="button"
+                    class="hero__button-solid"
+                    @click.prevent="scrollToFooter('getEden', 'Cleaning-leads - plan')"
+                    >
+                    Clean for me
+                    </button>
+                </div>
             </div>
           </transition>
         </div>

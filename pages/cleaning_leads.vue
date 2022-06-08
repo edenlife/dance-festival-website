@@ -10,11 +10,8 @@
       </header>
       <div class="hero">
         <div class="hero__title">
-          <h1 class="d-lg">
-             Get rid of the stress of house-cleaning with our <span> {{ headerText }}</span>
-          </h1>
-          <h1 class="mobile">
-            Get rid of the stress of house-cleaning with our <span> {{ headerText }}</span>.
+          <h1>
+             Too busy to clean your <span> {{ headerText }}</span>
           </h1>
           <div>
               <p class="bold"> Pay once a month and get:</p>
@@ -1026,7 +1023,7 @@
        <section class="cleaning" id="getEden">
           <div class="cleaning__form">
              <div class="cleaning__form-title">
-               <h3>You're one step closer to not worrying <br/> about laundry.
+               <h3>You're one step closer to not worrying <br/> about cleaning.
                </h3>
                <p>Enter your details and we’ll reach out to you about the next steps. <br/>
                     Let's go!
@@ -1169,7 +1166,7 @@ export default {
   },
   data() {
     return {
-      headerText: 'professional cleaners.',
+      headerText: 'space?',
       showSuccessModal: false,
       showFailedModal: false,
       setExploreService: false,

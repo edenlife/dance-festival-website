@@ -2362,7 +2362,7 @@ export default {
         this.cleaningTypeValue = plan.value
         if (plan.value === 'standard-cleaning') {
           this.cleaningInfo.item = plan.value
-          this.setCleaningConfig('light cleaning')
+          this.setCleaningConfig('standard cleaning')
         }
         if (plan.value === 'deep-cleaning') {
           this.cleaningInfo.item = plan.value

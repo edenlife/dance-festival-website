@@ -784,6 +784,7 @@
             <div class="download__app-link">
               <a
                 href="https://play.google.com/store/apps/details?id=com.ouredenlife.app"
+                target="_self"
                 @click.prevent="openPlayStore"
               >
                 <img
@@ -793,6 +794,7 @@
               </a>
               <a
                 href="https://apps.apple.com/us/app/eden-life/id1482373755?ls=1"
+                target="_self"
                 @click.prevent="openAppleStore"
               >
                 <img
@@ -1097,14 +1099,14 @@ export default {
     openPlayStore() {
       window.open(
         ` https://play.google.com/store/apps/details?id=com.ouredenlife.app`,
-        '_blank'
+        '_self'
       )
       mixpanelTrackEvent('Get the app(playstore) clicked')
     },
     openAppleStore() {
       window.open(
         `https://apps.apple.com/us/app/eden-life/id1482373755?ls=1`,
-        '_blank'
+        '_self'
       )
       mixpanelTrackEvent('Get the app(applestore) clicked')
     },

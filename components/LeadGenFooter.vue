@@ -7,7 +7,6 @@
         <div class="footer__top-link">
           <a
             href="https://play.google.com/store/apps/details?id=com.ouredenlife.app"
-            target="_blank"
             @click.prevent="openPlayStore"
           >
             <img
@@ -17,7 +16,6 @@
           </a>
           <a
             href="https://apps.apple.com/us/app/eden-life/id1482373755?ls=1"
-            target="_blank"
             @click.prevent="openAppleStore"
           >
             <img

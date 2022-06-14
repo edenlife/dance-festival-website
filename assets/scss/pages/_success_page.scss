@@ -48,7 +48,7 @@
         }
         @include respond(md) {
             &__modal {
-                height: 72vh;
+                height: 90vh;
                 &-body {
                     padding: 0;
                     width: 90%;

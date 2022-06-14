@@ -48,6 +48,7 @@
         }
         @include respond(md) {
             &__modal {
+                height: 72vh;
                 &-body {
                     padding: 0;
                     width: 90%;
@@ -91,4 +92,10 @@
         max-width: 1440px;
         margin: 0 auto;
       }
+}
+
+.success-footer {
+    @include respond(md) {
+       margin-top: $gap * 17.3;
+    }
 }

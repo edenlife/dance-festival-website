@@ -29,7 +29,7 @@
           </div>
         </div>
       </div>
-    <div class="mobile">
+    <div class="success-footer">
         <lead-gen-footer />
     </div>
   </div>
@@ -110,24 +110,5 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/pages/_success_page.scss';
-
-.footer {
-    padding: 132px 0 20px 0;
-    background-color: red !important;
-    &__top {
-        bottom: 0;
-    }
-    @include respond(md) {
-        ::v-deep .footer {
-            &__top {
-            display: none;
-            }
-        }
-      }
-      @include respond(xxl) {
-        max-width: 1440px;
-        margin: 0 auto;
-      }
-}
 </style>
 

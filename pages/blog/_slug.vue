@@ -624,21 +624,29 @@ export default {
       @include font-size(lg);
       margin-bottom: $gap * 2.4;
       line-height: 29px;
+      img {
+        display: flex;
+        margin: 0 auto;
+      }
     }
     figure {
-      margin-top: $gap * 2;
+      // margin-top: $gap * 2;
       img {
-        width: 100%;
-        height: 100%;
         border-radius: 8px;
       }
+      &.size-large {
+        img {
+          width: 70%;
+          height: max-content;
+        }
+     }
       video {
-        width: 100%;
-        height: 100%;
         border-radius: 8px;
       }
-      margin-bottom: $gap * 4;
-      margin-top: $gap * 2;
+      padding-bottom: $gap * 4;
+      padding-top: $gap * 2;
+      margin: 0 auto;
+      text-align: center;
       figcaption {
         text-align: center;
         margin-top: $gap;
@@ -827,5 +835,13 @@ export default {
       }
     }
   }
+}
+.wp-video-shortcode {
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+}
+.wp-video {
+  width: 100% !important;
 }
 </style>

@@ -941,9 +941,14 @@ export default {
       )
     },
     searchPost() {
-      this.searchResults = this.allPosts.filter((el) =>
-        el.title.rendered.toLowerCase().includes(this.search.toLowerCase())
-      )
+     const convertCharCodes = (str) =>
+        str.replace(/(&#(\d+);)/g, (match, capture, charCode) =>
+          String.fromCharCode(charCode)
+      );
+      this.searchResults = this.allPosts.filter((el) => {
+        const title = convertCharCodes(el.title.rendered)
+        return title.toLowerCase().includes(this.search.toLowerCase());
+      })
       this.resultTabIndex = 0
       this.showSearchbar = true
       this.searchInput = this.search

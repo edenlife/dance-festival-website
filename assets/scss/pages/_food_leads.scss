@@ -91,6 +91,7 @@
   }
   @include respond(md) {
     overflow: hidden;
+    margin-top: $gap * 5;
     &__form {
       &-btn {
         margin: $gap * 4.3 0;

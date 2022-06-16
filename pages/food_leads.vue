@@ -13,7 +13,7 @@
         <div class="hero__header">
           <div class="hero__header-title">
             <h1>
-                Spend less time worrying about <span>what to eat</span> and more time enjoying life.
+              Get your favourite meals delivered to you <span> {{ headerText[0] }}</span> 
             </h1>  
             <p>Pay once a month and get:</p>
             <ul>
@@ -794,6 +794,10 @@ export default {
   },
   data() {
     return {
+       headerText: [
+        'daily',
+        'weekly',
+      ],
       form: {
         email: '',
         name: '',
@@ -844,6 +848,9 @@ export default {
     },
   },
   mounted() {
+    window.setInterval(() => {
+      this.changeText()
+    }, 2300)
     this.totalDailyPrice = pricing({
       meal: { item: null, frequency: 'daily', qty: this.mealsPerDay },
     })
@@ -853,6 +860,10 @@ export default {
     mixpanelTrackEvent('Food Lead page')
   },
   methods: {
+     changeText() {
+      const first = this.headerText.shift()
+      this.headerText = this.headerText.concat(first)
+    },
         currencyFormat,
     placeholderColorMix,
     toggleMenu(menu) {

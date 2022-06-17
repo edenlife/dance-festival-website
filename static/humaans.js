@@ -837,13 +837,6 @@ export default {
       role: 'Food Production',
     },
     {
-      id: 124,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/v1655297522/eden-website-v2/Noah_Jolayemi_-_Order_Fulfilment_Supervisor_vpe3jv.jpg',
-      name: 'Noah Jolayemi',
-      role: 'Supply',
-    },
-    {
       id: 125,
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/v1655297528/eden-website-v2/Olamide_Oloja_-_QA_Engineer_ejq7qi.jpg',

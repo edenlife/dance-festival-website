@@ -1126,6 +1126,8 @@ export default {
   },
   data() {
     return {
+      content:
+        "Pick a food, laundry or cleaning plan and find out how much it'll cost. With our price calculator, you can see the total cost of your preferred service before you pay",
       cleaningPlanType: 'standard-cleaning',
       showCleaningModal: false,
       showSuccessModal: false,
@@ -1252,6 +1254,38 @@ export default {
       cleaningPayload: {},
       isLoading: false,
       responseMessage: '',
+    }
+  },
+  head() {
+    return {
+      title: 'Eden | Pricing',
+      meta: [
+        { name: 'description', content: [this.content] },
+        { name: 'twitter:description', content: [this.content] },
+        { property: 'og:description', content: [this.content] },
+      ],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlife.ke/pricing`,
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ng',
+          href: 'https://ouredenlife.com/pricing'
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlife.ke/pricing'
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: 'https://ouredenlife.com/pricing'
+        },
+      ],
     }
   },
   watch: {

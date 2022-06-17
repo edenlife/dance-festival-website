@@ -886,6 +886,21 @@ export default {
           rel: 'canonical',
           href: `https://ouredenlife.com/laundry`,
         },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ng',
+          href: 'https://ouredenlife.com/laundry'
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlife.ke/laundry'
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: 'https://ouredenlife.com/laundry'
+        },
       ],
     }
   },

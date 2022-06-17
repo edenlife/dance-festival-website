@@ -49,6 +49,28 @@ export default {
         { name: 'twitter:description', content: [this.content] },
         { property: 'og:description', content: [this.content] },
       ],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlife.com/privacy_policy`,
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ng',
+          href: 'https://ouredenlife.com/privacy_policy'
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlife.ke/privacy_policy'
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: 'https://ouredenlife.com/privacy_policy'
+        },
+      ],
     }
   },
 

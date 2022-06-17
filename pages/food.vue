@@ -767,6 +767,21 @@ export default {
           rel: 'canonical',
           href: `https://ouredenlife.com/food`,
         },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ng',
+          href: 'https://ouredenlife.com/food'
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlife.ke/food'
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: 'https://ouredenlife.com/food'
+        },
       ],
     }
   },

@@ -1205,6 +1205,21 @@ export default {
           rel: 'canonical',
           href: `https://ouredenlife.com/cleaning`,
         },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ng',
+          href: 'https://ouredenlife.com/cleaning'
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlife.ke/cleaning'
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: 'https://ouredenlife.com/cleaning'
+        },
       ],
     }
   },

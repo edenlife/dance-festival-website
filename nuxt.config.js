@@ -156,6 +156,21 @@ export default {
         rel: 'canonical',
         href: 'https://ouredenlife.com',
       },
+      {
+        rel: 'alternate',
+        hreflang: 'en-ng',
+        href: 'https://ouredenlife.com/'
+      },
+      {
+        rel: 'alternate',
+        hreflang: 'en-ke',
+        href: 'https://ouredenlife.ke/'
+      },
+      {
+        rel: 'alternate',
+        hreflang: 'x-default',
+        href: 'https://ouredenlife.com/'
+      },
     ],
   },
 

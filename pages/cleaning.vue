@@ -1107,6 +1107,44 @@
         </div>
       </section>
     </div>
+  <download-banner v-if="showDownloadBanner" :show-download-banner="showDownloadBanner" class="download-banner">
+      <div slot="header"></div>
+      <div slot="body" class="content">
+        <div class="banner">
+          <div>
+            <button class="btn btn--success" @click="showDownloadBanner = false">
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 12.25L12.25 1" stroke="#4B6358" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M1 1L12.25 12.25" stroke="#4B6358" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+          </div>
+          <div>
+            <img
+              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611230252/eden-website-v2/eden-logo_lcepc6.svg"
+              alt="Eden logo"
+              width="42"
+            />
+          </div>
+          <div>
+            <p class="font-text">
+              Enjoy the good life.
+            </p>
+            <p>Say goodbye to chores forever.</p>
+          </div>
+          <div>
+            <button
+              type="button"
+              class="hero__button-solid banner-btn"
+              @click.prevent="downloadApp('Download App - cleaning banner')"
+            >
+              Install
+            </button>
+          </div>
+        </div>
+      </div>
+      <div slot="footer"></div>
+  </download-banner>
   </div>
 </template>
 
@@ -1127,6 +1165,7 @@ export default {
         'working out',
         'being better',
       ],
+      showDownloadBanner: true,
       showCleaningDescription: false,
       cleaningMessage: [
         {
@@ -1453,10 +1492,23 @@ export default {
     trackLink(service) {
       mixpanelTrackEvent(`${service} clicked - Cleaning (more options)`)
     },
+   downloadApp() {
+       mixpanelTrackEvent('Download App - cleaning banner')
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera
+      if(/android/i.test(userAgent)){
+            window.location.href = 
+           'https://play.google.com/store/apps/details?id=com.ouredenlife.app';
+      }
+      if(/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream){
+          window.location.href = 
+         'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1';
+      }
+    }
   },
 }
 </script>
 
 <style lang="scss" scoped>
 @import '@/assets/scss/pages/_cleaning.scss';
+@import '@/assets/scss/components/_downloadbanner.scss';
 </style>

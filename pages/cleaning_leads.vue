@@ -11,7 +11,7 @@
       <div class="hero">
         <div class="hero__title">
           <h1>
-             Too busy to clean your <span> {{ headerText }}</span>
+             Save valuable time and get your home cleaned <span> {{ headerText[0]}}</span>
           </h1>
           <div>
               <p class="bold"> Pay once a month and get:</p>
@@ -1166,7 +1166,7 @@ export default {
   },
   data() {
     return {
-      headerText: 'space?',
+      headerText: ['weekly', 'monthly'],
       showSuccessModal: false,
       showFailedModal: false,
       setExploreService: false,
@@ -1232,6 +1232,9 @@ export default {
   },
   mounted() {
     mixpanelTrackEvent('Cleaning Leads page')
+    window.setInterval(() => {
+      this.changeText()
+    }, 2300)
     this.fetchCleaningServiceTypes()
     },
   destroyed() {
@@ -1246,6 +1249,10 @@ export default {
         } else {
             this.visible.push(plan)
         }
+    },
+    changeText() {
+      const first = this.headerText.shift()
+      this.headerText = this.headerText.concat(first)
     },
     setCleaningType(plan) {
       this.plan = plan

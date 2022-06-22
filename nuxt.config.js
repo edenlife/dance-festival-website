@@ -299,8 +299,8 @@ export default {
   intercom: {
     appId: 's0gimx8q',
     hideDefaultLauncher: false,
-    horizontal_padding: 20, 
-    vertical_padding: 60,
+    horizontalPadding: 20, 
+    verticalPadding: 60,
   },
 
   generate: {

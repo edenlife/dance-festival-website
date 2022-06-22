@@ -707,6 +707,8 @@ export default {
         { item: 'Blanket (3 items)', cost: '2900' },
         { item: 'Curtain (Per unit - 3 items)', cost: '2900' },
         { item: '3 piece Agbada (3 items) ', cost: '2900' },
+        { item: 'Stubborn Stain Removal', cost: '3000' },
+        { item: 'Hang (Per order/bag)', cost: '3500' },
         { item: 'Duvet (4 items)', cost: '3868' },
         { item: 'A pair of suit (4 items)', cost: '3868' },
       ],

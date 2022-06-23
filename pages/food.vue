@@ -1053,7 +1053,7 @@ export default {
       }
     },
    calculatePrice(frequency, quantity) {
-    const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+    const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
     const service_day = {
       daily: days,
       weekly: days.slice(0, 1),

@@ -1241,7 +1241,6 @@ export default {
       cleaningInfo: {
         item: 'standard-cleaning',
         itemAreas: {},
-        itemAreasPrice: {},
         frequency: 'bi-weekly',
         qty: 2,
       },
@@ -1492,10 +1491,9 @@ export default {
         })
       )
       const subtotal = finalArray.reduce((acc, val) => {
-        const valInt = parseInt(val.price)
+        const valInt = val.price ? parseInt(val.price) : 0
         return acc + valInt
       }, 0)
-
       this.subtotalPrice = subtotal.toString()
       const discount = subtotal * 0.2
       this.discountPrice = discount.toString()
@@ -2088,18 +2086,23 @@ export default {
       }
       let frequency
       let totalAmount
+      const day = this.selectedDays[0]
 
       if (this.mealFrequency.toLowerCase() === 'daily') {
         frequency = 'daily'
         if (this.mealQty > 5) {
           this.mealQty = 5
         }
+        
         const total = pricing({
           meal: {
             item: null,
             frequency: 'daily',
             qty: this.mealQty,
-            serviceDay: this.selectedDays[0],
+            meal_per_delivery: {
+                [day]: this.mealQty
+              },
+            service_day: [day],
           },
         })
         totalAmount = total
@@ -2124,7 +2127,15 @@ export default {
           this.mealQty = 20
         }
         const total = pricing({
-          meal: { item: null, frequency: 'weekly', qty: this.mealQty },
+          meal: { 
+            item: null,
+            frequency: 'weekly',
+            qty: this.mealQty,
+            meal_per_delivery: {
+                [day]: this.mealQty
+              },
+            service_day: [day],
+           },
         })
         totalAmount = total
         this.services[0].price = total.toString()
@@ -2153,6 +2164,10 @@ export default {
             item: null,
             frequency: 'weekly-twodays',
             qty: this.mealQty * 2,
+            meal_per_delivery: {
+                [day]: this.mealQty
+              },
+            service_day: [day],
           },
         })
         totalAmount = total
@@ -2249,6 +2264,7 @@ export default {
           item: this.laundryTypeValue,
           frequency: this.laundryFreqValue,
           qty: this.laundryQty,
+          service_day: ['thursday']
         },
       })
       this.services[1].price = total.toString()
@@ -2301,15 +2317,15 @@ export default {
       this.calculateCleaningPrice()
     },
     calculateCleaningPrice() {
-      const { item, itemAreas, itemAreasPrice, frequency, qty } =
+      const { item, itemAreas, frequency, qty } =
         this.cleaningInfo
       const total = pricing({
         cleaning: {
           item,
-          itemAreas,
-          itemAreasPrice,
+          item_areas: itemAreas,
           frequency,
           qty,
+          service_day: ['saturday']
         },
       })
       const newItemAreas = Object.keys(itemAreas).reduce((accumulator, key) => {
@@ -2348,7 +2364,6 @@ export default {
         this.cleaningQtyOption.forEach((e2) => {
           if (e1.slug === e2.slug) {
             this.cleaningInfo.itemAreas[e1.slug] = e2.qty
-            this.cleaningInfo.itemAreasPrice[e1.slug] = e1.price
           }
         })
       )
@@ -2405,6 +2420,7 @@ export default {
       }
     },
     getEstimateRoomTypes() {
+      console.log(this.cleaningQtyOption)
       const filterRoom = this.cleaningQtyOption.filter((item) => {
         return item.qty !== 0
       })
@@ -2415,7 +2431,6 @@ export default {
     },
     setCleaningConfig(plan) {
       this.cleaningInfo.itemAreas = {}
-      this.cleaningInfo.itemAreasPrice = {}
       const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
         ({ name }) => name.toLowerCase() === plan
       )

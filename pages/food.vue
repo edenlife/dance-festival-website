@@ -830,12 +830,8 @@ export default {
     }, 2300)
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
-    this.totalDailyPrice = pricing({
-      meal: { item: null, frequency: 'daily', qty: this.mealsPerDay },
-    })
-    this.totalWeeklyPrice = pricing({
-      meal: { item: null, frequency: 'weekly', qty: this.mealsPerWeek },
-    })
+    this.totalDailyPrice = this.calculatePrice('daily', this.mealsPerDay)
+    this.totalWeeklyPrice = this.calculatePrice('weekly', this.mealsPerWeek)
     this.fetchMeal()
     // scroll to menu
     const getRoute = this.$nuxt.$route.fullPath
@@ -1013,9 +1009,8 @@ export default {
 
       if (order === 'weekly') {
         this.mealsPerDay++
-        this.totalDailyPrice = pricing({
-          meal: { item: null, frequency: 'daily', qty: this.mealsPerDay },
-        })
+        console.log(this.mealsPerDay)
+        this.totalDailyPrice = this.calculatePrice('daily', this.mealsPerDay)
       }
       if (order === 'monthly') {
         this.mealsPerWeek++
@@ -1028,9 +1023,7 @@ export default {
 
       if (order === 'weekly' && this.mealsPerDay > 1) {
         this.mealsPerDay--
-        this.totalDailyPrice = pricing({
-          meal: { item: null, frequency: 'daily', qty: this.mealsPerDay },
-        })
+        this.totalDailyPrice = this.calculatePrice('daily', this.mealsPerDay)
       }
       if (order === 'monthly' && this.mealsPerWeek > 1) {
         this.mealsPerWeek--
@@ -1059,15 +1052,33 @@ export default {
         this.checkWeeklyFreq(freq)
       }
     },
+   calculatePrice(frequency, quantity) {
+    const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+    const service_day = {
+      daily: days,
+      weekly: days.slice(0, 1),
+      "weekly-twodays": days.slice(0, 2)
+    }
+    return pricing({
+      meal: {
+        item: null,
+        frequency: frequency,
+        qty: quantity,
+        service_day: service_day[frequency],
+        meal_per_delivery: service_day[frequency].reduce((days, day) => {
+          return {
+            ...days,
+            [day]: quantity
+          }
+        }, {})
+      }
+    })
+  },
     checkWeeklyFreq(freq) {
       if (freq === 'weekly') {
-        this.totalWeeklyPrice = pricing({
-          meal: { item: null, frequency: freq, qty: this.mealsPerWeek },
-        })
+        this.totalWeeklyPrice = this.calculatePrice('weekly', this.mealsPerWeek)
       } else {
-        this.totalWeeklyPrice = pricing({
-          meal: { item: null, frequency: freq, qty: this.mealsPerWeek * 2 },
-        })
+        this.totalWeeklyPrice = this.calculatePrice('weekly-twodays', this.mealsPerWeek * 2)
       }
     },
     trackLink(service) {

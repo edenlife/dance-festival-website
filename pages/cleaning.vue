@@ -1230,7 +1230,6 @@ export default {
       cleaningInfo: {
         item: 'standard-cleaning',
         itemAreas: {},
-        itemAreasPrice: {},
         frequency: 'weekly',
         qty: 4,
       },
@@ -1342,7 +1341,6 @@ export default {
        this.plan = plan
       this.cleaningInfo.item = plan
       this.cleaningInfo.itemAreas = {}
-      this.cleaningInfo.itemAreasPrice = {}
       const planType = plan.replaceAll('-', ' ')
        const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
         ({ name }) => name.toLowerCase() === planType
@@ -1356,17 +1354,17 @@ export default {
       const {
         item,
         itemAreas,
-        itemAreasPrice,
         frequency,
         qty,
       } = this.cleaningInfo
+      console.log(this.cleaningInfo)
       this.totalPrice = pricing({
         cleaning: {
           item,
-          itemAreas,
-          itemAreasPrice,
+          item_areas: itemAreas,
           frequency,
           qty,
+          service_day: ['saturday']
         },
       })
       this.getEstimateRoomTypes()
@@ -1379,7 +1377,6 @@ export default {
         this.cleaningQtyOption.forEach((e2) => {
           if (e1.slug === e2.slug) {
             this.cleaningInfo.itemAreas[e1.slug] = e2.qty
-            this.cleaningInfo.itemAreasPrice[e1.slug] = e1.price
           }
         })
       )

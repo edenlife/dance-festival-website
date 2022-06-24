@@ -2086,25 +2086,27 @@ export default {
       }
       let frequency
       let totalAmount
-      const day = this.selectedDays[0]
 
       if (this.mealFrequency.toLowerCase() === 'daily') {
-        frequency = 'daily'
+        const dailyDays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+        frequency = 'daily';
+        days = this.selectedDays[0] === "monday-friday" ? dailyDays.slice(0, 5) : dailyDays
         if (this.mealQty > 5) {
           this.mealQty = 5
         }
-        
-        const total = pricing({
+        days.forEach(day => {
+          deliveryDays[day] = this.mealQty
+        })
+        const config = {
           meal: {
             item: null,
             frequency: 'daily',
-            qty: this.mealQty,
-            meal_per_delivery: {
-                [day]: this.mealQty
-              },
-            service_day: [day],
+            qty: this.mealQty * 5,
+            service_day: days,
+            meal_per_delivery: deliveryDays
           },
-        })
+        }
+        const total = pricing(config)
         totalAmount = total
         this.services[0].price = isNaN(total) ? 0 : total.toString()
         this.getTotalPrice(this.services, this.selectedService)
@@ -2114,11 +2116,8 @@ export default {
           `Saves ${this.mealSavedTime} per week`,
         ]
         this.totalFoodSummary = {
-          frequency: 'daily',
-          item: null,
-          qty: this.mealQty,
-          service_day: this.selectedDays,
-          amount: total,
+          ...config.meal,
+          amount: total
         }
       }
       if (this.mealFrequency.toLowerCase() === 'weekly') {
@@ -2126,17 +2125,17 @@ export default {
         if (this.mealQty > 20) {
           this.mealQty = 20
         }
-        const total = pricing({
-          meal: { 
+        deliveryDays[this.selectedDays[0]] = this.mealQty
+        const config = {
+          meal: {
             item: null,
             frequency: 'weekly',
             qty: this.mealQty,
-            meal_per_delivery: {
-                [day]: this.mealQty
-              },
-            service_day: [day],
-           },
-        })
+            service_day: this.selectedDays,
+            meal_per_delivery: deliveryDays
+          },
+        }
+        const total = pricing(config)
         totalAmount = total
         this.services[0].price = total.toString()
         this.getTotalPrice(this.services, this.selectedService)
@@ -2147,29 +2146,28 @@ export default {
           `Saves ${this.mealSavedTime} per week`,
         ]
         this.totalFoodSummary = {
-          frequency: 'weekly',
-          item: null,
-          qty: this.mealQty,
-          service_day: this.selectedDays,
+          ...config.meal,
           amount: total,
         }
       }
       if (this.mealFrequency === 'Twice a week') {
         frequency = 'weekly-twodays'
+
         if (this.mealQty > 10) {
           this.mealQty = 10
         }
-        const total = pricing({
+        deliveryDays[this.selectedDays[0]] = this.mealQty;
+        deliveryDays[this.selectedDays[1]] = this.mealQty;
+        const config = {
           meal: {
             item: null,
             frequency: 'weekly-twodays',
             qty: this.mealQty * 2,
-            meal_per_delivery: {
-                [day]: this.mealQty
-              },
-            service_day: [day],
+            service_day: this.selectedDays,
+            meal_per_delivery: deliveryDays
           },
-        })
+        }
+        const total = pricing(config);
         totalAmount = total
         this.services[0].price = total.toString()
         this.getTotalPrice(this.services, this.selectedService)
@@ -2181,31 +2179,11 @@ export default {
         ]
 
         this.totalFoodSummary = {
-          frequency: 'weekly-twodays',
-          item: null,
-          qty: this.mealQty * 2,
-          service_day: this.selectedDays,
+          ...config.meal,
           amount: total,
         }
       }
-
-      if (frequency === 'daily') {
-        if (this.selectedDays[0] === 'monday-friday') {
-          days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
-        } else if (this.selectedDays[0] === 'monday-saturday') {
-          days = [
-            'Monday',
-            'Tuesday',
-            'Wednesday',
-            'Thursday',
-            'Friday',
-            'Saturday',
-          ]
-        }
-      } else days = this.selectedDays
-      days.forEach((day) => {
-        deliveryDays[day.toLowerCase()] = this.mealQty
-      })
+      
       this.foodPayload = {
         frequency: frequency,
         item: null,
@@ -2214,7 +2192,7 @@ export default {
         meal_per_delivery: deliveryDays,
         amount: totalAmount,
       }
-    },
+  },
     increaseFoodOrder() {
       if (this.mealQty < 20) {
         this.mealQty++

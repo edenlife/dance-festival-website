@@ -299,6 +299,7 @@ export default {
   intercom: {
     appId: 's0gimx8q',
     hideDefaultLauncher: false,
+    enableMobilePadding: false,
     horizontalPadding: 20, 
     verticalPadding: 60,
   },

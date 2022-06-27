@@ -1223,7 +1223,7 @@ export default {
           type: 'cleaning',
         },
       ],
-      roomTypes: null,
+      roomTypes: '1 Bedrooms, 1 Living Rooms / Dining Areas, 1 Bathrooms, 1 Kitchen',
       cleaningQtyOption: [],
       foodSummary: [],
       laundrySummary: [],
@@ -1292,6 +1292,7 @@ export default {
     document.addEventListener('click', this.toggleSelect)
     mixpanelTrackEvent('Pricing page')
     this.fetchCleaningServiceTypes()
+    // this.calculateLaundryPrice()
   },
   destroyed() {
     document.removeEventListener('click', this.toggleSelect)

@@ -103,7 +103,6 @@ export default {
       cleaningInfo: {
         item: 'light-cleaning',
         itemAreas: {},
-        itemAreasPrice: {},
         frequency: 'bi-weekly',
         qty: 2,
       },
@@ -210,15 +209,15 @@ export default {
         this.laundryQty = 1
         this.laundrySavedTime = '2 hours 15 minutes every week'
         this.calculateLaundryPrice()
-        this.cleaningType = 'Light cleaning'
+        this.cleaningType = 'Standard cleaning'
         this.cleaningFrequency = 'Every two weeks'
         this.cleaningQtyOption[0].qty = 1
         this.cleaningQtyOption[2].qty = 1
         this.cleaningQtyOption[4].qty = 0
         this.cleaningQtyOption[5].qty = 0
         this.getEstimateRoomTypes()
-        this.setCleaningArea('light cleaning')
-        this.cleaningInfo.item = 'light-cleaning'
+        this.setCleaningArea('standard cleaning')
+        this.cleaningInfo.item = 'standard-cleaning'
         this.cleaningInfo.frequency = 'bi-weekly'
         this.cleaningSavedTime = '45 minutes every week'
         this.calculateCleaningPrice()
@@ -255,15 +254,15 @@ export default {
           this.laundryQty = 1
           this.laundrySavedTime = '2 hours 15 minutes every week'
           this.calculateLaundryPrice()
-          this.cleaningType = 'Light cleaning'
+          this.cleaningType = 'Standard cleaning'
           this.cleaningFrequency = 'Every two weeks'
           this.cleaningQtyOption[0].qty = 1
           this.cleaningQtyOption[2].qty = 1
           this.cleaningQtyOption[4].qty = 0
           this.cleaningQtyOption[5].qty = 0
           this.getEstimateRoomTypes()
-          this.setCleaningArea('light cleaning')
-          this.cleaningInfo.item = 'light-cleaning'
+          this.setCleaningArea('standard cleaning')
+          this.cleaningInfo.item = 'standard-cleaning'
           this.cleaningInfo.frequency = 'bi-weekly'
           this.cleaningSavedTime = '45 minutes every week'
           this.calculateCleaningPrice()
@@ -952,7 +951,6 @@ export default {
       const {
         item,
         itemAreas,
-        itemAreasPrice,
         frequency,
         qty,
       } = this.cleaningInfo
@@ -960,7 +958,6 @@ export default {
         cleaning: {
           item,
           itemAreas,
-          itemAreasPrice,
           frequency,
           qty,
         },
@@ -1001,7 +998,6 @@ export default {
         this.cleaningQtyOption.forEach((e2) => {
           if (e1.slug === e2.slug) {
             this.cleaningInfo.itemAreas[e1.slug] = e2.qty
-            this.cleaningInfo.itemAreasPrice[e1.slug] = e1.price
           }
         })
       )

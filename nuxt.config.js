@@ -142,7 +142,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: ['gsap'],
+    transpile: ['gsap', '@edenlife/eden-pricing-module'],
   },
 
   router: {

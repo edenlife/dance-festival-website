@@ -960,7 +960,6 @@ export default {
     this.handleResize()
     this.totalWashDryPrice = this.caculateLaundryPricing('wash-and-fold', this.washDryFrequency, this.washDry )
     this.totalWashIronPrice = this.caculateLaundryPricing('wash-and-iron', this.washIronFrequency, this.washIron )
-    console.log(this.washDryFrequency, this.washIronFrequency, this.washDry, this.washIron)
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)

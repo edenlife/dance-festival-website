@@ -2178,8 +2178,6 @@ export default {
           service_day: ['thursday']
         },
       })
-      console.log(this.selectedService)
-      console.log(total)
       this.services[1].price = total.toString()
       this.getTotalPrice(this.services, this.selectedService)
       this.laundrySummary = [
@@ -2333,7 +2331,6 @@ export default {
       }
     },
     getEstimateRoomTypes() {
-      console.log(this.cleaningQtyOption)
       const filterRoom = this.cleaningQtyOption.filter((item) => {
         return item.qty !== 0
       })

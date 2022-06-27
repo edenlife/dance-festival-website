@@ -1357,7 +1357,6 @@ export default {
         frequency,
         qty,
       } = this.cleaningInfo
-      console.log(this.cleaningInfo)
       this.totalPrice = pricing({
         cleaning: {
           item,

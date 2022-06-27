@@ -1380,7 +1380,6 @@ export default {
         this.cleaningQtyOption.forEach((e2) => {
           if (e1.slug === e2.slug) {
             this.cleaningInfo.itemAreas[e1.slug] = e2.qty
-            this.cleaningInfo.itemAreasPrice[e1.slug] = e1.price
           }
         })
       )

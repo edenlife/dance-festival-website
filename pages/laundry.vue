@@ -972,20 +972,8 @@ export default {
     }, 2300)
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
-    this.totalWashDryPrice = pricing({
-      laundry: {
-        item: 'wash-and-fold',
-        frequency: this.washDryFrequency,
-        qty: this.washDry,
-      },
-    })
-    this.totalWashIronPrice = pricing({
-      laundry: {
-        item: 'wash-and-iron',
-        frequency: this.washIronFrequency,
-        qty: this.washIron,
-      },
-    })
+    this.totalWashDryPrice = this.caculateLaundryPricing('wash-and-fold', this.washDryFrequency, this.washDry )
+    this.totalWashIronPrice = this.caculateLaundryPricing('wash-and-iron', this.washIronFrequency, this.washIron )
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
@@ -1007,6 +995,16 @@ export default {
         document.querySelector('svg.eee').setAttribute('class', 'timeline--e')
       }
     },
+    caculateLaundryPricing(item, frequency, qty) {
+      return pricing({
+      laundry: {
+        item,
+        frequency,
+        qty,
+        service_day: ['thursday']
+      },
+    })
+    },
     changeText() {
       const first = this.headerText.shift()
       this.headerText = this.headerText.concat(first)
@@ -1026,24 +1024,12 @@ export default {
 
       if (order === 'washDry') {
         this.washDry++
-        this.totalWashDryPrice = pricing({
-          laundry: {
-            item: 'wash-and-fold',
-            frequency: this.washDryFrequency,
-            qty: this.washDry,
-          },
-        })
+        this.totalWashDryPrice = this.caculateLaundryPricing('wash-and-fold', this.washDryFrequency, this.washDry )
       }
 
       if (order === 'washIron') {
         this.washIron++
-        this.totalWashIronPrice = pricing({
-          laundry: {
-            item: 'wash-and-iron',
-            frequency: this.washIronFrequency,
-            qty: this.washIron,
-          },
-        })
+        this.totalWashIronPrice = this.caculateLaundryPricing('wash-and-iron', this.washIronFrequency, this.washIron )
       }
     },
     decreaseOrder(order) {
@@ -1051,49 +1037,25 @@ export default {
 
       if (order === 'washDry' && this.washDry > 1) {
         this.washDry--
-        this.totalWashDryPrice = pricing({
-          laundry: {
-            item: 'wash-and-fold',
-            frequency: this.washDryFrequency,
-            qty: this.washDry,
-          },
-        })
+        this.totalWashDryPrice = this.caculateLaundryPricing('wash-and-fold', this.washDryFrequency, this.washDry )
       }
 
       if (order === 'washIron' && this.washIron > 1) {
         this.washIron--
-        this.totalWashIronPrice = pricing({
-          laundry: {
-            item: 'wash-and-iron',
-            frequency: this.washIronFrequency,
-            qty: this.washIron,
-          },
-        })
+        this.totalWashIronPrice = this.caculateLaundryPricing('wash-and-iron', this.washIronFrequency, this.washIron )
       }
     },
     laundryDryFrequency(freq) {
       mixpanelTrackEvent(` ${freq} wash&dry frequency clicked - laundry page`)
 
       this.washDryFrequency = freq
-      this.totalWashDryPrice = pricing({
-        laundry: {
-          item: 'wash-and-fold',
-          frequency: this.washDryFrequency,
-          qty: this.washDry,
-        },
-      })
+      this.totalWashDryPrice = this.caculateLaundryPricing('wash-and-fold', this.washDryFrequency, this.washDry )
     },
     laundryIronFrequency(freq) {
       mixpanelTrackEvent(` ${freq} wash&iron frequency clicked - laundry page`)
 
       this.washIronFrequency = freq
-      this.totalWashIronPrice = pricing({
-        laundry: {
-          item: 'wash-and-iron',
-          frequency: this.washIronFrequency,
-          qty: this.washIron,
-        },
-      })
+      this.totalWashIronPrice = this.caculateLaundryPricing('wash-and-iron', this.washIronFrequency, this.washIron )
     },
     trackLink(service) {
       mixpanelTrackEvent(`${service} clicked - Laundry (more options)`)

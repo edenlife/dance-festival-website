@@ -44,11 +44,11 @@
           </div>
          </div>
          <div class="hero__img-laundry">
-              <img
-              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1653654223/eden-website-v2/Laundry_cvdqbw.png"
-              alt="laundry tag"
-              class="hero__img-bg1"
-            />
+            <img
+            src="https://res.cloudinary.com/eden-life-inc/image/upload/v1653654223/eden-website-v2/Laundry_cvdqbw.png"
+            alt="laundry tag"
+            class="hero__img-bg1"
+          />
         </div>
       </div>
       <div class="hero__img"></div>
@@ -750,20 +750,8 @@ export default {
     mixpanelTrackEvent('Laundry Leads page')
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
-    this.totalWashDryPrice = pricing({
-      laundry: {
-        item: 'wash-and-fold',
-        frequency: this.washDryFrequency,
-        qty: this.washDry,
-      },
-    })
-    this.totalWashIronPrice = pricing({
-      laundry: {
-        item: 'wash-and-iron',
-        frequency: this.washIronFrequency,
-        qty: this.washIron,
-      },
-    })
+    this.totalWashDryPrice = this.caculateLaundryPricing('wash-and-fold', this.washDryFrequency, this.washDry )
+    this.totalWashIronPrice = this.caculateLaundryPricing('wash-and-iron', this.washIronFrequency, this.washIron )
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
@@ -795,79 +783,53 @@ export default {
     scrollToFooter(id) {
       document.getElementById(id).scrollIntoView()
     },
+    caculateLaundryPricing(item, frequency, qty) {
+      return pricing({
+      laundry: {
+        item,
+        frequency,
+        qty,
+        service_day: ['thursday']
+      },
+    })
+    },
     increaseOrder(order) {
-      mixpanelTrackEvent(`Increase ${order} order clicked - laundry leads page`)
+      mixpanelTrackEvent(`Increase ${order} order clicked - laundry page`)
 
       if (order === 'washDry') {
         this.washDry++
-        this.totalWashDryPrice = pricing({
-          laundry: {
-            item: 'wash-and-fold',
-            frequency: this.washDryFrequency,
-            qty: this.washDry,
-          },
-        })
+        this.totalWashDryPrice = this.caculateLaundryPricing('wash-and-fold', this.washDryFrequency, this.washDry )
       }
 
       if (order === 'washIron') {
         this.washIron++
-        this.totalWashIronPrice = pricing({
-          laundry: {
-            item: 'wash-and-iron',
-            frequency: this.washIronFrequency,
-            qty: this.washIron,
-          },
-        })
+        this.totalWashIronPrice = this.caculateLaundryPricing('wash-and-iron', this.washIronFrequency, this.washIron )
       }
     },
     decreaseOrder(order) {
-      mixpanelTrackEvent(`Decrease ${order} order clicked - laundry leads page`)
+      mixpanelTrackEvent(`Decrease ${order} order clicked - laundry page`)
 
       if (order === 'washDry' && this.washDry > 1) {
         this.washDry--
-        this.totalWashDryPrice = pricing({
-          laundry: {
-            item: 'wash-and-fold',
-            frequency: this.washDryFrequency,
-            qty: this.washDry,
-          },
-        })
+        this.totalWashDryPrice = this.caculateLaundryPricing('wash-and-fold', this.washDryFrequency, this.washDry )
       }
 
       if (order === 'washIron' && this.washIron > 1) {
         this.washIron--
-        this.totalWashIronPrice = pricing({
-          laundry: {
-            item: 'wash-and-iron',
-            frequency: this.washIronFrequency,
-            qty: this.washIron,
-          },
-        })
+        this.totalWashIronPrice = this.caculateLaundryPricing('wash-and-iron', this.washIronFrequency, this.washIron )
       }
     },
     laundryDryFrequency(freq) {
-      mixpanelTrackEvent(` ${freq} wash&dry frequency clicked - laundry leads page`)
+      mixpanelTrackEvent(` ${freq} wash&dry frequency clicked - laundry page`)
 
       this.washDryFrequency = freq
-      this.totalWashDryPrice = pricing({
-        laundry: {
-          item: 'wash-and-fold',
-          frequency: this.washDryFrequency,
-          qty: this.washDry,
-        },
-      })
+      this.totalWashDryPrice = this.caculateLaundryPricing('wash-and-fold', this.washDryFrequency, this.washDry )
     },
     laundryIronFrequency(freq) {
-      mixpanelTrackEvent(` ${freq} wash&iron frequency clicked - laundry leads page`)
+      mixpanelTrackEvent(` ${freq} wash&iron frequency clicked - laundry page`)
 
       this.washIronFrequency = freq
-      this.totalWashIronPrice = pricing({
-        laundry: {
-          item: 'wash-and-iron',
-          frequency: this.washIronFrequency,
-          qty: this.washIron,
-        },
-      })
+      this.totalWashIronPrice = this.caculateLaundryPricing('wash-and-iron', this.washIronFrequency, this.washIron )
     },
     trackLink(service) {
       mixpanelTrackEvent(`${service} clicked - Laundry (more options)`)

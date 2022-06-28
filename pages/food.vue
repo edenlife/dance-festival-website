@@ -336,6 +336,7 @@
             <li
               :class="{ active: period === 'weekly' }"
               @click.prevent="period = 'weekly'"
+              @click="mealFrequency = 'daily'"
             >
               <span> Daily Delivery </span>
               <svg
@@ -352,6 +353,7 @@
             <li
               :class="{ active: period === 'monthly' }"
               @click.prevent="period = 'monthly'"
+              @click="mealFrequency = 'weekly'"
             >
               <span> Weekly delivery </span>
               <svg
@@ -428,6 +430,36 @@
                   </button>
                 </div>
               </div>
+            <div class="calculator__input">
+                <div
+                  class="calculator__input-item calculator__input-delivery"
+                >
+                 <div class="plan__price-item">
+                  <p>Delivery days</p>
+                 </div>
+                  <div class="delivery">
+                    <div
+                      v-for="(item, i) in dailyDeliveryDays"
+                      :key="i"
+                      class="delivery__days daily"
+                    >
+                      <div
+                        class="delivery__days-item"
+                        :class="{ checked: selectedDays.includes(item) }"
+                      >
+                        <input
+                          :id="item"
+                          v-model="selectedDays"
+                          type="checkbox"
+                          :value="item"
+                          @change="updateDeliveyDay(item)"
+                        />
+                        <label :for="item">{{ item }}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
               <div class="plan__price-bottom">
                 <h5>
                   <span class="price">Price </span>
@@ -657,46 +689,7 @@
               />
             </div>
           </div>
-          <!-- <div
-            class="options__service-item options__service-gifting"
-            @mouseenter.stop="exploreService = 'gifting'"
-            @mouseleave.stop="exploreService = ''"
-            @click="trackLink('Gifting')"
-          >
-            <h3>🎁</h3>
-            <h5>Gifts</h5>
-            <p>
-              Gift cards and gift boxes for every occasion, right at your
-              fingertips.
-            </p>
-            <nuxt-link :to="{ path: '/gifts' }" class="btn">
-              {{
-                exploreService === 'gifting' || setExploreService
-                  ? 'Explore'
-                  : ''
-              }}
-
-              <svg
-                width="14"
-                height="10"
-                viewBox="0 0 14 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8.85625 0.673433C8.61719 0.907808 8.61719 1.29687 8.85156 1.53593L11.7016 4.39062H0.854688C0.521875 4.39062 0.25 4.6625 0.25 5C0.25 5.3375 0.521875 5.60937 0.854688 5.60937H11.6969L8.84687 8.46406C8.6125 8.70312 8.61719 9.0875 8.85156 9.32656C9.09062 9.56093 9.47031 9.56094 9.70937 9.32187L13.5719 5.43125C13.6234 5.375 13.6656 5.31406 13.6984 5.23906C13.7312 5.16406 13.7453 5.08437 13.7453 5.00468C13.7453 4.84531 13.6844 4.69531 13.5719 4.57812L9.70937 0.687496C9.47969 0.443746 9.09531 0.439058 8.85625 0.673433Z"
-                  fill="#0099BB"
-                />
-              </svg>
-            </nuxt-link>
-            <div class="options__service-bg">
-              <img
-                src="https://res.cloudinary.com/eden-life-inc/image/upload/q_auto/v1612286532/eden-website-v2/giftimage_xjioyo.jpg"
-                alt="gifting"
-              />
-            </div>
-          </div> -->
-        </div>
+       </div>
       </section>
     </div>
  <download-banner v-if="showDownloadBanner" :show-download-banner="showDownloadBanner" class="download-banner">
@@ -768,6 +761,9 @@ export default {
         'savory seafood',
       ],
       tabs: [],
+      mealFrequency: '',
+      dailyDeliveryDays: ['monday-friday', 'monday-saturday'],
+      selectedDays: ['monday-friday'],
       showDownloadBanner: true,
       activeTabIndex: null,
       setExploreService: false,
@@ -845,12 +841,8 @@ export default {
     }, 2300)
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
-    this.totalDailyPrice = pricing({
-      meal: { item: null, frequency: 'daily', qty: this.mealsPerDay },
-    })
-    this.totalWeeklyPrice = pricing({
-      meal: { item: null, frequency: 'weekly', qty: this.mealsPerWeek },
-    })
+    this.totalDailyPrice = this.calculatePrice('daily', this.mealsPerDay)
+    this.totalWeeklyPrice = this.calculatePrice('weekly', this.mealsPerWeek)
     this.fetchMeal()
     // scroll to menu
     const getRoute = this.$nuxt.$route.fullPath
@@ -986,7 +978,11 @@ export default {
       this.activeTabIndex = val
       this.mealsInCategory = this.getMealsInEachCategory(this.allMeal, val)
     },
-
+    updateDeliveyDay(item) {
+        this.selectedDays = []
+        this.selectedDays.push(item)
+        this.totalDailyPrice = this.calculatePrice('daily', this.mealsPerDay)
+    },
     previousCategory() {
       let activeIndex = this.tabs.indexOf(this.activeTabIndex)
       this.changeCategory(this.tabs[activeIndex - 1])
@@ -1028,9 +1024,7 @@ export default {
 
       if (order === 'weekly') {
         this.mealsPerDay++
-        this.totalDailyPrice = pricing({
-          meal: { item: null, frequency: 'daily', qty: this.mealsPerDay },
-        })
+        this.totalDailyPrice = this.calculatePrice('daily', this.mealsPerDay)
       }
       if (order === 'monthly') {
         this.mealsPerWeek++
@@ -1043,9 +1037,7 @@ export default {
 
       if (order === 'weekly' && this.mealsPerDay > 1) {
         this.mealsPerDay--
-        this.totalDailyPrice = pricing({
-          meal: { item: null, frequency: 'daily', qty: this.mealsPerDay },
-        })
+        this.totalDailyPrice = this.calculatePrice('daily', this.mealsPerDay)
       }
       if (order === 'monthly' && this.mealsPerWeek > 1) {
         this.mealsPerWeek--
@@ -1074,15 +1066,40 @@ export default {
         this.checkWeeklyFreq(freq)
       }
     },
+   calculatePrice(frequency, quantity) {
+    const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+    const service_day = {
+      daily: this.selectedDays[0] === "monday-friday" ? days.slice(0, 5) : days,
+      weekly: days.slice(0, 1),
+      "weekly-twodays": days.slice(0, 2)
+    }
+    if(frequency === 'daily') {
+    this.mealsPerDay = this.mealsPerDay > 5 ? 5 : this.mealsPerDay
+    }
+    const qty = frequency === 'daily' ? this.mealsPerDay : this.mealsPerWeek
+    const qtyPerWeek = frequency === 'daily' ? this.mealsPerDay * service_day[frequency].length : this.mealsPerWeek
+    const mealPrice = pricing({
+      meal: {
+        item: null,
+        frequency: frequency,
+        qty: qtyPerWeek,
+        service_day: service_day[frequency],
+        meal_per_delivery: service_day[frequency].reduce((days, day) => {
+          return {
+            same_number_per_delivery: true,
+            ...days,
+            [day]: qty
+          }
+        }, {})
+      }
+    })
+    return mealPrice
+  },
     checkWeeklyFreq(freq) {
       if (freq === 'weekly') {
-        this.totalWeeklyPrice = pricing({
-          meal: { item: null, frequency: freq, qty: this.mealsPerWeek },
-        })
+        this.totalWeeklyPrice = this.calculatePrice('weekly', this.mealsPerWeek)
       } else {
-        this.totalWeeklyPrice = pricing({
-          meal: { item: null, frequency: freq, qty: this.mealsPerWeek * 2 },
-        })
+        this.totalWeeklyPrice = this.calculatePrice('weekly-twodays', this.mealsPerWeek * 2)
       }
     },
     trackLink(service) {
@@ -1153,5 +1170,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/pages/_food.scss';
+
 @import '@/assets/scss/components/_downloadbanner.scss';
 </style>

@@ -309,6 +309,36 @@
                   </button>
                 </div>
               </div>
+            <div class="calculator__input">
+                  <div
+                    class="calculator__input-item calculator__input-delivery"
+                  >
+                  <div class="plan__price-item">
+                    <p>Delivery days</p>
+                  </div>
+                    <div class="delivery">
+                      <div
+                        v-for="(item, i) in dailyDeliveryDays"
+                        :key="i"
+                        class="delivery__days daily"
+                      >
+                        <div
+                          class="delivery__days-item"
+                          :class="{ checked: selectedDays.includes(item) }"
+                        >
+                          <input
+                            :id="item"
+                            v-model="selectedDays"
+                            type="checkbox"
+                            :value="item"
+                            @change="updateDeliveyDay(item)"
+                          />
+                          <label :for="item">{{ item }}</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
                 <div class="plan__price-bottom">
                   <h5>
                     <span class="price">Price </span>
@@ -805,6 +835,9 @@ export default {
       },
       loading: false,
       showFailedModal: false,
+      mealFrequency: '',
+      dailyDeliveryDays: ['monday-friday', 'monday-saturday'],
+      selectedDays: ['monday-friday'],
       mealsPerDay: 1,
       mealsPerWeek: 5,
       deliveryPerWeek: 1,
@@ -851,12 +884,8 @@ export default {
     window.setInterval(() => {
       this.changeText()
     }, 2300)
-    this.totalDailyPrice = pricing({
-      meal: { item: null, frequency: 'daily', qty: this.mealsPerDay },
-    })
-    this.totalWeeklyPrice = pricing({
-      meal: { item: null, frequency: 'weekly', qty: this.mealsPerWeek },
-    })
+    this.totalDailyPrice = this.calculatePrice('daily', this.mealsPerDay)
+    this.totalWeeklyPrice = this.calculatePrice('weekly', this.mealsPerWeek)
     mixpanelTrackEvent('Food Lead page')
   },
   methods: {
@@ -864,7 +893,7 @@ export default {
       const first = this.headerText.shift()
       this.headerText = this.headerText.concat(first)
     },
-        currencyFormat,
+    currencyFormat,
     placeholderColorMix,
     toggleMenu(menu) {
       if (menu === 'next') {
@@ -879,14 +908,46 @@ export default {
     scrollToTop(ref) {
       this.$refs[ref].scrollIntoView()
     },
+    updateDeliveyDay(item) {
+        this.selectedDays = []
+        this.selectedDays.push(item)
+        this.totalDailyPrice = this.calculatePrice('daily', this.mealsPerDay)
+    },
+   calculatePrice(frequency, quantity) {
+    const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+    const service_day = {
+      daily: this.selectedDays[0] === "monday-friday" ? days.slice(0, 5) : days,
+      weekly: days.slice(0, 1),
+      "weekly-twodays": days.slice(0, 2)
+    }
+    if(frequency === 'daily') {
+    this.mealsPerDay = this.mealsPerDay > 5 ? 5 : this.mealsPerDay
+    }
+    const qty = frequency === 'daily' ? this.mealsPerDay : this.mealsPerWeek
+    const qtyPerWeek = frequency === 'daily' ? this.mealsPerDay * service_day[frequency].length : this.mealsPerWeek
+    const mealPrice = pricing({
+      meal: {
+        item: null,
+        frequency: frequency,
+        qty: qtyPerWeek,
+        service_day: service_day[frequency],
+        meal_per_delivery: service_day[frequency].reduce((days, day) => {
+          return {
+            same_number_per_delivery: true,
+            ...days,
+            [day]: qty
+          }
+        }, {})
+      }
+    })
+    return mealPrice
+   },
     increaseOrder(order) {
-      mixpanelTrackEvent(`Increase ${order} order clicked - food leads page`)
+      mixpanelTrackEvent(`Increase ${order} order clicked - food page`)
 
       if (order === 'weekly') {
         this.mealsPerDay++
-        this.totalDailyPrice = pricing({
-          meal: { item: null, frequency: 'daily', qty: this.mealsPerDay },
-        })
+        this.totalDailyPrice = this.calculatePrice('daily', this.mealsPerDay)
       }
       if (order === 'monthly') {
         this.mealsPerWeek++
@@ -895,13 +956,11 @@ export default {
       }
     },
     decreaseOrder(order) {
-      mixpanelTrackEvent(`Decrease ${order} order clicked - food leads page`)
+      mixpanelTrackEvent(`Decrease ${order} order clicked - food page`)
 
       if (order === 'weekly' && this.mealsPerDay > 1) {
         this.mealsPerDay--
-        this.totalDailyPrice = pricing({
-          meal: { item: null, frequency: 'daily', qty: this.mealsPerDay },
-        })
+        this.totalDailyPrice = this.calculatePrice('daily', this.mealsPerDay)
       }
       if (order === 'monthly' && this.mealsPerWeek > 1) {
         this.mealsPerWeek--
@@ -913,7 +972,7 @@ export default {
       }
     },
     increaseFrequency() {
-      mixpanelTrackEvent(`Increase order frequency clicked - food leads page`)
+      mixpanelTrackEvent(`Increase order frequency clicked - food page`)
 
       if (this.deliveryPerWeek < 2 && this.mealsPerWeek > 1) {
         this.deliveryPerWeek++
@@ -922,7 +981,7 @@ export default {
       }
     },
     decreaseFrequency() {
-      mixpanelTrackEvent(`Decrease order frequency clicked - food leads page`)
+      mixpanelTrackEvent(`Decrease order frequency clicked - food page`)
 
       if (this.deliveryPerWeek > 1) {
         this.deliveryPerWeek--
@@ -932,15 +991,10 @@ export default {
     },
     checkWeeklyFreq(freq) {
       if (freq === 'weekly') {
-        this.totalWeeklyPrice = pricing({
-          meal: { item: null, frequency: freq, qty: this.mealsPerWeek },
-        })
+        this.totalWeeklyPrice = this.calculatePrice('weekly', this.mealsPerWeek)
       } else {
-        this.totalWeeklyPrice = pricing({
-          meal: { item: null, frequency: freq, qty: this.mealsPerWeek * 2 },
-        })
+        this.totalWeeklyPrice = this.calculatePrice('weekly-twodays', this.mealsPerWeek * 2)
       }
-      console.log(freq)
     },
     scrollToFooter(id) {
       document.getElementById(id).scrollIntoView()

@@ -878,10 +878,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@edenlife/eden-pricing-module@1.0.8":
-  version "1.0.8"
-  resolved "https://npm.pkg.github.com/download/@edenlife/eden-pricing-module/1.0.8/37e6c967ee38d8a76cf21c0b94b58979623f9fdf4cead0251cfa095bbc290275#7370b007ad52ef09ef726c2c060cae3d613054e6"
-  integrity sha512-gb2gP1t/KzcxOgTvbu0nmf96zlrL2wWzbErn7aI44s826oXjarJWm3zEjNBPiXG/hFhsWR3V9XCdfA4Ec5GhUg==
+"@edenlife/eden-pricing-module@^1.0.1":
+  version "1.0.1"
+  resolved "https://npm.pkg.github.com/download/@edenlife/eden-pricing-module/1.0.1/e036ae461e4188f72eb9aa0c971056f63bfbc841e1943d415bb543157e939a6a#e3bd52e6125e5ae01fce8726a3b8fe2fc94f23e0"
+  integrity sha512-DpCET9bWz6n3IGUqY2988wrMkuVG3MaZdqzqZWJq7bnIKa70KJDCiKmNn6fqZ78Mpk0+hwqDXwtX6hLhdksEtQ==
   dependencies:
     axios "^0.27.2"
 

@@ -6,9 +6,9 @@
     background: color(eden-purple-50)
      ;
     @include respond(md) {
-      background: color(eden-purple-50)
-        url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611849815/eden-website-v2/eden-stamp_trgxux.svg')
-        no-repeat bottom 4% left 5%;
+      // background: color(eden-purple-50)
+      //   url('https://res.cloudinary.com/eden-life-inc/image/upload/v1611849815/eden-website-v2/eden-stamp_trgxux.svg')
+      //   no-repeat bottom 4% left 5%;
     }
   }
 
@@ -126,7 +126,7 @@
 
   @include respond(md) {
     flex-direction: column;
-    padding: $gap * 16.8 0 $gap * 22.3 0;
+    padding: $gap * 16.8 0 $gap * 15 0;
 
     width: 100%;
     &__title {

@@ -8,18 +8,18 @@ export default [
     details: [
       '1 meal per day.',
       'Delivered Monday to Friday.',
-      ' ₦55,000 for 4 weeks.',
+      ' ₦79,000 per month.',
     ],
     plan_detail: '1 meal per day.',
     plan: {
       meal: {
         frequency: 'daily',
         qty: 1,
-        amount: 55000,
+        amount: 79000,
       },
     },
-    amount: '55,000',
-    payment_link: 'https://pay.edenlife.ng/pay/cd570c7a'
+    amount: '79,000',
+    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
 
   },
 
@@ -32,7 +32,7 @@ export default [
     details: [
       '6 meals per week.',
       'Delivered  twice a week.',
-      '₦58,000 for four weeks',
+      '₦94,800 per month',
     ],
     plan_detail: '6 meals per week.',
 
@@ -40,11 +40,11 @@ export default [
       meal: {
         frequency: 'weekly-twodays',
         qty: 6,
-        amount: 58000,
+        amount: 94800,
       },
     },
-    amount: '58,000',
-    payment_link: 'https://pay.edenlife.ng/pay/3d2c371b'
+    amount: '94,800',
+    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
 
   },
   {
@@ -56,7 +56,7 @@ export default [
     details: [
       'Wash and iron 1 laundry bag of 30 items.',
       'Picked up and delivered every 2 weeks.',
-      ' ₦24,000 for four weeks ',
+      ' ₦74,000 per month ',
     ],
     plan_detail: 'Wash and iron 1 laundry bag of 30 items.',
 
@@ -65,11 +65,11 @@ export default [
         frequency: 'bi-weekly',
         qty: 1,
         item: 'wash-and-iron',
-        amount: 24000,
+        amount: 74000,
       },
     },
-    amount: '24,000',
-    payment_link: 'https://pay.edenlife.ng/pay/ede6f1b2'
+    amount: '74,000',
+    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
 
   },
   {
@@ -81,7 +81,7 @@ export default [
     details: [
       'Standard cleaning for a 2 bedroom apartment.',
       'Every week.',
-      ' ₦26,000 for four weeks.',
+      ' ₦34,000 per month.',
     ],
     plan_detail: 'Standard cleaning for a 2 bedroom apartment.',
 
@@ -90,9 +90,9 @@ export default [
         frequency: 'weekly',
         qty: 7,
         item: 'wash-and-iron',
-        amount: 26000,
+        amount: 34000,
         home_type: 'flat',
-        item: 'light-cleaning',
+        item: 'standard-cleaning',
         item_areas: {
           bedrooms: 2,
           'living-rooms-dining-areas': 1,
@@ -103,8 +103,8 @@ export default [
         },
       },
     },
-    amount: '26,000',
-    payment_link: 'https://pay.edenlife.ng/pay/03e6e8c9'
+    amount: '34,000',
+    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
 
   },
   {
@@ -116,24 +116,24 @@ export default [
     details: [
       '1 meal per week delivered once a week. Wash and fold 1 laundry bag of 30 items.',
       'Laundry picked up and delivered every 2 weeks.',
-      ' ₦24,500 for four weeks. ',
+      ' ₦73,800 per month. ',
     ],
     plan_detail: '1 meal per week delivered once a week + Wash and fold 1 laundry bag of 30 items.',
     plan: {
       meal: {
         frequency: 'weekly',
         qty: 1,
-        amount: 11000,
+        amount: 15800,
       },
       laundry: {
         frequency: 'bi-weekly',
         qty: 1,
         item: 'wash-and-fold',
-        amount: 13500,
+        amount: 58000,
       },
     },
-    amount: '24,500',
-    payment_link: 'https://pay.edenlife.ng/pay/aca1efaa'
+    amount: '73,800',
+    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
 
   },
   {
@@ -153,7 +153,7 @@ export default [
       cleaning: {
         frequency: 'bi-weekly',
         qty: 0,
-        amount: 10000,
+        amount: 9000,
         home_type: 'flat',
         item: 'light-cleaning',
         item_areas: {
@@ -169,11 +169,11 @@ export default [
         frequency: 'bi-weekly',
         qty: 1,
         item: 'wash-and-fold',
-        amount: 13500,
+        amount: 58000,
       },
     },
-    amount: '23,500',
-    payment_link: 'https://pay.edenlife.ng/pay/ca278a21'
+    amount: '67,000',
+    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
 
   },
 ]

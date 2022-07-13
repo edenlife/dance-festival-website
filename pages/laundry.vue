@@ -918,6 +918,7 @@ export default {
         { item: 'Blanket (3 items)', cost: '2900' },
         { item: 'Curtain (Per unit - 3 items)', cost: '2900' },
         { item: '3 piece Agbada (3 items) ', cost: '2900' },
+        { item: 'Fancy dress/delicate dinner gown ', cost: '2900' },
         { item: 'Stubborn Stain Removal', cost: '3000' },
         { item: 'Logistics charge for items on hanger', cost: '3500' },
         { item: 'Duvet (4 items)', cost: '3868' },

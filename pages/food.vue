@@ -819,8 +819,11 @@ export default {
     },
   },
 
+  created() {
+    setEnv('production')
+  },
+
   mounted() {
-    setEnv("production")
     window.addEventListener('scroll', this.isInViewport)
     mixpanelTrackEvent('Food page')
     window.setInterval(() => {

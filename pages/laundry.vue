@@ -960,8 +960,11 @@ export default {
     }, 2300)
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
-    this.totalWashDryPrice = this.caculateLaundryPricing('wash-and-fold', this.washDryFrequency, this.washDry )
-    this.totalWashIronPrice = this.caculateLaundryPricing('wash-and-iron', this.washIronFrequency, this.washIron )
+
+    setTimeout(() => {
+      this.totalWashDryPrice = this.caculateLaundryPricing('wash-and-fold', this.washDryFrequency, this.washDry )
+      this.totalWashIronPrice = this.caculateLaundryPricing('wash-and-iron', this.washIronFrequency, this.washIron )
+    }, 2000)
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)

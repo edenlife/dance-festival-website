@@ -819,10 +819,6 @@ export default {
     },
   },
 
-  created() {
-    setEnv('production')
-  },
-
   mounted() {
     window.addEventListener('scroll', this.isInViewport)
     mixpanelTrackEvent('Food page')
@@ -831,14 +827,16 @@ export default {
     }, 2300)
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
-    this.totalDailyPrice = this.calculatePrice('daily', this.mealsPerDay)
-    this.totalWeeklyPrice = this.calculatePrice('weekly', this.mealsPerWeek)
     this.fetchMeal()
     // scroll to menu
     const getRoute = this.$nuxt.$route.fullPath
     if (getRoute.includes('current-menu')) {
       this.scrollToMenu()
     }
+    setTimeout(() => {
+      this.totalDailyPrice = this.calculatePrice('daily', this.mealsPerDay)
+      this.totalWeeklyPrice = this.calculatePrice('weekly', this.mealsPerWeek)
+    }, 2000)
   },
 
   destroyed() {

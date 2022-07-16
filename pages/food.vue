@@ -744,6 +744,7 @@ import {
 } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import getSiteMeta from '~/utils/getSiteMeta'
+import {setEnv} from "@edenlife/eden-pricing-module";
 
 export default {
   components: {
@@ -819,6 +820,7 @@ export default {
   },
 
   mounted() {
+    setEnv("production")
     window.addEventListener('scroll', this.isInViewport)
     mixpanelTrackEvent('Food page')
     window.setInterval(() => {
@@ -1141,11 +1143,11 @@ export default {
        mixpanelTrackEvent('Download App - food banner')
       const userAgent = navigator.userAgent || navigator.vendor || window.opera
       if(/android/i.test(userAgent)){
-            window.location.href = 
+            window.location.href =
            'https://play.google.com/store/apps/details?id=com.ouredenlife.app';
       }
       if(/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream){
-          window.location.href = 
+          window.location.href =
          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1';
       }
     }

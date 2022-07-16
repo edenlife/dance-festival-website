@@ -99,6 +99,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/flutterwave',
+    { src: 'plugins/pricing.js', ssr: false }, // Only works on client side
     '~/plugins/vue-social-sharing.js',
     '~/plugins/vue-animate-on-scroll.js',
     '~/plugins/vue-mailchimp-subscribe.js',

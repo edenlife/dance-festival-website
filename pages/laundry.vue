@@ -847,7 +847,7 @@ export default {
           name: 'justin irabor',
           image: 'justin',
           description: `Under normal circumstances (since I'm always at home), it would make sense for me to wear as few clothes as possible and change them as sparingly as possible.<br><br>
-          But I don't live under normal circumstances. I have an 
+          But I don't live under normal circumstances. I have an
           <span style="color:#03A84E"> @ouredenlife </span>laundry subscription.`,
           handle: 'LifeOfMogwai',
           tweetLink:
@@ -1099,11 +1099,11 @@ export default {
        mixpanelTrackEvent('Download App - laundry banner')
       const userAgent = navigator.userAgent || navigator.vendor || window.opera
       if(/android/i.test(userAgent)){
-            window.location.href = 
+            window.location.href =
            'https://play.google.com/store/apps/details?id=com.ouredenlife.app';
       }
       if(/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream){
-          window.location.href = 
+          window.location.href =
          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1';
       }
     }

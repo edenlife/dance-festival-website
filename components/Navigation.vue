@@ -406,10 +406,9 @@
         <li>
           <a
             id="get-started"
-            href="#"
+            href="https://greenhouse-staging.netlify.app/?utm_source=googlehttps://greenhouse-staging.netlify.app/&utm_medium=banner&utm_campaign=remarketing&utm_content=cleaning-ads&gclid=Cj0KCQjw8amWBhCYARIsADqZJoUhf-zGJ5Kq-vpGspnkJaiqhbvcxVKQYrhHXcxx1dEdSTBTC1GMZHYaAl6YEALw_wcB"
             class="navigation__menu-item navigation__menu-link"
             :class="{ 'primary-red': currentRoute === 'gift' }"
-            @click.prevent="scrollTo('#get-the-app')"
           >
             {{
               currentRoute === 'eden_means_easy' ? 'Sign Up Now' : 'Get Started'

@@ -10,6 +10,14 @@ export const state = () => ({
   foodPosts: [],
   edenPosts: [],
   fromOrigin: null,
+  greenhouse: {
+    token: '',
+    authenticated: false,
+    location: '',
+    user: {},
+    reset_email: '',
+    reset_code: '',
+  },
 })
 
 export const getters = {
@@ -45,6 +53,21 @@ export const getters = {
   },
   getFromOrigin: (state) => {
     return state.fromOrigin
+  },
+  getGreenhouseToken: (state) => {
+    return state.greenhouse.token
+  },
+  getGreenhouseUser: (state) => {
+    return state.greenhouse.user
+  },
+  getGreenhouseResetEmail: (state) => {
+    return state.greenhouse.reset_email
+  },
+  getGreenhouseResetCode: (state) => {
+    return state.greenhouse.reset_code
+  },
+  getLocation: (state) => {
+    return state.greenhouse.location
   },
 }
 
@@ -94,7 +117,16 @@ export const mutations = {
   setFromOrigin: (state, payload) => {
     state.fromOrigin = payload
   },
-  setUser: (state, payload) => {
-    state.user = payload
+  setGreenhouse: (state, payload) => {
+    state.greenhouse.token = payload.token
+    state.greenhouse.authenticated = !!payload.token
+    state.greenhouse.location = payload.location
+    state.greenhouse.user = payload.user
+  },
+  setGreenhouseResetEmail: (state, payload) => {
+    state.greenhouse.reset_email = payload
+  },
+  setGreenhouseResetCode: (state, payload) => {
+    state.greenhouse.reset_code = payload
   },
 }

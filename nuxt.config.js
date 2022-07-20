@@ -190,8 +190,8 @@ export default {
         component: resolve(__dirname, 'pages/app/home.vue'),
       })
       routes.push({
-        name: 'home',
-        path: '/home',
+        name: 'settings',
+        path: '/settings',
         component: resolve(__dirname, 'pages/app/settings.vue'),
       })
     },

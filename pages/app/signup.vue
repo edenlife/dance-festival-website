@@ -266,7 +266,6 @@ export default {
       this.passwordDisabledRegister = value
     },
     register() {
-      console.log("you're here")
       mixpanelTrackEvent('Create account btn clicked')
       this.$refs.form.validate((valid) => {
         if (!valid) {
@@ -341,11 +340,7 @@ export default {
               type: 'success',
             })
 
-            greenhouse.login(loginPayload).then((response) => {
-              if (response.status) {
-                console.log('Go home')
-              }
-            })
+            this.login(loginPayload)
           })
           .catch((error) => {
             this.loading = false
@@ -358,6 +353,38 @@ export default {
           })
       })
     },
+    login(payload) {
+      greenhouse
+        .login(payload)
+        .then((response) => {
+          const { status, data, message } = response.data
+          if (status) {
+            this.$message({
+              message,
+              type: 'success',
+            })
+
+            const { access_token, eden_location } = data
+            this.$store.commit('setGreenhouse', {
+              token: access_token,
+              authenticated: !!access_token,
+              location: eden_location,
+              user: data,
+            })
+
+            this.$router.push({ name: 'home' })
+          }
+        })
+        .catch((error) => {
+          this.loading = false
+          const errorMessage = error.response.data
+          if (errorMessage.errors) {
+            this.$message.error(errorMessage.errors.join('\n'))
+          } else {
+            this.$message.error(errorMessage.message)
+          }
+        })
+    }
   },
 }
 </script>

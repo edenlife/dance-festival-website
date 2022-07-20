@@ -121,7 +121,7 @@ export default {
         }
         this.loading = true
         const payload = {
-          code: localStorage.getItem('reset-code'),
+          code: this.$store.getters.ge('reset-code'),
           password: this.form.password,
         }
         // const loginPayload = {

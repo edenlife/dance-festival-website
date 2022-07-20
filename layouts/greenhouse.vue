@@ -9,7 +9,7 @@
               alt="Eden"
             />
           </div>
-          <template v-if="loggedIn">
+          <template v-if="authenticated">
             <div class="navigation-home">
               <router-link
                 :to="{ name: 'home' }"
@@ -114,11 +114,14 @@ export default {
     }
   },
   computed: {
+    authenticated() {
+      return !!this.$store.getters.getGreenhouseToken
+    },
     loggedIn() {
-      return this.$store.getters.user
+      return this.$store.getters.getGreenhouseUser
     },
     userName() {
-      return this.loggedIn.customer.name
+      return this.loggedIn.customer ? this.loggedIn.customer.name : '-'
     },
   },
   mounted() {},
@@ -139,6 +142,14 @@ export default {
     logOut() {
       this.$message.success('You are logged out.')
       this.$router.push({ name: 'login' })
+      this.$store.commit('setGreenhouse', {
+        token: null,
+        authenticated: false,
+        location: '',
+        user: {},
+        reset_email: '',
+        reset_code: '',
+      })
     },
   },
 }

@@ -111,7 +111,7 @@ export default {
               message: successMessage,
               type: 'success',
             })
-            localStorage.setItem('email', this.form.email)
+            this.$store.commit('setGreenhouseResetEmail', this.form.email)
             this.$router.push({ name: 'reset-code' })
           })
           .catch((error) => {

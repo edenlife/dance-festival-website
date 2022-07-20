@@ -310,17 +310,12 @@ export default {
     //   this.$store.dispatch(actions.GET_LOCATION_AREAS_LIST)
     // }
   },
-  watch: {
-    getUserProfile() {
-      this.form
-    },
-  },
   mounted() {
     mixpanelTrackEvent('profile settings')
   },
   methods: {
     getUserProfile() {
-      user
+      greenhouse
         .userProfile(this.userId)
         .then((response) => {
           if (response.data.status) {
@@ -356,15 +351,9 @@ export default {
             if (response.data.status) {
               this.$message.success(response.data.message)
               this.updating = false
-              let storedData = JSON.parse(
-                localStorage.getItem('eden-greenhouse-user')
-              )
-              ;(storedData.customer.name =
-                this.form.first_name + ' ' + this.form.last_name),
-                localStorage.setItem(
-                  'eden-greenhouse-user',
-                  JSON.stringify(storedData)
-                )
+              const storedData = this.$store.getters.getGreenhouseUser
+                storedData.customer.name =
+                this.form.first_name + ' ' + this.form.last_name
               this.$store.commit('USER', storedData)
             }
           })

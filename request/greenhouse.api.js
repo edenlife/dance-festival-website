@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+// import { getters } from '~/store'
 const baseURL = process.env.GREENHOUSE_API
 const instance = axios.create({
   baseURL,
@@ -9,6 +9,11 @@ const instance = axios.create({
     'Content-Type': 'application/json',
   },
 })
+
+// const token = getters.getGreenhouseToken
+// if (token) {
+//   instance.headers.common.Authorization = `Bearer ${token}`
+// }
 
 export const login = (payload) => {
   return instance.post('login', payload)
@@ -35,13 +40,16 @@ export const list = () => {
 }
 
 export const userProfile = (userId) => {
-  return axios.get(`customers/${userId}/profile`);        
+  return axios.get(`customers/${userId}/profile`)
 }
 
 export const updateProfile = (userId, details, section) => {
-  return axios.patch(`customers/${userId}/profile?section=${section}`, details[section]);        
+  return axios.patch(
+    `customers/${userId}/profile?section=${section}`,
+    details[section]
+  )
 }
 
 export const changePassword = (userId, payload) => {
-  return axios.put(`customers/${userId}/change_password`, payload);        
+  return axios.put(`customers/${userId}/change_password`, payload)
 }

@@ -103,7 +103,7 @@ export default {
           return
         }
         this.loading = true
-        localStorage.setItem('reset-code', this.form.code)
+        this.$store.commit('setGreenhouseResetCode', this.form.code)
         this.$router.push({ name: 'reset-password' })
       })
     },

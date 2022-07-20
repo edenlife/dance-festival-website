@@ -34,7 +34,10 @@
               href="https://apps.apple.com/us/app/eden-life/id1482373755?ls=1"
               @click="openAppleStore"
             >
-              <img src="@/assets/images/greenhouse/App Store.svg" alt="Garden App store" />
+              <img
+                src="@/assets/images/greenhouse/App Store.svg"
+                alt="Garden App store"
+              />
             </a>
           </div>
         </div>
@@ -49,7 +52,10 @@
                 Pause when you leave town.
               </p>
               <div class="mt-2">
-                <img src="@/assets/images/greenhouse/manage_service.svg" alt="Garden" />
+                <img
+                  src="@/assets/images/greenhouse/manage_service.svg"
+                  alt="Garden"
+                />
               </div>
             </el-card>
           </el-col>
@@ -61,7 +67,10 @@
                 service history.
               </p>
               <div class="mt-2">
-                <img src="@/assets/images/greenhouse/track_service.svg" alt="Garden" />
+                <img
+                  src="@/assets/images/greenhouse/track_service.svg"
+                  alt="Garden"
+                />
               </div>
             </el-card>
           </el-col>
@@ -76,7 +85,10 @@
                   answer your questions and make sure Eden is working for you.
                 </p>
                 <div class="mt-2">
-                  <img src="@/assets/images/greenhouse/talk_to_gardener.svg" alt="Garden" />
+                  <img
+                    src="@/assets/images/greenhouse/talk_to_gardener.svg"
+                    alt="Garden"
+                  />
                 </div>
               </el-card>
             </el-col>
@@ -91,19 +103,24 @@
                   to worry about market runs or meal prep..
                 </p>
                 <div class="mt-2">
-                  <img src="@/assets/images/greenhouse/meal_selection.svg" alt="Garden" />
+                  <img
+                    src="@/assets/images/greenhouse/meal_selection.svg"
+                    alt="Garden"
+                  />
                 </div>
               </el-card>
             </el-col>
           </el-row>
         </div>
       </div>
-      <div class="home__chat" id="contactBtn">
+      <div id="contactBtn" class="home__chat">
         <el-popover placement="bottom" width="200" trigger="click">
           <div class="home__chat-trigger">
             <p @click="launchIntercom()">
               <span class="margin-right-9"
-                ><img src="@/assets/images/greenhouse/message_chat.svg" alt="icon"
+                ><img
+                  src="@/assets/images/greenhouse/message_chat.svg"
+                  alt="icon"
               /></span>
               Live Chat with Us
             </p>
@@ -117,10 +134,10 @@
             </p>
           </div>
           <el-button
-            class="home__chat-icon"
-            slot="reference"
-            @click="showContact()"
             v-if="submitted"
+            slot="reference"
+            class="home__chat-icon"
+            @click="showContact()"
           >
             <p>
               <img
@@ -132,9 +149,9 @@
             </p>
           </el-button>
           <el-button
-            class="home__chat-icon"
-            slot="reference"
             v-else
+            slot="reference"
+            class="home__chat-icon"
             @click="closeIcon()"
           >
             <p>
@@ -193,7 +210,7 @@ export default {
       return getSiteMeta(metaData)
     },
     location() {
-      return this.$store.getters.location
+      return this.$store.getters.getLocation
     },
   },
   mounted() {
@@ -202,7 +219,7 @@ export default {
   },
   methods: {
     handleScroll() {
-      var contactBtn = document.getElementById('contactBtn')
+      const contactBtn = document.getElementById('contactBtn')
       if (window.onscroll > 20 || window.onscroll > 20) {
         contactBtn.style.display = 'block'
       }
@@ -220,7 +237,7 @@ export default {
       this.submitted = true
     },
     launchIntercom() {
-    //   window.Intercom('show')
+      //   window.Intercom('show')
     },
   },
 }

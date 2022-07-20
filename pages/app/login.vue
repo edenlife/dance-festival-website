@@ -118,7 +118,6 @@ export default {
       }
     },
     login() {
-      console.log('worked')
       this.$refs.form.validate((valid) => {
         if (!valid) {
           return
@@ -127,14 +126,22 @@ export default {
         greenhouse
           .login(this.form)
           .then((response) => {
-            if (response.status) {
-              const successMessage = response.data.message
+            const { status, data, message } = response.data
+            if (status) {
               this.$message({
-                message: successMessage,
+                message,
                 type: 'success',
               })
-              this.$store.commit('setUser', posts)
-              this.$router.push({ name: "home" });
+
+              const { access_token, eden_location } = data
+              this.$store.commit('setGreenhouse', {
+                token: access_token,
+                authenticated: !!access_token,
+                location: eden_location,
+                user: data,
+              })
+
+              this.$router.push({ name: 'home' })
             }
           })
           .catch((error) => {

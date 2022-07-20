@@ -184,6 +184,16 @@ export default {
         path: '/reset-password',
         component: resolve(__dirname, 'pages/app/reset-password.vue'),
       })
+      routes.push({
+        name: 'home',
+        path: '/home',
+        component: resolve(__dirname, 'pages/app/home.vue'),
+      })
+      routes.push({
+        name: 'home',
+        path: '/home',
+        component: resolve(__dirname, 'pages/app/settings.vue'),
+      })
     },
   },
 

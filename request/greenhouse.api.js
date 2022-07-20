@@ -29,3 +29,19 @@ export const sendResetCode = (payload) => {
 export const resetPassword = (payload) => {
   return instance.post('/forgot_password/reset', payload)
 }
+
+export const list = () => {
+  return instance.get('locationareas')
+}
+
+export const userProfile = (userId) => {
+  return axios.get(`customers/${userId}/profile`);        
+}
+
+export const updateProfile = (userId, details, section) => {
+  return axios.patch(`customers/${userId}/profile?section=${section}`, details[section]);        
+}
+
+export const changePassword = (userId, payload) => {
+  return axios.put(`customers/${userId}/change_password`, payload);        
+}

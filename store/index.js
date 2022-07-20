@@ -94,4 +94,7 @@ export const mutations = {
   setFromOrigin: (state, payload) => {
     state.fromOrigin = payload
   },
+  setUser: (state, payload) => {
+    state.user = payload
+  },
 }

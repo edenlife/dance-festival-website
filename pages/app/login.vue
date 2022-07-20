@@ -118,7 +118,8 @@ export default {
       }
     },
     login() {
-      this.$refs.form.validate( (valid) => {
+      console.log('worked')
+      this.$refs.form.validate((valid) => {
         if (!valid) {
           return
         }
@@ -132,6 +133,8 @@ export default {
                 message: successMessage,
                 type: 'success',
               })
+              this.$store.commit('setUser', posts)
+              this.$router.push({ name: "home" });
             }
           })
           .catch((error) => {

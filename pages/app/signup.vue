@@ -266,6 +266,7 @@ export default {
       this.passwordDisabledRegister = value
     },
     register() {
+      console.log("you're here")
       mixpanelTrackEvent('Create account btn clicked')
       this.$refs.form.validate((valid) => {
         if (!valid) {
@@ -280,7 +281,8 @@ export default {
           }
           plan[service] = defaultConfig[this.location][service]
         })
-        const sortedPlan = this.sortObject(plan)
+        let sortedPlan = this.sortObject(plan)
+        console.log(sortedPlan, plan)
         const metadata = {
           name: this.form.firstname + ' ' + this.form.lastname,
           email: this.form.email,
@@ -362,4 +364,7 @@ export default {
 
 <style lang="scss">
 @import '~/assets/scss/greenhouse/main.scss';
+.el-select-dropdown__item.selected {
+  color: #0f241b;
+}
 </style>

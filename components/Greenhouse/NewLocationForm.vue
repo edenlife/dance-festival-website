@@ -250,6 +250,7 @@ export default {
           .waitingList(payload)
           .then(() => {
             this.loading = false
+            this.$store.commit('setSuccessState', this.form.state);
             this.$emit('success')
             this.closeEvent()
           })

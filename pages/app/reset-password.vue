@@ -121,13 +121,13 @@ export default {
         }
         this.loading = true
         const payload = {
-          code: this.$store.getters.ge('reset-code'),
+          code: this.$store.getters.getGreenhouseResetCode,
           password: this.form.password,
         }
-        // const loginPayload = {
-        //   email: localStorage.getItem('email'),
-        //   password: this.form.password,
-        // }
+        const loginPayload = {
+          email: this.$store.getters.getGreenhouseResetEmail,
+          password: this.form.password,
+        }
         greenhouse
           .resetPassword(payload)
           .then((response) => {
@@ -137,6 +137,7 @@ export default {
               message: successMessage,
               type: 'success',
             })
+            this.login(loginPayload)
           })
           .catch((error) => {
             this.loading = false
@@ -148,6 +149,33 @@ export default {
             }
           })
       })
+    },
+        login(payload) {
+      greenhouse
+        .login(payload)
+        .then((response) => {
+          const { status, data, message } = response.data
+          if (status) {
+            const { access_token, eden_location } = data
+            this.$store.commit('setGreenhouse', {
+              token: access_token,
+              authenticated: !!access_token,
+              location: eden_location,
+              user: data,
+            })
+
+            this.$router.push({ name: 'home' })
+          }
+        })
+        .catch((error) => {
+          this.loading = false
+          const errorMessage = error.response.data
+          if (errorMessage.errors) {
+            this.$message.error(errorMessage.errors.join('\n'))
+          } else {
+            this.$message.error(errorMessage.message)
+          }
+        })
     },
     setDisableStatus(value) {
       this.disableReset = value

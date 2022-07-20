@@ -40,7 +40,7 @@ export const list = () => {
 }
 
 export const userProfile = (userId) => {
-  return axios.get(`customers/${userId}/profile`)
+  return instance.get(`customers/${userId}/profile`)
 }
 
 export const updateProfile = (userId, details, section) => {

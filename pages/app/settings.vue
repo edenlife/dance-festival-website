@@ -286,18 +286,20 @@ export default {
       return getSiteMeta(metaData)
     },
     location() {
-      return this.$store.getters.user.eden_location
-        ? this.$store.getters.user.eden_location
+      return this.$store.getters.getLocation
+        ? this.$store.getters.getLocation
         : 'NG'
     },
     locationareas() {
-      return this.$store.getters.location_areas
+      return this.$store.getters.getLocationAreas
     },
     countryCode() {
       return this.location === 'NG' ? '234' : '254'
     },
     userId() {
-      return this.$store.getters.user.customer.id
+      let userId = this.$store.getters.getGreenhouseUser.customer.id
+      console.log(userId)
+      return userId
     },
   },
   created() {
@@ -306,18 +308,21 @@ export default {
     setTimeout(() => {
       this.fetching = false
     }, 1500)
+
     // if (!this.locationareas.length) {
     //   this.$store.dispatch(actions.GET_LOCATION_AREAS_LIST)
     // }
   },
   mounted() {
     mixpanelTrackEvent('profile settings')
+    this.getLocationAreas()
   },
   methods: {
     getUserProfile() {
       greenhouse
         .userProfile(this.userId)
         .then((response) => {
+          console.log("pass")
           if (response.data.status) {
             const data = response.data.data
             const profile = data.profile_details
@@ -326,6 +331,16 @@ export default {
               this.form[key] = profile[key] || home_information[key]
             })
             this.form.phone_number = this.form.phone_number.substring(3)
+          }
+        })
+        .catch()
+    },
+    getLocationAreas() {
+      greenhouse
+        .list()
+        .then((response) => {
+          if (response.data.status) {
+            this.$store.commit('setLocationAreas', response.data.data)
           }
         })
         .catch()
@@ -352,7 +367,7 @@ export default {
               this.$message.success(response.data.message)
               this.updating = false
               const storedData = this.$store.getters.getGreenhouseUser
-                storedData.customer.name =
+              storedData.customer.name =
                 this.form.first_name + ' ' + this.form.last_name
               this.$store.commit('USER', storedData)
             }

@@ -61,7 +61,11 @@
           </template>
         </div>
       </div>
-      <div v-if="toggled && loggedIn" id="navBtn" class="navigation__mobile">
+      <div
+        v-if="toggled && authenticated"
+        id="navBtn"
+        class="navigation__mobile"
+      >
         <ul class="menu">
           <li class="menu--list">
             <el-dropdown
@@ -102,6 +106,8 @@
 </template>
 
 <script>
+import * as greenhouse from '~/request/greenhouse.api'
+
 export default {
   name: 'Greenhouse',
   data() {
@@ -117,14 +123,19 @@ export default {
     authenticated() {
       return !!this.$store.getters.getGreenhouseToken
     },
-    loggedIn() {
+    greenhouseUser() {
       return this.$store.getters.getGreenhouseUser
     },
     userName() {
-      return this.loggedIn.customer ? this.loggedIn.customer.name : '-'
+      return this.greenhouseUser ? this.greenhouseUser.name : '-'
     },
   },
-  mounted() {},
+  mounted() {
+    setTimeout(() => {
+      const token = this.$store.getters.getGreenhouseToken
+      greenhouse.setToken(token)
+    }, 4000)
+  },
   methods: {
     handleToggle() {
       this.toggled = !this.toggled

@@ -14,12 +14,12 @@
               >
                 Profile Details
               </el-menu-item>
-              <el-menu-item @click="scrollTo('home-details', '')" index="1-2"
+              <el-menu-item index="1-2" @click="scrollTo('home-details', '')"
                 >House Information</el-menu-item
               >
               <el-menu-item
-                @click="scrollTo('password-details', '')"
                 index="1-3"
+                @click="scrollTo('password-details', '')"
                 >Password</el-menu-item
               >
             </el-menu-item-group>
@@ -28,13 +28,13 @@
 
         <el-main>
           <h1 class="hidden-md margin-bottom-32">Profile Settings</h1>
-          <div class="settings__details" id="profile-details">
+          <div id="profile-details" class="settings__details">
             <el-header> Profile </el-header>
             <el-form
-              :model="form"
-              label-position="top"
               ref="form_profile"
               v-loading="fetching"
+              :model="form"
+              label-position="top"
             >
               <el-row :gutter="20">
                 <el-col :md="12">
@@ -43,7 +43,7 @@
                     prop="first_name"
                     :rules="validateName()"
                   >
-                    <el-input type="text" v-model="form.first_name"></el-input>
+                    <el-input v-model="form.first_name" type="text"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :md="12">
@@ -52,7 +52,7 @@
                     prop="last_name"
                     :rules="validateName()"
                   >
-                    <el-input type="text" v-model="form.last_name"></el-input>
+                    <el-input v-model="form.last_name" type="text"></el-input>
                   </el-form-item>
                 </el-col>
               </el-row>
@@ -61,10 +61,10 @@
                 <el-col :md="12">
                   <el-form-item label="Email address" prop="email">
                     <el-input
+                      v-model="form.email"
                       type="text"
                       :readonly="true"
                       disabled
-                      v-model="form.email"
                     />
                   </el-form-item>
                 </el-col>
@@ -116,7 +116,7 @@
             </el-form>
           </div>
 
-          <div class="settings__details margin-top-24" id="home-details">
+          <div id="home-details" class="settings__details margin-top-24">
             <div class="el-header d-block">
               <h1>Home Information</h1>
               <p class="el-text">
@@ -124,16 +124,16 @@
               </p>
             </div>
             <el-form
-              :model="form"
-              label-position="top"
               ref="form"
               v-loading="fetching"
+              :model="form"
+              label-position="top"
             >
               <el-form-item
                 label="Address"
                 :rules="validateField('Home Address')"
               >
-                <el-input type="text" v-model="form.home_address"></el-input>
+                <el-input v-model="form.home_address" type="text"></el-input>
               </el-form-item>
 
               <el-form-item label="Location area">
@@ -153,34 +153,34 @@
               </el-form-item>
 
               <el-form-item label="Landmark (optional)">
-                <el-input type="text" v-model="form.landmark"></el-input>
+                <el-input v-model="form.landmark" type="text"></el-input>
               </el-form-item>
               <div class="actions">
                 <el-button
                   type="primary"
                   :loading="loading"
-                  @click="updateHomeInfo"
                   :disabled="!form.home_address"
+                  @click="updateHomeInfo"
                   >Save changes
                 </el-button>
               </div>
             </el-form>
           </div>
 
-          <div class="settings__details margin-top-24" id="password-details">
+          <div id="password-details" class="settings__details margin-top-24">
             <el-header> Password </el-header>
             <el-form
-              :model="form"
-              label-position="top"
               ref="form"
               v-loading="fetching"
+              :model="form"
+              label-position="top"
             >
               <el-form-item
                 label="Old Password"
                 prop="oldPassword"
                 :rules="validateField('Password')"
               >
-                <el-input :type="type" v-model="form.oldPassword" />
+                <el-input v-model="form.oldPassword" :type="type" />
                 <div class="show-password" @click="showPassword">
                   {{ btnText }}
                 </div>
@@ -190,7 +190,7 @@
                 prop="newPassword"
                 :rules="validateField('Password')"
               >
-                <el-input :type="type" v-model="form.newPassword" />
+                <el-input v-model="form.newPassword" :type="type" />
                 <div class="show-password" @click="showPassword">
                   {{ btnText }}
                 </div>
@@ -205,12 +205,12 @@
                 <el-button
                   type="primary"
                   :loading="reloading"
-                  @click="changePassword"
                   :disabled="
                     !form.oldPassword ||
                     !form.newPassword ||
                     passwordChangeDisabled
                   "
+                  @click="changePassword"
                   >Save changes
                 </el-button>
               </div>
@@ -286,37 +286,36 @@ export default {
       return getSiteMeta(metaData)
     },
     location() {
-      return this.$store.getters.user.eden_location
-        ? this.$store.getters.user.eden_location
+      return this.$store.getters.getGreenhouseLocation
+        ? this.$store.getters.getGreenhouseLocation
         : 'NG'
     },
     locationareas() {
-      return this.$store.getters.location_areas
+      return []
     },
     countryCode() {
       return this.location === 'NG' ? '234' : '254'
     },
-    userId() {
-      return this.$store.getters.user.customer.id
+    greenhouseUser() {
+      return this.$store.getters.getGreenhouseUser
+    },
+    greenhouseUserId() {
+      return this.greenhouseUser ? this.greenhouseUser.id : null
     },
   },
   created() {
     this.fetching = true
-    this.getUserProfile()
-    setTimeout(() => {
-      this.fetching = false
-    }, 1500)
-    // if (!this.locationareas.length) {
-    //   this.$store.dispatch(actions.GET_LOCATION_AREAS_LIST)
-    // }
   },
   mounted() {
     mixpanelTrackEvent('profile settings')
+    setTimeout(() => {
+      this.getUserProfile()
+    }, 5000)
   },
   methods: {
     getUserProfile() {
       greenhouse
-        .userProfile(this.userId)
+        .userProfile(this.greenhouseUserId)
         .then((response) => {
           if (response.data.status) {
             const data = response.data.data
@@ -327,8 +326,11 @@ export default {
             })
             this.form.phone_number = this.form.phone_number.substring(3)
           }
+          this.fetching = false
         })
-        .catch()
+        .catch(() => {
+          this.fetching = false
+        })
     },
     updateProfile() {
       this.$refs.form_profile.validate((valid) => {
@@ -336,7 +338,7 @@ export default {
           return
         }
         this.updating = true
-        let profile_details = {
+        const profile_details = {
           profile_details: {
             name: this.form.first_name + ' ' + this.form.last_name,
             email: this.form.email,
@@ -346,15 +348,11 @@ export default {
         }
         const section = Object.keys(profile_details)[0]
         greenhouse
-          .updateProfile(this.userId, profile_details, section)
+          .updateProfile(this.form.user_id, profile_details, section)
           .then((response) => {
             if (response.data.status) {
               this.$message.success(response.data.message)
               this.updating = false
-              const storedData = this.$store.getters.getGreenhouseUser
-                storedData.customer.name =
-                this.form.first_name + ' ' + this.form.last_name
-              this.$store.commit('USER', storedData)
             }
           })
           .catch((error) => {
@@ -370,7 +368,7 @@ export default {
     },
     updateHomeInfo() {
       this.loading = true
-      let home_information = {
+      const home_information = {
         home_information: {
           home_address: this.form.home_address,
           location_area_id: parseInt(this.form.location_area_id),
@@ -379,7 +377,7 @@ export default {
       }
       const section = Object.keys(home_information)[0]
       greenhouse
-        .updateProfile(this.userId, home_information, section)
+        .updateProfile(this.greenhouseUserId, home_information, section)
         .then((response) => {
           if (response.data.status) {
             this.$message.success(response.data.message)
@@ -398,12 +396,12 @@ export default {
     },
     changePassword() {
       this.reloading = true
-      let payload = {
+      const payload = {
         current_pwd: this.form.oldPassword,
         new_pwd: this.form.newPassword,
       }
       greenhouse
-        .changePassword(this.userId, payload)
+        .changePassword(this.greenhouseUserId, payload)
         .then((response) => {
           this.reloading = false
           this.form.newPassword = ''

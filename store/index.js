@@ -66,7 +66,7 @@ export const getters = {
   getGreenhouseResetCode: (state) => {
     return state.greenhouse.reset_code
   },
-  getLocation: (state) => {
+  getGreenhouseLocation: (state) => {
     return state.greenhouse.location
   },
 }
@@ -121,7 +121,9 @@ export const mutations = {
     state.greenhouse.token = payload.token
     state.greenhouse.authenticated = !!payload.token
     state.greenhouse.location = payload.location
-    state.greenhouse.user = payload.user
+  },
+  setGreenhouseUser: (state, payload) => {
+    state.greenhouse.user = payload
   },
   setGreenhouseResetEmail: (state, payload) => {
     state.greenhouse.reset_email = payload

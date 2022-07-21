@@ -138,8 +138,9 @@ export default {
                 token: access_token,
                 authenticated: !!access_token,
                 location: eden_location,
-                user: data,
               })
+              this.$store.commit('setGreenhouseUser', data.customer)
+              greenhouse.setToken(access_token)
 
               this.$router.push({ name: 'home' })
             }

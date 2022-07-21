@@ -45,7 +45,7 @@ export const resetPassword = (payload) => {
   return instance.post('/forgot_password/reset', payload)
 }
 
-export const list = () => {
+export const locationAreas = () => {
   return instance.get('locationareas')
 }
 

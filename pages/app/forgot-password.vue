@@ -105,14 +105,12 @@ export default {
         greenhouse
           .sendResetCode(this.form)
           .then((response) => {
-            console.log("sending")
             this.loading = false
             const successMessage = response.data.message
             this.$message({
               message: successMessage,
               type: 'success',
             })
-            console.log("sent")
             this.$store.commit('setGreenhouseResetEmail', this.form.email)
             this.$router.push({ name: 'reset-code' })
           })

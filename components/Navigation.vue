@@ -330,13 +330,13 @@
             Laundry Plans
           </button>
         </li>
-         <li v-if="currentRoute === 'laundry_leads'">
-           <nuxt-link
-                :to="{ path: '/eden_means_easy' }"
-                class="navigation__mobile-item"
-              >
-                Why Eden?
-              </nuxt-link>
+        <li v-if="currentRoute === 'laundry_leads'">
+          <nuxt-link
+            :to="{ path: '/eden_means_easy' }"
+            class="navigation__mobile-item"
+          >
+            Why Eden?
+          </nuxt-link>
         </li>
         <!-- cleaning -->
         <li v-if="currentRoute === 'cleaning'">
@@ -404,17 +404,25 @@
           </div>
         </li>
         <li>
-          <a
+          <nuxt-link
+            id="get-started"
+            :to="{ path: '/signup' }"
+            class="navigation__menu-item navigation__menu-link"
+            :class="{ 'primary-red': currentRoute === 'gift' }"
+          >
+            {{
+              currentRoute === 'eden_means_easy' ? 'Sign Up Now' : 'Get Started'
+            }}
+          </nuxt-link>
+          <!-- <a
             id="get-started"
             href="#"
             class="navigation__menu-item navigation__menu-link"
             :class="{ 'primary-red': currentRoute === 'gift' }"
             @click.prevent="scrollTo('#get-the-app')"
           >
-            {{
-              currentRoute === 'eden_means_easy' ? 'Sign Up Now' : 'Get Started'
-            }}
-          </a>
+            
+          </a> -->
         </li>
       </ul>
       <button class="navigation__btn" type="button" @click="handleToggle()">
@@ -566,7 +574,18 @@
               </transition>
             </li>
             <li class="menu--list" @click.prevent="handleToggle()">
-              <a
+              <nuxt-link
+                :to="{ path: '/signup' }"
+                class="navigation__menu-item navigation__menu-link"
+                :class="{ 'primary-red': currentRoute === 'gift' }"
+              >
+                {{
+                  currentRoute === 'eden_means_easy'
+                    ? 'Sign Up Now'
+                    : 'Get Started'
+                }}
+              </nuxt-link>
+              <!-- <a
                 href="#"
                 class="navigation__mobile-item navigation__mobile-link"
                 @click.prevent="scrollTo('#get-the-app')"
@@ -576,7 +595,7 @@
                     ? 'Sign Up Now'
                     : 'Get Started'
                 }}
-              </a>
+              </a> -->
             </li>
           </ul>
         </div>

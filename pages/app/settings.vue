@@ -102,7 +102,10 @@
                   type="date"
                   format="dd MMM, yyyy"
                   value-format="yyyy-MM-dd"
-                  prefix-icon="eden-icon--calendar"
+                  default-value="2004-12-31"
+                  :picker-options="{
+                    disabledDate: disabledDates,
+                  }"
                 />
               </el-form-item>
               <div class="actions">
@@ -252,7 +255,7 @@ export default {
         home_address: '',
         phone_number: '',
       },
-      fetching: false,
+      fetching: true,
       loading: false,
       reloading: false,
       locationareas: [],
@@ -303,15 +306,11 @@ export default {
   },
   created() {
     this.fetching = true
-    setTimeout(() => {
-      this.fetching = false
-    }, 1500)
   },
   watch: {
     greenhouseUser() {
       this.fetching = true
       this.greenhouseUserId
-      console.log(this.ggreenhouseUserId)
       this.getUserProfile()
     },
   },
@@ -456,13 +455,16 @@ export default {
     },
     getLocationAreas() {
       greenhouse
-        .list()
+        .locationAreas()
         .then((response) => {
           if (response.data.status) {
             this.locationareas = response.data.data
           }
         })
         .catch()
+    },
+    disabledDates(time) {
+      return time.getTime() > new Date('2004-12-31').getTime()
     },
   },
 }

@@ -297,8 +297,9 @@ export default {
       return this.location === 'NG' ? '234' : '254'
     },
     userId() {
-      let userId = this.$store.getters.getGreenhouseUser.customer.id
+      let userId = this.$store.getters.getGreenhouseUser
       console.log(userId)
+      // return localStorage.getItem("userId")
       return userId
     },
   },
@@ -319,6 +320,7 @@ export default {
   },
   methods: {
     getUserProfile() {
+      console.log(this.userId)
       greenhouse
         .userProfile(this.userId)
         .then((response) => {

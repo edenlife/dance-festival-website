@@ -1,5 +1,5 @@
 import axios from 'axios'
-// import { getters } from '~/store'
+import { getters } from '~/store'
 const baseURL = process.env.GREENHOUSE_API
 const instance = axios.create({
   baseURL,
@@ -10,7 +10,9 @@ const instance = axios.create({
   },
 })
 
-// const token = getters.getGreenhouseToken
+console.log("token")
+const token = getters.getGreenhouseToken
+// console.log(token)
 // if (token) {
 //   instance.headers.common.Authorization = `Bearer ${token}`
 // }

@@ -18,7 +18,6 @@ export const state = () => ({
     reset_email: '',
     reset_code: '',
     success_state: '',
-    location_areas: []
   },
 })
 
@@ -74,9 +73,6 @@ export const getters = {
   getGreenhouseSuccessState: (state) => {
     return state.greenhouse.success_state
   },
-  getLocationAreas: (state) => {
-    return state.greenhouse.location_areas
-  }
 }
 
 export const mutations = {
@@ -142,7 +138,4 @@ export const mutations = {
   setSuccessState: (state, payload) => {
     state.greenhouse.success_state = payload
   },
-  setLocationAreas: (state, payload) => {
-    state.greenhouse.location_areas = payload
-  }
 }

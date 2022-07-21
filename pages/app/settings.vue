@@ -255,6 +255,7 @@ export default {
       fetching: false,
       loading: false,
       reloading: false,
+      locationareas: [],
       updating: false,
       type: 'password',
       btnText: 'Show Password',
@@ -290,9 +291,6 @@ export default {
         ? this.$store.getters.getGreenhouseLocation
         : 'NG'
     },
-    locationareas() {
-      return []
-    },
     countryCode() {
       return this.location === 'NG' ? '234' : '254'
     },
@@ -305,12 +303,25 @@ export default {
   },
   created() {
     this.fetching = true
+    setTimeout(() => {
+      this.fetching = false
+    }, 1500)
+  },
+  watch: {
+    greenhouseUser() {
+      this.fetching = true
+      this.greenhouseUserId
+      console.log(this.ggreenhouseUserId)
+      this.getUserProfile()
+    },
   },
   mounted() {
     mixpanelTrackEvent('profile settings')
-    setTimeout(() => {
-      this.getUserProfile()
-    }, 5000)
+    this.getUserProfile()
+    this.getLocationAreas()
+    // setTimeout(() => {
+    //   this.getUserProfile()
+    // }, 5000)
   },
   methods: {
     getUserProfile() {
@@ -348,7 +359,7 @@ export default {
         }
         const section = Object.keys(profile_details)[0]
         greenhouse
-          .updateProfile(this.form.user_id, profile_details, section)
+          .updateProfile(this.greenhouseUserId, profile_details, section)
           .then((response) => {
             if (response.data.status) {
               this.$message.success(response.data.message)
@@ -442,6 +453,16 @@ export default {
     },
     scrollTo(id) {
       document.getElementById(id).scrollIntoView()
+    },
+    getLocationAreas() {
+      greenhouse
+        .list()
+        .then((response) => {
+          if (response.data.status) {
+            this.locationareas = response.data.data
+          }
+        })
+        .catch()
     },
   },
 }

@@ -130,11 +130,17 @@ export default {
       return this.greenhouseUser ? this.greenhouseUser.name : '-'
     },
   },
-  mounted() {
-    setTimeout(() => {
+  watch: {
+    greenhouseUser() {
       const token = this.$store.getters.getGreenhouseToken
       greenhouse.setToken(token)
-    }, 4000)
+    },
+  },
+  mounted() {
+    // setTimeout(() => {
+      const token = this.$store.getters.getGreenhouseToken
+      greenhouse.setToken(token)
+    // }, 4000)
   },
   methods: {
     handleToggle() {
@@ -231,7 +237,6 @@ export default {
     top: 58px;
     background: #fff;
     position: absolute;
-    background-color: color(eden-green-senary);
     opacity: 1;
     .menu {
       display: flex;

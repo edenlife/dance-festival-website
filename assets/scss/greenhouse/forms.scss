@@ -1,4 +1,4 @@
-@import "mixins";
+@import 'mixins';
 
 .gh-container--form {
   // height: calc(100vh - 80px);
@@ -86,6 +86,9 @@
       padding-bottom: $gap;
     }
   }
+  @include respond(xl) {
+    width: 80%;
+  }
 }
 .el-form {
   width: 100%;
@@ -116,8 +119,8 @@
   width: 100%;
 }
 
-.el-input__inner{
-  font-family: "CerebriSans", sans-serif !important;
+.el-input__inner {
+  font-family: 'CerebriSans', sans-serif !important;
 }
 
 .mt-2 {

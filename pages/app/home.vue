@@ -237,7 +237,7 @@ export default {
       this.submitted = true
     },
     launchIntercom() {
-      //   window.Intercom('show')
+      this.$intercom('show')
     },
   },
 }

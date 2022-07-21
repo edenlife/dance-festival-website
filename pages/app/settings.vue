@@ -14,7 +14,7 @@
               >
                 Profile Details
               </el-menu-item>
-              <el-menu-item index="1-2" @click="scrollTo('home-details', '')"
+              <el-menu-item @click="scrollTo('home-details', '')" index="1-2"
                 >House Information</el-menu-item
               >
               <el-menu-item
@@ -43,7 +43,7 @@
                     prop="first_name"
                     :rules="validateName()"
                   >
-                    <el-input v-model="form.first_name" type="text"></el-input>
+                    <el-input type="text" v-model="form.first_name"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :md="12">
@@ -52,7 +52,7 @@
                     prop="last_name"
                     :rules="validateName()"
                   >
-                    <el-input v-model="form.last_name" type="text"></el-input>
+                    <el-input type="text" v-model="form.last_name"></el-input>
                   </el-form-item>
                 </el-col>
               </el-row>
@@ -116,7 +116,7 @@
             </el-form>
           </div>
 
-          <div id="home-details" class="settings__details margin-top-24">
+          <div class="settings__details margin-top-24" id="home-details">
             <div class="el-header d-block">
               <h1>Home Information</h1>
               <p class="el-text">

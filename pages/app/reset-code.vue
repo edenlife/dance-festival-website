@@ -13,7 +13,7 @@
         <div class="sub-head">
           <span
             >A code has been sent to your email address. Enter the code below or
-            <router-link :to="{ name: 'reset-code' }"
+            <router-link :to="{ name: 'forgot-password' }"
               >resend the code.</router-link
             ></span
           >

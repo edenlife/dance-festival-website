@@ -127,12 +127,12 @@ export default {
           .login(this.form)
           .then((response) => {
             const { status, data, message } = response.data
+            localStorage.setItem('userId', data.customer.id)
             if (status) {
               this.$message({
                 message,
                 type: 'success',
               })
-
               const { access_token, eden_location } = data
               this.$store.commit('setGreenhouse', {
                 token: access_token,

@@ -164,6 +164,7 @@
 
 <script>
 import validations from '~/mixins/validations'
+import support from '~/mixins/support'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import getSiteMeta from '~/utils/getSiteMeta'
 import defaultConfig from '~/static/defaultConfig'
@@ -177,7 +178,7 @@ import NewLocationSuccessDialog from '~/components/Greenhouse/NewLocationSuccess
 export default {
   name: 'Signup',
   components: { PasswordCriteria, NewLocationForm, NewLocationSuccessDialog },
-  mixins: [validations],
+  mixins: [validations, support],
   layout: 'greenhouse',
   data() {
     return {
@@ -281,7 +282,6 @@ export default {
           plan[service] = defaultConfig[this.location][service]
         })
         let sortedPlan = this.sortObject(plan)
-        console.log(sortedPlan, plan)
         const metadata = {
           name: this.form.firstname + ' ' + this.form.lastname,
           email: this.form.email,
@@ -328,8 +328,8 @@ export default {
           email: this.form.email,
           password: this.form.password,
         }
-        window.Intercom('update', metadata)
-        window.Intercom('trackEvent', 'greenhouse-lead-gen-signup', metadata)
+        this.$intercom('update', metadata)
+        this.$intercom('trackEvent', 'greenhouse-lead-gen-signup', metadata)
         greenhouse
           .register(payload)
           .then((response) => {
@@ -359,11 +359,6 @@ export default {
         .then((response) => {
           const { status, data, message } = response.data
           if (status) {
-            this.$message({
-              message,
-              type: 'success',
-            })
-
             const { access_token, eden_location } = data
             this.$store.commit('setGreenhouse', {
               token: access_token,
@@ -384,7 +379,7 @@ export default {
             this.$message.error(errorMessage.message)
           }
         })
-    }
+    },
   },
 }
 </script>

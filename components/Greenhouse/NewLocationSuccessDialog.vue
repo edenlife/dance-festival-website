@@ -12,7 +12,7 @@
         <h2 class="header">You’re now on our list!</h2>
         <div class="sub-head">
           <span
-            >You’ve been added to our waitlist for 'STATE' <br />
+            >You’ve been added to our waitlist for {{$store.getters.getGreenhouseSuccessState}} <br />
             You’ll be the first to know when we touch down!</span
           >
         </div>
@@ -39,7 +39,8 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+    }
   },
   computed: {
     shouldShow: {

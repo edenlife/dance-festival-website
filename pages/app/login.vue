@@ -60,6 +60,7 @@ import * as greenhouse from '~/request/greenhouse.api'
 export default {
   name: 'Login',
   mixins: [validations],
+  middleware: ['auth'],
   layout: 'greenhouse',
   data() {
     return {

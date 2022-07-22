@@ -238,6 +238,7 @@ export default {
   components: { PasswordCriteria },
   mixins: [validations],
   layout: 'greenhouse',
+  middleware: ['guest'],
   data() {
     return {
       dialogVisible: false,
@@ -467,7 +468,7 @@ export default {
         .catch()
     },
     disabledDates(time) {
-      return time.getTime() > new Date('2022-12-31').getTime()
+      return time.getTime() > new Date('2004-12-31').getTime()
     },
   },
 }

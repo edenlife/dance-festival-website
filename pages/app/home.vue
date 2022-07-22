@@ -180,6 +180,7 @@ export default {
   name: 'Home',
   mixins: [validations],
   layout: 'greenhouse',
+  middleware: ['guest'],
   data() {
     return {
       submitted: true,

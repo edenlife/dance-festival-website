@@ -179,6 +179,7 @@ export default {
   name: 'Signup',
   components: { PasswordCriteria, NewLocationForm, NewLocationSuccessDialog },
   mixins: [validations, support],
+  middleware: ['auth'],
   layout: 'greenhouse',
   data() {
     return {
@@ -368,7 +369,7 @@ export default {
               user: data,
             })
             this.$store.commit('setGreenhouseUser', data.customer)
-           greenhouse.setToken(access_token)
+            greenhouse.setToken(access_token)
             this.$router.push({ name: 'home' })
           }
         })

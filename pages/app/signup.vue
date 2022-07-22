@@ -357,7 +357,8 @@ export default {
       greenhouse
         .login(payload)
         .then((response) => {
-          const { status, data, message } = response.data
+          const { status, data } = response.data
+          localStorage.setItem('userId', data.customer.id)
           if (status) {
             const { access_token, eden_location } = data
             this.$store.commit('setGreenhouse', {
@@ -366,7 +367,8 @@ export default {
               location: eden_location,
               user: data,
             })
-
+            this.$store.commit('setGreenhouseUser', data.customer)
+           greenhouse.setToken(access_token)
             this.$router.push({ name: 'home' })
           }
         })

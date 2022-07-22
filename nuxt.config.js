@@ -84,7 +84,10 @@ export default {
   ],
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [
+    'element-ui/lib/theme-chalk/index.css',
+    '~/assets/scss/greenhouse/variables.scss',
+  ],
 
   // global env config
 
@@ -94,10 +97,15 @@ export default {
     MAILCHIMP_USERID: '8d551f5341eee34aa00432838',
     MAILCHIMP_LISTID: '987fa4d39c',
     AIRTABLE_KEY: process.env.VUE_APP_AIRTABLEKEY,
+    GREENHOUSE_API:
+      process.env.NODE_ENV === 'production'
+        ? 'https://api.edenlife.ng/api/v1/greenhouse'
+        : 'https://api-staging.edenlife.ng/api/v1/greenhouse',
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/elementui',
     '~/plugins/flutterwave',
     '~/plugins/vue-social-sharing.js',
     '~/plugins/vue-animate-on-scroll.js',
@@ -105,8 +113,7 @@ export default {
     { src: 'plugins/route-subscribe.js', ssr: false }, // Only works on client side
     { src: '~/plugins/vue-persist.js', ssr: false },
     { src: 'plugins/vue-owl-carousel.js', ssr: false }, // Only works on client side
-    '~/plugins/vue-date-picker.js'
-
+    '~/plugins/vue-date-picker.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -152,6 +159,41 @@ export default {
         path: '*',
         component: resolve(__dirname, 'pages/404.vue'),
       })
+      routes.push({
+        name: 'login',
+        path: '/login',
+        component: resolve(__dirname, 'pages/app/login.vue'),
+      })
+      routes.push({
+        name: 'signup',
+        path: '/signup',
+        component: resolve(__dirname, 'pages/app/signup.vue'),
+      })
+      routes.push({
+        name: 'forgot-password',
+        path: '/forgot-password',
+        component: resolve(__dirname, 'pages/app/forgot-password.vue'),
+      })
+      routes.push({
+        name: 'reset-code',
+        path: '/reset-code',
+        component: resolve(__dirname, 'pages/app/reset-code.vue'),
+      })
+      routes.push({
+        name: 'reset-password',
+        path: '/reset-password',
+        component: resolve(__dirname, 'pages/app/reset-password.vue'),
+      })
+      routes.push({
+        name: 'home',
+        path: '/home',
+        component: resolve(__dirname, 'pages/app/home.vue'),
+      })
+      routes.push({
+        name: 'settings',
+        path: '/settings',
+        component: resolve(__dirname, 'pages/app/settings.vue'),
+      })
     },
   },
 
@@ -177,6 +219,6 @@ export default {
     fallback: true,
   },
   server: {
-    host: '0' // default: localhost
-  }
+    host: '0', // default: localhost
+  },
 }

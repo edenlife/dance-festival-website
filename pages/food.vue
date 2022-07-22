@@ -21,9 +21,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="
-                scrollToFooter('#get-the-app', 'I want a meal plan')
-              "
+              @click.prevent="greenhouseSignUp('I want a meal plan')"
             >
               I Want a Meal Plan
             </button>
@@ -263,7 +261,7 @@
           v-if="currentMeals.length"
           type="button"
           class="btn"
-          @click.prevent="scrollToFooter('#get-the-app', 'I want a meal plan')"
+          @click.prevent="greenhouseSignUp('I want a meal plan')"
         >
           I Want a Meal Plan
         </button>
@@ -430,13 +428,11 @@
                   </button>
                 </div>
               </div>
-            <div class="calculator__input">
-                <div
-                  class="calculator__input-item calculator__input-delivery"
-                >
-                 <div class="plan__price-item">
-                  <p>Delivery days</p>
-                 </div>
+              <div class="calculator__input">
+                <div class="calculator__input-item calculator__input-delivery">
+                  <div class="plan__price-item">
+                    <p>Delivery days</p>
+                  </div>
                   <div class="delivery">
                     <div
                       v-for="(item, i) in dailyDeliveryDays"
@@ -459,7 +455,7 @@
                     </div>
                   </div>
                 </div>
-            </div>
+              </div>
               <div class="plan__price-bottom">
                 <h5>
                   <span class="price">Price </span>
@@ -689,19 +685,44 @@
               />
             </div>
           </div>
-       </div>
+        </div>
       </section>
     </div>
- <download-banner v-if="showDownloadBanner" :show-download-banner="showDownloadBanner" class="download-banner">
+    <download-banner
+      v-if="showDownloadBanner"
+      :show-download-banner="showDownloadBanner"
+      class="download-banner"
+    >
       <div slot="header"></div>
       <div slot="body" class="content">
         <div class="banner">
           <div>
-            <button class="btn btn--success" @click="showDownloadBanner = false">
-                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 12.25L12.25 1" stroke="#4B6358" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M1 1L12.25 12.25" stroke="#4B6358" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+            <button
+              class="btn btn--success"
+              @click="showDownloadBanner = false"
+            >
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 13 13"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 12.25L12.25 1"
+                  stroke="#4B6358"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M1 1L12.25 12.25"
+                  stroke="#4B6358"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
             </button>
           </div>
           <div>
@@ -712,9 +733,7 @@
             />
           </div>
           <div>
-            <p class="font-text">
-              Enjoy the good life.
-            </p>
+            <p class="font-text">Enjoy the good life.</p>
             <p>Say goodbye to chores forever.</p>
           </div>
           <div>
@@ -729,7 +748,7 @@
         </div>
       </div>
       <div slot="footer"></div>
-  </download-banner>
+    </download-banner>
   </div>
 </template>
 
@@ -744,7 +763,7 @@ import {
 } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import getSiteMeta from '~/utils/getSiteMeta'
-import {setEnv} from "@edenlife/eden-pricing-module";
+import { setEnv } from '@edenlife/eden-pricing-module'
 
 export default {
   components: {
@@ -967,9 +986,9 @@ export default {
       this.mealsInCategory = this.getMealsInEachCategory(this.allMeal, val)
     },
     updateDeliveyDay(item) {
-        this.selectedDays = []
-        this.selectedDays.push(item)
-        this.totalDailyPrice = this.calculatePrice('daily', this.mealsPerDay)
+      this.selectedDays = []
+      this.selectedDays.push(item)
+      this.totalDailyPrice = this.calculatePrice('daily', this.mealsPerDay)
     },
     previousCategory() {
       let activeIndex = this.tabs.indexOf(this.activeTabIndex)
@@ -1006,6 +1025,10 @@ export default {
     },
     scrollToFooter(id, label) {
       scrollToApp(id, label)
+    },
+    greenhouseSignUp(label) {
+      mixpanelTrackEvent(label)
+      this.$router.push('/signup')
     },
     increaseOrder(order) {
       mixpanelTrackEvent(`Increase ${order} order clicked - food page`)
@@ -1054,40 +1077,54 @@ export default {
         this.checkWeeklyFreq(freq)
       }
     },
-   calculatePrice(frequency, quantity) {
-    const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-    const service_day = {
-      daily: this.selectedDays[0] === "monday-friday" ? days.slice(0, 5) : days,
-      weekly: days.slice(0, 1),
-      "weekly-twodays": days.slice(0, 2)
-    }
-    if(frequency === 'daily') {
-    this.mealsPerDay = this.mealsPerDay > 5 ? 5 : this.mealsPerDay
-    }
-    const qty = frequency === 'daily' ? this.mealsPerDay : this.mealsPerWeek
-    const qtyPerWeek = frequency === 'daily' ? this.mealsPerDay * service_day[frequency].length : this.mealsPerWeek
-    const mealPrice = pricing({
-      meal: {
-        item: null,
-        frequency: frequency,
-        qty: qtyPerWeek,
-        service_day: service_day[frequency],
-        meal_per_delivery: service_day[frequency].reduce((days, day) => {
-          return {
-            same_number_per_delivery: true,
-            ...days,
-            [day]: qty
-          }
-        }, {})
+    calculatePrice(frequency, quantity) {
+      const days = [
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+      ]
+      const service_day = {
+        daily:
+          this.selectedDays[0] === 'monday-friday' ? days.slice(0, 5) : days,
+        weekly: days.slice(0, 1),
+        'weekly-twodays': days.slice(0, 2),
       }
-    })
-    return mealPrice
-  },
+      if (frequency === 'daily') {
+        this.mealsPerDay = this.mealsPerDay > 5 ? 5 : this.mealsPerDay
+      }
+      const qty = frequency === 'daily' ? this.mealsPerDay : this.mealsPerWeek
+      const qtyPerWeek =
+        frequency === 'daily'
+          ? this.mealsPerDay * service_day[frequency].length
+          : this.mealsPerWeek
+      const mealPrice = pricing({
+        meal: {
+          item: null,
+          frequency: frequency,
+          qty: qtyPerWeek,
+          service_day: service_day[frequency],
+          meal_per_delivery: service_day[frequency].reduce((days, day) => {
+            return {
+              same_number_per_delivery: true,
+              ...days,
+              [day]: qty,
+            }
+          }, {}),
+        },
+      })
+      return mealPrice
+    },
     checkWeeklyFreq(freq) {
       if (freq === 'weekly') {
         this.totalWeeklyPrice = this.calculatePrice('weekly', this.mealsPerWeek)
       } else {
-        this.totalWeeklyPrice = this.calculatePrice('weekly-twodays', this.mealsPerWeek * 2)
+        this.totalWeeklyPrice = this.calculatePrice(
+          'weekly-twodays',
+          this.mealsPerWeek * 2
+        )
       }
     },
     trackLink(service) {
@@ -1140,18 +1177,18 @@ export default {
       mixpanelTrackEvent('How it works replay - food')
       this.playVideo()
     },
-   downloadApp() {
-       mixpanelTrackEvent('Download App - food banner')
+    downloadApp() {
+      mixpanelTrackEvent('Download App - food banner')
       const userAgent = navigator.userAgent || navigator.vendor || window.opera
-      if(/android/i.test(userAgent)){
-            window.location.href =
-           'https://play.google.com/store/apps/details?id=com.ouredenlife.app';
+      if (/android/i.test(userAgent)) {
+        window.location.href =
+          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
       }
-      if(/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream){
-          window.location.href =
-         'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1';
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href =
+          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
       }
-    }
+    },
   },
 }
 </script>

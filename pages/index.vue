@@ -20,7 +20,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="scrollTo('#get-the-app', 'homepage')"
+              @click.prevent="greenhouseSignUp('hero-btn-homepage')"
             >
               I Want An Easy Life
             </button>
@@ -566,7 +566,7 @@
                 <a
                   href="#"
                   style="color: #03a84e"
-                  @click.prevent="scrollTo('#get-the-app', 'homepage-faq')"
+                  @click.prevent="greenhouseSignUp('homepage-faq')"
                   >Eden</a
                 >, you can configure a plan that fits your needs, then you get
                 assigned a Gardener to help you manage your home. The app takes
@@ -1068,7 +1068,7 @@
 import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 import testimonials from '~/static/testimonials'
-import { scrollToApp } from '~/static/functions'
+// import { scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { landingPageApi } from '~/request/all.api'
 
@@ -1298,8 +1298,12 @@ export default {
         }
       }
     },
-    scrollTo(id, label) {
-      scrollToApp(id, label)
+    // scrollTo(id, label) {
+    //   scrollToApp(id, label)
+    // },
+    greenhouseSignUp() {
+      mixpanelTrackEvent(`Home page hero-btn `)
+      this.$router.push('/signup')
     },
     scrollToQuestions() {
       const scrollToElement = document.querySelector('#waiting-list')

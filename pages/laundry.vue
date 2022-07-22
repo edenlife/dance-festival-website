@@ -9,7 +9,7 @@
           </h1>
 
           <ul>
-             <li>We pick up your dirty laundry ✔️</li>
+            <li>We pick up your dirty laundry ✔️</li>
             <li>We launder, iron, and QC ✔️</li>
             <li>We deliver your clean clothes, within 48 hours. ✔️</li>
           </ul>
@@ -17,7 +17,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="scrollToFooter('#get-the-app', 'laundry - hero')"
+              @click.prevent="greenhouseSignUp('laundry - hero')"
             >
               Pick Up My Laundry
             </button>
@@ -791,16 +791,41 @@
         </div>
       </section>
     </div>
-  <download-banner v-if="showDownloadBanner" :show-download-banner="showDownloadBanner" class="download-banner">
+    <download-banner
+      v-if="showDownloadBanner"
+      :show-download-banner="showDownloadBanner"
+      class="download-banner"
+    >
       <div slot="header"></div>
       <div slot="body" class="content">
         <div class="banner">
           <div>
-            <button class="btn btn--success" @click="showDownloadBanner = false">
-                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 12.25L12.25 1" stroke="#4B6358" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M1 1L12.25 12.25" stroke="#4B6358" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+            <button
+              class="btn btn--success"
+              @click="showDownloadBanner = false"
+            >
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 13 13"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 12.25L12.25 1"
+                  stroke="#4B6358"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M1 1L12.25 12.25"
+                  stroke="#4B6358"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
             </button>
           </div>
           <div>
@@ -811,9 +836,7 @@
             />
           </div>
           <div>
-            <p class="font-text">
-              Enjoy the good life.
-            </p>
+            <p class="font-text">Enjoy the good life.</p>
             <p>Say goodbye to chores forever.</p>
           </div>
           <div>
@@ -828,7 +851,7 @@
         </div>
       </div>
       <div slot="footer"></div>
-  </download-banner>
+    </download-banner>
   </div>
 </template>
 
@@ -901,20 +924,26 @@ export default {
         { item: 'Stubborn Stain Removal', cost: '3000' },
         { item: 'Logistics charge for items on hanger', cost: '3500' },
         { item: 'Fancy dress/delicate dinner gown', cost: '3699' },
-        { item: '2pcs Kaftan / Senator (Dry cleaning - 3 items)', cost: '3699' },
+        {
+          item: '2pcs Kaftan / Senator (Dry cleaning - 3 items)',
+          cost: '3699',
+        },
         { item: 'Blanket (3 items)', cost: '3699' },
         { item: 'Curtain (Per unit - 3 items)', cost: '3699' },
         { item: '3 piece Agbada (3 items) ', cost: '3699' },
         { item: 'Duvet (3 items)', cost: '3699' },
         { item: 'A pair of suit (3 items)', cost: '3699' },
-        { item: '3 piece suit (4 items)', cost: '4930' }
+        { item: '3 piece suit (4 items)', cost: '4930' },
       ],
       extraLaundryCostWashDry: [
         { item: 'Extra item', cost: '967' },
         { item: 'Jacket (2 items)', cost: '1935' },
         { item: 'Bedsheet (2 items)', cost: '1935' },
         { item: 'Trouser (Dry cleaning - 2 items)', cost: '1935' },
-        { item: '2pcs Kaftan / Senator (Dry cleaning - 3 items)', cost: '2900' },
+        {
+          item: '2pcs Kaftan / Senator (Dry cleaning - 3 items)',
+          cost: '2900',
+        },
         { item: 'Blanket (3 items)', cost: '2900' },
         { item: 'Curtain (Per unit - 3 items)', cost: '2900' },
         { item: '3 piece Agbada (3 items) ', cost: '2900' },
@@ -962,8 +991,16 @@ export default {
     this.handleResize()
 
     setTimeout(() => {
-      this.totalWashDryPrice = this.caculateLaundryPricing('wash-and-fold', this.washDryFrequency, this.washDry )
-      this.totalWashIronPrice = this.caculateLaundryPricing('wash-and-iron', this.washIronFrequency, this.washIron )
+      this.totalWashDryPrice = this.caculateLaundryPricing(
+        'wash-and-fold',
+        this.washDryFrequency,
+        this.washDry
+      )
+      this.totalWashIronPrice = this.caculateLaundryPricing(
+        'wash-and-iron',
+        this.washIronFrequency,
+        this.washIron
+      )
     }, 2000)
   },
   destroyed() {
@@ -988,13 +1025,13 @@ export default {
     },
     caculateLaundryPricing(item, frequency, qty) {
       return pricing({
-      laundry: {
-        item,
-        frequency,
-        qty,
-        service_day: ['thursday']
-      },
-    })
+        laundry: {
+          item,
+          frequency,
+          qty,
+          service_day: ['thursday'],
+        },
+      })
     },
     changeText() {
       const first = this.headerText.shift()
@@ -1010,17 +1047,29 @@ export default {
     scrollToFooter(id, label) {
       scrollToApp(id, label)
     },
+    greenhouseSignUp(label) {
+      mixpanelTrackEvent(label)
+      this.$router.push('/signup')
+    },
     increaseOrder(order) {
       mixpanelTrackEvent(`Increase ${order} order clicked - laundry page`)
 
       if (order === 'washDry') {
         this.washDry++
-        this.totalWashDryPrice = this.caculateLaundryPricing('wash-and-fold', this.washDryFrequency, this.washDry )
+        this.totalWashDryPrice = this.caculateLaundryPricing(
+          'wash-and-fold',
+          this.washDryFrequency,
+          this.washDry
+        )
       }
 
       if (order === 'washIron') {
         this.washIron++
-        this.totalWashIronPrice = this.caculateLaundryPricing('wash-and-iron', this.washIronFrequency, this.washIron )
+        this.totalWashIronPrice = this.caculateLaundryPricing(
+          'wash-and-iron',
+          this.washIronFrequency,
+          this.washIron
+        )
       }
     },
     decreaseOrder(order) {
@@ -1028,25 +1077,41 @@ export default {
 
       if (order === 'washDry' && this.washDry > 1) {
         this.washDry--
-        this.totalWashDryPrice = this.caculateLaundryPricing('wash-and-fold', this.washDryFrequency, this.washDry )
+        this.totalWashDryPrice = this.caculateLaundryPricing(
+          'wash-and-fold',
+          this.washDryFrequency,
+          this.washDry
+        )
       }
 
       if (order === 'washIron' && this.washIron > 1) {
         this.washIron--
-        this.totalWashIronPrice = this.caculateLaundryPricing('wash-and-iron', this.washIronFrequency, this.washIron )
+        this.totalWashIronPrice = this.caculateLaundryPricing(
+          'wash-and-iron',
+          this.washIronFrequency,
+          this.washIron
+        )
       }
     },
     laundryDryFrequency(freq) {
       mixpanelTrackEvent(` ${freq} wash&dry frequency clicked - laundry page`)
 
       this.washDryFrequency = freq
-      this.totalWashDryPrice = this.caculateLaundryPricing('wash-and-fold', this.washDryFrequency, this.washDry )
+      this.totalWashDryPrice = this.caculateLaundryPricing(
+        'wash-and-fold',
+        this.washDryFrequency,
+        this.washDry
+      )
     },
     laundryIronFrequency(freq) {
       mixpanelTrackEvent(` ${freq} wash&iron frequency clicked - laundry page`)
 
       this.washIronFrequency = freq
-      this.totalWashIronPrice = this.caculateLaundryPricing('wash-and-iron', this.washIronFrequency, this.washIron )
+      this.totalWashIronPrice = this.caculateLaundryPricing(
+        'wash-and-iron',
+        this.washIronFrequency,
+        this.washIron
+      )
     },
     trackLink(service) {
       mixpanelTrackEvent(`${service} clicked - Laundry (more options)`)
@@ -1099,17 +1164,17 @@ export default {
       this.playVideo()
     },
     downloadApp() {
-       mixpanelTrackEvent('Download App - laundry banner')
+      mixpanelTrackEvent('Download App - laundry banner')
       const userAgent = navigator.userAgent || navigator.vendor || window.opera
-      if(/android/i.test(userAgent)){
-            window.location.href =
-           'https://play.google.com/store/apps/details?id=com.ouredenlife.app';
+      if (/android/i.test(userAgent)) {
+        window.location.href =
+          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
       }
-      if(/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream){
-          window.location.href =
-         'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1';
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href =
+          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
       }
-    }
+    },
   },
 }
 </script>

@@ -1,0 +1,26 @@
+.w-100 {
+  width: 100% !important;
+}
+
+.gh-container {
+  width: 100%;
+  max-width: 80%;
+  margin: 0 auto;
+  @include respond(md) {
+    max-width: 85%;
+  }
+}
+
+.hidden-lg {
+  display: block;
+  @include respond(md) {
+    display: none;
+  }
+}
+
+.hidden-md {
+  display: none;
+  @include respond(md) {
+    display: block;
+  }
+}

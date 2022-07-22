@@ -14,7 +14,7 @@
               >
                 Profile Details
               </el-menu-item>
-              <el-menu-item @click="scrollTo('home-details', '')" index="1-2"
+              <el-menu-item index="1-2" @click="scrollTo('home-details', '')"
                 >House Information</el-menu-item
               >
               <el-menu-item
@@ -43,7 +43,7 @@
                     prop="first_name"
                     :rules="validateName()"
                   >
-                    <el-input type="text" v-model="form.first_name"></el-input>
+                    <el-input v-model="form.first_name" type="text"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :md="12">
@@ -52,11 +52,10 @@
                     prop="last_name"
                     :rules="validateName()"
                   >
-                    <el-input type="text" v-model="form.last_name"></el-input>
+                    <el-input v-model="form.last_name" type="text"></el-input>
                   </el-form-item>
                 </el-col>
               </el-row>
-
               <el-row :gutter="20">
                 <el-col :md="12">
                   <el-form-item label="Email address" prop="email">
@@ -95,19 +94,22 @@
                   </el-form-item>
                 </el-col>
               </el-row>
-              <el-form-item label="Date of birth">
-                <el-date-picker
-                  v-model="form.birthday"
-                  :clearable="false"
-                  type="date"
-                  format="dd MMM, yyyy"
-                  value-format="yyyy-MM-dd"
-                  default-value="2004-12-31"
-                  :picker-options="{
-                    disabledDate: disabledDates,
-                  }"
-                />
-              </el-form-item>
+              <el-row>
+                <el-col :span="24">
+                  <el-form-item label="Date of birth" prop="birthday">
+                    <el-date-picker
+                      v-model="form.birthday"
+                      :clearable="false"
+                      format="dd MMM, yyyy"
+                      value-format="yyyy-MM-dd"
+                      default-value="2004-12-31"
+                      :picker-options="{
+                        disabledDate: disabledDates,
+                      }"
+                    />
+                  </el-form-item>
+                </el-col>
+              </el-row>
               <div class="actions">
                 <el-button
                   type="primary"
@@ -119,7 +121,7 @@
             </el-form>
           </div>
 
-          <div class="settings__details margin-top-24" id="home-details">
+          <div id="home-details" class="settings__details margin-top-24">
             <div class="el-header d-block">
               <h1>Home Information</h1>
               <p class="el-text">
@@ -238,7 +240,7 @@ export default {
   components: { PasswordCriteria },
   mixins: [validations],
   layout: 'greenhouse',
-  middleware: ['guest'],
+  middleware: ['auth'],
   data() {
     return {
       dialogVisible: false,
@@ -305,23 +307,18 @@ export default {
       return this.greenhouseUser ? this.greenhouseUser.id : null
     },
   },
-  created() {
-    this.fetching = true
-  },
   watch: {
     greenhouseUser() {
       this.fetching = true
-      this.greenhouseUserId
       this.getUserProfile()
     },
   },
+  created() {
+    this.fetching = true
+  },
   mounted() {
     mixpanelTrackEvent('Profile settings page')
-    this.getUserProfile()
     this.getLocationAreas()
-    // setTimeout(() => {
-    //   this.getUserProfile()
-    // }, 5000)
   },
   methods: {
     getUserProfile() {
@@ -339,7 +336,10 @@ export default {
           }
           this.fetching = false
         })
-        .catch(() => {
+        .catch((error) => {
+          if (error.response.status === 401) {
+            this.logOut()
+          }
           this.fetching = false
         })
     },
@@ -469,6 +469,18 @@ export default {
     },
     disabledDates(time) {
       return time.getTime() > new Date('2004-12-31').getTime()
+    },
+    logOut() {
+      this.$message.success('You are logged out.')
+      this.$router.push({ name: 'login' })
+      this.$store.commit('setGreenhouse', {
+        token: null,
+        authenticated: false,
+        location: '',
+        reset_email: '',
+        reset_code: '',
+      })
+      this.$store.commit('setGreenhouseUser', {})
     },
   },
 }

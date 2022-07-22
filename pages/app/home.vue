@@ -60,7 +60,10 @@
             </el-card>
           </el-col>
           <el-col :md="12">
-            <el-card shadow="never" class="home__services-card purple-bg w-100">
+            <el-card
+              shadow="never"
+              class="home__services-card purple-bg w-100"
+            >
               <h5>Track your service schedule</h5>
               <p>
                 See your service delivery times, upcoming services and your
@@ -99,8 +102,8 @@
               >
                 <h5>Pick your meals</h5>
                 <p>
-                  Pick your favourite meals from our dynamic menu and never have
-                  to worry about market runs or meal prep..
+                  Pick your favourite meals from our dynamic menu and never
+                  have to worry about market runs or meal prep..
                 </p>
                 <div class="mt-2">
                   <img
@@ -117,18 +120,21 @@
         <el-popover placement="bottom" width="200" trigger="click">
           <div class="home__chat-trigger">
             <p @click="launchIntercom()">
-              <span class="margin-right-9"
+                <span class="margin-right-9"
                 ><img
                   src="@/assets/images/greenhouse/message_chat.svg"
                   alt="icon"
-              /></span>
+                /></span>
               Live Chat with Us
             </p>
             <p>
               <a href="mailto:support@edenlife.ng">
-                <span class="margin-right-9">
-                  <img src="@/assets/images/greenhouse/Email.svg" alt="icon" />
-                </span>
+                  <span class="margin-right-9">
+                    <img
+                      src="@/assets/images/greenhouse/Email.svg"
+                      alt="icon"
+                    />
+                  </span>
                 Send Us Email
               </a>
             </p>
@@ -155,13 +161,13 @@
             @click="closeIcon()"
           >
             <p>
-              <span>
-                <img
-                  src="@/assets/images/greenhouse/close.svg"
-                  alt="icon"
-                  class="margin-right-9"
-                />
-              </span>
+                <span>
+                  <img
+                    src="@/assets/images/greenhouse/close.svg"
+                    alt="icon"
+                    class="margin-right-9"
+                  />
+                </span>
               Close
             </p>
           </el-button>
@@ -180,7 +186,7 @@ export default {
   name: 'Home',
   mixins: [validations],
   layout: 'greenhouse',
-  middleware: ['guest'],
+  middleware: ['auth'],
   data() {
     return {
       submitted: true,

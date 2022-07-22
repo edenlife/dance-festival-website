@@ -101,7 +101,7 @@
         </ul>
       </div>
     </div>
-    <Nuxt />
+    <Nuxt v-if="render" />
   </div>
 </template>
 
@@ -112,6 +112,7 @@ export default {
   name: 'Greenhouse',
   data() {
     return {
+      render: false,
       user: {
         first_name: '',
         last_name: '',
@@ -134,15 +135,36 @@ export default {
     greenhouseUser() {
       const token = this.$store.getters.getGreenhouseToken
       greenhouse.setToken(token)
+      this.handleRender()
     },
   },
   mounted() {
-    // setTimeout(() => {
-      const token = this.$store.getters.getGreenhouseToken
-      greenhouse.setToken(token)
-    // }, 4000)
+    const token = this.$store.getters.getGreenhouseToken
+    greenhouse.setToken(token)
   },
   methods: {
+    handleRender() {
+      if (!this.authenticated) {
+        this.$router.push('/login')
+        setTimeout(() => {
+          this.render = true
+        }, 1000)
+      } else {
+        const name = this.$route.name
+        const routes = ['home', 'settings']
+
+        if (!routes.includes(name)) {
+          this.$router.push('/home')
+          setTimeout(() => {
+            this.render = true
+          }, 1000)
+        } else {
+          setTimeout(() => {
+            this.render = true
+          }, 1000)
+        }
+      }
+    },
     handleToggle() {
       this.toggled = !this.toggled
     },
@@ -163,10 +185,10 @@ export default {
         token: null,
         authenticated: false,
         location: '',
-        user: {},
         reset_email: '',
         reset_code: '',
       })
+      this.$store.commit('setGreenhouseUser', {})
     },
   },
 }

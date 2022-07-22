@@ -179,8 +179,8 @@ export default {
   name: 'Signup',
   components: { PasswordCriteria, NewLocationForm, NewLocationSuccessDialog },
   mixins: [validations, support],
-  middleware: ['auth'],
   layout: 'greenhouse',
+  middleware: ['guest'],
   data() {
     return {
       dialogVisible: false,
@@ -282,7 +282,7 @@ export default {
           }
           plan[service] = defaultConfig[this.location][service]
         })
-        let sortedPlan = this.sortObject(plan)
+        const sortedPlan = this.sortObject(plan)
         const metadata = {
           name: this.form.firstname + ' ' + this.form.lastname,
           email: this.form.email,

@@ -197,8 +197,6 @@ export default {
     },
   },
 
-  
-
   sitemap: {
     hostname: 'https://ouredenlifev2-staging.netlify.app',
     gzip: true,

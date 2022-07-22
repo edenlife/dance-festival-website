@@ -310,7 +310,6 @@ export default {
   watch: {
     greenhouseUser() {
       this.fetching = true
-      this.getUserProfile()
     },
   },
   created() {
@@ -318,6 +317,7 @@ export default {
   },
   mounted() {
     mixpanelTrackEvent('Profile settings page')
+    this.getUserProfile()
     this.getLocationAreas()
   },
   methods: {

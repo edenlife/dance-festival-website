@@ -112,7 +112,7 @@
                 <el-button
                   type="primary"
                   :loading="updating"
-                  @click="updateProfile"
+                  @click="updateProfile('Update profile clicked')"
                   >Save changes
                 </el-button>
               </div>
@@ -163,7 +163,7 @@
                   type="primary"
                   :loading="loading"
                   :disabled="!form.home_address"
-                  @click="updateHomeInfo"
+                  @click="updateHomeInfo('Update home info clicked')"
                   >Save changes
                 </el-button>
               </div>
@@ -213,7 +213,7 @@
                     !form.newPassword ||
                     passwordChangeDisabled
                   "
-                  @click="changePassword"
+                  @click="changePassword('Change passord clicked')"
                   >Save changes
                 </el-button>
               </div>
@@ -315,7 +315,7 @@ export default {
     },
   },
   mounted() {
-    mixpanelTrackEvent('profile settings')
+    mixpanelTrackEvent('Profile settings page')
     this.getUserProfile()
     this.getLocationAreas()
     // setTimeout(() => {
@@ -342,7 +342,8 @@ export default {
           this.fetching = false
         })
     },
-    updateProfile() {
+    updateProfile(label) {
+      mixpanelTrackEvent(label)
       this.$refs.form_profile.validate((valid) => {
         if (!valid) {
           return
@@ -376,7 +377,8 @@ export default {
           })
       })
     },
-    updateHomeInfo() {
+    updateHomeInfo(label) {
+      mixpanelTrackEvent(label)
       this.loading = true
       const home_information = {
         home_information: {
@@ -404,7 +406,8 @@ export default {
           }
         })
     },
-    changePassword() {
+    changePassword(label) {
+      mixpanelTrackEvent(label)
       this.reloading = true
       const payload = {
         current_pwd: this.form.oldPassword,

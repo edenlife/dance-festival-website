@@ -215,7 +215,7 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
-    mixpanelTrackEvent('Home Page')
+    mixpanelTrackEvent('Greenhouse home page')
   },
   methods: {
     handleScroll() {

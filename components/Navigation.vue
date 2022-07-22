@@ -404,7 +404,7 @@
           </div>
         </li>
         <li>
-          <nuxt-link
+          <!-- <nuxt-link
             id="get-started"
             :to="{ path: '/signup' }"
             class="navigation__menu-item navigation__menu-link"
@@ -413,16 +413,18 @@
             {{
               currentRoute === 'eden_means_easy' ? 'Sign Up Now' : 'Get Started'
             }}
-          </nuxt-link>
-          <!-- <a
+          </nuxt-link> -->
+          <a
             id="get-started"
             href="#"
             class="navigation__menu-item navigation__menu-link"
             :class="{ 'primary-red': currentRoute === 'gift' }"
-            @click.prevent="scrollTo('#get-the-app')"
+            @click.prevent="greenhouseSignUp()"
           >
-            
-          </a> -->
+            {{
+              currentRoute === 'eden_means_easy' ? 'Sign Up Now' : 'Get Started'
+            }}
+          </a>
         </li>
       </ul>
       <button class="navigation__btn" type="button" @click="handleToggle()">
@@ -574,7 +576,7 @@
               </transition>
             </li>
             <li class="menu--list" @click.prevent="handleToggle()">
-              <nuxt-link
+              <!-- <nuxt-link
                 :to="{ path: '/signup' }"
                 class="navigation__menu-item navigation__menu-link"
                 :class="{ 'primary-red': currentRoute === 'gift' }"
@@ -584,18 +586,18 @@
                     ? 'Sign Up Now'
                     : 'Get Started'
                 }}
-              </nuxt-link>
-              <!-- <a
+              </nuxt-link> -->
+              <a
                 href="#"
                 class="navigation__mobile-item navigation__mobile-link"
-                @click.prevent="scrollTo('#get-the-app')"
+                @click.prevent="greenhouseSignUp()"
               >
                 {{
                   currentRoute === 'eden_means_easy'
                     ? 'Sign Up Now'
                     : 'Get Started'
                 }}
-              </a> -->
+              </a>
             </li>
           </ul>
         </div>
@@ -653,6 +655,9 @@ export default {
         this.currentRoute.includes('ramadan')
       )
     },
+    authenticated() {
+      return !!this.$store.getters.getGreenhouseToken
+    },
   },
   watch: {
     $route() {
@@ -704,12 +709,27 @@ export default {
       this.showService = false
       mixpanelTrackEvent(`${service} clicked - ${this.currentRoute} - Navbar`)
     },
-    scrollTo(id) {
+    // scrollTo(id) {
+    //   if (this.currentRoute === '') {
+    //     scrollToApp(id, `homepage - Navbar`)
+    //   } else if (this.currentRoute.includes('easy')) {
+    //     this.scrollToSection('#eden-easy-form', 'Get Started')
+    //   } else scrollToApp(id, `${this.currentRoute} - Navbar`)
+    // },
+    greenhouseSignUp() {
       if (this.currentRoute === '') {
-        scrollToApp(id, `homepage - Navbar`)
+        mixpanelTrackEvent(`Get Started Clicked - homepage - Navbar `)
       } else if (this.currentRoute.includes('easy')) {
         this.scrollToSection('#eden-easy-form', 'Get Started')
-      } else scrollToApp(id, `${this.currentRoute} - Navbar`)
+      } else
+        mixpanelTrackEvent(
+          `Get Started clicked - ${this.currentRoute} - Navbar`
+        )
+      if (this.authenticated) {
+        this.$router.push('/home')
+      } else {
+        this.$router.push('/signup')
+      }
     },
     launchIntercom() {
       this.$intercom('show')

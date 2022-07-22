@@ -249,7 +249,7 @@ export default {
     },
   },
   mounted() {
-    mixpanelTrackEvent('Create account')
+    mixpanelTrackEvent('Signup page')
   },
   methods: {
     showPassword() {

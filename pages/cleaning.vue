@@ -12,22 +12,20 @@
             <span> {{ headerText[0] }}</span>
           </h1>
 
-          <p> Our team of professional cleaners: </p>
+          <p>Our team of professional cleaners:</p>
           <ul>
             <li>
               Are thoroughly vetted by us to keep you and your home safe ✔️
             </li>
             <li>Scrub, mop, wipe, and keep your home clean all month ✔️</li>
-            <li>
-              Save you hours of backbreaking work. ✔️
-            </li>
+            <li>Save you hours of backbreaking work. ✔️</li>
           </ul>
 
           <div class="hero__button">
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="scrollToFooter('#get-the-app', 'cleaning - hero')"
+              @click.prevent="greenhouseSignUp('cleaning - hero')"
             >
               I Want a Clean Home
             </button>
@@ -269,10 +267,7 @@
     <div id="cleaning-plan" class="container--plan">
       <section class="plan">
         <div class="plan__title">
-          <h3>
-            The Cleaning Plans:<br />
-            
-          </h3>
+          <h3>The Cleaning Plans:<br /></h3>
           <p>
             You deserve a home where you just sit back and relax.<br />
             No cleaning. No stress.
@@ -336,7 +331,7 @@
                 <circle cx="3" cy="3" r="3" fill="#61DB98" />
               </svg>
             </li>
-             <li
+            <li
               :class="{ active: plan === 'post-construction-cleaning' }"
               @click.prevent="setCleaningConfig('post-construction-cleaning')"
             >
@@ -799,8 +794,11 @@
               </div>
             </div>
           </transition>
-             <transition name="slide-fade">
-            <div v-if="plan === 'post-construction-cleaning'" class="plan__price-light">
+          <transition name="slide-fade">
+            <div
+              v-if="plan === 'post-construction-cleaning'"
+              class="plan__price-light"
+            >
               <div class="plan__price-item">
                 <div class="plan__price-description">
                   <div class="plan__price-description-title">
@@ -864,12 +862,19 @@
                     </button>
                   </div>
 
-                  <div  v-if="showCleaningDescription" class="plan__price-description-extra">
-
-                    Post construction is the cleaning done to new or renovated buildings. This kind of cleaning is done to the whole house or facility from top to bottom.
+                  <div
+                    v-if="showCleaningDescription"
+                    class="plan__price-description-extra"
+                  >
+                    Post construction is the cleaning done to new or renovated
+                    buildings. This kind of cleaning is done to the whole house
+                    or facility from top to bottom.
                   </div>
                   <ul v-if="showCleaningDescription">
-                    <li>Scraping of cements and paint stains on the floor, windows and doors</li>
+                    <li>
+                      Scraping of cements and paint stains on the floor, windows
+                      and doors
+                    </li>
                     <li>Washing of windows and doors</li>
                     <li>Scraping of POP from wall tiles</li>
                     <li>Washing of the walls</li>
@@ -878,7 +883,6 @@
                     <li>Cobweb removal from all surfaces</li>
                     <li>Resurfacing of the tiles to maintain quality</li>
                     <li>Polishing of all wooden surfaces</li>
-                   
                   </ul>
                 </div>
                 <div class="calculator__input">
@@ -1109,16 +1113,41 @@
         </div>
       </section>
     </div>
-  <download-banner v-if="showDownloadBanner" :show-download-banner="showDownloadBanner" class="download-banner">
+    <download-banner
+      v-if="showDownloadBanner"
+      :show-download-banner="showDownloadBanner"
+      class="download-banner"
+    >
       <div slot="header"></div>
       <div slot="body" class="content">
         <div class="banner">
           <div>
-            <button class="btn btn--success" @click="showDownloadBanner = false">
-                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 12.25L12.25 1" stroke="#4B6358" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M1 1L12.25 12.25" stroke="#4B6358" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+            <button
+              class="btn btn--success"
+              @click="showDownloadBanner = false"
+            >
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 13 13"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 12.25L12.25 1"
+                  stroke="#4B6358"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M1 1L12.25 12.25"
+                  stroke="#4B6358"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
             </button>
           </div>
           <div>
@@ -1129,9 +1158,7 @@
             />
           </div>
           <div>
-            <p class="font-text">
-              Enjoy the good life.
-            </p>
+            <p class="font-text">Enjoy the good life.</p>
             <p>Say goodbye to chores forever.</p>
           </div>
           <div>
@@ -1146,7 +1173,7 @@
         </div>
       </div>
       <div slot="footer"></div>
-  </download-banner>
+    </download-banner>
   </div>
 </template>
 
@@ -1308,6 +1335,10 @@ export default {
     scrollToFooter(id, label) {
       scrollToApp(id, label)
     },
+    greenhouseSignUp(label) {
+      mixpanelTrackEvent(label)
+      this.$router.push('/signup')
+    },
     changeText() {
       const first = this.headerText.shift()
       this.headerText = this.headerText.concat(first)
@@ -1338,32 +1369,27 @@ export default {
       this.calculateCleaningPrice()
     },
     setCleaningConfig(plan) {
-       this.plan = plan
+      this.plan = plan
       this.cleaningInfo.item = plan
       this.cleaningInfo.itemAreas = {}
       const planType = plan.replaceAll('-', ' ')
-       const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
+      const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
         ({ name }) => name.toLowerCase() === planType
       )
       this.cleaningQtyOption = this.cleaningQtyOption
       this.setCleaningArea(planType)
       this.calculateCleaningPrice()
-       return cleaning_areas;
+      return cleaning_areas
     },
     calculateCleaningPrice() {
-      const {
-        item,
-        itemAreas,
-        frequency,
-        qty,
-      } = this.cleaningInfo
+      const { item, itemAreas, frequency, qty } = this.cleaningInfo
       this.totalPrice = pricing({
         cleaning: {
           item,
           item_areas: itemAreas,
           frequency,
           qty,
-          service_day: ['saturday']
+          service_day: ['saturday'],
         },
       })
       this.getEstimateRoomTypes()
@@ -1476,18 +1502,18 @@ export default {
     trackLink(service) {
       mixpanelTrackEvent(`${service} clicked - Cleaning (more options)`)
     },
-   downloadApp() {
-       mixpanelTrackEvent('Download App - cleaning banner')
+    downloadApp() {
+      mixpanelTrackEvent('Download App - cleaning banner')
       const userAgent = navigator.userAgent || navigator.vendor || window.opera
-      if(/android/i.test(userAgent)){
-            window.location.href = 
-           'https://play.google.com/store/apps/details?id=com.ouredenlife.app';
+      if (/android/i.test(userAgent)) {
+        window.location.href =
+          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
       }
-      if(/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream){
-          window.location.href = 
-         'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1';
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href =
+          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
       }
-    }
+    },
   },
 }
 </script>

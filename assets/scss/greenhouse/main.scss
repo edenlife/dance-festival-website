@@ -1,0 +1,33 @@
+@import "../helpers/_mixins.scss";
+@import "variables";
+@import "functions";
+
+@import "forms";
+@import "elementui";
+@import "layout";
+@import "typography";
+@import "home";
+
+* {
+  box-sizing: border-box;
+}
+
+// El-Button
+.el-button {
+  font-family: "CerebriSans", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &--primary {
+    i {
+      color: #ffffff !important;
+    }
+
+    &.is-disabled {
+      color: #fff !important;
+      background-color: #cbd8d2 !important;
+      border-color: #cbd8d2 !important;
+    }
+  }
+}

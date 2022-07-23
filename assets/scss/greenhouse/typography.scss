@@ -1,0 +1,152 @@
+@import '../helpers/_variables.scss';
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include font-family(pt-serif);
+  margin: 0;
+  line-height: 1.4;
+  color: var(--eden-grey-primary);
+}
+
+h1 {
+  font-size: 3.75rem;
+}
+
+h2 {
+  font-size: 3.375rem;
+}
+
+h3 {
+  font-size: 3rem;
+}
+
+h4 {
+  font-size: 2.625rem;
+}
+
+h5 {
+  font-size: 2.25rem;
+}
+
+h6 {
+  font-size: 2rem;
+}
+
+p {
+  @include font-family(cerebri);
+  margin: 0;
+  line-height: 1.4;
+}
+
+a,
+a:hover {
+  @include font-family(cerebri);
+  color: #03a84e;
+  text-decoration: none;
+}
+
+span {
+  @include font-family(cerebri);
+}
+
+.margin-top-5 {
+  margin-top: 5px;
+}
+.margin-right-9 {
+  margin-right: 9px;
+}
+.margin-top-10 {
+  margin-top: 10px;
+}
+.margin-right-10 {
+  margin-right: 10px;
+}
+.margin-top-14 {
+  margin-top: 14px;
+}
+.margin-top-20 {
+  margin-top: 20px;
+}
+.margin-top-24 {
+  margin-top: 24px;
+}
+.margin-top-40 {
+  margin-top: 40px;
+}
+.margin-top-60 {
+  margin-top: 60px;
+}
+.margin-bottom-0 {
+  margin-bottom: 0px;
+}
+.margin-bottom-5 {
+  margin-bottom: 5px;
+}
+.margin-bottom-10 {
+  margin-bottom: 10px;
+}
+.margin-bottom-15 {
+  margin-bottom: 15px;
+}
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+.margin-bottom-32 {
+  margin-bottom: 32px;
+}
+.margin-bottom-40 {
+  margin-bottom: 40px;
+}
+.margin-bottom-60 {
+  margin-bottom: 60px;
+}
+.margin-horiz-10 {
+  margin: 0 10px;
+}
+.margin-horiz-20 {
+  margin: 0 20px;
+}
+.margin-horiz-30 {
+  margin: 0 30px;
+}
+.margin-horiz-40 {
+  margin: 0 40px;
+}
+.margin-horiz-60 {
+  margin: 0 60px;
+}
+.margin-vert-10 {
+  margin: 10px 0;
+}
+.margin-vert-20 {
+  margin: 20px 0;
+}
+.margin-vert-30 {
+  margin: 30px 0;
+}
+.margin-vert-40 {
+  margin: 40px 0;
+}
+.margin-vert-60 {
+  margin: 60px 0;
+}
+
+.padding-left-0 {
+  padding-left: 0;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.eden-red {
+  color: color(eden-red);
+}

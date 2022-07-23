@@ -307,18 +307,15 @@ export default {
       return this.greenhouseUser ? this.greenhouseUser.id : null
     },
   },
-  watch: {
-    greenhouseUser() {
-      this.fetching = true
-    },
-  },
   created() {
     this.fetching = true
   },
   mounted() {
     mixpanelTrackEvent('Profile settings page')
-    this.getUserProfile()
-    this.getLocationAreas()
+    setTimeout(() => {
+      this.getUserProfile()
+      this.getLocationAreas()
+    }, 2000)
   },
   methods: {
     getUserProfile() {

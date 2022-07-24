@@ -106,44 +106,33 @@
 </template>
 
 <script>
-import * as greenhouse from '~/request/greenhouse.api'
-
 export default {
   name: 'Greenhouse',
   data() {
     return {
       render: false,
-      user: {
-        first_name: '',
-        last_name: '',
-      },
       toggled: false,
     }
   },
   computed: {
     authenticated() {
-      const authenticated = !!this.$store.getters.getGreenhouseToken
-      const routes = ['home', 'settings']
-      const route = this.$route.name
-
-      return authenticated && routes.includes(route)
+      return !!this.$auth.loggedIn
     },
-    greenhouseUser() {
-      return this.$store.getters.getGreenhouseUser
+    user() {
+      return this.$auth.user && this.$auth.user
     },
     userName() {
-      return this.greenhouseUser ? this.greenhouseUser.name : '-'
+      return this.user && this.user.name ? this.user.name : 'Hello User'
     },
   },
   watch: {
-    greenhouseUser() {
-      const token = this.$store.getters.getGreenhouseToken
-      greenhouse.setToken(token)
+    user() {
+      const user = this.$auth.user
+      console.log(user)
     },
   },
   mounted() {
-    const token = this.$store.getters.getGreenhouseToken
-    greenhouse.setToken(token)
+    //
   },
   methods: {
     handleToggle() {
@@ -162,14 +151,7 @@ export default {
     logOut() {
       this.$message.success('You are logged out.')
       this.$router.push({ name: 'login' })
-      this.$store.commit('setGreenhouse', {
-        token: null,
-        authenticated: false,
-        location: '',
-        reset_email: '',
-        reset_code: '',
-      })
-      this.$store.commit('setGreenhouseUser', {})
+      this.$auth.logout()
     },
   },
 }

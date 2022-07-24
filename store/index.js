@@ -11,10 +11,6 @@ export const state = () => ({
   edenPosts: [],
   fromOrigin: null,
   greenhouse: {
-    token: '',
-    authenticated: false,
-    location: '',
-    user: {},
     reset_email: '',
     reset_code: '',
     success_state: '',
@@ -55,20 +51,11 @@ export const getters = {
   getFromOrigin: (state) => {
     return state.fromOrigin
   },
-  getGreenhouseToken: (state) => {
-    return state.greenhouse.token
-  },
-  getGreenhouseUser: (state) => {
-    return state.greenhouse.user
-  },
   getGreenhouseResetEmail: (state) => {
     return state.greenhouse.reset_email
   },
   getGreenhouseResetCode: (state) => {
     return state.greenhouse.reset_code
-  },
-  getGreenhouseLocation: (state) => {
-    return state.greenhouse.location
   },
   getGreenhouseSuccessState: (state) => {
     return state.greenhouse.success_state
@@ -120,14 +107,6 @@ export const mutations = {
   },
   setFromOrigin: (state, payload) => {
     state.fromOrigin = payload
-  },
-  setGreenhouse: (state, payload) => {
-    state.greenhouse.token = payload.token
-    state.greenhouse.authenticated = !!payload.token
-    state.greenhouse.location = payload.location
-  },
-  setGreenhouseUser: (state, payload) => {
-    state.greenhouse.user = payload
   },
   setGreenhouseResetEmail: (state, payload) => {
     state.greenhouse.reset_email = payload

@@ -57,6 +57,7 @@ export default {
   name: 'ResetCode',
   mixins: [validations],
   layout: 'greenhouse',
+  middleware: ['guest'],
   data() {
     return {
       form: {

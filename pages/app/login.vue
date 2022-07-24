@@ -55,7 +55,6 @@
 import validations from '~/mixins/validations'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import getSiteMeta from '~/utils/getSiteMeta'
-import * as greenhouse from '~/request/greenhouse.api'
 
 export default {
   name: 'Login',
@@ -124,27 +123,19 @@ export default {
           return
         }
         this.loading = true
-        greenhouse
-          .login(this.form)
-          .then((response) => {
-            const { status, data, message } = response.data
-            localStorage.setItem('userId', data.customer.id)
-            if (status) {
-              this.$message({
-                message,
-                type: 'success',
-              })
-              const { access_token, eden_location } = data
-              this.$store.commit('setGreenhouse', {
-                token: access_token,
-                authenticated: !!access_token,
-                location: eden_location,
-              })
-              this.$store.commit('setGreenhouseUser', data.customer)
-              greenhouse.setToken(access_token)
 
-              this.$router.push({ name: 'home' })
-            }
+        this.$auth
+          .loginWith('local', {
+            data: this.form,
+          })
+          .then((response) => {
+            const { customer, eden_location } = response.data.data
+            this.$auth.setUser({
+              ...customer,
+              location: eden_location,
+            })
+            this.$router.push('/home')
+            this.loading = false
           })
           .catch((error) => {
             this.loading = false

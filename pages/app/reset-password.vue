@@ -77,13 +77,6 @@ export default {
     return {
       title: 'Eden | Forgot Password',
       meta: [...this.meta],
-      link: [
-        {
-          hid: 'canonical',
-          rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/food_leads`,
-        },
-      ],
     }
   },
   computed: {
@@ -92,8 +85,6 @@ export default {
         title: 'Eden | Forgot Password',
         description:
           'Your chef-cooked meals, delivered to you. Daily or weekly.',
-        url: `https://ouredenlifev2-staging.netlify.app/food_leads`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
       }
       return getSiteMeta(metaData)
     },

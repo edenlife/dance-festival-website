@@ -195,7 +195,7 @@
                 type="button"
                 class="btn"
                 @click.prevent="
-                  scrollToFooter('#get-the-app', 'cleaning - how it works')
+                  greenhouseSignUp('cleaning - how it works')
                 "
               >
                 Get the app

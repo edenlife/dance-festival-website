@@ -272,13 +272,6 @@ export default {
     return {
       title: 'Eden | Settings',
       meta: [...this.meta],
-      link: [
-        {
-          hid: 'canonical',
-          rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/food_leads`,
-        },
-      ],
     }
   },
   computed: {
@@ -287,8 +280,6 @@ export default {
         title: 'Eden | Settings',
         description:
           'Your chef-cooked meals, delivered to you. Daily or weekly.',
-        url: `https://ouredenlifev2-staging.netlify.app/food_leads`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
       }
       return getSiteMeta(metaData)
     },
@@ -465,7 +456,8 @@ export default {
         .catch()
     },
     disabledDates(time) {
-      return time.getTime() > new Date('2004-12-31').getTime()
+      return time.getTime() > new Date('2004-12-31').getTime();
+      
     },
     logOut() {
       this.$message.success('You are logged out.')

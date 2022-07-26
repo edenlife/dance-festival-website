@@ -3,76 +3,55 @@
     <div>
       <div class="navigation">
         <div class="gh-container">
-          <div class="navigation-logo">
+          <nuxt-link :to="{ path: '/' }" class="navigation-logo">
             <img
               src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611230252/eden-website-v2/eden-logo_lcepc6.svg"
-              alt="Eden"
-            />
-          </div>
-          <template v-if="authenticated">
-            <div class="navigation-home">
-              <router-link
-                :to="{ name: 'home' }"
-                class="el-button el-button--primary el-button--medium"
-                >Home
-              </router-link>
-            </div>
-            <div class="navigation-user displayLg">
-              <el-dropdown @command="command">
-                <div class="navigation-user--indicator">
-                  <div class="username">
-                    <el-avatar class="margin-right-10">
-                      {{
+              alt="Eden" />
+            </nuxt-link>
+            <template v-if="authenticated">
+              <div class="navigation-home">
+                <router-link :to="{ name: 'home' }" class="el-button el-button--primary el-button--medium">Home
+                </router-link>
+              </div>
+              <div class="navigation-user displayLg">
+                <el-dropdown @command="command">
+                  <div class="navigation-user--indicator">
+                    <div class="username">
+                      <el-avatar class="margin-right-10">
+                        {{
                         userName.split(' ')[0][0] + userName.split(' ')[1][0]
-                      }}
-                    </el-avatar>
-                    {{ userName }}
+                        }}
+                      </el-avatar>
+                      {{ userName }}
+                    </div>
+                    <i class="el-icon-arrow-down el-icon--right"></i>
                   </div>
-                  <i class="el-icon-arrow-down el-icon--right"></i>
-                </div>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item command="settings">
-                    <i class="el-icon-setting"></i>
-                    Profile settings
-                  </el-dropdown-item>
-                  <el-dropdown-item class="eden-red" command="logout">
-                    <img
-                      src="@/assets/images/greenhouse/logout.svg"
-                      class="margin-right-9"
-                      alt="logout"
-                    />
-                    Logout
-                  </el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
-            </div>
-            <div class="displayMd">
-              <button
-                class="navigation__btn"
-                type="button"
-                :class="toggled ? 'toggle' : ''"
-                @click="handleToggle()"
-              >
-                <div class="line line1"></div>
-                <div class="line line2"></div>
-                <div class="line line3"></div>
-              </button>
-            </div>
-          </template>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item command="settings">
+                      <i class="el-icon-setting"></i>
+                      Profile settings
+                    </el-dropdown-item>
+                    <el-dropdown-item class="eden-red" command="logout">
+                      <img src="@/assets/images/greenhouse/logout.svg" class="margin-right-9" alt="logout" />
+                      Logout
+                    </el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
+              </div>
+              <div class="displayMd">
+                <button class="navigation__btn" type="button" :class="toggled ? 'toggle' : ''" @click="handleToggle()">
+                  <div class="line line1"></div>
+                  <div class="line line2"></div>
+                  <div class="line line3"></div>
+                </button>
+              </div>
+            </template>
         </div>
       </div>
-      <div
-        v-if="toggled && authenticated"
-        id="navBtn"
-        class="navigation__mobile"
-      >
+      <div v-if="toggled && authenticated" id="navBtn" class="navigation__mobile">
         <ul class="menu">
           <li class="menu--list">
-            <el-dropdown
-              trigger="click"
-              :hide-on-click="true"
-              @command="command"
-            >
+            <el-dropdown trigger="click" :hide-on-click="true" @command="command">
               <div class="navigation-user--indicator">
                 <div class="username">
                   <el-avatar class="margin-right-10">
@@ -88,11 +67,7 @@
                   Profile settings
                 </el-dropdown-item>
                 <el-dropdown-item class="eden-red" command="logout">
-                  <img
-                    src="@/assets/images/greenhouse/logout.svg"
-                    class="margin-right-9"
-                    alt="logout"
-                  />
+                  <img src="@/assets/images/greenhouse/logout.svg" class="margin-right-9" alt="logout" />
                   Logout
                 </el-dropdown-item>
               </el-dropdown-menu>

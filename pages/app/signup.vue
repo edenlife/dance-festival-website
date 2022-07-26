@@ -354,21 +354,20 @@ export default {
       })
     },
     login(payload) {
-      this.$auth
-        .loginWith('local', {
-          data: payload,
-        })
+      this.$axios
+        .post('login', payload)
         .then((response) => {
-          const { customer, eden_location } = response.data.data
-          this.$auth
-            .setUser({
-              ...customer,
-              ...eden_location,
+          const { status, data, message } = response.data
+          if (status) {
+            this.$store.commit('setGreenhouseToken', data.access_token)
+            this.$store.commit('setGreenhouseUser', {
+              ...data.customer,
+              location: data.eden_location,
             })
-            .then(() => {
-              this.$router.push({ name: 'home' })
-              this.loading = false
-            })
+            this.$message({ message, type: 'success' })
+            this.$router.push({ name: 'home' })
+          }
+          this.loading = false
         })
         .catch((error) => {
           this.loading = false

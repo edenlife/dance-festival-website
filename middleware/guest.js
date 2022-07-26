@@ -1,6 +1,5 @@
-export default function (context) {
-  const { loggedIn } = context.$auth
-  if (loggedIn) {
-    return context.redirect('/home')
+export default function ({ store, redirect }) {
+  if (process.client && store.getters.getGreenhouseToken) {
+    return redirect('/home')
   }
 }

@@ -131,7 +131,6 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    '@nuxtjs/auth',
     'nuxt-intercom',
     '@nuxtjs/sitemap',
   ],
@@ -142,26 +141,12 @@ export default {
       process.env.NODE_ENV === 'production'
         ? 'https://api.edenlife.ng/api/v1/greenhouse/'
         : 'https://api-staging.edenlife.ng/api/v1/greenhouse/',
-  },
-
-  // Auth module configuration
-  auth: {
-    strategies: {
-      local: {
-        endpoints: {
-          login: {
-            url: 'login',
-            method: 'post',
-            propertyName: 'data.access_token',
-          },
-          user: false,
-        },
-        user: {
-          autoFetch: false,
-        },
-        tokenRequired: true,
-        tokenType: 'Bearer',
-      },
+    crossdomain: true,
+    proxyHeaders: false,
+    credentials: false,
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
   },
 

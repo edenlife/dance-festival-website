@@ -123,18 +123,19 @@ export default {
           return
         }
         this.loading = true
-
-        this.$auth
-          .loginWith('local', {
-            data: this.form,
-          })
+        this.$axios
+          .post('login', this.form)
           .then((response) => {
-            const { customer, eden_location } = response.data.data
-            this.$auth.setUser({
-              ...customer,
-              location: eden_location,
-            })
-            this.$router.push('/home')
+            const { status, data, message } = response.data
+            if (status) {
+              this.$store.commit('setGreenhouseToken', data.access_token)
+              this.$store.commit('setGreenhouseUser', {
+                ...data.customer,
+                location: data.eden_location,
+              })
+              this.$message({ message, type: 'success' })
+              this.$router.push({ name: 'home' })
+            }
             this.loading = false
           })
           .catch((error) => {

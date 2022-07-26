@@ -292,15 +292,15 @@ export default {
       return getSiteMeta(metaData)
     },
     location() {
-      return this.$auth.user.eden_location
-        ? this.$auth.user.eden_location
+      return this.$store.getters.getGreenhouseUser.location
+        ? this.$store.getters.getGreenhouseUser.location
         : 'NG'
     },
     countryCode() {
       return this.location === 'NG' ? '234' : '254'
     },
     greenhouseUserId() {
-      return this.$auth.user.id
+      return this.$store.getters.getGreenhouseUser.id
     },
   },
   created() {
@@ -356,8 +356,20 @@ export default {
             profile_details[section]
           )
           .then((response) => {
-            if (response.data.status) {
-              this.$message.success(response.data.message)
+            const { status, data, message } = response.data
+            if (status) {
+              this.$store.commit('setGreenhouseUser', {
+                ...this.$store.getters.getGreenhouseUser,
+                name:
+                  data.profile_details &&
+                  data.profile_details.first_name +
+                    ' ' +
+                    data.profile_details.last_name,
+                phone_number:
+                  data.profile_details &&
+                  data.profile_details.phone_number.substring(3),
+              })
+              this.$message.success(message)
               this.updating = false
             }
           })
@@ -467,11 +479,10 @@ export default {
     disabledDates(time) {
       return time.getTime() > new Date('2004-12-31').getTime()
     },
-    logOut() {
+    async logOut() {
+      await this.$router.push({ name: 'login' })
       this.$message.success('You are logged out.')
-      this.$router.push({ name: 'login' })
-      this.$auth.setUser(null)
-      this.$auth.setUserToken(null)
+      this.$store.commit('setGreenhouseLogout')
     },
   },
 }

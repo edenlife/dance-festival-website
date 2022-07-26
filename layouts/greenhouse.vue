@@ -9,7 +9,7 @@
               alt="Eden"
             />
           </div>
-          <template v-if="authenticated">
+          <template v-if="authenticated && !loading">
             <div class="navigation-home">
               <router-link
                 :to="{ name: 'home' }"
@@ -101,40 +101,82 @@
         </ul>
       </div>
     </div>
-    <Nuxt />
+    <div v-if="loading" class="app_loading">
+      <Loader />
+      <p>Loading...</p>
+    </div>
+    <div v-else>
+      <Nuxt />
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Greenhouse',
+  components: {
+    Loader: () => import('@/components/Loader.vue')
+  },
   data() {
     return {
+      loading: true,
       render: false,
       toggled: false,
     }
   },
   computed: {
     authenticated() {
-      return !!this.$auth.loggedIn
+      return !!this.$store.getters.getGreenhouseToken
     },
     user() {
-      return this.$auth.user && this.$auth.user
+      return this.$store.getters.getGreenhouseUser
     },
     userName() {
       return this.user && this.user.name ? this.user.name : 'Hello User'
     },
   },
-  watch: {
-    user() {
-      const user = this.$auth.user
-      console.log(user)
-    },
-  },
   mounted() {
-    //
+    setTimeout(() => {
+      this.setGreenhouseToken()
+    }, 4000)
+  },
+  created() {
+    this.loading = true
   },
   methods: {
+    setGreenhouseToken() {
+      const token = this.$store.getters.getGreenhouseToken
+      this.$axios.setHeader('Authorization', `Bearer ${token}`)
+
+      this.setRoute().then(() => {
+        this.loading = false
+      })
+    },
+    setRoute() {
+      const token = this.$store.getters.getGreenhouseToken
+
+      const auth_routes = ['home', 'settings']
+      const route = this.$route.name
+
+      return new Promise((resolve, reject) => {
+        // Authenticated user visiting authenticated route
+        if (auth_routes.includes(route) && token) {
+          resolve()
+        }
+        // Authenticated user visiting guest route
+        else if (!auth_routes.includes(route) && token) {
+          this.$router.push({ name: 'home' })
+          resolve()
+        }
+        // Unauthenticated user visiting authenticated route
+        else if (auth_routes.includes(route) && !token) {
+          this.$router.push({ name: 'login' })
+          resolve()
+        } else {
+          resolve()
+        }
+      })
+    },
     handleToggle() {
       this.toggled = !this.toggled
     },
@@ -151,7 +193,7 @@ export default {
     logOut() {
       this.$message.success('You are logged out.')
       this.$router.push({ name: 'login' })
-      this.$auth.logout()
+      this.$store.commit('setGreenhouseLogout')
     },
   },
 }
@@ -319,6 +361,17 @@ export default {
     top: 125px;
     left: 23px;
     width: 327px;
+  }
+}
+
+.app_loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+  width: 100%;
+  p {
+    color: color(eden-neutral-1);
   }
 }
 </style>

@@ -57,6 +57,7 @@ export default {
   name: 'ResetCode',
   mixins: [validations],
   layout: 'greenhouse',
+  middleware: ['guest'],
   data() {
     return {
       form: {
@@ -69,13 +70,6 @@ export default {
     return {
       title: 'Eden | Reset Code',
       meta: [...this.meta],
-      link: [
-        {
-          hid: 'canonical',
-          rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/food_leads`,
-        },
-      ],
     }
   },
   computed: {
@@ -84,8 +78,6 @@ export default {
         title: 'Eden | Reset Code',
         description:
           'Your chef-cooked meals, delivered to you. Daily or weekly.',
-        url: `https://ouredenlifev2-staging.netlify.app/food_leads`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
       }
       return getSiteMeta(metaData)
     },

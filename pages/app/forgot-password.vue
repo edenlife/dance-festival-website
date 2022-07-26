@@ -50,12 +50,12 @@
 import validations from '~/mixins/validations'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import getSiteMeta from '~/utils/getSiteMeta'
-import * as greenhouse from '~/request/greenhouse.api'
 
 export default {
   name: 'ForgotPassword',
   mixins: [validations],
   layout: 'greenhouse',
+  middleware: ['guest'],
   data() {
     return {
       form: {
@@ -68,13 +68,6 @@ export default {
     return {
       title: 'Eden | Forgot Password',
       meta: [...this.meta],
-      link: [
-        {
-          hid: 'canonical',
-          rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/food_leads`,
-        },
-      ],
     }
   },
   computed: {
@@ -83,8 +76,6 @@ export default {
         title: 'Eden | Forgot Password',
         description:
           'Your chef-cooked meals, delivered to you. Daily or weekly.',
-        url: `https://ouredenlifev2-staging.netlify.app/food_leads`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
       }
       return getSiteMeta(metaData)
     },
@@ -102,8 +93,8 @@ export default {
           return
         }
         this.loading = true
-        greenhouse
-          .sendResetCode(this.form)
+        this.$axios
+          .post('/forgot_password/createpasscode', this.form)
           .then((response) => {
             this.loading = false
             const successMessage = response.data.message

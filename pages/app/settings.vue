@@ -232,7 +232,6 @@ import validations from '~/mixins/validations'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import getSiteMeta from '~/utils/getSiteMeta'
 import PasswordCriteria from '~/components/Greenhouse/PasswordCriteria'
-import * as greenhouse from '~/request/greenhouse.api'
 // import * as actions from "@/store/action-types";
 
 export default {
@@ -240,7 +239,7 @@ export default {
   components: { PasswordCriteria },
   mixins: [validations],
   layout: 'greenhouse',
-  middleware: ['auth'],
+  middleware: ['user'],
   data() {
     return {
       dialogVisible: false,
@@ -272,13 +271,6 @@ export default {
     return {
       title: 'Eden | Settings',
       meta: [...this.meta],
-      link: [
-        {
-          hid: 'canonical',
-          rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/food_leads`,
-        },
-      ],
     }
   },
   computed: {
@@ -287,40 +279,45 @@ export default {
         title: 'Eden | Settings',
         description:
           'Your chef-cooked meals, delivered to you. Daily or weekly.',
-        url: `https://ouredenlifev2-staging.netlify.app/food_leads`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
       }
       return getSiteMeta(metaData)
     },
     location() {
-      return this.$store.getters.getGreenhouseLocation
-        ? this.$store.getters.getGreenhouseLocation
+      return this.$store.getters.getGreenhouseUser.location
+        ? this.$store.getters.getGreenhouseUser.location
         : 'NG'
     },
     countryCode() {
       return this.location === 'NG' ? '234' : '254'
     },
-    greenhouseUser() {
-      return this.$store.getters.getGreenhouseUser
-    },
     greenhouseUserId() {
-      return this.greenhouseUser ? this.greenhouseUser.id : null
+      return this.$store.getters.getGreenhouseUser.id
     },
+  },
+  beforeMount() {
+    const state = window.localStorage.getItem('eden-vuex')
+    const stateParsed = state ? JSON.parse(state) : null
+
+    if (stateParsed) {
+      const authenticated = !!stateParsed.greenhouse.token
+      if (!authenticated) {
+        this.$router.push({ name: 'login' })
+      } else {
+        this.getUserProfile()
+      }
+    }
   },
   created() {
     this.fetching = true
   },
   mounted() {
     mixpanelTrackEvent('Profile settings page')
-    setTimeout(() => {
-      this.getUserProfile()
-      this.getLocationAreas()
-    }, 2000)
+    this.getLocationAreas()
   },
   methods: {
     getUserProfile() {
-      greenhouse
-        .userProfile(this.greenhouseUserId)
+      this.$axios
+        .get(`customers/${this.greenhouseUserId}/profile`)
         .then((response) => {
           if (response.data.status) {
             const data = response.data.data
@@ -330,13 +327,19 @@ export default {
               this.form[key] = profile[key] || home_information[key]
             })
             this.form.phone_number = this.form.phone_number.substring(3)
+            this.$store.commit('setGreenhouseUser', {
+              ...this.$store.getters.getGreenhouseUser,
+              name:
+                data.profile_details &&
+                data.profile_details.first_name +
+                  ' ' +
+                  data.profile_details.last_name,
+              phone_number: this.form.phone_number,
+            })
           }
           this.fetching = false
         })
-        .catch((error) => {
-          if (error.response.status === 401) {
-            this.logOut()
-          }
+        .catch(() => {
           this.fetching = false
         })
     },
@@ -356,11 +359,26 @@ export default {
           },
         }
         const section = Object.keys(profile_details)[0]
-        greenhouse
-          .updateProfile(this.greenhouseUserId, profile_details, section)
+        this.$axios
+          .patch(
+            `customers/${this.greenhouseUserId}/profile?section=${section}`,
+            profile_details[section]
+          )
           .then((response) => {
-            if (response.data.status) {
-              this.$message.success(response.data.message)
+            const { status, data, message } = response.data
+            if (status) {
+              this.$store.commit('setGreenhouseUser', {
+                ...this.$store.getters.getGreenhouseUser,
+                name:
+                  data.profile_details &&
+                  data.profile_details.first_name +
+                    ' ' +
+                    data.profile_details.last_name,
+                phone_number:
+                  data.profile_details &&
+                  data.profile_details.phone_number.substring(3),
+              })
+              this.$message.success(message)
               this.updating = false
             }
           })
@@ -386,8 +404,11 @@ export default {
         },
       }
       const section = Object.keys(home_information)[0]
-      greenhouse
-        .updateProfile(this.greenhouseUserId, home_information, section)
+      this.$axios
+        .patch(
+          `customers/${this.greenhouseUserId}/profile?section=${section}`,
+          home_information[section]
+        )
         .then((response) => {
           if (response.data.status) {
             this.$message.success(response.data.message)
@@ -411,8 +432,8 @@ export default {
         current_pwd: this.form.oldPassword,
         new_pwd: this.form.newPassword,
       }
-      greenhouse
-        .changePassword(this.greenhouseUserId, payload)
+      this.$axios
+        .put(`customers/${this.greenhouseUserId}/change_password`, payload)
         .then((response) => {
           this.reloading = false
           this.form.newPassword = ''
@@ -455,8 +476,8 @@ export default {
       document.getElementById(id).scrollIntoView()
     },
     getLocationAreas() {
-      greenhouse
-        .locationAreas()
+      this.$axios
+        .get('locationareas')
         .then((response) => {
           if (response.data.status) {
             this.locationareas = response.data.data
@@ -467,17 +488,10 @@ export default {
     disabledDates(time) {
       return time.getTime() > new Date('2004-12-31').getTime()
     },
-    logOut() {
+    async logOut() {
+      await this.$router.push({ name: 'login' })
       this.$message.success('You are logged out.')
-      this.$router.push({ name: 'login' })
-      this.$store.commit('setGreenhouse', {
-        token: null,
-        authenticated: false,
-        location: '',
-        reset_email: '',
-        reset_code: '',
-      })
-      this.$store.commit('setGreenhouseUser', {})
+      this.$store.commit('setGreenhouseLogout')
     },
   },
 }

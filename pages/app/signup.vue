@@ -357,14 +357,13 @@ export default {
       this.$axios
         .post('login', payload)
         .then((response) => {
-          const { status, data, message } = response.data
+          const { status, data } = response.data
           if (status) {
             this.$store.commit('setGreenhouseToken', data.access_token)
             this.$store.commit('setGreenhouseUser', {
               ...data.customer,
               location: data.eden_location,
             })
-            this.$message({ message, type: 'success' })
             this.$router.push({ name: 'home' })
           }
           this.loading = false

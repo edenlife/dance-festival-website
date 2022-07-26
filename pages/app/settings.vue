@@ -294,12 +294,24 @@ export default {
       return this.$store.getters.getGreenhouseUser.id
     },
   },
+  beforeMount() {
+    const state = window.localStorage.getItem('eden-vuex')
+    const stateParsed = state ? JSON.parse(state) : null
+
+    if (stateParsed) {
+      const authenticated = !!stateParsed.greenhouse.token
+      if (!authenticated) {
+        this.$router.push({ name: 'login' })
+      } else {
+        this.getUserProfile()
+      }
+    }
+  },
   created() {
     this.fetching = true
   },
   mounted() {
     mixpanelTrackEvent('Profile settings page')
-    this.getUserProfile()
     this.getLocationAreas()
   },
   methods: {
@@ -315,13 +327,19 @@ export default {
               this.form[key] = profile[key] || home_information[key]
             })
             this.form.phone_number = this.form.phone_number.substring(3)
+            this.$store.commit('setGreenhouseUser', {
+              ...this.$store.getters.getGreenhouseUser,
+              name:
+                data.profile_details &&
+                data.profile_details.first_name +
+                  ' ' +
+                  data.profile_details.last_name,
+              phone_number: this.form.phone_number,
+            })
           }
           this.fetching = false
         })
-        .catch((error) => {
-          if (error.response.status === 401) {
-            this.logOut()
-          }
+        .catch(() => {
           this.fetching = false
         })
     },
@@ -468,8 +486,7 @@ export default {
         .catch()
     },
     disabledDates(time) {
-      return time.getTime() > new Date('2004-12-31').getTime();
-      
+      return time.getTime() > new Date('2004-12-31').getTime()
     },
     async logOut() {
       await this.$router.push({ name: 'login' })

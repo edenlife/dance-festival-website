@@ -131,14 +131,24 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-
     'nuxt-intercom',
-
     '@nuxtjs/sitemap',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL:
+      process.env.NODE_ENV === 'production'
+        ? 'https://api.edenlife.ng/api/v1/greenhouse/'
+        : 'https://api-staging.edenlife.ng/api/v1/greenhouse/',
+    crossdomain: true,
+    proxyHeaders: false,
+    credentials: false,
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

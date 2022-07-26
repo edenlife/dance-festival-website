@@ -55,12 +55,12 @@
 import validations from '~/mixins/validations'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import getSiteMeta from '~/utils/getSiteMeta'
-import * as greenhouse from '~/request/greenhouse.api'
 
 export default {
   name: 'ResetPassword',
   mixins: [validations],
   layout: 'greenhouse',
+  middleware: ['guest'],
   data() {
     return {
       form: {
@@ -119,8 +119,8 @@ export default {
           email: this.$store.getters.getGreenhouseResetEmail,
           password: this.form.password,
         }
-        greenhouse
-          .resetPassword(payload)
+        this.$axios
+          .post('/forgot_password/reset', payload)
           .then((response) => {
             this.loading = false
             const successMessage = response.data.message
@@ -141,7 +141,7 @@ export default {
           })
       })
     },
-        login(payload) {
+    login(payload) {
       greenhouse
         .login(payload)
         .then((response) => {

@@ -12,8 +12,6 @@ export const state = () => ({
   fromOrigin: null,
   greenhouse: {
     token: '',
-    authenticated: false,
-    location: '',
     user: {},
     reset_email: '',
     reset_code: '',
@@ -67,9 +65,6 @@ export const getters = {
   getGreenhouseResetCode: (state) => {
     return state.greenhouse.reset_code
   },
-  getGreenhouseLocation: (state) => {
-    return state.greenhouse.location
-  },
   getGreenhouseSuccessState: (state) => {
     return state.greenhouse.success_state
   },
@@ -121,13 +116,11 @@ export const mutations = {
   setFromOrigin: (state, payload) => {
     state.fromOrigin = payload
   },
-  setGreenhouse: (state, payload) => {
-    state.greenhouse.token = payload.token
-    state.greenhouse.authenticated = !!payload.token
-    state.greenhouse.location = payload.location
+  setGreenhouseToken: (state, token) => {
+    state.greenhouse.token = token
   },
-  setGreenhouseUser: (state, payload) => {
-    state.greenhouse.user = payload
+  setGreenhouseUser: (state, user) => {
+    state.greenhouse.user = user
   },
   setGreenhouseResetEmail: (state, payload) => {
     state.greenhouse.reset_email = payload
@@ -137,5 +130,12 @@ export const mutations = {
   },
   setSuccessState: (state, payload) => {
     state.greenhouse.success_state = payload
+  },
+  setGreenhouseLogout: (state) => {
+    state.greenhouse.token = null
+    state.greenhouse.user = {}
+    state.greenhouse.reset_email = ''
+    state.greenhouse.reset_code = ''
+    state.greenhouse.success_state = ''
   },
 }

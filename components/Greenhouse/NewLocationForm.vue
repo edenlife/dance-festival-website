@@ -116,7 +116,6 @@
 
 <script>
 import { Country, State } from 'country-state-city'
-import * as greenhouse from '~/request/greenhouse.api'
 import validations from '~/mixins/validations'
 
 export default {
@@ -246,11 +245,11 @@ export default {
           city: this.form.state,
           phone_number: this.form.phone,
         }
-        greenhouse
-          .waitingList(payload)
+        this.$axios
+          .post('/onboarding/customers/waiting_list', payload)
           .then(() => {
             this.loading = false
-            this.$store.commit('setSuccessState', this.form.state);
+            this.$store.commit('setSuccessState', this.form.state)
             this.$emit('success')
             this.closeEvent()
           })

@@ -55,7 +55,6 @@
 import validations from '~/mixins/validations'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import getSiteMeta from '~/utils/getSiteMeta'
-import * as greenhouse from '~/request/greenhouse.api'
 
 export default {
   name: 'Login',
@@ -83,7 +82,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/food_leads`,
+          href: `https://ouredenlifev2-staging.netlify.app/login`,
         },
       ],
     }
@@ -94,7 +93,7 @@ export default {
         title: 'Eden | Login',
         description:
           'Your chef-cooked meals, delivered to you. Daily or weekly.',
-        url: `https://ouredenlifev2-staging.netlify.app/food_leads`,
+        url: `https://ouredenlifev2-staging.netlify.app/login`,
         mainImage: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
       }
       return getSiteMeta(metaData)
@@ -124,27 +123,20 @@ export default {
           return
         }
         this.loading = true
-        greenhouse
-          .login(this.form)
+        this.$axios
+          .post('login', this.form)
           .then((response) => {
             const { status, data, message } = response.data
-            localStorage.setItem('userId', data.customer.id)
             if (status) {
-              this.$message({
-                message,
-                type: 'success',
+              this.$store.commit('setGreenhouseToken', data.access_token)
+              this.$store.commit('setGreenhouseUser', {
+                ...data.customer,
+                location: data.eden_location,
               })
-              const { access_token, eden_location } = data
-              this.$store.commit('setGreenhouse', {
-                token: access_token,
-                authenticated: !!access_token,
-                location: eden_location,
-              })
-              this.$store.commit('setGreenhouseUser', data.customer)
-              greenhouse.setToken(access_token)
-
+              this.$message({ message, type: 'success' })
               this.$router.push({ name: 'home' })
             }
+            this.loading = false
           })
           .catch((error) => {
             this.loading = false

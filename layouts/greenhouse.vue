@@ -3,18 +3,14 @@
     <div>
       <div class="navigation">
         <div class="gh-container">
-          <div class="navigation-logo">
+          <nuxt-link :to="{ path: '/' }" class="navigation-logo">
             <img
               src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611230252/eden-website-v2/eden-logo_lcepc6.svg"
-              alt="Eden"
-            />
-          </div>
-          <template v-if="authenticated">
+              alt="Eden" />
+          </nuxt-link>
+          <template v-if="authenticated && !loading">
             <div class="navigation-home">
-              <router-link
-                :to="{ name: 'home' }"
-                class="el-button el-button--primary el-button--medium"
-                >Home
+              <router-link :to="{ name: 'home' }" class="el-button el-button--primary el-button--medium">Home
               </router-link>
             </div>
             <div class="navigation-user displayLg">
@@ -23,7 +19,7 @@
                   <div class="username">
                     <el-avatar class="margin-right-10">
                       {{
-                        userName.split(' ')[0][0] + userName.split(' ')[1][0]
+                      userName.split(' ')[0][0] + userName.split(' ')[1][0]
                       }}
                     </el-avatar>
                     {{ userName }}
@@ -36,23 +32,14 @@
                     Profile settings
                   </el-dropdown-item>
                   <el-dropdown-item class="eden-red" command="logout">
-                    <img
-                      src="@/assets/images/greenhouse/logout.svg"
-                      class="margin-right-9"
-                      alt="logout"
-                    />
+                    <img src="@/assets/images/greenhouse/logout.svg" class="margin-right-9" alt="logout" />
                     Logout
                   </el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
             </div>
             <div class="displayMd">
-              <button
-                class="navigation__btn"
-                type="button"
-                :class="toggled ? 'toggle' : ''"
-                @click="handleToggle()"
-              >
+              <button class="navigation__btn" type="button" :class="toggled ? 'toggle' : ''" @click="handleToggle()">
                 <div class="line line1"></div>
                 <div class="line line2"></div>
                 <div class="line line3"></div>
@@ -61,18 +48,10 @@
           </template>
         </div>
       </div>
-      <div
-        v-if="toggled && authenticated"
-        id="navBtn"
-        class="navigation__mobile"
-      >
+      <div v-if="toggled && authenticated" id="navBtn" class="navigation__mobile">
         <ul class="menu">
           <li class="menu--list">
-            <el-dropdown
-              trigger="click"
-              :hide-on-click="true"
-              @command="command"
-            >
+            <el-dropdown trigger="click" :hide-on-click="true" @command="command">
               <div class="navigation-user--indicator">
                 <div class="username">
                   <el-avatar class="margin-right-10">
@@ -88,11 +67,7 @@
                   Profile settings
                 </el-dropdown-item>
                 <el-dropdown-item class="eden-red" command="logout">
-                  <img
-                    src="@/assets/images/greenhouse/logout.svg"
-                    class="margin-right-9"
-                    alt="logout"
-                  />
+                  <img src="@/assets/images/greenhouse/logout.svg" class="margin-right-9" alt="logout" />
                   Logout
                 </el-dropdown-item>
               </el-dropdown-menu>
@@ -101,51 +76,82 @@
         </ul>
       </div>
     </div>
-    <Nuxt />
+    <div v-if="loading" class="app_loading">
+      <Loader />
+      <p>Loading...</p>
+    </div>
+    <div v-else>
+      <Nuxt />
+    </div>
   </div>
 </template>
 
 <script>
-import * as greenhouse from '~/request/greenhouse.api'
-
 export default {
   name: 'Greenhouse',
+  components: {
+    Loader: () => import('@/components/Loader.vue')
+  },
   data() {
     return {
+      loading: true,
       render: false,
-      user: {
-        first_name: '',
-        last_name: '',
-      },
       toggled: false,
     }
   },
   computed: {
     authenticated() {
-      const authenticated = !!this.$store.getters.getGreenhouseToken
-      const routes = ['home', 'settings']
-      const route = this.$route.name
-
-      return authenticated && routes.includes(route)
+      return !!this.$store.getters.getGreenhouseToken
     },
-    greenhouseUser() {
+    user() {
       return this.$store.getters.getGreenhouseUser
     },
     userName() {
-      return this.greenhouseUser ? this.greenhouseUser.name : '-'
-    },
-  },
-  watch: {
-    greenhouseUser() {
-      const token = this.$store.getters.getGreenhouseToken
-      greenhouse.setToken(token)
+      return this.user && this.user.name ? this.user.name : 'Hello User'
     },
   },
   mounted() {
-    const token = this.$store.getters.getGreenhouseToken
-    greenhouse.setToken(token)
+    setTimeout(() => {
+      this.setGreenhouseToken()
+    }, 4000)
+  },
+  created() {
+    this.loading = true
   },
   methods: {
+    setGreenhouseToken() {
+      const token = this.$store.getters.getGreenhouseToken
+      this.$axios.setHeader('Authorization', `Bearer ${token}`)
+
+      this.setRoute().then(() => {
+        this.loading = false
+      })
+    },
+    setRoute() {
+      const token = this.$store.getters.getGreenhouseToken
+
+      const auth_routes = ['home', 'settings']
+      const route = this.$route.name
+
+      return new Promise((resolve, reject) => {
+        // Authenticated user visiting authenticated route
+        if (auth_routes.includes(route) && token) {
+          resolve()
+        }
+        // Authenticated user visiting guest route
+        else if (!auth_routes.includes(route) && token) {
+          this.$router.push({ name: 'home' })
+          resolve()
+        }
+        // Unauthenticated user visiting authenticated route
+        else if (auth_routes.includes(route) && !token) {
+          this.$router.push({ name: 'login' })
+          resolve()
+        } else {
+          resolve()
+        }
+      })
+    },
     handleToggle() {
       this.toggled = !this.toggled
     },
@@ -162,14 +168,7 @@ export default {
     logOut() {
       this.$message.success('You are logged out.')
       this.$router.push({ name: 'login' })
-      this.$store.commit('setGreenhouse', {
-        token: null,
-        authenticated: false,
-        location: '',
-        reset_email: '',
-        reset_code: '',
-      })
-      this.$store.commit('setGreenhouseUser', {})
+      this.$store.commit('setGreenhouseLogout')
     },
   },
 }
@@ -337,6 +336,17 @@ export default {
     top: 125px;
     left: 23px;
     width: 327px;
+  }
+}
+
+.app_loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+  width: 100%;
+  p {
+    color: color(eden-neutral-1);
   }
 }
 </style>

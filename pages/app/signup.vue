@@ -169,8 +169,6 @@ import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import getSiteMeta from '~/utils/getSiteMeta'
 import defaultConfig from '~/static/defaultConfig'
 
-import * as greenhouse from '~/request/greenhouse.api'
-
 import PasswordCriteria from '~/components/Greenhouse/PasswordCriteria'
 import NewLocationForm from '~/components/Greenhouse/NewLocationForm'
 import NewLocationSuccessDialog from '~/components/Greenhouse/NewLocationSuccessDialog'
@@ -215,7 +213,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/food_leads`,
+          href: `https://ouredenlifev2-staging.netlify.app/signup`,
         },
       ],
     }
@@ -226,7 +224,7 @@ export default {
         title: 'Eden | Signup',
         description:
           'Your chef-cooked meals, delivered to you. Daily or weekly.',
-        url: `https://ouredenlifev2-staging.netlify.app/food_leads`,
+        url: `https://ouredenlifev2-staging.netlify.app/signups`,
         mainImage: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
       }
       return getSiteMeta(metaData)
@@ -331,8 +329,9 @@ export default {
         }
         this.$intercom('update', metadata)
         this.$intercom('trackEvent', 'greenhouse-lead-gen-signup', metadata)
-        greenhouse
-          .register(payload)
+
+        this.$axios
+          .post('onboarding/customers', payload)
           .then((response) => {
             this.loading = false
             const successMessage = response.data.message
@@ -355,23 +354,19 @@ export default {
       })
     },
     login(payload) {
-      greenhouse
-        .login(payload)
+      this.$axios
+        .post('login', payload)
         .then((response) => {
           const { status, data } = response.data
-          localStorage.setItem('userId', data.customer.id)
           if (status) {
-            const { access_token, eden_location } = data
-            this.$store.commit('setGreenhouse', {
-              token: access_token,
-              authenticated: !!access_token,
-              location: eden_location,
-              user: data,
+            this.$store.commit('setGreenhouseToken', data.access_token)
+            this.$store.commit('setGreenhouseUser', {
+              ...data.customer,
+              location: data.eden_location,
             })
-            this.$store.commit('setGreenhouseUser', data.customer)
-            greenhouse.setToken(access_token)
             this.$router.push({ name: 'home' })
           }
+          this.loading = false
         })
         .catch((error) => {
           this.loading = false

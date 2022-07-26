@@ -14,11 +14,7 @@
             <li>We deliver your clean clothes, within 48 hours. ✔️</li>
           </ul>
           <div class="hero__button">
-            <button
-              type="button"
-              class="hero__button-solid"
-              @click.prevent="greenhouseSignUp('laundry - hero')"
-            >
+            <button type="button" class="hero__button-solid" @click.prevent="greenhouseSignUp('laundry - hero')">
               Pick Up My Laundry
             </button>
           </div>
@@ -26,9 +22,7 @@
         <div class="hero__img">
           <img
             src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611742061/eden-website-v2/hero-food-bg1_yjfvcb.svg"
-            alt="phone"
-            class="hero__img-bg1"
-          />
+            alt="phone" class="hero__img-bg1" />
         </div>
       </header>
     </div>
@@ -43,54 +37,22 @@
           <div class="description__slider">
             <div class="description__slider-vertical slider">
               <div class="timeline">
-                <svg
-                  class="timeline--a"
-                  width="8"
-                  height="8"
-                  viewBox="0 0 8 8"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg class="timeline--a" width="8" height="8" viewBox="0 0 8 8" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
                   <circle cx="4" cy="4" r="4" fill="#03A84E" />
                 </svg>
-                <svg
-                  class="bee"
-                  width="3"
-                  height="175"
-                  viewBox="0 0 2 190"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg class="bee" width="3" height="175" viewBox="0 0 2 190" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
                   <path d="M0 0H2V190H0V0Z" fill="#E4E8E6" />
                 </svg>
-                <svg
-                  class="cee"
-                  width="8"
-                  height="8"
-                  viewBox="0 0 8 8"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg class="cee" width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="4" cy="4" r="4" />
                 </svg>
-                <svg
-                  class="dee"
-                  width="3"
-                  height="205"
-                  viewBox="0 0 2 190"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg class="dee" width="3" height="205" viewBox="0 0 2 190" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
                   <path d="M0 0H2V190H0V0Z" fill="#E4E8E6" />
                 </svg>
-                <svg
-                  class="eee"
-                  width="8"
-                  height="8"
-                  viewBox="0 0 8 8"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg class="eee" width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="4" cy="4" r="4" />
                 </svg>
               </div>
@@ -99,60 +61,22 @@
             <div class="description__slider-horizontal slider">
               <!-- <span class="slide-x"></span> -->
               <div class="timeline">
-                <svg
-                  class="timeline--a"
-                  width="8"
-                  height="8"
-                  viewBox="0 0 8 8"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg class="timeline--a" width="8" height="8" viewBox="0 0 8 8" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
                   <circle cx="4" cy="4" r="4" fill="#03A84E" />
                 </svg>
-                <svg
-                  class="bee"
-                  width="160"
-                  height="3"
-                  viewBox="0 0 160 3"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M-0.000488281 2.23755V0.237549H160V2.23755H-0.000488281Z"
-                    fill="#E4E8E6"
-                  />
+                <svg class="bee" width="160" height="3" viewBox="0 0 160 3" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M-0.000488281 2.23755V0.237549H160V2.23755H-0.000488281Z" fill="#E4E8E6" />
                 </svg>
-                <svg
-                  class="cee"
-                  width="8"
-                  height="8"
-                  viewBox="0 0 8 8"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg class="cee" width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="4" cy="4" r="4" />
                 </svg>
-                <svg
-                  class="dee"
-                  width="160"
-                  height="3"
-                  viewBox="0 0 160 3"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M-0.000488281 2.23755V0.237549H160V2.23755H-0.000488281Z"
-                    fill="#E4E8E6"
-                  />
+                <svg class="dee" width="160" height="3" viewBox="0 0 160 3" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M-0.000488281 2.23755V0.237549H160V2.23755H-0.000488281Z" fill="#E4E8E6" />
                 </svg>
-                <svg
-                  class="eee"
-                  width="8"
-                  height="8"
-                  viewBox="0 0 8 8"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg class="eee" width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="4" cy="4" r="4" />
                 </svg>
               </div>
@@ -182,13 +106,9 @@
                   you. All within 48 hours.
                 </p>
               </div>
-              <button
-                type="button"
-                class="btn"
-                @click.prevent="
-                  scrollToFooter('#get-the-app', 'laundry - how it works')
-                "
-              >
+              <button type="button" class="btn" @click.prevent="
+                  greenhouseSignUp('laundry - how it works')
+                ">
                 Get the app
               </button>
             </div>
@@ -199,25 +119,13 @@
               <video ref="videoRef" muted playsinline>
                 <source
                   src="https://res.cloudinary.com/eden-life-inc/video/upload/v1612453848/eden-website-v2/033_Laundry_jalxqc.mp4"
-                  type="video/mp4"
-                />
+                  type="video/mp4" />
               </video>
-              <button
-                type="button"
-                class="btn--replay"
-                @click.prevent="playButtonClicked"
-              >
-                <svg
-                  width="14"
-                  height="17"
-                  viewBox="0 0 14 17"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+              <button type="button" class="btn--replay" @click.prevent="playButtonClicked">
+                <svg width="14" height="17" viewBox="0 0 14 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M7.49872 3.18516C7.22334 3.16476 6.9987 2.94285 6.9987 2.66671V1.04048C6.9987 0.595027 6.46013 0.371945 6.14514 0.686928L3.18558 3.64649C2.99032 3.84175 2.99032 4.15833 3.18558 4.35359L6.14514 7.31315C6.46013 7.62814 6.9987 7.40505 6.9987 6.9596V5.33337C6.9987 5.05723 7.2232 4.83074 7.49799 4.85807C10.0225 5.10916 11.9987 7.24353 11.9987 9.83337C11.9987 12.5917 9.75703 14.8334 6.9987 14.8334C4.40885 14.8334 2.27448 12.8572 2.0234 10.3327C1.99607 10.0579 1.77484 9.83337 1.4987 9.83337H0.832031C0.555888 9.83337 0.330082 10.058 0.350479 10.3334C0.605973 13.783 3.48357 16.5 6.9987 16.5C10.682 16.5 13.6654 13.5167 13.6654 9.83337C13.6654 6.31825 10.9483 3.44065 7.49872 3.18516Z"
-                    fill="#03A84E"
-                  />
+                    fill="#03A84E" />
                 </svg>
                 <span> Replay video</span>
               </button>
@@ -237,10 +145,7 @@
             <a :href="item.tweetLink" target="_blank">
               <div class="card__title">
                 <div class="card__title-img">
-                  <img
-                    :src="require(`~/assets/images/customer-${item.image}.png`)"
-                    :alt="item.name"
-                  />
+                  <img :src="require(`~/assets/images/customer-${item.image}.png`)" :alt="item.name" />
                 </div>
 
                 <div class="">
@@ -290,35 +195,17 @@
 
         <div class="plan__price">
           <ul class="plan__price--list">
-            <li
-              :class="{ active: plan === 'washDry' }"
-              @click.prevent="plan = 'washDry'"
-            >
+            <li :class="{ active: plan === 'washDry' }" @click.prevent="plan = 'washDry'">
               <span> Wash & Fold</span>
-              <svg
-                v-if="plan === 'washDry'"
-                width="6"
-                height="6"
-                viewBox="0 0 6 6"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg v-if="plan === 'washDry'" width="6" height="6" viewBox="0 0 6 6" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
                 <circle cx="3" cy="3" r="3" fill="#61DB98" />
               </svg>
             </li>
-            <li
-              :class="{ active: plan === 'washIron' }"
-              @click.prevent="plan = 'washIron'"
-            >
+            <li :class="{ active: plan === 'washIron' }" @click.prevent="plan = 'washIron'">
               <span> Wash & Iron </span>
-              <svg
-                v-if="plan === 'washIron'"
-                width="6"
-                height="6"
-                viewBox="0 0 6 6"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg v-if="plan === 'washIron'" width="6" height="6" viewBox="0 0 6 6" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
                 <circle cx="3" cy="3" r="3" fill="#61DB98" />
               </svg>
             </li>
@@ -330,68 +217,28 @@
                 <div class="plan__price-description">
                   <div class="plan__price-description-title">
                     <h5>Items that will cost you extra</h5>
-                    <button
-                      type="button"
-                      class="expand"
-                      @click.prevent="
+                    <button type="button" class="expand" @click.prevent="
                         showAdditionalLaundryCost = !showAdditionalLaundryCost
-                      "
-                    >
-                      <svg
-                        v-if="showAdditionalLaundryCost"
-                        width="22"
-                        height="22"
-                        viewBox="0 0 22 22"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
+                      ">
+                      <svg v-if="showAdditionalLaundryCost" width="22" height="22" viewBox="0 0 22 22" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path
                           d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
-                          stroke="#7189ff"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
+                          stroke="#7189ff" stroke-linecap="round" stroke-linejoin="round" />
 
-                        <path
-                          d="M7 11H15"
-                          stroke="#7189ff"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
+                        <path d="M7 11H15" stroke="#7189ff" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
-                      <svg
-                        v-else
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
+                      <svg v-else width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path
                           d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                          stroke="#7189ff"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                        <path
-                          d="M12 8V16"
-                          stroke="#7189ff"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                        <path
-                          d="M8 12H16"
-                          stroke="#7189ff"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
+                          stroke="#7189ff" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M12 8V16" stroke="#7189ff" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M8 12H16" stroke="#7189ff" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
                     </button>
                   </div>
-                  <ul
-                    v-if="showAdditionalLaundryCost"
-                    class="plan__price-description--list"
-                  >
+                  <ul v-if="showAdditionalLaundryCost" class="plan__price-description--list">
                     <li v-for="desc in extraLaundryCostWashDry" :key="desc">
                       <span>{{ desc.item }}</span>
                       <span>&#8358; {{ desc.cost }}</span>
@@ -403,59 +250,19 @@
                   <span class="bag">Approx 30 items per bag</span>
                 </p>
                 <div class="btn--group">
-                  <button
-                    class="btn--item minus"
-                    @click.prevent="decreaseOrder('washDry')"
-                  >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M5 12H19"
-                        stroke="#21312A"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
+                  <button class="btn--item minus" @click.prevent="decreaseOrder('washDry')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 12H19" stroke="#21312A" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
                     </svg>
                   </button>
-                  <input
-                    id=""
-                    v-model="washDry"
-                    type="number"
-                    name=""
-                    readonly
-                    placeholder="0"
-                  />
-                  <button
-                    class="btn--item plus"
-                    @click.prevent="increaseOrder('washDry')"
-                  >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 5V19"
-                        stroke="#21312A"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                      <path
-                        d="M5 12H19"
-                        stroke="#21312A"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
+                  <input id="" v-model="washDry" type="number" name="" readonly placeholder="0" />
+                  <button class="btn--item plus" @click.prevent="increaseOrder('washDry')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 5V19" stroke="#21312A" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                      <path d="M5 12H19" stroke="#21312A" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
                     </svg>
                   </button>
                 </div>
@@ -463,25 +270,16 @@
               <div class="plan__price-item">
                 <p><span class="number">Frequency</span></p>
                 <div class="btn--group">
-                  <button
-                    class="btn--freq"
-                    :class="{ active: washDryFrequency === 'weekly' }"
-                    @click.prevent="laundryDryFrequency('weekly')"
-                  >
+                  <button class="btn--freq" :class="{ active: washDryFrequency === 'weekly' }"
+                    @click.prevent="laundryDryFrequency('weekly')">
                     Once a week
                   </button>
-                  <button
-                    class="btn--freq"
-                    :class="{ active: washDryFrequency === 'bi-weekly' }"
-                    @click.prevent="laundryDryFrequency('bi-weekly')"
-                  >
+                  <button class="btn--freq" :class="{ active: washDryFrequency === 'bi-weekly' }"
+                    @click.prevent="laundryDryFrequency('bi-weekly')">
                     Every 2 weeks
                   </button>
-                  <button
-                    class="btn--freq"
-                    :class="{ active: washDryFrequency === 'monthly' }"
-                    @click.prevent="laundryDryFrequency('monthly')"
-                  >
+                  <button class="btn--freq" :class="{ active: washDryFrequency === 'monthly' }"
+                    @click.prevent="laundryDryFrequency('monthly')">
                     Once a month
                   </button>
                 </div>
@@ -502,68 +300,28 @@
                 <div class="plan__price-description">
                   <div class="plan__price-description-title">
                     <h5>Items that will cost you extra</h5>
-                    <button
-                      type="button"
-                      class="expand"
-                      @click.prevent="
+                    <button type="button" class="expand" @click.prevent="
                         showAdditionalLaundryCost = !showAdditionalLaundryCost
-                      "
-                    >
-                      <svg
-                        v-if="showAdditionalLaundryCost"
-                        width="22"
-                        height="22"
-                        viewBox="0 0 22 22"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
+                      ">
+                      <svg v-if="showAdditionalLaundryCost" width="22" height="22" viewBox="0 0 22 22" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path
                           d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
-                          stroke="#7189ff"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
+                          stroke="#7189ff" stroke-linecap="round" stroke-linejoin="round" />
 
-                        <path
-                          d="M7 11H15"
-                          stroke="#7189ff"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
+                        <path d="M7 11H15" stroke="#7189ff" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
-                      <svg
-                        v-else
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
+                      <svg v-else width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path
                           d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                          stroke="#7189ff"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                        <path
-                          d="M12 8V16"
-                          stroke="#7189ff"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                        <path
-                          d="M8 12H16"
-                          stroke="#7189ff"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
+                          stroke="#7189ff" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M12 8V16" stroke="#7189ff" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M8 12H16" stroke="#7189ff" stroke-linecap="round" stroke-linejoin="round" />
                       </svg>
                     </button>
                   </div>
-                  <ul
-                    v-if="showAdditionalLaundryCost"
-                    class="plan__price-description--list"
-                  >
+                  <ul v-if="showAdditionalLaundryCost" class="plan__price-description--list">
                     <li v-for="desc in extraLaundryCost" :key="desc">
                       <span>{{ desc.item }}</span>
                       <span>&#8358; {{ desc.cost }}</span>
@@ -575,59 +333,19 @@
                   <span class="bag">Approx 30 items per bag</span>
                 </p>
                 <div class="btn--group">
-                  <button
-                    class="btn--item minus"
-                    @click.prevent="decreaseOrder('washIron')"
-                  >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M5 12H19"
-                        stroke="#21312A"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
+                  <button class="btn--item minus" @click.prevent="decreaseOrder('washIron')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 12H19" stroke="#21312A" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
                     </svg>
                   </button>
-                  <input
-                    id=""
-                    v-model="washIron"
-                    type="number"
-                    name=""
-                    placeholder="0"
-                    readonly
-                  />
-                  <button
-                    class="btn--item plus"
-                    @click.prevent="increaseOrder('washIron')"
-                  >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12 5V19"
-                        stroke="#21312A"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                      <path
-                        d="M5 12H19"
-                        stroke="#21312A"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
+                  <input id="" v-model="washIron" type="number" name="" placeholder="0" readonly />
+                  <button class="btn--item plus" @click.prevent="increaseOrder('washIron')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 5V19" stroke="#21312A" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                      <path d="M5 12H19" stroke="#21312A" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
                     </svg>
                   </button>
                 </div>
@@ -635,25 +353,16 @@
               <div class="plan__price-item">
                 <p><span class="number">Frequency</span></p>
                 <div class="btn--group">
-                  <button
-                    :class="{ active: washIronFrequency === 'weekly' }"
-                    class="btn--freq"
-                    @click.prevent="laundryIronFrequency('weekly')"
-                  >
+                  <button :class="{ active: washIronFrequency === 'weekly' }" class="btn--freq"
+                    @click.prevent="laundryIronFrequency('weekly')">
                     Once a week
                   </button>
-                  <button
-                    class="btn--freq"
-                    :class="{ active: washIronFrequency === 'bi-weekly' }"
-                    @click.prevent="laundryIronFrequency('bi-weekly')"
-                  >
+                  <button class="btn--freq" :class="{ active: washIronFrequency === 'bi-weekly' }"
+                    @click.prevent="laundryIronFrequency('bi-weekly')">
                     Every 2 weeks
                   </button>
-                  <button
-                    class="btn--freq"
-                    :class="{ active: washIronFrequency === 'monthly' }"
-                    @click.prevent="laundryIronFrequency('monthly')"
-                  >
+                  <button class="btn--freq" :class="{ active: washIronFrequency === 'monthly' }"
+                    @click.prevent="laundryIronFrequency('monthly')">
                     Once a month
                   </button>
                 </div>
@@ -679,12 +388,8 @@
           <p>Take a look at our other services</p>
         </div>
         <div class="options__service">
-          <div
-            class="options__service-item options__service-food"
-            @mouseenter.stop="exploreService = 'food'"
-            @mouseleave.stop="exploreService = ''"
-            @click="trackLink('Food')"
-          >
+          <div class="options__service-item options__service-food" @mouseenter.stop="exploreService = 'food'"
+            @mouseleave.stop="exploreService = ''" @click="trackLink('Food')">
             <h3>🧺</h3>
             <h5>Food</h5>
             <p>
@@ -692,61 +397,41 @@
             </p>
             <nuxt-link :to="{ path: '/food' }" class="btn">
               {{
-                exploreService === 'food' || setExploreService ? 'Explore' : ''
+              exploreService === 'food' || setExploreService ? 'Explore' : ''
               }}
-              <svg
-                width="14"
-                height="10"
-                viewBox="0 0 14 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M8.85625 0.673555C8.61719 0.90793 8.61719 1.29699 8.85156 1.53606L11.7016 4.39074H0.854688C0.521875 4.39074 0.25 4.66262 0.25 5.00012C0.25 5.33762 0.521875 5.60949 0.854688 5.60949H11.6969L8.84687 8.46418C8.6125 8.70324 8.61719 9.08762 8.85156 9.32668C9.09062 9.56106 9.47031 9.56106 9.70937 9.32199L13.5719 5.43137C13.6234 5.37512 13.6656 5.31418 13.6984 5.23918C13.7312 5.16418 13.7453 5.08449 13.7453 5.00481C13.7453 4.84543 13.6844 4.69543 13.5719 4.57824L9.70937 0.687618C9.47969 0.443868 9.09531 0.43918 8.85625 0.673555Z"
-                  fill="#106A39"
-                />
+                  fill="#106A39" />
               </svg>
             </nuxt-link>
             <div class="options__service-bg">
               <img
                 src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611318743/eden-website-v2/food-img1_ls530a.png"
-                alt="food"
-              />
+                alt="food" />
             </div>
           </div>
-          <div
-            class="options__service-item options__service-cleaning"
-            @mouseenter.stop="exploreService = 'cleaning'"
-            @mouseleave.stop="exploreService = ''"
-            @click="trackLink('Cleaning')"
-          >
+          <div class="options__service-item options__service-cleaning" @mouseenter.stop="exploreService = 'cleaning'"
+            @mouseleave.stop="exploreService = ''" @click="trackLink('Cleaning')">
             <h3>🏠</h3>
             <h5>Home Cleaning</h5>
             <p>Professional home cleaning you can trust.</p>
             <nuxt-link :to="{ path: '/cleaning' }" class="btn">
               {{
-                exploreService === 'cleaning' || setExploreService
-                  ? 'Explore'
-                  : ''
+              exploreService === 'cleaning' || setExploreService
+              ? 'Explore'
+              : ''
               }}
-              <svg
-                width="14"
-                height="10"
-                viewBox="0 0 14 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M8.85625 0.673311C8.61719 0.907686 8.61719 1.29675 8.85156 1.53581L11.7016 4.3905H0.854688C0.521875 4.3905 0.25 4.66237 0.25 4.99987C0.25 5.33737 0.521875 5.60925 0.854688 5.60925H11.6969L8.84687 8.46394C8.6125 8.703 8.61719 9.08737 8.85156 9.32644C9.09062 9.56081 9.47031 9.56081 9.70937 9.32175L13.5719 5.43112C13.6234 5.37487 13.6656 5.31394 13.6984 5.23894C13.7312 5.16394 13.7453 5.08425 13.7453 5.00456C13.7453 4.84519 13.6844 4.69519 13.5719 4.578L9.70937 0.687374C9.47969 0.443624 9.09531 0.438936 8.85625 0.673311Z"
-                  fill="#B54700"
-                />
+                  fill="#B54700" />
               </svg>
             </nuxt-link>
             <div class="options__service-bg">
               <img
                 src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611318736/eden-website-v2/cleaning-img1_ldwcml.png"
-                alt="cleaning"
-              />
+                alt="cleaning" />
             </div>
           </div>
           <!-- <div
@@ -791,60 +476,32 @@
         </div>
       </section>
     </div>
-    <download-banner
-      v-if="showDownloadBanner"
-      :show-download-banner="showDownloadBanner"
-      class="download-banner"
-    >
+    <download-banner v-if="showDownloadBanner" :show-download-banner="showDownloadBanner" class="download-banner">
       <div slot="header"></div>
       <div slot="body" class="content">
         <div class="banner">
           <div>
-            <button
-              class="btn btn--success"
-              @click="showDownloadBanner = false"
-            >
-              <svg
-                width="13"
-                height="13"
-                viewBox="0 0 13 13"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M1 12.25L12.25 1"
-                  stroke="#4B6358"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M1 1L12.25 12.25"
-                  stroke="#4B6358"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
+            <button class="btn btn--success" @click="showDownloadBanner = false">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 12.25L12.25 1" stroke="#4B6358" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M1 1L12.25 12.25" stroke="#4B6358" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
               </svg>
             </button>
           </div>
           <div>
             <img
               src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611230252/eden-website-v2/eden-logo_lcepc6.svg"
-              alt="Eden logo"
-              width="42"
-            />
+              alt="Eden logo" width="42" />
           </div>
           <div>
             <p class="font-text">Enjoy the good life.</p>
             <p>Say goodbye to chores forever.</p>
           </div>
           <div>
-            <button
-              type="button"
-              class="hero__button-solid banner-btn"
-              @click.prevent="downloadApp('Download App - laundry banner')"
-            >
+            <button type="button" class="hero__button-solid banner-btn"
+              @click.prevent="downloadApp('Download App - laundry banner')">
               Install
             </button>
           </div>

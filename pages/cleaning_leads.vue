@@ -1224,7 +1224,7 @@ export default {
           'Professional cleaning at your doorstep. Up to thrice a week.',
         url: `https://ouredenlife.com/cleaning_leads`,
         mainImage:
-          'https://ouredenlifev2-staging.netlify.app/edencardcleaning.png',
+          'https://ouredenlife.com/edencardcleaning.png',
       }
       return getSiteMeta(metaData)
     },

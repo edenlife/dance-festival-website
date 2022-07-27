@@ -337,7 +337,7 @@
           <ShareNetwork
             class="share__icon"
             network="whatsapp"
-            :url="`https://ouredenlifev2-staging.netlify.app${pageUrl}`"
+            :url="`https://ouredenlife.com${pageUrl}`"
             title=""
             description=""
           >
@@ -358,7 +358,7 @@
           <ShareNetwork
             class="share__icon"
             network="twitter"
-            :url="`https://ouredenlifev2-staging.netlify.app${pageUrl}`"
+            :url="`https://ouredenlife.com${pageUrl}`"
             title=""
             description=""
           >
@@ -371,7 +371,7 @@
           </ShareNetwork>
           <a
             class="share__icon"
-            :href="`https://www.facebook.com/sharer/sharer.php?u=https://ouredenlifev2-staging.netlify.app${pageUrl}`"
+            :href="`https://www.facebook.com/sharer/sharer.php?u=https://ouredenlife.com${pageUrl}`"
             target="_blank"
           >
             <img
@@ -383,7 +383,7 @@
           </a>
           <a
             class="share__icon"
-            :href="`https://www.linkedin.com/sharing/share-offsite/?url=https://ouredenlifev2-staging.netlify.app${pageUrl}`"
+            :href="`https://www.linkedin.com/sharing/share-offsite/?url=https://ouredenlife.com${pageUrl}`"
             target="_blank"
           >
             <img
@@ -476,7 +476,7 @@
                   <ShareNetwork
                     class="share__icon"
                     network="whatsapp"
-                    :url="`https://ouredenlifev2-staging.netlify.app${pageUrl}`"
+                    :url="`https://ouredenlife.com${pageUrl}`"
                     title=""
                     description=""
                   >
@@ -497,7 +497,7 @@
                   <ShareNetwork
                     class="share__icon"
                     network="twitter"
-                    :url="`https://ouredenlifev2-staging.netlify.app${pageUrl}`"
+                    :url="`https://ouredenlife.com${pageUrl}`"
                     title=""
                     description=""
                   >
@@ -510,7 +510,7 @@
                   </ShareNetwork>
                   <a
                     class="share__icon"
-                    :href="`https://www.facebook.com/sharer/sharer.php?u=https://ouredenlifev2-staging.netlify.app${pageUrl}`"
+                    :href="`https://www.facebook.com/sharer/sharer.php?u=https://ouredenlife.com${pageUrl}`"
                     target="_blank"
                   >
                     <img
@@ -522,7 +522,7 @@
                   </a>
                   <a
                     class="share__icon"
-                    :href="`https://www.linkedin.com/sharing/share-offsite/?url=https://ouredenlifev2-staging.netlify.app${pageUrl}`"
+                    :href="`https://www.linkedin.com/sharing/share-offsite/?url=https://ouredenlife.com${pageUrl}`"
                     target="_blank"
                   >
                     <img
@@ -1002,7 +1002,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/eden_means_easy`,
+          href: `https://ouredenlife.com/eden_means_easy`,
         },
       ],
     }
@@ -1018,7 +1018,7 @@ export default {
       const metaData = {
         title: 'Eden | Eden Means Easy',
         description: '10 Reasons Why Eden Means Easy. ',
-        url: `https://ouredenlifev2-staging.netlify.app/eden_means_easy`,
+        url: `https://ouredenlife.com/eden_means_easy`,
       }
       return getSiteMeta(metaData)
     },

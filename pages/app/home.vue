@@ -194,7 +194,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/home`,
+          href: `https://ouredenlife.com/home`,
         },
       ],
     }
@@ -205,14 +205,19 @@ export default {
         title: 'Eden | Home',
         description:
           'Your chef-cooked meals, delivered to you. Daily or weekly.',
-        url: `https://ouredenlifev2-staging.netlify.app/home`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
+        url: `https://ouredenlife.com/home`,
+        mainImage: 'https://ouredenlife.com/edencardfood.png',
       }
       return getSiteMeta(metaData)
     },
     location() {
       return this.$store.getters.getLocation
     },
+  },
+  created() {
+    this.$intercom('update', {
+      hide_default_launcher: true,
+    })
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)

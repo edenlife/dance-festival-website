@@ -165,7 +165,7 @@
           <p class="content__social-title">Share</p>
           <ShareNetwork
             network="twitter"
-            :url="`https://ouredenlifev2-staging.netlify.app${singleUrl}`"
+            :url="`https://ouredenlife.com${singleUrl}`"
             title=""
             description=""
             class="link"
@@ -187,7 +187,7 @@
           </ShareNetwork>
           <a
             class="link"
-            :href="`https://www.facebook.com/sharer/sharer.php?u=https://ouredenlifev2-staging.netlify.app${singleUrl}`"
+            :href="`https://www.facebook.com/sharer/sharer.php?u=https://ouredenlife.com${singleUrl}`"
             target="_blank"
           >
             <svg
@@ -207,7 +207,7 @@
           </a>
           <a
             class="link"
-            :href="`https://www.linkedin.com/sharing/share-offsite/?url=https://ouredenlifev2-staging.netlify.app${singleUrl}`"
+            :href="`https://www.linkedin.com/sharing/share-offsite/?url=https://ouredenlife.com${singleUrl}`"
             target="_blank"
           >
             <svg
@@ -227,7 +227,7 @@
           </a>
           <ShareNetwork
             network="whatsapp"
-            :url="`https://ouredenlifev2-staging.netlify.app${singleUrl}`"
+            :url="`https://ouredenlife.com${singleUrl}`"
             title=""
             description=""
             class="link"
@@ -249,7 +249,7 @@
           </ShareNetwork>
           <ShareNetwork
             network="Email"
-            :url="`https://ouredenlifev2-staging.netlify.app${singleUrl}`"
+            :url="`https://ouredenlife.com${singleUrl}`"
             :title="postDetails.title.rendered"
             :description="
               postDetails.excerpt.rendered.replace(/(<([^>]+)>)/gi, '')

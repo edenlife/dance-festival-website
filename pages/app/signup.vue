@@ -287,26 +287,15 @@ export default {
           lead_gen_page: window.location.href,
           referrer: document.referrer,
         }
-        if (window.location.href.includes('utm_source=')) {
-          const indexLocation = window.location.href.indexOf('utm_source=')
-          this.source = window.location.href.slice(
-            indexLocation + 11,
-            window.location.href.indexOf('&', indexLocation)
-          )
+        const { utm_source, utm_content, utm_medium } = this.$route.query
+        if (utm_source) {
+          this.source = utm_source
         }
-        if (window.location.href.includes('utm_content=')) {
-          const indexLocation = window.location.href.indexOf('utm_content=')
-          this.content = window.location.href.slice(
-            indexLocation + 12,
-            window.location.href.indexOf('&', indexLocation)
-          )
+        if (utm_content) {
+          this.content = utm_content
         }
-        if (window.location.href.includes('utm_medium=')) {
-          const indexLocation = window.location.href.indexOf('utm_medium=')
-          this.medium = window.location.href.slice(
-            indexLocation + 11,
-            window.location.href.indexOf('&', indexLocation)
-          )
+        if (utm_medium) {
+          this.medium = utm_medium
         }
         const payload = {
           name: this.form.firstname + ' ' + this.form.lastname,

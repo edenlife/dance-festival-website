@@ -728,7 +728,7 @@ export default {
       if (this.authenticated) {
         this.$router.push('/home')
       } else {
-        this.$router.push('/signup')
+       this.$router.push({ name: 'signup', query: this.$route.query})
       }
     },
     launchIntercom() {

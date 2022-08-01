@@ -1303,7 +1303,7 @@ export default {
     // },
     greenhouseSignUp() {
       mixpanelTrackEvent(`Home page hero-btn `)
-      this.$router.push('/signup')
+      this.$router.push({ name: 'signup', query: this.$route.query})
     },
     scrollToQuestions() {
       const scrollToElement = document.querySelector('#waiting-list')

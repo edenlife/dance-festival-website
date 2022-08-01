@@ -919,7 +919,8 @@ export default {
     },
     controlPage(pageNum) {
       const min = pageNum * 8 - 8
-      this.latestPost = this.allPosts.slice(min, pageNum * 8)
+      this.latestPost = this.allPosts
+      // .slice(min, pageNum * 8)
       this.pagination.current_page = pageNum
       this.$refs['latest-container'].scrollIntoView()
     },
@@ -965,7 +966,7 @@ export default {
           last_page: this.pageCount,
           current_page: 1,
         }
-        this.latestPost = this.allPosts.slice(0, 8)
+        // this.latestPost = this.allPosts.slice(0, 8)
         return
       }
       this.isLoading = true
@@ -1009,6 +1010,8 @@ export default {
         current_page: 1,
       }
       this.latestPost = posts.slice(0, 8)
+      console.log(this.latestPost, posts)
+      console.log(posts.slice(0, 5))
     },
     async fetchFeaturedPost() {
       // if (this.featuredPost !== null) return

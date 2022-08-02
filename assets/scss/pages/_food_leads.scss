@@ -1263,7 +1263,4 @@
 
 footer {
   margin-top: $gap * 30;
-  @include respond(md) {
-    margin-top: $gap * 40;
-  }
 }

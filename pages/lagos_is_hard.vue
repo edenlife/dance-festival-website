@@ -30,7 +30,7 @@
               </li>
             </ul>
             <button
-              @click.prevent="scrollToTop('custom')"
+              @click.prevent="greenhouseSignUp('hero - lagos is hard')"
               class="pricing__form-btn"
             >
               I Want an Easy Life
@@ -50,64 +50,6 @@
     <div ref="custom" class="container--pricing">
       <section class="pricing">
         <div class="pricing__left">
-          <div class="pricing__form">
-            <div class="pricing__form-title">
-              <h3>You're a Few Steps Closer to the Easy Life</h3>
-              <p>Enter your details and we'll reach out about next steps.</p>
-            </div>
-            <div class="pricing__form-body">
-              <div class="pricing__form-input">
-                <label for="name">Full Name</label>
-                <input
-                  id=""
-                  v-model="form.name"
-                  type="text"
-                  name=""
-                  placeholder="First & Last Name"
-                  :class="{ 'has-error': $v.form.name.$error }"
-                />
-              </div>
-              <div class="pricing__form-input">
-                <label for="email">Email</label>
-                <input
-                  id=""
-                  v-model="form.email"
-                  type="email"
-                  name=""
-                  placeholder="email@example.com"
-                  :class="{ 'has-error': $v.form.email.$error }"
-                />
-              </div>
-              <div class="pricing__form-input">
-                <label for="phone number">Phone Number</label>
-                <input
-                  id=""
-                  v-model.trim="$v.form.phone_number.$model"
-                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                  type="text"
-                  name=""
-                  placeholder="08123456789"
-                  :class="{ 'has-error': $v.form.phone_number.$error }"
-                />
-              </div>
-              <p v-if="responseMessage.length" class="error-message">
-                {{ responseMessage }}
-              </p>
-              <!-- <div class="pricing__form-input">
-                <label for="discount">Referral Code (if any)</label>
-                <input
-                  id=""
-                  v-model="form.discount"
-                  type="text"
-                  name=""
-                  placeholder="EDENX2019"
-                />
-              </div> -->
-              <button class="pricing__form-btn" @click.prevent="getStarted()">
-                I'm Ready
-              </button>
-            </div>
-          </div>
           <div class="pricing__left--inner">
             <h3>Don’t just take our word for it...</h3>
             <div v-for="(testimonial, i) in testimonials" :key="i" class="card">
@@ -350,7 +292,7 @@
         />
       </transition>
       <section v-if="currentMeals.length" class="menu">
-        <button class="menu-btn" @click.prevent="scrollToTop('custom')">
+        <button class="menu-btn" @click.prevent="greenhouseSignUp('I want an Eden Life - Lagos is hard')">
           I Want an Eden Life
         </button>
       </section>
@@ -1025,6 +967,10 @@ export default {
       const first = this.servicesOption.shift()
       this.serviceOption = this.servicesOption[0]
       this.servicesOption = this.servicesOption.concat(first)
+    },
+    greenhouseSignUp(label) {
+      mixpanelTrackEvent(label)
+      this.$router.push({ name: 'signup', query: this.$route.query })
     },
     async getStarted() {
       this.$v.form.$touch()

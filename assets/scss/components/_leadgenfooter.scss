@@ -19,7 +19,8 @@
       height: 400px;
       position: relative;
       z-index: 2;
-  
+      margin-top: 8rem;
+
       &-title {
         h3 {
           line-height: 62px;
@@ -45,7 +46,7 @@
       @include respond(md) {
         flex-direction: column;
         width: 90%;
-        bottom: 15rem;
+        bottom: 10rem;
         height: unset;
         &-image {
           height: 313px;

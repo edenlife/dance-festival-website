@@ -107,9 +107,10 @@
           <figcaption>
             <p>
               {{
-                `${item.name}${item.main_sides ? ', ' + item.main_sides : ''}${
-                  item.protein_sides ? ', ' + item.protein_sides : ''
-                }${item.other_sides ? ', ' + item.other_sides : ''}`
+                `${item.name}${item.main_sides ? ', ' + item.main_sides : ''}
+                ${item.protein_sides ? ', ' + item.protein_sides : ''}
+                ${item.other_sides ? ', ' + item.other_sides : ''}
+                ${item.sauce_sides ? ', ' + item.sauce_sides : ''}`
               }}
             </p>
           </figcaption>
@@ -206,11 +207,11 @@ export default {
       const combo = []
       this.meals.map((item) => {
         return item.preset_combos_full.map((el) => {
-           combo.push({
-              name: item.name,
-              class_category: item.class_category,
-              ...el,
-            })
+          combo.push({
+            name: item.name,
+            class_category: item.class_category,
+            ...el,
+          })
           return combo
         })
       })
@@ -256,7 +257,7 @@ export default {
     changeCategory(val) {
       this.activeTabIndex = val
       this.mealsInCategory = this.getMealsInEachCategory(this.displayMeals, val)
-     },
+    },
 
     previousCategory() {
       let activeIndex = this.tabs.indexOf(this.activeTabIndex)

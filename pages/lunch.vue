@@ -45,7 +45,10 @@
               <li>10+ hours of productivity unlocked ✔️</li>
             </ul>
 
-            <button @click.prevent="scrollToTop('hero')" class="hero__form-btn">
+            <button
+              @click.prevent="greenhouseSignUp('hero - Lunch')"
+              class="hero__form-btn"
+            >
               I Want an Eden Lunch Plan
             </button>
 
@@ -94,71 +97,6 @@
                 @click.prevent="changeCenterMobile(8)"
               ></div>
             </div>
-          </div>
-          <div ref="hero" class="hero__form">
-            <div class="hero__form-title">
-              <h3>
-                You're one step closer to never worrying about lunch again.
-              </h3>
-              <p>
-                Enter your details and we'll reach out to you about the next
-                steps. Let's go!
-              </p>
-            </div>
-            <div class="hero__form-body">
-              <div class="hero__form-input">
-                <label for="name">Full Name</label>
-                <input
-                  id=""
-                  v-model="form.name"
-                  type="text"
-                  name=""
-                  placeholder="First & Last Name"
-                  :class="{ 'has-error': $v.form.name.$error }"
-                />
-              </div>
-              <div class="hero__form-input">
-                <label for="email">Email</label>
-                <input
-                  id=""
-                  v-model="form.email"
-                  type="email"
-                  name=""
-                  placeholder="email@example.com"
-                  :class="{ 'has-error': $v.form.email.$error }"
-                />
-              </div>
-              <div class="hero__form-input">
-                <label for="phone number">Phone Number</label>
-                <input
-                  id=""
-                  v-model.trim="$v.form.phone_number.$model"
-                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                  type="text"
-                  name=""
-                  placeholder="08123456789"
-                  :class="{ 'has-error': $v.form.phone_number.$error }"
-                />
-              </div>
-              <p v-if="responseMessage.length" class="error-message">
-                {{ responseMessage }}
-              </p>
-              <button
-                class="hero__form-btn"
-                :disabled="loading"
-                @click.prevent="getStarted()"
-              >
-                <svg v-if="loading">
-                  <use
-                    xlink:href="@/assets/images/loading-icon.svg#loading-icon"
-                  ></use>
-                </svg>
-                <span v-else> I Want an Eden Lunch Plan </span>
-              </button>
-            </div>
-            <!-- <p class="note">
-              *₦1,760 per meal on our first month. (Delivery costs included)
-            </p> -->
           </div>
         </div>
       </div>
@@ -266,7 +204,10 @@
         />
       </transition>
       <section v-if="currentMeals.length" class="menu">
-        <button class="menu-btn" @click.prevent="scrollToTop('hero')">
+        <button
+          class="menu-btn"
+          @click.prevent="greenhouseSignUp('menu - lunch')"
+        >
           I Want an Eden Lunch Plan
         </button>
       </section>
@@ -444,6 +385,10 @@ export default {
     placeholderColorMix,
     scrollToTop(ref) {
       this.$refs[ref].scrollIntoView()
+    },
+    greenhouseSignUp(label) {
+      mixpanelTrackEvent(label)
+      this.$router.push({ name: 'signup', query: this.$route.query })
     },
     async getStarted() {
       this.$v.form.$touch()

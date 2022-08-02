@@ -1,60 +1,63 @@
 <template>
-    <div class="container--hero">
-      <header class="header">
-        <nuxt-link :to="{ path: '/' }" class="header__logo">
-          <img
-            src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611230252/eden-website-v2/eden-logo_lcepc6.svg"
-            alt="Eden logo"
-          />
-        </nuxt-link>
-      </header>
-      <div class="hero">
-        <div class="hero__title">
-          <h1>
-             Save valuable time and get your home cleaned <span> {{ headerText[0]}}</span>
-          </h1>
-          <div>
-              <p class="bold"> Pay once a month and get:</p>
-              <ul>
-                <li>
-                  <span class="icon"> 🏠 </span>
-                  Free-time back while we take care of all the cleaning needs. 
-                </li>
-                <li>
-                  <span class="icon"> 🧑‍💼 </span>
-                  A dedicated Customer Support representative.
-                </li>
-                <li>
-                  <span class="icon"> 🤌 </span>
-                  Flexible plan to fit your needs (weekly, bi-weekly, or monthly).
-                </li>
-              </ul>
-          </div>
-           <div class="hero__button">
-            <button
-              type="button"
-              class="hero__button-solid"
-              @click.prevent="scrollToFooter('getEden', 'cleaning-leads - hero')"
-            >
-              Clean for me
-            </button>
-          </div>
-         </div>
-         <div class="hero__img-laundry">
-              <img
-              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1654267602/eden-website-v2/Cleaning_4_pemevm.png"
-              alt="laundry tag"
-              class="hero__img-bg1"
-            />
+  <div class="container--hero">
+    <header class="header">
+      <nuxt-link :to="{ path: '/' }" class="header__logo">
+        <img
+          src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611230252/eden-website-v2/eden-logo_lcepc6.svg"
+          alt="Eden logo"
+        />
+      </nuxt-link>
+    </header>
+    <div class="hero">
+      <div class="hero__title">
+        <h1>
+          Save valuable time and get your home cleaned
+          <span> {{ headerText[0] }}</span>
+        </h1>
+        <div>
+          <p class="bold">Pay once a month and get:</p>
+          <ul>
+            <li>
+              <span class="icon"> 🏠 </span>
+              Free-time back while we take care of all the cleaning needs.
+            </li>
+            <li>
+              <span class="icon"> 🧑‍💼 </span>
+              A dedicated Customer Support representative.
+            </li>
+            <li>
+              <span class="icon"> 🤌 </span>
+              Flexible plan to fit your needs (weekly, bi-weekly, or monthly).
+            </li>
+          </ul>
+        </div>
+        <div class="hero__button">
+          <button
+            type="button"
+            class="hero__button-solid"
+            @click.prevent="
+              greenhouseSignUp('getEden', 'cleaning-leads - hero')
+            "
+          >
+            Clean for me
+          </button>
         </div>
       </div>
-      <div class="hero__img"></div>
+      <div class="hero__img-laundry">
+        <img
+          src="https://res.cloudinary.com/eden-life-inc/image/upload/v1654267602/eden-website-v2/Cleaning_4_pemevm.png"
+          alt="laundry tag"
+          class="hero__img-bg1"
+        />
+      </div>
+    </div>
+    <div class="hero__img"></div>
 
     <div class="container--description">
       <section class="description">
-         <div class="description__title">
-            <h3>Here’s how it works:</h3>
-          </div>
+        <div class="description__title">
+          <h3>Here’s how it works:</h3>
+        </div>
         <div class="description__inner">
           <div class="description__details">
             <div class="description__details-item">
@@ -67,18 +70,15 @@
               >
                 <h5>You choose a plan that works for you.</h5>
                 <p>
-                 Sign up on the Eden app. 
-                 Choose the type of cleaning you want. 
-                 Select a schedule that works for you. It takes less than 5 minutes!
+                  Sign up on the Eden app. Choose the type of cleaning you want.
+                  Select a schedule that works for you. It takes less than 5
+                  minutes!
                 </p>
               </div>
             </div>
             <div class="description__details-item">
               <div class="description__details-item--icon">
-                <img
-                  :src="require(`~/assets/images/emojis/two.png`)"
-                  alt=""
-                />
+                <img :src="require(`~/assets/images/emojis/two.png`)" alt="" />
               </div>
               <div
                 v-animate-onscroll.repeat="'animated fadeInLeft'"
@@ -86,15 +86,19 @@
               >
                 <h5>We get scrubbin'.</h5>
                 <p>
-                  Our team of trained cleaners visit your home, polishing surfaces, 
-                  mopping floors, scrubbing dishes, and making sure your home looks spotless. 
-                  You don’t have to provide any cleaning materials except water. 
+                  Our team of trained cleaners visit your home, polishing
+                  surfaces, mopping floors, scrubbing dishes, and making sure
+                  your home looks spotless. You don’t have to provide any
+                  cleaning materials except water.
                 </p>
               </div>
             </div>
             <div class="description__details-item">
               <div class="description__details-item--icon">
-                <img :src="require(`~/assets/images/emojis/three.png`)" alt="" />
+                <img
+                  :src="require(`~/assets/images/emojis/three.png`)"
+                  alt=""
+                />
               </div>
               <div
                 v-animate-onscroll.repeat="'animated fadeInDown'"
@@ -102,27 +106,24 @@
               >
                 <h5>You relax.</h5>
                 <p>
-                  In no time, our cleaners are done and you can relax in your clean home. 
-                  Your weekends are now free for whatever your idea of fun is.
+                  In no time, our cleaners are done and you can relax in your
+                  clean home. Your weekends are now free for whatever your idea
+                  of fun is.
                 </p>
               </div>
             </div>
           </div>
           <div class="description__inner-left">
-            <div
-              class="description__inner-left-img1"
-            >
+            <div class="description__inner-left-img1">
               <img
-               v-animate-onscroll="'animated fadeInDown'"
+                v-animate-onscroll="'animated fadeInDown'"
                 src="@/assets/images/Cleaning 1.png"
                 alt="cleaning-image"
               />
             </div>
-            <div
-              class="description__inner-left-img2"
-            >
+            <div class="description__inner-left-img2">
               <img
-               v-animate-onscroll="'animated fadeInUp'"
+                v-animate-onscroll="'animated fadeInUp'"
                 src="@/assets/images/Cleaning 2.png"
                 alt="cleaning-image"
               />
@@ -135,10 +136,7 @@
     <div id="cleaning-plan" class="container--plan">
       <section class="plan">
         <div class="plan__title">
-          <h3>
-            The Cleaning Plans:<br />
-            
-          </h3>
+          <h3>The Cleaning Plans:<br /></h3>
           <p>
             You deserve a home where you just sit back and relax.<br />
             No cleaning. No stress.
@@ -202,7 +200,7 @@
                 <circle cx="3" cy="3" r="3" fill="#61DB98" />
               </svg>
             </li>
-             <li
+            <li
               :class="{ active: plan === 'post-construction-cleaning' }"
               @click.prevent="setCleaningConfig('post-construction-cleaning')"
             >
@@ -437,15 +435,15 @@
                 </h5>
                 <p>per 4 weeks</p>
               </div>
-               <div class="hero__button">
-                    <button
-                    type="button"
-                    class="hero__button-solid"
-                    @click.prevent="scrollToFooter('getEden', 'Cleaning-leads - plan')"
-                    >
-                    Clean for me
-                    </button>
-                </div>
+              <div class="hero__button">
+                <button
+                  type="button"
+                  class="hero__button-solid"
+                  @click.prevent="greenhouseSignUp('Cleaning-leads - plan')"
+                >
+                  Clean for me
+                </button>
+              </div>
             </div>
           </transition>
           <transition name="slide-fade">
@@ -673,18 +671,21 @@
                 <p>per 4 weeks</p>
               </div>
               <div class="hero__button">
-                    <button
-                    type="button"
-                    class="hero__button-solid"
-                    @click.prevent="scrollToFooter('getEden', 'Cleaning-leads - plan')"
-                    >
-                    Clean for me
-                    </button>
-                </div>
+                <button
+                  type="button"
+                  class="hero__button-solid"
+                  @click.prevent="greenhouseSignUp('Cleaning-leads - plan')"
+                >
+                  Clean for me
+                </button>
+              </div>
             </div>
           </transition>
-             <transition name="slide-fade">
-            <div v-if="plan === 'post-construction-cleaning'" class="plan__price-light">
+          <transition name="slide-fade">
+            <div
+              v-if="plan === 'post-construction-cleaning'"
+              class="plan__price-light"
+            >
               <div class="plan__price-item">
                 <div class="plan__price-description">
                   <div class="plan__price-description-title">
@@ -748,12 +749,19 @@
                     </button>
                   </div>
 
-                  <div  v-if="showCleaningDescription" class="plan__price-description-extra">
-
-                    Post construction is the cleaning done to new or renovated buildings. This kind of cleaning is done to the whole house or facility from top to bottom.
+                  <div
+                    v-if="showCleaningDescription"
+                    class="plan__price-description-extra"
+                  >
+                    Post construction is the cleaning done to new or renovated
+                    buildings. This kind of cleaning is done to the whole house
+                    or facility from top to bottom.
                   </div>
                   <ul v-if="showCleaningDescription">
-                    <li>Scraping of cements and paint stains on the floor, windows and doors</li>
+                    <li>
+                      Scraping of cements and paint stains on the floor, windows
+                      and doors
+                    </li>
                     <li>Washing of windows and doors</li>
                     <li>Scraping of POP from wall tiles</li>
                     <li>Washing of the walls</li>
@@ -762,7 +770,6 @@
                     <li>Cobweb removal from all surfaces</li>
                     <li>Resurfacing of the tiles to maintain quality</li>
                     <li>Polishing of all wooden surfaces</li>
-                   
                   </ul>
                 </div>
                 <div class="calculator__input">
@@ -908,14 +915,14 @@
                 <p>per 4 weeks</p>
               </div>
               <div class="hero__button">
-                    <button
-                    type="button"
-                    class="hero__button-solid"
-                    @click.prevent="scrollToFooter('getEden', 'Cleaning-leads - plan')"
-                    >
-                    Clean for me
-                    </button>
-                </div>
+                <button
+                  type="button"
+                  class="hero__button-solid"
+                  @click.prevent="greenhouseSignUp('Cleaning-leads - plan')"
+                >
+                  Clean for me
+                </button>
+              </div>
             </div>
           </transition>
         </div>
@@ -929,97 +936,122 @@
         </div>
         <div class="wall__messages">
           <div class="wall__messages-first-box">
-             <div class="wall__messages-title">
-               <h3>Our job is to make sure your house is spotless.</h3>
-             </div>
-             <p class="card__description">We will do anything to make sure your house or space is spotless.</p>
+            <div class="wall__messages-title">
+              <h3>Our job is to make sure your house is spotless.</h3>
+            </div>
+            <p class="card__description">
+              We will do anything to make sure your house or space is spotless.
+            </p>
+            <div class="card">
+              <a
+                href="https://twitter.com/Anagazo/status/1514576172864221191?s=20&t=i_QLeckfJVf7cjje-ME7Zg"
+                target="_blank"
+              >
+                <div class="card__title">
+                  <div class="card__title-img">
+                    <img
+                      :src="require(`~/assets/images/customer-anagazo.png`)"
+                      alt="customer-anagazo"
+                    />
+                  </div>
+                  <div class="">
+                    <p class="card__title-name">Anagazo</p>
+                    <p class="card__title-handle">@Anagazo</p>
+                  </div>
+                </div>
+                <p class="card__description">
+                  I’m always excited when
+                  <span style="color: #03a84e"> @ouredenlife </span> sends male
+                  cleaners. Them dey always do like say them get something to
+                  prove. <br />
+                  <br />
+                  “Sir can I sweep the ceiling?”<br />
+                  “Sir is the sun too hot, can I reduce it”<br />
+                  “I will mop the excess oxygen shortly”<br />
+                  😂 it’s always an experience.
+                </p>
+              </a>
+            </div>
+          </div>
+
+          <div class="wall__messages-second_card">
+            <div class="wall__messages-first-box">
+              <div class="wall__messages-title">
+                <h3>We take cleaning to another special level.</h3>
+              </div>
+              <p class="card__description">
+                Sparkle and glow with Eden Life’s cleaners. We’ll shine up your
+                homes and items. That’s what we do.
+              </p>
               <div class="card">
-                <a href="https://twitter.com/Anagazo/status/1514576172864221191?s=20&t=i_QLeckfJVf7cjje-ME7Zg" target="_blank">
+                <a
+                  href="https://twitter.com/TheVunderkind/status/1527384189821079552?s=20&t=i_QLeckfJVf7cjje-ME7Zg"
+                  target="_blank"
+                >
                   <div class="card__title">
                     <div class="card__title-img">
                       <img
-                        :src="require(`~/assets/images/customer-anagazo.png`)"
-                        alt="customer-anagazo"
+                        :src="
+                          require(`~/assets/images/customer-vunderkind.png`)
+                        "
+                        alt="customer-vunderkind"
                       />
                     </div>
+
                     <div class="">
-                      <p class="card__title-name">Anagazo</p>
-                      <p class="card__title-handle">@Anagazo</p>
+                      <p class="card__title-name">mogwai.</p>
+                      <p class="card__title-handle">@TheVunderkind</p>
                     </div>
                   </div>
                   <p class="card__description">
-                    I’m always excited when <span style="color:#03A84E"> @ouredenlife </span> sends male cleaners. 
-                    Them dey always do like say them get something to prove. <br>
-                    <br>
-                    “Sir can I sweep the ceiling?”<br>
-                    “Sir is the sun too hot, can I reduce it”<br>
-                    “I will mop the excess oxygen shortly”<br>
-                    😂 it’s always an experience.
+                    My Eden cleaner cleaned one ancient kettle in the kitchen
+                    and this shit is gleaming like Aladdin’s lamp
                   </p>
                 </a>
               </div>
-          </div>
-          
-          <div class="wall__messages-second_card">
-             <div class="wall__messages-first-box">
-                <div class="wall__messages-title">
-                  <h3>We take cleaning to another special level.</h3>    
-                </div> 
-                <p class="card__description">Sparkle and glow with Eden Life’s cleaners.  We’ll shine up your homes and items. That’s what we do. </p>
-                  <div class="card">
-                    <a href="https://twitter.com/TheVunderkind/status/1527384189821079552?s=20&t=i_QLeckfJVf7cjje-ME7Zg" target="_blank">
-                      <div class="card__title">
-                        <div class="card__title-img">
-                          <img
-                            :src="require(`~/assets/images/customer-vunderkind.png`)"
-                            alt="customer-vunderkind"
-                          />
-                        </div>
-
-                        <div class="">
-                          <p class="card__title-name">mogwai.</p>
-                          <p class="card__title-handle">@TheVunderkind</p>
-                        </div>
-                      </div>
-                      <p class="card__description">
-                          My Eden cleaner cleaned one ancient kettle in the kitchen and this shit is gleaming like Aladdin’s lamp
-                      </p>
-                    </a>
-                  </div>
+            </div>
+            <div class="wall__messages-first-box">
+              <div class="wall__messages-title">
+                <h3>It's perfect for your busy lifestyle.</h3>
               </div>
-              <div class="wall__messages-first-box">
-                <div class="wall__messages-title">
-                  <h3>It's perfect for your busy lifestyle.</h3>
-                  </div>
-                  <p class="card__description">You just let our cleaners do the job, so you attend to other important things.</p>
-                    <div class="card">
-                      <a href="https://twitter.com/KingRohv/status/1382790202045923331?s=20&t=i_QLeckfJVf7cjje-ME7Zg" target="_blank">
-                        <div class="card__title">
-                          <div class="card__title-img">
-                            <img
-                              :src="require(`~/assets/images/customer-philip.png`)"
-                              alt="customer-philip"
-                            />
-                          </div>
-
-                          <div class="">
-                            <p class="card__title-name">Philip Ese </p>
-                            <p class="card__title-handle">@KingRohv</p>
-                          </div>
-                        </div>
-                        <p class="card__description">
-                          I have to say  <span style="color:#03A84E"> @ouredenlife </span> has simplified my life sha. From food to laundry and house cleaning. And I have the best gardener. 
-                          Will gladly invest if I see the opportunity..<br><br>
-                        </p>
-                      </a>
+              <p class="card__description">
+                You just let our cleaners do the job, so you attend to other
+                important things.
+              </p>
+              <div class="card">
+                <a
+                  href="https://twitter.com/KingRohv/status/1382790202045923331?s=20&t=i_QLeckfJVf7cjje-ME7Zg"
+                  target="_blank"
+                >
+                  <div class="card__title">
+                    <div class="card__title-img">
+                      <img
+                        :src="require(`~/assets/images/customer-philip.png`)"
+                        alt="customer-philip"
+                      />
                     </div>
+
+                    <div class="">
+                      <p class="card__title-name">Philip Ese</p>
+                      <p class="card__title-handle">@KingRohv</p>
+                    </div>
+                  </div>
+                  <p class="card__description">
+                    I have to say
+                    <span style="color: #03a84e"> @ouredenlife </span> has
+                    simplified my life sha. From food to laundry and house
+                    cleaning. And I have the best gardener. Will gladly invest
+                    if I see the opportunity..<br /><br />
+                  </p>
+                </a>
               </div>
+            </div>
           </div>
         </div>
       </section>
     </div>
 
-     <div class="container--form">
+    <!-- <div class="container--form">
        <section class="cleaning" id="getEden">
           <div class="cleaning__form">
              <div class="cleaning__form-title">
@@ -1081,7 +1113,7 @@
           </div>
         </div>
        </section>
-    </div>
+    </div> -->
 
     <modal v-if="showFailedModal" :show-modal="showFailedModal" class="modal">
       <div slot="header"></div>
@@ -1133,7 +1165,6 @@
     </modal>
 
     <lead-gen-footer />
-
   </div>
 </template>
 
@@ -1157,7 +1188,7 @@ export default {
     cleaningForm: {
       full_name: { required, notUrl },
       email: { required, email },
-       phone_number: {
+      phone_number: {
         required,
         minLength: minLength(11),
         maxLength: maxLength(11),
@@ -1235,19 +1266,19 @@ export default {
       this.changeText()
     }, 2300)
     this.fetchCleaningServiceTypes()
-    },
+  },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
     window.addEventListener('scroll', this.isInViewport)
   },
   methods: {
     currencyFormat,
-        toggle(plan) {
-        if (this.visible.includes(plan)) {
-            this.visible = this.visible.filter((item) => item !== plan)
-        } else {
-            this.visible.push(plan)
-        }
+    toggle(plan) {
+      if (this.visible.includes(plan)) {
+        this.visible = this.visible.filter((item) => item !== plan)
+      } else {
+        this.visible.push(plan)
+      }
     },
     changeText() {
       const first = this.headerText.shift()
@@ -1263,10 +1294,14 @@ export default {
     scrollToFooter(id) {
       document.getElementById(id).scrollIntoView()
     },
+    greenhouseSignUp(label) {
+      mixpanelTrackEvent(label)
+      this.$router.push({ name: 'signup', query: this.$route.query })
+    },
     trackLink(service) {
       mixpanelTrackEvent(`${service} clicked - Cleaning Leads (more options)`)
     },
-     closeModal() {
+    closeModal() {
       this.showSuccessModal = !this.showSuccessModal
     },
     async submit() {
@@ -1281,9 +1316,9 @@ export default {
             'Phone Number': this.cleaningForm.phone_number,
           }
           const leadMetaData = {
-           name: this.cleaningForm.full_name,
-           email: this.cleaningForm.email,
-           phone: this.cleaningForm.phone_number,
+            name: this.cleaningForm.full_name,
+            email: this.cleaningForm.email,
+            phone: this.cleaningForm.phone_number,
             lead_gen_page: window.location.href,
             referrer: document.referrer,
           }
@@ -1305,7 +1340,7 @@ export default {
                 )
                 this.$nextTick(() => {
                   this.$v.cleaningForm.$reset()
-                   this.$router.push('/success_page')
+                  this.$router.push('/success_page')
                 })
               }, 500)
             },
@@ -1339,32 +1374,27 @@ export default {
       this.calculateCleaningPrice()
     },
     setCleaningConfig(plan) {
-       this.plan = plan
+      this.plan = plan
       this.cleaningInfo.item = plan
       this.cleaningInfo.itemAreas = {}
       const planType = plan.replaceAll('-', ' ')
-       const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
+      const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
         ({ name }) => name.toLowerCase() === planType
       )
       this.cleaningQtyOption = this.cleaningQtyOption
       this.setCleaningArea(planType)
       this.calculateCleaningPrice()
-       return cleaning_areas;
+      return cleaning_areas
     },
     calculateCleaningPrice() {
-      const {
-        item,
-        itemAreas,
-        frequency,
-        qty,
-      } = this.cleaningInfo
+      const { item, itemAreas, frequency, qty } = this.cleaningInfo
       this.totalPrice = pricing({
         cleaning: {
           item,
           item_areas: itemAreas,
           frequency,
           qty,
-          service_day: ['saturday']
+          service_day: ['saturday'],
         },
       })
       this.getEstimateRoomTypes()
@@ -1429,5 +1459,4 @@ export default {
 .mt-4 {
   margin-top: 25px;
 }
-
 </style>

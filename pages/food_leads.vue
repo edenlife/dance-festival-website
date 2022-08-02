@@ -35,7 +35,7 @@
 
             <button
               class="hero__form-btn"
-              @click.prevent="scrollToFooter('getEden', 'food leads - hero')"
+              @click.prevent="greenhouseSignUp('food leads - hero')"
             >
               Give me a food plan
             </button>
@@ -355,7 +355,7 @@
               </div>
               <button
                 class="hero__form-btn"
-                @click.prevent="scrollToFooter('getEden')"
+                @click.prevent="greenhouseSignUp('getEden - food leads')"
               >
                 Give me a food plan
               </button>
@@ -505,7 +505,7 @@
               </div>
               <button
                 class="hero__form-btn"
-                @click.prevent="scrollToFooter('getEden')"
+                @click.prevent="greenhouseSignUp('getEden')"
               >
                 Give me a food plan
               </button>
@@ -690,122 +690,6 @@
         </div>
       </section>
     </div>
-    <div class="container--form">
-      <section id="getEden" class="food">
-        <div class="food__form">
-          <div class="food__form-title">
-            <h3>
-              You're one step closer to not worrying <br />
-              about what to eat.
-            </h3>
-            <p>
-              Enter your details and we’ll reach out to you about the next
-              steps. <br />
-              Let's go!
-            </p>
-          </div>
-
-          <div class="form">
-            <div class="form__input">
-              <label for="company name"> Full Name</label>
-              <input
-                id=""
-                v-model="foodForm.full_name"
-                type="text"
-                name=""
-                placeholder="Your first & last name"
-                :class="{ 'has-error': $v.foodForm.full_name.$error }"
-              />
-            </div>
-
-            <div class="form__input">
-              <label for="email">Email Address </label>
-              <input
-                id=""
-                v-model="foodForm.email"
-                type="email"
-                name=""
-                placeholder="email@example.com"
-                :class="{ 'has-error': $v.foodForm.email.$error }"
-              />
-            </div>
-
-            <div class="form__input">
-              <label for="phone number">Contact Person’s Phone Number</label>
-              <input
-                id=""
-                v-model.trim="$v.foodForm.phone_number.$model"
-                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                type="text"
-                name=""
-                placeholder="08123456789"
-                :class="{ 'has-error': $v.foodForm.phone_number.$error }"
-              />
-            </div>
-            <button
-              type="submit"
-              class="btn--submit"
-              :class="{
-                loading: loading,
-              }"
-              :disabled="loading"
-              @click.prevent="submit()"
-            >
-              I want an Eden Life Food plan
-            </button>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <modal v-if="showFailedModal" :show-modal="showFailedModal" class="modal">
-      <div slot="header"></div>
-      <div slot="body" class="modal__body">
-        <div class="company__modal">
-          <div class="company__modal-title">
-            <button class="btn btn--success" @click="showFailedModal = false">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="16"
-                  cy="16"
-                  r="15.5"
-                  fill="white"
-                  stroke="#E4E8E6"
-                />
-                <path
-                  d="M20 12L12 20"
-                  stroke="#798B83"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M12 12L20 20"
-                  stroke="#798B83"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-
-          <div class="company__modal-body">
-            <img :src="require(`~/assets/images/failed.svg`)" alt="failed" />
-            <h5>Submission Failed</h5>
-            <p>
-              Please try again or reach us at <span>eve@edenlife.ng </span> or
-              <span>+2348123456790</span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div slot="footer"></div>
-    </modal>
 
     <div class="container--menu">
       <div v-if="!currentMeals.length" class="menu__loader">
@@ -834,7 +718,7 @@
         />
       </transition>
       <section v-if="currentMeals.length" class="menu">
-        <button class="menu-btn" @click.prevent="scrollToFooter('getEden')">
+        <button class="menu-btn" @click.prevent="greenhouseSignUp('getEden')">
           Give me a food plan
         </button>
       </section>
@@ -899,11 +783,10 @@ export default {
       setInitialImage: null,
       setLastIndex: null,
       responseMessage: '',
-      foodForm: {
-        full_name: '',
-        email: '',
-        phone_number: '',
-      },
+      allMeal: [],
+      currentMeals: [],
+      nextWeekMeals: [],
+      mealsInCategory: [],
     }
   },
   head() {
@@ -935,8 +818,10 @@ export default {
     window.setInterval(() => {
       this.changeText()
     }, 2300)
-    this.totalDailyPrice = this.calculatePrice('daily', this.mealsPerDay)
-    this.totalWeeklyPrice = this.calculatePrice('weekly', this.mealsPerWeek)
+    setTimeout(() => {
+      this.totalDailyPrice = this.calculatePrice('daily', this.mealsPerDay)
+      this.totalWeeklyPrice = this.calculatePrice('weekly', this.mealsPerWeek)
+    }, 2000)
     mixpanelTrackEvent('Food Lead page')
   },
   methods: {
@@ -963,46 +848,6 @@ export default {
       this.selectedDays = []
       this.selectedDays.push(item)
       this.totalDailyPrice = this.calculatePrice('daily', this.mealsPerDay)
-    },
-    calculatePrice(frequency, quantity) {
-      const days = [
-        'monday',
-        'tuesday',
-        'wednesday',
-        'thursday',
-        'friday',
-        'saturday',
-      ]
-      const service_day = {
-        daily:
-          this.selectedDays[0] === 'monday-friday' ? days.slice(0, 5) : days,
-        weekly: days.slice(0, 1),
-        'weekly-twodays': days.slice(0, 2),
-      }
-      if (frequency === 'daily') {
-        this.mealsPerDay = this.mealsPerDay > 5 ? 5 : this.mealsPerDay
-      }
-      const qty = frequency === 'daily' ? this.mealsPerDay : this.mealsPerWeek
-      const qtyPerWeek =
-        frequency === 'daily'
-          ? this.mealsPerDay * service_day[frequency].length
-          : this.mealsPerWeek
-      const mealPrice = pricing({
-        meal: {
-          item: null,
-          frequency,
-          qty: qtyPerWeek,
-          service_day: service_day[frequency],
-          meal_per_delivery: service_day[frequency].reduce((days, day) => {
-            return {
-              same_number_per_delivery: true,
-              ...days,
-              [day]: qty,
-            }
-          }, {}),
-        },
-      })
-      return mealPrice
     },
     increaseOrder(order) {
       mixpanelTrackEvent(`Increase ${order} order clicked - food page`)
@@ -1051,6 +896,46 @@ export default {
         this.checkWeeklyFreq(freq)
       }
     },
+    calculatePrice(frequency, quantity) {
+      const days = [
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+      ]
+      const service_day = {
+        daily:
+          this.selectedDays[0] === 'monday-friday' ? days.slice(0, 5) : days,
+        weekly: days.slice(0, 1),
+        'weekly-twodays': days.slice(0, 2),
+      }
+      if (frequency === 'daily') {
+        this.mealsPerDay = this.mealsPerDay > 5 ? 5 : this.mealsPerDay
+      }
+      const qty = frequency === 'daily' ? this.mealsPerDay : this.mealsPerWeek
+      const qtyPerWeek =
+        frequency === 'daily'
+          ? this.mealsPerDay * service_day[frequency].length
+          : this.mealsPerWeek
+      const mealPrice = pricing({
+        meal: {
+          item: null,
+          frequency: frequency,
+          qty: qtyPerWeek,
+          service_day: service_day[frequency],
+          meal_per_delivery: service_day[frequency].reduce((days, day) => {
+            return {
+              same_number_per_delivery: true,
+              ...days,
+              [day]: qty,
+            }
+          }, {}),
+        },
+      })
+      return mealPrice
+    },
     checkWeeklyFreq(freq) {
       if (freq === 'weekly') {
         this.totalWeeklyPrice = this.calculatePrice('weekly', this.mealsPerWeek)
@@ -1064,56 +949,9 @@ export default {
     scrollToFooter(id) {
       document.getElementById(id).scrollIntoView()
     },
-    async submit() {
-      this.$v.foodForm.$touch()
-      if (this.$v.foodForm.$error) return
-      if (!this.$v.foodForm.$error) {
-        try {
-          this.loading = true
-          const metaData = {
-            'Full Name': this.foodForm.full_name,
-            'Email Address': this.foodForm.email,
-            'Phone Number': this.foodForm.phone_number,
-          }
-          const leadMetaData = {
-            name: this.foodForm.full_name,
-            email: this.foodForm.email,
-            phone: this.foodForm.phone_number,
-            lead_gen_page: window.location.href,
-            referrer: document.referrer,
-          }
-          this.$intercom('update', {
-            name: this.foodForm.full_name,
-            email: this.foodForm.email,
-            phone: this.foodForm.phone_number,
-            lead_gen_page: window.location.href,
-            referrer: document.referrer,
-          })
-          this.$intercom('trackEvent', 'lead-genaration-signup', leadMetaData)
-          createFoodLeads(metaData).then(
-            (res) => {
-              this.loading = false
-              mixpanelTrackEvent('Food Leads form submitted')
-              setTimeout(() => {
-                Object.keys(this.foodForm).forEach(
-                  (key) => (this.foodForm[key] = '')
-                )
-                this.$nextTick(() => {
-                  this.$v.foodForm.$reset()
-                  this.$router.push('/success_page')
-                })
-              }, 500)
-            },
-            (err) => {
-              this.loading = false
-              this.showFailedModal = true
-            }
-          )
-        } catch (error) {
-          this.loading = false
-          this.showFailedModal = true
-        }
-      }
+    greenhouseSignUp(label) {
+      mixpanelTrackEvent(label)
+      this.$router.push({ name: 'signup', query: this.$route.query })
     },
     openSocialMedia(name, url) {
       mixpanelTrackEvent(`${name} icon clicked - Lead page`)

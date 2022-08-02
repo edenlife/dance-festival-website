@@ -1223,7 +1223,8 @@ export default {
           type: 'cleaning',
         },
       ],
-      roomTypes: '1 Bedrooms, 1 Living Rooms / Dining Areas, 1 Bathrooms, 1 Kitchen',
+      roomTypes:
+        '1 Bedrooms, 1 Living Rooms / Dining Areas, 1 Bathrooms, 1 Kitchen',
       cleaningQtyOption: [],
       foodSummary: [],
       laundrySummary: [],
@@ -1951,7 +1952,7 @@ export default {
           break
         }
         case '1': {
-          this.selectedService = ['Food',]
+          this.selectedService = ['Food']
           const defaultService = { name: 'Cleaning', price: '' }
           this.changeService(defaultService)
           break
@@ -2022,13 +2023,23 @@ export default {
       let totalAmount
 
       if (this.mealFrequency.toLowerCase() === 'daily') {
-        const dailyDays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-        frequency = 'daily';
-        days = this.selectedDays[0] === "monday-friday" ? dailyDays.slice(0, 5) : dailyDays
+        const dailyDays = [
+          'monday',
+          'tuesday',
+          'wednesday',
+          'thursday',
+          'friday',
+          'saturday',
+        ]
+        frequency = 'daily'
+        days =
+          this.selectedDays[0] === 'monday-friday'
+            ? dailyDays.slice(0, 5)
+            : dailyDays
         if (this.mealQty > 5) {
           this.mealQty = 5
         }
-        days.forEach(day => {
+        days.forEach((day) => {
           deliveryDays[day] = this.mealQty
         })
         const config = {
@@ -2037,7 +2048,7 @@ export default {
             frequency: 'daily',
             qty: this.mealQty * 5,
             service_day: days,
-            meal_per_delivery: deliveryDays
+            meal_per_delivery: deliveryDays,
           },
         }
         const total = pricing(config)
@@ -2051,7 +2062,7 @@ export default {
         ]
         this.totalFoodSummary = {
           ...config.meal,
-          amount: total
+          amount: total,
         }
       }
       if (this.mealFrequency.toLowerCase() === 'weekly') {
@@ -2066,7 +2077,7 @@ export default {
             frequency: 'weekly',
             qty: this.mealQty,
             service_day: this.selectedDays,
-            meal_per_delivery: deliveryDays
+            meal_per_delivery: deliveryDays,
           },
         }
         const total = pricing(config)
@@ -2090,18 +2101,18 @@ export default {
         if (this.mealQty > 10) {
           this.mealQty = 10
         }
-        deliveryDays[this.selectedDays[0]] = this.mealQty;
-        deliveryDays[this.selectedDays[1]] = this.mealQty;
+        deliveryDays[this.selectedDays[0]] = this.mealQty
+        deliveryDays[this.selectedDays[1]] = this.mealQty
         const config = {
           meal: {
             item: null,
             frequency: 'weekly-twodays',
             qty: this.mealQty * 2,
             service_day: this.selectedDays,
-            meal_per_delivery: deliveryDays
+            meal_per_delivery: deliveryDays,
           },
         }
-        const total = pricing(config);
+        const total = pricing(config)
         totalAmount = total
         this.services[0].price = total.toString()
         this.getTotalPrice(this.services, this.selectedService)
@@ -2117,7 +2128,7 @@ export default {
           amount: total,
         }
       }
-      
+
       this.foodPayload = {
         frequency: frequency,
         item: null,
@@ -2126,7 +2137,7 @@ export default {
         meal_per_delivery: deliveryDays,
         amount: totalAmount,
       }
-  },
+    },
     increaseFoodOrder() {
       if (this.mealQty < 20) {
         this.mealQty++
@@ -2176,7 +2187,7 @@ export default {
           item: this.laundryTypeValue,
           frequency: this.laundryFreqValue,
           qty: this.laundryQty,
-          service_day: ['thursday']
+          service_day: ['thursday'],
         },
       })
       this.services[1].price = total.toString()
@@ -2196,7 +2207,7 @@ export default {
         service_day: ['monday'],
         amount: total,
       }
-     },
+    },
     increaseLaundryOrder() {
       if (this.laundryQty < 5) {
         this.laundryQty++
@@ -2229,15 +2240,14 @@ export default {
       this.calculateCleaningPrice()
     },
     calculateCleaningPrice() {
-      const { item, itemAreas, frequency, qty } =
-        this.cleaningInfo
+      const { item, itemAreas, frequency, qty } = this.cleaningInfo
       const total = pricing({
         cleaning: {
           item,
           item_areas: itemAreas,
           frequency,
           qty,
-          service_day: ['saturday']
+          service_day: ['saturday'],
         },
       })
       const newItemAreas = Object.keys(itemAreas).reduce((accumulator, key) => {
@@ -2267,7 +2277,7 @@ export default {
         service_day: ['monday'],
         amount: total,
       }
-     },
+    },
     setCleaningArea(area) {
       const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
         ({ name }) => name.toLowerCase() === area.toLowerCase()
@@ -2349,7 +2359,7 @@ export default {
       this.setCleaningArea(plan)
       this.calculateCleaningPrice()
       this.getEstimateRoomTypes()
-      return cleaning_areas;
+      return cleaning_areas
     },
   },
 }

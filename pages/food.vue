@@ -730,7 +730,7 @@ export default {
     },
     greenhouseSignUp(label) {
       mixpanelTrackEvent(label)
-      this.$router.push('/signup')
+      this.$router.push({ name: 'signup', query: this.$route.query})
     },
     increaseOrder(order) {
       mixpanelTrackEvent(`Increase ${order} order clicked - food page`)

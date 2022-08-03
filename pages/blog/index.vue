@@ -903,6 +903,9 @@ export default {
     this.listId = process.env.MAILCHIMP_LISTID
     const navbar = document.querySelector('#navigation-container')
     navbar.style.backgroundColor = '#F6FFFA'
+    // setTimeout(() => {
+    //   this.latestPost
+    // }, 2000)
   },
   methods: {
     dateFormatter(date) {
@@ -919,7 +922,8 @@ export default {
     },
     controlPage(pageNum) {
       const min = pageNum * 8 - 8
-      this.latestPost = this.allPosts.slice(min, pageNum * 8)
+      this.latestPost = this.allPosts
+      // .slice(min, pageNum * 8)
       this.pagination.current_page = pageNum
       this.$refs['latest-container'].scrollIntoView()
     },
@@ -941,13 +945,13 @@ export default {
       )
     },
     searchPost() {
-     const convertCharCodes = (str) =>
+      const convertCharCodes = (str) =>
         str.replace(/(&#(\d+);)/g, (match, capture, charCode) =>
           String.fromCharCode(charCode)
-      );
+        )
       this.searchResults = this.allPosts.filter((el) => {
         const title = convertCharCodes(el.title.rendered)
-        return title.toLowerCase().includes(this.search.toLowerCase());
+        return title.toLowerCase().includes(this.search.toLowerCase())
       })
       this.resultTabIndex = 0
       this.showSearchbar = true
@@ -966,6 +970,7 @@ export default {
           current_page: 1,
         }
         this.latestPost = this.allPosts.slice(0, 8)
+        // console.log(this.latestPost)
         return
       }
       this.isLoading = true
@@ -1009,6 +1014,8 @@ export default {
         current_page: 1,
       }
       this.latestPost = posts.slice(0, 8)
+      // console.log(this.latestPost)
+      // console.log(posts.slice(0, 5))
     },
     async fetchFeaturedPost() {
       // if (this.featuredPost !== null) return

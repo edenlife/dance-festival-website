@@ -425,7 +425,7 @@
           <div class="posts__latest">
             <h3 class="posts__latest-title">Latest Posts</h3>
           </div>
-          <div v-for="(item, i) in latestPost" :key="i">
+          <div v-for="(item, i) in latestPosts" :key="i">
             <nuxt-link
               :to="{
                 name: 'blog-slug',
@@ -435,7 +435,7 @@
               <figure class="posts__item">
                 <img
                   class="posts__item-img"
-                  :src="item._embedded['wp:featuredmedia'][0].source_url"
+                  :src="getFeaturedMedia(item)"
                   alt=""
                 />
                 <figcaption class="posts__item-details">
@@ -762,6 +762,7 @@ import dayjs from 'dayjs'
 import MailchimpSubscribe from 'vue-mailchimp-subscribe'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import getSiteMeta from '~/utils/getSiteMeta'
+import { all } from 'q'
 
 export default {
   components: {
@@ -880,6 +881,10 @@ export default {
     edenPosts() {
       return this.$store.getters.getEdenPosts
     },
+    latestPosts() {
+      const allPosts = this.$store.getters.getAllPosts
+      return allPosts.slice(0, 8)
+    },
   },
   created() {
     this.fetchFeaturedPost()
@@ -908,6 +913,13 @@ export default {
     // }, 2000)
   },
   methods: {
+    getFeaturedMedia(post) {
+      const featuredMedia = post._embedded['wp:featuredmedia']
+      if (!featuredMedia) {
+        return "https://res.cloudinary.com/eden-life-inc/image/upload/v1634312536/Add-a-little-bit-of-body-text-6_4384339c.png"
+      }
+      return featuredMedia[0].source_url
+    },
     dateFormatter(date) {
       return dayjs(date).format('MMMM D, YYYY')
     },
@@ -970,7 +982,6 @@ export default {
           current_page: 1,
         }
         this.latestPost = this.allPosts.slice(0, 8)
-        // console.log(this.latestPost)
         return
       }
       this.isLoading = true
@@ -1014,8 +1025,6 @@ export default {
         current_page: 1,
       }
       this.latestPost = posts.slice(0, 8)
-      // console.log(this.latestPost)
-      // console.log(posts.slice(0, 5))
     },
     async fetchFeaturedPost() {
       // if (this.featuredPost !== null) return

@@ -426,6 +426,166 @@
             }}
           </a>
         </li>
+        <!-- <li>
+          <div class="navigation__menu-item navigation__menu-service">
+            <button
+              type="button"
+              class="btn"
+              :class="{ active: switchLocation }"
+              @mouseenter.stop="switchLocation = true"
+              @change="changeLocation"
+            >
+              {{ location.label }}
+              <svg
+                width="10"
+                height="6"
+                viewBox="0 0 10 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 1L5 5L9 1"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+            <transition name="fade">
+              <div
+                v-if="switchLocation"
+                class="service"
+                @mouseleave.stop="switchLocation = false"
+              >
+                <ul
+                  class="service__list"
+                  v-for="(location, index) in locations"
+                  :key="index"
+                  :label="location.label"
+                  :value="location.value"
+                >
+                  <li
+                    :class="{ laundry: service === 'laundry' }"
+                    @click="trackLink('Laundry')"
+                    @mouseenter.stop="service = 'laundry'"
+                    @mouseleave.stop="service = ''"
+                  >
+                    <nuxt-link
+                      :to="{ path: '/laundry' }"
+                      class="service__list-item"
+                    >
+                      <span
+                        ><img
+                          :src="
+                            require(`~/assets/images/greenhouse/flags/KE.svg`)
+                          "
+                          alt="flag"
+                      /></span>
+                      <h5>Kenya</h5>
+                      <svg
+                        v-if="service === 'laundry'"
+                        width="15"
+                        height="10"
+                        viewBox="0 0 15 10"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 5L13 5"
+                          stroke="#7189FF"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M10 9L14 5L10 1"
+                          stroke="#7189FF"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+
+                      <svg
+                        v-else
+                        width="6"
+                        height="10"
+                        viewBox="0 0 6 10"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 9L5 5L1 1"
+                          stroke="#798B83"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </nuxt-link>
+                  </li>
+                  <li
+                    :class="{ cleaning: service === 'cleaning' }"
+                    @click="trackLink('Cleaning')"
+                    @mouseenter.stop="service = 'cleaning'"
+                    @mouseleave.stop="service = ''"
+                  >
+                    <nuxt-link :to="{ path: '/' }" class="service__list-item">
+                      <span
+                        ><img
+                          :src="
+                            require(`~/assets/images/greenhouse/flags/NG.svg`)
+                          "
+                          alt="flag"
+                      /></span>
+                      <h5>Nigeria</h5>
+                      <svg
+                        v-if="service === 'cleaning'"
+                        width="15"
+                        height="10"
+                        viewBox="0 0 15 10"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 5L13 5"
+                          stroke="#FF9D00"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M10 9L14 5L10 1"
+                          stroke="#FF9D00"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+
+                      <svg
+                        v-else
+                        width="6"
+                        height="10"
+                        viewBox="0 0 6 10"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 9L5 5L1 1"
+                          stroke="#798B83"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </nuxt-link>
+                  </li>
+                </ul>
+              </div>
+            </transition>
+          </div>
+        </li> -->
       </ul>
       <button class="navigation__btn" type="button" @click="handleToggle()">
         <div class="line line1"></div>
@@ -616,6 +776,7 @@ export default {
     return {
       service: '',
       showService: false,
+      switchLocation: false,
       showNavbar: false,
       showContact: false,
       visible: false,
@@ -626,6 +787,18 @@ export default {
       },
       currentRoute: '',
       routeUpdate: '',
+      locations: [
+        {
+          label: 'Nigeria',
+          value: 'NG',
+          flag: 'ng',
+        },
+        {
+          label: 'Kenya',
+          value: 'KE',
+          flag: 'ke',
+        },
+      ],
       lightLogo: false,
     }
   },
@@ -648,7 +821,11 @@ export default {
         return false
       }
     },
-
+    currentLocation() {
+      if (this.switchLocation === 'Nigeria') {
+        return 'nigeria'
+      }
+    },
     giftLanding() {
       return (
         this.currentRoute.includes('gift') ||
@@ -678,6 +855,11 @@ export default {
     }
   },
   methods: {
+    changeLocation(location) {
+      this.location = location
+      this.$store.commit(mutations.LOCATION, location)
+      window.location.reload()
+    },
     getNavigationColor,
     handleResize() {
       this.window.width = window.innerWidth
@@ -728,7 +910,7 @@ export default {
       if (this.authenticated) {
         this.$router.push('/home')
       } else {
-       this.$router.push({ name: 'signup', query: this.$route.query})
+        this.$router.push({ name: 'signup', query: this.$route.query })
       }
     },
     launchIntercom() {

@@ -369,7 +369,7 @@
                 <img
                   class="posts__featured-img posts__item-img"
                   :src="
-                    featuredPost._embedded['wp:featuredmedia'][0].source_url
+                    getFeaturedMedia(featuredPost)
                   "
                   alt=""
                 />
@@ -479,7 +479,7 @@
               >
                 <figure class="posts__side-item">
                   <img
-                    :src="item._embedded['wp:featuredmedia'][0].source_url"
+                    :src="getFeaturedMedia(item)"
                     alt=""
                   />
                   <figcaption>
@@ -542,7 +542,7 @@
               <figure class="posts__item">
                 <img
                   class="posts__item-img"
-                  :src="item._embedded['wp:featuredmedia'][0].source_url"
+                  :src="getFeaturedMedia(item)"
                   alt=""
                 />
                 <figcaption class="posts__item-details">
@@ -589,7 +589,7 @@
               <figure class="posts__item">
                 <img
                   class="posts__item-img"
-                  :src="item._embedded['wp:featuredmedia'][0].source_url"
+                  :src="getFeaturedMedia(item)"
                   alt=""
                 />
                 <figcaption class="posts__item-details">
@@ -636,7 +636,7 @@
               <figure class="posts__item">
                 <img
                   class="posts__item-img"
-                  :src="item._embedded['wp:featuredmedia'][0].source_url"
+                  :src="getFeaturedMedia(item)"
                   alt=""
                 />
                 <figcaption class="posts__item-details">
@@ -683,7 +683,7 @@
               <figure class="posts__item">
                 <img
                   class="posts__item-img"
-                  :src="item._embedded['wp:featuredmedia'][0].source_url"
+                  :src="getFeaturedMedia(item)"
                   alt=""
                 />
                 <figcaption class="posts__item-details">

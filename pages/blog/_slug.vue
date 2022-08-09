@@ -45,7 +45,7 @@
           <p class="content__social-title">Share</p>
           <ShareNetwork
             network="twitter"
-            :url="`https://ouredenlifev2-staging.netlify.app${singleUrl}`"
+            :url="`https://ouredenlife.com${singleUrl}`"
             title=""
             description=""
             class="link"
@@ -67,7 +67,7 @@
           </ShareNetwork>
           <a
             class="link"
-            :href="`https://www.facebook.com/sharer/sharer.php?u=https://ouredenlifev2-staging.netlify.app${singleUrl}`"
+            :href="`https://www.facebook.com/sharer/sharer.php?u=https://ouredenlife.com${singleUrl}`"
             target="_blank"
           >
             <svg
@@ -87,7 +87,7 @@
           </a>
           <a
             class="link"
-            :href="`https://www.linkedin.com/sharing/share-offsite/?url=https://ouredenlifev2-staging.netlify.app${singleUrl}`"
+            :href="`https://www.linkedin.com/sharing/share-offsite/?url=https://ouredenlife.com${singleUrl}`"
             target="_blank"
           >
             <svg
@@ -107,7 +107,7 @@
           </a>
           <ShareNetwork
             network="whatsapp"
-            :url="`https://ouredenlifev2-staging.netlify.app${singleUrl}`"
+            :url="`https://ouredenlife.com${singleUrl}`"
             title=""
             description=""
             class="link"
@@ -129,11 +129,9 @@
           </ShareNetwork>
           <ShareNetwork
             network="Email"
-            :url="`https://ouredenlifev2-staging.netlify.app${singleUrl}`"
-            :title="postDetails.title.rendered"
-            :description="
-              postDetails.excerpt.rendered.replace(/(<([^>]+)>)/gi, '')
-            "
+            :url="`https://ouredenlife.com${singleUrl}`"
+            :title="article.title.rendered.replace(/(<([^>]+)>)/gi, '')"
+            :description="article.excerpt.rendered.replace(/(<([^>]+)>)/gi, '')"
             class="link"
           >
             <svg
@@ -167,7 +165,7 @@
           <p class="content__social-title">Share</p>
           <ShareNetwork
             network="twitter"
-            :url="`https://ouredenlifev2-staging.netlify.app${singleUrl}`"
+            :url="`https://ouredenlife.com${singleUrl}`"
             title=""
             description=""
             class="link"
@@ -189,7 +187,7 @@
           </ShareNetwork>
           <a
             class="link"
-            :href="`https://www.facebook.com/sharer/sharer.php?u=https://ouredenlifev2-staging.netlify.app${singleUrl}`"
+            :href="`https://www.facebook.com/sharer/sharer.php?u=https://ouredenlife.com${singleUrl}`"
             target="_blank"
           >
             <svg
@@ -209,7 +207,7 @@
           </a>
           <a
             class="link"
-            :href="`https://www.linkedin.com/sharing/share-offsite/?url=https://ouredenlifev2-staging.netlify.app${singleUrl}`"
+            :href="`https://www.linkedin.com/sharing/share-offsite/?url=https://ouredenlife.com${singleUrl}`"
             target="_blank"
           >
             <svg
@@ -229,7 +227,7 @@
           </a>
           <ShareNetwork
             network="whatsapp"
-            :url="`https://ouredenlifev2-staging.netlify.app${singleUrl}`"
+            :url="`https://ouredenlife.com${singleUrl}`"
             title=""
             description=""
             class="link"
@@ -251,7 +249,7 @@
           </ShareNetwork>
           <ShareNetwork
             network="Email"
-            :url="`https://ouredenlifev2-staging.netlify.app${singleUrl}`"
+            :url="`https://ouredenlife.com${singleUrl}`"
             :title="postDetails.title.rendered"
             :description="
               postDetails.excerpt.rendered.replace(/(<([^>]+)>)/gi, '')
@@ -370,7 +368,7 @@
       <div id="fb-root"></div>
       <div
         class="fb-comments"
-        :data-href="`https://ouredenlifev2-staging.netlify.app${singleUrl}`"
+        :data-href="`https://ouredenlife.com${singleUrl}`"
         data-width="100%"
         data-numposts="5"
       ></div>
@@ -426,13 +424,13 @@ export default {
 
   head() {
     return {
-      title: this.article.title.rendered,
+      title: this.article.title.rendered.replace(/(<([^>]+)>)/gi, ''),
       meta: [...this.meta],
       link: [
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app${this.$route.fullPath}`,
+          href: `https://ouredenlife.com${this.$route.fullPath}`,
         },
       ],
     }
@@ -442,9 +440,9 @@ export default {
     meta() {
       const metaData = {
         type: 'article',
-        title: this.article.title.rendered,
+        title: this.article.title.rendered.replace(/(<([^>]+)>)/gi, ''),
         description: this.article.excerpt.rendered.replace(/(<([^>]+)>)/gi, ''),
-        url: `https://ouredenlifev2-staging.netlify.app${this.$route.fullPath}`,
+        url: `https://ouredenlife.com${this.$route.fullPath}`,
         mainImage: this.article._embedded['wp:featuredmedia'][0].source_url,
       }
       return getSiteMeta(metaData)
@@ -666,6 +664,34 @@ export default {
       &:hover {
         text-decoration: underline;
         color: color(eden-green-primary);
+      }
+    }
+    .wp-block-button {
+      display: flex;
+      justify-content: center;
+      align-self: center;
+    }
+    a.wp-block-button__link {
+      text-decoration: none;
+      line-height: 23px;
+      @include font-size(lg);
+      background-color: color(eden-green-primary);
+      color: color(eden-neutral-7);
+      border-radius: 4px;
+      transition: all 0.4s ease-in-out;
+      padding: $gap * 1.6 $gap * 2.9;
+      margin-top: 0;
+      &:hover {
+        box-shadow: 0px 2px 4px rgba(3, 168, 78, 0.239);
+        background-color: color(eden-green-250);
+        color: color(eden-neutral-7);
+      }
+      &:active {
+        background-image: radial-gradient(
+          circle at center right,
+          rgba(0, 141, 64, 0.1) 50%,
+          #008d40 50%
+        );
       }
     }
 

@@ -316,7 +316,7 @@
           v-if="currentMeals.length"
           type="button"
           class="btn"
-          @click.prevent="trackDevice"
+          @click.prevent="greenhouseSignUp('I want a meal plan - KE')"
         >
           I Want a Meal Plan
         </button>
@@ -674,7 +674,7 @@
             class="options__service-item options__service-laundry"
             @mouseenter.stop="exploreService = 'laundry'"
             @mouseleave.stop="exploreService = ''"
-            @click="trackLink('Laundry')"
+            @click="greenhouseSignUp('Laundry')"
           >
             <h3>🧺</h3>
             <h5>Laundry</h5>
@@ -682,7 +682,7 @@
               Fresh, clean and crisp clothes at your doorstep. Whenever you need
               it .
             </p>
-            <nuxt-link :to="{ path: '/' }" class="btn">
+            <nuxt-link :to="{ path: '/laundry/' }" class="btn">
               {{
                 exploreService === 'laundry' || setExploreService
                   ? 'Explore'
@@ -717,7 +717,7 @@
             <h3>🏠</h3>
             <h5>Cleaning</h5>
             <p>Professional cleaning at your doorstep. Up to thrice a week.</p>
-            <nuxt-link :to="{ path: '/cleaning' }" class="btn">
+            <nuxt-link :to="{ path: '/cleaning/' }" class="btn">
               {{
                 exploreService === 'cleaning' || setExploreService
                   ? 'Explore'
@@ -751,7 +751,7 @@
             <h3>💅</h3>
             <h5>Beauty</h5>
             <p>Spa quality treatments at your fingertips. Weekly or monthly.</p>
-            <nuxt-link :to="{ path: '/beauty' }" class="btn">
+            <nuxt-link :to="{ path: '/beauty/' }" class="btn">
               {{
                 exploreService === 'beauty' || setExploreService
                   ? 'Explore!'
@@ -1344,7 +1344,7 @@ export default {
       this.videoControl()
     },
     downloadApp() {
-      mixpanelTrackEvent('Download App - food banner')
+      mixpanelTrackEvent('Download App - food banner - ke')
       const userAgent = navigator.userAgent || navigator.vendor || window.opera
       if (/android/i.test(userAgent)) {
         window.location.href =
@@ -1370,22 +1370,9 @@ export default {
     closeModal() {
       this.showSuccessModal = !this.showSuccessModal
     },
-    trackDevice() {
-      if (navigator.userAgent.toLowerCase().indexOf('android') > -1) {
-        window.location.href =
-          window.location.href =
-          window.location.href =
-            'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
-      }
-      if (navigator.userAgent.toLowerCase().indexOf('iphone') > -1) {
-        window.location.href =
-          window.location.href =
-          window.location.href =
-            'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
-      } else {
-        this.scrollToFooter('#get-the-app', 'I want a meal plan') ||
-          this.scrollToFooter('#get-the-app', 'Download App')
-      }
+    greenhouseSignUp(label) {
+      mixpanelTrackEvent(label)
+      this.$router.push({ name: 'signup', query: this.$route.query })
     },
   },
 }

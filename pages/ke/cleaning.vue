@@ -25,7 +25,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="trackDevice"
+              @click.prevent="greenhouseSignUp('Cleaning hero - KE')"
             >
               Download App
             </button>
@@ -192,7 +192,7 @@
                   fingertips!
                 </p>
               </div>
-              <button type="button" class="btn" @click.prevent="trackDevice">
+              <button type="button" class="btn" @click.prevent="greenhouseSignUp('Download App - KE')">
                 Download App
               </button>
             </div>
@@ -720,7 +720,7 @@
               Food: Curated meals prepared fresh at a fraction of the cost.
               Weekly.
             </p>
-            <nuxt-link :to="{ path: '/food' }" class="btn">
+            <nuxt-link :to="{ path: '/food/' }" class="btn">
               {{
                 exploreService === 'food' || setExploreService ? 'Explore' : ''
               }}
@@ -1077,17 +1077,9 @@ export default {
     window.addEventListener('scroll', this.isInViewport)
   },
   methods: {
-    trackDevice() {
-      if (navigator.userAgent.toLowerCase().indexOf('android') > -1) {
-        window.location.href =
-          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
-      }
-      if (navigator.userAgent.toLowerCase().indexOf('iphone') > -1) {
-        window.location.href =
-          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
-      } else {
-        this.scrollToFooter('#get-the-app', 'Download App')
-      }
+    greenhouseSignUp(label) {
+      mixpanelTrackEvent(label)
+      this.$router.push({ name: 'signup', query: this.$route.query })
     },
     currencyFormat,
     openQuestion(question) {

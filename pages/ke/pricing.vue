@@ -993,6 +993,7 @@ import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 import { currencyFormat, formatNumber, scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { pricing } from '~/static/ke/pricing'
+import getSiteMeta from '~/utils/getSiteMeta'
 import { getCleaningServiceTypes, signupApi } from '~/request/all.api'
 
 export default {
@@ -1012,6 +1013,30 @@ export default {
     },
   },
   layout: 'ke-default',
+  head() {
+    return {
+      title: 'Eden | Pricing',
+      meta: [...this.meta],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlifev2-staging.netlify.app/ke/pricing/`,
+        },
+      ],
+    }
+  },
+  computed: {
+    meta() {
+      const metaData = {
+        title: 'Eden | Pricing',
+        description: `Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!`,
+        url: `https://ouredenlifev2-staging.netlify.app/ke/pricing/`,
+        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+      }
+      return getSiteMeta(metaData)
+    },
+  },
   data() {
     return {
       cleaningPlanType: 'standard-cleaning',

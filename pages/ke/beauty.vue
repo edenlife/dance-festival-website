@@ -1673,7 +1673,7 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/ke/beauty`,
+          href: `https://ouredenlifev2-staging.netlify.app/ke/beauty/`,
         },
       ],
     }
@@ -1683,7 +1683,7 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
       const metaData = {
         title: 'Eden | Beauty',
         description: 'Personalized self-care, your place, your time.',
-        url: `https://ouredenlifev2-staging.netlify.app/ke/beauty`,
+        url: `https://ouredenlifev2-staging.netlify.app/ke/beauty/`,
         mainImage: 'https://ouredenlifev2-staging.netlify.app/ke/edencardbeauty.png',
       }
       return getSiteMeta(metaData)

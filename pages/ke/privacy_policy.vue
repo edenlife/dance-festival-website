@@ -54,7 +54,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlife.ke/privacy_policy`,
+          href: `https://ouredenlifev2-staging.netlify.app/ke/privacy_policy/`,
         },
       ],
     }

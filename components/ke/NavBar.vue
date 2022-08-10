@@ -9,7 +9,7 @@
       class="navigation"
       @mouseleave.stop="showService = false"
     >
-      <nuxt-link :to="{ path: '/ke' }" class="navigation__logo">
+      <nuxt-link :to="{ path: '/ke/' }" class="navigation__logo">
         <img
           src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611230252/eden-website-v2/eden-logo_lcepc6.svg"
           alt="Eden logo"
@@ -24,7 +24,7 @@
         ></li>
         <li @click="trackLink('Contact us')">
           <nuxt-link
-            :to="{ path: '/ke/contact_us' }"
+            :to="{ path: '/ke/contact_us/' }"
             class="navigation__menu-item"
           >
             Contact Us
@@ -72,7 +72,7 @@
                     @mouseleave.stop="service = ''"
                   >
                     <nuxt-link
-                      :to="{ path: '/ke/food' }"
+                      :to="{ path: '/ke/food/' }"
                       class="service__list-item"
                     >
                       <span>🥘</span>
@@ -125,7 +125,7 @@
                     @mouseleave.stop="service = ''"
                   >
                     <nuxt-link
-                      :to="{ path: '/ke/laundry' }"
+                      :to="{ path: '/ke/laundry/' }"
                       class="service__list-item"
                     >
                       <span>🧺</span>
@@ -179,7 +179,7 @@
                     @mouseleave.stop="service = ''"
                   >
                     <nuxt-link
-                      :to="{ path: '/ke/cleaning' }"
+                      :to="{ path: '/ke/cleaning/' }"
                       class="service__list-item"
                     >
                       <span>🏠</span>
@@ -233,7 +233,7 @@
                     @mouseleave.stop="service = ''"
                   >
                     <nuxt-link
-                      :to="{ path: '/ke/beauty' }"
+                      :to="{ path: '/ke/beauty/' }"
                       class="service__list-item"
                     >
                       <span>💅</span>
@@ -286,7 +286,7 @@
           </div>
         </li>
         <li @click="trackLink('Pricing')">
-          <nuxt-link :to="{ path: '/ke/pricing' }" class="navigation__menu-item">
+          <nuxt-link :to="{ path: '/ke/pricing/' }" class="navigation__menu-item">
             Pricing
           </nuxt-link>
         </li>
@@ -298,6 +298,149 @@
           >
             Download App
           </button>
+        </li>
+                <li>
+          <div class="navigation__menu-item navigation__menu-service">
+            <button
+              type="button"
+              class="btn"
+              @mouseenter.stop="switchLocation = true"
+            >
+              <img
+                :src="require(`~/assets/images/greenhouse/flags/KE.svg`)"
+                alt="flag"
+              />
+              <svg
+                width="10"
+                height="6"
+                viewBox="0 0 10 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 1L5 5L9 1"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+            <transition name="fade">
+              <div
+                v-if="switchLocation"
+                class="service"
+                @mouseleave.stop="switchLocation = false"
+              >
+                 <ul class="service__list">
+                    <li
+                      :class="{ nigeria: locations === 'nigeria' }"
+                      @click="trackLink('Nigeria')"
+                      @mouseenter.stop="location = 'nigeria'"
+                      @mouseleave.stop="location = ''"
+                    >
+                      <nuxt-link :to="{ path: '/' }" class="service__list-item">
+                        <span>🇳🇬</span>
+                        <h5>Nigeria</h5>
+                        <svg
+                          v-if="locations === 'nigeria'"
+                          width="15"
+                          height="10"
+                          viewBox="0 0 15 10"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M1 5L13 5"
+                            stroke="#7189FF"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M10 9L14 5L10 1"
+                            stroke="#7189FF"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+
+                        <svg
+                          v-else
+                          width="6"
+                          height="10"
+                          viewBox="0 0 6 10"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M1 9L5 5L1 1"
+                            stroke="#798B83"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </nuxt-link>
+                    </li>
+                    <li
+                      :class="{ kenya: locations === 'kenya' }"
+                      @click="trackLink('Cleaning')"
+                      @mouseenter.stop="locations = 'kenya'"
+                      @mouseleave.stop="locations = ''"
+                    >
+                      <nuxt-link
+                        :to="{ path: '/ke' }"
+                        class="service__list-item"
+                      >
+                        <span>🇰🇪</span>
+                        <h5>Kenya</h5>
+                        <svg
+                          v-if="locations === 'kenya'"
+                          width="15"
+                          height="10"
+                          viewBox="0 0 15 10"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M1 5L13 5"
+                            stroke="#FF9D00"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M10 9L14 5L10 1"
+                            stroke="#FF9D00"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+
+                        <svg
+                          v-else
+                          width="6"
+                          height="10"
+                          viewBox="0 0 6 10"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M1 9L5 5L1 1"
+                            stroke="#798B83"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </nuxt-link>
+                    </li>
+                  </ul>
+              </div>
+            </transition>
+          </div>
         </li>
       </ul>
       <button class="navigation__btn" type="button" @click="handleToggle()">
@@ -360,7 +503,7 @@
                     class="menu--list-item food"
                     @click.prevent="handleToggle('Food')"
                   >
-                    <nuxt-link :to="{ path: '/ke/food' }" class="">
+                    <nuxt-link :to="{ path: '/ke/food/' }" class="">
                       <span class="icon">🥘</span>
                       <span>Food</span>
                     </nuxt-link>
@@ -369,7 +512,7 @@
                     class="menu--list-item laundry"
                     @click.prevent="handleToggle('Laundry')"
                   >
-                    <nuxt-link :to="{ path: '/ke/laundry' }" class="">
+                    <nuxt-link :to="{ path: '/ke/laundry/' }" class="">
                       <span class="icon">🧺</span>
                       <span>Laundry</span>
                     </nuxt-link>
@@ -378,7 +521,7 @@
                     class="menu--list-item cleaning"
                     @click.prevent="handleToggle('Cleaning')"
                   >
-                    <nuxt-link :to="{ path: '/ke/cleaning' }" class="">
+                    <nuxt-link :to="{ path: '/ke/cleaning/' }" class="">
                       <span class="icon">🏠</span>
                       <span>Cleaning</span>
                     </nuxt-link>
@@ -387,7 +530,7 @@
                     class="menu--list-item gifting"
                     @click.prevent="handleToggle('beauty')"
                   >
-                    <nuxt-link :to="{ path: '/beauty' }" class="">
+                    <nuxt-link :to="{ path: '/ke/beauty/' }" class="">
                       <span class="icon">💅</span>
                       <span>Beauty</span>
                     </nuxt-link>
@@ -397,7 +540,7 @@
             </li>
             <li class="menu--list" @click.prevent="handleToggle('Pricing')">
               <nuxt-link
-                :to="{ path: '/ke/pricing' }"
+                :to="{ path: '/ke/pricing/' }"
                 class="navigation__mobile-item"
               >
                 Pricing
@@ -536,6 +679,7 @@ export default {
       modalText: 'information',
       service: '',
       showService: false,
+      switchLocation: false,
       showNavbar: false,
       visible: false,
       window: {
@@ -543,6 +687,7 @@ export default {
         height: 0,
       },
       currentRoute: '',
+      locations: '',
       contactVisible: false,
       routeUpdate: '',
       showWaitListForm: false,

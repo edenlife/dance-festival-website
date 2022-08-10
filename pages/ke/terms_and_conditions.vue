@@ -83,7 +83,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlife.ke/terms_and_conditions`,
+          href: `https://ouredenlifev2-staging.netlify.app/ke/terms_and_conditions/`,
         },
       ],
     }

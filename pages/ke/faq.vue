@@ -294,12 +294,12 @@
               gardener has been carefully screened and trained to handle all
               your requests with great attention to detail.
               <br />
-              <br/>
+              <br />
               They have one job - to understand all the things you need to live
               your best Eden life, and to ensure that we provide you with
               exactly that.
               <br />
-              <br/>
+              <br />
               When you sign up on Eden, you have access to your Gardener's
               profile that list information on who they are and what they do.
             </p>
@@ -373,7 +373,7 @@
               <strong> food, to cleaning and laundry, beauty and more.</strong>
               And that's just the beginning.
               <br />
-              <br/>
+              <br />
               If there’s ever a service you wish your Gardener provided (that
               they don’t, as yet), select the ‘Feedback’ option on the Gardener
               profile, and we’ll get the message!
@@ -745,6 +745,7 @@ import { required, email } from 'vuelidate/lib/validators'
 import { scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { faqApi } from '~/request/all.api'
+import getSiteMeta from '~/utils/getSiteMeta'
 
 export default {
   mixins: [validationMixin],
@@ -761,6 +762,30 @@ export default {
     }
   },
   layout: 'ke-default',
+  head() {
+    return {
+      title: 'Eden | FAQ',
+      meta: [...this.meta],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlifev2-staging.netlify.app/ke/faq/`,
+        },
+      ],
+    }
+  },
+  computed: {
+    meta() {
+      const metaData = {
+        title: 'Eden | FAQ',
+        description: `Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!`,
+        url: `https://ouredenlifev2-staging.netlify.app/ke/faq/`,
+        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+      }
+      return getSiteMeta(metaData)
+    },
+  },
   mounted() {
     mixpanelTrackEvent('FAQs page')
   },

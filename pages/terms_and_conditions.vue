@@ -78,6 +78,13 @@ export default {
         { name: 'twitter:description', content: [this.content] },
         { property: 'og:description', content: [this.content] },
       ],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlifev2-staging.netlify.app/terms_and_conditions/`,
+        },
+      ],
     }
   },
   mounted() {

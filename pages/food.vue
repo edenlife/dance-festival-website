@@ -507,7 +507,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/food`,
+          href: `https://ouredenlifev2-staging.netlify.app/food/`,
         },
       ],
     }
@@ -518,7 +518,7 @@ export default {
         title: 'Eden | Food',
         description:
           'Your chef-cooked meals, delivered to you. Daily or weekly.',
-        url: `https://ouredenlifev2-staging.netlify.app/food`,
+        url: `https://ouredenlifev2-staging.netlify.app/food/`,
         mainImage: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
       }
       return getSiteMeta(metaData)

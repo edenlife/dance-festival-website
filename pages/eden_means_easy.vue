@@ -1002,7 +1002,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/eden_means_easy`,
+          href: `https://ouredenlifev2-staging.netlify.app/eden_means_easy/`,
         },
       ],
     }
@@ -1018,7 +1018,7 @@ export default {
       const metaData = {
         title: 'Eden | Eden Means Easy',
         description: '10 Reasons Why Eden Means Easy. ',
-        url: `https://ouredenlifev2-staging.netlify.app/eden_means_easy`,
+        url: `https://ouredenlifev2-staging.netlify.app/eden_means_easy/`,
       }
       return getSiteMeta(metaData)
     },

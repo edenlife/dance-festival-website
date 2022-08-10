@@ -1059,9 +1059,9 @@
           </div>
           <transition name="slide-fade">
             <p v-if="questions.includes('fifteen')">
-              1. Standard cleaning involves sweeping, mopping, dusting and wiping
-              all surfaces, washing dirty dishes, arranging furniture, laying
-              beds and folding clothes, disinfecting, washing toilet and
+              1. Standard cleaning involves sweeping, mopping, dusting and
+              wiping all surfaces, washing dirty dishes, arranging furniture,
+              laying beds and folding clothes, disinfecting, washing toilet and
               urinals, then empty trash cans. Weeks and Once Monthly)
               <br />
               <br />
@@ -1144,8 +1144,8 @@
 
               <br />
               <br />
-              3. How is payment done? We offer a one monthly payment plan with no
-              hidden delivery fees.
+              3. How is payment done? We offer a one monthly payment plan with
+              no hidden delivery fees.
             </p>
           </transition>
         </div>
@@ -1279,8 +1279,8 @@
           </div>
           <transition name="slide-fade">
             <p v-if="questions.includes('eighteen')">
-              We currently offer our services in Lagos.
-              Other locations will be added soon.
+              We currently offer our services in Lagos. Other locations will be
+              added soon.
             </p>
           </transition>
         </div>
@@ -1489,7 +1489,8 @@
               their team members/staff to an amazing experience, each team
               member gets a personalized service. You can sign up for this by
               completing the form via this
-              <nuxt-link                 style="color: #03a84e"
+              <nuxt-link
+                style="color: #03a84e"
                 :to="{ path: '/companies' }"
                 @click.prevent="trackLink('Companies')"
               >
@@ -1650,6 +1651,7 @@ import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 import { scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import getSiteMeta from '~/utils/getSiteMeta'
 import { faqApi } from '~/request/all.api'
 
 export default {
@@ -1665,6 +1667,30 @@ export default {
         message: null,
       },
     }
+  },
+  head() {
+    return {
+      title: 'Eden | FAQ',
+      meta: [...this.meta],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlifev2-staging.netlify.app/faq/`,
+        },
+      ],
+    }
+  },
+  computed: {
+    meta() {
+      const metaData = {
+        title: 'Eden | FAQ',
+        description: `Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!`,
+        url: `https://ouredenlifev2-staging.netlify.app/faq/`,
+        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+      }
+      return getSiteMeta(metaData)
+    },
   },
   mounted() {
     mixpanelTrackEvent('FAQs page')

@@ -1126,6 +1126,21 @@ export default {
           rel: 'canonical',
           href: `https://ouredenlifev2-staging.netlify.app/ke/laundry/`,
         },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ng',
+          href: 'https://ouredenlifev2-staging.netlify.app/laundry/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlifev2-staging.netlify.app/ke/laundry/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: 'https://ouredenlifev2-staging.netlify.app/laundry/',
+        },
       ],
     }
   },

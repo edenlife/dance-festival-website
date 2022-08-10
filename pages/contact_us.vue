@@ -79,7 +79,7 @@ export default {
   mounted() {
     mixpanelTrackEvent('Contact Us page')
   },
-    head() {
+  head() {
     return {
       title: 'Eden | Contact Us',
       meta: [...this.meta],
@@ -88,6 +88,21 @@ export default {
           hid: 'canonical',
           rel: 'canonical',
           href: `https://ouredenlifev2-staging.netlify.app/contact_us/`,
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ng',
+          href: 'https://ouredenlifev2-staging.netlify.app/contact_us/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlifev2-staging.netlify.app/ke/contact_us/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: 'https://ouredenlifev2-staging.netlify.app/contact_us/',
         },
       ],
     }

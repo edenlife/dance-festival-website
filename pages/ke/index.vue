@@ -3,8 +3,7 @@
     <div class="container--hero">
       <div class="hero">
         <div class="hero__title">
-          <div class="hero__title-status">
-          </div>
+          <div class="hero__title-status"></div>
           <h1>
             Say goodbye to <br />
 
@@ -44,11 +43,9 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="
-                trackDevice('Download App - hero')
-              "
+              @click.prevent="trackDevice('Download App - hero')"
             >
-             Download App
+              Download App
             </button>
           </div>
         </div>
@@ -81,8 +78,7 @@
             <h3>🥘</h3>
             <h5>Food</h5>
             <p>
-              Curated meals prepared fresh at a fraction of the cost.
-              Weekly.
+              Curated meals prepared fresh at a fraction of the cost. Weekly.
             </p>
             <nuxt-link :to="{ path: '/food' }" class="btn">
               {{
@@ -435,13 +431,11 @@
                 Download App
               </button> -->
               <button
-                 type="button"
-                 class="btn"
-                @click.prevent="
-                  trackDevice('Download App - video')
-                "
+                type="button"
+                class="btn"
+                @click.prevent="trackDevice('Download App - video')"
               >
-              Download App
+                Download App
               </button>
             </div>
           </div>
@@ -543,7 +537,8 @@
           <div class="questions__title-form">
             <p>Not in Nairobi?</p>
             <p>
-              We're coming to your city. Be the first to know when we touch down.
+              We're coming to your city. Be the first to know when we touch
+              down.
             </p>
             <form class="form__input">
               <input
@@ -698,14 +693,14 @@
             </div>
             <transition name="slide-fade">
               <p v-if="questions.includes('one')">
-                Easy. We're bringing the convenience of room service to cities across Africa.
-                We started with Lagos and have launched in Nairobi.
-                With Eden, you can outsource all routine tasks to us, 
-                so you can focus on the things with the most impact. 
-                From work, to family time and relaxation, y
-                ou deserve to live stress free and at your convenience 
-                with extra comfort. <br />Some people call us the
-                <strong><i>Concierge of Comfort </i></strong>– they're correct.
+                Easy. We're bringing the convenience of room service to cities
+                across Africa. We started with Lagos and have launched in
+                Nairobi. With Eden, you can outsource all routine tasks to us,
+                so you can focus on the things with the most impact. From work,
+                to family time and relaxation, y ou deserve to live stress free
+                and at your convenience with extra comfort. <br />Some people
+                call us the <strong><i>Concierge of Comfort </i></strong>–
+                they're correct.
               </p>
             </transition>
           </div>
@@ -846,7 +841,9 @@
                 <a
                   href="#"
                   style="color: #03a84e"
-                  @click.prevent="scrollToFooter('#get-the-app', 'homepage-faq')"
+                  @click.prevent="
+                    scrollToFooter('#get-the-app', 'homepage-faq')
+                  "
                   >Eden</a
                 >, you can configure a plan that fits your needs, then you get
                 assigned a Gardener to help you manage your home or office. The
@@ -1082,78 +1079,78 @@
         </div>
 
         <div class="questions__title-form mobile">
-           <p>Not in Nairobi?</p>
-            <p>
-              We're coming to your city. Be the first to know when we touch down.
-            </p>
-            <form class="form__input">
-              <input
-                id=""
-                v-model="bound_fields.email"
-                type="email"
-                name=""
-                placeholder="Enter your email"
-                :class="{ 'has-error': $v.bound_fields.email.$error }"
-              />
-              <div class="form__input-item">
-                <div
-                  class="select"
-                  :data-value="bound_fields.city"
-                  :data-list="cities"
-                >
-                  <div class="selector" @click="toggle()">
-                    <div class="label">
-                      <span
-                        :class="{
-                          placeholder: cityName === 'Select your city',
-                        }"
-                        >{{ cityName }}</span
-                      >
-                    </div>
-                    <svg
-                      class="arrow"
-                      :class="{ expanded: visible }"
-                      width="10"
-                      height="6"
-                      viewBox="0 0 10 6"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
+          <p>Not in Nairobi?</p>
+          <p>
+            We're coming to your city. Be the first to know when we touch down.
+          </p>
+          <form class="form__input">
+            <input
+              id=""
+              v-model="bound_fields.email"
+              type="email"
+              name=""
+              placeholder="Enter your email"
+              :class="{ 'has-error': $v.bound_fields.email.$error }"
+            />
+            <div class="form__input-item">
+              <div
+                class="select"
+                :data-value="bound_fields.city"
+                :data-list="cities"
+              >
+                <div class="selector" @click="toggle()">
+                  <div class="label">
+                    <span
+                      :class="{
+                        placeholder: cityName === 'Select your city',
+                      }"
+                      >{{ cityName }}</span
                     >
-                      <path
-                        d="M1 1L5 5L9 1"
-                        stroke="#93A29B"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
+                  </div>
+                  <svg
+                    class="arrow"
+                    :class="{ expanded: visible }"
+                    width="10"
+                    height="6"
+                    viewBox="0 0 10 6"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 1L5 5L9 1"
+                      stroke="#93A29B"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
 
-                    <div :class="{ hidden: !visible, visible }">
-                      <transition name="slide-fade">
-                        <ul>
-                          <li
-                            v-for="city in cities"
-                            :key="city.id"
-                            :class="{ current: city.id === bound_fields.city }"
-                            :value="city.name"
-                            @click="select(city)"
-                          >
-                            {{ city.name }}
-                          </li>
-                        </ul>
-                      </transition>
-                    </div>
+                  <div :class="{ hidden: !visible, visible }">
+                    <transition name="slide-fade">
+                      <ul>
+                        <li
+                          v-for="city in cities"
+                          :key="city.id"
+                          :class="{ current: city.id === bound_fields.city }"
+                          :value="city.name"
+                          @click="select(city)"
+                        >
+                          {{ city.name }}
+                        </li>
+                      </ul>
+                    </transition>
                   </div>
                 </div>
-                <button
-                  type="submit"
-                  class="form__input-btn"
-                  :disabled="loading"
-                  @click.prevent="submitForm"
-                >
-                  Send Message
-                </button>
               </div>
-            </form>
+              <button
+                type="submit"
+                class="form__input-btn"
+                :disabled="loading"
+                @click.prevent="submitForm"
+              >
+                Send Message
+              </button>
+            </div>
+          </form>
         </div>
       </section>
     </div>
@@ -1172,7 +1169,7 @@
               :src="require(`~/assets/images/techcabal.svg`)"
               alt="techcabal"
           /></a>
-           <a
+          <a
             href="https://techpoint.africa/2022/04/29/techpoint-digest-313/eden-life-app/"
             target="_blank"
           >
@@ -1184,42 +1181,54 @@
             href="https://businessday.ng/technology/article/eden-life-acquires-kenyan-lynk-in-push-for-east-african-market/"
             target="_blank"
           >
-            <img :src="require(`~/assets/images/business-day.svg`)" alt="business day"
+            <img
+              :src="require(`~/assets/images/business-day.svg`)"
+              alt="business day"
           /></a>
-          <a
-            href="https://africansbuildingafrica.co/?p=11811"
-            target="_blank"
-          >
+          <a href="https://africansbuildingafrica.co/?p=11811" target="_blank">
             <img :src="require(`~/assets/images/press2.svg`)" alt="press2"
           /></a>
-          <a href="https://techtrendske.co.ke/Samburuias-home-services-subscription-app-eden-life-acquires-kenyas-lynk/" target="_blank">
+          <a
+            href="https://techtrendske.co.ke/Samburuias-home-services-subscription-app-eden-life-acquires-kenyas-lynk/"
+            target="_blank"
+          >
             <img
               :src="require(`~/assets/images/Tech-trends.svg`)"
               alt="tech trends"
           /></a>
         </div>
         <div class="press__link-two">
-           <a href="https://ceobusinessafrica.com/eden-life-acquires-technology-startup-lynk-for-strategic-partnership-in-kenya/" target="_blank">
+          <a
+            href="https://ceobusinessafrica.com/eden-life-acquires-technology-startup-lynk-for-strategic-partnership-in-kenya/"
+            target="_blank"
+          >
             <img
               :src="require(`~/assets/images/business-africa.svg`)"
               alt="business africa"
           /></a>
-          <a href="https://hapakenya.com/2022/05/02/home-concierge-platform-eden-life-expands-to-kenya-acquires-lynk/" target="_blank">
+          <a
+            href="https://hapakenya.com/2022/05/02/home-concierge-platform-eden-life-expands-to-kenya-acquires-lynk/"
+            target="_blank"
+          >
             <img
               :src="require(`~/assets/images/hapa-kenya.svg`)"
               alt="hapa kenya"
           /></a>
-          <a href="https://innovation-village.com/eden-life-expands-to-kenya-and-acquires-lynk/" target="_blank">
+          <a
+            href="https://innovation-village.com/eden-life-expands-to-kenya-and-acquires-lynk/"
+            target="_blank"
+          >
             <img
               :src="require(`~/assets/images/innovation-village.svg`)"
               alt="innovation villa"
           /></a>
-          <a href="https://kenyandigest.com/home-services-subscription-app-eden-life-has-expanded-to-kenya/" target="_blank">
-            <img
-              :src="require(`~/assets/images/kd.svg`)"
-              alt="KD"
+          <a
+            href="https://kenyandigest.com/home-services-subscription-app-eden-life-has-expanded-to-kenya/"
+            target="_blank"
+          >
+            <img :src="require(`~/assets/images/kd.svg`)" alt="KD"
           /></a>
-         </div>
+        </div>
       </section>
     </div>
 
@@ -1387,16 +1396,41 @@
       </div>
       <div slot="footer"></div>
     </modal>
-   <download-banner v-if="showDownloadBanner" :show-download-banner="showDownloadBanner" class="download-banner">
+    <download-banner
+      v-if="showDownloadBanner"
+      :show-download-banner="showDownloadBanner"
+      class="download-banner"
+    >
       <div slot="header"></div>
       <div slot="body" class="content">
         <div class="banner">
           <div>
-            <button class="btn btn--success" @click="showDownloadBanner = false">
-                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 12.25L12.25 1" stroke="#4B6358" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M1 1L12.25 12.25" stroke="#4B6358" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+            <button
+              class="btn btn--success"
+              @click="showDownloadBanner = false"
+            >
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 13 13"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 12.25L12.25 1"
+                  stroke="#4B6358"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M1 1L12.25 12.25"
+                  stroke="#4B6358"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
             </button>
           </div>
           <div>
@@ -1407,9 +1441,7 @@
             />
           </div>
           <div>
-            <p class="font-text">
-              Enjoy the good life.
-            </p>
+            <p class="font-text">Enjoy the good life.</p>
             <p>Say goodbye to chores forever.</p>
           </div>
           <div>
@@ -1424,7 +1456,7 @@
         </div>
       </div>
       <div slot="footer"></div>
-  </download-banner>
+    </download-banner>
   </div>
 </template>
 
@@ -1441,9 +1473,9 @@ import LeadList from '../../components/ke/LeadList'
 
 export default {
   components: {
-    Modal: () => import("@/components/Modal.vue"),
-    LeadList
-},
+    Modal: () => import('@/components/Modal.vue'),
+    LeadList,
+  },
   directives: {
     ClickOutside,
   },
@@ -1461,9 +1493,9 @@ export default {
       service: { required },
     },
     bound_fields: {
-        email: { required, email },
-        city: { required },
-      },
+      email: { required, email },
+      city: { required },
+    },
   },
   data() {
     return {
@@ -1705,6 +1737,21 @@ export default {
           rel: 'canonical',
           href: `https://ouredenlifev2-staging.netlify.app/ke/`,
         },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ng',
+          href: 'https://ouredenlifev2-staging.netlify.app/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlifev2-staging.netlify.app/ke/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: 'https://ouredenlifev2-staging.netlify.app/',
+        },
       ],
     }
   },
@@ -1733,7 +1780,7 @@ export default {
     })
   },
   methods: {
-     scrollToFooter(id, label) {
+    scrollToFooter(id, label) {
       scrollToApp(id, label)
     },
     scrollToTop(ref) {
@@ -1755,7 +1802,7 @@ export default {
     submitSuggestion() {
       this.$v.suggestion.$touch()
       if (!this.$v.suggestion.$error) {
-         this.loading = true
+        this.loading = true
         const metadata = {
           Service: this.suggestion.service,
         }
@@ -1770,9 +1817,9 @@ export default {
             mixpanelTrackEvent('Service Suggestion form submitted')
           })
         }, 500)
-      }     
+      }
     },
-     async submitForm() {
+    async submitForm() {
       this.$v.bound_fields.$touch()
       if (this.$v.bound_fields.$error) return
       if (!this.$v.bound_fields.$error) {
@@ -1793,9 +1840,11 @@ export default {
                 )
                 this.$nextTick(() => {
                   this.$v.bound_fields.$reset()
-                   this.cityName = 'Select your city'
-                   this.showSuccessModal = true
-                   mixpanelTrackEvent('City Suggestion form submitted - homepage')
+                  this.cityName = 'Select your city'
+                  this.showSuccessModal = true
+                  mixpanelTrackEvent(
+                    'City Suggestion form submitted - homepage'
+                  )
                 })
               }, 500)
             },
@@ -1844,7 +1893,7 @@ export default {
           }
       }
     },
-     select(option) {
+    select(option) {
       this.bound_fields.city = option.id
       this.cityName = option.name
     },
@@ -1889,7 +1938,7 @@ export default {
     //     }, 500)
     //   }
     // },
-     isInViewport() {
+    isInViewport() {
       const element = document.querySelector('#cleaning-video')
       const { top, bottom } = element.getBoundingClientRect()
       const vHeight =
@@ -1947,7 +1996,7 @@ export default {
       this.videoControl()
     },
     playButtonClicked() {
-     mixpanelTrackEvent('How it works replay - Lead page nairobi')
+      mixpanelTrackEvent('How it works replay - Lead page nairobi')
       this.playVideo()
     },
     openSocialMedia(name, url) {
@@ -1955,15 +2004,15 @@ export default {
       window.open(url, '_blank')
     },
     downloadApp() {
-       mixpanelTrackEvent('Download App - homepage banner')
+      mixpanelTrackEvent('Download App - homepage banner')
       const userAgent = navigator.userAgent || navigator.vendor || window.opera
-      if(/android/i.test(userAgent)){
-            window.location.href = 
-           'https://play.google.com/store/apps/details?id=com.ouredenlife.app';
+      if (/android/i.test(userAgent)) {
+        window.location.href =
+          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
       }
-      if(/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream){
-          window.location.href = 
-         'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1';
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href =
+          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
       }
     },
     trackLink(name, url) {
@@ -1972,17 +2021,17 @@ export default {
     },
     trackDevice() {
       mixpanelTrackEvent('Download App - homepage')
-      if(navigator.userAgent.toLowerCase().indexOf("android") > -1){
-            window.location.href = 
-           'https://play.google.com/store/apps/details?id=com.ouredenlife.app';
+      if (navigator.userAgent.toLowerCase().indexOf('android') > -1) {
+        window.location.href =
+          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
       }
-      if(navigator.userAgent.toLowerCase().indexOf("iphone") > -1){
-          window.location.href = 
-         'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1';
-      }else {
+      if (navigator.userAgent.toLowerCase().indexOf('iphone') > -1) {
+        window.location.href =
+          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
+      } else {
         this.scrollToFooter('#get-the-app', 'Download App')
       }
-    }
+    },
   },
 }
 </script>

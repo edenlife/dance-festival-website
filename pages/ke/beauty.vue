@@ -1675,6 +1675,11 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
           rel: 'canonical',
           href: `https://ouredenlifev2-staging.netlify.app/ke/beauty/`,
         },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlifev2-staging.netlify.app/ke/beauty/',
+        },
       ],
     }
   },

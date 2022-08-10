@@ -1015,6 +1015,21 @@ export default {
           rel: 'canonical',
           href: `https://ouredenlifev2-staging.netlify.app/ke/food/`,
         },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ng',
+          href: 'https://ouredenlifev2-staging.netlify.app/food/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlifev2-staging.netlify.app/ke/food/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: 'https://ouredenlifev2-staging.netlify.app/food/',
+        },
       ],
     }
   },
@@ -1025,12 +1040,12 @@ export default {
         description:
           'Your chef-cooked meals, delivered to you. Daily or weekly.',
         url: `https://ouredenlifev2-staging.netlify.app/ke/food/`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/ke/edencardfood.png',
+        mainImage:
+          'https://ouredenlifev2-staging.netlify.app/ke/edencardfood.png',
       }
       return getSiteMeta(metaData)
     },
   },
-
   mounted() {
     window.addEventListener('scroll', this.isInViewport)
     mixpanelTrackEvent('Food page')
@@ -1333,15 +1348,15 @@ export default {
       const userAgent = navigator.userAgent || navigator.vendor || window.opera
       if (/android/i.test(userAgent)) {
         window.location.href =
-            window.location.href =
-        window.location.href =
-          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
+          window.location.href =
+          window.location.href =
+            'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
       }
       if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
         window.location.href =
           window.location.href =
-        window.location.href =
-          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
+          window.location.href =
+            'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
       }
     },
     playButtonClicked() {
@@ -1358,15 +1373,15 @@ export default {
     trackDevice() {
       if (navigator.userAgent.toLowerCase().indexOf('android') > -1) {
         window.location.href =
-            window.location.href =
-        window.location.href =
-          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
+          window.location.href =
+          window.location.href =
+            'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
       }
       if (navigator.userAgent.toLowerCase().indexOf('iphone') > -1) {
         window.location.href =
           window.location.href =
-        window.location.href =
-          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
+          window.location.href =
+            'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
       } else {
         this.scrollToFooter('#get-the-app', 'I want a meal plan') ||
           this.scrollToFooter('#get-the-app', 'Download App')

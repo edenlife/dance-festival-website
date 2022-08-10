@@ -1678,6 +1678,21 @@ export default {
           rel: 'canonical',
           href: `https://ouredenlifev2-staging.netlify.app/faq/`,
         },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ng',
+          href: 'https://ouredenlifev2-staging.netlify.app/faq/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlifev2-staging.netlify.app/ke/faq/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: 'https://ouredenlifev2-staging.netlify.app/faq/',
+        },
       ],
     }
   },

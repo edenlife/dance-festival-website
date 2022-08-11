@@ -1074,6 +1074,33 @@ import { landingPageApi } from '~/request/all.api'
 
 export default {
   mixins: [validationMixin],
+
+    head() {
+    return {
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlifev2-staging.netlify.app/ke/`,
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ng',
+          href: 'https://ouredenlifev2-staging.netlify.app/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlifev2-staging.netlify.app/ke/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: 'https://ouredenlifev2-staging.netlify.app/',
+        },
+      ],
+    }
+  },
   data() {
     return {
       showFailedModal: false,

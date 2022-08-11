@@ -29,7 +29,7 @@
 <script>
 import privacy from '~/static/privacy'
 
-import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import { mixpanelTrackEvent } from '~/plugins/ke/mixpanel'
 
 export default {
   data() {

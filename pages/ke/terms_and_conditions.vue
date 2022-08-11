@@ -38,7 +38,7 @@
 
 <script>
 import terms from '~/static/terms'
-import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import { mixpanelTrackEvent } from '~/plugins/ke/mixpanel'
 
 export default {
   beforeRouteEnter(to, from, next) {

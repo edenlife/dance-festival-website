@@ -674,7 +674,7 @@
             class="options__service-item options__service-laundry"
             @mouseenter.stop="exploreService = 'laundry'"
             @mouseleave.stop="exploreService = ''"
-            @click="greenhouseSignUp('Laundry')"
+            @click="trackLink('Laundry')"
           >
             <h3>🧺</h3>
             <h5>Laundry</h5>
@@ -682,7 +682,7 @@
               Fresh, clean and crisp clothes at your doorstep. Whenever you need
               it .
             </p>
-            <nuxt-link :to="{ path: '/laundry/' }" class="btn">
+            <nuxt-link :to="{ path: '/ke/laundry/' }" class="btn">
               {{
                 exploreService === 'laundry' || setExploreService
                   ? 'Explore'
@@ -717,7 +717,7 @@
             <h3>🏠</h3>
             <h5>Cleaning</h5>
             <p>Professional cleaning at your doorstep. Up to thrice a week.</p>
-            <nuxt-link :to="{ path: '/cleaning/' }" class="btn">
+            <nuxt-link :to="{ path: '/ke/cleaning/' }" class="btn">
               {{
                 exploreService === 'cleaning' || setExploreService
                   ? 'Explore'
@@ -751,7 +751,7 @@
             <h3>💅</h3>
             <h5>Beauty</h5>
             <p>Spa quality treatments at your fingertips. Weekly or monthly.</p>
-            <nuxt-link :to="{ path: '/beauty/' }" class="btn">
+            <nuxt-link :to="{ path: '/ke/beauty/' }" class="btn">
               {{
                 exploreService === 'beauty' || setExploreService
                   ? 'Explore!'
@@ -853,7 +853,7 @@ import {
   scrollToApp,
   placeholderColorMix,
 } from '~/static/functions'
-import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import { mixpanelTrackEvent } from '~/plugins/ke/mixpanel'
 import getSiteMeta from '~/utils/getSiteMeta'
 
 export default {

@@ -23,7 +23,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="trackDevice"
+              @click.prevent="greenhouseSignUp('Download App - beauty hero')"
             >
               Download App
             </button>
@@ -187,7 +187,11 @@
                   24 hours of your order.
                 </p>
               </div>
-              <button type="button" class="btn" @click.prevent="trackDevice">
+              <button
+                type="button"
+                class="btn"
+                @click.prevent="greenhouseSignUp('Download App - beauty')"
+              >
                 Download App
               </button>
             </div>
@@ -1323,7 +1327,7 @@
               Food: Curated meals prepared fresh at a fraction of the cost.
               Weekly. .
             </p>
-            <nuxt-link :to="{ path: '/food' }" class="btn">
+            <nuxt-link :to="{ path: '/ke/food/' }" class="btn">
               {{
                 exploreService === 'food' || setExploreService ? 'Explore' : ''
               }}
@@ -1356,7 +1360,7 @@
             <h3>🏠</h3>
             <h5>Cleaning</h5>
             <p>Professional cleaning at your doorstep. Up to thrice a week.</p>
-            <nuxt-link :to="{ path: '/cleaning' }" class="btn">
+            <nuxt-link :to="{ path: '/ke/cleaning/' }" class="btn">
               {{
                 exploreService === 'cleaning' || setExploreService
                   ? 'Explore'
@@ -1394,7 +1398,7 @@
               Fresh, clean and crisp clothes at your doorstep. Whenever you need
               it .
             </p>
-            <nuxt-link :to="{ path: '/laundry' }" class="btn">
+            <nuxt-link :to="{ path: '/ke/laundry/' }" class="btn">
               {{
                 exploreService === 'laundry' || setExploreService
                   ? 'Explore'
@@ -1491,7 +1495,7 @@
 <script>
 import { pricing } from '~/static/ke/pricing'
 import { currencyFormat, scrollToApp } from '~/static/functions'
-import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import { mixpanelTrackEvent } from '~/plugins/ke/mixpanel'
 import getSiteMeta from '~/utils/getSiteMeta'
 
 export default {
@@ -1689,7 +1693,8 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
         title: 'Eden | Beauty',
         description: 'Personalized self-care, your place, your time.',
         url: `https://ouredenlifev2-staging.netlify.app/ke/beauty/`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/ke/edencardbeauty.png',
+        mainImage:
+          'https://ouredenlifev2-staging.netlify.app/ke/edencardbeauty.png',
       }
       return getSiteMeta(metaData)
     },
@@ -1890,6 +1895,10 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
     },
     closeModal() {
       this.showSuccessModal = !this.showSuccessModal
+    },
+    greenhouseSignUp(label) {
+      mixpanelTrackEvent(label)
+      this.$router.push({ name: 'signup', query: this.$route.query })
     },
     downloadApp() {
       mixpanelTrackEvent('Download App - beauty banner')

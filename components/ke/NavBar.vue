@@ -299,7 +299,7 @@
             class="header__button-solid navigation__menu-item"
             @click.prevent="greenhouseSignUp()"
           >
-            Download App
+            Get Started
           </button>
         </li>
         <li>
@@ -548,9 +548,58 @@
                 </ul>
               </transition>
             </li>
+            <li class="menu--list">
+              <div class="navigation__mobile-item service">
+                <div>
+                  <span class="icon location-icon">🇰🇪</span
+                  >Kenya
+                </div>
+                <div class="service--icon" @click="locationToggle()">
+                  <svg
+                    class="arrow"
+                    :class="{ expanded: locationVisible }"
+                    width="10"
+                    height="6"
+                    viewBox="0 0 10 6"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 1L5 5L9 1"
+                      stroke="#21312A"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <transition name="slide-fade">
+                <ul v-if="locationVisible" class="">
+                  <li
+                    class="menu--list-item"
+                    @click.prevent="handleToggle('Nigeria')"
+                  >
+                    <nuxt-link :to="{ path: '/' }" class="">
+                      <span>🇳🇬</span>
+                      <span>Nigeria</span>
+                    </nuxt-link>
+                  </li>
+                  <li
+                    class="menu--list-item"
+                    @click.prevent="handleToggle('Kenya')"
+                  >
+                    <nuxt-link :to="{ path: '/ke/' }" class="">
+                      <span>🇰🇪</span>
+                      <span>Kenya</span>
+                    </nuxt-link>
+                  </li>
+                </ul>
+              </transition>
+            </li>
             <li class="menu--list" @click.prevent="handleToggle()">
-              <a
-                href="https://ouredenlife.com/signup"
+              <nuxt-link
+                @click.prevent="greenhouseSignUp()"
                 class="navigation__mobile-item navigation__mobile-link"
               >
                 {{
@@ -558,7 +607,7 @@
                     ? 'Sign Up Now'
                     : 'Get Started'
                 }}
-              </a>
+              </nuxt-link>
             </li>
           </ul>
         </div>
@@ -634,7 +683,7 @@
 
 <script>
 import { scrollToApp, getNavigationColor } from '~/static/functions'
-import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import { mixpanelTrackEvent } from '~/plugins/ke/mixpanel'
 
 export default {
   name: 'Navigation',
@@ -657,6 +706,7 @@ export default {
       currentRoute: '',
       locations: '',
       contactVisible: false,
+      locationVisible: false,
       routeUpdate: '',
       showWaitListForm: false,
       showSuccessModal: false,
@@ -730,6 +780,9 @@ export default {
     contactToggle() {
       this.contactVisible = !this.contactVisible
     },
+    locationToggle() {
+      this.locationVisible = !this.locationVisible
+    },
     greenhouseSignUp() {
       mixpanelTrackEvent(`Get Started Clicked - homepage - Navbar KE `)
       if (this.authenticated) {
@@ -780,5 +833,8 @@ export default {
       padding: 5px 5px $gap 5px;
     }
   }
+}
+.location-icon {
+  margin-right: 5px;
 }
 </style>

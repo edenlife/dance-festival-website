@@ -80,7 +80,7 @@
             <p>
               Curated meals prepared fresh at a fraction of the cost. Weekly.
             </p>
-            <nuxt-link :to="{ path: '/food' }" class="btn">
+            <nuxt-link :to="{ path: '/ke/food' }" class="btn">
               {{
                 exploreService === 'food' || setExploreService ? 'Explore!' : ''
               }}
@@ -115,7 +115,7 @@
               Fresh, clean and crisp clothes at your doorstep. Whenever you need
               it .
             </p>
-            <nuxt-link :to="{ path: '/laundry' }" class="btn">
+            <nuxt-link :to="{ path: '/ke/laundry/' }" class="btn">
               {{
                 exploreService === 'laundry' || setExploreService
                   ? 'Explore'
@@ -152,7 +152,7 @@
               Professional cleaning services at your doorstep. Up to three times
               a week.
             </p>
-            <nuxt-link :to="{ path: '/cleaning' }" class="btn">
+            <nuxt-link :to="{ path: '/ke/cleaning/' }" class="btn">
               {{
                 exploreService === 'cleaning' || setExploreService
                   ? 'Explore!'
@@ -188,7 +188,7 @@
             <h3>💅</h3>
             <h5>Beauty</h5>
             <p>Spa quality treatments at your fingertips. Weekly or monthly.</p>
-            <nuxt-link :to="{ path: '/beauty' }" class="btn">
+            <nuxt-link :to="{ path: '/ke/beauty/' }" class="btn">
               {{
                 exploreService === 'beauty' || setExploreService
                   ? 'Explore!'
@@ -1465,7 +1465,7 @@ import { validationMixin } from 'vuelidate'
 import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 import testimonials from '~/static/ke/testimonials'
 import ClickOutside from 'vue-click-outside'
-import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import { mixpanelTrackEvent } from '~/plugins/ke/mixpanel'
 import { createCitySuggestion, createSuggestion } from '~/request/ke/airtable'
 import getSiteMeta from '~/utils/getSiteMeta'
 import { scrollToApp } from '~/static/functions'

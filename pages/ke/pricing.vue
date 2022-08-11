@@ -991,7 +991,7 @@
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 import { currencyFormat, formatNumber, scrollToApp } from '~/static/functions'
-import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import { mixpanelTrackEvent } from '~/plugins/ke/mixpanel'
 import { pricing } from '~/static/ke/pricing'
 import getSiteMeta from '~/utils/getSiteMeta'
 import { getCleaningServiceTypes, signupApi } from '~/request/all.api'

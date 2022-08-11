@@ -655,6 +655,52 @@
                 </ul>
               </transition>
             </li>
+            <li class="menu--list">
+              <div class="navigation__mobile-item service">
+                <div><span class="icon location-icon">🇰🇪</span>Nigeria</div>
+                <div class="service--icon" @click="locationToggle()">
+                  <svg
+                    class="arrow"
+                    :class="{ expanded: locationVisible }"
+                    width="10"
+                    height="6"
+                    viewBox="0 0 10 6"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 1L5 5L9 1"
+                      stroke="#21312A"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <transition name="slide-fade">
+                <ul v-if="locationVisible" class="">
+                  <li
+                    class="menu--list-item"
+                    @click.prevent="handleToggle('Kenya')"
+                  >
+                    <nuxt-link :to="{ path: '/ke/' }" class="">
+                      <span>🇰🇪</span>
+                      <span>Kenya</span>
+                    </nuxt-link>
+                  </li>
+                  <li
+                    class="menu--list-item"
+                    @click.prevent="handleToggle('Nigeria')"
+                  >
+                    <nuxt-link :to="{ path: '/' }" class="">
+                      <span>🇳🇬</span>
+                      <span>Nigeria</span>
+                    </nuxt-link>
+                  </li>
+                </ul>
+              </transition>
+            </li>
             <li class="menu--list" @click.prevent="handleToggle()">
               <a
                 href="#"
@@ -686,6 +732,7 @@ export default {
       service: '',
       showService: false,
       switchLocation: false,
+      locationVisible: false,
       showNavbar: false,
       showContact: false,
       visible: false,
@@ -815,6 +862,9 @@ export default {
     contactToggle() {
       this.contactVisible = !this.contactVisible
     },
+    locationToggle() {
+      this.locationVisible = !this.locationVisible
+    },
     handleToggle(menu) {
       if (menu) {
         mixpanelTrackEvent(`${menu} clicked - ${this.currentRoute} - Navbar`)
@@ -833,7 +883,7 @@ export default {
 .location {
   width: 200px !important;
   color: black;
-    &.service {
+  &.service {
     &::after {
       left: 75% !important;
     }
@@ -845,5 +895,7 @@ export default {
     }
   }
 }
-
+.location-icon {
+  margin-right: 5px;
+}
 </style>

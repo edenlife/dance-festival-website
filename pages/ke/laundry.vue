@@ -18,7 +18,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="trackDevice"
+              @click.prevent="greenhouseSignUp('Download App - laundry hero')"
             >
               Download App
             </button>
@@ -184,7 +184,11 @@
                   fingertips!
                 </p>
               </div>
-              <button type="button" class="btn" @click.prevent="trackDevice">
+              <button
+                type="button"
+                class="btn"
+                @click.prevent="greenhouseSignUp('Download App - laundry')"
+              >
                 Download App
               </button>
             </div>
@@ -835,7 +839,7 @@
               Food: Curated meals prepared fresh at a fraction of the cost.
               Weekly.
             </p>
-            <nuxt-link :to="{ path: '/food' }" class="btn">
+            <nuxt-link :to="{ path: '/ke/food/' }" class="btn">
               {{
                 exploreService === 'food' || setExploreService ? 'Explore' : ''
               }}
@@ -868,7 +872,7 @@
             <h3>🏠</h3>
             <h5>Cleaning</h5>
             <p>Professional cleaning at your doorstep. Up to thrice a week.</p>
-            <nuxt-link :to="{ path: '/cleaning' }" class="btn">
+            <nuxt-link :to="{ path: '/ke/cleaning/' }" class="btn">
               {{
                 exploreService === 'cleaning' || setExploreService
                   ? 'Explore'
@@ -902,7 +906,7 @@
             <h3>💅</h3>
             <h5>Beauty</h5>
             <p>Spa quality treatments at your fingertips. Weekly or monthly.</p>
-            <nuxt-link :to="{ path: '/' }" class="btn">
+            <nuxt-link :to="{ path: '/ke/beauty/' }" class="btn">
               {{
                 exploreService === 'beauty' || setExploreService
                   ? 'Explore!'
@@ -984,7 +988,7 @@
             <button
               type="button"
               class="hero__button-solid banner-btn"
-              @click.prevent="downloadApp('Download App - laundry banner')"
+              @click.prevent="greenhouseSignUp('Download App - laundry banner')"
             >
               Install
             </button>
@@ -999,7 +1003,7 @@
 <script>
 import { pricing } from '~/static/ke/pricing'
 import { currencyFormat, scrollToApp } from '~/static/functions'
-import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import { mixpanelTrackEvent } from '~/plugins/ke/mixpanel'
 import getSiteMeta from '~/utils/getSiteMeta'
 
 export default {
@@ -1356,6 +1360,10 @@ export default {
     },
     closeModal() {
       this.showSuccessModal = !this.showSuccessModal
+    },
+    greenhouseSignUp(label) {
+      mixpanelTrackEvent(label)
+      this.$router.push({ name: 'signup', query: this.$route.query })
     },
     downloadApp() {
       mixpanelTrackEvent('Download App - laundry banner')

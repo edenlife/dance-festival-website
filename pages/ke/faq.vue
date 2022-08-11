@@ -743,7 +743,7 @@
 import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 import { scrollToApp } from '~/static/functions'
-import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import { mixpanelTrackEvent } from '~/plugins/ke/mixpanel'
 import { faqApi } from '~/request/all.api'
 import getSiteMeta from '~/utils/getSiteMeta'
 

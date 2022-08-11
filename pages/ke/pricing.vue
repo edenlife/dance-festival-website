@@ -1503,14 +1503,14 @@ export default {
           this.selectedService = ['Food', 'Laundry', 'Cleaning']
           this.estimatedPrice = this.priceList[1]
           this.services[0].price = String(
-            this.getSinglePrice((69.33 / 100) * this.estimatedPrice)
+            this.getSinglePrice((72.33 / 100) * this.estimatedPrice)
           )
 
           this.services[1].price = String(
             this.getSinglePrice((13.33 / 100) * this.estimatedPrice)
           )
           this.services[3].price = String(
-            this.getSinglePrice((17.33 / 100) * this.estimatedPrice)
+            this.getSinglePrice((10.50 / 100) * this.estimatedPrice)
           )
           this.totalPrice = this.getTotalEstimate([
             Number(this.services[0].price),
@@ -1522,7 +1522,7 @@ export default {
             '4 meals per week',
             'Delivered twice a week',
           ]
-          this.cleaningSummary = ['Light Cleaning', '2 Bedrooms', 'Weekly']
+          this.cleaningSummary = ['Light Cleaning', '2 Bedrooms', 'Weekly', 'Twice a week']
           this.laundrySummary = [
             'Wash & Fold',
             'One 10KG Bag',
@@ -1538,13 +1538,13 @@ export default {
             Math.round((65.0 / 100) * this.estimatedPrice)
           )
           this.services[1].price = String(
-            Math.round((5.0 / 100) * this.estimatedPrice)
+            Math.round((10.0 / 100) * this.estimatedPrice)
           )
           this.services[2].price = String(
             Math.round((15.0 / 100) * this.estimatedPrice)
           )
           this.services[3].price = String(
-            Math.round((11.0 / 100) * this.estimatedPrice)
+            Math.round((8.0 / 100) * this.estimatedPrice)
           )
           this.totalPrice = this.getTotalEstimate([
             Number(this.services[0].price),
@@ -1555,9 +1555,9 @@ export default {
           this.foodSummary = [
             'Weekly',
             '5 meals per week',
-            'Delivered twice a week',
+            'Delivered once a week',
           ]
-          this.cleaningSummary = ['Standard Cleaning', '1 Bedrooms', 'Weekly']
+          this.cleaningSummary = ['Standard Cleaning', '2 Bedrooms', 'Weekly', 'Twice a week']
           this.beautySummary = [
             '1 basic service',
             'Every two weeks',
@@ -1575,17 +1575,17 @@ export default {
           this.selectedService = ['Food', 'Laundry', 'Beauty', 'Cleaning']
           this.estimatedPrice = this.priceList[3]
           this.services[0].price = String(
-            this.getSinglePrice((74.07 / 100) * this.estimatedPrice)
+            this.getSinglePrice((64.90 / 100) * this.estimatedPrice)
           )
 
           this.services[1].price = String(
             this.getSinglePrice((7.41 / 100) * this.estimatedPrice)
           )
           this.services[2].price = String(
-            Math.round((5.55 / 100) * this.estimatedPrice)
+            Math.round((11.11 / 100) * this.estimatedPrice)
           )
           this.services[3].price = String(
-            Math.round((9.63 / 100) * this.estimatedPrice)
+            Math.round((8.89 / 100) * this.estimatedPrice)
           )
           this.totalPrice = this.getTotalEstimate([
             Number(this.services[0].price),
@@ -1616,11 +1616,11 @@ export default {
           this.selectedService = ['Food', 'Laundry', 'Beauty', 'Cleaning']
           this.estimatedPrice = this.priceList[4]
           this.services[0].price = String(
-            this.getSinglePrice((74.07 / 100) * this.estimatedPrice)
+            this.getSinglePrice((78.60 / 100) * this.estimatedPrice)
           )
 
           this.services[1].price = String(
-            this.getSinglePrice((5.45 / 100) * this.estimatedPrice)
+            this.getSinglePrice((3.2 / 100) * this.estimatedPrice)
           )
           this.services[2].price = String(
             this.getSinglePrice((8.0 / 100) * this.estimatedPrice)
@@ -1648,7 +1648,7 @@ export default {
           this.laundrySummary = [
             'Wash & Fold',
             'One 10KG Bag',
-            'Picked up every two weeks',
+            'Picked up monthly',
             'Additional KES 1000 for Wash & Iron',
           ]
           break

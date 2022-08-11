@@ -1595,10 +1595,10 @@ export default {
           ])
           this.foodSummary = [
             'Weekly',
-            '5 meals per week',
+            '7 meals per week',
             'Delivered once a week',
           ]
-          this.cleaningSummary = ['Light Cleaning', '2 Bedrooms', 'Weekly']
+          this.cleaningSummary = ['Standard Cleaning', '2 Bedrooms, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen, 1 balcony, 1 Study', 'Weekly']
           this.beautySummary = [
             '1 basic service',
             'Monthly',
@@ -1636,8 +1636,8 @@ export default {
           ])
           this.foodSummary = [
             'Weekly',
-            '5 meals per week',
-            'Delivered twice a week',
+            '10 meals per week',
+            'Delivered once a week',
           ]
           this.cleaningSummary = ['Standard Cleaning', '2 Bedrooms', 'Weekly']
           this.beautySummary = [

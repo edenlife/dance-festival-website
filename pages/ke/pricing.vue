@@ -1177,7 +1177,7 @@ export default {
         //   type: 'cleaning',
         // },
       ],
-      roomTypes: null,
+      roomTypes: '1 Bedroom, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen',
       cleaningQtyOption: [],
       foodSummary: [],
       laundrySummary: [],
@@ -1522,7 +1522,7 @@ export default {
             '4 meals per week',
             'Delivered twice a week',
           ]
-          this.cleaningSummary = ['Light Cleaning', '2 Bedrooms', 'Weekly', 'Twice a week']
+          this.cleaningSummary = ['Standard Cleaning', '2 Bedrooms', 'Weekly', 'Twice a week']
           this.laundrySummary = [
             'Wash & Fold',
             'One 10KG Bag',
@@ -2014,7 +2014,6 @@ export default {
         }`,
         `${this.roomTypes}`,
         `${this.cleaningFrequency}`,
-        `Saves ${this.cleaningSavedTime} per week`,
       ]
       this.totalCleaningSummary = {
         frequency: this.cleaningInfo.frequency,

@@ -194,9 +194,7 @@
               <button
                 type="button"
                 class="btn"
-                @click.prevent="
-                  greenhouseSignUp('cleaning - how it works')
-                "
+                @click.prevent="greenhouseSignUp('cleaning - how it works')"
               >
                 Get the app
               </button>
@@ -1352,7 +1350,7 @@ export default {
     },
     greenhouseSignUp(label) {
       mixpanelTrackEvent(label)
-      this.$router.push({ name: 'signup', query: this.$route.query})
+      this.$router.push({ name: 'signup', query: this.$route.query })
     },
     changeText() {
       const first = this.headerText.shift()

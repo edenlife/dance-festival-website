@@ -122,7 +122,7 @@
             </li>
             <li @click="trackLink('About us')">
               <nuxt-link
-                :to="{ path: '/about_us' }"
+                :to="{ path: '/about_us/' }"
                 class="footer__bottom-logo"
                 @click.prevent="trackLink('About us')"
               >
@@ -131,7 +131,7 @@
             </li>
             <li @click="trackLink('Companies')">
               <nuxt-link
-                :to="{ path: '/companies' }"
+                :to="{ path: '/companies/' }"
                 class="footer__bottom-logo"
                 @click.prevent="trackLink('Companies')"
               >
@@ -140,7 +140,7 @@
             </li>
             <li @click="trackLink('Pricing')">
               <nuxt-link
-                :to="{ path: '/pricing' }"
+                :to="{ path: '/pricing/' }"
                 class="footer__bottom-logo"
                 @click.prevent="trackLink('Pricing')"
               >
@@ -164,7 +164,7 @@
             </li>
             <li @click="trackLink('Food')">
               <nuxt-link
-                :to="{ path: '/food' }"
+                :to="{ path: '/food/' }"
                 class="footer__bottom-logo"
                 @click.prevent="trackLink('Food')"
               >
@@ -173,7 +173,7 @@
             </li>
             <li @click="trackLink('Cleaning')">
               <nuxt-link
-                :to="{ path: '/cleaning' }"
+                :to="{ path: '/cleaning/' }"
                 class="footer__bottom-logo"
                 @click.prevent="trackLink('Cleaning')"
               >
@@ -182,7 +182,7 @@
             </li>
             <li @click="trackLink('Laundry')">
               <nuxt-link
-                :to="{ path: '/laundry' }"
+                :to="{ path: '/laundry/' }"
                 class="footer__bottom-logo"
                 @click.prevent="trackLink('Laundry')"
               >
@@ -206,7 +206,7 @@
             </li>
             <li @click="trackLink('Faq')">
               <nuxt-link
-                :to="{ path: '/faq' }"
+                :to="{ path: '/faq/' }"
                 class="footer__bottom-logo"
                 @click.prevent="trackLink('Faq')"
               >
@@ -215,7 +215,7 @@
             </li>
             <li @click="trackLink('Blog')">
               <nuxt-link
-                :to="{ path: '/blog' }"
+                :to="{ path: '/blog/' }"
                 class="footer__bottom-logo"
                 @click.prevent="trackLink('Blog')"
               >
@@ -224,7 +224,7 @@
             </li>
             <li @click="trackLink('Contact us')">
               <nuxt-link
-                :to="{ path: '/contact_us' }"
+                :to="{ path: '/contact_us/' }"
                 class="footer__bottom-logo"
                 @click.prevent="trackLink('Contact us')"
               >
@@ -233,7 +233,7 @@
             </li>
             <li @click="trackLink('T&C')">
               <nuxt-link
-                :to="{ path: '/terms_and_conditions' }"
+                :to="{ path: '/terms_and_conditions/' }"
                 class="footer__bottom-logo"
                 @click.prevent="trackLink('T&C')"
               >
@@ -242,7 +242,7 @@
             </li>
              <li @click="trackLink('Privacy Policy')">
               <nuxt-link
-                :to="{ path: '/privacy_policy' }"
+                :to="{ path: '/privacy_policy/' }"
                 class="footer__bottom-logo"
                 @click.prevent="trackLink('Privacy Policy')"
               >

@@ -1270,7 +1270,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/cleaning`,
+          href: `https://ouredenlifev2-staging.netlify.app/cleaning/`,
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ng',
+          href: 'https://ouredenlifev2-staging.netlify.app/cleaning/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlifev2-staging.netlify.app/ke/cleaning/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: 'https://ouredenlifev2-staging.netlify.app/cleaning/',
         },
       ],
     }
@@ -1281,7 +1296,7 @@ export default {
         title: 'Eden | Cleaning',
         description:
           'Professional cleaning at your doorstep. Up to thrice a week.',
-        url: `https://ouredenlifev2-staging.netlify.app/cleaning`,
+        url: `https://ouredenlifev2-staging.netlify.app/cleaning/`,
         mainImage:
           'https://ouredenlifev2-staging.netlify.app/edencardcleaning.png',
       }

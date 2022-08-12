@@ -1108,6 +1108,7 @@ import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 import { currencyFormat, formatNumber, scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { pricing } from '~/static/pricing'
+import getSiteMeta from '~/utils/getSiteMeta'
 import { getCleaningServiceTypes, signupApi } from '~/request/all.api'
 
 export default {
@@ -1124,6 +1125,45 @@ export default {
         minLength: minLength(11),
         maxLength: maxLength(11),
       },
+    },
+  },
+  head() {
+    return {
+      title: 'Eden | Pricing',
+      meta: [...this.meta],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlifev2-staging.netlify.app/pricing/`,
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ng',
+          href: 'https://ouredenlifev2-staging.netlify.app/pricing/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlifev2-staging.netlify.app/ke/pricing/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: 'https://ouredenlifev2-staging.netlify.app/pricing/',
+        },
+      ],
+    }
+  },
+  computed: {
+    meta() {
+      const metaData = {
+        title: 'Eden | Pricing',
+        description: `Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!`,
+        url: `https://ouredenlifev2-staging.netlify.app/pricing/`,
+        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+      }
+      return getSiteMeta(metaData)
     },
   },
   data() {

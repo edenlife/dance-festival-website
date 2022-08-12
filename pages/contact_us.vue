@@ -72,11 +72,51 @@
 
 <script>
 import { scrollToApp } from '~/static/functions'
+import getSiteMeta from '~/utils/getSiteMeta'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 
 export default {
   mounted() {
     mixpanelTrackEvent('Contact Us page')
+  },
+  head() {
+    return {
+      title: 'Eden | Contact Us',
+      meta: [...this.meta],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlifev2-staging.netlify.app/contact_us/`,
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ng',
+          href: 'https://ouredenlifev2-staging.netlify.app/contact_us/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlifev2-staging.netlify.app/ke/contact_us/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: 'https://ouredenlifev2-staging.netlify.app/contact_us/',
+        },
+      ],
+    }
+  },
+  computed: {
+    meta() {
+      const metaData = {
+        title: 'Eden | Contact Us',
+        description: `Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!`,
+        url: `https://ouredenlifev2-staging.netlify.app/contact_us/`,
+        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+      }
+      return getSiteMeta(metaData)
+    },
   },
   methods: {
     scrollToFooter(id, label) {

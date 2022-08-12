@@ -711,7 +711,7 @@
         <Menu
           v-if="showNextMenu"
           :meals="nextWeekMeals"
-          :title="'Next weeks Menu'"
+          :title="`Next week's Menu`"
           :first-date-format="nextFirstDateFormat"
           :last-date-format="nextLastDateFormat"
           @showCurrent="toggleMenu('current')"

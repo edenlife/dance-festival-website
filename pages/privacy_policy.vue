@@ -12,7 +12,6 @@
           >
             {{ tab.title }}
           </p>
-       
         </a>
       </nav>
     </header>
@@ -48,6 +47,28 @@ export default {
         { name: 'description', content: [this.content] },
         { name: 'twitter:description', content: [this.content] },
         { property: 'og:description', content: [this.content] },
+      ],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlifev2-staging.netlify.app/privacy_policy/`,
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ng',
+          href: 'https://ouredenlifev2-staging.netlify.app/privacy_policy/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlifev2-staging.netlify.app/ke/privacy_policy/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: 'https://ouredenlifev2-staging.netlify.app/privacy_policy/',
+        },
       ],
     }
   },

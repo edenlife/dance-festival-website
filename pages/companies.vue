@@ -4,30 +4,33 @@
       <header class="hero">
         <div class="hero__title">
           <h1 class="">
-            Employee benefits at its finest <br /> - <span> Increasing Productivity </span>
+            Employee benefits at its finest <br />
+            - <span> Increasing Productivity </span>
           </h1>
           <h1 class="mobile">
-            Employee benefits at its finest <span> Increasing Productivity </span>
+            Employee benefits at its finest
+            <span> Increasing Productivity </span>
           </h1>
           <p>
-            Eden Life is the excellent choice for increased productivity. 
-            With office lunch, laundry and cleaning plans for employees, gift vouchers to reward performance, we become your company's Employee Perks Manager.
+            Eden Life is the excellent choice for increased productivity. With
+            office lunch, laundry and cleaning plans for employees, gift
+            vouchers to reward performance, we become your company's Employee
+            Perks Manager.
           </p>
           <div class="hero__button">
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="
-                scrollToFooter('getEden', 'companies - hero')
-              "
+              @click.prevent="scrollToFooter('getEden', 'companies - hero')"
             >
               Get Eden
             </button>
             <a
-                href="https://calendly.com/edenlife-companies/30min"
-                target="_blank"
-                class="hero__button-link"
-              > Request a demo
+              href="https://calendly.com/edenlife-companies/30min"
+              target="_blank"
+              class="hero__button-link"
+            >
+              Request a demo
             </a>
           </div>
         </div>
@@ -99,10 +102,13 @@
       </section>
     </div>
 
-     <div class="container--team">
+    <div class="container--team">
       <section class="team">
         <div class="team__title">
-          <h3>Why Employers are choosing Eden <br/> for Employee Benefits</h3>
+          <h3>
+            Why Employers are choosing Eden <br />
+            for Employee Benefits
+          </h3>
         </div>
         <div class="team__slider">
           <div class="team__slider-option">
@@ -115,14 +121,14 @@
               </li>
 
               <li class="slide">
-                 <img
-                    src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/cowrywise_wtcvv5.svg"
-                    alt="cowrywise"
-                  />
+                <img
+                  src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/cowrywise_wtcvv5.svg"
+                  alt="cowrywise"
+                />
               </li>
 
               <li class="slide">
-               <img
+                <img
                   src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/flutterwave_cmhzbz.svg"
                   alt="flutterwave"
                 />
@@ -130,9 +136,9 @@
 
               <li class="slide">
                 <img
-                    src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/paystack_zez4ir.svg"
-                    alt="paystack"
-                  />
+                  src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/paystack_zez4ir.svg"
+                  alt="paystack"
+                />
               </li>
 
               <li class="slide">
@@ -143,21 +149,21 @@
               </li>
 
               <li class="slide">
-                 <img
-                    src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/kuda_irz12h.svg"
-                    alt="kuda"
-                  />
+                <img
+                  src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/kuda_irz12h.svg"
+                  alt="kuda"
+                />
               </li>
 
               <li class="slide">
-               <img
+                <img
                   src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/buycoins_bkcrvh.svg"
                   alt="buycoins"
                 />
               </li>
 
               <li class="slide">
-                 <img
+                <img
                   src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611322645/eden-website-v2/piggyvest_wyio8s.svg"
                   alt="piggyvest"
                 />
@@ -171,24 +177,27 @@
             <h3>💯</h3>
             <h5>Increased Efficiency</h5>
             <p>
-              With Eden, your team gets increased productivity, better retention, and reduced welfare workload. 
-              We have measured an average 91.28% increased productivity rate for our clients.
+              With Eden, your team gets increased productivity, better
+              retention, and reduced welfare workload. We have measured an
+              average 91.28% increased productivity rate for our clients.
             </p>
           </div>
           <div class="team__card-item experience">
             <h3>💰</h3>
             <h5>Unbeatable Pricing</h5>
             <p>
-              We offer you the best prices and our friendly, subscription pricing model is unbeatable in the market. 
-              Your team’s lunch, laundry and cleaning services are on autopilot.
+              We offer you the best prices and our friendly, subscription
+              pricing model is unbeatable in the market. Your team’s lunch,
+              laundry and cleaning services are on autopilot.
             </p>
           </div>
           <div class="team__card-item sport">
             <h3>💚</h3>
             <h5>Hands-On-support</h5>
             <p>
-              We are very big on excellent customer service. 
-              That is why every employee is assigned an Eden Life manager who is proactive and effective at all times.
+              We are very big on excellent customer service. That is why every
+              employee is assigned an Eden Life manager who is proactive and
+              effective at all times.
             </p>
           </div>
         </div>
@@ -305,7 +314,7 @@
                 >
                 <path d="M0 0H2V190H0V0Z" fill="#E4E8E6" />
                 </svg> -->
-               <!-- <svg
+                <!-- <svg
                   class="eleven"
                   width="8"
                   height="8"
@@ -467,9 +476,7 @@
               <button
                 type="button"
                 class="btn"
-                @click.prevent="
-                  scrollToFooter('getEden')
-                "
+                @click.prevent="scrollToFooter('getEden')"
               >
                 Get Eden
               </button>
@@ -477,9 +484,7 @@
             <button
               type="button"
               class="btn--mobile"
-              @click.prevent="
-                scrollToFooter('getEden')
-              "
+              @click.prevent="scrollToFooter('getEden')"
             >
               Get Eden
             </button>
@@ -560,9 +565,7 @@
         <button
           type="button"
           class="btn"
-          @click.prevent="
-            scrollToFooter('getEden')
-          "
+          @click.prevent="scrollToFooter('getEden')"
         >
           Get Eden
         </button>
@@ -570,29 +573,38 @@
     </div>
 
     <div class="container--form">
-       <section class="company" id="getEden">
-          <div class="company__form">
-             <div class="company__form-title">
-               <h3>Get Eden Life for employee benefits <br />
-                  that go the <span> extra mile</span>.
-               </h3>
-               <p>Hi! We need the following details to reach out to you about the next steps. <br />
-                    Let's get started!
-                </p>
-             </div>
+      <section class="company" id="getEden">
+        <div class="company__form">
+          <div class="company__form-title">
+            <h3>
+              Get Eden Life for employee benefits <br />
+              that go the <span> extra mile</span>.
+            </h3>
+            <p>
+              Hi! We need the following details to reach out to you about the
+              next steps. <br />
+              Let's get started!
+            </p>
+          </div>
 
-             <div class="company__form-indicator">
-                 <span class="dot"
-                  :class="{ 'active' : !showForm}"
-                  @click="previousForm()"></span>
-                 <span class="dot"
-                  :class="{ 'active' : showForm}"
-                  @click="nextForm()"></span>
-             </div>
+          <div class="company__form-indicator">
+            <span
+              class="dot"
+              :class="{ active: !showForm }"
+              @click="previousForm()"
+            ></span>
+            <span
+              class="dot"
+              :class="{ active: showForm }"
+              @click="nextForm()"
+            ></span>
+          </div>
 
-            <div class="form" v-if="!showForm">
+          <div class="form" v-if="!showForm">
             <div class="form__input">
-              <label for="company name"> Company Name<span class="required">*</span></label>
+              <label for="company name">
+                Company Name<span class="required">*</span></label
+              >
               <input
                 id=""
                 v-model="companyForm.company_name"
@@ -604,7 +616,9 @@
             </div>
 
             <div class="form__input">
-              <label for="contact name"> Number of employees <span class="required">*</span> </label>
+              <label for="contact name">
+                Number of employees <span class="required">*</span>
+              </label>
               <input
                 id=""
                 v-model="companyForm.employees_number"
@@ -618,7 +632,9 @@
 
             <div class="form__input">
               <label for="services"
-                >What plans will you like for your team?<span class="required">*</span></label
+                >What plans will you like for your team?<span class="required"
+                  >*</span
+                ></label
               >
               <div
                 class="select"
@@ -676,9 +692,8 @@
                             <label
                               :for="service"
                               :class="{
-                                checkmark: companyForm.service.includes(
-                                  service
-                                ),
+                                checkmark:
+                                  companyForm.service.includes(service),
                               }"
                             >
                               {{ service }}</label
@@ -726,9 +741,11 @@
             </button>
           </div>
 
-        <div class="form" v-else>
-           <div class="form__input">
-              <label for="contact name"> Contact Person <span class="required">*</span> </label>
+          <div class="form" v-else>
+            <div class="form__input">
+              <label for="contact name">
+                Contact Person <span class="required">*</span>
+              </label>
               <input
                 id=""
                 v-model="companyForm.contact_name"
@@ -739,7 +756,9 @@
               />
             </div>
             <div class="form__input">
-              <label for="email">Contact Person’s Email <span class="required">*</span> </label>
+              <label for="email"
+                >Contact Person’s Email <span class="required">*</span>
+              </label>
               <input
                 id=""
                 v-model="companyForm.email"
@@ -750,7 +769,9 @@
               />
             </div>
             <div class="form__input">
-              <label for="email">Contact Person’s Job Role <span class="required">*</span> </label>
+              <label for="email"
+                >Contact Person’s Job Role <span class="required">*</span>
+              </label>
               <input
                 id=""
                 v-model="companyForm.role"
@@ -761,7 +782,10 @@
               />
             </div>
             <div class="form__input">
-              <label for="phone number">Contact Person’s Phone Number <span class="required">*</span></label>
+              <label for="phone number"
+                >Contact Person’s Phone Number
+                <span class="required">*</span></label
+              >
               <input
                 id=""
                 v-model.trim="$v.companyForm.phone_number.$model"
@@ -794,26 +818,24 @@
               :disabled="loading"
               @click.prevent="submit()"
             >
-              {{
-                submitted ? 'Thanks! We’ll be in touch.' : 'Get Started!'
-              }}
+              {{ submitted ? 'Thanks! We’ll be in touch.' : 'Get Started!' }}
             </button>
-              <button
-                class="back--btn"
-                :disabled="loading"
-                :class="{
-                  hide : submitted
-                  }"
-                @click.prevent="previousForm()"
-              >
-                  Go Back
-              </button>
+            <button
+              class="back--btn"
+              :disabled="loading"
+              :class="{
+                hide: submitted,
+              }"
+              @click.prevent="previousForm()"
+            >
+              Go Back
+            </button>
           </div>
         </div>
-       </section>
+      </section>
     </div>
 
-      <modal v-if="showFailedModal" :show-modal="showFailedModal" class="modal">
+    <modal v-if="showFailedModal" :show-modal="showFailedModal" class="modal">
       <div slot="header"></div>
       <div slot="body" class="modal__body">
         <div class="company__modal">
@@ -867,12 +889,18 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, email, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
+import {
+  required,
+  email,
+  minLength,
+  maxLength,
+  numeric,
+} from 'vuelidate/lib/validators'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { createWorkersDay } from '~/request/airtable'
+import getSiteMeta from '~/utils/getSiteMeta'
 import { notUrl } from '~/utils/validators'
 export default {
-
   components: {
     Modal: () => import('@/components/Modal.vue'),
   },
@@ -880,16 +908,40 @@ export default {
   validations: {
     companyForm: {
       contact_name: { required, notUrl },
-      employees_number: {required, numeric},
+      employees_number: { required, numeric },
       email: { required, email },
       company_name: { required, notUrl },
       service: { required },
       role: { required },
-       phone_number: {
+      phone_number: {
         required,
         minLength: minLength(11),
         maxLength: maxLength(11),
       },
+    },
+  },
+  head() {
+    return {
+      title: 'Eden | Companies',
+      meta: [...this.meta],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlifev2-staging.netlify.app/companies/`,
+        },
+      ],
+    }
+  },
+  computed: {
+    meta() {
+      const metaData = {
+        title: 'Eden | Companies',
+        description: `Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!`,
+        url: `https://ouredenlifev2-staging.netlify.app/companies/`,
+        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+      }
+      return getSiteMeta(metaData)
     },
   },
   data() {
@@ -996,10 +1048,10 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
             'Team Plan': JSON.parse(this.companyForm.service).toString(),
             'Discount Code': this.companyForm.discount_code,
             'Contact Person': this.companyForm.contact_name,
-            'Email': this.companyForm.email,
+            Email: this.companyForm.email,
             'Job Role': this.companyForm.role,
             'Phone number': this.companyForm.phone_number,
-            'Message': this.companyForm.message
+            Message: this.companyForm.message,
           }
           const leadMetaData = {
             name: this.companyForm.company_name,
@@ -1042,15 +1094,19 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
       }
     },
     scrollToFooter(id) {
-       document.getElementById(id).scrollIntoView()
+      document.getElementById(id).scrollIntoView()
     },
     nextForm() {
       this.$v.companyForm.$touch()
-      if (this.$v.companyForm.company_name.$error || this.$v.companyForm.service.$error || this.$v.companyForm.employees_number.$error) {
-         return
-      } 
-         this.showForm = true
-         document.getElementById('getEden').scrollIntoView()
+      if (
+        this.$v.companyForm.company_name.$error ||
+        this.$v.companyForm.service.$error ||
+        this.$v.companyForm.employees_number.$error
+      ) {
+        return
+      }
+      this.showForm = true
+      document.getElementById('getEden').scrollIntoView()
     },
     previousForm() {
       this.showForm = false

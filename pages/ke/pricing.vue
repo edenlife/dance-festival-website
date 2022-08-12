@@ -1490,7 +1490,7 @@ export default {
             Number(this.services[3].price),
           ])
           this.foodSummary = ['Weekly', '1 meal per week']
-          this.cleaningSummary = ['Standard Cleaning', '2 Bedrooms', 'Weekly']
+          this.cleaningSummary = ['Standard Cleaning', '3 Bedrooms, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen, 1 balcony, 1 Study', 'Weekly']
           this.laundrySummary = [
             'Wash & Fold',
             'One 10KG Bag',
@@ -1601,7 +1601,7 @@ export default {
           this.cleaningSummary = ['Standard Cleaning', '2 Bedrooms, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen, 1 balcony, 1 Study', 'Weekly']
           this.beautySummary = [
             '1 basic service',
-            'Monthly',
+            'Every two weeks',
             'Additional KES 3,200 for premium beauty services',
           ]
           this.laundrySummary = [
@@ -1623,10 +1623,10 @@ export default {
             this.getSinglePrice((3.2 / 100) * this.estimatedPrice)
           )
           this.services[2].price = String(
-            this.getSinglePrice((8.0 / 100) * this.estimatedPrice)
+            this.getSinglePrice((9.70 / 100) * this.estimatedPrice)
           )
           this.services[3].price = String(
-            this.getSinglePrice((8.0 / 100) * this.estimatedPrice)
+            this.getSinglePrice((8.50 / 100) * this.estimatedPrice)
           )
           this.totalPrice = this.getTotalEstimate([
             Number(this.services[0].price),
@@ -1637,9 +1637,9 @@ export default {
           this.foodSummary = [
             'Weekly',
             '10 meals per week',
-            'Delivered once a week',
+            'Delivered twice a week',
           ]
-          this.cleaningSummary = ['Standard Cleaning', '2 Bedrooms', 'Weekly']
+          this.cleaningSummary = ['Standard Cleaning', '2 Bedrooms, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen, 1 balcony, 1 Study', 'Weekly']
           this.beautySummary = [
             '1 basic service',
             'Every two weeks',

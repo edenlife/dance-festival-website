@@ -82,22 +82,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlife.com/terms_and_conditions`,
+          href: `https://ouredenlife.com/terms_and_conditions/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlife.com/terms_and_conditions'
+          href: 'https://ouredenlife.com/terms_and_conditions/'
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlife.ke/terms_and_conditions'
+          href: 'https://ouredenlife.comke/terms_and_conditions/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlife.com/terms_and_conditions'
+          href: 'https://ouredenlife.com/terms_and_conditions/'
         },
       ],
     }

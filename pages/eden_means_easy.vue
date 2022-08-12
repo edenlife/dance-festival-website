@@ -288,9 +288,8 @@
                                 <label
                                   :for="service"
                                   :class="{
-                                    checkmark: leadCompanyForm.service.includes(
-                                      service
-                                    ),
+                                    checkmark:
+                                      leadCompanyForm.service.includes(service),
                                   }"
                                 >
                                   {{ service }}</label
@@ -732,9 +731,8 @@
                               <label
                                 :for="service"
                                 :class="{
-                                  checkmark: leadCompanyForm.service.includes(
-                                    service
-                                  ),
+                                  checkmark:
+                                    leadCompanyForm.service.includes(service),
                                 }"
                               >
                                 {{ service }}</label
@@ -1002,7 +1000,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlife.com/eden_means_easy`,
+          href: `https://ouredenlife.com/eden_means_easy/`,
         },
       ],
     }
@@ -1018,7 +1016,7 @@ export default {
       const metaData = {
         title: 'Eden | Eden Means Easy',
         description: '10 Reasons Why Eden Means Easy. ',
-        url: `https://ouredenlife.com/eden_means_easy`,
+        url: `https://ouredenlife.com/eden_means_easy/`,
       }
       return getSiteMeta(metaData)
     },

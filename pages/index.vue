@@ -1074,6 +1074,33 @@ import { landingPageApi } from '~/request/all.api'
 
 export default {
   mixins: [validationMixin],
+
+    head() {
+    return {
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlife.com/ke/`,
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ng',
+          href: 'https://ouredenlife.com/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlife.com/ke/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: 'https://ouredenlife.com/',
+        },
+      ],
+    }
+  },
   data() {
     return {
       showFailedModal: false,

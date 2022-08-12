@@ -194,9 +194,7 @@
               <button
                 type="button"
                 class="btn"
-                @click.prevent="
-                  greenhouseSignUp('cleaning - how it works')
-                "
+                @click.prevent="greenhouseSignUp('cleaning - how it works')"
               >
                 Get the app
               </button>
@@ -647,7 +645,8 @@
                       cooker, refrigerators etc)
                     </li>
                     <li>Clean cupboards and cabinets</li>
-                   </ul>
+                    <li>AC vents cleaned</li>
+                  </ul>
                 </div>
                 <div class="calculator__input">
                   <label for="">Tell us about your home</label>
@@ -868,8 +867,6 @@
                     Post construction is the cleaning done to new or renovated
                     buildings. This kind of cleaning is done to the whole house
                     or facility from top to bottom.
-                  <div  v-if="showCleaningDescription" class="plan__price-description-extra">
-                   Post construction is the cleaning done to new or renovated buildings. This kind of cleaning is done to the whole of an apartment, house or facility from top to bottom.
                   </div>
                   <ul v-if="showCleaningDescription">
                     <li>
@@ -1271,22 +1268,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlife.com/cleaning`,
+          href: `https://ouredenlife.com/cleaning/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlife.com/cleaning'
+          href: 'https://ouredenlife.com/cleaning/',
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlife.ke/cleaning'
+          href: 'https://ouredenlife.com/ke/cleaning/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlife.com/cleaning'
+          href: 'https://ouredenlife.com/cleaning/',
         },
       ],
     }
@@ -1297,7 +1294,7 @@ export default {
         title: 'Eden | Cleaning',
         description:
           'Professional cleaning at your doorstep. Up to thrice a week.',
-        url: `https://ouredenlife.com/cleaning`,
+        url: `https://ouredenlife.com/cleaning/`,
         mainImage: 'https://ouredenlife.com/edencardcleaning.png',
       }
       return getSiteMeta(metaData)
@@ -1352,7 +1349,7 @@ export default {
     },
     greenhouseSignUp(label) {
       mixpanelTrackEvent(label)
-      this.$router.push({ name: 'signup', query: this.$route.query})
+      this.$router.push({ name: 'signup', query: this.$route.query })
     },
     changeText() {
       const first = this.headerText.shift()

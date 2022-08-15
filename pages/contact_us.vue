@@ -29,7 +29,7 @@
         <h5>Customer Support</h5>
         <p>
           For customer support, call
-          <a href="tel:+2348146757886"> +2348146757886</a>
+          <a href="tel:+2348134254074"> +2348134254074</a>
 
           or
           <a @click.prevent="launchIntercom()" class="trigger-chat"> chat</a>
@@ -52,7 +52,7 @@
         </p>
         <div class="email">
           <p>Email: support@edenlife.ng</p>
-          <p>Phone number: +234 814 675 7886</p>
+          <p>Phone number: +234 813 425 4074</p>
         </div>
         <a
           href="https://www.google.com/maps/search/?api=1&query=Eden,+Adebisi+Street,+Lagos"

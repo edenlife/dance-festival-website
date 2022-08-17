@@ -765,18 +765,20 @@
                             }"
                           >
                             <transition name="slide-fade">
-                              <ul>
-                                <li
-                                  v-for="(item, i) in frequencyOption"
-                                  :key="i"
-                                >
-                                  <span
-                                    class="select--item"
-                                    @click.prevent="getCleaningPrice(item)"
-                                    >{{ item.name }}</span
+                              <div class="selector-drop">
+                                <ul>
+                                  <li
+                                    v-for="(item, i) in frequencyOption"
+                                    :key="i"
                                   >
-                                </li>
-                              </ul>
+                                    <span
+                                      class="select--item"
+                                      @click.prevent="getCleaningPrice(item)"
+                                      >{{ item.name }}</span
+                                    >
+                                  </li>
+                                </ul>
+                              </div>
                             </transition>
                           </div>
                         </div>
@@ -846,6 +848,127 @@
                             />
                           </svg>
                         </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="calculator__input">
+                    <div
+                      class="calculator__input-item calculator__input-cleaning"
+                    >
+                      <label for="">Tell us about your home</label>
+                      <div class="select">
+                        <div class="selector">
+                          <div class="label" @click="toggle('cleaningQty')">
+                            <span class="label--text">{{ roomTypes }}</span>
+                          </div>
+                          <svg
+                            class="arrow"
+                            :class="{
+                              expanded: visible.includes('cleaningQty'),
+                            }"
+                            width="10"
+                            height="6"
+                            viewBox="0 0 10 6"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            @click="toggle('cleaningQty')"
+                          >
+                            <path
+                              d="M1 1L5 5L9 1"
+                              stroke="#93A29B"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+
+                          <div
+                            :class="{
+                              hidden: !visible.includes('cleaningQty'),
+                            }"
+                          >
+                            <transition name="slide-fade">
+                              <div class="selector-drop">
+                                <ul>
+                                  <li
+                                    v-for="(item, i) in cleaningQtyOption"
+                                    :key="i"
+                                    class="control"
+                                  >
+                                    <span>{{ item.cleaning_area_name }}</span>
+                                    <span class="control__item">
+                                      <button
+                                        class="control__item-btn"
+                                        @click.prevent="
+                                          decreaseRoomQty(item, i)
+                                        "
+                                      >
+                                        <svg
+                                          class="control__item-icon"
+                                          width="12"
+                                          height="2"
+                                          viewBox="0 0 12 2"
+                                          fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            class="control__item-icon"
+                                            d="M1.3335 1H10.6668"
+                                            stroke="#21312A"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                          />
+                                        </svg>
+                                      </button>
+                                      <span class="control__item-qty">
+                                        {{ item.qty }}
+                                      </span>
+                                      <button
+                                        class="control__item-btn"
+                                        @click.prevent="
+                                          increaseRoomQty(item, i)
+                                        "
+                                      >
+                                        <svg
+                                          class="control__item-icon"
+                                          width="16"
+                                          height="16"
+                                          viewBox="0 0 16 16"
+                                          fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            class="control__item-icon"
+                                            d="M8 3.33301V12.6663"
+                                            stroke="#21312A"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                          />
+                                          <path
+                                            class="control__item-icon"
+                                            d="M3.3335 8H12.6668"
+                                            stroke="#21312A"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                          />
+                                        </svg>
+                                      </button>
+                                    </span>
+                                  </li>
+                                  <li>
+                                    <button
+                                      class="pricing__calculator-btn btn-sm"
+                                    >
+                                      Done
+                                    </button>
+                                  </li>
+                                </ul>
+                              </div>
+                            </transition>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1060,7 +1183,7 @@ export default {
       showEmailModal: false,
       custumerStatus: false,
       subscribeEmail: '',
-      selectedService: ['Food', 'Laundry', 'Beauty', 'Cleaning'],
+      selectedService: ['Food', 'Cleaning'],
       services: [
         { name: 'Food', price: '' },
         { name: 'Laundry', price: '' },
@@ -1177,7 +1300,8 @@ export default {
         //   type: 'cleaning',
         // },
       ],
-      roomTypes: '1 Bedroom, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen',
+      roomTypes:
+        '1 Bedroom, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen',
       cleaningQtyOption: [],
       foodSummary: [],
       laundrySummary: [],
@@ -1248,8 +1372,10 @@ export default {
   mounted() {
     document.addEventListener('click', this.toggleSelect)
     mixpanelTrackEvent('Pricing page')
-    this.fetchCleaningServiceTypes()
-    // this.changeService({ name: 'Cleaning' })
+    setTimeout(() => {
+      this.fetchCleaningServiceTypes()
+      this.calculateFoodPrice()
+    }, 2000)
     this.switchToEstimate()
   },
   destroyed() {
@@ -1390,10 +1516,10 @@ export default {
       this.reconfigurePlan = !this.reconfigurePlan
       this.estimate = 3
       this.selectedService = ['Food', 'Laundry', 'Beauty']
+      this.selectedDays = ['monday-friday']
       this.setCustom = true
-      this.changeService({ name: 'Cleaning' })
-
-      //  this.getEstimate()
+      this.setCleaningConfig('standard cleaning')
+      this.getEstimate()
     },
     setReconfigureSummary() {
       this.$refs['price-container'].scrollIntoView()
@@ -1435,7 +1561,7 @@ export default {
         })
       )
       const subtotal = finalArray.reduce((acc, val) => {
-        const valInt = parseInt(val.price)
+        const valInt = val.price ? parseInt(val.price) : 0
         return acc + valInt
       }, 0)
 
@@ -1451,52 +1577,487 @@ export default {
             (item) => item !== service.name
           )
         }
+        //   this.mealQty = 1
+        //   this.mealFrequency = 'Weekly'
+        //   this.laundryFreqName = 'every two weeks'
+        //   this.laundryType = 'Wash & Fold'
+        //   this.laundryTypeValue = 'wash-and-fold'
+        //   this.laundryFreqValue = 'bi-weekly'
+        //   this.laundryQty = 1
+
+        //   this.beautyQty = 1
+        //   this.beautyFreqName = 'every two weeks'
+        //   this.beautyType = 'Standard'
+        //   this.beautyTypeValue = 'standard'
+        //   this.beautyFreqValue = 'bi-weekly'
+
+        //   this.cleaningType = 'Standard cleaning'
+        //   this.cleaningFrequency = 'Every two weeks'
+        //   this.cleaningInfo.item = 'standard-cleaning'
+        //   this.cleaningInfo.frequency = 'bi-weekly'
+        //   this.calculateFoodPrice()
+        //   this.calculateLaundryPrice()
+        //   this.calculateBeautyPrice()
+        //   this.calculateCleaningPrice()
+      }
+
+      // estimated price 8,000
+      if (this.estimate.toString() === '0') {
+        if (service.name === 'Beauty') {
+          return
+        }
+        this.selectedService.pop()
+        this.selectedService.push(service.name)
         this.mealQty = 1
         this.mealFrequency = 'Weekly'
+        this.selectedDays = ['monday']
+        this.mealSavedTime = '7 hrs 10 mins'
+        this.calculateFoodPrice()
+        this.cleaningType = 'Standard cleaning'
+        this.cleaningFrequency = 'Weekly'
+        this.cleaningQtyOption[0].qty = 3
+        this.cleaningQtyOption[1].qty = 1
+        this.cleaningQtyOption[2].qty = 1
+        this.cleaningQtyOption[3].qty = 1
+        this.cleaningQtyOption[4].qty = 1
+        this.cleaningQtyOption[5].qty = 1
+        this.cleaningSavedTime = '45 mins'
+        this.getEstimateRoomTypes()
+        this.setCleaningArea('standard cleaning')
+        this.cleaningInfo.item = 'standard-cleaning'
+        this.cleaningInfo.frequency = 'weekly'
+        this.calculateCleaningPrice()
         this.laundryFreqName = 'every two weeks'
         this.laundryType = 'Wash & Fold'
         this.laundryTypeValue = 'wash-and-fold'
         this.laundryFreqValue = 'bi-weekly'
+        this.laundrySavedTime = '2 hrs 15 mins'
+        this.laundryAddition = 'Additional KES 1000 for Wash & Iron'
         this.laundryQty = 1
-
-        this.beautyQty = 1
-        this.beautyFreqName = 'every two weeks'
-        this.beautyType = 'Standard'
-        this.beautyTypeValue = 'standard'
-        this.beautyFreqValue = 'bi-weekly'
-
-        this.cleaningType = 'Standard cleaning'
-        this.cleaningFrequency = 'Every two weeks'
-        this.cleaningInfo.item = 'standard-cleaning'
-        this.cleaningInfo.frequency = 'bi-weekly'
-        this.calculateFoodPrice()
         this.calculateLaundryPrice()
-        this.calculateBeautyPrice()
-        this.calculateCleaningPrice()
+        return
+      }
+
+      // estimated price 15,000
+      if (this.estimate.toString() === '1') {
+        if (
+          this.selectedService.length > 1 &&
+          this.selectedService.includes(service.name)
+        ) {
+          this.selectedService = this.selectedService.filter(
+            (item) => item !== service.name
+          )
+        } else if (
+          this.selectedService.length >= 1 &&
+          this.selectedService.length < 2 &&
+          !this.selectedService.includes(service.name)
+        ) {
+          this.selectedService.push(service.name)
+        }
+
+        if (this.selectedService.length > 1) {
+          this.mealQty = 4
+          this.mealFrequency = 'Weekly'
+          this.selectedDays = ['monday-friday']
+          this.mealSavedTime = '40 mins'
+          this.calculateFoodPrice()
+          this.cleaningType = 'Standard cleaning'
+          this.cleaningFrequency = 'Twice a week'
+          this.cleaningQtyOption[0].qty = 2
+          this.cleaningQtyOption[1].qty = 0
+          this.cleaningQtyOption[2].qty = 0
+          this.cleaningQtyOption[3].qty = 0
+          this.cleaningQtyOption[4].qty = 0
+          this.cleaningQtyOption[5].qty = 0
+          this.cleaningSavedTime = '45 mins'
+          this.getEstimateRoomTypes()
+          this.setCleaningArea('standard cleaning')
+          this.cleaningInfo.item = 'standard-cleaning'
+          this.cleaningInfo.frequency = 'bi-weekly'
+          this.calculateCleaningPrice()
+          return
+        } else {
+          this.laundryFreqName = 'every two weeks'
+          this.laundryType = 'Wash & Fold'
+          this.laundryTypeValue = 'wash-and-fold'
+          this.laundryFreqValue = 'bi-weekly'
+          this.laundrySavedTime = '2 hrs 15 mins'
+          this.laundryAddition = 'Additional KES 1000 for Wash & Iron'
+          this.laundryQty = 1
+          this.calculateLaundryPrice()
+        }
+        return
+      }
+      // estimated price 20,000
+      if (this.estimate.toString() === '2') {
+        console.log('pss')
+        if (this.selectedService.length === 4) {
+          console.log('pss')
+          this.beautyQty = 1
+          this.beautyFreqName = 'every two weeks'
+          this.beautyType = 'Standard'
+          this.beautyTypeValue = 'standard'
+          this.beautyFreqValue = 'bi-weekly'
+          this.calculateBeautyPrice()
+          this.mealQty = 1
+          this.mealFrequency = 'Weekly'
+          this.selectedDays = ['monday']
+          this.mealSavedTime = '40 mins'
+          this.calculateFoodPrice()
+          this.laundryFreqName = 'once a month'
+          this.laundryType = 'Wash & Fold'
+          this.laundryTypeValue = 'wash-and-fold'
+          this.laundryFreqValue = 'monthly'
+          this.laundryQty = 1
+          this.laundrySavedTime = '2 hrs 15 mins'
+          this.calculateLaundryPrice()
+          this.cleaningType = 'Standard cleaning'
+          this.cleaningFrequency = 'Every two weeks'
+          this.cleaningQtyOption[0].qty = 1
+          this.cleaningQtyOption[1].qty = 1
+          this.cleaningQtyOption[4].qty = 0
+          this.cleaningQtyOption[5].qty = 0
+          this.cleaningSavedTime = '45 mins'
+          this.getEstimateRoomTypes()
+          this.setCleaningArea('standard cleaning')
+          this.cleaningInfo.item = 'standard-cleaning'
+          this.cleaningInfo.frequency = 'bi-weekly'
+          this.calculateCleaningPrice()
+        } else if (this.selectedService.length === 3) {
+          if (
+            this.selectedService.includes('Cleaning') &&
+            this.selectedService.includes('Laundry') &&
+            this.selectedService.includes('Food')
+          ) {
+            this.cleaningType = 'Standard cleaning'
+            this.cleaningFrequency = 'weekly'
+            this.cleaningQtyOption[0].qty = 1
+            this.cleaningQtyOption[1].qty = 0
+            this.cleaningQtyOption[4].qty = 0
+            this.cleaningQtyOption[5].qty = 0
+            this.cleaningSavedTime = '30 mins'
+            this.getEstimateRoomTypes()
+            this.setCleaningArea('standard cleaning')
+            this.cleaningInfo.item = 'standard-cleaning'
+            this.cleaningInfo.frequency = 'Every two weeks'
+            this.calculateCleaningPrice()
+            this.laundryFreqName = 'once a month'
+            this.laundryType = 'Wash & Iron'
+            this.laundryTypeValue = 'wash-and-iron'
+            this.laundryFreqValue = 'monthly'
+            this.laundryQty = 1
+            this.laundrySavedTime = '1 hrs 20 mins'
+            this.calculateLaundryPrice()
+            this.mealQty = 1
+            this.mealFrequency = 'Weekly'
+            this.selectedDays = ['monday']
+            this.mealSavedTime = '40 mins'
+            this.calculateFoodPrice()
+          }
+          if (
+            this.selectedService.includes('Food') &&
+            this.selectedService.includes('Cleaning')
+          ) {
+            this.mealQty = 3
+            this.mealFrequency = 'Weekly'
+            this.selectedDays = ['monday']
+            this.mealSavedTime = '2 hrs'
+            this.calculateFoodPrice()
+            this.cleaningType = 'Standard cleaning'
+            this.cleaningFrequency = 'Every two weeks'
+            this.cleaningQtyOption[0].qty = 1
+            this.cleaningQtyOption[1].qty = 1
+            this.cleaningQtyOption[4].qty = 0
+            this.cleaningQtyOption[5].qty = 0
+            this.cleaningSavedTime = '45 mins'
+            this.getEstimateRoomTypes()
+            this.setCleaningArea('standard cleaning')
+            this.cleaningInfo.item = 'standard-cleaning'
+            this.cleaningInfo.frequency = 'bi-weekly'
+            this.calculateCleaningPrice()
+          }
+        } else if (this.selectedService.length === 1) {
+          this.mealQty = 3
+          this.mealFrequency = 'Weekly'
+          this.selectedDays = ['monday']
+          this.mealSavedTime = '2 hrs'
+          this.calculateFoodPrice()
+          this.laundryFreqName = 'every two weeks'
+          this.laundryType = 'Wash & Iron'
+          this.laundryTypeValue = 'wash-and-iron'
+          this.laundryFreqValue = 'bi-weekly'
+          this.laundryQty = 2
+          this.laundrySavedTime = '4 hrs 20 mins'
+
+          this.calculateLaundryPrice()
+          this.cleaningType = 'Standard cleaning'
+          this.cleaningFrequency = 'Once a week'
+          this.cleaningQtyOption[0].qty = 1
+          this.cleaningQtyOption[1].qty = 1
+          this.cleaningQtyOption[2].qty = 1
+          this.cleaningQtyOption[3].qty = 1
+          this.cleaningQtyOption[5].qty = 1
+          this.getEstimateRoomTypes()
+          this.setCleaningArea('standard cleaning')
+          this.cleaningInfo.item = 'standard-cleaning'
+          this.cleaningInfo.frequency = 'weekly'
+          this.cleaningSavedTime = '5 hrs 30 mins'
+
+          this.calculateCleaningPrice()
+        }
+      }
+      // estimated price 100,000
+      if (this.estimate.toString() === '3') {
+        if (this.selectedService.length === 3) {
+          this.mealQty = 2
+          this.mealFrequency = 'Once a week'
+          this.selectedDays = ['monday']
+          this.mealSavedTime = '1 hrs 20 mins'
+          this.mealFrequency = 'Weekly'
+          this.calculateFoodPrice()
+
+          this.laundryFreqName = 'once a month'
+          this.laundryType = 'Wash & Iron'
+          this.laundryTypeValue = 'wash-and-iron'
+          this.laundryFreqValue = 'monthly'
+          this.laundryQty = 1
+          this.laundrySavedTime = '1 hrs 20 mins'
+          this.calculateLaundryPrice()
+
+          this.cleaningType = 'Standard cleaning'
+          this.cleaningFrequency = 'Once a week'
+          this.cleaningQtyOption[0].qty = 1
+          this.cleaningQtyOption[1].qty = 1
+          this.cleaningQtyOption[2].qty = 1
+          this.cleaningQtyOption[4].qty = 0
+          this.cleaningQtyOption[5].qty = 0
+          this.getEstimateRoomTypes()
+          this.setCleaningArea('standard cleaning')
+          this.cleaningInfo.item = 'standard-cleaning'
+          this.cleaningInfo.frequency = 'weekly'
+          this.cleaningSavedTime = '45 mins'
+
+          this.calculateCleaningPrice()
+        } else if (this.selectedService.length === 2) {
+          if (
+            this.selectedService.includes('Food') &&
+            this.selectedService.includes('Cleaning')
+          ) {
+            this.mealQty = 5
+            this.mealFrequency = 'Weekly'
+            this.selectedDays = ['monday-friday']
+            this.mealSavedTime = '3 hrs 40 mins'
+            this.calculateFoodPrice()
+
+            this.cleaningType = 'Standard cleaning'
+            this.cleaningFrequency = 'Once a week'
+            this.setCleaningArea('standard cleaning')
+            this.cleaningInfo.item = 'standard-cleaning'
+            this.cleaningQtyOption[0].qty = 1
+            this.cleaningQtyOption[1].qty = 1
+            this.cleaningQtyOption[2].qty = 0
+            this.cleaningQtyOption[3].qty = 0
+            this.getEstimateRoomTypes()
+            this.cleaningInfo.frequency = 'weekly'
+            this.cleaningSavedTime = '45 mins'
+
+            this.calculateCleaningPrice()
+          }
+          if (
+            this.selectedService.includes('Cleaning') &&
+            this.selectedService.includes('Laundry')
+          ) {
+            this.laundryFreqName = 'every two weeks'
+            this.laundryType = 'Wash & Iron'
+            this.laundryTypeValue = 'wash-and-iron'
+            this.laundryFreqValue = 'bi-weekly'
+            this.laundryQty = 3
+            this.laundrySavedTime = '6 hrs 10 mins'
+            this.calculateLaundryPrice()
+            this.cleaningType = 'Standard cleaning'
+            this.cleaningFrequency = 'Once a week'
+            this.setCleaningArea('standard cleaning')
+            this.cleaningInfo.item = 'deep-cleaning'
+            this.cleaningQtyOption[0].qty = 2
+            this.cleaningQtyOption[1].qty = 1
+            this.cleaningQtyOption[2].qty = 1
+            this.cleaningQtyOption[3].qty = 1
+            this.getEstimateRoomTypes()
+            this.cleaningInfo.frequency = 'weekly'
+            this.cleaningSavedTime = '5 hrs 30 mins'
+            this.calculateCleaningPrice()
+          }
+        } else if (this.selectedService.length === 1) {
+          this.mealQty = 3
+          this.mealFrequency = 'Twice a week'
+          this.selectedDays = ['monday', 'thursday']
+          this.mealSavedTime = '3 hrs 20 mins'
+
+          this.calculateFoodPrice()
+          this.laundryFreqName = 'every two weeks'
+          this.laundryType = 'Wash & Iron'
+          this.laundryTypeValue = 'wash-and-iron'
+          this.laundryFreqValue = 'bi-weekly'
+          this.laundryQty = 1
+          this.laundrySavedTime = '4 hrs 10 mins'
+
+          this.calculateLaundryPrice()
+          this.cleaningType = 'Deep cleaning'
+          this.setCleaningArea('deep cleaning')
+          this.cleaningInfo.item = 'deep-cleaning'
+          this.cleaningQtyOption[0].qty = 1
+          this.cleaningQtyOption[1].qty = 1
+          this.cleaningQtyOption[2].qty = 0
+          this.cleaningQtyOption[4].qty = 0
+          this.cleaningQtyOption[5].qty = 0
+          this.getEstimateRoomTypes()
+          this.cleaningInfo.frequency = 'weekly'
+          this.cleaningSavedTime = '8 hrs 30 mins'
+          this.calculateCleaningPrice()
+        }
+      }
+      // estimated price 150,000
+      if (this.estimate.toString() === '4') {
+        if (this.selectedService.length === 3) {
+          this.mealQty = 6
+          this.mealFrequency = 'Weekly'
+          this.selectedDays = ['monday-saturday']
+          this.mealSavedTime = '3 hrs 20 mins'
+          this.calculateFoodPrice()
+
+          this.laundryFreqName = 'once a month'
+          this.laundryType = 'Wash & Iron'
+          this.laundryTypeValue = 'wash-and-iron'
+          this.laundryFreqValue = 'monthly'
+          this.laundryQty = 1
+          this.laundrySavedTime = '1 hrs 20 mins'
+          this.calculateLaundryPrice()
+
+          this.cleaningType = 'Standard cleaning'
+          this.cleaningFrequency = 'Every two weeks'
+          this.cleaningQtyOption[0].qty = 1
+          this.cleaningQtyOption[1].qty = 1
+          this.cleaningQtyOption[2].qty = 1
+          this.cleaningQtyOption[3].qty = 1
+          this.cleaningQtyOption[5].qty = 0
+          this.getEstimateRoomTypes()
+          this.setCleaningArea('standard cleaning')
+          this.cleaningInfo.item = 'standard-cleaning'
+          this.cleaningInfo.frequency = 'bi-weekly'
+          this.cleaningSavedTime = '45 mins'
+
+          this.calculateCleaningPrice()
+        } else if (this.selectedService.length === 2) {
+          if (
+            this.selectedService.includes('Food') &&
+            this.selectedService.includes('Laundry')
+          ) {
+            this.mealQty = 2
+            this.mealFrequency = 'Daily'
+            this.selectedDays = ['monday-friday']
+            this.mealSavedTime = '7 hrs 10 mins'
+
+            this.calculateFoodPrice()
+            this.laundryFreqName = 'every two weeks'
+            this.laundryType = 'Wash & Iron'
+            this.laundryTypeValue = 'wash-and-iron'
+            this.laundryFreqValue = 'bi-weekly'
+            this.laundryQty = 2
+            this.laundrySavedTime = '4 hrs 20 mins'
+
+            this.calculateLaundryPrice()
+          }
+          if (
+            this.selectedService.includes('Food') &&
+            this.selectedService.includes('Cleaning')
+          ) {
+            this.mealQty = 2
+            this.mealFrequency = 'Daily'
+            this.selectedDays = ['monday-friday']
+            this.mealSavedTime = '7 hrs 10 mins'
+            this.calculateFoodPrice()
+            this.cleaningType = 'Standard cleaning'
+            this.cleaningFrequency = 'Once a week'
+            this.cleaningQtyOption[0].qty = 2
+            this.cleaningQtyOption[1].qty = 1
+            this.cleaningQtyOption[2].qty = 1
+            this.cleaningQtyOption[3].qty = 1
+            this.cleaningQtyOption[4].qty = 0
+            this.cleaningQtyOption[5].qty = 0
+            this.getEstimateRoomTypes()
+            this.setCleaningArea('standard cleaning')
+            this.cleaningInfo.item = 'standard-cleaning'
+            this.cleaningInfo.frequency = 'weekly'
+            this.cleaningSavedTime = '5 hrs 30 mins'
+            this.calculateCleaningPrice()
+          }
+          if (
+            this.selectedService.includes('Cleaning') &&
+            this.selectedService.includes('Laundry')
+          ) {
+            this.laundryFreqName = 'every two weeks'
+            this.laundryType = 'Wash & Iron'
+            this.laundryTypeValue = 'wash-and-iron'
+            this.laundryFreqValue = 'bi-weekly'
+            this.laundryQty = 3
+
+            this.laundrySavedTime = '6 hrs 10 mins'
+            this.calculateLaundryPrice()
+            this.cleaningType = 'Standard cleaning'
+            this.cleaningFrequency = 'Once a week'
+            this.cleaningQtyOption[0].qty = 2
+            this.cleaningQtyOption[1].qty = 2
+            this.cleaningQtyOption[2].qty = 1
+            this.cleaningQtyOption[3].qty = 1
+            this.cleaningQtyOption[4].qty = 1
+            this.cleaningQtyOption[5].qty = 1
+            this.getEstimateRoomTypes()
+            this.setCleaningArea('standard cleaning')
+            this.cleaningInfo.item = 'standard-cleaning'
+            this.cleaningInfo.frequency = 'weekly'
+            this.cleaningSavedTime = '8 hrs 30 mins'
+
+            this.calculateCleaningPrice()
+          }
+        } else if (this.selectedService.length === 1) {
+          this.mealQty = 2
+          this.mealFrequency = 'Daily'
+          this.selectedDays = ['monday-friday']
+          this.mealSavedTime = '7 hrs 10 mins'
+
+          this.calculateFoodPrice()
+          this.laundryFreqName = 'weekly'
+          this.laundryType = 'Wash & Iron'
+          this.laundryTypeValue = 'wash-and-iron'
+          this.laundryFreqValue = 'weekly'
+          this.laundryQty = 3
+          this.laundrySavedTime = '11 hrs 30 mins'
+
+          this.calculateLaundryPrice()
+          this.cleaningType = 'Deep cleaning'
+          this.cleaningFrequency = 'Once a month'
+          this.cleaningQtyOption[0].qty = 3
+          this.cleaningQtyOption[1].qty = 3
+          this.cleaningQtyOption[2].qty = 2
+          this.cleaningQtyOption[3].qty = 2
+          this.cleaningQtyOption[4].qty = 0
+          this.cleaningQtyOption[5].qty = 0
+          this.getEstimateRoomTypes()
+          this.setCleaningArea('deep cleaning')
+          this.cleaningInfo.item = 'deep-cleaning'
+          this.cleaningInfo.frequency = 'monthly'
+          this.cleaningSavedTime = '20 hrs 30 mins'
+          this.calculateCleaningPrice()
+        }
       }
     },
 
     getDefaultPrice(estimate) {
       switch (estimate.toString()) {
         case '0': {
-          this.selectedService = ['Food', 'Laundry', 'Cleaning']
-          this.estimatedPrice = this.priceList[0]
-          this.services[0].price = String((42.5 / 100) * this.estimatedPrice)
-          this.services[1].price = String((25.0 / 100) * this.estimatedPrice)
-          this.services[3].price = String((32.5 / 100) * this.estimatedPrice)
-          this.totalPrice = this.getTotalEstimate([
-            Number(this.services[0].price),
-            Number(this.services[1].price),
-            Number(this.services[3].price),
-          ])
-          this.foodSummary = ['Weekly', '1 meal per week']
-          this.cleaningSummary = ['Standard Cleaning', '3 Bedrooms, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen, 1 balcony, 1 Study', 'Weekly']
-          this.laundrySummary = [
-            'Wash & Fold',
-            'One 10KG Bag',
-            'Picked up every two weeks',
-            'Additional KES 1,000 for Wash & Iron',
-          ]
+          this.selectedService = ['Cleaning', 'Food', 'Laundry']
+          const defaultService = { name: 'Cleaning', price: '' }
+          this.changeService(defaultService)
           break
         }
         case '1': {
@@ -1510,7 +2071,7 @@ export default {
             this.getSinglePrice((13.33 / 100) * this.estimatedPrice)
           )
           this.services[3].price = String(
-            this.getSinglePrice((10.50 / 100) * this.estimatedPrice)
+            this.getSinglePrice((10.5 / 100) * this.estimatedPrice)
           )
           this.totalPrice = this.getTotalEstimate([
             Number(this.services[0].price),
@@ -1522,7 +2083,12 @@ export default {
             '4 meals per week',
             'Delivered twice a week',
           ]
-          this.cleaningSummary = ['Standard Cleaning', '2 Bedrooms', 'Weekly', 'Twice a week']
+          this.cleaningSummary = [
+            'Standard Cleaning',
+            '2 Bedrooms',
+            'Weekly',
+            'Twice a week',
+          ]
           this.laundrySummary = [
             'Wash & Fold',
             'One 10KG Bag',
@@ -1532,50 +2098,58 @@ export default {
           break
         }
         case '2': {
-          this.selectedService = ['Food', 'Laundry', 'Beauty', 'Cleaning']
-          this.estimatedPrice = this.priceList[2]
-          this.services[0].price = String(
-            Math.round((65.0 / 100) * this.estimatedPrice)
-          )
-          this.services[1].price = String(
-            Math.round((10.0 / 100) * this.estimatedPrice)
-          )
-          this.services[2].price = String(
-            Math.round((15.0 / 100) * this.estimatedPrice)
-          )
-          this.services[3].price = String(
-            Math.round((8.0 / 100) * this.estimatedPrice)
-          )
-          this.totalPrice = this.getTotalEstimate([
-            Number(this.services[0].price),
-            Number(this.services[1].price),
-            Number(this.services[2].price),
-            Number(this.services[3].price),
-          ])
-          this.foodSummary = [
-            'Weekly',
-            '5 meals per week',
-            'Delivered once a week',
-          ]
-          this.cleaningSummary = ['Standard Cleaning', '2 Bedrooms', 'Weekly', 'Twice a week']
-          this.beautySummary = [
-            '1 basic service',
-            'Every two weeks',
-            'Additional KES 3,200 for premium beauty services',
-          ]
-          this.laundrySummary = [
-            'Wash & Fold',
-            'One 10KG Bag',
-            'Picked up every two weeks',
-            'Additional KES 1000 for Wash & Iron',
-          ]
+          this.selectedService = ['Cleaning', 'Food', 'Beauty']
+          const defaultService = { name: '', price: '' }
+          this.changeService(defaultService)
+          // this.selectedService = ['Food', 'Laundry', 'Cleaning']
+          // this.estimatedPrice = this.priceList[2]
+          // this.services[0].price = String(
+          //   Math.round((65.0 / 100) * this.estimatedPrice)
+          // )
+          // this.services[1].price = String(
+          //   Math.round((10.0 / 100) * this.estimatedPrice)
+          // )
+          // this.services[2].price = String(
+          //   Math.round((15.0 / 100) * this.estimatedPrice)
+          // )
+          // this.services[3].price = String(
+          //   Math.round((8.0 / 100) * this.estimatedPrice)
+          // )
+          // this.totalPrice = this.getTotalEstimate([
+          //   Number(this.services[0].price),
+          //   Number(this.services[1].price),
+          //   Number(this.services[2].price),
+          //   Number(this.services[3].price),
+          // ])
+          // this.foodSummary = [
+          //   'Weekly',
+          //   '5 meals per week',
+          //   'Delivered once a week',
+          // ]
+          // this.cleaningSummary = [
+          //   'Standard Cleaning',
+          //   '2 Bedrooms',
+          //   'Weekly',
+          //   'Twice a week',
+          // ]
+          // this.beautySummary = [
+          //   '1 basic service',
+          //   'Every two weeks',
+          //   'Additional KES 3,200 for premium beauty services',
+          // ]
+          // this.laundrySummary = [
+          //   'Wash & Fold',
+          //   'One 10KG Bag',
+          //   'Picked up every two weeks',
+          //   'Additional KES 1000 for Wash & Iron',
+          // ]
           break
         }
         case '3': {
           this.selectedService = ['Food', 'Laundry', 'Beauty', 'Cleaning']
           this.estimatedPrice = this.priceList[3]
           this.services[0].price = String(
-            this.getSinglePrice((64.90 / 100) * this.estimatedPrice)
+            this.getSinglePrice((64.9 / 100) * this.estimatedPrice)
           )
 
           this.services[1].price = String(
@@ -1598,7 +2172,11 @@ export default {
             '7 meals per week',
             'Delivered once a week',
           ]
-          this.cleaningSummary = ['Standard Cleaning', '2 Bedrooms, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen, 1 balcony, 1 Study', 'Weekly']
+          this.cleaningSummary = [
+            'Standard Cleaning',
+            '2 Bedrooms, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen, 1 balcony, 1 Study',
+            'Weekly',
+          ]
           this.beautySummary = [
             '1 basic service',
             'Every two weeks',
@@ -1616,17 +2194,17 @@ export default {
           this.selectedService = ['Food', 'Laundry', 'Beauty', 'Cleaning']
           this.estimatedPrice = this.priceList[4]
           this.services[0].price = String(
-            this.getSinglePrice((78.60 / 100) * this.estimatedPrice)
+            this.getSinglePrice((78.6 / 100) * this.estimatedPrice)
           )
 
           this.services[1].price = String(
             this.getSinglePrice((3.2 / 100) * this.estimatedPrice)
           )
           this.services[2].price = String(
-            this.getSinglePrice((9.70 / 100) * this.estimatedPrice)
+            this.getSinglePrice((9.7 / 100) * this.estimatedPrice)
           )
           this.services[3].price = String(
-            this.getSinglePrice((8.50 / 100) * this.estimatedPrice)
+            this.getSinglePrice((8.5 / 100) * this.estimatedPrice)
           )
           this.totalPrice = this.getTotalEstimate([
             Number(this.services[0].price),
@@ -1639,7 +2217,11 @@ export default {
             '10 meals per week',
             'Delivered twice a week',
           ]
-          this.cleaningSummary = ['Standard Cleaning', '2 Bedrooms, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen, 1 balcony, 1 Study', 'Weekly']
+          this.cleaningSummary = [
+            'Standard Cleaning',
+            '2 Bedrooms, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen, 1 balcony, 1 Study',
+            'Weekly',
+          ]
           this.beautySummary = [
             '1 basic service',
             'Every two weeks',
@@ -1946,6 +2528,7 @@ export default {
         } (max. 30 items per bag)`,
         `Picked up ${this.laundryFreqName}`,
         `Saves ${this.laundrySavedTime} per week`,
+        `${this.laundryAddition}`,
       ]
       this.totalLaundrySummary = {
         frequency: this.laundryFreqValue,
@@ -2023,7 +2606,6 @@ export default {
         service_day: ['monday'],
         amount: total,
       }
-      console.log(this.totalCleaningSummary)
     },
     setCleaningArea(area) {
       const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
@@ -2059,11 +2641,9 @@ export default {
       }
     },
     increaseRoomQty() {
-      console.log(this.cleaningQty, this.cleaningInfo.qty)
       if (this.cleaningInfo.qty < 5) {
         this.cleaningInfo.qty++
         this.calculateCleaningPrice()
-        console.log
       }
     },
     decreaseRoomQty() {
@@ -2098,4 +2678,12 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/pages/ke/_pricing.scss';
+@import '@/assets/scss/pages/_pricing.scss';
+.pricing__calculator-btn {
+  margin-right: 0;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  padding: 8px 16px;
+  transition: none;
+}
 </style>

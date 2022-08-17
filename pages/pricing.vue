@@ -1174,7 +1174,7 @@ export default {
       showEmailModal: false,
       custumerStatus: false,
       subscribeEmail: '',
-      selectedService: ['Food', 'Laundry', 'Cleaning'],
+      selectedService: ['Food', 'Cleaning'],
       services: [
         { name: 'Food', price: '' },
         { name: 'Laundry', price: '' },
@@ -1191,9 +1191,9 @@ export default {
       priceList: ['15000', '30000', '60000', '100000', '150000', '150000'],
       reconfigurePlan: false,
       visible: [],
-      mealFrequency: 'Daily',
+      mealFrequency: 'Weekly',
       dailyDeliveryDays: ['monday-friday', 'monday-saturday'],
-      selectedDays: ['monday-friday'],
+      selectedDays: ['monday'],
       deliveryDays: [
         { name: 'monday', value: 'mon' },
         { name: 'tuesday', value: 'tue' },
@@ -1332,8 +1332,10 @@ export default {
   mounted() {
     document.addEventListener('click', this.toggleSelect)
     mixpanelTrackEvent('Pricing page')
-    this.fetchCleaningServiceTypes()
-    // this.calculateLaundryPrice()
+    setTimeout(() => {
+      this.fetchCleaningServiceTypes()
+      this.calculateFoodPrice()
+    }, 2000)
   },
   destroyed() {
     document.removeEventListener('click', this.toggleSelect)

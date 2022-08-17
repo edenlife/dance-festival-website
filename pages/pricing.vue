@@ -1544,6 +1544,7 @@ export default {
       this.totalPrice = this.subtotalPrice
     },
     changeService(service) {
+      console.log("NG")
       // estimated price 10,000
       if (this.estimate.toString() === '0') {
         if (service.name === 'Food') {

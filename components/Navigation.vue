@@ -339,7 +339,7 @@
                     class="navigation__menu-item"
                     @click="trackLink('Contact Us')"
                   >
-                    <a href="tel:+2348146757886"> +2348146757886</a>
+                    <a href="tel:+2348134254074"> +2348134254074</a>
                   </li>
                   <li
                     class="navigation__menu-item trigger-chat"
@@ -786,7 +786,7 @@
                     class="menu--list-item contact"
                     @click="trackLink('Contact Us')"
                   >
-                    <a href="tel:+2348146757886"> +2348146757886</a>
+                    <a href="tel:+2348134254074"> +2348134254074</a>
                   </li>
                   <li
                     class="menu--list-item contact trigger-chat"

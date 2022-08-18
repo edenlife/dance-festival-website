@@ -1081,7 +1081,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/ke/`,
+          href: `https://ouredenlifev2-staging.netlify.app/`,
         },
         {
           rel: 'alternate',

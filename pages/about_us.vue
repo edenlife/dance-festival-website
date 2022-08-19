@@ -114,6 +114,7 @@
 
 <script>
 import humaans from '@/static/humaans'
+import getSiteMeta from '~/utils/getSiteMeta'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 export default {
   components: {
@@ -125,6 +126,30 @@ export default {
       paginatedHumaans: [],
       pagination: {},
     }
+  },
+    head() {
+    return {
+      title: 'Eden | About Us',
+      meta: [...this.meta],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlife.com/about_us/`,
+        },
+      ],
+    }
+  },
+  computed: {
+    meta() {
+      const metaData = {
+        title: 'Eden | About Us',
+        description: `Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!`,
+        url: `https://ouredenlife.com/about_us/`,
+        mainImage: 'https://ouredenlife.com/edencard.png',
+      }
+      return getSiteMeta(metaData)
+    },
   },
   mounted() {
     mixpanelTrackEvent('About Us page')

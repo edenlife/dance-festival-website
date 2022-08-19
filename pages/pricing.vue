@@ -1106,6 +1106,7 @@ import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 import { currencyFormat, formatNumber, scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import { pricing } from '~/static/pricing'
+import getSiteMeta from '~/utils/getSiteMeta'
 import { getCleaningServiceTypes, signupApi } from '~/request/all.api'
 
 export default {
@@ -1124,6 +1125,45 @@ export default {
       },
     },
   },
+  head() {
+    return {
+      title: 'Eden | Pricing',
+      meta: [...this.meta],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlife.com/pricing/`,
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ng',
+          href: 'https://ouredenlife.com/pricing/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlife.com/ke/pricing/',
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: 'https://ouredenlife.com/pricing/',
+        },
+      ],
+    }
+  },
+  computed: {
+    meta() {
+      const metaData = {
+        title: 'Eden | Pricing',
+        description: `Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!`,
+        url: `https://ouredenlife.com/pricing/`,
+        mainImage: 'https://ouredenlife.com/edencard.png',
+      }
+      return getSiteMeta(metaData)
+    },
+  },
   data() {
     return {
       content:
@@ -1134,7 +1174,7 @@ export default {
       showEmailModal: false,
       custumerStatus: false,
       subscribeEmail: '',
-      selectedService: ['Food', 'Laundry', 'Cleaning'],
+      selectedService: ['Food', 'Cleaning'],
       services: [
         { name: 'Food', price: '' },
         { name: 'Laundry', price: '' },
@@ -1151,9 +1191,9 @@ export default {
       priceList: ['15000', '30000', '60000', '100000', '150000', '150000'],
       reconfigurePlan: false,
       visible: [],
-      mealFrequency: 'Daily',
+      mealFrequency: 'Weekly',
       dailyDeliveryDays: ['monday-friday', 'monday-saturday'],
-      selectedDays: ['monday-friday'],
+      selectedDays: ['monday'],
       deliveryDays: [
         { name: 'monday', value: 'mon' },
         { name: 'tuesday', value: 'tue' },
@@ -1324,8 +1364,10 @@ export default {
   mounted() {
     document.addEventListener('click', this.toggleSelect)
     mixpanelTrackEvent('Pricing page')
-    this.fetchCleaningServiceTypes()
-    // this.calculateLaundryPrice()
+    setTimeout(() => {
+      this.fetchCleaningServiceTypes()
+      this.calculateFoodPrice()
+    }, 2000)
   },
   destroyed() {
     document.removeEventListener('click', this.toggleSelect)
@@ -1537,6 +1579,7 @@ export default {
       this.totalPrice = this.subtotalPrice
     },
     changeService(service) {
+      console.log("NG")
       // estimated price 10,000
       if (this.estimate.toString() === '0') {
         if (service.name === 'Food') {

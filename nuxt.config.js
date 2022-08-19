@@ -161,7 +161,8 @@ export default {
     RAVE_KEY_TEST: 'FLWPUBK-d4dfef720154b7df12637126423b02c5-X',
     MAILCHIMP_USERID: '8d551f5341eee34aa00432838',
     MAILCHIMP_LISTID: '987fa4d39c',
-    AIRTABLE_KEY: process.env.VUE_APP_AIRTABLEKEY_KE,
+    AIRTABLE_KEY: process.env.VUE_APP_AIRTABLEKEY,
+    AIRTABLE_KEY_KE: process.env.VUE_APP_AIRTABLEKEY_KE,
     GREENHOUSE_API:
       process.env.NODE_ENV === 'production'
         ? 'https://api.edenlife.ng/api/v1/greenhouse'

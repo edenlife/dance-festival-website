@@ -92,7 +92,7 @@ export default {
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlife.comke/terms_and_conditions/',
+          href: 'https://ouredenlife.com/ke/terms_and_conditions/',
         },
         {
           rel: 'alternate',

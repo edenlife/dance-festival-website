@@ -501,8 +501,12 @@ export default {
       }
     },
     onSuccess() {
+      console.log("Test")
       // handle success
       this.user_subscribed = true
+    },
+    subscribe() {
+      console.log("Test")
     },
     async getSingleArticle(id) {
       this.postDetails = await fetch(

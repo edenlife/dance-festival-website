@@ -1081,7 +1081,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlife.com/ke/`,
+          href: `https://ouredenlife.com/`,
         },
         {
           rel: 'alternate',

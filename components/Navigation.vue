@@ -342,6 +342,12 @@
                     <a href="tel:+2348134254074"> +2348134254074</a>
                   </li>
                   <li
+                    class="navigation__menu-item contact"
+                    @click="trackLink('Contact Us')"
+                  >
+                    <a href="https://wa.me/2348134254074"> Whatsapp</a>
+                  </li>
+                  <li
                     class="navigation__menu-item trigger-chat"
                     @click.prevent="launchIntercom()"
                   >
@@ -412,7 +418,10 @@
                     @mouseenter.stop="locations = 'nigeria'"
                     @mouseleave.stop="locations = ''"
                   >
-                    <nuxt-link :to="{ path: locationRoute('NG') }" class="service__list-item">
+                    <nuxt-link
+                      :to="{ path: locationRoute('NG') }"
+                      class="service__list-item"
+                    >
                       <span>🇳🇬</span>
                       <h5>Nigeria</h5>
                       <svg
@@ -569,7 +578,10 @@
                 @mouseenter.stop="locations = 'nigeria'"
                 @mouseleave.stop="locations = ''"
               >
-                <nuxt-link :to="{ path: locationRoute('NG') }" class="service__list-item">
+                <nuxt-link
+                  :to="{ path: locationRoute('NG') }"
+                  class="service__list-item"
+                >
                   <span>🇳🇬</span>
                   <h5>Nigeria</h5>
                   <svg
@@ -619,7 +631,10 @@
                 @mouseenter.stop="locations = 'kenya'"
                 @mouseleave.stop="locations = ''"
               >
-                <nuxt-link :to="{ path: locationRoute('KE')}" class="service__list-item">
+                <nuxt-link
+                  :to="{ path: locationRoute('KE') }"
+                  class="service__list-item"
+                >
                   <span>🇰🇪</span>
                   <h5>Kenya</h5>
                   <svg
@@ -787,6 +802,12 @@
                     @click="trackLink('Contact Us')"
                   >
                     <a href="tel:+2348134254074"> +2348134254074</a>
+                  </li>
+                  <li
+                    class="menu--list-item contact"
+                    @click="trackLink('Contact Us')"
+                  >
+                    <a href="https://wa.me/2348134254074"> Whatsapp</a>
                   </li>
                   <li
                     class="menu--list-item contact trigger-chat"

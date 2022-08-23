@@ -818,22 +818,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/food/`,
+          href: `https://ouredenlife.com/food/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlifev2-staging.netlify.app/food/',
+          href: 'https://ouredenlife.com/food/'
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlifev2-staging.netlify.app/ke/food/',
+          href: 'https://ouredenlife.com/ke/food/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlifev2-staging.netlify.app/food/',
+          href: 'https://ouredenlife.com/food'
         },
       ],
     }
@@ -844,8 +844,8 @@ export default {
         title: 'Eden | Food',
         description:
           'Your chef-cooked meals, delivered to you. Daily or weekly.',
-        url: `https://ouredenlifev2-staging.netlify.app/food/`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
+        url: `https://ouredenlife.com/food/`,
+        mainImage: 'https://ouredenlife.com/edencardfood.png',
       }
       return getSiteMeta(metaData)
     },

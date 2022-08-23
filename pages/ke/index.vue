@@ -1735,22 +1735,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/ke/`,
+          href: `https://ouredenlife.com/ke/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlifev2-staging.netlify.app/',
+          href: 'https://ouredenlife.com/',
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlifev2-staging.netlify.app/ke/',
+          href: 'https://ouredenlife.com/ke/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlifev2-staging.netlify.app/',
+          href: 'https://ouredenlife.com/',
         },
       ],
     }
@@ -1760,8 +1760,8 @@ export default {
       const metaData = {
         title: 'Eden | Say Goodbye To Chores Forever',
         description: `Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!`,
-        url: `https://ouredenlifev2-staging.netlify.app/ke/`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+        url: `https://ouredenlife.com/ke/`,
+        mainImage: 'https://ouredenlife.com/edencard.png',
       }
       return getSiteMeta(metaData)
     },

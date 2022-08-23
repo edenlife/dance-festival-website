@@ -1198,7 +1198,7 @@ export default {
         {
           name: 'kofo',
           image: 'kofo',
-          description: `The way my house sparkles after the 
+          description: `The way my house sparkles after the
 <span style="color:#03A84E"> @ouredenlife </span>
  cleaners are done with their magic dey always give me endorphins`,
           handle: `yoruba_dev
@@ -1227,10 +1227,10 @@ export default {
         {
           name: 'Nengi Adoki',
           image: 'adoki',
-          description: `This deep cleaning 
+          description: `This deep cleaning
 <span style="color:#03A84E"> @ouredenlife </span>
- did at my house is….I have no words 😭 😭 😭 
- 
+ did at my house is….I have no words 😭 😭 😭
+
  🤌 🤌 🤌 🤌`,
           handle: `TheNengers`,
           tweetLink:
@@ -1268,22 +1268,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/cleaning/`,
+          href: `https://ouredenlife.com/cleaning/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlifev2-staging.netlify.app/cleaning/',
+          href: 'https://ouredenlife.com/cleaning/',
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlifev2-staging.netlify.app/ke/cleaning/',
+          href: 'https://ouredenlife.com/ke/cleaning/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlifev2-staging.netlify.app/cleaning/',
+          href: 'https://ouredenlife.com/cleaning/',
         },
       ],
     }
@@ -1294,9 +1294,8 @@ export default {
         title: 'Eden | Cleaning',
         description:
           'Professional cleaning at your doorstep. Up to thrice a week.',
-        url: `https://ouredenlifev2-staging.netlify.app/cleaning/`,
-        mainImage:
-          'https://ouredenlifev2-staging.netlify.app/edencardcleaning.png',
+        url: `https://ouredenlife.com/cleaning/`,
+        mainImage: 'https://ouredenlife.com/edencardcleaning.png',
       }
       return getSiteMeta(metaData)
     },

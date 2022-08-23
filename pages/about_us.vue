@@ -135,7 +135,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/about_us/`,
+          href: `https://ouredenlife.com/about_us/`,
         },
       ],
     }
@@ -145,8 +145,8 @@ export default {
       const metaData = {
         title: 'Eden | About Us',
         description: `Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!`,
-        url: `https://ouredenlifev2-staging.netlify.app/about_us/`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+        url: `https://ouredenlife.com/about_us/`,
+        mainImage: 'https://ouredenlife.com/edencard.png',
       }
       return getSiteMeta(metaData)
     },

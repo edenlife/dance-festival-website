@@ -117,9 +117,6 @@
             </button>
           </div>
         </transition>
-
-        <!-- Summary -->
-
         <transition name="slide-fade">
           <div
             v-if="estimate !== '5' && !reconfigurePlan"
@@ -218,15 +215,17 @@
                   :disabled="isLoading"
                   @click.prevent="getStarted()"
                 >
-                  I Want an Easy Life
+                  <svg v-if="isLoading">
+                    <use
+                      xlink:href="@/assets/images/loading-icon.svg#loading-icon"
+                    ></use>
+                  </svg>
+                  <span v-else> I Want an Easy Life</span>
                 </button>
               </div>
             </transition>
           </div>
         </transition>
-
-        <!-- calculator -->
-
         <transition name="slide-fade">
           <div v-if="reconfigurePlan" class="pricing__calculator">
             <p class="pricing__calculator-title">
@@ -1091,8 +1090,7 @@
                 Clean internal and external parts of home appliances (Gas
                 cooker, refrigerators etc)
               </li>
-              <li>Clean cupboards and cabinets</li>
-              <li>AC vents cleaned</li>
+              <li>Clean cupboards and cabinets</li>            
             </ul>
           </div>
         </div>
@@ -1135,22 +1133,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/pricing/`,
+          href: `https://ouredenlife.com/pricing/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlifev2-staging.netlify.app/pricing/',
+          href: 'https://ouredenlife.com/pricing/',
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlifev2-staging.netlify.app/ke/pricing/',
+          href: 'https://ouredenlife.com/ke/pricing/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlifev2-staging.netlify.app/pricing/',
+          href: 'https://ouredenlife.com/pricing/',
         },
       ],
     }
@@ -1160,14 +1158,16 @@ export default {
       const metaData = {
         title: 'Eden | Pricing',
         description: `Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!`,
-        url: `https://ouredenlifev2-staging.netlify.app/pricing/`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+        url: `https://ouredenlife.com/pricing/`,
+        mainImage: 'https://ouredenlife.com/edencard.png',
       }
       return getSiteMeta(metaData)
     },
   },
   data() {
     return {
+      content:
+        "Pick a food, laundry or cleaning plan and find out how much it'll cost. With our price calculator, you can see the total cost of your preferred service before you pay",
       cleaningPlanType: 'standard-cleaning',
       showCleaningModal: false,
       showSuccessModal: false,
@@ -1296,6 +1296,38 @@ export default {
       responseMessage: '',
     }
   },
+  head() {
+    return {
+      title: 'Eden | Pricing',
+      meta: [
+        { name: 'description', content: [this.content] },
+        { name: 'twitter:description', content: [this.content] },
+        { property: 'og:description', content: [this.content] },
+      ],
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: `https://ouredenlife.ke/pricing`,
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ng',
+          href: 'https://ouredenlife.com/pricing'
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'en-ke',
+          href: 'https://ouredenlife.ke/pricing'
+        },
+        {
+          rel: 'alternate',
+          hreflang: 'x-default',
+          href: 'https://ouredenlife.com/pricing'
+        },
+      ],
+    }
+  },
   watch: {
     mealQty(val) {
       if (this.mealFrequency.toLowerCase() === 'daily') {
@@ -1375,6 +1407,7 @@ export default {
             referrer: document.referrer,
           })
           this.$intercom('trackEvent', 'lead-genaration-signup', metadata)
+          this.$intercom('trackEvent', 'pricing-page-onboarding', metadata)
           this.responseMessage = ''
           this.custumerStatus = false
           this.showEmailModal = true
@@ -1494,6 +1527,7 @@ export default {
       this.setCustom = true
       this.setCleaningConfig('deep cleaning')
       this.getEstimate()
+      mixpanelTrackEvent('Customise plan clicked', 'pricing page')
     },
     setReconfigureSummary() {
       this.$refs['price-container'].scrollIntoView()
@@ -1501,6 +1535,7 @@ export default {
       this.displayForm = true
       this.estimatedPrice = this.subtotalPrice
       this.setBackgroundGradient()
+      mixpanelTrackEvent('Subscribe button clicked', 'pricing page')
     },
     removePlan(plan) {
       if (
@@ -1562,7 +1597,7 @@ export default {
         this.cleaningType = 'Standard cleaning'
         this.cleaningFrequency = 'Every two weeks'
         this.cleaningQtyOption[0].qty = 1
-        this.cleaningQtyOption[1].qty = 1
+        this.cleaningQtyOption[2].qty = 1
         this.cleaningQtyOption[4].qty = 0
         this.cleaningQtyOption[5].qty = 0
         this.cleaningSavedTime = '45 mins'

@@ -629,6 +629,8 @@ export default {
         { item: 'Blanket (3 items)', cost: '2900' },
         { item: 'Curtain (Per unit - 3 items)', cost: '2900' },
         { item: '3 piece Agbada (3 items) ', cost: '2900' },
+        { item: 'Stubborn Stain Removal', cost: '3000' },
+        { item: 'Hang (Per order/bag)', cost: '3500' },
         { item: 'Duvet (4 items)', cost: '3868' },
         { item: 'A pair of suit (4 items)', cost: '3868' },
       ],
@@ -642,7 +644,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/laundry_leads`,
+          href: `https://ouredenlife.com/laundry`,
         },
       ],
     }
@@ -653,9 +655,9 @@ export default {
         title: 'Eden | Laundry Leads',
         description:
           'Your clothes, picked up, laundered and delivered to you in 48 hours or less.',
-        url: `https://ouredenlifev2-staging.netlify.app/laundry_leads`,
+        url: `https://ouredenlife.com/laundry_leads`,
         mainImage:
-          'https://ouredenlifev2-staging.netlify.app/edencardlaundry.png',
+          'https://ouredenlife.com/edencardlaundry.png',
       }
       return getSiteMeta(metaData)
     },

@@ -1128,22 +1128,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/ke/laundry/`,
+          href: `https://ouredenlife.com/ke/laundry/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlifev2-staging.netlify.app/laundry/',
+          href: 'https://ouredenlife.com/laundry/',
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlifev2-staging.netlify.app/ke/laundry/',
+          href: 'https://ouredenlife.com/ke/laundry/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlifev2-staging.netlify.app/laundry/',
+          href: 'https://ouredenlife.com/laundry/',
         },
       ],
     }
@@ -1154,9 +1154,9 @@ export default {
         title: 'Eden | Laundry',
         description:
           'Fresh, clean and crisp clothes at your doorstep. Whenever you need it .',
-        url: `https://ouredenlifev2-staging.netlify.app/ke/laundry/`,
+        url: `https://ouredenlife.com/ke/laundry/`,
         mainImage:
-          'https://ouredenlifev2-staging.netlify.app/ke/edencardlaundry.png',
+          'https://ouredenlife.com/ke/edencardlaundry.png',
       }
       return getSiteMeta(metaData)
     },

@@ -864,6 +864,7 @@ export default {
         height: 0,
       },
       currentRoute: '',
+      showGiftBanner: false,
       routeUpdate: '',
       locations: '',
       lightLogo: false,

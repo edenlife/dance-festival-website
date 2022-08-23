@@ -1077,22 +1077,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/ke/pricing/`,
+          href: `https://ouredenlife.com/ke/pricing/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlifev2-staging.netlify.app/pricing/',
+          href: 'https://ouredenlife.com/pricing/',
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlifev2-staging.netlify.app/ke/pricing/',
+          href: 'https://ouredenlife.com/ke/pricing/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlifev2-staging.netlify.app/pricing/',
+          href: 'https://ouredenlife.com/pricing/',
         },
       ],
     }
@@ -1102,8 +1102,8 @@ export default {
       const metaData = {
         title: 'Eden | Pricing',
         description: `Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!`,
-        url: `https://ouredenlifev2-staging.netlify.app/ke/pricing/`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+        url: `https://ouredenlife.com/ke/pricing/`,
+        mainImage: 'https://ouredenlife.com/edencard.png',
       }
       return getSiteMeta(metaData)
     },

@@ -838,7 +838,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/blog/`,
+          href: `https://ouredenlife.com/blog/`,
         },
       ],
     }
@@ -849,8 +849,8 @@ export default {
       const metaData = {
         title: 'The Good Life | One-stop blog for all things home',
         description: `The Good Life is the best place for how-tos, great food, tips on living well in Nigeria, and so much more. <br><br> Powered by Eden Life.`,
-        url: `https://ouredenlifev2-staging.netlify.app/blog/`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencardblog.png',
+        url: `https://ouredenlife.com/blog/`,
+        mainImage: 'https://ouredenlife.com/edencardblog.png',
       }
       return getSiteMeta(metaData)
     },

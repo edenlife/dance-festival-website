@@ -19,7 +19,7 @@ export default [
       },
     },
     amount: '79,000',
-    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
+    payment_link: 'https://pay.edenlife.ng/pay/f64e71a1'
 
   },
 
@@ -44,7 +44,7 @@ export default [
       },
     },
     amount: '94,800',
-    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
+    payment_link: 'https://pay.edenlife.ng/pay/27a561d4'
 
   },
   {
@@ -69,7 +69,7 @@ export default [
       },
     },
     amount: '74,000',
-    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
+    payment_link: 'https://pay.edenlife.ng/pay/55da91a7'
 
   },
   {
@@ -104,7 +104,7 @@ export default [
       },
     },
     amount: '34,000',
-    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
+    payment_link: 'https://pay.edenlife.ng/pay/9b438261'
 
   },
   {
@@ -133,7 +133,7 @@ export default [
       },
     },
     amount: '73,800',
-    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
+    payment_link: 'https://pay.edenlife.ng/pay/21c2a20a'
 
   },
   {
@@ -145,7 +145,7 @@ export default [
     details: [
       'Wash and fold 1 bag of 30 items, Laundry picked up and delivered every week ',
       'Standard cleaning for a 1 bedroom apartment, done every two weeks.',
-      ' ₦23,500 per month. ',
+      ' ₦23,500 for four weeks. ',
     ],
     plan_detail: 'Wash and fold 1 bag of 30 items + Standard cleaning for a 1 bedroom apartment ',
 
@@ -173,7 +173,7 @@ export default [
       },
     },
     amount: '67,000',
-    payment_link: 'https://pay-staging.edenlife.ng/pay/b848b07d'
+    payment_link: 'https://pay.edenlife.ng/pay/21c2a20a'
 
   },
 ]

@@ -1081,22 +1081,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/`,
+          href: `https://ouredenlife.com/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlifev2-staging.netlify.app/',
+          href: 'https://ouredenlife.com/',
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlifev2-staging.netlify.app/ke/',
+          href: 'https://ouredenlife.com/ke/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlifev2-staging.netlify.app/',
+          href: 'https://ouredenlife.com/',
         },
       ],
     }
@@ -1278,11 +1278,6 @@ export default {
       city: { required },
     },
   },
-  computed: {
-    fromOrigin() {
-      return this.$store.getters.getFromOrigin
-    },
-  },
   mounted() {
     window.setInterval(() => {
       this.changeService()
@@ -1324,6 +1319,7 @@ export default {
           this.showFailedModal = true
         }
       }
+      mixpanelTrackEvent('Enlist form - homepage')
     },
     // scrollTo(id, label) {
     //   scrollToApp(id, label)

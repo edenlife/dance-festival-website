@@ -961,22 +961,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/laundry/`,
+          href: `https://ouredenlife.com/laundry/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlifev2-staging.netlify.app/laundry/',
+          href: 'https://ouredenlife.com/laundry/'
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlifev2-staging.netlify.app/ke/laundry/',
+          href: 'https://ouredenlife.com/ke/laundry/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlifev2-staging.netlify.app/laundry/',
+          href: 'https://ouredenlife.com/laundry/'
         },
       ],
     }
@@ -987,9 +987,8 @@ export default {
         title: 'Eden | Laundry',
         description:
           'Your clothes, picked up, laundered and delivered to you in 48 hours or less.',
-        url: `https://ouredenlifev2-staging.netlify.app/laundry/`,
-        mainImage:
-          'https://ouredenlifev2-staging.netlify.app/edencardlaundry.png',
+        url: `https://ouredenlife.com/laundry/`,
+        mainImage: 'https://ouredenlife.com/edencardlaundry.png',
       }
       return getSiteMeta(metaData)
     },

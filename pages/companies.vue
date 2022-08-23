@@ -1,3 +1,4 @@
+
 <template>
   <div>
     <div class="container--hero">
@@ -928,7 +929,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/companies/`,
+          href: `https://ouredenlife.com/companies/`,
         },
       ],
     }
@@ -938,8 +939,8 @@ export default {
       const metaData = {
         title: 'Eden | Companies',
         description: `Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!`,
-        url: `https://ouredenlifev2-staging.netlify.app/companies/`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+        url: `https://ouredenlife.com/companies/`,
+        mainImage: 'https://ouredenlife.com/edencard.png',
       }
       return getSiteMeta(metaData)
     },

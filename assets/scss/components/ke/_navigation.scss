@@ -27,7 +27,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     &-item {
       margin: 0 $gap * 3;
       line-height: 24px;
@@ -36,6 +35,13 @@
       transition: all 0.4s ease-in-out;
       &:hover {
         color: color(eden-green-primary);
+      }
+      .flag {
+        height: 19px;
+      }
+      @include respond(lg) {
+        margin: 0 $gap * 1;
+        @include font-size(sm);
       }
     }
     &-service {

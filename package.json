@@ -25,6 +25,7 @@
     "core-js": "^3.8.2",
     "country-state-city": "^3.0.1",
     "dayjs": "^1.10.4",
+    "drip-nodejs": "^3.1.1",
     "element-ui": "^2.15.9",
     "flutterwave-vue-v3": "^1.0.5",
     "gsap": "^3.6.0",

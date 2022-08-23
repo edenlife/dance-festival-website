@@ -43,7 +43,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="trackDevice('Download App - hero')"
+              @click.prevent="greenhouseSignUp('Download App - hero')"
             >
               Download App
             </button>

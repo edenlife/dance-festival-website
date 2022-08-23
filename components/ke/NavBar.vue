@@ -313,10 +313,7 @@
                 showService = false
               "
             >
-              <img
-                :src="require(`~/assets/images/greenhouse/flags/KE.svg`)"
-                alt="flag"
-              />
+              <img src="@/assets/images/greenhouse/flags/KE.svg" alt="flag" class="flag" />
               <i class="el-icon-arrow-down el-icon--right"></i>
             </button>
             <transition name="fade">
@@ -331,7 +328,10 @@
                     @mouseenter.stop="locations = 'nigeria'"
                     @mouseleave.stop="locations = ''"
                   >
-                    <nuxt-link :to="{ path: locationRoute('NG') }" class="service__list-item">
+                    <nuxt-link
+                      :to="{ path: locationRoute('NG') }"
+                      class="service__list-item"
+                    >
                       <span>🇳🇬</span>
                       <h5>Nigeria</h5>
                       <svg
@@ -381,7 +381,10 @@
                     @mouseenter.stop="locations = 'kenya'"
                     @mouseleave.stop="locations = ''"
                   >
-                    <nuxt-link :to="{ path: locationRoute('KE') }" class="service__list-item">
+                    <nuxt-link
+                      :to="{ path: locationRoute('KE') }"
+                      class="service__list-item"
+                    >
                       <span>🇰🇪</span>
                       <h5>Kenya</h5>
                       <svg
@@ -449,10 +452,7 @@
             showService = false
           "
         >
-          <img
-            :src="require(`~/assets/images/greenhouse/flags/KE.svg`)"
-            alt="flag"
-          />
+          <img src="@/assets/images/greenhouse/flags/KE.svg" alt="flag" class="flag" />
           <i class="el-icon-arrow-down el-icon--right"></i>
         </button>
         <transition name="fade">
@@ -467,7 +467,10 @@
                 @mouseenter.stop="locations = 'nigeria'"
                 @mouseleave.stop="locations = ''"
               >
-                <nuxt-link :to="{ path: locationRoute('NG') }" class="service__list-item">
+                <nuxt-link
+                  :to="{ path: locationRoute('NG') }"
+                  class="service__list-item"
+                >
                   <span>🇳🇬</span>
                   <h5>Nigeria</h5>
                   <svg
@@ -517,7 +520,10 @@
                 @mouseenter.stop="locations = 'kenya'"
                 @mouseleave.stop="locations = ''"
               >
-                <nuxt-link :to="{ path: locationRoute('KE') }" class="service__list-item">
+                <nuxt-link
+                  :to="{ path: locationRoute('KE') }"
+                  class="service__list-item"
+                >
                   <span>🇰🇪</span>
                   <h5>Kenya</h5>
                   <svg
@@ -878,20 +884,20 @@ export default {
       this.showNavbar = !this.showNavbar
     },
     locationRoute(country) {
-     if(country === 'NG') {
-     const pathArr = this.$nuxt.$route.path.split('/')
-      if(this.$nuxt.$route.path.includes('ke')) {
-         return `/${pathArr.slice(2).join('/')}`
-        console.log(`/${pathArr.slice(2).join('/')}` )
+      if (country === 'NG') {
+        const pathArr = this.$nuxt.$route.path.split('/')
+        if (this.$nuxt.$route.path.includes('ke')) {
+          return `/${pathArr.slice(2).join('/')}`
+          console.log(`/${pathArr.slice(2).join('/')}`)
+        }
       }
-     }
-     if(country === 'KE') {
-     const pathArr = this.$nuxt.$route.path.split('/')
-      if(!this.$nuxt.$route.path.includes('ke')) {
-         return `/ke/${pathArr.slice(2).join('/')}`
-        console.log(`/${pathArr.slice(2).join('/')}` )
+      if (country === 'KE') {
+        const pathArr = this.$nuxt.$route.path.split('/')
+        if (!this.$nuxt.$route.path.includes('ke')) {
+          return `/ke/${pathArr.slice(2).join('/')}`
+          console.log(`/${pathArr.slice(2).join('/')}`)
+        }
       }
-     }
     },
     getEarlyAccess() {
       this.showWaitListForm = true

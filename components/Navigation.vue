@@ -918,19 +918,6 @@ export default {
       navigation.classList.add('primary-bg')
       this.lightLogo = true
     }
-    //   this.locationRoute('KE')
-    //   fetch('https://ipapi.co/json/')
-    //     .then(function (response)  {
-    //       return response.json()
-    //     })
-    //     .then(function (data) {
-    //       if (data.country_code === 'GB') {
-    //         console.log("Test")
-    //         // this.$router.push({path: this.locationRoute('KE')})
-    //       } else {
-    //         console.log(data.country_code, data)
-    //       }
-    //     })
   },
   methods: {
     async redirectCoutry({ $router }) {

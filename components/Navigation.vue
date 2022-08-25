@@ -926,8 +926,7 @@ export default {
         res.json()
       )
       data = data
-      if (data.country_code === 'GB') {
-        console.log('Test')
+      if (data.country_code === 'KE') {
         this.$router.push({path: this.locationRoute('KE')})
       } 
     },

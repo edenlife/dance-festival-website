@@ -830,13 +830,14 @@ export default {
     },
   },
   created() {
-    this.redirectCoutry('NG')
+    
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
     window.addEventListener('resize', this.handleResize)
     const getRoute = this.$nuxt.$route.path
     this.currentRoute = getRoute.replace('/', '')
+    this.redirectCoutry('NG')
   },
   methods: {
     getNavigationColor,

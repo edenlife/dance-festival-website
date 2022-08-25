@@ -1189,7 +1189,7 @@
             <img :src="require(`~/assets/images/press2.svg`)" alt="press2"
           /></a>
           <a
-            href="https://techtrendske.co.ke/Samburuias-home-services-subscription-app-eden-life-acquires-kenyas-lynk/"
+            href="https://techtrendske.co.ke/nigerias-home-services-subscription-app-eden-life-acquires-kenyas-lynk/"
             target="_blank"
           >
             <img

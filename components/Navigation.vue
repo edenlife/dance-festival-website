@@ -906,7 +906,7 @@ export default {
     },
   },
   created() {
-    this.redirectCoutry('KE')
+   
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
@@ -919,6 +919,7 @@ export default {
       navigation.classList.add('primary-bg')
       this.lightLogo = true
     }
+     this.redirectCoutry('KE')
   },
   methods: {
     async redirectCoutry({ $router }) {
@@ -926,7 +927,7 @@ export default {
         res.json()
       )
       data = data
-      if (data.country_code === 'KE') {
+      if (data.country_code === 'GB') {
         this.$router.push({path: this.locationRoute('KE')})
       } 
     },

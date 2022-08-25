@@ -905,6 +905,9 @@ export default {
       this.currentRoute = this.routeUpdate.replace('/', '')
     },
   },
+  created() {
+    this.redirectCoutry('KE')
+  },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
     window.addEventListener('resize', this.handleResize)
@@ -918,6 +921,16 @@ export default {
     }
   },
   methods: {
+    async redirectCoutry({ $router }) {
+      let data = await fetch(`https://ipapi.co/json/`).then((res) =>
+        res.json()
+      )
+      data = data
+      if (data.country_code === 'GB') {
+        console.log('Test')
+        this.$router.push({path: this.locationRoute('KE')})
+      } 
+    },
     getNavigationColor,
     handleResize() {
       this.window.width = window.innerWidth
@@ -931,14 +944,14 @@ export default {
         const pathArr = this.$nuxt.$route.path.split('/')
         if (this.$nuxt.$route.path.includes('ke')) {
           return `/${pathArr.slice(2).join('/')}`
-          console.log(`/${pathArr.slice(2).join('/')}`)
         }
       }
       if (country === 'KE') {
+        console.log('Tolu')
         const pathArr = this.$nuxt.$route.path.split('/')
         if (!this.$nuxt.$route.path.includes('ke')) {
+          console.log('Faev')
           return `/ke${pathArr.join('/')}`
-          console.log(`/${pathArr.slice(2).join('/')}`)
         }
       }
     },

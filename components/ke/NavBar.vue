@@ -313,7 +313,11 @@
                 showService = false
               "
             >
-              <img src="@/assets/images/greenhouse/flags/KE.svg" alt="flag" class="flag" />
+              <img
+                src="@/assets/images/greenhouse/flags/KE.svg"
+                alt="flag"
+                class="flag"
+              />
               <i class="el-icon-arrow-down el-icon--right"></i>
             </button>
             <transition name="fade">
@@ -452,7 +456,11 @@
             showService = false
           "
         >
-          <img src="@/assets/images/greenhouse/flags/KE.svg" alt="flag" class="flag" />
+          <img
+            src="@/assets/images/greenhouse/flags/KE.svg"
+            alt="flag"
+            class="flag"
+          />
           <i class="el-icon-arrow-down el-icon--right"></i>
         </button>
         <transition name="fade">
@@ -821,12 +829,14 @@ export default {
       this.currentRoute = this.routeUpdate.replace('/', '')
     },
   },
+  created() {
+    this.redirectCoutry('NG')
+  },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
     window.addEventListener('resize', this.handleResize)
     const getRoute = this.$nuxt.$route.path
     this.currentRoute = getRoute.replace('/', '')
-    console.log(this.locations)
   },
   methods: {
     getNavigationColor,
@@ -882,6 +892,14 @@ export default {
       const toggleButton = document.querySelector('.navigation__btn')
       toggleButton.classList.toggle('toggle')
       this.showNavbar = !this.showNavbar
+    },
+    async redirectCoutry({ $router }) {
+      let data = await fetch(`https://ipapi.co/json/`).then((res) => res.json())
+      data = data
+      if (data.country_code === 'NG') {
+        console.log('Test')
+        this.$router.push({ path: this.locationRoute('NG') })
+      }
     },
     locationRoute(country) {
       if (country === 'NG') {

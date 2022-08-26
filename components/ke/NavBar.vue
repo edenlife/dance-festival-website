@@ -798,6 +798,7 @@ export default {
       },
       currentRoute: '',
       locations: '',
+      // flagChange: false,
       country: this.$store.getters.getCountry,
       contactVisible: false,
       routeUpdate: '',
@@ -829,15 +830,14 @@ export default {
       this.currentRoute = this.routeUpdate.replace('/', '')
     },
   },
-  created() {
-    
-  },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
     window.addEventListener('resize', this.handleResize)
     const getRoute = this.$nuxt.$route.path
     this.currentRoute = getRoute.replace('/', '')
-    this.redirectCoutry('NG')
+    // if (!this.flagChange) {
+    //   this.redirectCountry()
+    // }
   },
   methods: {
     getNavigationColor,
@@ -894,27 +894,28 @@ export default {
       toggleButton.classList.toggle('toggle')
       this.showNavbar = !this.showNavbar
     },
-    async redirectCoutry({ $router }) {
-      let data = await fetch(`https://ipapi.co/json/`).then((res) => res.json())
-      data = data
-      if (data.country_code === 'NG') {
-        console.log('Test')
-        this.$router.push({ path: this.locationRoute('NG') })
-      }
-    },
+    // async redirectCountry() {
+    //   let data = await fetch(`https://ipapi.co/json/`).then((res) => res.json())
+    //   data = data
+    //   if (data.country_code === 'NG') {
+    //     console.log('Test')
+    //     this.$router.push({ path: this.locationRoute('NG') })
+    //   }
+    // },
     locationRoute(country) {
+      // this.flagChange = true
       if (country === 'NG') {
         const pathArr = this.$nuxt.$route.path.split('/')
         if (this.$nuxt.$route.path.includes('ke')) {
+          // localStorage.setItem('country-code', 'NG')
           return `/${pathArr.slice(2).join('/')}`
-          console.log(`/${pathArr.slice(2).join('/')}`)
         }
       }
       if (country === 'KE') {
         const pathArr = this.$nuxt.$route.path.split('/')
         if (!this.$nuxt.$route.path.includes('ke')) {
+          // localStorage.setItem('country-code', 'KE')
           return `/ke/${pathArr.slice(2).join('/')}`
-          console.log(`/${pathArr.slice(2).join('/')}`)
         }
       }
     },

@@ -324,7 +324,7 @@ export default {
   // add intercom
   intercom: {
    appId: 's0gimx8q',
-    hideDefaultLauncher: false,
+    hideDefaultLauncher: true,
   },
 
   generate: {

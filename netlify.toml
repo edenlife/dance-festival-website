@@ -1,13 +1,14 @@
 [[redirects]]
   from = "/"
-  to = "/ke"
+  to = "/ke/index"
   status = 301
   force = true
   conditions = {Country = ["gb"]}
 
 [[redirects]]
   from = "/"
-  to = "/ke"
+  to = "/ke/index"
   status = 301
   force = true
   conditions = {Country = ["ke"]}
+  

@@ -297,9 +297,9 @@
           <button
             type="button"
             class="header__button-solid navigation__menu-item"
-            @click.prevent="greenhouseSignUp()"
+           @click.prevent="scrollTo('#get-the-app')"
           >
-            Get Started
+           Download App
           </button>
         </li>
         <li>
@@ -692,7 +692,7 @@
             <li class="menu--list" @click.prevent="handleToggle()">
               <a
                 href="#"
-                @click.prevent="greenhouseSignUp()"
+                @click.prevent="scrollTo('#get-the-app')"
                 class="navigation__mobile-item navigation__mobile-link"
               >
                 {{
@@ -820,9 +820,6 @@ export default {
         return true
       }
     },
-    authenticated() {
-      return !!this.$store.getters.getGreenhouseToken
-    },
   },
   watch: {
     $route() {
@@ -835,9 +832,6 @@ export default {
     window.addEventListener('resize', this.handleResize)
     const getRoute = this.$nuxt.$route.path
     this.currentRoute = getRoute.replace('/', '')
-    // if (!this.flagChange) {
-    //   this.redirectCountry()
-    // }
   },
   methods: {
     getNavigationColor,
@@ -861,7 +855,6 @@ export default {
       mixpanelTrackEvent(`${service} clicked - ${this.currentRoute} - Navbar`)
     },
     scrollTo(id) {
-      console.log(id)
       if (this.currentRoute === '') {
         scrollToApp(id, `homepage - Navbar`)
       } else scrollToApp(id, `${this.currentRoute} - Navbar`)
@@ -876,14 +869,6 @@ export default {
     },
     contactToggle() {
       this.contactVisible = !this.contactVisible
-    },
-    greenhouseSignUp() {
-      mixpanelTrackEvent(`Get Started Clicked - homepage - Navbar KE `)
-      if (this.authenticated) {
-        this.$router.push('/home')
-      } else {
-        this.$router.push({ name: 'signup', query: this.$route.query })
-      }
     },
     handleToggle(menu) {
       if (menu) {

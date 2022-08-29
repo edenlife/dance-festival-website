@@ -316,7 +316,7 @@
           v-if="currentMeals.length"
           type="button"
           class="btn"
-          @click.prevent="greenhouseSignUp('I want a meal plan - KE')"
+          @click.prevent="trackDevice('I want a meal plan - KE')"
         >
           I Want a Meal Plan
         </button>
@@ -1040,8 +1040,7 @@ export default {
         description:
           'Your chef-cooked meals, delivered to you. Daily or weekly.',
         url: `https://ouredenlife.com/ke/food/`,
-        mainImage:
-          'https://ouredenlife.com/ke/edencardfood.png',
+        mainImage: 'https://ouredenlife.com/ke/edencardfood.png',
       }
       return getSiteMeta(metaData)
     },
@@ -1370,9 +1369,19 @@ export default {
     closeModal() {
       this.showSuccessModal = !this.showSuccessModal
     },
-    greenhouseSignUp(label) {
+    trackDevice(label) {
       mixpanelTrackEvent(label)
-      this.$router.push({ name: 'signup', query: this.$route.query })
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera
+      if (/android/i.test(userAgent)) {
+        window.location.href =
+          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
+      }
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href =
+          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
+      } else {
+        this.scrollToFooter('#get-the-app', 'Download App')
+      }
     },
   },
 }

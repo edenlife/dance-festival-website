@@ -18,7 +18,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="greenhouseSignUp('Download App - laundry hero')"
+              @click.prevent="downloadAp('Download App - laundry hero')"
             >
               Download App
             </button>
@@ -187,7 +187,7 @@
               <button
                 type="button"
                 class="btn"
-                @click.prevent="greenhouseSignUp('Download App - laundry')"
+                @click.prevent="downloadAp('Download App - laundry')"
               >
                 Download App
               </button>
@@ -988,7 +988,7 @@
             <button
               type="button"
               class="hero__button-solid banner-btn"
-              @click.prevent="greenhouseSignUp('Download App - laundry banner')"
+              @click.prevent="downloadAp('Download App - laundry banner')"
             >
               Install
             </button>
@@ -1360,10 +1360,6 @@ export default {
     },
     closeModal() {
       this.showSuccessModal = !this.showSuccessModal
-    },
-    greenhouseSignUp(label) {
-      mixpanelTrackEvent(label)
-      this.$router.push({ name: 'signup', query: this.$route.query })
     },
     downloadApp() {
       mixpanelTrackEvent('Download App - laundry banner')

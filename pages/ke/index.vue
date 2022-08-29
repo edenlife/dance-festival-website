@@ -43,7 +43,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="greenhouseSignUp('Download App - hero')"
+              @click.prevent="trackDevice()"
             >
               Download App
             </button>
@@ -430,11 +430,7 @@
               >
                 Download App
               </button> -->
-              <button
-                type="button"
-                class="btn"
-                @click.prevent="greenhouseSignUp()"
-              >
+              <button type="button" class="btn" @click.prevent="trackDevice()">
                 Download App
               </button>
             </div>
@@ -2019,23 +2015,25 @@ export default {
       mixpanelTrackEvent(`${name} link clicked (footer - Lead page nairobi)`)
       window.open(url, '_blank')
     },
-     greenhouseSignUp() {
-      mixpanelTrackEvent(`KE - Home page hero-btn `)
-      this.$router.push({ name: 'signup', query: this.$route.query})
-    },
-    // trackDevice() {
-    //   mixpanelTrackEvent('Download App - homepage')
-    //   if (navigator.userAgent.toLowerCase().indexOf('android') > -1) {
-    //     window.location.href =
-    //       'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
-    //   }
-    //   if (navigator.userAgent.toLowerCase().indexOf('iphone') > -1) {
-    //     window.location.href =
-    //       'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
-    //   } else {
-    //     this.scrollToFooter('#get-the-app', 'Download App')
-    //   }
+    //  greenhouseSignUp() {
+    //   mixpanelTrackEvent(`KE - Home page hero-btn `)
+    //   this.$router.push({ name: 'signup', query: this.$route.query})
     // },
+
+    trackDevice() {
+      mixpanelTrackEvent('Download App - homepage')
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera
+      if (/android/i.test(userAgent)) {
+        window.location.href =
+          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
+      }
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href =
+          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
+      } else {
+        this.scrollToFooter('#get-the-app', 'Download App')
+      }
+    },
   },
 }
 </script>

@@ -25,7 +25,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="greenhouseSignUp('Cleaning hero - KE')"
+              @click.prevent="downloadApp('Cleaning hero - KE')"
             >
               Download App
             </button>
@@ -192,7 +192,7 @@
                   fingertips!
                 </p>
               </div>
-              <button type="button" class="btn" @click.prevent="greenhouseSignUp('Download App - KE')">
+              <button type="button" class="btn" @click.prevent="downloadApp('Download App - KE')">
                 Download App
               </button>
             </div>
@@ -1077,10 +1077,10 @@ export default {
     window.addEventListener('scroll', this.isInViewport)
   },
   methods: {
-    greenhouseSignUp(label) {
-      mixpanelTrackEvent(label)
-      this.$router.push({ name: 'signup', query: this.$route.query })
-    },
+    // greenhouseSignUp(label) {
+    //   mixpanelTrackEvent(label)
+    //   this.$router.push({ name: 'signup', query: this.$route.query })
+    // },
     currencyFormat,
     openQuestion(question) {
       if (this.activeQuestion === question) {
@@ -1288,8 +1288,8 @@ export default {
     closeModal() {
       this.showSuccessModal = !this.showSuccessModal
     },
-    downloadApp() {
-      mixpanelTrackEvent('Download App - cleaning banner')
+    downloadApp(label) {
+      mixpanelTrackEvent(label)
       const userAgent = navigator.userAgent || navigator.vendor || window.opera
       if (/android/i.test(userAgent)) {
         window.location.href =

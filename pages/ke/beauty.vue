@@ -23,7 +23,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="greenhouseSignUp('Download App - beauty hero')"
+              @click.prevent="downloadApp('Download App - beauty hero')"
             >
               Download App
             </button>
@@ -190,7 +190,7 @@
               <button
                 type="button"
                 class="btn"
-                @click.prevent="greenhouseSignUp('Download App - beauty')"
+                @click.prevent="downloadApp('Download App - beauty')"
               >
                 Download App
               </button>
@@ -1896,12 +1896,9 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
     closeModal() {
       this.showSuccessModal = !this.showSuccessModal
     },
-    greenhouseSignUp(label) {
-      mixpanelTrackEvent(label)
-      this.$router.push({ name: 'signup', query: this.$route.query })
-    },
+  
     downloadApp() {
-      mixpanelTrackEvent('Download App - beauty banner')
+      mixpanelTrackEvent(label)
       const userAgent = navigator.userAgent || navigator.vendor || window.opera
       if (/android/i.test(userAgent)) {
         window.location.href =

@@ -1296,6 +1296,7 @@
    }
    @include respond(md) {
     padding: $gap * 11 $gap * 3.9;
+    margin-bottom: $gap * 13.1;
     &__form{
       padding: $gap * 2;
       margin-bottom: $gap * 7.6;

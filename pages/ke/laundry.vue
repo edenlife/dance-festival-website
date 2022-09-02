@@ -18,7 +18,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="downloadAp('Download App - laundry hero')"
+              @click.prevent="trackDevice('Download App - laundry hero')"
             >
               Download App
             </button>
@@ -187,7 +187,7 @@
               <button
                 type="button"
                 class="btn"
-                @click.prevent="downloadAp('Download App - laundry')"
+                @click.prevent="trackDevice('Download App - laundry')"
               >
                 Download App
               </button>
@@ -988,7 +988,7 @@
             <button
               type="button"
               class="hero__button-solid banner-btn"
-              @click.prevent="downloadAp('Download App - laundry banner')"
+              @click.prevent="trackDevice('Download App - laundry banner')"
             >
               Install
             </button>
@@ -1360,18 +1360,6 @@ export default {
     },
     closeModal() {
       this.showSuccessModal = !this.showSuccessModal
-    },
-    downloadApp() {
-      mixpanelTrackEvent('Download App - laundry banner')
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera
-      if (/android/i.test(userAgent)) {
-        window.location.href =
-          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
-      }
-      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        window.location.href =
-          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
-      }
     },
   },
 }

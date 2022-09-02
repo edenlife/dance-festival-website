@@ -23,7 +23,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="downloadApp('Download App - beauty hero')"
+              @click.prevent="trackDevice('Download App - beauty hero')"
             >
               Download App
             </button>
@@ -190,7 +190,7 @@
               <button
                 type="button"
                 class="btn"
-                @click.prevent="downloadApp('Download App - beauty')"
+                @click.prevent="trackDevice('Download App - beauty')"
               >
                 Download App
               </button>
@@ -1480,7 +1480,7 @@
             <button
               type="button"
               class="hero__button-solid banner-btn"
-              @click.prevent="downloadApp('Download App - beauty banner')"
+              @click.prevent="trackDevice('Download App - beauty banner')"
             >
               Install
             </button>
@@ -1896,8 +1896,7 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
     closeModal() {
       this.showSuccessModal = !this.showSuccessModal
     },
-  
-    downloadApp() {
+    trackDevice(label) {
       mixpanelTrackEvent(label)
       const userAgent = navigator.userAgent || navigator.vendor || window.opera
       if (/android/i.test(userAgent)) {
@@ -1907,6 +1906,8 @@ Tonight we Netflix cause tomorrow is back to the streets.`,
       if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
         window.location.href =
           'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
+      } else {
+        this.scrollToFooter('#get-the-app', 'Download App')
       }
     },
   },

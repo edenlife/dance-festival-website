@@ -292,7 +292,12 @@
         />
       </transition>
       <section v-if="currentMeals.length" class="menu">
-        <button class="menu-btn" @click.prevent="greenhouseSignUp('I want an Eden Life - Lagos is hard')">
+        <button
+          class="menu-btn"
+          @click.prevent="
+            greenhouseSignUp('I want an Eden Life - Lagos is hard')
+          "
+        >
           I Want an Eden Life
         </button>
       </section>
@@ -970,7 +975,17 @@ export default {
     },
     greenhouseSignUp(label) {
       mixpanelTrackEvent(label)
-      this.$router.push({ name: 'signup', query: this.$route.query })
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera
+      if (/android/i.test(userAgent)) {
+        window.location.href =
+          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
+      }
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href =
+          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
+      } else {
+        this.$router.push({ name: 'signup', query: this.$route.query })
+      }
     },
     async getStarted() {
       this.$v.form.$touch()

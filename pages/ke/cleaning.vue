@@ -25,7 +25,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="downloadApp('Cleaning hero - KE')"
+              @click.prevent="trackDevice('Cleaning hero - KE')"
             >
               Download App
             </button>
@@ -192,7 +192,7 @@
                   fingertips!
                 </p>
               </div>
-              <button type="button" class="btn" @click.prevent="downloadApp('Download App - KE')">
+              <button type="button" class="btn" @click.prevent="trackDevice('Download App - KE')">
                 Download App
               </button>
             </div>
@@ -872,7 +872,7 @@
             <button
               type="button"
               class="hero__button-solid banner-btn"
-              @click.prevent="downloadApp('Download App - cleaning banner')"
+              @click.prevent="trackDevice('Download App - cleaning banner')"
             >
               Install
             </button>
@@ -1071,6 +1071,7 @@ export default {
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
     this.fetchCleaningServiceTypes()
+    console.log(mixpanelTrackEvent('Cleaning page'))
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
@@ -1288,7 +1289,7 @@ export default {
     closeModal() {
       this.showSuccessModal = !this.showSuccessModal
     },
-    downloadApp(label) {
+    trackDevice(label) {
       mixpanelTrackEvent(label)
       const userAgent = navigator.userAgent || navigator.vendor || window.opera
       if (/android/i.test(userAgent)) {
@@ -1298,6 +1299,8 @@ export default {
       if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
         window.location.href =
           'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
+      } else {
+        this.scrollToFooter('#get-the-app', 'Download App')
       }
     },
   },

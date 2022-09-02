@@ -43,7 +43,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="trackDevice()"
+              @click.prevent="trackDevice('Download btn')"
             >
               Download App
             </button>
@@ -430,7 +430,7 @@
               >
                 Download App
               </button> -->
-              <button type="button" class="btn" @click.prevent="trackDevice()">
+              <button type="button" class="btn" @click.prevent="trackDevice('Download app - homepage')">
                 Download App
               </button>
             </div>
@@ -1444,7 +1444,7 @@
             <button
               type="button"
               class="hero__button-solid banner-btn"
-              @click.prevent="downloadApp('Download App - homepage banner')"
+              @click.prevent="trackDevice('Download App - homepage banner')"
             >
               Install
             </button>
@@ -1999,29 +1999,14 @@ export default {
       mixpanelTrackEvent(`${name} icon clicked - Lead page nairobi`)
       window.open(url, '_blank')
     },
-    downloadApp() {
-      mixpanelTrackEvent('Download App - homepage banner')
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera
-      if (/android/i.test(userAgent)) {
-        window.location.href =
-          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
-      }
-      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        window.location.href =
-          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
-      }
-    },
+    
     trackLink(name, url) {
       mixpanelTrackEvent(`${name} link clicked (footer - Lead page nairobi)`)
       window.open(url, '_blank')
     },
-    //  greenhouseSignUp() {
-    //   mixpanelTrackEvent(`KE - Home page hero-btn `)
-    //   this.$router.push({ name: 'signup', query: this.$route.query})
-    // },
 
-    trackDevice() {
-      mixpanelTrackEvent('Download App - homepage')
+    trackDevice(label) {
+      mixpanelTrackEvent(label)
       const userAgent = navigator.userAgent || navigator.vendor || window.opera
       if (/android/i.test(userAgent)) {
         window.location.href =

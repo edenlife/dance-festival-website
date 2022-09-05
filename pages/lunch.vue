@@ -578,7 +578,11 @@ export default {
 
   &__header {
     flex: 0 0 40%;
-
+    &--img .center {
+      @include respond(md) {
+      top: 78%;
+      }
+    }
     &-title {
       h1 {
         width: 100%;

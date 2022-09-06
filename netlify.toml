@@ -138,54 +138,54 @@
   to = "/food"
   status = 301
   force = true
-  conditions = {Country = ["ke"]}
+  conditions = {Country = ["ng"]}
 
 [[redirects]]
   from = "/ke/laundry/"
   to = "/laundry"
   status = 301
   force = true
-  conditions = {Country = ["ke"]}
+  conditions = {Country = ["ng"]}
 
 [[redirects]]
   to = "/cleaning"
   from = "/ke/cleaning/"
   status = 301
   force = true
-  conditions = {Country = ["ke"]}
+  conditions = {Country = ["ng"]}
 
 [[redirects]]
   from = "/ke/pricing/"
   to = "/pricing"
   status = 301
   force = true
-  conditions = {Country = ["ke"]}
+  conditions = {Country = ["ng"]}
 
 [[redirects]]
   from = "/ke/contact_us/"
   to = "/contact_us"
   status = 301
   force = true
-  conditions = {Country = ["ke"]}
+  conditions = {Country = ["ng"]}
 
 [[redirects]]
   from = "/ke/faq/"
   to = "/faq"
   status = 301
   force = true
-  conditions = {Country = ["ke"]}
+  conditions = {Country = ["ng"]}
 
 [[redirects]]
   from = "/ke/terms_and_conditions"
   to = "/terms_and_conditions"
   status = 301
   force = true
-  conditions = {Country = ["ke"]}
+  conditions = {Country = ["ng"]}
 
 [[redirects]]
   from = "/ke/privacy_policy"
   to = "/privacy_policy"
   status = 301
   force = true
-  conditions = {Country = ["ke"]}
+  conditions = {Country = ["ng"]}
   

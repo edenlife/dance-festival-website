@@ -37,7 +37,7 @@ export default {
       activeTabIndex: 0,
       tabs: privacy,
       content:
-        'The Privacy Policy states how we,  Eden Life, Inc. (the “Company”) use your data when you use the services available through our website located at https://ouredenlife.ke',
+        'The Privacy Policy states how we,  Eden Life, Inc. (the “Company”) use your data when you use the services available through our website located at https://ouredenlife.com/ke',
     }
   },
   layout: 'ke-default',

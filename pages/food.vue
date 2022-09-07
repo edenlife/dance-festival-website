@@ -823,7 +823,7 @@ export default {
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlife.com/food/'
+          href: 'https://ouredenlife.com/food/',
         },
         {
           rel: 'alternate',
@@ -833,7 +833,7 @@ export default {
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlife.com/food'
+          href: 'https://ouredenlife.com/food',
         },
       ],
     }
@@ -1039,9 +1039,23 @@ export default {
     scrollToFooter(id, label) {
       scrollToApp(id, label)
     },
+    // greenhouseSignUp(label) {
+    //   mixpanelTrackEvent(label)
+    //   this.$router.push({ name: 'signup', query: this.$route.query })
+    // },
     greenhouseSignUp(label) {
       mixpanelTrackEvent(label)
-      this.$router.push({ name: 'signup', query: this.$route.query })
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera
+      if (/android/i.test(userAgent)) {
+        window.location.href =
+          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
+      }
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href =
+          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
+      } else {
+        this.$router.push({ name: 'signup', query: this.$route.query })
+      }
     },
     increaseOrder(order) {
       mixpanelTrackEvent(`Increase ${order} order clicked - food page`)

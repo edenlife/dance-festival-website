@@ -164,7 +164,7 @@
             </li>
             <li @click="trackLink('Food')">
               <nuxt-link
-                :to="{ path: '/food/' }"
+                :to="{ path: '/food' }"
                 class="footer__bottom-logo"
                 @click.prevent="trackLink('Food')"
               >
@@ -173,7 +173,7 @@
             </li>
             <li @click="trackLink('Cleaning')">
               <nuxt-link
-                :to="{ path: '/cleaning/' }"
+                :to="{ path: '/cleaning' }"
                 class="footer__bottom-logo"
                 @click.prevent="trackLink('Cleaning')"
               >
@@ -182,7 +182,7 @@
             </li>
             <li @click="trackLink('Laundry')">
               <nuxt-link
-                :to="{ path: '/laundry/' }"
+                :to="{ path: '/laundry' }"
                 class="footer__bottom-logo"
                 @click.prevent="trackLink('Laundry')"
               >

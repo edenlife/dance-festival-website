@@ -631,6 +631,9 @@ export default {
       img {
         display: flex;
         margin: 0 auto;
+        @include respond(md) {
+          width: 100%;
+        }
       }
     }
     figure {

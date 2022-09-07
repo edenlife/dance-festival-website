@@ -1,5 +1,5 @@
 const mixpanel = require('mixpanel-browser')
-mixpanel.init('c16b4674c30ea16107936190659c8600')
+mixpanel.init('204d51e4df37fc97609ca3b79a3f45a0')
 
 export const mixpanelTrackEvent = (name) => {
   mixpanel.track(name)

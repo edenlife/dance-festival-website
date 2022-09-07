@@ -1,0 +1,126 @@
+[[redirects]]
+  from = "/"
+  to = "/ke"
+  status = 301
+  force = true
+  conditions = {Country = ["ke"]}
+  
+[[redirects]]
+  from = "/food"
+  to = "/ke/food/"
+  status = 301
+  force = true
+  conditions = {Country = ["ke"]}
+
+[[redirects]]
+  from = "/laundry"
+  to = "/ke/laundry/"
+  status = 301
+  force = true
+  conditions = {Country = ["ke"]}
+
+[[redirects]]
+  from = "/cleaning"
+  to = "/ke/cleaning/"
+  status = 301
+  force = true
+  conditions = {Country = ["ke"]}
+
+[[redirects]]
+  from = "/pricing"
+  to = "/ke/pricing/"
+  status = 301
+  force = true
+  conditions = {Country = ["ke"]}
+
+[[redirects]]
+  from = "/contact_us"
+  to = "/ke/contact_us/"
+  status = 301
+  force = true
+  conditions = {Country = ["ke"]}
+
+[[redirects]]
+  from = "/faq"
+  to = "/ke/faq/"
+  status = 301
+  force = true
+  conditions = {Country = ["ke"]}
+
+[[redirects]]
+  from = "/terms_and_conditions"
+  to = "/ke"
+  status = 301
+  force = true
+  conditions = {Country = ["ke"]}
+
+[[redirects]]
+  from = "/privacy_policy"
+  to = "/ke/privacy_policy"
+  status = 301
+  force = true
+  conditions = {Country = ["ke"]}
+
+[[redirects]]
+  from = "/ke"
+  to = "/"
+  status = 301
+  force = true
+  conditions = {Country = ["ng"]}
+
+[[redirects]]
+  from = "/ke/food/"
+  to = "/food"
+  status = 301
+  force = true
+  conditions = {Country = ["ng"]}
+
+[[redirects]]
+  from = "/ke/laundry/"
+  to = "/laundry"
+  status = 301
+  force = true
+  conditions = {Country = ["ng"]}
+
+[[redirects]]
+  to = "/cleaning"
+  from = "/ke/cleaning/"
+  status = 301
+  force = true
+  conditions = {Country = ["ng"]}
+
+[[redirects]]
+  from = "/ke/pricing/"
+  to = "/pricing"
+  status = 301
+  force = true
+  conditions = {Country = ["ng"]}
+
+[[redirects]]
+  from = "/ke/contact_us/"
+  to = "/contact_us"
+  status = 301
+  force = true
+  conditions = {Country = ["ng"]}
+
+[[redirects]]
+  from = "/ke/faq/"
+  to = "/faq"
+  status = 301
+  force = true
+  conditions = {Country = ["ng"]}
+
+[[redirects]]
+  from = "/ke/terms_and_conditions"
+  to = "/terms_and_conditions"
+  status = 301
+  force = true
+  conditions = {Country = ["ng"]}
+
+[[redirects]]
+  from = "/ke/privacy_policy"
+  to = "/privacy_policy"
+  status = 301
+  force = true
+  conditions = {Country = ["ng"]}
+  

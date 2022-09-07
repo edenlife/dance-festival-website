@@ -297,9 +297,9 @@
           <button
             type="button"
             class="header__button-solid navigation__menu-item"
-            @click.prevent="greenhouseSignUp()"
+           @click.prevent="scrollTo('#get-the-app')"
           >
-            Get Started
+           Download App
           </button>
         </li>
         <li>
@@ -313,7 +313,11 @@
                 showService = false
               "
             >
-              <img src="@/assets/images/greenhouse/flags/KE.svg" alt="flag" class="flag" />
+              <img
+                src="@/assets/images/greenhouse/flags/KE.svg"
+                alt="flag"
+                class="flag"
+              />
               <i class="el-icon-arrow-down el-icon--right"></i>
             </button>
             <transition name="fade">
@@ -452,7 +456,11 @@
             showService = false
           "
         >
-          <img src="@/assets/images/greenhouse/flags/KE.svg" alt="flag" class="flag" />
+          <img
+            src="@/assets/images/greenhouse/flags/KE.svg"
+            alt="flag"
+            class="flag"
+          />
           <i class="el-icon-arrow-down el-icon--right"></i>
         </button>
         <transition name="fade">
@@ -684,7 +692,7 @@
             <li class="menu--list" @click.prevent="handleToggle()">
               <a
                 href="#"
-                @click.prevent="greenhouseSignUp()"
+                @click.prevent="scrollTo('#get-the-app')"
                 class="navigation__mobile-item navigation__mobile-link"
               >
                 {{
@@ -790,6 +798,7 @@ export default {
       },
       currentRoute: '',
       locations: '',
+      // flagChange: false,
       country: this.$store.getters.getCountry,
       contactVisible: false,
       routeUpdate: '',
@@ -811,9 +820,6 @@ export default {
         return true
       }
     },
-    authenticated() {
-      return !!this.$store.getters.getGreenhouseToken
-    },
   },
   watch: {
     $route() {
@@ -826,7 +832,6 @@ export default {
     window.addEventListener('resize', this.handleResize)
     const getRoute = this.$nuxt.$route.path
     this.currentRoute = getRoute.replace('/', '')
-    console.log(this.locations)
   },
   methods: {
     getNavigationColor,
@@ -850,7 +855,6 @@ export default {
       mixpanelTrackEvent(`${service} clicked - ${this.currentRoute} - Navbar`)
     },
     scrollTo(id) {
-      console.log(id)
       if (this.currentRoute === '') {
         scrollToApp(id, `homepage - Navbar`)
       } else scrollToApp(id, `${this.currentRoute} - Navbar`)
@@ -866,14 +870,6 @@ export default {
     contactToggle() {
       this.contactVisible = !this.contactVisible
     },
-    greenhouseSignUp() {
-      mixpanelTrackEvent(`Get Started Clicked - homepage - Navbar KE `)
-      if (this.authenticated) {
-        this.$router.push('/home')
-      } else {
-        this.$router.push({ name: 'signup', query: this.$route.query })
-      }
-    },
     handleToggle(menu) {
       if (menu) {
         mixpanelTrackEvent(`${menu} clicked - ${this.currentRoute} - Navbar`)
@@ -883,19 +879,28 @@ export default {
       toggleButton.classList.toggle('toggle')
       this.showNavbar = !this.showNavbar
     },
+    // async redirectCountry() {
+    //   let data = await fetch(`https://ipapi.co/json/`).then((res) => res.json())
+    //   data = data
+    //   if (data.country_code === 'NG') {
+    //     console.log('Test')
+    //     this.$router.push({ path: this.locationRoute('NG') })
+    //   }
+    // },
     locationRoute(country) {
+      // this.flagChange = true
       if (country === 'NG') {
         const pathArr = this.$nuxt.$route.path.split('/')
         if (this.$nuxt.$route.path.includes('ke')) {
+          // localStorage.setItem('country-code', 'NG')
           return `/${pathArr.slice(2).join('/')}`
-          console.log(`/${pathArr.slice(2).join('/')}`)
         }
       }
       if (country === 'KE') {
         const pathArr = this.$nuxt.$route.path.split('/')
         if (!this.$nuxt.$route.path.includes('ke')) {
+          // localStorage.setItem('country-code', 'KE')
           return `/ke/${pathArr.slice(2).join('/')}`
-          console.log(`/${pathArr.slice(2).join('/')}`)
         }
       }
     },

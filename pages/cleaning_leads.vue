@@ -1254,8 +1254,7 @@ export default {
         description:
           'Professional cleaning at your doorstep. Up to thrice a week.',
         url: `https://ouredenlife.com/cleaning_leads`,
-        mainImage:
-          'https://ouredenlife.com/edencardcleaning.png',
+        mainImage: 'https://ouredenlife.com/edencardcleaning.png',
       }
       return getSiteMeta(metaData)
     },
@@ -1294,9 +1293,23 @@ export default {
     scrollToFooter(id) {
       document.getElementById(id).scrollIntoView()
     },
+    // greenhouseSignUp(label) {
+    //   mixpanelTrackEvent(label)
+    //   this.$router.push({ name: 'signup', query: this.$route.query })
+    // },
     greenhouseSignUp(label) {
       mixpanelTrackEvent(label)
-      this.$router.push({ name: 'signup', query: this.$route.query })
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera
+      if (/android/i.test(userAgent)) {
+        window.location.href =
+          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
+      }
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href =
+          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
+      } else {
+        this.$router.push({ name: 'signup', query: this.$route.query })
+      }
     },
     trackLink(service) {
       mixpanelTrackEvent(`${service} clicked - Cleaning Leads (more options)`)

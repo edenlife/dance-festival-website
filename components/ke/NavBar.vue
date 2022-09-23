@@ -17,6 +17,14 @@
       </nuxt-link>
 
       <ul class="navigation__menu">
+        <li @click="trackLink('Why Eden')">
+          <nuxt-link
+            :to="{ path: '/ke/eden_means_easy/' }"
+            class="navigation__menu-item"
+          >
+            Why Eden
+          </nuxt-link>
+        </li>
         <li
           v-if="serviceNav"
           class="fallback"
@@ -653,6 +661,14 @@
                 class="navigation__mobile-item"
               >
                 Pricing
+              </nuxt-link>
+            </li>
+            <li class="menu--list" @click.prevent="handleToggle('Why Eden')">
+              <nuxt-link
+                :to="{ path: '/ke/eden_means_easy/' }"
+                class="navigation__mobile-item"
+              >
+                Why Eden
               </nuxt-link>
             </li>
             <li class="menu--list">

@@ -4,6 +4,13 @@
   status = 301
   force = true
   conditions = {Country = ["ke"]}
+
+[[redirects]]
+  from = "/eden_means_easy"
+  to = "/ke/eden_means_easy/"
+  status = 301
+  force = true
+  conditions = {Country = ["ke"]}
   
 [[redirects]]
   from = "/food"
@@ -64,6 +71,13 @@
 [[redirects]]
   from = "/ke"
   to = "/"
+  status = 301
+  force = true
+  conditions = {Country = ["ng"]}
+
+[[redirects]]
+  from = "/ke/eden_means_easy/"
+  to = "/eden_means_easy"
   status = 301
   force = true
   conditions = {Country = ["ng"]}

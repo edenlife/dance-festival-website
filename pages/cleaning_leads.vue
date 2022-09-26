@@ -1293,23 +1293,9 @@ export default {
     scrollToFooter(id) {
       document.getElementById(id).scrollIntoView()
     },
-    // greenhouseSignUp(label) {
-    //   mixpanelTrackEvent(label)
-    //   this.$router.push({ name: 'signup', query: this.$route.query })
-    // },
     greenhouseSignUp(label) {
       mixpanelTrackEvent(label)
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera
-      if (/android/i.test(userAgent)) {
-        window.location.href =
-          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
-      }
-      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        window.location.href =
-          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
-      } else {
-        this.$router.push({ name: 'signup', query: this.$route.query })
-      }
+      this.$router.push({ name: 'signup', query: this.$route.query })
     },
     trackLink(service) {
       mixpanelTrackEvent(`${service} clicked - Cleaning Leads (more options)`)

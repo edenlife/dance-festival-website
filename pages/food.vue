@@ -761,7 +761,6 @@ import {
 } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import getSiteMeta from '~/utils/getSiteMeta'
-import { setEnv } from '@edenlife/eden-pricing-module'
 
 export default {
   components: {

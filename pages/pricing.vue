@@ -1367,6 +1367,7 @@ export default {
     setTimeout(() => {
       this.fetchCleaningServiceTypes()
       this.calculateFoodPrice()
+      this.changeService(service)
     }, 2000)
   },
   destroyed() {
@@ -1580,24 +1581,24 @@ export default {
     },
     changeService(service) {
       console.log("NG")
-      // estimated price 10,000
+      // estimated price 15,000
       if (this.estimate.toString() === '0') {
         if (service.name === 'Food') {
           return
         }
         this.selectedService.pop()
         this.selectedService.push(service.name)
-        this.laundryFreqName = 'every two weeks'
+        this.laundryFreqName = 'once a month'
         this.laundryType = 'Wash & Fold'
         this.laundryTypeValue = 'wash-and-fold'
-        this.laundryFreqValue = 'bi-weekly'
+        this.laundryFreqValue = 'monthly'
         this.laundrySavedTime = '2 hrs 15 mins'
         this.laundryQty = 1
         this.calculateLaundryPrice()
         this.cleaningType = 'Standard cleaning'
         this.cleaningFrequency = 'Every two weeks'
         this.cleaningQtyOption[0].qty = 1
-        this.cleaningQtyOption[2].qty = 1
+        this.cleaningQtyOption[2].qty = 0
         this.cleaningQtyOption[4].qty = 0
         this.cleaningQtyOption[5].qty = 0
         this.cleaningSavedTime = '45 mins'

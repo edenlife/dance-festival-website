@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div class="container--hero">
     <header class="hero hero__head">
       <div class="hero__title mid__title">
@@ -312,7 +312,7 @@
             </div>
           </div>
 
-          <div
+          <!-- <div
             v-if="
               activeReason.showForm && activeReason.form_type === 'individual'
             "
@@ -516,7 +516,7 @@
                 {{ activeReason.cta }}
               </button>
             </div>
-          </div>
+          </div> -->
           <div
             v-if="
               !activeReason.showForm &&
@@ -555,9 +555,9 @@
       </div>
     </modal>
   </div>
-</template> -->
+</template> 
 
-<!-- <script>
+<script>
 import getSiteMeta from '~/utils/getSiteMeta'
 import { scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
@@ -755,4 +755,4 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/pages/_eden_easy.scss';
-</style> -->
+</style>

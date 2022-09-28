@@ -314,10 +314,10 @@ export default {
   //   defaultLocale: 'en'
   // },
   sitemap: {
-    hostname: 'ouredenlifev2-staging.netlify.app',
+    hostname: 'https://ouredenlifev2-staging.netlify.app',
     gzip: true,
     path: '/sitemap.xml',
-    i18n: true,
+    // i18n: true,
     cacheTime: 1000 * 60 * 60 * 2,
     
     trailingSlash: true,

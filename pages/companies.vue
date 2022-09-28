@@ -9,8 +9,8 @@
             - <span> Make your team 91.28% more efficient. </span>
           </h1>
           <h1 class="mobile">
-            Employee benefits at its finest
-            <span> Make your team 91.28% more efficient. </span>
+            Employee benefits at its finest <br />
+          <span> Make your team 91.28% more efficient. </span>
           </h1>
           <p>
             Eden Life provides office lunch, laundry & cleaning plans for your employees & also gift vouchers to reward performance. 
@@ -477,7 +477,7 @@
                 class="btn"
                 @click.prevent="scrollToFooter('getEden')"
               >
-                Get Eden
+              Show Me The Perks
               </button>
             </div>
             <button
@@ -485,7 +485,7 @@
               class="btn--mobile"
               @click.prevent="scrollToFooter('getEden')"
             >
-              Get Eden
+            Show Me The Perks
             </button>
           </div>
 
@@ -566,7 +566,7 @@
           class="btn"
           @click.prevent="scrollToFooter('getEden')"
         >
-          Get Eden
+        Show Me The Perks
         </button>
       </section>
     </div>

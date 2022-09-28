@@ -15,7 +15,7 @@ export default {
       item: 'wash-and-fold',
       qty: 1,
       service_day: [ 'Saturday' ],
-      amount: 14000
+      amount: 29000
     },
     cleaning: {
       frequency: 'bi-weekly',

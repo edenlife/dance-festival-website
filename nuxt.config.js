@@ -318,8 +318,7 @@ export default {
     gzip: true,
     path: '/sitemap.xml',
     // i18n: true,
-    cacheTime: 1000 * 60 * 60 * 2,
-    
+    cacheTime: 1000 * 60 * 60 * 2,    
     trailingSlash: true,
     routes: () => {
       return getRoutes()

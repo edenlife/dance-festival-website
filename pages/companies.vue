@@ -6,17 +6,15 @@
         <div class="hero__title">
           <h1 class="">
             Employee benefits at its finest <br />
-            - <span> Increasing Productivity </span>
+            - <span> Make your team 91.28% more efficient. </span>
           </h1>
           <h1 class="mobile">
             Employee benefits at its finest
-            <span> Increasing Productivity </span>
+            <span> Make your team 91.28% more efficient. </span>
           </h1>
           <p>
-            Eden Life is the excellent choice for increased productivity. With
-            office lunch, laundry and cleaning plans for employees, gift
-            vouchers to reward performance, we become your company's Employee
-            Perks Manager.
+            Eden Life provides office lunch, laundry & cleaning plans for your employees & also gift vouchers to reward performance. 
+            Companies that use Eden Life have experienced a 91.28% increase in their staff productivity.
           </p>
           <div class="hero__button">
             <button
@@ -24,7 +22,7 @@
               class="hero__button-solid"
               @click.prevent="scrollToFooter('getEden', 'companies - hero')"
             >
-              Get Eden
+            Show Me The Perks
             </button>
             <a
               href="https://calendly.com/edenlife-companies/30min"
@@ -819,7 +817,7 @@
               :disabled="loading"
               @click.prevent="submit()"
             >
-              {{ submitted ? 'Thanks! We’ll be in touch.' : 'Get Started!' }}
+              {{ submitted ? 'Thanks! We’ll be in touch.' : 'Submit' }}
             </button>
             <button
               class="back--btn"

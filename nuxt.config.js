@@ -221,7 +221,7 @@ export default {
     ],
     // intercom setup
     'nuxt-intercom',
-    '@nuxtjs/i18n',
+    // '@nuxtjs/i18n',
     '@nuxtjs/sitemap',
 
     // linkedin
@@ -309,10 +309,10 @@ export default {
       })
     },
   },
-  i18n: {
-    locales: ['en', 'ng', 'ke'],
-    defaultLocale: 'en'
-  },
+  // i18n: {
+  //   locales: ['en', 'ng', 'ke'],
+  //   defaultLocale: 'en'
+  // },
   sitemap: {
     hostname: 'ouredenlifev2-staging.netlify.app',
     gzip: true,
@@ -324,10 +324,10 @@ export default {
     routes: () => {
       return getRoutes()
     },
-    i18n: {
-      locales: ['en', 'ng', 'ke'],
-      routesNameSeparator: '___'
-    }
+    // i18n: {
+    //   locales: ['en', 'ng', 'ke'],
+    //   routesNameSeparator: '___'
+    // }
   },
 
   // add intercom

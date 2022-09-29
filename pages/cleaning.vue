@@ -1246,7 +1246,7 @@ export default {
       light: 1,
       deep: 1,
       plan: 'standard-cleaning',
-      frequency: 'weekly',
+      frequency: 'monthly',
       totalPrice: null,
       visible: [],
       roomTypes: null,
@@ -1255,7 +1255,7 @@ export default {
       cleaningInfo: {
         item: 'standard-cleaning',
         itemAreas: {},
-        frequency: 'weekly',
+        frequency: 'monthly',
         qty: 4,
       },
     }

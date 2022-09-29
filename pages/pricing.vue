@@ -1367,6 +1367,7 @@ export default {
     setTimeout(() => {
       this.fetchCleaningServiceTypes()
       this.calculateFoodPrice()
+      this.changeService(service)
     }, 2000)
   },
   destroyed() {

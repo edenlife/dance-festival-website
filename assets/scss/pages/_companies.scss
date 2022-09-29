@@ -131,9 +131,10 @@
       }
     }
     &__button {
-      width: 50%;
+      width: 60%;
       flex-direction: column;
       margin: 0 auto;
+      gap: 13px;
       &-link {
         margin-top: $gap * 3.2;
         align-self: center;

@@ -939,21 +939,15 @@ export default {
       }
     },
     locationRoute(country) {
-      // this.flagChange = !this.flagChange
-      console.log(this.flagChange)
       if (country === 'NG') {
         const pathArr = this.$nuxt.$route.path.split('/')
         if (this.$nuxt.$route.path.includes('ke')) {
-          // localStorage.setItem('country-code', 'NG')
           return `/${pathArr.slice(2).join('/')}`
         }
       }
       if (country === 'KE') {
-        console.log('Tolu')
         const pathArr = this.$nuxt.$route.path.split('/')
         if (!this.$nuxt.$route.path.includes('ke')) {
-          // localStorage.setItem('country-code', 'KE')
-          console.log('Faev')
           return `/ke${pathArr.join('/')}`
         }
       }

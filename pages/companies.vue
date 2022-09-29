@@ -10,11 +10,13 @@
           </h1>
           <h1 class="mobile">
             Employee benefits at its finest <br />
-          <span> Make your team 91.28% more efficient. </span>
+            <span> Make your team 91.28% more efficient. </span>
           </h1>
           <p>
-            Eden Life provides office lunch, laundry & cleaning plans for your employees & also gift vouchers to reward performance. 
-            Companies that use Eden Life have experienced a 91.28% increase in their staff productivity.
+            Eden Life provides office lunch, laundry & cleaning plans for your
+            employees & also gift vouchers to reward performance. Companies that
+            use Eden Life have experienced a 91.28% increase in their staff
+            productivity.
           </p>
           <div class="hero__button">
             <button
@@ -22,7 +24,7 @@
               class="hero__button-solid"
               @click.prevent="scrollToFooter('getEden', 'companies - hero')"
             >
-            Show Me The Perks
+              Show Me The Perks
             </button>
             <a
               href="https://calendly.com/edenlife-companies/30min"
@@ -477,7 +479,7 @@
                 class="btn"
                 @click.prevent="scrollToFooter('getEden')"
               >
-              Show Me The Perks
+                Show Me The Perks
               </button>
             </div>
             <button
@@ -485,7 +487,7 @@
               class="btn--mobile"
               @click.prevent="scrollToFooter('getEden')"
             >
-            Show Me The Perks
+              Show Me The Perks
             </button>
           </div>
 
@@ -566,7 +568,7 @@
           class="btn"
           @click.prevent="scrollToFooter('getEden')"
         >
-        Show Me The Perks
+          Show Me The Perks
         </button>
       </section>
     </div>
@@ -580,8 +582,8 @@
               <span> more productive</span>.
             </h3>
             <p>
-              We need the following details to reach out to you about the
-              next steps. <br />
+              We need the following details to reach out to you about the next
+              steps. <br />
               <!-- Let's get started! -->
             </p>
           </div>
@@ -614,148 +616,150 @@
               />
 
               <div class="form__input">
-              <label for="contact name">
-                Contact Person <span class="required">*</span>
-              </label>
-              <input
-                id=""
-                v-model="companyForm.contact_name"
-                type="text"
-                name=""
-                placeholder="Enter name"
-                :class="{ 'has-error': $v.companyForm.contact_name.$error }"
-              />
-            </div>
-            <div class="form__input">
-              <label for="email"
-                >Contact Person’s Email <span class="required">*</span>
-              </label>
-              <input
-                id=""
-                v-model="companyForm.email"
-                type="email"
-                name=""
-                placeholder="Enter email address"
-                :class="{ 'has-error': $v.companyForm.email.$error }"
-              />
-            </div>
-            <div class="form__input">
-              <label for="phone number"
-                >Contact Person’s Phone Number
-                <span class="required">*</span></label
-              >
-              <input
-                id=""
-                v-model.trim="$v.companyForm.phone_number.$model"
-                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                type="text"
-                name=""
-                placeholder="08123456789"
-                :class="{ 'has-error': $v.companyForm.phone_number.$error }"
-              />
-            </div>
-            <div class="form__input">
-              <label for="services"
-                >What plans will you like for your team?<span class="required"
-                  >*</span
-                ></label
-              >
-              <div
-                class="select"
-                :class="{ 'has-error': $v.companyForm.service.$error }"
-              >
-                <div class="selector">
-                  <div class="label" @click="toggle()">
-                    <span
-                      v-if="companyForm.service && !companyForm.service.length"
-                      class="placeholder"
+                <label for="contact name">
+                  Contact Person <span class="required">*</span>
+                </label>
+                <input
+                  id=""
+                  v-model="companyForm.contact_name"
+                  type="text"
+                  name=""
+                  placeholder="Enter name"
+                  :class="{ 'has-error': $v.companyForm.contact_name.$error }"
+                />
+              </div>
+              <div class="form__input">
+                <label for="email"
+                  >Contact Person’s Email <span class="required">*</span>
+                </label>
+                <input
+                  id=""
+                  v-model="companyForm.email"
+                  type="email"
+                  name=""
+                  placeholder="Enter email address"
+                  :class="{ 'has-error': $v.companyForm.email.$error }"
+                />
+              </div>
+              <div class="form__input">
+                <label for="phone number"
+                  >Contact Person’s Phone Number
+                  <span class="required">*</span></label
+                >
+                <input
+                  id=""
+                  v-model.trim="$v.companyForm.phone_number.$model"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                  type="text"
+                  name=""
+                  placeholder="08123456789"
+                  :class="{ 'has-error': $v.companyForm.phone_number.$error }"
+                />
+              </div>
+              <div class="form__input">
+                <label for="services"
+                  >What plans will you like for your team?<span class="required"
+                    >*</span
+                  ></label
+                >
+                <div
+                  class="select"
+                  :class="{ 'has-error': $v.companyForm.service.$error }"
+                >
+                  <div class="selector">
+                    <div class="label" @click="toggle()">
+                      <span
+                        v-if="
+                          companyForm.service && !companyForm.service.length
+                        "
+                        class="placeholder"
+                      >
+                        Select services
+                      </span>
+                      <span
+                        v-for="(item, i) in companyForm.service"
+                        :key="i"
+                        class="label--text"
+                        >{{ item }}</span
+                      >
+                    </div>
+                    <svg
+                      class="arrow"
+                      :class="{ expanded: visible }"
+                      width="10"
+                      height="6"
+                      viewBox="0 0 10 6"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      @click="toggle()"
                     >
-                      Select services
-                    </span>
-                    <span
-                      v-for="(item, i) in companyForm.service"
-                      :key="i"
-                      class="label--text"
-                      >{{ item }}</span
-                    >
-                  </div>
-                  <svg
-                    class="arrow"
-                    :class="{ expanded: visible }"
-                    width="10"
-                    height="6"
-                    viewBox="0 0 10 6"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    @click="toggle()"
-                  >
-                    <path
-                      d="M1 1L5 5L9 1"
-                      stroke="#93A29B"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
+                      <path
+                        d="M1 1L5 5L9 1"
+                        stroke="#93A29B"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
 
-                  <div :class="{ hidden: !visible, visible }">
-                    <transition name="slide-fade">
-                      <div class="selection">
-                        <ul>
-                          <li
-                            v-for="(service, index) in services"
-                            :key="index"
-                            :value="service"
-                          >
-                            <input
-                              :id="service"
-                              v-model="companyForm.service"
-                              type="checkbox"
-                              :name="service"
+                    <div :class="{ hidden: !visible, visible }">
+                      <transition name="slide-fade">
+                        <div class="selection">
+                          <ul>
+                            <li
+                              v-for="(service, index) in services"
+                              :key="index"
                               :value="service"
-                            />
-                            <label
-                              :for="service"
-                              :class="{
-                                checkmark:
-                                  companyForm.service.includes(service),
-                              }"
                             >
-                              {{ service }}</label
-                            >
-                          </li>
-                        </ul>
-                        <button class="btn--submit" @click.prevent="toggle()">
-                          Done
-                        </button>
-                      </div>
-                    </transition>
+                              <input
+                                :id="service"
+                                v-model="companyForm.service"
+                                type="checkbox"
+                                :name="service"
+                                :value="service"
+                              />
+                              <label
+                                :for="service"
+                                :class="{
+                                  checkmark:
+                                    companyForm.service.includes(service),
+                                }"
+                              >
+                                {{ service }}</label
+                              >
+                            </li>
+                          </ul>
+                          <button class="btn--submit" @click.prevent="toggle()">
+                            Done
+                          </button>
+                        </div>
+                      </transition>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="form__input">
-              <label for="message">Anything else you’d like us to know?</label>
-              <textarea
-                id=""
-                v-model="companyForm.message"
-                name=""
-                cols="30"
-                rows="10"
-                placeholder="Type here"
-              ></textarea>
-            </div>
+              <div class="form__input">
+                <label for="message"
+                  >Anything else you’d like us to know?</label
+                >
+                <textarea
+                  id=""
+                  v-model="companyForm.message"
+                  name=""
+                  cols="30"
+                  rows="10"
+                  placeholder="Type here"
+                ></textarea>
+              </div>
 
-            <button
-              type="submit"
-              class="btn--submit"
-              :class="loading"
-              :disabled="loading"
-              @click.prevent="submit()"
-            >
-             Submit
-            </button>
-
-
+              <button
+                type="submit"
+                class="btn--submit"
+                :class="loading"
+                :disabled="loading"
+                @click.prevent="submit()"
+              >
+                Submit
+              </button>
             </div>
 
             <!-- <div class="form__input">
@@ -803,9 +807,9 @@
             >
               Next
             </button> -->
-          </div> 
+          </div>
 
-            <!-- <div class="form__input">
+          <!-- <div class="form__input">
               <label for="email"
                 >Contact Person’s Job Role <span class="required">*</span>
               </label>
@@ -818,7 +822,7 @@
                 :class="{ 'has-error': $v.companyForm.role.$error }"
               />
             </div> -->
-            <!-- <button
+          <!-- <button
               class="back--btn"
               :disabled="loading"
               :class="{
@@ -1026,19 +1030,23 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
       this.descriptionControl()
     }, 10)
     mixpanelTrackEvent('Companies page')
+    window.addEventListener('scroll', this.isInViewport)
+    this.hideBanner()
   },
   methods: {
+    hideBanner() {
+      document.querySelector('.footer__top').style.display = 'none'
+      document.querySelector('.footer__bottom').style.paddingTop = '200px'
+      if (window.matchMedia('(max-width: 767px)').matches) {
+        document.querySelector('.footer__bottom').style.paddingTop = '2px'
+      }
+    },
     toggle() {
       this.visible = !this.visible
     },
-    disableRegister() {
-      return this.companyForm.company_name === '' || this.companyForm.service === '' 
-      || this.companyForm.contact_name === '' || this.companyForm.email === ''
-      || this.companyForm.phone_number === ''
-    },
     async submit() {
       this.$v.companyForm.$touch()
-      console.log("Test")
+      console.log('Test')
       if (!this.$v.companyForm.$error) {
         this.companyForm.service = JSON.stringify(this.companyForm.service)
         try {
@@ -1120,6 +1128,20 @@ Eden meals funded by @buycoins_africa >>>>>>>>>>>`,
       setTimeout(() => {
         this.submitted = false
       }, 10000)
+    },
+    isInViewport() {
+      const element = document.querySelector('.description__slider-text')
+      const { top, bottom } = element.getBoundingClientRect()
+      const vHeight =
+        window.innerHeight || document.documentElement.clientHeight
+      const isInView = (top > 0 || bottom > 0) && top < vHeight
+      if (isInView) {
+        descriptionControl()
+        document.querySelector('svg.bee').setAttribute('class', 'timeline--b')
+        document.querySelector('svg.cee').setAttribute('class', 'timeline--c')
+        document.querySelector('svg.dee').setAttribute('class', 'timeline--d')
+        document.querySelector('svg.eee').setAttribute('class', 'timeline--e')
+      }
     },
     descriptionControl() {
       let count = 0

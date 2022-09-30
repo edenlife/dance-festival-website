@@ -313,7 +313,7 @@ export default {
           eden_location: this.location,
           phone_number: this.countryCode + this.form.phone,
           default_plan: JSON.stringify(sortedPlan),
-          referral_code: this.referral_code,
+          referral_code: this.form.referral_code,
           signup_meta: {
             lead_gen_page: window.location.href,
             referrer: document.referrer,

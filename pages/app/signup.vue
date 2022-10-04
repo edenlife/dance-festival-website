@@ -145,7 +145,6 @@
           <el-form-item
             label="Referral code (optional)"
             prop="referral_code"
-            :rules="validateField()"
           >
             <el-input v-model="form.referral_code" type="text"></el-input>
           </el-form-item>

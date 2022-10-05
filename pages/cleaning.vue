@@ -194,9 +194,7 @@
               <button
                 type="button"
                 class="btn"
-                @click.prevent="
-                  greenhouseSignUp('cleaning - how it works')
-                "
+                @click.prevent="greenhouseSignUp('cleaning - how it works')"
               >
                 Get the app
               </button>
@@ -1200,7 +1198,7 @@ export default {
         {
           name: 'kofo',
           image: 'kofo',
-          description: `The way my house sparkles after the 
+          description: `The way my house sparkles after the
 <span style="color:#03A84E"> @ouredenlife </span>
  cleaners are done with their magic dey always give me endorphins`,
           handle: `yoruba_dev
@@ -1229,10 +1227,10 @@ export default {
         {
           name: 'Nengi Adoki',
           image: 'adoki',
-          description: `This deep cleaning 
+          description: `This deep cleaning
 <span style="color:#03A84E"> @ouredenlife </span>
- did at my house is….I have no words 😭 😭 😭 
- 
+ did at my house is….I have no words 😭 😭 😭
+
  🤌 🤌 🤌 🤌`,
           handle: `TheNengers`,
           tweetLink:
@@ -1248,7 +1246,7 @@ export default {
       light: 1,
       deep: 1,
       plan: 'standard-cleaning',
-      frequency: 'weekly',
+      frequency: 'monthly',
       totalPrice: null,
       visible: [],
       roomTypes: null,
@@ -1257,7 +1255,7 @@ export default {
       cleaningInfo: {
         item: 'standard-cleaning',
         itemAreas: {},
-        frequency: 'weekly',
+        frequency: 'monthly',
         qty: 4,
       },
     }
@@ -1270,22 +1268,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/cleaning/`,
+          href: `https://ouredenlife.com/cleaning/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlifev2-staging.netlify.app/cleaning/',
+          href: 'https://ouredenlife.com/cleaning/',
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlifev2-staging.netlify.app/ke/cleaning/',
+          href: 'https://ouredenlife.com/ke/cleaning/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlifev2-staging.netlify.app/cleaning/',
+          href: 'https://ouredenlife.com/cleaning/',
         },
       ],
     }
@@ -1296,9 +1294,8 @@ export default {
         title: 'Eden | Cleaning',
         description:
           'Professional cleaning at your doorstep. Up to thrice a week.',
-        url: `https://ouredenlifev2-staging.netlify.app/cleaning/`,
-        mainImage:
-          'https://ouredenlifev2-staging.netlify.app/edencardcleaning.png',
+        url: `https://ouredenlife.com/cleaning/`,
+        mainImage: 'https://ouredenlife.com/edencardcleaning.png',
       }
       return getSiteMeta(metaData)
     },
@@ -1312,6 +1309,7 @@ export default {
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
     this.fetchCleaningServiceTypes()
+    console.log(mixpanelTrackEvent('Cleaning page'))
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
@@ -1352,7 +1350,7 @@ export default {
     },
     greenhouseSignUp(label) {
       mixpanelTrackEvent(label)
-      this.$router.push({ name: 'signup', query: this.$route.query})
+      this.$router.push({ name: 'signup', query: this.$route.query })
     },
     changeText() {
       const first = this.headerText.shift()

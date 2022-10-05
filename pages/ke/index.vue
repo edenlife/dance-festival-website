@@ -43,7 +43,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="trackDevice('Download App - hero')"
+              @click.prevent="trackDevice('Download btn')"
             >
               Download App
             </button>
@@ -430,11 +430,7 @@
               >
                 Download App
               </button> -->
-              <button
-                type="button"
-                class="btn"
-                @click.prevent="greenhouseSignUp()"
-              >
+              <button type="button" class="btn" @click.prevent="trackDevice('Download app - homepage')">
                 Download App
               </button>
             </div>
@@ -1189,7 +1185,7 @@
             <img :src="require(`~/assets/images/press2.svg`)" alt="press2"
           /></a>
           <a
-            href="https://techtrendske.co.ke/Samburuias-home-services-subscription-app-eden-life-acquires-kenyas-lynk/"
+            href="https://techtrendske.co.ke/nigerias-home-services-subscription-app-eden-life-acquires-kenyas-lynk/"
             target="_blank"
           >
             <img
@@ -1448,7 +1444,7 @@
             <button
               type="button"
               class="hero__button-solid banner-btn"
-              @click.prevent="downloadApp('Download App - homepage banner')"
+              @click.prevent="trackDevice('Download App - homepage banner')"
             >
               Install
             </button>
@@ -1735,22 +1731,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/ke/`,
+          href: `https://ouredenlife.com/ke/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlifev2-staging.netlify.app/',
+          href: 'https://ouredenlife.com/',
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlifev2-staging.netlify.app/ke/',
+          href: 'https://ouredenlife.com/ke/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlifev2-staging.netlify.app/',
+          href: 'https://ouredenlife.com/',
         },
       ],
     }
@@ -1760,8 +1756,8 @@ export default {
       const metaData = {
         title: 'Eden | Say Goodbye To Chores Forever',
         description: `Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!`,
-        url: `https://ouredenlifev2-staging.netlify.app/ke/`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+        url: `https://ouredenlife.com/ke/`,
+        mainImage: 'https://ouredenlife.com/edencard.png',
       }
       return getSiteMeta(metaData)
     },
@@ -2003,8 +1999,14 @@ export default {
       mixpanelTrackEvent(`${name} icon clicked - Lead page nairobi`)
       window.open(url, '_blank')
     },
-    downloadApp() {
-      mixpanelTrackEvent('Download App - homepage banner')
+    
+    trackLink(name, url) {
+      mixpanelTrackEvent(`${name} link clicked (footer - Lead page nairobi)`)
+      window.open(url, '_blank')
+    },
+
+    trackDevice(label) {
+      mixpanelTrackEvent(label)
       const userAgent = navigator.userAgent || navigator.vendor || window.opera
       if (/android/i.test(userAgent)) {
         window.location.href =
@@ -2013,29 +2015,10 @@ export default {
       if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
         window.location.href =
           'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
+      } else {
+        this.scrollToFooter('#get-the-app', 'Download App')
       }
     },
-    trackLink(name, url) {
-      mixpanelTrackEvent(`${name} link clicked (footer - Lead page nairobi)`)
-      window.open(url, '_blank')
-    },
-     greenhouseSignUp() {
-      mixpanelTrackEvent(`KE - Home page hero-btn `)
-      this.$router.push({ name: 'signup', query: this.$route.query})
-    },
-    // trackDevice() {
-    //   mixpanelTrackEvent('Download App - homepage')
-    //   if (navigator.userAgent.toLowerCase().indexOf('android') > -1) {
-    //     window.location.href =
-    //       'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
-    //   }
-    //   if (navigator.userAgent.toLowerCase().indexOf('iphone') > -1) {
-    //     window.location.href =
-    //       'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
-    //   } else {
-    //     this.scrollToFooter('#get-the-app', 'Download App')
-    //   }
-    // },
   },
 }
 </script>

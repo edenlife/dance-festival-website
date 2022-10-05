@@ -29,7 +29,7 @@
           @click="trackLink('Eden Means ~Easy')"
         >
           <nuxt-link
-            :to="{ path: '/eden_means_easy/' }"
+            :to="{ path: '/eden_means_easy' }"
             class="navigation__menu-item"
           >
             Why Eden?
@@ -81,7 +81,7 @@
                     @mouseleave.stop="service = ''"
                   >
                     <nuxt-link
-                      :to="{ path: '/food/' }"
+                      :to="{ path: '/food' }"
                       class="service__list-item"
                     >
                       <span>🥘</span>
@@ -134,7 +134,7 @@
                     @mouseleave.stop="service = ''"
                   >
                     <nuxt-link
-                      :to="{ path: '/laundry/' }"
+                      :to="{ path: '/laundry' }"
                       class="service__list-item"
                     >
                       <span>🧺</span>
@@ -188,7 +188,7 @@
                     @mouseleave.stop="service = ''"
                   >
                     <nuxt-link
-                      :to="{ path: '/cleaning/' }"
+                      :to="{ path: '/cleaning' }"
                       class="service__list-item"
                     >
                       <span>🏠</span>
@@ -245,10 +245,7 @@
           @mouseenter.stop="showService = false"
           @click="trackLink('Companies')"
         >
-          <nuxt-link
-            :to="{ path: '/companies/' }"
-            class="navigation__menu-item"
-          >
+          <nuxt-link :to="{ path: '/companies' }" class="navigation__menu-item">
             Companies
           </nuxt-link>
         </li>
@@ -257,7 +254,7 @@
           @mouseenter.stop="showService = false"
           @click="trackLink('Pricing')"
         >
-          <nuxt-link :to="{ path: '/pricing/' }" class="navigation__menu-item">
+          <nuxt-link :to="{ path: '/pricing' }" class="navigation__menu-item">
             Pricing
           </nuxt-link>
         </li>
@@ -281,7 +278,7 @@
         </li>
         <li v-if="currentRoute === 'laundry_leads'">
           <nuxt-link
-            :to="{ path: '/eden_means_easy/' }"
+            :to="{ path: '/eden_means_easy' }"
             class="navigation__mobile-item"
           >
             Why Eden?
@@ -339,7 +336,13 @@
                     class="navigation__menu-item"
                     @click="trackLink('Contact Us')"
                   >
-                    <a href="tel:+2348146757886"> +2348146757886</a>
+                    <a href="tel:+2348134254074"> +2348134254074</a>
+                  </li>
+                  <li
+                    class="navigation__menu-item contact"
+                    @click="trackLink('Contact Us')"
+                  >
+                    <a href="https://wa.me/2348134254074"> Whatsapp</a>
                   </li>
                   <li
                     class="navigation__menu-item trigger-chat"
@@ -412,7 +415,10 @@
                     @mouseenter.stop="locations = 'nigeria'"
                     @mouseleave.stop="locations = ''"
                   >
-                    <nuxt-link :to="{ path: '/' }" class="service__list-item">
+                    <nuxt-link
+                      :to="{ path: locationRoute('NG') }"
+                      class="service__list-item"
+                    >
                       <span>🇳🇬</span>
                       <h5>Nigeria</h5>
                       <svg
@@ -463,7 +469,7 @@
                     @mouseleave.stop="locations = ''"
                   >
                     <nuxt-link
-                      :to="{ path: '/ke/' }"
+                      :to="{ path: locationRoute('KE') }"
                       class="service__list-item"
                     >
                       <span>🇰🇪</span>
@@ -521,6 +527,159 @@
         <div class="line line2"></div>
         <div class="line line3"></div>
       </button>
+      <div
+        class="navigation__menu-item navigation__menu-service navigation__btn"
+      >
+        <button
+          type="button"
+          class="btn"
+          :class="{ active: switchLocation }"
+          @mouseenter.stop="
+            switchLocation = true
+            showContact = false
+            showService = false
+          "
+        >
+          <img
+            :src="require(`~/assets/images/greenhouse/flags/NG.svg`)"
+            alt="flag"
+          />
+          <svg
+            width="10"
+            height="6"
+            viewBox="0 0 10 6"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1 1L5 5L9 1"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <transition name="fade">
+          <div
+            v-if="switchLocation"
+            class="service location"
+            @mouseleave.stop="
+              switchLocation = false
+              showContact = false
+              showService = false
+            "
+          >
+            <ul class="service__title">
+              <li
+                :class="{ nigeria: locations === 'nigeria' }"
+                @mouseenter.stop="locations = 'nigeria'"
+                @mouseleave.stop="locations = ''"
+              >
+                <nuxt-link
+                  :to="{ path: locationRoute('NG') }"
+                  class="service__list-item"
+                >
+                  <span>🇳🇬</span>
+                  <h5>Nigeria</h5>
+                  <svg
+                    v-if="locations === 'nigeria'"
+                    width="15"
+                    height="10"
+                    viewBox="0 0 15 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 5L13 5"
+                      stroke="#7189FF"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M10 9L14 5L10 1"
+                      stroke="#7189FF"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+
+                  <svg
+                    v-else
+                    width="6"
+                    height="10"
+                    viewBox="0 0 6 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 9L5 5L1 1"
+                      stroke="#798B83"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </nuxt-link>
+              </li>
+              <li
+                :class="{ kenya: locations === 'kenya' }"
+                @mouseenter.stop="locations = 'kenya'"
+                @mouseleave.stop="locations = ''"
+              >
+                <nuxt-link
+                  :to="{ path: locationRoute('KE') }"
+                  class="service__list-item"
+                >
+                  <span>🇰🇪</span>
+                  <h5>Kenya</h5>
+                  <svg
+                    v-if="locations === 'kenya'"
+                    width="15"
+                    height="10"
+                    viewBox="0 0 15 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 5L13 5"
+                      stroke="#FF9D00"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M10 9L14 5L10 1"
+                      stroke="#FF9D00"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+
+                  <svg
+                    v-else
+                    width="6"
+                    height="10"
+                    viewBox="0 0 6 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 9L5 5L1 1"
+                      stroke="#798B83"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </nuxt-link>
+              </li>
+            </ul>
+          </div>
+        </transition>
+      </div>
       <transition name="slide">
         <div v-if="showNavbar" class="navigation__mobile">
           <ul class="menu">
@@ -529,7 +688,7 @@
               @click.prevent="handleToggle('Eden Means Easy')"
             >
               <nuxt-link
-                :to="{ path: '/eden_means_easy/' }"
+                :to="{ path: '/eden_means_easy' }"
                 class="navigation__mobile-item"
               >
                 Why Eden?
@@ -564,7 +723,7 @@
                     class="menu--list-item food"
                     @click.prevent="handleToggle('Food')"
                   >
-                    <nuxt-link :to="{ path: '/food/' }" class="">
+                    <nuxt-link :to="{ path: '/food' }" class="">
                       <span class="icon">🥘</span>
                       <span>Food</span>
                     </nuxt-link>
@@ -573,7 +732,7 @@
                     class="menu--list-item laundry"
                     @click.prevent="handleToggle('Laundry')"
                   >
-                    <nuxt-link :to="{ path: '/laundry/' }" class="">
+                    <nuxt-link :to="{ path: '/laundry' }" class="">
                       <span class="icon">🧺</span>
                       <span>Laundry</span>
                     </nuxt-link>
@@ -582,7 +741,7 @@
                     class="menu--list-item cleaning"
                     @click.prevent="handleToggle('Cleaning')"
                   >
-                    <nuxt-link :to="{ path: '/cleaning/' }" class="">
+                    <nuxt-link :to="{ path: '/cleaning' }" class="">
                       <span class="icon">🏠</span>
                       <span>Cleaning</span>
                     </nuxt-link>
@@ -596,7 +755,7 @@
               @click.prevent="handleToggle('Companies')"
             >
               <nuxt-link
-                :to="{ path: '/companies/' }"
+                :to="{ path: '/companies' }"
                 class="navigation__mobile-item"
               >
                 Companies
@@ -604,7 +763,7 @@
             </li>
             <li class="menu--list" @click.prevent="handleToggle('Pricing')">
               <nuxt-link
-                :to="{ path: '/pricing/' }"
+                :to="{ path: '/pricing' }"
                 class="navigation__mobile-item"
               >
                 Pricing
@@ -639,7 +798,13 @@
                     class="menu--list-item contact"
                     @click="trackLink('Contact Us')"
                   >
-                    <a href="tel:+2348146757886"> +2348146757886</a>
+                    <a href="tel:+2348134254074"> +2348134254074</a>
+                  </li>
+                  <li
+                    class="menu--list-item contact"
+                    @click="trackLink('Contact Us')"
+                  >
+                    <a href="https://wa.me/2348134254074"> Whatsapp</a>
                   </li>
                   <li
                     class="menu--list-item contact trigger-chat"
@@ -648,54 +813,8 @@
                       launchIntercom()
                     "
                   >
-                    <nuxt-link :to="{ path: '/contact_us/' }">
+                    <nuxt-link :to="{ path: '/contact_us' }">
                       Message
-                    </nuxt-link>
-                  </li>
-                </ul>
-              </transition>
-            </li>
-            <li class="menu--list">
-              <div class="navigation__mobile-item service">
-                <div><span class="icon location-icon">🇰🇪</span>Nigeria</div>
-                <div class="service--icon" @click="locationToggle()">
-                  <svg
-                    class="arrow"
-                    :class="{ expanded: locationVisible }"
-                    width="10"
-                    height="6"
-                    viewBox="0 0 10 6"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M1 1L5 5L9 1"
-                      stroke="#21312A"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
-              </div>
-              <transition name="slide-fade">
-                <ul v-if="locationVisible" class="">
-                  <li
-                    class="menu--list-item"
-                    @click.prevent="handleToggle('Kenya')"
-                  >
-                    <nuxt-link :to="{ path: '/ke/' }" class="">
-                      <span>🇰🇪</span>
-                      <span>Kenya</span>
-                    </nuxt-link>
-                  </li>
-                  <li
-                    class="menu--list-item"
-                    @click.prevent="handleToggle('Nigeria')"
-                  >
-                    <nuxt-link :to="{ path: '/' }" class="">
-                      <span>🇳🇬</span>
-                      <span>Nigeria</span>
                     </nuxt-link>
                   </li>
                 </ul>
@@ -732,16 +851,18 @@ export default {
       service: '',
       showService: false,
       switchLocation: false,
-      locationVisible: false,
       showNavbar: false,
       showContact: false,
       visible: false,
       contactVisible: false,
+      country: this.$store.getters.getCountry,
       window: {
         width: 0,
         height: 0,
       },
       currentRoute: '',
+      // flagChange: false,
+      showGiftBanner: false,
       routeUpdate: '',
       locations: '',
       lightLogo: false,
@@ -793,14 +914,42 @@ export default {
       navigation.classList.add('primary-bg')
       this.lightLogo = true
     }
+    // console.log(Object.keys(this.$nuxt.$route.params).length)
+    // if (!Object.keys(this.$nuxt.$route.params).length) {
+    //   this.redirectCountry()
+    // }
+    // console.log(this.$nuxt.$route)
+    // this.redirectCountry()
   },
   methods: {
+    // async redirectCountry() {
+    //   let data = await fetch(`https://ipapi.co/json/`).then((res) => res.json())
+    //   data = data
+    //   if (data.country_code === 'GB') {
+    //     console.log('Byeee')
+    //     this.$router.push({ path: this.locationRoute('KE') })
+    //   }
+    // },
     getNavigationColor,
     handleResize() {
       this.window.width = window.innerWidth
       this.window.height = window.innerHeight
       if (this.showNavbar && this.window.width > '768') {
         this.handleToggle()
+      }
+    },
+    locationRoute(country) {
+      if (country === 'NG') {
+        const pathArr = this.$nuxt.$route.path.split('/')
+        if (this.$nuxt.$route.path.includes('ke')) {
+          return `/${pathArr.slice(2).join('/')}`
+        }
+      }
+      if (country === 'KE') {
+        const pathArr = this.$nuxt.$route.path.split('/')
+        if (!this.$nuxt.$route.path.includes('ke')) {
+          return `/ke${pathArr.join('/')}`
+        }
       }
     },
     handleScroll() {
@@ -826,13 +975,13 @@ export default {
       this.showService = false
       mixpanelTrackEvent(`${service} clicked - ${this.currentRoute} - Navbar`)
     },
-    // scrollTo(id) {
-    //   if (this.currentRoute === '') {
-    //     scrollToApp(id, `homepage - Navbar`)
-    //   } else if (this.currentRoute.includes('easy')) {
-    //     this.scrollToSection('#eden-easy-form', 'Get Started')
-    //   } else scrollToApp(id, `${this.currentRoute} - Navbar`)
-    // },
+    scrollTo(id) {
+      if (this.currentRoute === '') {
+        scrollToApp(id, `homepage - Navbar`)
+      } else if (this.currentRoute.includes('easy')) {
+        this.scrollToSection('#eden-easy-form', 'Get Started')
+      } else scrollToApp(id, `${this.currentRoute} - Navbar`)
+    },
     greenhouseSignUp() {
       if (this.currentRoute === '') {
         mixpanelTrackEvent(`Get Started Clicked - homepage - Navbar `)
@@ -861,9 +1010,6 @@ export default {
     },
     contactToggle() {
       this.contactVisible = !this.contactVisible
-    },
-    locationToggle() {
-      this.locationVisible = !this.locationVisible
     },
     handleToggle(menu) {
       if (menu) {
@@ -897,5 +1043,16 @@ export default {
 }
 .location-icon {
   margin-right: 5px;
+}
+.navigation__btn {
+  &.navigation__menu-item {
+    right: 2%;
+  }
+}
+
+@media only screen and (max-width: 48em) {
+  .location {
+    width: 160px !important;
+  }
 }
 </style>

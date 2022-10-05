@@ -1,3 +1,5 @@
+/* global FB */
+
 export const initFbsdk = () => {
   return new Promise((resolve) => {
     window.fbAsyncInit = function () {

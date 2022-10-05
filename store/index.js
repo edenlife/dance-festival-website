@@ -10,6 +10,7 @@ export const state = () => ({
   foodPosts: [],
   edenPosts: [],
   fromOrigin: null,
+  country: null,
   greenhouse: {
     token: '',
     user: {},
@@ -52,6 +53,9 @@ export const getters = {
   },
   getFromOrigin: (state) => {
     return state.fromOrigin
+  },
+  getCountry: (state) => {
+    return state.country
   },
   getGreenhouseToken: (state) => {
     return state.greenhouse.token
@@ -115,6 +119,9 @@ export const mutations = {
   },
   setFromOrigin: (state, payload) => {
     state.fromOrigin = payload
+  },
+  setCountry: (state, payload) => {
+    state.country = payload
   },
   setGreenhouseToken: (state, token) => {
     state.greenhouse.token = token

@@ -29,7 +29,7 @@
         <h5>Customer Support</h5>
         <p>
           For customer support, call
-          <a href="tel:+2348146757886"> +2348146757886</a>
+          <a href="tel:+2348134254074"> +2348134254074</a>
 
           or
           <a @click.prevent="launchIntercom()" class="trigger-chat"> chat</a>
@@ -52,7 +52,7 @@
         </p>
         <div class="email">
           <p>Email: support@edenlife.ng</p>
-          <p>Phone number: +234 701 567 5705</p>
+          <p>Phone number: +234 813 425 4074</p>
         </div>
         <a
           href="https://www.google.com/maps/search/?api=1&query=Eden,+Adebisi+Street,+Lagos"
@@ -87,22 +87,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/contact_us/`,
+          href: `https://ouredenlife.com/contact_us/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlifev2-staging.netlify.app/contact_us/',
+          href: 'https://ouredenlife.com/contact_us/',
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlifev2-staging.netlify.app/ke/contact_us/',
+          href: 'https://ouredenlife.com/ke/contact_us/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlifev2-staging.netlify.app/contact_us/',
+          href: 'https://ouredenlife.com/contact_us/',
         },
       ],
     }
@@ -112,8 +112,8 @@ export default {
       const metaData = {
         title: 'Eden | Contact Us',
         description: `Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!`,
-        url: `https://ouredenlifev2-staging.netlify.app/contact_us/`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+        url: `https://ouredenlife.com/contact_us/`,
+        mainImage: 'https://ouredenlife.com/edencard.png',
       }
       return getSiteMeta(metaData)
     },

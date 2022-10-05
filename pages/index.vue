@@ -1022,16 +1022,41 @@
       <div slot="footer"></div>
     </modal>
 
-  <download-banner v-if="showDownloadBanner" :show-download-banner="showDownloadBanner" class="download-banner">
+    <download-banner
+      v-if="showDownloadBanner"
+      :show-download-banner="showDownloadBanner"
+      class="download-banner"
+    >
       <div slot="header"></div>
       <div slot="body" class="content">
         <div class="banner">
           <div>
-            <button class="btn btn--success" @click="showDownloadBanner = false">
-                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 12.25L12.25 1" stroke="#4B6358" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M1 1L12.25 12.25" stroke="#4B6358" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+            <button
+              class="btn btn--success"
+              @click="showDownloadBanner = false"
+            >
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 13 13"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 12.25L12.25 1"
+                  stroke="#4B6358"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M1 1L12.25 12.25"
+                  stroke="#4B6358"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
             </button>
           </div>
           <div>
@@ -1042,9 +1067,7 @@
             />
           </div>
           <div>
-            <p class="font-text">
-              Enjoy the good life.
-            </p>
+            <p class="font-text">Enjoy the good life.</p>
             <p>Say goodbye to chores forever.</p>
           </div>
           <div>
@@ -1059,8 +1082,7 @@
         </div>
       </div>
       <div slot="footer"></div>
-  </download-banner>
-
+    </download-banner>
   </div>
 </template>
 
@@ -1075,28 +1097,28 @@ import { landingPageApi } from '~/request/all.api'
 export default {
   mixins: [validationMixin],
 
-    head() {
+  head() {
     return {
       link: [
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/ke/`,
+          href: `https://ouredenlife.com/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlifev2-staging.netlify.app/',
+          href: 'https://ouredenlife.com/',
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlifev2-staging.netlify.app/ke/',
+          href: 'https://ouredenlife.com/ke/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlifev2-staging.netlify.app/',
+          href: 'https://ouredenlife.com/',
         },
       ],
     }
@@ -1278,11 +1300,6 @@ export default {
       city: { required },
     },
   },
-  computed: {
-    fromOrigin() {
-      return this.$store.getters.getFromOrigin
-    },
-  },
   mounted() {
     window.setInterval(() => {
       this.changeService()
@@ -1324,13 +1341,14 @@ export default {
           this.showFailedModal = true
         }
       }
+      mixpanelTrackEvent('Enlist form - homepage')
     },
     // scrollTo(id, label) {
     //   scrollToApp(id, label)
     // },
-    greenhouseSignUp() {
-      mixpanelTrackEvent(`Home page hero-btn `)
-      this.$router.push({ name: 'signup', query: this.$route.query})
+    greenhouseSignUp(label) {
+      mixpanelTrackEvent(label)
+      this.$router.push({ name: 'signup', query: this.$route.query })
     },
     scrollToQuestions() {
       const scrollToElement = document.querySelector('#waiting-list')
@@ -1401,17 +1419,17 @@ export default {
       mixpanelTrackEvent(`${service} clicked - homepage (services)`)
     },
     downloadApp() {
-       mixpanelTrackEvent('Download App - homepage banner')
+      mixpanelTrackEvent('Download App - homepage banner')
       const userAgent = navigator.userAgent || navigator.vendor || window.opera
-      if(/android/i.test(userAgent)){
-            window.location.href = 
-           'https://play.google.com/store/apps/details?id=com.ouredenlife.app';
+      if (/android/i.test(userAgent)) {
+        window.location.href =
+          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
       }
-      if(/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream){
-          window.location.href = 
-         'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1';
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href =
+          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
       }
-    }
+    },
   },
 }
 </script>

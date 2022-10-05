@@ -501,8 +501,12 @@ export default {
       }
     },
     onSuccess() {
+      console.log("Test")
       // handle success
       this.user_subscribed = true
+    },
+    subscribe() {
+      console.log("Test")
     },
     async getSingleArticle(id) {
       this.postDetails = await fetch(
@@ -627,6 +631,9 @@ export default {
       img {
         display: flex;
         margin: 0 auto;
+        @include respond(md) {
+          width: 100%;
+        }
       }
     }
     figure {

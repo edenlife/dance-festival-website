@@ -7,5 +7,9 @@
 <script>
 import '~/assets/style.scss'
 
-export default {}
+export default {
+  mounted() {
+    this.$intercom('hide')
+  },
+}
 </script>

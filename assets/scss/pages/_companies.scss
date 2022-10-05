@@ -131,9 +131,10 @@
       }
     }
     &__button {
-      width: 50%;
+      width: 60%;
       flex-direction: column;
       margin: 0 auto;
+      gap: 13px;
       &-link {
         margin-top: $gap * 3.2;
         align-self: center;
@@ -1296,6 +1297,7 @@
    }
    @include respond(md) {
     padding: $gap * 11 $gap * 3.9;
+    margin-bottom: $gap * 13.1;
     &__form{
       padding: $gap * 2;
       margin-bottom: $gap * 7.6;
@@ -1382,4 +1384,3 @@
     }
   }
 }
-

@@ -15,6 +15,10 @@
             Chef-made meals delivered from a menu of over 100 delicious meal
             choices. 🥘
           </li>
+          <li>
+            Access to dozens of professional spa-quality services at the comfort
+            of your home. 💅
+          </li>
         </ul>
 
         <div></div>
@@ -99,241 +103,9 @@
         </div>
       </section>
     </div>
-    <div id="eden-easy-form" class="hero hero__bottom">
-      <div class="hero__title">
-        <h1>
-          The best time to start your Eden life was yesterday, the second best
-          time is <span>now</span>.
-        </h1>
-
-        <p>There's an Eden plan for you</p>
-
-        <div class="hero__form">
-          <ul class="hero__form-option">
-            <li
-              :class="{ active: activeForm === 'individual' }"
-              @click.prevent="activeForm = 'individual'"
-            >
-              Individual
-            </li>
-            <li
-              :class="{ active: activeForm === 'team' }"
-              @click.prevent="activeForm = 'team'"
-            >
-              Team
-            </li>
-          </ul>
-
-          <transition name="slide-fade">
-            <div v-if="activeForm === 'individual'" class="testimonial__form">
-              <div class="testimonial__form-body">
-                <div class="testimonial__form-input">
-                  <label for="name">Full Name</label>
-                  <input
-                    id=""
-                    v-model="leadForm.name"
-                    type="text"
-                    name=""
-                    placeholder="Full Name"
-                    :class="{ 'has-error': $v.leadForm.name.$error }"
-                  />
-                </div>
-                <div class="testimonial__form-input">
-                  <label for="email">Email</label>
-                  <input
-                    id=""
-                    v-model="leadForm.email"
-                    type="email"
-                    name=""
-                    placeholder="email@example.com"
-                    :class="{ 'has-error': $v.leadForm.email.$error }"
-                  />
-                </div>
-                <div class="testimonial__form-input">
-                  <label for="phone number">Phone Number</label>
-                  <input
-                    id=""
-                    v-model.trim="$v.leadForm.phone_number.$model"
-                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                    type="text"
-                    name=""
-                    placeholder="Enter phone number"
-                    :class="{ 'has-error': $v.leadForm.phone_number.$error }"
-                  />
-                </div>
-
-                <button class="testimonial__form-btn" @click="individualSubmit">
-                  Enjoy Quality Service
-                </button>
-              </div>
-            </div>
-          </transition>
-
-          <transition name="slide-fade">
-            <div v-if="activeForm === 'team'" class="testimonial__form">
-              <div class="testimonial__form-body">
-                <div class="testimonial__form-input">
-                  <label for="name">Company Name</label>
-                  <input
-                    id=""
-                    v-model="leadCompanyForm.company_name"
-                    type="text"
-                    name=""
-                    placeholder="Company Name"
-                    :class="{
-                      'has-error': $v.leadCompanyForm.company_name.$error,
-                    }"
-                  />
-                </div>
-                <div class="testimonial__form-input">
-                  <label for="name">Contact Person</label>
-                  <input
-                    id=""
-                    v-model="leadCompanyForm.contact_name"
-                    type="text"
-                    name=""
-                    placeholder="Enter Name"
-                    :class="{
-                      'has-error': $v.leadCompanyForm.contact_name.$error,
-                    }"
-                  />
-                </div>
-                <div class="testimonial__form-input">
-                  <label for="email">Contact person email address</label>
-                  <input
-                    id=""
-                    v-model="leadCompanyForm.email"
-                    type="email"
-                    name=""
-                    placeholder="email@example.com"
-                    :class="{
-                      'has-error': $v.leadCompanyForm.email.$error,
-                    }"
-                  />
-                </div>
-                <div class="testimonial__form-input">
-                  <label for="phone number">Phone Number</label>
-                  <input
-                    id=""
-                    v-model.trim="$v.leadCompanyForm.phone_number.$model"
-                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                    type="text"
-                    name=""
-                    placeholder="Enter phone number"
-                    :class="{
-                      'has-error': $v.leadCompanyForm.phone_number.$error,
-                    }"
-                  />
-                </div>
-                <div class="testimonial__form-input">
-                  <label for="services"
-                    >What plans would you like for your team?</label
-                  >
-                  <div
-                    class="select"
-                    :class="{ 'has-error': $v.leadCompanyForm.service.$error }"
-                  >
-                    <div class="selector">
-                      <div class="label" @click="toggle()">
-                        <span
-                          v-if="
-                            leadCompanyForm.service &&
-                            !leadCompanyForm.service.length
-                          "
-                          class="placeholder"
-                        >
-                          Select services
-                        </span>
-                        <span
-                          v-for="(item, i) in leadCompanyForm.service"
-                          :key="i"
-                          class="label--text"
-                          >{{ item }}</span
-                        >
-                      </div>
-                      <svg
-                        class="arrow"
-                        :class="{ expanded: visible }"
-                        width="10"
-                        height="6"
-                        viewBox="0 0 10 6"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        @click="toggle()"
-                      >
-                        <path
-                          d="M1 1L5 5L9 1"
-                          stroke="#93A29B"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-
-                      <div :class="{ hidden: !visible, visible }">
-                        <transition name="slide-fade">
-                          <div class="selection">
-                            <ul>
-                              <li
-                                v-for="(service, index) in services"
-                                :key="index"
-                                :value="service"
-                              >
-                                <input
-                                  :id="service"
-                                  v-model="leadCompanyForm.service"
-                                  type="checkbox"
-                                  :name="service"
-                                  :value="service"
-                                />
-                                <label
-                                  :for="service"
-                                  :class="{
-                                    checkmark:
-                                      leadCompanyForm.service.includes(service),
-                                  }"
-                                >
-                                  {{ service }}</label
-                                >
-                              </li>
-                            </ul>
-                            <button
-                              class="btn--submit"
-                              @click.prevent="toggle()"
-                            >
-                              Done
-                            </button>
-                          </div>
-                        </transition>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="testimonial__form-input">
-                  <label for="message"
-                    >Anything else you’d like us to know?</label
-                  >
-                  <textarea
-                    id=""
-                    v-model="leadCompanyForm.message"
-                    name=""
-                    cols="30"
-                    rows="10"
-                    placeholder="Extra message"
-                    :class="{ 'has-error': $v.leadCompanyForm.message.$error }"
-                  ></textarea>
-                </div>
-
-                <button @click="companySubmit" class="testimonial__form-btn">
-                  Enjoy Quality Service
-                </button>
-              </div>
-            </div>
-          </transition>
-        </div>
-        <div class="hero__button share hide" id="social-content">
-          <span>Share </span>
-
-          <ShareNetwork
+    <div class="hero__button share hide" id="social-content">
+      <span>Share </span>
+      <!-- <ShareNetwork
             class="share__icon"
             network="whatsapp"
             :url="`https://ouredenlife.com${pageUrl}`"
@@ -353,47 +125,45 @@
                 fill=""
               />
             </svg>
-          </ShareNetwork>
-          <ShareNetwork
-            class="share__icon"
-            network="twitter"
-            :url="`https://ouredenlife.com${pageUrl}`"
-            title=""
-            description=""
-          >
-            <img
-              @click.prevent="openSocialMedia('Twitter')"
-              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341806/eden-website-v2/twitter_pxdich.svg"
-              alt="twitter"
-              class="share__icon__img"
-            />
-          </ShareNetwork>
-          <a
-            class="share__icon"
-            :href="`https://www.facebook.com/sharer/sharer.php?u=https://ouredenlife.com${pageUrl}`"
-            target="_blank"
-          >
-            <img
-              @click="openSocialMedia('facebook')"
-              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341806/eden-website-v2/facebook_cqsjdf.svg"
-              alt="facebook"
-              class="share__icon__img"
-            />
-          </a>
-          <a
-            class="share__icon"
-            :href="`https://www.linkedin.com/sharing/share-offsite/?url=https://ouredenlife.com${pageUrl}`"
-            target="_blank"
-          >
-            <img
-              @click="openSocialMedia('LinkedIn')"
-              src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341816/eden-website-v2/linkedin_utcbna.svg"
-              alt="linkedin"
-              class="share__icon__img"
-            />
-          </a>
-        </div>
-      </div>
+          </ShareNetwork> -->
+      <ShareNetwork
+        class="share__icon"
+        network="twitter"
+        :url="`https://ouredenlife.com${pageUrl}`"
+        title=""
+        description=""
+      >
+        <img
+          @click.prevent="openSocialMedia('Twitter')"
+          src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341806/eden-website-v2/twitter_pxdich.svg"
+          alt="twitter"
+          class="share__icon__img"
+        />
+      </ShareNetwork>
+      <a
+        class="share__icon"
+        :href="`https://www.facebook.com/sharer/sharer.php?u=https://ouredenlife.com${pageUrl}`"
+        target="_blank"
+      >
+        <img
+          @click="openSocialMedia('facebook')"
+          src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341806/eden-website-v2/facebook_cqsjdf.svg"
+          alt="facebook"
+          class="share__icon__img"
+        />
+      </a>
+      <a
+        class="share__icon"
+        :href="`https://www.linkedin.com/sharing/share-offsite/?url=https://ouredenlife.com${pageUrl}`"
+        target="_blank"
+      >
+        <img
+          @click="openSocialMedia('LinkedIn')"
+          src="https://res.cloudinary.com/eden-life-inc/image/upload/v1611341816/eden-website-v2/linkedin_utcbna.svg"
+          alt="linkedin"
+          class="share__icon__img"
+        />
+      </a>
     </div>
     <modal
       v-if="showLeadModal"
@@ -805,108 +575,6 @@
         </div>
       </div>
     </modal>
-    <modal v-if="showSuccessModal" :show-modal="showSuccessModal" class="modal">
-      <div slot="header"></div>
-      <div slot="body" class="modal__body">
-        <div class="lead__modal">
-          <div class="lead__modal-title">
-            <button class="btn btn--success" @click="showSuccessModal = false">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="16"
-                  cy="16"
-                  r="15.5"
-                  fill="white"
-                  stroke="#E4E8E6"
-                />
-                <path
-                  d="M20 12L12 20"
-                  stroke="#798B83"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M12 12L20 20"
-                  stroke="#798B83"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-          <div class="lead__modal-body">
-            <img
-              :src="require(`~/assets/images/successful.svg`)"
-              alt="failed"
-            />
-            <h5>Information Submitted</h5>
-            <p>
-              {{ successModalText }}
-            </p>
-            <button
-              type="submit"
-              class="btn--submit"
-              :disabled="loading"
-              @click="showSuccessModal = false"
-            >
-              Continue Browsing
-            </button>
-          </div>
-        </div>
-      </div>
-      <div slot="footer"></div>
-    </modal>
-    <modal v-if="showFailedModal" :show-modal="showFailedModal" class="modal">
-      <div slot="header"></div>
-      <div slot="body" class="modal__body">
-        <div class="lead__modal">
-          <div class="lead__modal-title">
-            <button class="btn btn--success" @click="showFailedModal = false">
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="16"
-                  cy="16"
-                  r="15.5"
-                  fill="white"
-                  stroke="#E4E8E6"
-                />
-                <path
-                  d="M20 12L12 20"
-                  stroke="#798B83"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M12 12L20 20"
-                  stroke="#798B83"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-
-          <div class="lead__modal-body">
-            <img :src="require(`~/assets/images/failed.svg`)" alt="failed" />
-            <h5>Submission Failed</h5>
-            <p v-html="failModalText"></p>
-          </div>
-        </div>
-      </div>
-      <div slot="footer"></div>
-    </modal>
   </div>
 </template>
 
@@ -914,11 +582,10 @@
 import getSiteMeta from '~/utils/getSiteMeta'
 import { scrollToApp } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
-import values from '~/static/values'
+import values from '~/static/ke/values'
 import { validationMixin } from 'vuelidate'
 import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 import { notUrl } from '~/utils/validators'
-import { companiesApi } from '~/request/all.api'
 
 export default {
   components: {
@@ -949,6 +616,7 @@ export default {
       message: { required },
     },
   },
+  layout: 'ke-default',
   data() {
     return {
       valueReasons: values,
@@ -985,8 +653,6 @@ export default {
       activeForm: 'individual',
       visible: false,
       loading: false,
-      showFailedModal: false,
-      showSuccessModal: false,
       successModalText: '',
       failModalText: '',
       header: 'one',
@@ -1000,13 +666,14 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlife.com/eden_means_easy/`,
+          href: `https://ouredenlife.com/ke/eden_means_easy/`,
         },
       ],
     }
   },
   mounted() {
     this.pageUrl = this.$route.fullPath
+    console.log(this.pageUrl)
     window.addEventListener('scroll', this.handleScroll)
 
     this.animateHeader()
@@ -1016,7 +683,7 @@ export default {
       const metaData = {
         title: 'Eden | Eden Means Easy',
         description: '10 Reasons Why Eden Means Easy. ',
-        url: `https://ouredenlife.com/eden_means_easy/`,
+        url: `https://ouredenlife.com/ke/eden_means_easy/`,
       }
       return getSiteMeta(metaData)
     },
@@ -1066,13 +733,8 @@ export default {
       this.visible = !this.visible
     },
     setTestimonial(index) {
-      const {
-        modal_text,
-        modal_testimonial,
-        modal_form,
-        cta,
-        form_type,
-      } = this.valueReasons[index]
+      const { modal_text, modal_testimonial, modal_form, cta, form_type } =
+        this.valueReasons[index]
 
       this.activeReason = {
         text: modal_text,
@@ -1107,96 +769,6 @@ export default {
       //   '_self'
       // )
       mixpanelTrackEvent('Get the app(applestore) clicked')
-    },
-
-    async companySubmit() {
-      this.$v.leadCompanyForm.$touch()
-      if (!this.$v.leadCompanyForm.$error) {
-        this.leadCompanyForm.service = JSON.stringify(
-          this.leadCompanyForm.service
-        )
-        try {
-          mixpanelTrackEvent('Company form - Eden Means Easy page')
-          this.loading = true
-          const metaData = {
-            name: this.leadCompanyForm.company_name,
-            email: this.leadCompanyForm.email,
-            phone: this.leadCompanyForm.phone_number,
-            lead_gen_page: window.location.href,
-            referrer: document.referrer,
-          }
-          this.$intercom('update', {
-            name: this.leadCompanyForm.company_name,
-            email: this.leadCompanyForm.email,
-            phone: this.leadCompanyForm.phone_number,
-            lead_gen_page: window.location.href,
-            referrer: document.referrer,
-          })
-          this.$intercom('trackEvent', 'lead-genaration-signup', metaData)
- 
-          await companiesApi(this.leadCompanyForm)
-          Object.keys(this.leadCompanyForm).forEach(
-            (key) => (this.leadCompanyForm[key] = '')
-          )
-          this.$nextTick(() => {
-            this.$v.leadCompanyForm.$reset()
-            this.leadCompanyForm.service = []
-          })
-          this.successModalText =
-            'You have successfully submitted your company’s information. We will reach out to you within the next 48 hours.'
-          this.showSuccessModal = true
-          this.closeLeadModal()
-          this.loading = false
-        } catch (error) {
-          this.leadCompanyForm.service = JSON.parse(
-            this.leadCompanyForm.service
-          )
-          this.failModalText =
-            "Your company’s information was not successfully submitted. Please try again or reach us at <span style='color:#03A84E'>eve@edenlife.ng </span> or <span style='color:#03A84E'>+2348123456790</span>"
-          this.loading = false
-          this.showFailedModal = true
-        }
-      }
-    },
-    async individualSubmit() {
-      this.$v.leadForm.$touch()
-      if (!this.$v.leadForm.$error) {
-        try {
-          mixpanelTrackEvent(
-            `${this.activeReason.cta} button clicked`,
-            'Eden Means Easy Page'
-          )
-          this.loading = true
-          const metadata = {
-            email: this.leadForm.email,
-            name: this.leadForm.name,
-            phone: this.leadForm.phone_number,
-            lead_gen_page: window.location.href,
-            referrer: document.referrer,
-          }
-          this.$intercom('update', {
-            email: this.leadForm.email,
-            name: this.leadForm.name,
-            phone: this.leadForm.phone_number,
-            lead_gen_page: window.location.href,
-            referrer: document.referrer,
-          })
-          this.$intercom('trackEvent', 'lead-genaration-signup', metadata)
-          this.$nextTick(() => {
-            this.$v.leadForm.$reset()
-          })
-          this.successModalText =
-            'You have successfully submitted your information. We will reach out to you within the next 48 hours.'
-          this.showSuccessModal = true
-          this.closeLeadModal()
-          this.loading = false
-        } catch (error) {
-          this.failModalText =
-            "Your information was not successfully submitted. Please try again or reach us at <span style='color:#03A84E'>eve@edenlife.ng </span> or <span style='color:#03A84E'>+2348123456790</span>"
-          this.loading = false
-          this.showFailedModal = true
-        }
-      }
     },
   },
 }

@@ -175,7 +175,11 @@
                   freeze for later. Oh...and no extra delivery charge!
                 </p>
               </div>
-              <button type="button" class="btn" @click.prevent="trackDevice">
+              <button
+                type="button"
+                class="btn"
+                @click.prevent="trackDevice('Download App')"
+              >
                 Download App
               </button>
             </div>
@@ -316,7 +320,7 @@
           v-if="currentMeals.length"
           type="button"
           class="btn"
-          @click.prevent="greenhouseSignUp('I want a meal plan - KE')"
+          @click.prevent="trackDevice('I want a meal plan - KE')"
         >
           I Want a Meal Plan
         </button>
@@ -833,7 +837,7 @@
             <button
               type="button"
               class="hero__button-solid banner-btn"
-              @click.prevent="downloadApp('Download App - food banner')"
+              @click.prevent="trackDevice('Download App - food banner')"
             >
               Install
             </button>
@@ -1013,22 +1017,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/ke/food/`,
+          href: `https://ouredenlife.com/ke/food/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlifev2-staging.netlify.app/food/',
+          href: 'https://ouredenlife.com/food/',
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlifev2-staging.netlify.app/ke/food/',
+          href: 'https://ouredenlife.com/ke/food/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlifev2-staging.netlify.app/food/',
+          href: 'https://ouredenlife.com/food/',
         },
       ],
     }
@@ -1039,9 +1043,8 @@ export default {
         title: 'Eden | Food',
         description:
           'Your chef-cooked meals, delivered to you. Daily or weekly.',
-        url: `https://ouredenlifev2-staging.netlify.app/ke/food/`,
-        mainImage:
-          'https://ouredenlifev2-staging.netlify.app/ke/edencardfood.png',
+        url: `https://ouredenlife.com/ke/food/`,
+        mainImage: 'https://ouredenlife.com/ke/edencardfood.png',
       }
       return getSiteMeta(metaData)
     },
@@ -1343,20 +1346,18 @@ export default {
       vid.play()
       this.videoControl()
     },
-    downloadApp() {
-      mixpanelTrackEvent('Download App - food banner - ke')
+    trackDevice(label) {
+      mixpanelTrackEvent(label)
       const userAgent = navigator.userAgent || navigator.vendor || window.opera
       if (/android/i.test(userAgent)) {
         window.location.href =
-          window.location.href =
-          window.location.href =
-            'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
+          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
       }
       if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
         window.location.href =
-          window.location.href =
-          window.location.href =
-            'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
+          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
+      } else {
+        this.scrollToFooter('#get-the-app', 'Download App')
       }
     },
     playButtonClicked() {
@@ -1370,9 +1371,19 @@ export default {
     closeModal() {
       this.showSuccessModal = !this.showSuccessModal
     },
-    greenhouseSignUp(label) {
+    trackDevice(label) {
       mixpanelTrackEvent(label)
-      this.$router.push({ name: 'signup', query: this.$route.query })
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera
+      if (/android/i.test(userAgent)) {
+        window.location.href =
+          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
+      }
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href =
+          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
+      } else {
+        this.scrollToFooter('#get-the-app', 'Download App')
+      }
     },
   },
 }

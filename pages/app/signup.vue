@@ -136,13 +136,20 @@
               {{ btnText }}
             </div>
           </el-form-item>
+          <div class="margin-bottom-10" v-if="form.password">
+            <password-criteria
+              :password="form.password"
+              @success="setDisableRegister"
+            />
+          </div>
+          <el-form-item
+            label="Referral code (optional)"
+            prop="referral_code"
+          >
+            <el-input v-model="form.referral_code" type="text"></el-input>
+          </el-form-item>
         </el-form>
-        <div v-if="form.password">
-          <password-criteria
-            :password="form.password"
-            @success="setDisableRegister"
-          />
-        </div>
+
         <div class="actions margin-bottom-40">
           <el-button
             type="primary"
@@ -187,6 +194,7 @@ export default {
         lastname: '',
         email: '',
         password: '',
+        referral_code: '',
         country: 'Nigeria',
         state: '',
         phone: '',
@@ -213,7 +221,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/signup`,
+          href: `https://ouredenlife.com/signup`,
         },
       ],
     }
@@ -224,8 +232,8 @@ export default {
         title: 'Eden | Signup',
         description:
           'Your chef-cooked meals, delivered to you. Daily or weekly.',
-        url: `https://ouredenlifev2-staging.netlify.app/signups`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencardfood.png',
+        url: `https://ouredenlife.com/signups`,
+        mainImage: 'https://ouredenlife.com/edencardfood.png',
       }
       return getSiteMeta(metaData)
     },
@@ -304,6 +312,7 @@ export default {
           eden_location: this.location,
           phone_number: this.countryCode + this.form.phone,
           default_plan: JSON.stringify(sortedPlan),
+          referral_code: this.form.referral_code,
           signup_meta: {
             lead_gen_page: window.location.href,
             referrer: document.referrer,
@@ -374,6 +383,6 @@ export default {
 <style lang="scss">
 @import '~/assets/scss/greenhouse/main.scss';
 .el-select-dropdown__item.selected {
-  color: #0f241b;
+  color: #0F241B;
 }
 </style>

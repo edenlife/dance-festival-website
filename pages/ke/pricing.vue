@@ -45,7 +45,7 @@
               Services available for this budget
             </p>
             <p v-else>What service(s) are you interested in?</p>
-
+            <!-- <p>What service(s) are you interested in?</p> -->
             <ul>
               <li
                 v-for="(service, index) in services"
@@ -55,7 +55,6 @@
                 :class="{
                   selected: selectedService.includes(service.name),
                 }"
-                :disabled="!setCustom"
               >
                 <input
                   :id="service.name"
@@ -765,18 +764,20 @@
                             }"
                           >
                             <transition name="slide-fade">
-                              <ul>
-                                <li
-                                  v-for="(item, i) in frequencyOption"
-                                  :key="i"
-                                >
-                                  <span
-                                    class="select--item"
-                                    @click.prevent="getCleaningPrice(item)"
-                                    >{{ item.name }}</span
+                              <div class="selector-drop">
+                                <ul>
+                                  <li
+                                    v-for="(item, i) in frequencyOption"
+                                    :key="i"
                                   >
-                                </li>
-                              </ul>
+                                    <span
+                                      class="select--item"
+                                      @click.prevent="getCleaningPrice(item)"
+                                      >{{ item.name }}</span
+                                    >
+                                  </li>
+                                </ul>
+                              </div>
                             </transition>
                           </div>
                         </div>
@@ -785,67 +786,122 @@
                   </div>
                   <div class="calculator__input">
                     <div
-                      class="calculator__input-item calculator__input-laundry"
+                      class="calculator__input-item calculator__input-cleaning"
                     >
-                      <label for="">Number of Bedrooms</label>
-                      <div class="btn--group">
-                        <button
-                          class="btn--item minus"
-                          @click.prevent="decreaseRoomQty()"
-                        >
+                      <label for="">Tell us about your home</label>
+                      <div class="select">
+                        <div class="selector">
+                          <div class="label" @click="toggle('cleaningQty')">
+                            <span class="label--text">{{ roomTypes }}</span>
+                          </div>
                           <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
+                            class="arrow"
+                            :class="{
+                              expanded: visible.includes('cleaningQty'),
+                            }"
+                            width="10"
+                            height="6"
+                            viewBox="0 0 10 6"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
+                            @click="toggle('cleaningQty')"
                           >
                             <path
-                              d="M5 12H19"
-                              stroke="#21312A"
-                              stroke-width="2"
+                              d="M1 1L5 5L9 1"
+                              stroke="#93A29B"
                               stroke-linecap="round"
                               stroke-linejoin="round"
                             />
                           </svg>
-                        </button>
-                        <input
-                          id=""
-                          v-model="cleaningInfo.qty"
-                          min="1"
-                          max="10"
-                          type="number"
-                          name=""
-                          readonly
-                          placeholder="0"
-                        />
-                        <button
-                          class="btn--item plus"
-                          @click.prevent="increaseRoomQty()"
-                        >
-                          <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
+
+                          <div
+                            :class="{
+                              hidden: !visible.includes('cleaningQty'),
+                            }"
                           >
-                            <path
-                              d="M12 5V19"
-                              stroke="#21312A"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                            <path
-                              d="M5 12H19"
-                              stroke="#21312A"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </button>
+                            <transition name="slide-fade">
+                              <div class="selector-drop">
+                                <ul>
+                                  <li
+                                    v-for="(item, i) in cleaningQtyOption"
+                                    :key="i"
+                                    class="control"
+                                  >
+                                    <span>{{ item.cleaning_area_name }}</span>
+                                    <span class="control__item">
+                                      <button
+                                        class="control__item-btn"
+                                        @click.prevent="
+                                          decreaseRoomQty(item, i)
+                                        "
+                                      >
+                                        <svg
+                                          class="control__item-icon"
+                                          width="12"
+                                          height="2"
+                                          viewBox="0 0 12 2"
+                                          fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            class="control__item-icon"
+                                            d="M1.3335 1H10.6668"
+                                            stroke="#21312A"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                          />
+                                        </svg>
+                                      </button>
+                                      <span class="control__item-qty">
+                                        {{ item.qty }}
+                                      </span>
+                                      <button
+                                        class="control__item-btn"
+                                        @click.prevent="
+                                          increaseRoomQty(item, i)
+                                        "
+                                      >
+                                        <svg
+                                          class="control__item-icon"
+                                          width="16"
+                                          height="16"
+                                          viewBox="0 0 16 16"
+                                          fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            class="control__item-icon"
+                                            d="M8 3.33301V12.6663"
+                                            stroke="#21312A"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                          />
+                                          <path
+                                            class="control__item-icon"
+                                            d="M3.3335 8H12.6668"
+                                            stroke="#21312A"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                          />
+                                        </svg>
+                                      </button>
+                                    </span>
+                                  </li>
+                                  <li>
+                                    <button
+                                      class="pricing__calculator-btn btn-sm"
+                                    >
+                                      Done
+                                    </button>
+                                  </li>
+                                </ul>
+                              </div>
+                            </transition>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1021,22 +1077,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/ke/pricing/`,
+          href: `https://ouredenlife.com/ke/pricing/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlifev2-staging.netlify.app/pricing/',
+          href: 'https://ouredenlife.com/pricing/',
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlifev2-staging.netlify.app/ke/pricing/',
+          href: 'https://ouredenlife.com/ke/pricing/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlifev2-staging.netlify.app/pricing/',
+          href: 'https://ouredenlife.com/pricing/',
         },
       ],
     }
@@ -1046,8 +1102,8 @@ export default {
       const metaData = {
         title: 'Eden | Pricing',
         description: `Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!`,
-        url: `https://ouredenlifev2-staging.netlify.app/ke/pricing/`,
-        mainImage: 'https://ouredenlifev2-staging.netlify.app/edencard.png',
+        url: `https://ouredenlife.com/ke/pricing/`,
+        mainImage: 'https://ouredenlife.com/edencard.png',
       }
       return getSiteMeta(metaData)
     },
@@ -1076,7 +1132,7 @@ export default {
       setCustom: false,
       estimatedPrice: '15000',
       priceList: ['8000', '15000', '20000', '27000', '31000'],
-      reconfigurePlan: true,
+      reconfigurePlan: false,
       visible: [],
       mealFrequency: 'Weekly',
       dailyDeliveryDays: ['monday-friday', 'monday-saturday'],
@@ -1177,7 +1233,8 @@ export default {
         //   type: 'cleaning',
         // },
       ],
-      roomTypes: null,
+      roomTypes:
+        '1 Bedroom, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen',
       cleaningQtyOption: [],
       foodSummary: [],
       laundrySummary: [],
@@ -1248,8 +1305,10 @@ export default {
   mounted() {
     document.addEventListener('click', this.toggleSelect)
     mixpanelTrackEvent('Pricing page')
-    this.fetchCleaningServiceTypes()
-    // this.changeService({ name: 'Cleaning' })
+    setTimeout(() => {
+      this.fetchCleaningServiceTypes()
+      this.calculateFoodPrice()
+    }, 2000)
     this.switchToEstimate()
   },
   destroyed() {
@@ -1387,20 +1446,13 @@ export default {
     },
     setPlanConfig() {
       this.$refs['price-container'].scrollIntoView()
-      this.reconfigurePlan = !this.reconfigurePlan
+      this.reconfigurePlan = this.reconfigurePlan
       this.estimate = 3
       this.selectedService = ['Food', 'Laundry', 'Beauty']
       this.setCustom = true
       this.changeService({ name: 'Cleaning' })
 
-      //  this.getEstimate()
-    },
-    setReconfigureSummary() {
-      this.$refs['price-container'].scrollIntoView()
-      this.reconfigurePlan = !this.reconfigurePlan
-      this.displayForm = true
-      this.estimatedPrice = this.subtotalPrice
-      this.setBackgroundGradient()
+       this.getEstimate()
     },
     removePlan(plan) {
       if (
@@ -1435,7 +1487,7 @@ export default {
         })
       )
       const subtotal = finalArray.reduce((acc, val) => {
-        const valInt = parseInt(val.price)
+        const valInt = val.price ? parseInt(val.price) : 0
         return acc + valInt
       }, 0)
 
@@ -1443,7 +1495,7 @@ export default {
     },
 
     changeService(service) {
-      if (this.setCustom) {
+      if (!this.setCustom) {
         if (!this.selectedService.includes(service.name)) {
           this.selectedService.push(service.name)
         } else if (this.selectedService.length > 1) {
@@ -1490,7 +1542,11 @@ export default {
             Number(this.services[3].price),
           ])
           this.foodSummary = ['Weekly', '1 meal per week']
-          this.cleaningSummary = ['Standard Cleaning', '3 Bedrooms, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen, 1 balcony, 1 Study', 'Weekly']
+          this.cleaningSummary = [
+            'Standard Cleaning',
+            '3 Bedrooms, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen, 1 balcony, 1 Study',
+            'Weekly',
+          ]
           this.laundrySummary = [
             'Wash & Fold',
             'One 10KG Bag',
@@ -1510,7 +1566,7 @@ export default {
             this.getSinglePrice((13.33 / 100) * this.estimatedPrice)
           )
           this.services[3].price = String(
-            this.getSinglePrice((10.50 / 100) * this.estimatedPrice)
+            this.getSinglePrice((10.5 / 100) * this.estimatedPrice)
           )
           this.totalPrice = this.getTotalEstimate([
             Number(this.services[0].price),
@@ -1522,7 +1578,12 @@ export default {
             '4 meals per week',
             'Delivered twice a week',
           ]
-          this.cleaningSummary = ['Light Cleaning', '2 Bedrooms', 'Weekly', 'Twice a week']
+          this.cleaningSummary = [
+            'Standard Cleaning',
+            '2 Bedrooms',
+            'Weekly',
+            'Twice a week',
+          ]
           this.laundrySummary = [
             'Wash & Fold',
             'One 10KG Bag',
@@ -1557,7 +1618,12 @@ export default {
             '5 meals per week',
             'Delivered once a week',
           ]
-          this.cleaningSummary = ['Standard Cleaning', '2 Bedrooms', 'Weekly', 'Twice a week']
+          this.cleaningSummary = [
+            'Standard Cleaning',
+            '2 Bedrooms',
+            'Weekly',
+            'Twice a week',
+          ]
           this.beautySummary = [
             '1 basic service',
             'Every two weeks',
@@ -1575,7 +1641,7 @@ export default {
           this.selectedService = ['Food', 'Laundry', 'Beauty', 'Cleaning']
           this.estimatedPrice = this.priceList[3]
           this.services[0].price = String(
-            this.getSinglePrice((64.90 / 100) * this.estimatedPrice)
+            this.getSinglePrice((64.9 / 100) * this.estimatedPrice)
           )
 
           this.services[1].price = String(
@@ -1598,7 +1664,11 @@ export default {
             '7 meals per week',
             'Delivered once a week',
           ]
-          this.cleaningSummary = ['Standard Cleaning', '2 Bedrooms, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen, 1 balcony, 1 Study', 'Weekly']
+          this.cleaningSummary = [
+            'Standard Cleaning',
+            '2 Bedrooms, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen, 1 balcony, 1 Study',
+            'Weekly',
+          ]
           this.beautySummary = [
             '1 basic service',
             'Every two weeks',
@@ -1616,17 +1686,17 @@ export default {
           this.selectedService = ['Food', 'Laundry', 'Beauty', 'Cleaning']
           this.estimatedPrice = this.priceList[4]
           this.services[0].price = String(
-            this.getSinglePrice((78.60 / 100) * this.estimatedPrice)
+            this.getSinglePrice((78.6 / 100) * this.estimatedPrice)
           )
 
           this.services[1].price = String(
             this.getSinglePrice((3.2 / 100) * this.estimatedPrice)
           )
           this.services[2].price = String(
-            this.getSinglePrice((9.70 / 100) * this.estimatedPrice)
+            this.getSinglePrice((9.7 / 100) * this.estimatedPrice)
           )
           this.services[3].price = String(
-            this.getSinglePrice((8.50 / 100) * this.estimatedPrice)
+            this.getSinglePrice((8.5 / 100) * this.estimatedPrice)
           )
           this.totalPrice = this.getTotalEstimate([
             Number(this.services[0].price),
@@ -1639,7 +1709,11 @@ export default {
             '10 meals per week',
             'Delivered twice a week',
           ]
-          this.cleaningSummary = ['Standard Cleaning', '2 Bedrooms, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen, 1 balcony, 1 Study', 'Weekly']
+          this.cleaningSummary = [
+            'Standard Cleaning',
+            '2 Bedrooms, 1 Living Room / Dining Area, 1 Bathroom, 1 Kitchen, 1 balcony, 1 Study',
+            'Weekly',
+          ]
           this.beautySummary = [
             '1 basic service',
             'Every two weeks',
@@ -1658,6 +1732,14 @@ export default {
         default:
           console.log('default')
       }
+    },
+
+    setReconfigureSummary() {
+      this.$refs['price-container'].scrollIntoView()
+      this.reconfigurePlan = this.reconfigurePlan
+      this.displayForm = true
+      this.estimatedPrice = this.subtotalPrice
+      this.setBackgroundGradient()
     },
 
     getSinglePrice(price) {
@@ -1946,6 +2028,7 @@ export default {
         } (max. 30 items per bag)`,
         `Picked up ${this.laundryFreqName}`,
         `Saves ${this.laundrySavedTime} per week`,
+        `${this.laundryAddition}`,
       ]
       this.totalLaundrySummary = {
         frequency: this.laundryFreqValue,
@@ -2014,7 +2097,6 @@ export default {
         }`,
         `${this.roomTypes}`,
         `${this.cleaningFrequency}`,
-        `Saves ${this.cleaningSavedTime} per week`,
       ]
       this.totalCleaningSummary = {
         frequency: this.cleaningInfo.frequency,
@@ -2024,7 +2106,6 @@ export default {
         service_day: ['monday'],
         amount: total,
       }
-      console.log(this.totalCleaningSummary)
     },
     setCleaningArea(area) {
       const [{ cleaning_areas = [] }] = this.cleaningServiceTypes.filter(
@@ -2059,19 +2140,31 @@ export default {
         this.toggle('cleaningFreq')
       }
     },
-    increaseRoomQty() {
-      console.log(this.cleaningQty, this.cleaningInfo.qty)
-      if (this.cleaningInfo.qty < 5) {
-        this.cleaningInfo.qty++
-        this.calculateCleaningPrice()
-        console.log
-      }
-    },
-    decreaseRoomQty() {
-      this.cleaningInfo.qty > 1
-        ? this.cleaningInfo.qty--
-        : (this.cleaningInfo.qty = 1)
+    increaseRoomQty(item, index) {
+      let qty = item.qty
+      qty++
+      const newQty = qty++
+      this.cleaningQtyOption[index].qty = newQty
+      this.cleaningInfo.qty = this.cleaningQtyOption.reduce((acc, val) => {
+        return acc + val.qty
+      }, 0)
+      this.setCleaningArea(this.cleaningType)
       this.calculateCleaningPrice()
+      this.getEstimateRoomTypes()
+    },
+    decreaseRoomQty(item, index) {
+      let qty = item.qty
+      if (qty >= 1) {
+        qty--
+        const newQty = qty--
+        this.cleaningQtyOption[index].qty = newQty
+        this.cleaningInfo.qty = this.cleaningQtyOption.reduce((acc, val) => {
+          return acc + val.qty
+        }, 0)
+        this.setCleaningArea(this.cleaningType)
+        this.calculateCleaningPrice()
+        this.getEstimateRoomTypes()
+      }
     },
     getEstimateRoomTypes() {
       const filterRoom = this.cleaningQtyOption.filter((item) => {
@@ -2099,4 +2192,11 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/pages/ke/_pricing.scss';
+.pricing__calculator-btn {
+  margin-right: 0 !important;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  padding: 8px 16px;
+  transition: none;
+}
 </style>

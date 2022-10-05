@@ -17,6 +17,14 @@
       </nuxt-link>
 
       <ul class="navigation__menu">
+        <li @click="trackLink('Why Eden')">
+          <nuxt-link
+            :to="{ path: '/ke/eden_means_easy/' }"
+            class="navigation__menu-item"
+          >
+            Why Eden
+          </nuxt-link>
+        </li>
         <li
           v-if="serviceNav"
           class="fallback"
@@ -297,9 +305,9 @@
           <button
             type="button"
             class="header__button-solid navigation__menu-item"
-            @click.prevent="greenhouseSignUp()"
+           @click.prevent="scrollTo('#get-the-app')"
           >
-            Get Started
+           Download App
           </button>
         </li>
         <li>
@@ -314,8 +322,9 @@
               "
             >
               <img
-                :src="require(`~/assets/images/greenhouse/flags/KE.svg`)"
+                src="@/assets/images/greenhouse/flags/KE.svg"
                 alt="flag"
+                class="flag"
               />
               <i class="el-icon-arrow-down el-icon--right"></i>
             </button>
@@ -328,11 +337,13 @@
                 <ul class="service__title">
                   <li
                     :class="{ nigeria: locations === 'nigeria' }"
-                    @click="trackLink('Nigeria')"
                     @mouseenter.stop="locations = 'nigeria'"
                     @mouseleave.stop="locations = ''"
                   >
-                    <nuxt-link :to="{ path: '/' }" class="service__list-item">
+                    <nuxt-link
+                      :to="{ path: locationRoute('NG') }"
+                      class="service__list-item"
+                    >
                       <span>🇳🇬</span>
                       <h5>Nigeria</h5>
                       <svg
@@ -379,11 +390,13 @@
                   </li>
                   <li
                     :class="{ kenya: locations === 'kenya' }"
-                    @click="trackLink('Cleaning')"
                     @mouseenter.stop="locations = 'kenya'"
                     @mouseleave.stop="locations = ''"
                   >
-                    <nuxt-link :to="{ path: '/ke' }" class="service__list-item">
+                    <nuxt-link
+                      :to="{ path: locationRoute('KE') }"
+                      class="service__list-item"
+                    >
                       <span>🇰🇪</span>
                       <h5>Kenya</h5>
                       <svg
@@ -439,6 +452,142 @@
         <div class="line line2"></div>
         <div class="line line3"></div>
       </button>
+      <div
+        class="navigation__menu-item navigation__menu-service navigation__btn"
+      >
+        <button
+          type="button"
+          class="btn"
+          :class="{ active: switchLocation }"
+          @mouseenter.stop="
+            switchLocation = true
+            showService = false
+          "
+        >
+          <img
+            src="@/assets/images/greenhouse/flags/KE.svg"
+            alt="flag"
+            class="flag"
+          />
+          <i class="el-icon-arrow-down el-icon--right"></i>
+        </button>
+        <transition name="fade">
+          <div
+            v-if="switchLocation"
+            class="service location"
+            @mouseleave.stop="switchLocation = false"
+          >
+            <ul class="service__title">
+              <li
+                :class="{ nigeria: locations === 'nigeria' }"
+                @mouseenter.stop="locations = 'nigeria'"
+                @mouseleave.stop="locations = ''"
+              >
+                <nuxt-link
+                  :to="{ path: locationRoute('NG') }"
+                  class="service__list-item"
+                >
+                  <span>🇳🇬</span>
+                  <h5>Nigeria</h5>
+                  <svg
+                    v-if="locations === 'nigeria'"
+                    width="15"
+                    height="10"
+                    viewBox="0 0 15 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 5L13 5"
+                      stroke="#7189FF"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M10 9L14 5L10 1"
+                      stroke="#7189FF"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+
+                  <svg
+                    v-else
+                    width="6"
+                    height="10"
+                    viewBox="0 0 6 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 9L5 5L1 1"
+                      stroke="#798B83"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </nuxt-link>
+              </li>
+              <li
+                :class="{ kenya: locations === 'kenya' }"
+                @mouseenter.stop="locations = 'kenya'"
+                @mouseleave.stop="locations = ''"
+              >
+                <nuxt-link
+                  :to="{ path: locationRoute('KE') }"
+                  class="service__list-item"
+                >
+                  <span>🇰🇪</span>
+                  <h5>Kenya</h5>
+                  <svg
+                    v-if="locations === 'kenya'"
+                    width="15"
+                    height="10"
+                    viewBox="0 0 15 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 5L13 5"
+                      stroke="#FF9D00"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M10 9L14 5L10 1"
+                      stroke="#FF9D00"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+
+                  <svg
+                    v-else
+                    width="6"
+                    height="10"
+                    viewBox="0 0 6 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 9L5 5L1 1"
+                      stroke="#798B83"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </nuxt-link>
+              </li>
+            </ul>
+          </div>
+        </transition>
+      </div>
       <transition name="slide">
         <div v-if="showNavbar" class="navigation__mobile">
           <ul class="menu">
@@ -514,6 +663,14 @@
                 Pricing
               </nuxt-link>
             </li>
+            <li class="menu--list" @click.prevent="handleToggle('Why Eden')">
+              <nuxt-link
+                :to="{ path: '/ke/eden_means_easy/' }"
+                class="navigation__mobile-item"
+              >
+                Why Eden
+              </nuxt-link>
+            </li>
             <li class="menu--list">
               <div class="navigation__mobile-item service">
                 <div>Contact Us</div>
@@ -548,58 +705,10 @@
                 </ul>
               </transition>
             </li>
-            <li class="menu--list">
-              <div class="navigation__mobile-item service">
-                <div>
-                  <span class="icon location-icon">🇰🇪</span
-                  >Kenya
-                </div>
-                <div class="service--icon" @click="locationToggle()">
-                  <svg
-                    class="arrow"
-                    :class="{ expanded: locationVisible }"
-                    width="10"
-                    height="6"
-                    viewBox="0 0 10 6"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M1 1L5 5L9 1"
-                      stroke="#21312A"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
-              </div>
-              <transition name="slide-fade">
-                <ul v-if="locationVisible" class="">
-                  <li
-                    class="menu--list-item"
-                    @click.prevent="handleToggle('Nigeria')"
-                  >
-                    <nuxt-link :to="{ path: '/' }" class="">
-                      <span>🇳🇬</span>
-                      <span>Nigeria</span>
-                    </nuxt-link>
-                  </li>
-                  <li
-                    class="menu--list-item"
-                    @click.prevent="handleToggle('Kenya')"
-                  >
-                    <nuxt-link :to="{ path: '/ke/' }" class="">
-                      <span>🇰🇪</span>
-                      <span>Kenya</span>
-                    </nuxt-link>
-                  </li>
-                </ul>
-              </transition>
-            </li>
             <li class="menu--list" @click.prevent="handleToggle()">
-              <nuxt-link
-                @click.prevent="greenhouseSignUp()"
+              <a
+                href="#"
+                @click.prevent="scrollTo('#get-the-app')"
                 class="navigation__mobile-item navigation__mobile-link"
               >
                 {{
@@ -607,7 +716,7 @@
                     ? 'Sign Up Now'
                     : 'Get Started'
                 }}
-              </nuxt-link>
+              </a>
             </li>
           </ul>
         </div>
@@ -705,8 +814,9 @@ export default {
       },
       currentRoute: '',
       locations: '',
+      // flagChange: false,
+      country: this.$store.getters.getCountry,
       contactVisible: false,
-      locationVisible: false,
       routeUpdate: '',
       showWaitListForm: false,
       showSuccessModal: false,
@@ -725,9 +835,6 @@ export default {
       } else {
         return true
       }
-    },
-    authenticated() {
-      return !!this.$store.getters.getGreenhouseToken
     },
   },
   watch: {
@@ -764,7 +871,6 @@ export default {
       mixpanelTrackEvent(`${service} clicked - ${this.currentRoute} - Navbar`)
     },
     scrollTo(id) {
-      console.log(id)
       if (this.currentRoute === '') {
         scrollToApp(id, `homepage - Navbar`)
       } else scrollToApp(id, `${this.currentRoute} - Navbar`)
@@ -780,17 +886,6 @@ export default {
     contactToggle() {
       this.contactVisible = !this.contactVisible
     },
-    locationToggle() {
-      this.locationVisible = !this.locationVisible
-    },
-    greenhouseSignUp() {
-      mixpanelTrackEvent(`Get Started Clicked - homepage - Navbar KE `)
-      if (this.authenticated) {
-        this.$router.push('/home')
-      } else {
-        this.$router.push({ name: 'signup', query: this.$route.query })
-      }
-    },
     handleToggle(menu) {
       if (menu) {
         mixpanelTrackEvent(`${menu} clicked - ${this.currentRoute} - Navbar`)
@@ -800,7 +895,21 @@ export default {
       toggleButton.classList.toggle('toggle')
       this.showNavbar = !this.showNavbar
     },
-
+    locationRoute(country) {
+      // this.flagChange = true
+      if (country === 'NG') {
+        const pathArr = this.$nuxt.$route.path.split('/')
+        if (this.$nuxt.$route.path.includes('ke')) {
+          return `/${pathArr.slice(2).join('/')}`
+        }
+      }
+      if (country === 'KE') {
+        const pathArr = this.$nuxt.$route.path.split('/')
+        if (!this.$nuxt.$route.path.includes('ke')) {
+          return `/ke/${pathArr.slice(2).join('/')}`
+        }
+      }
+    },
     getEarlyAccess() {
       this.showWaitListForm = true
       this.modalText = 'information'
@@ -836,5 +945,16 @@ export default {
 }
 .location-icon {
   margin-right: 5px;
+}
+.navigation__btn {
+  &.navigation__menu-item {
+    right: 2%;
+  }
+}
+
+@media only screen and (max-width: 48em) {
+  .location {
+    width: 160px !important;
+  }
 }
 </style>

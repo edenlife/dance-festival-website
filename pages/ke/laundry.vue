@@ -18,7 +18,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="greenhouseSignUp('Download App - laundry hero')"
+              @click.prevent="trackDevice('Download App - laundry hero')"
             >
               Download App
             </button>
@@ -187,7 +187,7 @@
               <button
                 type="button"
                 class="btn"
-                @click.prevent="greenhouseSignUp('Download App - laundry')"
+                @click.prevent="trackDevice('Download App - laundry')"
               >
                 Download App
               </button>
@@ -988,7 +988,7 @@
             <button
               type="button"
               class="hero__button-solid banner-btn"
-              @click.prevent="greenhouseSignUp('Download App - laundry banner')"
+              @click.prevent="trackDevice('Download App - laundry banner')"
             >
               Install
             </button>
@@ -1128,22 +1128,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/ke/laundry/`,
+          href: `https://ouredenlife.com/ke/laundry/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlifev2-staging.netlify.app/laundry/',
+          href: 'https://ouredenlife.com/laundry/',
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlifev2-staging.netlify.app/ke/laundry/',
+          href: 'https://ouredenlife.com/ke/laundry/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlifev2-staging.netlify.app/laundry/',
+          href: 'https://ouredenlife.com/laundry/',
         },
       ],
     }
@@ -1154,9 +1154,9 @@ export default {
         title: 'Eden | Laundry',
         description:
           'Fresh, clean and crisp clothes at your doorstep. Whenever you need it .',
-        url: `https://ouredenlifev2-staging.netlify.app/ke/laundry/`,
+        url: `https://ouredenlife.com/ke/laundry/`,
         mainImage:
-          'https://ouredenlifev2-staging.netlify.app/ke/edencardlaundry.png',
+          'https://ouredenlife.com/ke/edencardlaundry.png',
       }
       return getSiteMeta(metaData)
     },
@@ -1360,22 +1360,6 @@ export default {
     },
     closeModal() {
       this.showSuccessModal = !this.showSuccessModal
-    },
-    greenhouseSignUp(label) {
-      mixpanelTrackEvent(label)
-      this.$router.push({ name: 'signup', query: this.$route.query })
-    },
-    downloadApp() {
-      mixpanelTrackEvent('Download App - laundry banner')
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera
-      if (/android/i.test(userAgent)) {
-        window.location.href =
-          'https://play.google.com/store/apps/details?id=com.ouredenlife.app'
-      }
-      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        window.location.href =
-          'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
-      }
     },
   },
 }

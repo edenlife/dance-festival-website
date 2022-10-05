@@ -908,8 +908,8 @@ export default {
       exploreService: '',
       washDry: 1,
       washIron: 1,
-      washDryFrequency: 'weekly',
-      washIronFrequency: 'weekly',
+      washDryFrequency: 'monthly',
+      washIronFrequency: 'monthly',
       plan: 'washDry',
       totalWashDryPrice: null,
       totalWashIronPrice: null,
@@ -934,22 +934,11 @@ export default {
         { item: '3 piece suit (4 items)', cost: '4930' },
       ],
       extraLaundryCostWashDry: [
-        { item: 'Extra item', cost: '967' },
-        { item: 'Jacket (2 items)', cost: '1935' },
-        { item: 'Bedsheet (2 items)', cost: '1935' },
-        { item: 'Trouser (Dry cleaning - 2 items)', cost: '1935' },
-        {
-          item: '2pcs Kaftan / Senator (Dry cleaning - 3 items)',
-          cost: '2900',
-        },
-        { item: 'Blanket (3 items)', cost: '2900' },
-        { item: 'Curtain (Per unit - 3 items)', cost: '2900' },
-        { item: '3 piece Agbada (3 items) ', cost: '2900' },
-        { item: 'Fancy dress/delicate dinner gown ', cost: '2900' },
-        { item: 'Stubborn Stain Removal', cost: '3000' },
-        { item: 'Logistics charge for items on hanger', cost: '3500' },
-        { item: 'Duvet (4 items)', cost: '3868' },
-        { item: 'A pair of suit (4 items)', cost: '3868' },
+        { item: 'Extra item', cost: '467' },
+        { item: 'Towel (4 items)', cost: '1868' },
+        { item: 'Blanket (8 items)', cost: '3736' },
+        { item: 'Duvet (8 items)', cost: '3736' },
+        { item: 'Curtain (Per unit - 8 items)', cost: '3736' },
       ],
     }
   },
@@ -961,22 +950,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/laundry/`,
+          href: `https://ouredenlife.com/laundry/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlifev2-staging.netlify.app/laundry/',
+          href: 'https://ouredenlife.com/laundry/',
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlifev2-staging.netlify.app/ke/laundry/',
+          href: 'https://ouredenlife.com/ke/laundry/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlifev2-staging.netlify.app/laundry/',
+          href: 'https://ouredenlife.com/laundry/',
         },
       ],
     }
@@ -987,9 +976,8 @@ export default {
         title: 'Eden | Laundry',
         description:
           'Your clothes, picked up, laundered and delivered to you in 48 hours or less.',
-        url: `https://ouredenlifev2-staging.netlify.app/laundry/`,
-        mainImage:
-          'https://ouredenlifev2-staging.netlify.app/edencardlaundry.png',
+        url: `https://ouredenlife.com/laundry/`,
+        mainImage: 'https://ouredenlife.com/edencardlaundry.png',
       }
       return getSiteMeta(metaData)
     },

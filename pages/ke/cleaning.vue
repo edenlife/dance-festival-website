@@ -25,7 +25,7 @@
             <button
               type="button"
               class="hero__button-solid"
-              @click.prevent="greenhouseSignUp('Cleaning hero - KE')"
+              @click.prevent="trackDevice('Cleaning hero - KE')"
             >
               Download App
             </button>
@@ -192,7 +192,7 @@
                   fingertips!
                 </p>
               </div>
-              <button type="button" class="btn" @click.prevent="greenhouseSignUp('Download App - KE')">
+              <button type="button" class="btn" @click.prevent="trackDevice('Download App - KE')">
                 Download App
               </button>
             </div>
@@ -872,7 +872,7 @@
             <button
               type="button"
               class="hero__button-solid banner-btn"
-              @click.prevent="downloadApp('Download App - cleaning banner')"
+              @click.prevent="trackDevice('Download App - cleaning banner')"
             >
               Install
             </button>
@@ -1029,22 +1029,22 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/ke/cleaning/`,
+          href: `https://ouredenlife.com/ke/cleaning/`,
         },
         {
           rel: 'alternate',
           hreflang: 'en-ng',
-          href: 'https://ouredenlifev2-staging.netlify.app/cleaning/',
+          href: 'https://ouredenlife.com/cleaning/',
         },
         {
           rel: 'alternate',
           hreflang: 'en-ke',
-          href: 'https://ouredenlifev2-staging.netlify.app/ke/cleaning/',
+          href: 'https://ouredenlife.com/ke/cleaning/',
         },
         {
           rel: 'alternate',
           hreflang: 'x-default',
-          href: 'https://ouredenlifev2-staging.netlify.app/cleaning/',
+          href: 'https://ouredenlife.com/cleaning/',
         },
       ],
     }
@@ -1055,9 +1055,9 @@ export default {
         title: 'Eden | Cleaning',
         description:
           'Professional cleaning at your doorstep. Up to thrice a week.',
-        url: `https://ouredenlifev2-staging.netlify.app/ke/cleaning/`,
+        url: `https://ouredenlife.com/ke/cleaning/`,
         mainImage:
-          'https://ouredenlifev2-staging.netlify.app/ke/edencardcleaning.png',
+          'https://ouredenlife.com/ke/edencardcleaning.png',
       }
       return getSiteMeta(metaData)
     },
@@ -1071,16 +1071,17 @@ export default {
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
     this.fetchCleaningServiceTypes()
+    console.log(mixpanelTrackEvent('Cleaning page'))
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize)
     window.addEventListener('scroll', this.isInViewport)
   },
   methods: {
-    greenhouseSignUp(label) {
-      mixpanelTrackEvent(label)
-      this.$router.push({ name: 'signup', query: this.$route.query })
-    },
+    // greenhouseSignUp(label) {
+    //   mixpanelTrackEvent(label)
+    //   this.$router.push({ name: 'signup', query: this.$route.query })
+    // },
     currencyFormat,
     openQuestion(question) {
       if (this.activeQuestion === question) {
@@ -1288,8 +1289,8 @@ export default {
     closeModal() {
       this.showSuccessModal = !this.showSuccessModal
     },
-    downloadApp() {
-      mixpanelTrackEvent('Download App - cleaning banner')
+    trackDevice(label) {
+      mixpanelTrackEvent(label)
       const userAgent = navigator.userAgent || navigator.vendor || window.opera
       if (/android/i.test(userAgent)) {
         window.location.href =
@@ -1298,6 +1299,8 @@ export default {
       if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
         window.location.href =
           'https://apps.apple.com/us/app/eden-life/id1482373755?ls=1'
+      } else {
+        this.scrollToFooter('#get-the-app', 'Download App')
       }
     },
   },

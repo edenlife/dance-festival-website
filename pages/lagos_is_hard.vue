@@ -292,7 +292,12 @@
         />
       </transition>
       <section v-if="currentMeals.length" class="menu">
-        <button class="menu-btn" @click.prevent="greenhouseSignUp('I want an Eden Life - Lagos is hard')">
+        <button
+          class="menu-btn"
+          @click.prevent="
+            greenhouseSignUp('I want an Eden Life - Lagos is hard')
+          "
+        >
           I Want an Eden Life
         </button>
       </section>

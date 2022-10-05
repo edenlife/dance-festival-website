@@ -272,7 +272,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/gifts`,
+          href: `https://ouredenlife.com/gifts`,
         },
       ],
     }
@@ -283,9 +283,8 @@ export default {
         title: 'Eden | Gifts',
         description:
           'Gift cards and gift boxes for every occasion, right at your fingertips.',
-        url: `https://ouredenlifev2-staging.netlify.app/gifts`,
-        mainImage:
-          'https://ouredenlifev2-staging.netlify.app/edencardgifting.png',
+        url: `https://ouredenlife.com/gifts`,
+        mainImage: 'https://ouredenlife.com/edencardgifting.png',
       }
       return getSiteMeta(metaData)
     },

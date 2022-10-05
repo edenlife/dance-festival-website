@@ -1215,7 +1215,7 @@ export default {
       light: 1,
       deep: 1,
       plan: 'standard-cleaning',
-      frequency: 'weekly',
+      frequency: 'monthly',
       totalPrice: null,
       visible: [],
       roomTypes: null,
@@ -1224,7 +1224,7 @@ export default {
       cleaningInfo: {
         item: 'standard-cleaning',
         itemAreas: {},
-        frequency: 'weekly',
+        frequency: 'monthly',
         qty: 4,
       },
       cleaningForm: {
@@ -1242,7 +1242,7 @@ export default {
         {
           hid: 'canonical',
           rel: 'canonical',
-          href: `https://ouredenlifev2-staging.netlify.app/cleaning_leads`,
+          href: `https://ouredenlife.com/cleaning`,
         },
       ],
     }
@@ -1253,9 +1253,8 @@ export default {
         title: 'Eden | Cleaning Leads',
         description:
           'Professional cleaning at your doorstep. Up to thrice a week.',
-        url: `https://ouredenlifev2-staging.netlify.app/cleaning_leads`,
-        mainImage:
-          'https://ouredenlifev2-staging.netlify.app/edencardcleaning.png',
+        url: `https://ouredenlife.com/cleaning_leads`,
+        mainImage: 'https://ouredenlife.com/edencardcleaning.png',
       }
       return getSiteMeta(metaData)
     },

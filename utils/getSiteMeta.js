@@ -1,9 +1,9 @@
 const type = 'website'
-const url = 'https://ouredenlifev2-staging.netlify.app/'
+const url = 'https://ouredenlife.com'
 const title = 'Eden | Say Goodbye To Chores Forever'
 const description =
   "Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!"
-const mainImage = 'https://ouredenlifev2-staging.netlify.app/edencard.png'
+const mainImage = 'https://ouredenlife.com/edencard.png'
 
 export default (meta) => {
   return [

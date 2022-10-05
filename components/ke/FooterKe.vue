@@ -355,7 +355,7 @@
 </template>
 
 <script>
-import { mixpanelTrackEvent } from '~/plugins/mixpanel'
+import { mixpanelTrackEvent } from '~/plugins/ke/mixpanel'
 
 export default {
   name: 'Footer',

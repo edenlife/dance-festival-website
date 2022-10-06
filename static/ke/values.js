@@ -131,7 +131,7 @@ export default [
     title: '5th Reason',
     header: 'One Payment,<br> All Month.',
     description:
-      "For a monthly subscription, you never have to worry about getting these things done when the mid-month sapa hits. You're covered.",
+      "For a monthly subscription, you never have to worry about getting these things done when mid-month msoto hits. You're covered.",
     shadow: false,
     background: '#CCD5FF;',
     layout: 'column-reverse',
@@ -164,7 +164,7 @@ export default [
     title: '6th Reason',
     header: "Eden Works When<br> You're Working.",
     description:
-      'Your food is delivered, your clean laundry is ironed and folded,  and your bathroom is scrubbed.<br> Dedicate your active hours to solving actual problems.',
+      'Your food is delivered, your clean laundry is ironed and folded, your bathroom is scrubbed and your body is refreshed. <br> Dedicate your active hours to solving actual problems.',
     shadow: true,
     background: '#FFFFFF',
     layout: 'row',
@@ -293,7 +293,7 @@ export default [
     title: '10th Reason',
     header: 'Happy and<br> Productive<br> Teams Use Eden.',
     description:
-      "For a monthly subscription, you never have to worry about getting these things done when the mid-month sapa hits. You're covered.",
+      " Make your team 91.28% more efficient by providing them with office lunch, laundry, cleaning and beauty plans. You can also gift them vouchers as a reward  great performance or to celebrate them on special occasions.",
     shadow: false,
     background: '#D4F7E5',
     layout: 'column',

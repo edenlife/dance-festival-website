@@ -196,21 +196,12 @@ export default {
       name: 'Adeyinka Awe',
       role: 'Growth',
     },
-
-    {
-      id: 35,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1629962886/Dorcas_Olawale_Customer_Success_adtbjf.jpg',
-      name: 'Dorcas Olawale',
-      role: 'Customer Success',
-    },
-
     {
       id: 36,
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1631093601/Ayomikun_Sulaiman_Supply_euroke.jpg',
       name: 'Ayomikun Sulaiman',
-      role: 'Supply',
+      role: 'Finance',
     },
     {
       id: 37,
@@ -341,7 +332,7 @@ export default {
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242345/Emem_Ekpo_-_Order_Fulfilment_Associate_bv6fu0.jpg',
       name: 'Emem Ekpo',
-      role: 'Supply',
+      role: 'Customer Success',
     },
     
     {
@@ -371,13 +362,6 @@ export default {
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242399/Ndubuisi_Onyemenam_-_Backend_Engineer_1_tiqni1.jpg',
       name: 'Ndubuisi Onyemenam',
       role: 'Engineering',
-    },
-    {
-      id: 60,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242420/Olajide_Gbadomisi_-_Assistant_Production_Manager_wzk0ic.jpg',
-      name: 'Olajide Gbadomisi',
-      role: 'Food Production',
     },
     {
       id: 61,
@@ -446,13 +430,6 @@ export default {
     },
    
     {
-      id: 71,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1650259353/Chibuzor_Mbika_-_Demi-Chef_de_Partie_ep6fhf.jpg',
-      name: 'Chibuzor Mbika',
-      role: 'Food Production',
-    },
-    {
       id: 72,
       image:
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1650258722/Etima_Akpan_-_Junior_Production_Assistant_dvvhu2.jpg',
@@ -479,14 +456,6 @@ export default {
         'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1650258735/Roqeeb_Raheem_-_Product_Manager_pdious.jpg',
       name: 'Roqeeb Raheem',
       role: 'Product',
-    },
-
-    {
-      id: 76,
-      image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1650258755/Sunday_Odeh_-_Laundry_Assistant_h6urag.jpg',
-      name: 'Sunday Odeh',
-      role: 'Supply',
     },
     
     {

@@ -330,7 +330,7 @@ export default {
     {
       id: 55,
       image:
-        'https://res.cloudinary.com/eden-life-inc/image/upload/f_auto,q_auto/v1644242345/Emem_Ekpo_-_Order_Fulfilment_Associate_bv6fu0.jpg',
+        'https://res.cloudinary.com/eden-life-inc/image/upload/v1665154461/eden-website-v2/Emem_Ekpo_-_Customer_Success_Interns_csfrod.jpg',
       name: 'Emem Ekpo',
       role: 'Customer Success',
     },

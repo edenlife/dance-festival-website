@@ -30,13 +30,13 @@
 </template>
 
 <script type="text/javascript">
-import Paystack from 'vue-paystack'
+// import Paystack from 'vue-paystack'
 import { giftingApi } from '~/request/all.api'
 
 export default {
   name: 'PaymentGateway',
   components: {
-    Paystack,
+    // Paystack,
   },
   props: {
     show: {

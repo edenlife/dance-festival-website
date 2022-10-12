@@ -70,15 +70,14 @@ export default [
     layout: 'column',
     button: 'app',
     size: 'half',
-    textPosition: 'top',
+    textPosition: 'bottom',
     media: {
-      type: 'video',
+      type: 'image',
       src:
-        'https://res.cloudinary.com/eden-life-inc/video/upload/f_auto,q_auto/v1634619583/value-selection_ql76ml.mp4',
-      size: 'medium',
+        'https://res.cloudinary.com/eden-life-inc/image/upload/v1665583180/eden-website-v2/Mobile_mockup_bwwrs8.png',
+      size: 'large',
     },
     padding: 'pad',
-
     modal_text: 'One App To Schedule Them All.',
     modal_testimonial: {
       name: 'Tabitha Kavyu',

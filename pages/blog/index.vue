@@ -425,7 +425,7 @@
           <div class="posts__latest">
             <h3 class="posts__latest-title">Latest Posts</h3>
           </div>
-          <div v-for="(item, i) in latestPosts" :key="i">
+          <div v-for="(item, i) in latestPost" :key="i">
             <nuxt-link
               :to="{
                 name: 'blog-slug',
@@ -881,10 +881,6 @@ export default {
     edenPosts() {
       return this.$store.getters.getEdenPosts
     },
-    latestPosts() {
-      const allPosts = this.$store.getters.getAllPosts
-      return allPosts.slice(0, 8)
-    },
   },
   created() {
     this.fetchFeaturedPost()
@@ -932,10 +928,23 @@ export default {
         return value
       }
     },
+    setData() {
+      if (this.allPosts.length) {
+        const quotient = Math.floor(this.allPosts.length / 12)
+        const remainder = this.allPosts.length % 12
+        remainder > 0
+          ? (this.pageCount = quotient + 1)
+          : (this.pageCount = quotient)
+        this.pagination = {
+          last_page: this.pageCount,
+          current_page: 1,
+        }
+        this.latestPost = this.allPosts.slice(0, 12)
+      }
+    },
     controlPage(pageNum) {
       const min = pageNum * 8 - 8
-      this.latestPost = this.allPosts
-      // .slice(min, pageNum * 8)
+      this.latestPost = this.allPosts.slice(min, pageNum * 8)
       this.pagination.current_page = pageNum
       this.$refs['latest-container'].scrollIntoView()
     },

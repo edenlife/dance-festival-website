@@ -107,7 +107,7 @@ export default {
       { charset: 'utf-8' },
       { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-
+      { name: 'facebook-domain-verification', content: 'xxzf3333mjrjngees4bvq4iuwmfcfz' },
       {
         name: 'google-site-verification',
         content: 'hR_rl1tIEYSU12wBm7rMnAD4rGO1O6lkyqRYLCuEMMM',

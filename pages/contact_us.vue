@@ -47,8 +47,7 @@
       <div class="contact__office-address">
         <h5>Eden Office</h5>
         <p>
-          Block C7 Unit 3, Jacob Mews Estate, <br />Adebisi Street, Yaba,<br />
-          Lagos, Nigeria.
+          Km 16, Ikorodu-Ososun Rd, <br /> Lagos, Nigeria.
         </p>
         <div class="email">
           <p>Email: support@edenlife.ng</p>

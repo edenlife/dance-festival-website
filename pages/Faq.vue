@@ -1499,6 +1499,511 @@
             </p>
           </transition>
         </div>
+
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>Does Eden provide cleaning tools for customers?</h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('twenty-two')"
+            >
+              <svg
+                v-if="questions.includes('twenty-two')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('twenty-two')">
+              NO. Cleaners are only provided cleaning consumables to execute their jobs at customers house.
+            </p>
+          </transition>
+        </div>
+
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>What are the basic materials (consumables) given to cleaners to clean customers house?</h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('twenty-three')"
+            >
+              <svg
+                v-if="questions.includes('twenty-three')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('twenty-three')">
+              <ul>
+                <li>Hypo Bleach</li>
+                <br />
+                <li>Hypo Toilet Wash</li>
+                <br />
+                <li>Detergent</li>
+                <br />
+                <li>Air Freshener</li>
+                <br />
+                <li>Dish washing soap - morning fresh</li>
+                <br />
+                <li>Scouring powder</li>
+              </ul>
+            </p>
+          </transition>
+        </div>
+
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>How many housekeepers will do a cleaning job?</h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('twenty-four')"
+            >
+              <svg
+                v-if="questions.includes('twenty-four')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('twenty-four')">
+              The number of Housekeepers depends on the number of rooms and the type of cleaning service required.
+            </p>
+          </transition>
+        </div>
+
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>What time are Cleaning Professionals expected to arrive at a customer's house?</h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('twenty-five')"
+            >
+              <svg
+                v-if="questions.includes('twenty-five')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('twenty-five')">
+              1. Default time is <b>9 AM</b> except when a customer states otherwise. Please note that the latest time a cleaning can happen is 1 PM (for Standard Cleaning). Anything beyond this shall not be allowed.
+            <br/>
+            2. For <b>Deep Cleaning</b> - As early as possible. Anytime later than <b>9 AM</b> will not be accepted as Deep cleaning takes longer time than a Standard cleaning.
+            </p>
+          </transition>
+        </div>
+
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>List of things our Housekeepers DO NOT do.</h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('twenty-six')"
+            >
+              <svg
+                v-if="questions.includes('twenty-six')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('twenty-six')">
+              1. Laundry
+              <br/>
+              2. Washing of Shoes and Bags
+              <br/>
+              3. Market Errands
+              <br/>
+              4. Baby sitting
+              <br/>
+              5. Washing of couch
+            </p>
+          </transition>
+        </div>
+
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>Can a customer always get the same Housekeeper every week?</h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('twenty-seven')"
+            >
+              <svg
+                v-if="questions.includes('twenty-seven')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('twenty-seven')">
+              1. This is not guaranteed as there are many factors surrounding this.
+              <br/>
+              2. The housekeeper might not always be available
+              <br/>
+              3. When you change your service date, you will not always get the same housekeeper.
+            </p>
+          </transition>
+        </div>
+
+        <div class="faq__questions-item">
+          <div class="faq__questions-title">
+            <h5>What measures of security do Eden Life have for the Cleaning service?</h5>
+            <button
+              type="button"
+              class="expand"
+              @click.prevent="expandQuestion('twenty-eight')"
+            >
+              <svg
+                v-if="questions.includes('twenty-eight')"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 11H15"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                v-else
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 8V16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 12H16"
+                  stroke="#21312A"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <transition name="slide-fade">
+            <p v-if="questions.includes('twenty-eight')">
+              Measures put in place are:
+              <br/>
+              <ol>
+                  <li>Screening of housekeepers after application
+                    <ul>
+                      <li>Request for 2 verifiable Guarantors</li>
+                      <li>Address Verification of Guarantors and Housekeepers</li>
+                    </ul>
+                  </li>
+                  <br/>
+                  <li>Insured service in case of theft or damage - this means that a customer’s property is insured as a part of the service. However,
+                    <ul>
+                      <li>reporting to the company about damage or theft should not be more than 24 hours after service. Reports after 24 hours of service will not be acknowledged</li>
+                      <li>every issue of theft or damage should be sent in with proof of ownership and every other evidence needed to guide the investigation.</li>
+                    </ul>
+                  </li>
+              </ol>
+            </p>
+          </transition>
+        </div>
+
       </section>
     </div>
     <div class="container--form">

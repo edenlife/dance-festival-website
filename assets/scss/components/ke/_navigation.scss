@@ -401,3 +401,21 @@
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+
+
+.rewards-banner {
+  padding: 14px 0 14px 0;
+  background: #1D352A;
+  color: color(eden-neutral-7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include font-size(sm);
+
+  a {
+    padding: 4px;
+    background: #14B757;
+    border-radius: 8px;
+    margin-left: 12px;
+  }
+}

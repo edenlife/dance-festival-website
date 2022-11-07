@@ -5,6 +5,16 @@
     :class="{ 'primary-bg': giftLanding }"
     :style="getNavigationColor(routeUpdate)"
   >
+    <div class="rewards-banner">
+      <p>Introducing Referrals and Rewards Centre!</p>
+      <a
+        class="primary-bg"
+        href="https://ouredenlife.com/blog/its-raining-apples-at-eden-1433/"
+        target="_blank"
+      >
+        Learn more
+      </a>
+    </div>
     <nav
       id="navigation-top"
       class="navigation"

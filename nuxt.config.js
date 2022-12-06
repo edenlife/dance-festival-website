@@ -66,7 +66,6 @@ export default {
       },
 
       // Google tag manager
-      
 
       //Google ads
       {
@@ -107,7 +106,10 @@ export default {
       { charset: 'utf-8' },
       { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'facebook-domain-verification', content: 'xxzf3333mjrjngees4bvq4iuwmfcfz' },
+      {
+        name: 'facebook-domain-verification',
+        content: 'xxzf3333mjrjngees4bvq4iuwmfcfz',
+      },
       {
         name: 'google-site-verification',
         content: 'hR_rl1tIEYSU12wBm7rMnAD4rGO1O6lkyqRYLCuEMMM',
@@ -178,7 +180,7 @@ export default {
     '~/plugins/vue-mailchimp-subscribe.js',
     // { src: 'plugins/route-subscribe.js', ssr: false }, // Only works on client side
     { src: '~/plugins/vue-persist.js', ssr: false },
-    { src: "~/plugins/vue-paystack.js", ssr: false },
+    { src: '~/plugins/vue-paystack.js', ssr: false },
     { src: 'plugins/vue-owl-carousel.js', ssr: false }, // Only works on client side
     '~/plugins/vue-date-picker.js',
   ],
@@ -205,9 +207,7 @@ export default {
       },
     ],
 
-    [
-      "@nuxtjs/gtm",
-    ],
+    ['@nuxtjs/gtm'],
 
     // Facebook pixel setup
     [
@@ -264,6 +264,13 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ['gsap', '@edenlife/eden-pricing-module'],
+    loaders: {
+      scss: {
+        sassOptions: {
+          quietDeps: true,
+        },
+      },
+    },
   },
 
   router: {
@@ -319,7 +326,7 @@ export default {
     gzip: true,
     path: '/sitemap.xml',
     // i18n: true,
-    cacheTime: 1000 * 60 * 60 * 2,    
+    cacheTime: 1000 * 60 * 60 * 2,
     trailingSlash: true,
     routes: () => {
       return getRoutes()
@@ -332,7 +339,7 @@ export default {
 
   // add intercom
   intercom: {
-   appId: 's0gimx8q',
+    appId: 's0gimx8q',
     hideDefaultLauncher: true,
   },
 

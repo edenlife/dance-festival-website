@@ -63,7 +63,9 @@
           </el-row>
           <el-row>
             <el-col :span="24">
-              <el-button type="primary">Proceed to payment</el-button>
+              <el-button class="w-100" type="primary"
+                >Proceed to payment</el-button
+              >
             </el-col>
           </el-row>
         </el-form>
@@ -100,7 +102,11 @@ export default {
 
 <style lang="scss" scoped>
 @import '~/assets/scss/main.scss';
-/** @import '~/assets/scss/greenhouse/main.scss'; **/
+@import '~/assets/scss/greenhouse/main.scss';
+
+.w-100 {
+  width: 100%;
+}
 
 .checkout {
   padding: 130px 130px;
@@ -110,8 +116,6 @@ export default {
 
   .sections {
     @include respond(md) {
-      margin: 0px 35px;
-      padding: 0px;
     }
   }
 

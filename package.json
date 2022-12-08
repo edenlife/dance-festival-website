@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "@babel/preset-env": "^7.12.17",
-    "@edenlife/eden-pricing-module": "*",
     "@nuxtjs/axios": "^5.13.1",
     "@nuxtjs/gtm": "^2.4.0",
     "@nuxtjs/pwa": "^3.3.4",

@@ -263,7 +263,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: ['gsap', '@edenlife/eden-pricing-module'],
+    transpile: ['gsap'],
     loaders: {
       scss: {
         sassOptions: {

@@ -99,7 +99,7 @@ export default {
       },
     ],
 
-    title: 'Eden | Say Goodbye To Chores Forever',
+    title: 'Eden + Electronic Dance Festival',
 
     meta: [
       ...meta,

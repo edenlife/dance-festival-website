@@ -1,10 +1,5 @@
 <template>
-  <el-dialog
-    title="Your Cart"
-    :visible="isOpen"
-    width="30%"
-    @close="$emit('close')"
-  >
+  <div class="cart-card">
     <div v-if="cartItems.length === 0" class="empty-cart">
       <EmptyCartIcon />
       <div class="title">Your cart is empty.</div>
@@ -59,19 +54,13 @@
         >Checkout</el-button
       >
     </span>
-  </el-dialog>
+  </div>
 </template>
 
 <script>
 import EmptyCartIcon from './EmptyCartIcon.vue'
 
 export default {
-  props: {
-    isOpen: {
-      type: Boolean,
-      default: false,
-    },
-  },
   components: { EmptyCartIcon },
   data: () => ({
     cartItems: [
@@ -124,36 +113,12 @@ export default {
     text-align: center;
   }
 }
-::v-deep .el-dialog {
-  margin: 50px 50px 50px auto !important;
 
-  &__body {
-    display: flex;
-    min-height: 50vh;
-    width: 100%;
-  }
-
-  &__footer {
-    padding: 0px !important;
-  }
-
-  .dialog-footer {
-    display: flex;
-    flex-direction: column;
-    background: #f7f8f8;
-    padding: 30px 20px !important;
-
-    .amount {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 30px;
-      @include font-size(sm);
-    }
-
-    button {
-      @include font-size(sm);
-    }
-  }
+.cart-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
 .flex-between {

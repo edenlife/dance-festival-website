@@ -186,7 +186,7 @@ export default {
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: false,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -273,50 +273,7 @@ export default {
     },
   },
 
-  router: {
-    extendRoutes(routes, resolve) {
-      routes.push({
-        name: 'custom',
-        path: '*',
-        component: resolve(__dirname, 'pages/404.vue'),
-      })
-      routes.push({
-        name: 'login',
-        path: '/login',
-        component: resolve(__dirname, 'pages/app/login.vue'),
-      })
-      routes.push({
-        name: 'signup',
-        path: '/signup',
-        component: resolve(__dirname, 'pages/app/signup.vue'),
-      })
-      routes.push({
-        name: 'forgot-password',
-        path: '/forgot-password',
-        component: resolve(__dirname, 'pages/app/forgot-password.vue'),
-      })
-      routes.push({
-        name: 'reset-code',
-        path: '/reset-code',
-        component: resolve(__dirname, 'pages/app/reset-code.vue'),
-      })
-      routes.push({
-        name: 'reset-password',
-        path: '/reset-password',
-        component: resolve(__dirname, 'pages/app/reset-password.vue'),
-      })
-      routes.push({
-        name: 'home',
-        path: '/home',
-        component: resolve(__dirname, 'pages/app/home.vue'),
-      })
-      routes.push({
-        name: 'settings',
-        path: '/settings',
-        component: resolve(__dirname, 'pages/app/settings.vue'),
-      })
-    },
-  },
+  router: {},
   // i18n: {
   //   locales: ['en', 'ng', 'ke'],
   //   defaultLocale: 'en'

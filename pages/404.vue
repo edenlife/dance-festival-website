@@ -1,32 +1,3 @@
 <template>
-  <div class="container--error">
-    <section class="error__message">
-      <div class="error__message--description">
-        <div class="error__message--icon">
-          <img :src="require(`~/assets/images/emojis/pleading.png`)" alt="" />
-        </div>
-        <div class="error__message--text">
-          <div class="error__message--text--arrow"></div>
-          <p>You seem to be lost. Let’s help you find your way back.</p>
-        </div>
-      </div>
-      <button class="error__message--btn" @click.prevent="gotoHome()">
-        Back to homepage
-      </button>
-    </section>
-  </div>
+  <h1>404</h1>
 </template>
-
-<script>
-export default {
-  methods: {
-    gotoHome() {
-      this.$router.push('/')
-    },
-  },
-}
-</script>
-
-<style lang="scss" scoped>
-@import '@/assets/scss/pages/_error.scss';
-</style>

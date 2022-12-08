@@ -23,12 +23,88 @@
         />
       </nuxt-link>
       <ul class="navigation__menu">
+        <li v-if="currentRoute !== 'contact_us'">
+          <div class="navigation__menu-item navigation__menu-service">
+            <button
+              type="button"
+              class="btn"
+              :class="{ active: showContact }"
+              @mouseenter.stop="
+                showContact = true
+                showService = false
+              "
+            >
+              <span>Support</span>
+              <svg
+                width="10"
+                height="6"
+                viewBox="0 0 10 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 1L5 5L9 1"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+            <transition name="fade">
+              <div
+                v-if="showContact"
+                class="service"
+                @mouseleave.stop="showContact = false"
+              >
+                <div class="service__title contact">
+                  <h3>Get Help</h3>
+                  <p>Call or send us a message and we'll respond soonest.</p>
+                </div>
+                <ul class="service__list contact">
+                  <li
+                    class="navigation__menu-item"
+                    @click="trackLink('Contact Us')"
+                  >
+                    <a href="tel:+2348134254074"> +2348134254074</a>
+                  </li>
+                  <li
+                    class="navigation__menu-item contact"
+                    @click="trackLink('Contact Us')"
+                  >
+                    <a href="https://wa.me/2348134254074"> Whatsapp</a>
+                  </li>
+                  <li
+                    class="navigation__menu-item trigger-chat"
+                    @click.prevent="launchIntercom()"
+                  >
+                    Chat
+                  </li>
+                </ul>
+              </div>
+            </transition>
+          </div>
+        </li>
         <li>
-          <button type="button" class="expand" @click.prevent="openCart">
-            <CartIcon />
+          <button
+            type="button"
+            class="expand is-flex is-align-center"
+            @click.prevent="openCart"
+          >
+            <CartIcon /> &nbsp; Cart
           </button>
         </li>
       </ul>
+      <button class="navigation__btn" type="button" @click="handleToggle()">
+        <CartIcon />
+      </button>
+
+      <transition name="slide">
+        <div v-if="showNavbar" class="navigation__mobile">
+          <div class="cart__card">
+            <CartCard />
+          </div>
+        </div>
+      </transition>
     </nav>
     <CartModal :is-open="cartOpen" @close="cartOpen = false" />
   </div>
@@ -39,10 +115,11 @@ import { scrollToApp, getNavigationColor } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import CartIcon from '~/components/dance-festival/CartIcon.vue'
 import CartModal from '~/components/dance-festival/CartModal.vue'
+import CartCard from '~/components/dance-festival/CartCard.vue'
 
 export default {
   name: 'Navigation',
-  components: { CartIcon, CartModal },
+  components: { CartIcon, CartModal, CartCard },
   data() {
     return {
       service: '',
@@ -227,6 +304,21 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/components/_navigation.scss';
+
+.is-flex {
+  display: flex;
+}
+
+.is-align-center {
+  align-items: center;
+}
+
+.cart__card {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+}
 .location {
   width: 200px !important;
   color: black;

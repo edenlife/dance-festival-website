@@ -103,6 +103,11 @@
             <menu-item />
           </el-col>
         </el-row>
+        <el-row type="flex" justify="center">
+          <el-col :span="4">
+            <el-button class="w-100" type="plain"> See More</el-button>
+          </el-col>
+        </el-row>
       </div>
     </div>
   </div>
@@ -153,6 +158,10 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/main.scss';
 @import '~/assets/scss/greenhouse/main.scss';
+
+.w-100 {
+  width: 100%;
+}
 
 .menu-tabs {
   display: flex;
@@ -299,7 +308,7 @@ export default {
 
   .showcase {
     display: flex;
-    height: 300px;
+    height: 350px;
     margin-top: 60px;
     background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670467661/dance-festival/banner-colors_ggnqgg.png');
     background-size: contain;

@@ -89,6 +89,9 @@ export default {
 .order-summary {
   border-radius: 8px;
   border: 1px solid color(eden-neutral-6);
+  @include respond(md) {
+    margin-top: 30px;
+  }
   .title {
     @include font-size(lg);
     border-bottom: 1px solid color(eden-neutral-6);

@@ -1,6 +1,8 @@
 <template>
   <div class="checkout">
-    <span><i class="el-icon-arrow-left" /> Back</span>
+    <span class="pointer" @click="$router.go(-1)"
+      ><i class="el-icon-arrow-left" /> Back</span
+    >
     <el-row class="sections" :gutter="70">
       <el-col :md="12" :lg="12" :sm="24">
         <el-tabs v-model="tab" @tab-click="updateRouteQuery">
@@ -201,6 +203,13 @@ export default {
       }
     },
   },
+  mounted() {
+    const currentTab = this.$route.query.tab
+
+    if (currentTab) {
+      this.tab = currentTab
+    }
+  },
   methods: {
     updateRouteQuery(tab) {
       const currentTab = this.$route.query.tab
@@ -208,7 +217,7 @@ export default {
       if (currentTab === this.tab) {
         return false
       }
-      this.$router.push({
+      this.$router.replace({
         path: '/checkout',
         query: { tab: tab.name },
       })
@@ -249,12 +258,20 @@ export default {
 .checkout {
   padding: 130px 130px;
   @include respond(md) {
-    padding: 90px 10px 80px 10px;
+    padding: 150px 10px 80px 10px;
+  }
+
+  .pointer {
+    cursor: pointer;
   }
 
   .sections {
     margin-top: 30px;
     @include respond(md) {
+      margin-left: -35px;
+      margin-right: -35px;
+      padding-right: 10px;
+      padding-left: 10px;
     }
   }
 

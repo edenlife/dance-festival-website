@@ -209,7 +209,7 @@ export default {
         return false
       }
       this.$router.push({
-        path: '/-list',
+        path: '/checkout',
         query: { tab: tab.name },
       })
     },

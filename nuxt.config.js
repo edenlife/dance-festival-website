@@ -99,7 +99,7 @@ export default {
       },
     ],
 
-    title: 'Eden + Electronic Dance Festival',
+    title: 'Eden + Activity Fest',
 
     meta: [
       ...meta,

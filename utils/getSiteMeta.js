@@ -1,9 +1,10 @@
 const type = 'website'
-const url = 'https://ouredenlife.com'
-const title = 'Eden | Say Goodbye To Chores Forever'
+const url = 'https://activity-fest.ouredenlife.com'
+const title = 'Eden + Activity Fest'
 const description =
-  "Say goodbye to chores forever. Eden is a tech-enabled service that puts your home's chores on autopilot. Check out how we work!"
-const mainImage = 'https://ouredenlife.com/edencard.png'
+  'Eden Is Partying With 3,500 Activators at the Activity Fest'
+const mainImage =
+  'https://res.cloudinary.com/eden-life-inc/image/upload/v1670344217/dance-festival/showcase3_lkugop.png'
 
 export default (meta) => {
   return [

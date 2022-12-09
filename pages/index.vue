@@ -234,7 +234,7 @@ export default {
       @include respond(md) {
         padding: 10px 20px;
       }
-      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670294254/dance-festival/banner_ghy12e.png');
+      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670551671/dance-festival/banner-min_aecsnn.png');
       width: 100%;
       height: 200px;
       background-size: cover;
@@ -310,7 +310,7 @@ export default {
     display: flex;
     height: 350px;
     margin-top: 60px;
-    background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670467661/dance-festival/banner-colors_ggnqgg.png');
+    background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670551660/dance-festival/banner-colors-min_sdlf1f.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -326,7 +326,7 @@ export default {
         background-size: contain;
         background-position: center center;
         background-repeat: no-repeat;
-        background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670466043/dance-festival/banner-mobile_jjfd5w.png');
+        background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670551664/dance-festival/banner-mobile-min_etgply.png');
       }
     }
 
@@ -356,33 +356,33 @@ export default {
     }
     &__1 {
       height: 60%;
-      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670344203/dance-festival/showcase1_mssysb.png');
+      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670551668/dance-festival/showcase1-min_x1lalo.png');
     }
     &__2 {
       height: 40%;
       margin-bottom: 10px;
-      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670344208/dance-festival/showcase2_l0v5ws.png');
+      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670551670/dance-festival/showcase2-min_o4cysj.png');
     }
     &__3 {
       height: 60%;
-      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670344217/dance-festival/showcase3_lkugop.png');
+      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670551665/dance-festival/showcase3-min_bwpio8.png');
     }
     &__4 {
       height: 100%;
-      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670344224/dance-festival/showcase4_ni4tot.png');
+      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670551670/dance-festival/showcase4-min_gg2ii0.png');
     }
     &__5 {
       height: 60%;
       margin-bottom: 10px;
-      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670344217/dance-festival/showcase5_m9wxsz.png');
+      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670551668/dance-festival/showcase5-min_dq8p4q.png');
     }
     &__6 {
       height: 40%;
-      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670344214/dance-festival/showcase6_qyetnp.png');
+      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670551669/dance-festival/showcase6-min_dawin3.png');
     }
     &__7 {
       height: 60%;
-      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670344216/dance-festival/showcase7_mfpj87.png');
+      background-image: url('https://res.cloudinary.com/eden-life-inc/image/upload/v1670551670/dance-festival/showcase7-min_jvorlv.png');
     }
   }
 }

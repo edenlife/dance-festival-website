@@ -31,7 +31,7 @@
         </div>
       </div>
       <img
-        src="https://res.cloudinary.com/eden-life-inc/image/upload/v1670468110/dance-festival/footer-image_f0gmp3.png"
+        src="https://res.cloudinary.com/eden-life-inc/image/upload/v1670551665/dance-festival/footer-image-min_jphnsb.png"
         alt=""
         class="footer__top-image"
       />

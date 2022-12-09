@@ -2,7 +2,7 @@
   <div class="menu-item">
     <div class="menu-item__image img-hover-zoom">
       <img
-        src="https://res.cloudinary.com/eden-life-inc/image/upload/v1670297362/dance-festival/coleslaw_gtez2c.png"
+        src="https://res.cloudinary.com/eden-life-inc/image/upload/v1670551664/dance-festival/coleslaw-min_ajtkka.png"
         alt="meal name"
       />
     </div>

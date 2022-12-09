@@ -84,6 +84,15 @@
             </transition>
           </div>
         </li>
+        <li
+          style="margin-right: 30px"
+          @mouseenter.stop="showService = false"
+          @click="trackLink('Pricing')"
+        >
+          <nuxt-link :to="{ path: '/faq' }" class="navigation__menu-item">
+            FAQs
+          </nuxt-link>
+        </li>
         <li>
           <button
             type="button"

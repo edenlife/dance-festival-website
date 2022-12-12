@@ -1,12 +1,16 @@
 <template>
   <div class="checkout">
-    <span class="pointer" @click="$router.go(-1)"
-      ><i class="el-icon-arrow-left" /> Back</span
-    >
-    <el-row class="sections" :gutter="70">
-      <el-col :md="12" :lg="12" :sm="24">
+    <div class="pointer" @click="$router.go(-1)">
+      <i class="el-icon-arrow-left" /> Back
+    </div>
+    <el-row class="sections" justify="center" :gutter="70">
+      <el-col :md="12" :lg="12" :sm="24" class="sections__item">
         <el-tabs v-model="tab" @tab-click="updateRouteQuery">
-          <el-tab-pane label="Your Info" name="info">
+          <el-tab-pane
+            :disabled="tab === 'payment'"
+            label="Your Info"
+            name="info"
+          >
             <p class="title">Your Information</p>
             <p class="description">
               Please enter your information to create an account in other to
@@ -24,7 +28,7 @@
               :model="form"
               label-position="top"
             >
-              <el-row :gutter="20">
+              <el-row>
                 <el-col :md="24">
                   <el-form-item label="Email address" prop="email">
                     <el-input v-model="form.email" type="text" />
@@ -51,30 +55,46 @@
                   </el-form-item>
                 </el-col>
               </el-row>
-              <el-row :gutter="20">
+              <el-row>
                 <el-col :md="24">
-                  <el-form-item label="Phone Number" prop="phone_number">
+                  <el-form-item
+                    label="Phone Number"
+                    prop="phone_number"
+                    :rules="validatePhone()"
+                  >
                     <el-input v-model="form.phone_number" type="text" />
                   </el-form-item>
                 </el-col>
               </el-row>
-              <el-row :gutter="20">
+              <el-row>
                 <el-col :md="24">
-                  <el-form-item label="Password" prop="password">
-                    <el-input v-model="form.password" type="text" />
+                  <el-form-item
+                    label="Password"
+                    prop="password"
+                    :rules="validatePassword()"
+                  >
+                    <el-input v-model="form.password" type="password" />
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row>
                 <el-col :span="24">
-                  <el-button class="w-100" type="primary"
+                  <el-button
+                    :disabled="proceedDisabled"
+                    @click="tab = 'payment'"
+                    class="w-100"
+                    type="primary"
                     >Proceed to payment</el-button
                   >
                 </el-col>
               </el-row>
             </el-form>
           </el-tab-pane>
-          <el-tab-pane label="Payment" name="payment">
+          <el-tab-pane
+            :disabled="tab === 'info'"
+            label="Payment"
+            name="payment"
+          >
             <transition name="slide-fade">
               <div>
                 <div class="checkout-list__form__title">
@@ -134,13 +154,13 @@
           </el-tab-pane>
         </el-tabs>
       </el-col>
-      <el-col :md="12" :lg="12" :sm="24">
+      <el-col :md="12" :lg="12" :sm="24" class="sections__item">
         <OrderSummary />
       </el-col>
     </el-row>
     <payment-gateway
       :show.sync="openPaymentGateway"
-      :amount="subTotal"
+      :amount="totalPrice"
       :customer="customer"
       :recipient="recipient"
       :delivery="delivery"
@@ -183,8 +203,23 @@ export default {
     },
   }),
   computed: {
-    subTotal() {
-      return 30000
+    proceedDisabled() {
+      return (
+        !this.form.first_name ||
+        !this.form.last_name ||
+        !this.form.email ||
+        !this.form.password ||
+        !this.form.phone_number
+      )
+    },
+    cartItems() {
+      return this.$store.state.cart
+    },
+    totalPrice() {
+      return this.cartItems.reduce(
+        (acc, val) => acc + val.price * val.quantity,
+        0
+      )
     },
     recipient() {
       return {
@@ -257,6 +292,7 @@ export default {
 
 .checkout {
   padding: 130px 130px;
+  max-width: 100%;
   @include respond(md) {
     padding: 150px 10px 80px 10px;
   }
@@ -268,10 +304,17 @@ export default {
   .sections {
     margin-top: 30px;
     @include respond(md) {
-      margin-left: -35px;
-      margin-right: -35px;
+      margin-right: 0px !important;
+      margin-left: 0px !important;
       padding-right: 10px;
       padding-left: 10px;
+    }
+
+    &__item {
+      @include respond(md) {
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+      }
     }
   }
 

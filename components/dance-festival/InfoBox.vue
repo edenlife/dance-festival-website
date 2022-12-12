@@ -54,6 +54,7 @@
     flex-wrap: wrap;
     align-items: center;
     overflow-wrap: break-all;
+    width: 100%;
   }
 
   svg {

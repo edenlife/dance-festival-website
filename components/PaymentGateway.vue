@@ -104,8 +104,8 @@ export default {
     show() {
       if (this.show) {
         this.gateway === 'paystack'
-          ? this.$refs.paystack.$el.click()
-          : this.$refs.rave.$el.click()
+          ? this.$refs.paystack.$el?.click()
+          : this.$refs.rave.$el?.click()
       }
     },
   },

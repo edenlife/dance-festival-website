@@ -1,8 +1,8 @@
 <template>
   <el-dialog
-    title="Your Cart"
+    :title="`Your Cart (${cartItems.length})`"
+    width="40%"
     :visible="isOpen"
-    width="30%"
     @close="$emit('close')"
   >
     <div v-if="cartItems.length === 0" class="empty-cart">
@@ -14,31 +14,42 @@
       </div>
     </div>
     <div v-else class="cart-list">
-      <div v-for="item in cartItems" :key="item.id" class="cart-item">
+      <div v-for="(item, ix) in cartItems" :key="item.id" class="cart-item">
         <div class="cart-item__image">
-          <img :src="item.image" alt="meal name" />
+          <img :src="item.image_url" alt="meal name" />
         </div>
         <div class="cart-item__details">
-          <div class="flex-between">
-            <div class="cart-item__name">{{ item.name }}</div>
-            <div class="cart-item__price">{{ item.price }}</div>
-          </div>
+          <el-row type="flex" justify="between">
+            <el-col :span="15">
+              <div class="cart-item__name">{{ item.full_name }}</div>
+            </el-col>
+            <el-col :span="9">
+              <div class="cart-item__price">
+                {{ 'NGN ' + currencyFormat(item.price) }}
+              </div>
+            </el-col>
+          </el-row>
           <div class="flex-between actions">
-            <div class="cart-item__remove">Remove</div>
+            <div
+              class="cart-item__remove"
+              @click="$store.commit('removeItem', ix)"
+            >
+              Remove
+            </div>
             <div class="cart-item__counter">
               <el-button
                 class="decrease"
                 :type="'control'"
                 icon="el-icon-minus"
                 :disabled="item.quantity === 1"
-                @click="item.quantity--"
+                @click="$store.commit('decreaseItemQuantity', ix)"
               />
               <el-input v-model="item.quantity" v-number type="text" readonly />
               <el-button
                 class="increase"
                 :type="'control'"
                 icon="el-icon-plus"
-                @click="item.quantity++"
+                @click="$store.commit('increaseItemQuantity', ix)"
               />
             </div>
           </div>
@@ -48,7 +59,7 @@
     <span v-if="cartItems.length > 0" slot="footer" class="dialog-footer">
       <div class="amount">
         <div>Subtotal</div>
-        <div>NGN 32,000.00</div>
+        <div>NGN {{ currencyFormat(totalPrice) }}</div>
       </div>
       <el-button
         type="primary"
@@ -64,6 +75,7 @@
 
 <script>
 import EmptyCartIcon from './EmptyCartIcon.vue'
+import { currencyFormat } from '~/static/functions'
 
 export default {
   props: {
@@ -73,26 +85,21 @@ export default {
     },
   },
   components: { EmptyCartIcon },
-  data: () => ({
-    cartItems: [
-      {
-        id: 1,
-        name: 'Vegetable Salad',
-        quantity: 4,
-        image:
-          'https://res.cloudinary.com/eden-life-inc/image/upload/v1670297362/dance-festival/coleslaw_gtez2c.png',
-        price: 'NGN 3,500.00',
-      },
-      {
-        id: 2,
-        name: 'Vegetable Salad',
-        quantity: 2,
-        image:
-          'https://res.cloudinary.com/eden-life-inc/image/upload/v1670297362/dance-festival/coleslaw_gtez2c.png',
-        price: 'NGN 3,500.00',
-      },
-    ],
-  }),
+  data: () => ({}),
+  computed: {
+    cartItems() {
+      return this.$store.state.cart
+    },
+    totalPrice() {
+      return this.cartItems.reduce(
+        (acc, val) => acc + val.price * val.quantity,
+        0
+      )
+    },
+  },
+  methods: {
+    currencyFormat,
+  },
 }
 </script>
 
@@ -126,10 +133,24 @@ export default {
 }
 ::v-deep .el-dialog {
   margin: 50px 50px 50px auto !important;
+  @include respond(md) {
+    margin: 0px !important;
+    width: 100% !important;
+    max-height: 100vh;
+  }
+
+  &__title {
+    font-weight: 500;
+    color: color(eden-grey-primary);
+  }
 
   &__body {
     display: flex;
     min-height: 50vh;
+    @include respond(md) {
+      min-height: 72vh;
+      width: 100%;
+    }
     width: 100%;
   }
 
@@ -181,7 +202,10 @@ export default {
       border-radius: 8px;
       margin-right: 10px;
       img {
-        height: 50px;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 8px;
       }
     }
 
@@ -210,6 +234,7 @@ export default {
       color: color(eden-neutral-1);
       font-size: 700;
       @include font-size(sm);
+      text-align: right;
     }
     &__counter {
       display: flex;

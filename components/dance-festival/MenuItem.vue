@@ -18,8 +18,11 @@
         class="decrease"
         :type="'control'"
         icon="el-icon-minus"
-        :disabled="form.qty === 0"
-        @click="form.qty--"
+        :disabled="form.qty <= 1"
+        @click="
+          form.qty--
+          added = false
+        "
       />
       <el-input v-model="form.qty" v-number type="text" readonly />
       <el-button
@@ -30,15 +33,19 @@
         class="increase"
         :type="'control'"
         icon="el-icon-plus"
-        @click="form.qty++"
+        @click="
+          form.qty++
+          added = false
+        "
       />
     </div>
     <button
+      @click="!added ? addToCart() : null"
       :disabled="form.qty < 1 || mealItem.available_quantity === 0"
       type="button"
       class="menu-item__action"
     >
-      Add to Cart
+      {{ added ? 'Added to Cart' : 'Add to Cart' }}
     </button>
   </div>
 </template>
@@ -54,9 +61,36 @@ export default {
     form: {
       qty: 0,
     },
+    added: false,
   }),
+
   methods: {
     currencyFormat,
+    addToCart() {
+      const cartItems = [...this.$store.state.cart]
+
+      const itemInCart = cartItems.find((item) => item.id === this.mealItem.id)
+      const itemInCartIndex = cartItems.findIndex(
+        (item) => item.id === this.mealItem.id
+      )
+
+      let itemToAdd = {}
+
+      if (itemInCart) {
+        itemToAdd = {
+          ...itemInCart,
+          quantity: this.form.qty + itemInCart.quantity,
+        }
+        console.log(itemToAdd, 'in cart')
+        this.$store.commit('editItem', itemToAdd, itemInCartIndex)
+      } else {
+        itemToAdd = { ...this.mealItem, quantity: this.form.qty }
+        console.log(itemToAdd, 'not in cart')
+        this.$store.commit('addItem', itemToAdd)
+      }
+
+      this.added = true
+    },
   },
 }
 </script>
@@ -77,7 +111,9 @@ export default {
     border-radius: 8px;
     img {
       height: 100%;
+      width: 100%;
       border-radius: 8px;
+      object-fit: cover;
     }
   }
   &__name {
@@ -125,12 +161,14 @@ export default {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         width: 15px;
+        font-weight: 500;
       }
 
       &.decrease {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
         width: 15px;
+        font-weight: 500;
       }
     }
   }

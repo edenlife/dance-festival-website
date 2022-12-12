@@ -90,24 +90,45 @@
         </info-box>
       </div>
       <div class="menu-list mt-2" id="menu-list">
-        <el-row :gutter="70">
-          <el-col
-            v-for="(mealItem, i) in mealItems"
-            :key="i"
-            :xs="24"
-            :sm="24"
-            :md="6"
-            :lg="6"
-            :xl="4"
-          >
-            <menu-item :meal-item="mealItem" />
-          </el-col>
-        </el-row>
-        <el-row type="flex" justify="center">
-          <el-col :xs="12" :sm="12" :md="4" :lg="4" :xl="4">
-            <el-button class="w-100" type="plain"> See More</el-button>
-          </el-col>
-        </el-row>
+        <div
+          v-if="!loading && visibleMealItems.length === 0"
+          class="menu__loader"
+        >
+          <p>No meal items for this category</p>
+        </div>
+        <div v-if="loading" class="menu__loader">
+          <Loader />
+          <p>Loading menu...</p>
+        </div>
+        <div v-else>
+          <el-row :gutter="70">
+            <el-col
+              v-for="(mealItem, i) in visibleMealItems"
+              :key="i"
+              :xs="24"
+              :sm="24"
+              :md="6"
+              :lg="6"
+              :xl="4"
+            >
+              <menu-item :meal-item="mealItem" />
+            </el-col>
+          </el-row>
+          <el-row type="flex" justify="center" v-if="itemsToAdd.length > 0">
+            <el-col :xs="12" :sm="12" :md="4" :lg="4" :xl="4">
+              <el-button
+                class="w-100"
+                type="plain"
+                @click="
+                  seeMore()
+                  page++
+                "
+              >
+                See More
+              </el-button>
+            </el-col>
+          </el-row>
+        </div>
       </div>
     </div>
   </div>
@@ -117,6 +138,7 @@
 import axios from 'axios'
 export default {
   components: {
+    Loader: () => import('@/components/Loader.vue'),
     MenuItem: () => import('@/components/dance-festival/MenuItem.vue'),
     InfoBox: () => import('@/components/dance-festival/InfoBox.vue'),
   },
@@ -151,19 +173,39 @@ export default {
       to: '1:00pm',
     },
     mealItems: [],
+    visibleMealItems: [],
+    loading: false,
+    page: 1,
   }),
+  computed: {
+    itemsToAdd() {
+      return this.mealItems.slice(0 + 12 * this.page, 12 * (this.page + 1) + 1)
+    },
+  },
   methods: {
     goto(id) {
       this.$router.replace({ name: this.$route.name, hash: `#${id}` })
     },
+    seeMore() {
+      this.visibleMealItems = [...this.visibleMealItems, ...this.itemsToAdd]
+    },
     async getMealItems() {
-      const { data } = await axios.get(
-        `https://api-onetime-orders.edenlife.ng/api/v2/festival/menu?filter=${this.currentTab.label?.toLowerCase()}`
-      )
+      try {
+        this.loading = true
+        const { data } = await axios.get(
+          `https://api-onetime-orders.edenlife.ng/api/v2/festival/menu?filter=${this.currentTab.label?.toLowerCase()}`
+        )
 
-      this.mealItems = data.data.data
+        this.mealItems = data.data.data
 
-      console.log(this.mealItems)
+        this.visibleMealItems = [...this.mealItems?.slice(0, 12)]
+        this.loading = false
+
+        console.log(this.mealItems)
+      } catch (error) {
+        console.log(error)
+        this.loading = false
+      }
     },
   },
   mounted() {
@@ -182,6 +224,14 @@ export default {
 @import '~/assets/scss/greenhouse/main.scss';
 
 .w-100 {
+  width: 100%;
+}
+
+.menu__loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
 

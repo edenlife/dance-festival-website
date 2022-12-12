@@ -121,31 +121,31 @@
               <p>Company</p>
             </li>
             <li @click="trackLink('About us')">
-              <nuxt-link
-                :to="{ path: '/about_us/' }"
+              <a
+                target="_blank"
+                href="https://ouredenlife.com/about_us/"
                 class="footer__bottom-logo"
-                @click.prevent="trackLink('About us')"
               >
                 About Us
-              </nuxt-link>
+              </a>
             </li>
             <li @click="trackLink('Companies')">
-              <nuxt-link
-                :to="{ path: '/companies/' }"
+              <a
+                target="_blank"
+                href="https://ouredenlife.com/companies/"
                 class="footer__bottom-logo"
-                @click.prevent="trackLink('Companies')"
               >
                 Companies
-              </nuxt-link>
+              </a>
             </li>
             <li @click="trackLink('Pricing')">
-              <nuxt-link
-                :to="{ path: '/pricing/' }"
+              <a
+                target="_blank"
+                href="https://ouredenlife.com/pricing/"
                 class="footer__bottom-logo"
-                @click.prevent="trackLink('Pricing')"
               >
                 Pricing
-              </nuxt-link>
+              </a>
             </li>
 
             <li @click="trackLink('Careers')">
@@ -163,41 +163,32 @@
               <p>Services</p>
             </li>
             <li @click="trackLink('Food')">
-              <nuxt-link
-                :to="{ path: '/food' }"
+              <a
+                target="_blank"
+                href="https://ouredenlife.com/food/"
                 class="footer__bottom-logo"
-                @click.prevent="trackLink('Food')"
               >
                 Food
-              </nuxt-link>
+              </a>
             </li>
             <li @click="trackLink('Cleaning')">
-              <nuxt-link
-                :to="{ path: '/cleaning' }"
+              <a
+                target="_blank"
+                href="https://ouredenlife.com/cleaning/"
                 class="footer__bottom-logo"
-                @click.prevent="trackLink('Cleaning')"
               >
                 Cleaning
-              </nuxt-link>
+              </a>
             </li>
             <li @click="trackLink('Laundry')">
-              <nuxt-link
-                :to="{ path: '/laundry' }"
+              <a
+                target="_blank"
+                href="https://ouredenlife.com/laundry/"
                 class="footer__bottom-logo"
-                @click.prevent="trackLink('Laundry')"
               >
                 Laundry
-              </nuxt-link>
+              </a>
             </li>
-            <!-- <li @click="trackLink('Gifting')">
-                <nuxt-link
-                  :to="{ path: '/gifts' }"
-                  class="footer__bottom-logo"
-                  @click.prevent="trackLink('Gifting')"
-                >
-                  Gifts
-                </nuxt-link>
-              </li> -->
           </ul>
 
           <ul>
@@ -214,40 +205,40 @@
               </nuxt-link>
             </li>
             <li @click="trackLink('Blog')">
-              <nuxt-link
-                :to="{ path: '/blog/' }"
+              <a
+                target="_blank"
+                href="https://ouredenlife.com/blog/"
                 class="footer__bottom-logo"
-                @click.prevent="trackLink('Blog')"
               >
                 Blog
-              </nuxt-link>
+              </a>
             </li>
             <li @click="trackLink('Contact us')">
-              <nuxt-link
-                :to="{ path: '/contact_us/' }"
+              <a
+                target="_blank"
+                href="https://ouredenlife.com/contact_us/"
                 class="footer__bottom-logo"
-                @click.prevent="trackLink('Contact us')"
               >
                 Contact Us
-              </nuxt-link>
+              </a>
             </li>
             <li @click="trackLink('T&C')">
-              <nuxt-link
-                :to="{ path: '/terms_and_conditions/' }"
+              <a
+                target="_blank"
+                href="https://ouredenlife.com/terms_and_conditions/"
                 class="footer__bottom-logo"
-                @click.prevent="trackLink('T&C')"
               >
                 Terms &amp; Conditions
-              </nuxt-link>
+              </a>
             </li>
             <li @click="trackLink('Privacy Policy')">
-              <nuxt-link
-                :to="{ path: '/privacy_policy/' }"
+              <a
+                target="_blank"
+                href="https://ouredenlife.com/privacy_policy/"
                 class="footer__bottom-logo"
-                @click.prevent="trackLink('Privacy Policy')"
               >
                 Privacy Policy
-              </nuxt-link>
+              </a>
             </li>
           </ul>
         </div>

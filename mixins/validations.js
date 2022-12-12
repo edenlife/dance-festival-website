@@ -8,6 +8,16 @@ const validatePhoneNumber = (rule, value, callback) => {
   }
 }
 
+const validatePassword = (rule, value, callback) => {
+  if (!value) {
+    callback(new Error('Password is required'))
+  } else if (value.length < 9) {
+    callback(new Error('Password must be above 6 digits.'))
+  } else {
+    callback()
+  }
+}
+
 const validatePhoneNumberNG = (rule, value, callback) => {
   if (!value) {
     callback(new Error('Phone number is required'))
@@ -77,6 +87,9 @@ export default {
     },
     validateName() {
       return [{ validator: validateName, trigger: 'blur' }]
+    },
+    validatePassword() {
+      return [{ validator: validatePassword, trigger: 'blur' }]
     },
   },
 }

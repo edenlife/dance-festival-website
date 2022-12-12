@@ -92,7 +92,7 @@
       <div class="menu-list mt-2" id="menu-list">
         <el-row :gutter="70">
           <el-col
-            v-for="i in 12"
+            v-for="(mealItem, i) in mealItems"
             :key="i"
             :xs="24"
             :sm="24"
@@ -100,7 +100,7 @@
             :lg="6"
             :xl="4"
           >
-            <menu-item />
+            <menu-item :meal-item="mealItem" />
           </el-col>
         </el-row>
         <el-row type="flex" justify="center">
@@ -114,6 +114,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   components: {
     MenuItem: () => import('@/components/dance-festival/MenuItem.vue'),
@@ -126,18 +127,21 @@ export default {
         date: 'Thur, Dec 20',
         from: '11:00am',
         to: '1:00pm',
+        id: 1,
       },
       {
         label: 'Lunch',
         date: 'Thur, Dec 20',
         from: '3:00pm',
         to: '5:00pm',
+        id: 2,
       },
       {
         label: 'Dinner',
         date: 'Thur, Dec 20',
         from: '7:00pm',
         to: '9:00pm',
+        id: 3,
       },
     ],
     currentTab: {
@@ -146,10 +150,28 @@ export default {
       from: '11:00am',
       to: '1:00pm',
     },
+    mealItems: [],
   }),
   methods: {
     goto(id) {
       this.$router.replace({ name: this.$route.name, hash: `#${id}` })
+    },
+    async getMealItems() {
+      const { data } = await axios.get(
+        `https://api-onetime-orders.edenlife.ng/api/v2/festival/menu?filter=${this.currentTab.label?.toLowerCase()}`
+      )
+
+      this.mealItems = data.data.data
+
+      console.log(this.mealItems)
+    },
+  },
+  mounted() {
+    this.getMealItems()
+  },
+  watch: {
+    currentTab(newV, oldV) {
+      if (newV !== oldV) this.getMealItems()
     },
   },
 }

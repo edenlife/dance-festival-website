@@ -2,12 +2,17 @@
   <div class="menu-item">
     <div class="menu-item__image img-hover-zoom">
       <img
-        src="https://res.cloudinary.com/eden-life-inc/image/upload/v1670551664/dance-festival/coleslaw-min_ajtkka.png"
+        :src="
+          mealItem.image_url ||
+          'https://res.cloudinary.com/eden-life-inc/image/upload/v1611230252/eden-website-v2/eden-logo_lcepc6.svg'
+        "
         alt="meal name"
       />
     </div>
-    <div class="menu-item__name">Vegetable Salad</div>
-    <div class="menu-item__price">NGN 3,500.00</div>
+    <div class="menu-item__name">{{ mealItem?.full_name }}</div>
+    <div class="menu-item__price">
+      {{ 'NGN ' + currencyFormat(mealItem.price) }}
+    </div>
     <div class="menu-item__counter">
       <el-button
         class="decrease"
@@ -18,25 +23,41 @@
       />
       <el-input v-model="form.qty" v-number type="text" readonly />
       <el-button
+        :disabled="
+          mealItem.available_quantity === 0 ||
+          form.qty >= mealItem.available_quantity
+        "
         class="increase"
         :type="'control'"
         icon="el-icon-plus"
         @click="form.qty++"
       />
     </div>
-    <button :disabled="form.qty < 1" type="button" class="menu-item__action">
+    <button
+      :disabled="form.qty < 1 || mealItem.available_quantity === 0"
+      type="button"
+      class="menu-item__action"
+    >
       Add to Cart
     </button>
   </div>
 </template>
 
 <script>
+import { currencyFormat } from '~/static/functions'
+
 export default {
+  props: {
+    mealItem: Object,
+  },
   data: () => ({
     form: {
       qty: 0,
     },
   }),
+  methods: {
+    currencyFormat,
+  },
 }
 </script>
 
@@ -55,11 +76,17 @@ export default {
     background: #eeeeee;
     border-radius: 8px;
     img {
-      height: 150px;
+      height: 100%;
+      border-radius: 8px;
     }
   }
   &__name {
     margin-top: 10px;
+    width: 100%;
+    display: inline-flex;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     margin-bottom: 10px;
     color: color(eden-neutral-1);
     font-weight: 500;

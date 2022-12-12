@@ -117,7 +117,7 @@
           <el-row type="flex" justify="center" v-if="itemsToAdd.length > 0">
             <el-col :xs="12" :sm="12" :md="4" :lg="4" :xl="4">
               <el-button
-                class="w-100"
+                class="w-100 see-more"
                 type="plain"
                 @click="
                   seeMore()
@@ -174,7 +174,7 @@ export default {
     },
     mealItems: [],
     visibleMealItems: [],
-    loading: false,
+    loading: true,
     page: 1,
   }),
   computed: {
@@ -255,6 +255,12 @@ export default {
       border: 1px solid color(eden-green-primary);
       font-weight: 500;
     }
+  }
+}
+
+.see-more {
+  @include respond(md) {
+    color: color(eden-green-primary);
   }
 }
 

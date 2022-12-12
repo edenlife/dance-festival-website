@@ -13,40 +13,42 @@
     <div class="menu-item__price">
       {{ 'NGN ' + currencyFormat(mealItem.price) }}
     </div>
-    <div class="menu-item__counter">
-      <el-button
-        class="decrease"
-        :type="'control'"
-        icon="el-icon-minus"
-        :disabled="form.qty <= 1"
-        @click="
-          form.qty--
-          added = false
-        "
-      />
-      <el-input v-model="form.qty" v-number type="text" readonly />
-      <el-button
-        :disabled="
-          mealItem.available_quantity === 0 ||
-          form.qty >= mealItem.available_quantity
-        "
-        class="increase"
-        :type="'control'"
-        icon="el-icon-plus"
-        @click="
-          form.qty++
-          added = false
-        "
-      />
+    <div class="actions">
+      <div class="menu-item__counter">
+        <el-button
+          class="decrease"
+          :type="'control'"
+          icon="el-icon-minus"
+          :disabled="form.qty <= 1"
+          @click="
+            form.qty--
+            added = false
+          "
+        />
+        <el-input v-model="form.qty" v-number type="text" readonly />
+        <el-button
+          :disabled="
+            mealItem.available_quantity === 0 ||
+            form.qty >= mealItem.available_quantity
+          "
+          class="increase"
+          :type="'control'"
+          icon="el-icon-plus"
+          @click="
+            form.qty++
+            added = false
+          "
+        />
+      </div>
+      <button
+        @click="!added ? addToCart() : null"
+        :disabled="form.qty < 1 || mealItem.available_quantity === 0"
+        type="button"
+        class="menu-item__action"
+      >
+        {{ added ? 'Added to Cart' : 'Add to Cart' }}
+      </button>
     </div>
-    <button
-      @click="!added ? addToCart() : null"
-      :disabled="form.qty < 1 || mealItem.available_quantity === 0"
-      type="button"
-      class="menu-item__action"
-    >
-      {{ added ? 'Added to Cart' : 'Add to Cart' }}
-    </button>
   </div>
 </template>
 
@@ -132,19 +134,22 @@ export default {
     font-weight: 500;
     @include font-size(lg);
   }
+  .actions {
+    width: 65%;
+  }
   &__counter {
     margin-top: 20px;
     margin-bottom: 10px;
     display: flex;
-    width: 80%;
+    width: 100%;
 
     .el-input {
-      width: 80px !important;
+      width: 100% !important;
 
       ::v-deep &__inner {
         height: 100% !important;
         padding: 0px 20px;
-        width: 80px !important;
+        width: 100% !important;
         text-align: center;
         border-left: none;
         border-right: none;
@@ -175,7 +180,7 @@ export default {
   &__action {
     margin-top: 20px;
     line-height: 23px;
-    width: 80%;
+    width: 100%;
     @include font-size(xs);
     background-color: color(eden-green-primary);
     color: color(eden-neutral-7);

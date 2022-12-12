@@ -83,7 +83,7 @@
                 </div>
                 <form action="" class="form">
                   <div class="form__group radios">
-                    <div class="form__group-radio">
+                    <div class="form__group-radio" v-if="false">
                       <input
                         id="flutterwave"
                         v-model="gateway"

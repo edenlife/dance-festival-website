@@ -1,6 +1,6 @@
 const type = 'website'
 const url = 'https://activity-fest.ouredenlife.com'
-const title = 'Eden + Activity Fest'
+const title = 'Life Is Electric'
 const description =
   'Eden Is Partying With 3,500 Activators at the Activity Fest'
 const mainImage =

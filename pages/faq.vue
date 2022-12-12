@@ -286,7 +286,7 @@
 
         <div class="faq__questions-item">
           <div class="faq__questions-title">
-            <h5>WHow would I get the meals I ordered?</h5>
+            <h5>How would I get the meals I ordered?</h5>
             <button
               type="button"
               class="expand"

@@ -259,9 +259,7 @@ export default {
 }
 
 .see-more {
-  @include respond(md) {
-    color: color(eden-green-primary);
-  }
+  color: color(eden-green-primary);
 }
 
 .pickup-info {
@@ -326,7 +324,8 @@ export default {
         font-size: 1.5rem;
         @include respond(md) {
           width: 60%;
-          line-height: 45px;
+          line-height: 35px;
+          margin-bottom: 10px;
         }
       }
 

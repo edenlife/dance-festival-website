@@ -91,16 +91,16 @@
       </div>
       <div class="menu-list mt-2" id="menu-list">
         <div
-          v-if="!loading && visibleMealItems.length === 0"
+          v-show="!loading && visibleMealItems.length === 0"
           class="menu__loader"
         >
           <p>No meal items for this category</p>
         </div>
-        <div v-if="loading" class="menu__loader">
+        <div v-show="loading" class="menu__loader">
           <Loader />
           <p>Loading menu...</p>
         </div>
-        <div v-else>
+        <div v-show="!loading && visibleMealItems.length > 0">
           <el-row :gutter="70">
             <el-col
               v-for="(mealItem, i) in visibleMealItems"
@@ -114,7 +114,7 @@
               <menu-item :meal-item="mealItem" />
             </el-col>
           </el-row>
-          <el-row type="flex" justify="center" v-if="itemsToAdd.length > 0">
+          <el-row type="flex" justify="center" v-show="itemsToAdd.length > 0">
             <el-col :xs="12" :sm="12" :md="4" :lg="4" :xl="4">
               <el-button
                 class="w-100 see-more"
@@ -196,7 +196,7 @@ export default {
           `https://api-onetime-orders.edenlife.ng/api/v2/festival/menu?filter=${this.currentTab.label?.toLowerCase()}`
         )
 
-        this.mealItems = data.data.data
+        this.mealItems = [...data.data.data]
 
         this.visibleMealItems = [
           ...this.mealItems?.slice(

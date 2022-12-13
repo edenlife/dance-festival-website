@@ -6,7 +6,7 @@
         Eden Is Partying With 3,500 Activators at <br />
         the Activity Fest.
       </div>
-      <div class="showcase-mobile" />
+      <div class="showcase-mobile"></div>
       <el-row
         justify="space-between"
         align="middle"
@@ -104,14 +104,14 @@
           <el-row :gutter="70">
             <el-col
               v-for="(mealItem, i) in visibleMealItems"
-              :key="i"
+              :key="`${mealItem.id}-${i}`"
               :xs="24"
               :sm="24"
               :md="6"
               :lg="6"
               :xl="4"
             >
-              <menu-item :meal-item="mealItem" />
+              <menu-item :key="`${mealItem.id}-${i}`" :meal-item="mealItem" />
             </el-col>
           </el-row>
           <el-row

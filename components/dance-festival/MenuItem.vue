@@ -83,11 +83,9 @@ export default {
           ...itemInCart,
           quantity: this.form.qty + itemInCart.quantity,
         }
-        console.log(itemToAdd, 'in cart')
         this.$store.commit('editItem', itemToAdd, itemInCartIndex)
       } else {
         itemToAdd = { ...this.mealItem, quantity: this.form.qty }
-        console.log(itemToAdd, 'not in cart')
         this.$store.commit('addItem', itemToAdd)
       }
 

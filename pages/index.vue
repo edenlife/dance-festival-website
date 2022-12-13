@@ -114,7 +114,11 @@
               <menu-item :meal-item="mealItem" />
             </el-col>
           </el-row>
-          <el-row type="flex" justify="center" v-show="itemsToAdd.length > 0">
+          <el-row
+            type="flex"
+            justify="center"
+            v-show="itemsToAdd.length > 0 && !loading"
+          >
             <el-col :xs="12" :sm="12" :md="4" :lg="4" :xl="4">
               <el-button
                 class="w-100 see-more"

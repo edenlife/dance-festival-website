@@ -239,13 +239,13 @@ export default {
     &__counter {
       display: flex;
       .el-input {
-        width: 30px !important;
+        width: 35px !important;
 
         ::v-deep &__inner {
           @include font-size(xs);
           height: 100% !important;
           padding: 0px 5px;
-          width: 30px !important;
+          width: 35px !important;
           text-align: center;
           border-left: none;
           border-right: none;

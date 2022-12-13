@@ -92,6 +92,7 @@ export default {
       }
 
       this.added = true
+      this.form.qty = 0
     },
   },
 }

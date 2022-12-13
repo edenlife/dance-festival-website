@@ -104,7 +104,11 @@
         </li>
       </ul>
       <div class="navigation__btn navigation__btn-container is-align-center">
-        <button style="display: flex" type="button" @click="cartOpen = true">
+        <button
+          style="display: flex; color: black"
+          type="button"
+          @click="cartOpen = true"
+        >
           <CartIcon :count="cart.length" /> &nbsp; Cart
         </button>
         <div>

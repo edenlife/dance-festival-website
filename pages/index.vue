@@ -198,10 +198,13 @@ export default {
 
         this.mealItems = data.data.data
 
-        this.visibleMealItems = [...this.mealItems?.slice(0, 12)]
+        this.visibleMealItems = [
+          ...this.mealItems?.slice(
+            0,
+            this.mealItems.length > 12 ? 12 : this.mealItems.length
+          ),
+        ]
         this.loading = false
-
-        console.log(this.mealItems)
       } catch (error) {
         console.log(error)
         this.loading = false

@@ -147,15 +147,6 @@
                 Pricing
               </a>
             </li>
-
-            <li @click="trackLink('Careers')">
-              <a
-                href="https://edenlife.notion.site/Careers-at-Eden-Life-d11c387e84a043fca66001dcf67c70e3"
-                target="_blank"
-              >
-                Careers
-              </a>
-            </li>
           </ul>
 
           <ul>
@@ -229,15 +220,6 @@
                 class="footer__bottom-logo"
               >
                 Terms &amp; Conditions
-              </a>
-            </li>
-            <li @click="trackLink('Privacy Policy')">
-              <a
-                target="_blank"
-                href="https://ouredenlife.com/privacy_policy/"
-                class="footer__bottom-logo"
-              >
-                Privacy Policy
               </a>
             </li>
           </ul>

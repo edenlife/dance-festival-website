@@ -117,7 +117,9 @@
           <el-row
             type="flex"
             justify="center"
-            v-show="itemsToAdd.length > 0 && !loading"
+            v-show="
+              itemsToAdd.length > 0 && !loading && visibleMealItems.length > 0
+            "
           >
             <el-col :xs="12" :sm="12" :md="4" :lg="4" :xl="4">
               <el-button
@@ -211,6 +213,7 @@ export default {
         this.loading = false
       } catch (error) {
         console.log(error)
+      } finally {
         this.loading = false
       }
     },

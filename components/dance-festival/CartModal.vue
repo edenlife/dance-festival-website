@@ -260,16 +260,20 @@ export default {
         @include font-size(xs);
         padding: 10px !important;
 
-        &.increase {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
+        ::v-deep &.increase {
+          border-top-left-radius: 0 !important;
+          border-top-right-radius: 4px !important;
+          border-bottom-right-radius: 4px !important;
+          border-bottom-left-radius: 0 !important;
           width: 10px;
           height: 10px;
         }
 
-        &.decrease {
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
+        ::v-deep &.decrease {
+          border-top-left-radius: 4px !important;
+          border-bottom-left-radius: 4px !important;
+          border-top-right-radius: 0 !important;
+          border-bottom-right-radius: 0 !important;
           width: 10px;
           height: 10px;
         }

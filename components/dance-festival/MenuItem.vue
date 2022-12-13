@@ -19,7 +19,7 @@
           class="decrease"
           :type="'control'"
           icon="el-icon-minus"
-          :disabled="form.qty <= 1"
+          :disabled="form.qty === 0"
           @click="
             form.qty--
             added = false

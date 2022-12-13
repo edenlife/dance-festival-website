@@ -1,8 +1,10 @@
 <template>
   <div>
-    <FestivalNavigation />
-    <Nuxt />
-    <FestivalFooter />
+    <client-only>
+      <FestivalNavigation />
+      <Nuxt />
+      <FestivalFooter />
+    </client-only>
   </div>
 </template>
 

@@ -317,15 +317,6 @@ export default {
       toggleButton.classList.toggle('toggle')
       this.showNavbar = !this.showNavbar
     },
-    handleCartToggle(menu) {
-      if (menu) {
-        mixpanelTrackEvent(`${menu} clicked - ${this.currentRoute} - Cart`)
-      }
-
-      const toggleButton = document.querySelector('.navigation__btn')
-      toggleButton.classList.toggle('toggle')
-      this.showMobileCart = !this.showMobileCart
-    },
   },
 }
 </script>

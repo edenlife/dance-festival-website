@@ -93,6 +93,16 @@
             FAQs
           </nuxt-link>
         </li>
+        <li style="margin-right: 30px">
+          <el-input
+            @change="debounce"
+            class="nav-search"
+            v-model="search"
+            prefix-icon="el-icon-search"
+            placeholder="Search"
+            type="text"
+          ></el-input>
+        </li>
         <li>
           <button
             type="button"
@@ -104,7 +114,11 @@
         </li>
       </ul>
       <div class="navigation__btn navigation__btn-container is-align-center">
+        <button @click="searchOpen = true">
+          <i class="el-icon-search" style="font-size: 1.2rem"></i>
+        </button>
         <button
+          class="ml-2"
           style="display: flex; color: black"
           type="button"
           @click="cartOpen = true"
@@ -112,7 +126,12 @@
           <CartIcon :count="cart.length" /> &nbsp; Cart
         </button>
         <div>
-          <button class="ml-2" type="button" @click="handleToggle()">
+          <button
+            class="ml-2"
+            :class="{ toggle: showNavbar }"
+            type="button"
+            @click="showNavbar = !showNavbar"
+          >
             <div class="line line1"></div>
             <div class="line line2"></div>
             <div class="line line3"></div>
@@ -186,6 +205,9 @@
     <div style="background: white; z-index: 999999999 !important">
       <CartModal :is-open="cartOpen" @close="cartOpen = false" />
     </div>
+    <div style="background: white; z-index: 999999999 !important">
+      <SearchModal :is-open="searchOpen" @close="searchOpen = false" />
+    </div>
   </div>
 </template>
 
@@ -194,13 +216,15 @@ import { scrollToApp, getNavigationColor } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import CartIcon from '~/components/dance-festival/CartIcon.vue'
 import CartModal from '~/components/dance-festival/CartModal.vue'
+import SearchModal from '~/components/dance-festival/SearchModal.vue'
 
 export default {
   name: 'Navigation',
-  components: { CartIcon, CartModal },
+  components: { CartIcon, CartModal, SearchModal },
   data() {
     return {
       service: '',
+      search: '',
       showService: false,
       switchLocation: false,
       showNavbar: false,
@@ -220,6 +244,7 @@ export default {
       locations: '',
       lightLogo: false,
       cartOpen: false,
+      searchOpen: false,
     }
   },
   computed: {
@@ -238,8 +263,13 @@ export default {
       this.routeUpdate = this.$nuxt.$route.path
       this.currentRoute = this.routeUpdate.replace('/', '')
     },
+    search(v) {
+      this.$store.commit('updateSearch', v)
+    },
   },
   mounted() {
+    this.$store.commit('updateSearch', '')
+
     window.addEventListener('scroll', this.handleScroll)
     window.addEventListener('resize', this.handleResize)
     const getRoute = this.$nuxt.$route.path
@@ -258,6 +288,13 @@ export default {
     // this.redirectCountry()
   },
   methods: {
+    debounce() {
+      if (this.search) {
+        if (this.$router.path !== '/search') {
+          this.$router.push('/search')
+        }
+      }
+    },
     getNavigationColor,
     openCart() {
       this.cartOpen = true
@@ -338,6 +375,17 @@ export default {
 
 .ml-2 {
   margin-left: 20px;
+}
+
+.nav-search {
+  height: 30px;
+  ::v-deep .el-input__inner {
+    height: 30px;
+  }
+
+  ::v-deep .el-input__prefix {
+    top: -15%;
+  }
 }
 
 .cart__card {

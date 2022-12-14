@@ -32,3 +32,9 @@
 .img-hover-zoom:hover img {
   transform: scale(1.2);
 }
+
+.el-dialog__headerbtn .el-dialog__close {
+  color: color(eden-red);
+  font-weight: 900;
+  font-size: 1.2rem;
+}

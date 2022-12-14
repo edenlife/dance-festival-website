@@ -14,7 +14,7 @@
       {{ 'NGN ' + currencyFormat(mealItem.price) }}
     </div>
     <div class="actions">
-      <div class="menu-item__counter">
+      <div class="menu-item__counter" v-if="mealItem.available_quantity > 0">
         <el-button
           class="decrease"
           :type="'control'"
@@ -40,6 +40,9 @@
           "
         />
       </div>
+      <el-tag v-else :type="''" effect="plain" class="out-of-stock"
+        >Out of stock</el-tag
+      >
       <button
         @click="!added ? addToCart() : null"
         :disabled="form.qty < 1 || mealItem.available_quantity === 0"
@@ -100,6 +103,26 @@ export default {
 @import '~/assets/scss/main.scss';
 @import '~/assets/scss/greenhouse/main.scss';
 
+::v-deep .el-icon-plus {
+  font-weight: 900;
+}
+
+::v-deep .el-icon-minus {
+  font-weight: 900;
+}
+
+.out-of-stock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  padding: 20px 30px;
+  cursor: pointer;
+  color: color(eden-red);
+  background-color: color(eden-red-50);
+  border: none;
+}
+
 .menu-item {
   margin-bottom: 60px;
   &__image {
@@ -118,12 +141,14 @@ export default {
     }
   }
   &__name {
+    display: flex;
     margin-top: 10px;
     width: 100%;
-    display: inline-flex;
+    display: inline-block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
     margin-bottom: 10px;
     color: color(eden-neutral-1);
     font-weight: 500;

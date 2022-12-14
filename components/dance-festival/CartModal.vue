@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     :title="`Your Cart (${cartItems.length})`"
-    width="25%"
+    width="400px"
     :visible="isOpen"
     @close="$emit('close')"
   >
@@ -34,6 +34,7 @@
               class="cart-item__remove"
               @click="$store.commit('removeItem', ix)"
             >
+              <i class="el-icon-minus"></i>
               Remove
             </div>
             <div class="cart-item__counter">
@@ -114,6 +115,7 @@ export default {
   align-items: center;
   height: 100%;
   width: 100%;
+  padding: 90px 0px;
   margin-top: auto;
   margin-bottom: auto;
 
@@ -220,15 +222,29 @@ export default {
 
     &__remove {
       @include font-size(xs);
-      font-style: italic;
-      text-decoration: underline;
-      color: color(eden-neutral-1);
+      display: flex;
+      align-items: center;
+
+      border-radius: 8px;
+      color: color(eden-red);
       cursor: pointer;
+
+      i {
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        background-color: color(eden-red-50);
+      }
     }
 
     &__name {
       color: color(eden-neutral-1);
       @include font-size(sm);
+      word-break: normal;
     }
     &__price {
       color: color(eden-neutral-1);

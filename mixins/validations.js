@@ -23,7 +23,7 @@ const validatePassword = (rule, value, callback) => {
   if (!value) {
     callback(new Error('Password is required'))
   } else if (value.length < 6) {
-    callback(new Error('Password must be above 6 digits.'))
+    callback(new Error('Password must be 6 or more characters.'))
   } else {
     callback()
   }

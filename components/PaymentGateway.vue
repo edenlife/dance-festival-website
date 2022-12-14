@@ -31,7 +31,6 @@
 
 <script type="text/javascript">
 import Paystack from 'vue-paystack'
-import { giftingApi } from '~/request/all.api'
 
 export default {
   name: 'PaymentGateway',
@@ -63,10 +62,10 @@ export default {
       type: String,
       required: true,
     },
-    order:{
-      type:Array,
-      required:true
-    }
+    order: {
+      type: Array,
+      required: true,
+    },
   },
   data() {
     return {
@@ -89,17 +88,17 @@ export default {
     },
     paystackMeta() {
       return {
-        user_name: this.customer.first_name+' '+this.customer.last_name,
+        user_name: this.customer.first_name + ' ' + this.customer.last_name,
         user_email: this.customer.email,
         password: this.customer.password,
         service: 'electronic-festival',
-        order_items: this.order.map(item=>{
+        order_items: this.order.map((item) => {
           return {
-            id:item.id,
-            price:item.price,
-            quantity:item.quantity
+            id: item.id,
+            price: item.price,
+            quantity: item.quantity,
           }
-        })
+        }),
       }
     },
     raveMeta() {
@@ -139,16 +138,16 @@ export default {
     close() {
       this.shouldShow = false
     },
-    async saveInformation() {
+    saveInformation() {
       try {
-        const payload = {
-          customer: this.customer,
-          recipient: this.recipient,
-          delivery: this.delivery,
-          items: JSON.stringify(this.$store.getters.cart),
-          total_amount: this.amount,
-        }
-        await giftingApi(payload)
+        // const payload = {
+        //   customer: this.customer,
+        //   recipient: this.recipient,
+        //   delivery: this.delivery,
+        //   items: JSON.stringify(this.$store.getters.cart),
+        //   total_amount: this.amount,
+        // }
+        // await giftingApi(payload)
         this.$emit('success')
         this.$store.commit('clearCart')
         this.shouldShow = false

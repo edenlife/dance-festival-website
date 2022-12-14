@@ -1,13 +1,14 @@
 <template>
   <el-dialog :title="``" width="25%" :visible="isOpen" @close="$emit('close')">
     <el-input
+      @change="$store.commit('updateSearch', $event)"
       v-model="search"
       prefix-icon="el-icon-search"
       type="text"
     ></el-input>
 
     <div style="min-height: 89vh; margin-top: -130px">
-      <Search is-modal />
+      <Search is-modal @close="$emit('close')" />
     </div>
   </el-dialog>
 </template>
@@ -26,11 +27,6 @@ export default {
     search: '',
   }),
   components: { Search },
-  watch: {
-    search(v) {
-      this.$store.commit('updateSearch', v)
-    },
-  },
 }
 </script>
 

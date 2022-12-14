@@ -96,7 +96,12 @@
           (isModal ? search.length > 0 : true)
         "
       >
-        <error-page :text="'No result found'" adaptation />
+        <error-page
+          :text="'No result found'"
+          adaptation
+          :in-modal="isModal"
+          @close="$emit('close')"
+        />
       </div>
       <div
         class="is-flex is-justify-center is-align-center mt-2"

@@ -10,7 +10,10 @@
           <p>{{ text }}</p>
         </div>
       </div>
-      <button class="error__message--btn" @click.prevent="gotoHome()">
+      <button
+        class="error__message--btn"
+        @click.prevent="inModal ? $emit('close') : gotoHome()"
+      >
         Back to homepage
       </button>
     </section>
@@ -25,6 +28,10 @@ export default {
       default: 'You seem to be lost. Let’s help you find your way back.',
     },
     adaptation: {
+      type: Boolean,
+      default: false,
+    },
+    inModal: {
       type: Boolean,
       default: false,
     },
@@ -47,6 +54,10 @@ export default {
 
     .error__message {
       padding: 90px;
+
+      @include respond(md) {
+        width: 100%;
+      }
     }
   }
 }

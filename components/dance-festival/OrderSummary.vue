@@ -35,10 +35,7 @@
         </info-box>
       </div>
     </div>
-    <div class="amount p-main">
-      <div>Subtotal</div>
-      <div>NGN {{ currencyFormat(totalPrice) }}</div>
-    </div>
+
     <div class="amount p-main">
       <div>Total</div>
       <div>NGN {{ currencyFormat(totalPrice) }}</div>

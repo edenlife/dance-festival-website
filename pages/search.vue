@@ -181,7 +181,10 @@ export default {
   },
   watch: {
     search(newV, oldV) {
-      if (newV !== oldV) {
+      if (!newV && !this.isModal) {
+        this.$router.go(-1)
+      }
+      if (newV !== oldV && newV) {
         this.getMealItems()
       }
     },

@@ -34,6 +34,7 @@
               class="cart-item__remove"
               @click="$store.commit('removeItem', ix)"
             >
+              <i class="el-icon-minus"></i>
               Remove
             </div>
             <div class="cart-item__counter">
@@ -220,11 +221,23 @@ export default {
 
     &__remove {
       @include font-size(xs);
-      background-color: color(eden-red-50);
-      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+
       border-radius: 8px;
       color: color(eden-red);
       cursor: pointer;
+
+      i {
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        background-color: color(eden-red-50);
+      }
     }
 
     &__name {

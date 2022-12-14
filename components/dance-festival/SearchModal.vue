@@ -1,5 +1,18 @@
 <template>
-  <el-dialog :title="``" width="25%" :visible="isOpen" @close="$emit('close')">
+  <el-dialog
+    :title="``"
+    width="25%"
+    :visible="isOpen"
+    @close="$emit('close')"
+    :show-close="false"
+  >
+    <template #title>
+      <div class="is-flex">
+        <div class="pointer" @click="$emit('close')">
+          <i class="el-icon-arrow-left" /> Back
+        </div>
+      </div>
+    </template>
     <el-input
       @change="$store.commit('updateSearch', $event)"
       v-model="search"
@@ -32,6 +45,14 @@ export default {
 
 <style lang="scss" scoped>
 @import '~/assets/scss/main.scss';
+
+.is-flex {
+  display: flex;
+}
+
+.pointer {
+  cursor: pointer;
+}
 
 ::v-deep .el-dialog {
   margin: 50px 50px 50px auto !important;

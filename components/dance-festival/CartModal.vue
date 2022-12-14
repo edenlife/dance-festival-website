@@ -257,12 +257,14 @@ export default {
       display: flex;
       .el-input {
         width: 35px !important;
-        height: 10px !important;
+        height: 100% !important;
+        max-height: 100% !important;
 
         ::v-deep &__inner {
           @include font-size(xs);
-          height: 10px !important;
-          padding: 0px 5px;
+          height: 100% !important;
+          max-height: 100% !important;
+          padding: 3px 5px;
           width: 35px !important;
           text-align: center;
           border-left: none;

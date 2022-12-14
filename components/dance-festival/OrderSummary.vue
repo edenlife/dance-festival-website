@@ -162,8 +162,12 @@ export default {
         background: #eeeeee;
         border-radius: 8px;
         margin-right: 10px;
+        overflow: hidden;
         img {
-          height: 50px;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          border-radius: 8px;
         }
       }
 

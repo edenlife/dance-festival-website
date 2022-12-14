@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     :title="`Your Cart (${cartItems.length})`"
-    width="25%"
+    width="400px"
     :visible="isOpen"
     @close="$emit('close')"
   >
@@ -115,6 +115,7 @@ export default {
   align-items: center;
   height: 100%;
   width: 100%;
+  padding: 90px 0px;
   margin-top: auto;
   margin-bottom: auto;
 

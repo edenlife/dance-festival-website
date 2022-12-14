@@ -218,6 +218,10 @@ export default {
   },
   mounted() {
     this.getMealItems()
+
+    if (!this.isModal) {
+      if (!this.search) this.$router.go(-1)
+    }
   },
 }
 </script>

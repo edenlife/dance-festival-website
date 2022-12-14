@@ -32,12 +32,12 @@
             >
               <el-row>
                 <el-col :md="24">
-                  <el-form-item label="Email address" prop="email">
-                    <el-input
-                      v-model="form.email"
-                      type="text"
-                      :rules="validateEmail()"
-                    />
+                  <el-form-item
+                    label="Email address"
+                    prop="email"
+                    :rules="validateEmail()"
+                  >
+                    <el-input v-model="form.email" type="text" />
                   </el-form-item>
                 </el-col>
               </el-row>
@@ -68,7 +68,11 @@
                     prop="phone_number"
                     :rules="validatePhone()"
                   >
-                    <el-input v-model="form.phone_number" type="text" />
+                    <el-input
+                      v-model="form.phone_number"
+                      type="text"
+                      max="11"
+                    />
                   </el-form-item>
                 </el-col>
               </el-row>

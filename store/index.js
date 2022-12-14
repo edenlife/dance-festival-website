@@ -2,6 +2,8 @@ export const state = () => ({
   cart: [],
   fromOrigin: null,
   country: null,
+  search: '',
+  searchItems: [],
 })
 
 export const getters = {
@@ -17,6 +19,9 @@ export const getters = {
 }
 
 export const mutations = {
+  updateSearch: (state, payload) => {
+    state.search = payload
+  },
   addItem: (state, payload) => {
     state.cart.push(payload)
     console.log(state.cart)

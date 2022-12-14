@@ -1,7 +1,9 @@
 <template>
   <div class="checkout">
-    <div class="pointer" @click="$router.go(-1)">
-      <i class="el-icon-arrow-left" /> Back
+    <div class="is-flex">
+      <div class="pointer" @click="handleBack">
+        <i class="el-icon-arrow-left" /> Back
+      </div>
     </div>
     <el-row class="sections" justify="center" :gutter="70">
       <el-col :md="12" :lg="12" :sm="24" class="sections__item">
@@ -277,6 +279,13 @@ export default {
     pay() {
       this.openPaymentGateway = true
     },
+    handleBack() {
+      if (this.tab === 'info') {
+        this.$router.go(-1)
+      } else if (this.tab === 'payment') {
+        this.tab = 'info'
+      }
+    },
   },
 }
 </script>
@@ -288,6 +297,10 @@ export default {
 
 .w-100 {
   width: 100%;
+}
+
+.is-flex {
+  display: flex;
 }
 
 .checkout {

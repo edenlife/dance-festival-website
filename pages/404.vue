@@ -1,5 +1,5 @@
 <template>
-  <div class="container--error">
+  <div class="container--error" :class="{ 'bg-transparent': adaptation }">
     <section class="error__message">
       <div class="error__message--description">
         <div class="error__message--icon">
@@ -7,7 +7,7 @@
         </div>
         <div class="error__message--text">
           <div class="error__message--text--arrow"></div>
-          <p>You seem to be lost. Let’s help you find your way back.</p>
+          <p>{{ text }}</p>
         </div>
       </div>
       <button class="error__message--btn" @click.prevent="gotoHome()">
@@ -19,6 +19,16 @@
 
 <script>
 export default {
+  props: {
+    text: {
+      type: String,
+      default: 'You seem to be lost. Let’s help you find your way back.',
+    },
+    adaptation: {
+      type: Boolean,
+      default: false,
+    },
+  },
   methods: {
     gotoHome() {
       this.$router.push('/')
@@ -29,4 +39,15 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/pages/_error.scss';
+
+.container--error {
+  &.bg-transparent {
+    background-color: transparent !important ;
+    background: transparent !important ;
+
+    .error__message {
+      padding: 90px;
+    }
+  }
+}
 </style>

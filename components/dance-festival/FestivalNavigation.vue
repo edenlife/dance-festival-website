@@ -93,6 +93,16 @@
             FAQs
           </nuxt-link>
         </li>
+        <li style="margin-right: 30px">
+          <el-input
+            @change="debounce"
+            class="nav-search"
+            v-model="search"
+            prefix-icon="el-icon-search"
+            placeholder="Search"
+            type="text"
+          ></el-input>
+        </li>
         <li>
           <button
             type="button"
@@ -201,6 +211,7 @@ export default {
   data() {
     return {
       service: '',
+      search: '',
       showService: false,
       switchLocation: false,
       showNavbar: false,
@@ -238,6 +249,9 @@ export default {
       this.routeUpdate = this.$nuxt.$route.path
       this.currentRoute = this.routeUpdate.replace('/', '')
     },
+    search(v) {
+      this.$store.commit('updateSearch', v)
+    },
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
@@ -258,6 +272,13 @@ export default {
     // this.redirectCountry()
   },
   methods: {
+    debounce() {
+      if (this.search) {
+        if (this.$router.path !== '/search') {
+          this.$router.push('/search')
+        }
+      }
+    },
     getNavigationColor,
     openCart() {
       this.cartOpen = true
@@ -338,6 +359,17 @@ export default {
 
 .ml-2 {
   margin-left: 20px;
+}
+
+.nav-search {
+  height: 30px;
+  ::v-deep .el-input__inner {
+    height: 30px;
+  }
+
+  ::v-deep .el-input__prefix {
+    top: -15%;
+  }
 }
 
 .cart__card {

@@ -220,15 +220,17 @@ export default {
 
     &__remove {
       @include font-size(xs);
-      font-style: italic;
-      text-decoration: underline;
-      color: color(eden-neutral-1);
+      background-color: color(eden-red-50);
+      padding: 10px 15px;
+      border-radius: 8px;
+      color: color(eden-red);
       cursor: pointer;
     }
 
     &__name {
       color: color(eden-neutral-1);
       @include font-size(sm);
+      word-break: normal;
     }
     &__price {
       color: color(eden-neutral-1);

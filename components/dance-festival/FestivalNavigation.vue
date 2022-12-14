@@ -163,7 +163,7 @@
                     <path
                       d="M1 1L5 5L9 1"
                       stroke="#21312A"
-                      stroke-width="1.5"
+                      stroke-width="2.5"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                     />

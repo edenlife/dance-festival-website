@@ -59,7 +59,7 @@
     </div>
     <span v-if="cartItems.length > 0" slot="footer" class="dialog-footer">
       <div class="amount">
-        <div>Subtotal</div>
+        <div>Total</div>
         <div>NGN {{ currencyFormat(totalPrice) }}</div>
       </div>
       <el-button

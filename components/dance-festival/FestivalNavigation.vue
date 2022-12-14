@@ -118,7 +118,7 @@
           <i class="el-icon-search" style="font-size: 1.2rem"></i>
         </button>
         <button
-          class="ml-2"
+          class="ml-3"
           style="display: flex; color: black"
           type="button"
           @click="cartOpen = true"
@@ -375,6 +375,10 @@ export default {
 
 .ml-2 {
   margin-left: 20px;
+}
+
+.ml-3 {
+  margin-left: 25px;
 }
 
 .nav-search {

@@ -31,7 +31,7 @@
               <el-row>
                 <el-col :md="24">
                   <el-form-item label="Email address" prop="email">
-                    <el-input v-model="form.email" type="text" />
+                    <el-input v-model="form.email" type="text" :rules="validateEmail()" />
                   </el-form-item>
                 </el-col>
               </el-row>
@@ -158,20 +158,28 @@
         <OrderSummary />
       </el-col>
     </el-row>
+    
+    <payment-success-modal
+      :show.sync="paymentCompleted"
+    />
+
     <payment-gateway
       :show.sync="openPaymentGateway"
       :amount="totalPrice"
-      :customer="customer"
+      :customer="form"
       :recipient="recipient"
       :delivery="delivery"
       :gateway="gateway"
+      :order="cartItems"
       @success="paymentCompleted = true"
     />
+   
   </div>
 </template>
 
 <script>
 import OrderSummary from '@/components/dance-festival/OrderSummary.vue'
+import PaymentSuccessModal from '@/components/dance-festival/PaymentSuccessModal.vue'
 import InfoBox from '@/components/dance-festival/InfoBox.vue'
 import validations from '~/mixins/validations'
 import PaymentGateway from '@/components/PaymentGateway'
@@ -179,6 +187,7 @@ import PaymentGateway from '@/components/PaymentGateway'
 export default {
   components: {
     OrderSummary,
+    PaymentSuccessModal,
     InfoBox,
     PaymentGateway,
   },
@@ -276,6 +285,7 @@ export default {
     },
     pay() {
       this.openPaymentGateway = true
+      console.log(this.gateway)
     },
   },
 }

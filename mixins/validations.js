@@ -1,3 +1,14 @@
+const validateEmail = (rule, value, callback) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!value) {
+    callback(new Error("This field is required"));
+  } else if (emailRegex.test(value) === false) {
+    callback(new Error("Email address is invalid"));
+  }else {
+    callback();
+  }
+};
+
 const validatePhoneNumber = (rule, value, callback) => {
   if (!value) {
     callback(new Error('Phone number is required'))
@@ -62,19 +73,22 @@ export default {
         },
       ]
     },
-    validateEmail(field) {
-      return [
-        {
-          required: true,
-          message: `${field || 'This field'} is required`,
-          trigger: ['change'],
-        },
-        {
-          type: 'email',
-          message: 'Email address is not valid',
-          trigger: ['blur'],
-        },
-      ]
+    // validateEmail(field) {
+    //   return [
+    //     {
+    //       required: true,
+    //       message: `${field || 'This field'} is required`,
+    //       trigger: ['change'],
+    //     },
+    //     {
+    //       type: 'email',
+    //       message: 'Email address is not valid',
+    //       trigger: ['blur'],
+    //     },
+    //   ]
+    // },
+    validateEmail(){
+      return [{validator: validateEmail,trigger:'blur'}]
     },
     validatePhone() {
       return [{ validator: validatePhoneNumber, trigger: 'blur' }]

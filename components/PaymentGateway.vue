@@ -4,8 +4,8 @@
     ref="paystack"
     :amount="amountInKobo"
     :email="customer.email"
-    :firstname="customer.firstName"
-    :lastname="customer.lastName"
+    :firstname="customer.first_name"
+    :lastname="customer.last_name"
     :metadata="paystackMeta"
     :paystackkey="paystackKey"
     :reference="reference"
@@ -30,13 +30,13 @@
 </template>
 
 <script type="text/javascript">
-// import Paystack from 'vue-paystack'
+import Paystack from 'vue-paystack'
 import { giftingApi } from '~/request/all.api'
 
 export default {
   name: 'PaymentGateway',
   components: {
-    // Paystack,
+    Paystack,
   },
   props: {
     show: {
@@ -63,6 +63,10 @@ export default {
       type: String,
       required: true,
     },
+    order:{
+      type:Array,
+      required:true
+    }
   },
   data() {
     return {
@@ -85,12 +89,17 @@ export default {
     },
     paystackMeta() {
       return {
-        custom_fields: [
-          {
-            display_name: '',
-            service: '',
-          },
-        ],
+        user_name: this.customer.first_name+' '+this.customer.last_name,
+        user_email: this.customer.email,
+        password: this.customer.password,
+        service: 'electronic-festival',
+        order_items: this.order.map(item=>{
+          return {
+            id:item.id,
+            price:item.price,
+            quantity:item.quantity
+          }
+        })
       }
     },
     raveMeta() {
@@ -111,6 +120,7 @@ export default {
   },
   created() {
     this.generateReference()
+    console.log(this.order)
   },
   methods: {
     generateReference() {

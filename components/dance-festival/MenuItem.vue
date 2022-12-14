@@ -14,7 +14,14 @@
       {{ 'NGN ' + currencyFormat(mealItem.price) }}
     </div>
     <div class="actions">
-      <div class="menu-item__counter" v-if="mealItem.available_quantity > 0">
+      <div
+        class="menu-item__counter"
+        v-if="
+          mealItem.available_quantity -
+            (cartItems.find((it) => it.id === mealItem.id)?.quantity || 0) >
+          0
+        "
+      >
         <el-button
           class="decrease"
           :type="'control'"
@@ -29,7 +36,9 @@
         <el-button
           :disabled="
             mealItem.available_quantity === 0 ||
-            form.qty >= mealItem.available_quantity
+            form.qty >=
+              mealItem.available_quantity -
+                (cartItems.find((it) => it.id === mealItem.id)?.quantity || 0)
           "
           class="increase"
           :type="'control'"
@@ -68,6 +77,11 @@ export default {
     },
     added: false,
   }),
+  computed: {
+    cartItems() {
+      return this.$store.state.cart
+    },
+  },
 
   methods: {
     currencyFormat,
@@ -121,6 +135,7 @@ export default {
   color: color(eden-red);
   background-color: color(eden-red-50);
   border: none;
+  margin-top: 20px;
 }
 
 .menu-item {

@@ -49,6 +49,7 @@
               <el-button
                 class="increase"
                 :type="'control'"
+                :disabled="item.quantity === item.available_quantity"
                 icon="el-icon-plus"
                 @click="$store.commit('increaseItemQuantity', ix)"
               />
@@ -256,10 +257,11 @@ export default {
       display: flex;
       .el-input {
         width: 35px !important;
+        height: 10px !important;
 
         ::v-deep &__inner {
           @include font-size(xs);
-          height: 100% !important;
+          height: 10px !important;
           padding: 0px 5px;
           width: 35px !important;
           text-align: center;

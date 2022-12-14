@@ -19,7 +19,7 @@
               </el-col>
               <el-col :span="15">
                 <div class="cart-item__price">
-                  {{ 'NGN ' + currencyFormat(item.price, 0) }}
+                  {{ 'NGN ' + currencyFormat(item.price) }}
                 </div>
               </el-col>
             </el-row>

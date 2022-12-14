@@ -127,7 +127,9 @@ export default {
       const fullDate = `${date.getDate()}${
         date.getMonth() + 1
       }${date.getHours()}${date.getMinutes()}`
-      this.reference = `EDEN-GIFTING-PAYMENT-${fullDate}`
+      this.reference = `EDEN-DANCE-FESTIVAL-PAYMENT-${fullDate}-${Math.floor(
+        100000 + Math.random() * 900000
+      )}`
     },
     callback(response) {
       if (response.status.includes('success')) {

@@ -126,7 +126,12 @@
           <CartIcon :count="cart.length" /> &nbsp; Cart
         </button>
         <div>
-          <button class="ml-2" type="button" @click="showNavbar = !showNavbar">
+          <button
+            class="ml-2"
+            :class="{ toggle: showNavbar }"
+            type="button"
+            @click="showNavbar = !showNavbar"
+          >
             <div class="line line1"></div>
             <div class="line line2"></div>
             <div class="line line3"></div>

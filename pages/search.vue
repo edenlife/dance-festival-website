@@ -1,12 +1,15 @@
 <template>
   <div class="search">
-    <div class="is-flex">
+    <div class="is-flex" v-if="!isModal">
       <div class="pointer" @click="$router.go(-1)">
         <i class="el-icon-arrow-left" /> Back
       </div>
     </div>
     <div>
-      <div class="text-center mt-2 explore-title">
+      <div
+        class="text-center mt-2 explore-title"
+        v-if="isModal ? search.length > 0 : true"
+      >
         Showing results for "{{ search }}"
       </div>
       <div v-if="!loading && visibleMealItems.length > 0">
@@ -86,12 +89,18 @@
           </div>
         </div>
       </div>
-      <div v-if="!loading && visibleMealItems.length === 0">
+      <div
+        v-if="
+          !loading &&
+          visibleMealItems.length === 0 &&
+          (isModal ? search.length > 0 : true)
+        "
+      >
         <error-page :text="'No result found'" adaptation />
       </div>
       <div
         class="is-flex is-justify-center is-align-center mt-2"
-        v-if="loading"
+        v-if="loading && (isModal ? search.length > 0 : true)"
       >
         <Loader />
         <p>Loading...</p>
@@ -112,6 +121,12 @@ export default {
     MenuItem,
     ErrorPage,
     Loader: () => import('@/components/Loader.vue'),
+  },
+  props: {
+    isModal: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     visibleMealItems: [],

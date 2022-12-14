@@ -114,7 +114,11 @@
         </li>
       </ul>
       <div class="navigation__btn navigation__btn-container is-align-center">
+        <button @click="searchOpen = true">
+          <i class="el-icon-search" style="font-size: 1.2rem"></i>
+        </button>
         <button
+          class="ml-2"
           style="display: flex; color: black"
           type="button"
           @click="cartOpen = true"
@@ -196,6 +200,9 @@
     <div style="background: white; z-index: 999999999 !important">
       <CartModal :is-open="cartOpen" @close="cartOpen = false" />
     </div>
+    <div style="background: white; z-index: 999999999 !important">
+      <SearchModal :is-open="searchOpen" @close="searchOpen = false" />
+    </div>
   </div>
 </template>
 
@@ -204,10 +211,11 @@ import { scrollToApp, getNavigationColor } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import CartIcon from '~/components/dance-festival/CartIcon.vue'
 import CartModal from '~/components/dance-festival/CartModal.vue'
+import SearchModal from '~/components/dance-festival/SearchModal.vue'
 
 export default {
   name: 'Navigation',
-  components: { CartIcon, CartModal },
+  components: { CartIcon, CartModal, SearchModal },
   data() {
     return {
       service: '',
@@ -231,6 +239,7 @@ export default {
       locations: '',
       lightLogo: false,
       cartOpen: false,
+      searchOpen: false,
     }
   },
   computed: {
@@ -254,6 +263,8 @@ export default {
     },
   },
   mounted() {
+    this.$store.commit('updateSearch', '')
+
     window.addEventListener('scroll', this.handleScroll)
     window.addEventListener('resize', this.handleResize)
     const getRoute = this.$nuxt.$route.path

@@ -199,7 +199,7 @@ export default {
       try {
         this.loading = true
         const { data } = await axios.get(
-          `https://api-onetime-orders.edenlife.ng/api/v2/festival/menu?filter=${this.currentTab.label?.toLowerCase()}`
+          `https://api-onetime-orders.edenlife.ng/api/v2/festival/menu?filter=${this.currentTab.label?.toLowerCase()}&per_page=1000`
         )
 
         this.mealItems = [...data.data.data]

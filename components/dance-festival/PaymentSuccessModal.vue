@@ -128,15 +128,15 @@
           />
           <p class="title">Payment successful!</p>
           <p class="body-text">
-            Your order will be ready for pick up at our booth at the Electronic
-            Dance Festival, on
-            <span class="text-primary">20th of December 2021.</span> Look out
-            for updates in your email.
+            Your order will be ready for pick up at our booth at the <br />
+            Electronic Dance Festival, on
+            <span class="text-primary">20th of December 2021.</span> <br />
+            Look out for updates in your email.
           </p>
           <div class="bordered-box">
             <div class="spaced" v-if="brunch.length">
               <span class="period-text">Brunch pickup period:</span>
-              <br/>
+              <br />
               <span class="time-text"
                 >Thur, Dec 20 at 11:00am
                 <i class="el-icon-right"></i> 1:00pm</span
@@ -144,7 +144,7 @@
             </div>
             <div class="top-border spaced" v-if="lunch.length">
               <span class="period-text">Lunch pickup period:</span>
-              <br/>
+              <br />
               <span class="time-text"
                 >Thur, Dec 20 at 3:00pm
                 <i class="el-icon-right"></i> 5:00pm</span
@@ -152,7 +152,7 @@
             </div>
             <div class="top-border spaced" v-if="dinner.length">
               <span class="period-text">Dinner pickup period:</span>
-              <br/>
+              <br />
               <span class="time-text"
                 >Thur, Dec 20 at 7:00pm
                 <i class="el-icon-right"></i> 9:00pm</span
@@ -252,6 +252,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    order: {
+      type: Array,
+      default: () => [],
+    },
   },
   data: () => ({
     currentRoute: 'Payment Success Modal',
@@ -261,33 +265,30 @@ export default {
     cartItems() {
       return this.$store.state.cart
     },
-    brunch(){
-      let brunch = this.cartItems.filter((item=>item.category_id === 1))
-      return brunch
+    brunch() {
+      return this.order.filter((item) => item.category_id === 1)
     },
-    lunch(){
-      let lunch = this.cartItems.filter((item=>item.category_id === 2))
-      return lunch
+    lunch() {
+      return this.order.filter((item) => item.category_id === 2)
     },
-    dinner(){
-      let dinner = this.cartItems.filter((item=>item.category_id === 3))
-      return dinner
-    }
+    dinner() {
+      return this.order.filter((item) => item.category_id === 3)
+    },
   },
   methods: {
-    unsecuredCopyToClipboard (){
-      //Creating textarea element
-      let textarea = document.createElement("textarea")
-      //Settings its value to the thing you want to copy
+    unsecuredCopyToClipboard() {
+      // Creating textarea element
+      let textarea = document.createElement('textarea')
+      // Settings its value to the thing you want to copy
       textarea.value = this.link
-      //Appending the textarea to body
+      // Appending the textarea to body
       document.body.appendChild(textarea)
-      //Selecting its content
+      // Selecting its content
       textarea.focus()
       textarea.select()
-      //Copying the selected content to clipboard
-      document.execCommand("copy")
-      //Removing the textarea
+      // Copying the selected content to clipboard
+      document.execCommand('copy')
+      // Removing the textarea
       document.body.removeChild(textarea)
       this.$message.success('Link copied!')
     },
@@ -296,15 +297,12 @@ export default {
       window.open(url, '_blank')
     },
     copy() {
-      
-     
       if (window.isSecureContext && navigator.clipboard) {
-        navigator.clipboard.writeText(this.link);
-         this.$message.success('Link copied!')
+        navigator.clipboard.writeText(this.link)
+        this.$message.success('Link copied!')
       } else {
-        this.unsecuredCopyToClipboard();
+        this.unsecuredCopyToClipboard()
       }
-
     },
   },
 }
@@ -314,11 +312,11 @@ export default {
 @import '~/assets/scss/main.scss';
 @import '~/assets/scss/greenhouse/main.scss';
 .bordered-box {
-  width: 445px;
+  width: 100%;
   border: 1px solid #e2e9e6;
   border-radius: 8px;
   margin-bottom: 10px;
-  @include respond(md){
+  @include respond(md) {
     width: 100%;
   }
 }
@@ -370,7 +368,7 @@ export default {
 }
 .spaced {
   padding: 15px 0px;
-  @include respond(md){
+  @include respond(md) {
     padding: 15px 10px;
     margin: 0;
     text-align: left;

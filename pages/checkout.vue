@@ -33,7 +33,11 @@
               <el-row>
                 <el-col :md="24">
                   <el-form-item label="Email address" prop="email">
-                    <el-input v-model="form.email" type="text" :rules="validateEmail()" />
+                    <el-input
+                      v-model="form.email"
+                      type="text"
+                      :rules="validateEmail()"
+                    />
                   </el-form-item>
                 </el-col>
               </el-row>
@@ -160,9 +164,11 @@
         <OrderSummary />
       </el-col>
     </el-row>
-    
+
     <payment-success-modal
       :show.sync="paymentCompleted"
+      :order="completedOrder"
+      @close="$router.go(-1)"
     />
 
     <payment-gateway
@@ -173,9 +179,11 @@
       :delivery="delivery"
       :gateway="gateway"
       :order="cartItems"
-      @success="paymentCompleted = true"
+      @success="
+        paymentCompleted = true
+        completedOrder = $event
+      "
     />
-   
   </div>
 </template>
 
@@ -207,6 +215,7 @@ export default {
     gateway: '',
     openPaymentGateway: false,
     paymentCompleted: false,
+    completedOrder: [],
     delivery: {
       to: 'me',
       city: '',

@@ -148,7 +148,7 @@ export default {
         //   total_amount: this.amount,
         // }
         // await giftingApi(payload)
-        this.$emit('success')
+        this.$emit('success', this.order)
         this.$store.commit('clearCart')
         this.shouldShow = false
       } catch (error) {}

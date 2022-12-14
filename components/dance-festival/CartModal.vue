@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     :title="`Your Cart (${cartItems.length})`"
-    width="400px"
+    width="27%"
     :visible="isOpen"
     @close="$emit('close')"
   >

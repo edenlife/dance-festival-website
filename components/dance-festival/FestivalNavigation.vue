@@ -114,7 +114,7 @@
         </li>
       </ul>
       <div class="navigation__btn navigation__btn-container is-align-center">
-        <button @click="searchOpen = true">
+        <button @click="searchOpen = true" style="color: black">
           <i class="el-icon-search" style="font-size: 1.2rem"></i>
         </button>
         <button

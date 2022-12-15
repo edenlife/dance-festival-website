@@ -73,12 +73,12 @@
                   >
                     <a href="https://wa.me/2348134254074"> Whatsapp</a>
                   </li>
-                  <li
+                  <!-- <li
                     class="navigation__menu-item trigger-chat"
                     @click.prevent="launchIntercom()"
                   >
                     Chat
-                  </li>
+                  </li> -->
                 </ul>
               </div>
             </transition>

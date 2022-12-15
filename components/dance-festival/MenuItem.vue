@@ -160,7 +160,6 @@ export default {
     margin-top: 10px;
     width: 100%;
     display: inline-block;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

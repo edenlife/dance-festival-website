@@ -58,7 +58,7 @@
             <p>Loading menu...</p>
           </div>
           <div v-show="!loading && visibleMealItems.length > 0">
-            <el-row type="flex" :gutter="70">
+            <el-row :gutter="70">
               <el-col
                 v-for="(mealItem, i) in visibleMealItems.filter(
                   (item) => item.category_id === currentTab.id

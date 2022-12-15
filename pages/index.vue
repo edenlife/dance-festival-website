@@ -6,7 +6,7 @@
         Eden Is Partying With 3,500 Activators at <br />
         the Activity Fest.
       </div>
-      <div class="showcase-mobile" />
+      <div class="showcase-mobile"></div>
       <el-row
         justify="space-between"
         align="middle"
@@ -90,32 +90,61 @@
         </info-box>
       </div>
       <div class="menu-list mt-2" id="menu-list">
-        <el-row :gutter="70">
-          <el-col
-            v-for="i in 12"
-            :key="i"
-            :xs="24"
-            :sm="24"
-            :md="6"
-            :lg="6"
-            :xl="4"
+        <div
+          v-show="!loading && visibleMealItems.length === 0"
+          class="menu__loader"
+        >
+          <p>No meal items for this category</p>
+        </div>
+        <div v-show="loading" class="menu__loader">
+          <Loader />
+          <p>Loading menu...</p>
+        </div>
+        <div v-show="!loading && visibleMealItems.length > 0">
+          <el-row :gutter="70">
+            <el-col
+              v-for="(mealItem, i) in visibleMealItems"
+              :key="`${mealItem.id}-${i}`"
+              :xs="24"
+              :sm="24"
+              :md="8"
+              :lg="6"
+              :xl="4"
+            >
+              <menu-item :key="`${mealItem.id}-${i}`" :meal-item="mealItem" />
+            </el-col>
+          </el-row>
+          <el-row
+            type="flex"
+            justify="center"
+            v-show="
+              itemsToAdd.length > 0 && !loading && visibleMealItems.length > 0
+            "
           >
-            <menu-item />
-          </el-col>
-        </el-row>
-        <el-row type="flex" justify="center">
-          <el-col :xs="12" :sm="12" :md="4" :lg="4" :xl="4">
-            <el-button class="w-100" type="plain"> See More</el-button>
-          </el-col>
-        </el-row>
+            <el-col :xs="12" :sm="12" :md="4" :lg="4" :xl="4">
+              <el-button
+                class="w-100 see-more"
+                type="plain"
+                @click="
+                  seeMore()
+                  page++
+                "
+              >
+                See More
+              </el-button>
+            </el-col>
+          </el-row>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   components: {
+    Loader: () => import('@/components/Loader.vue'),
     MenuItem: () => import('@/components/dance-festival/MenuItem.vue'),
     InfoBox: () => import('@/components/dance-festival/InfoBox.vue'),
   },
@@ -126,18 +155,21 @@ export default {
         date: 'Thur, Dec 20',
         from: '11:00am',
         to: '1:00pm',
+        id: 1,
       },
       {
         label: 'Lunch',
         date: 'Thur, Dec 20',
         from: '3:00pm',
         to: '5:00pm',
+        id: 2,
       },
       {
         label: 'Dinner',
         date: 'Thur, Dec 20',
         from: '7:00pm',
         to: '9:00pm',
+        id: 3,
       },
     ],
     currentTab: {
@@ -146,10 +178,54 @@ export default {
       from: '11:00am',
       to: '1:00pm',
     },
+    mealItems: [],
+    visibleMealItems: [],
+    loading: true,
+    page: 1,
   }),
+  computed: {
+    itemsToAdd() {
+      return this.mealItems.slice(0 + 12 * this.page, 12 * (this.page + 1) + 1)
+    },
+  },
   methods: {
     goto(id) {
       this.$router.replace({ name: this.$route.name, hash: `#${id}` })
+    },
+    seeMore() {
+      this.visibleMealItems = [...this.visibleMealItems, ...this.itemsToAdd]
+    },
+    async getMealItems() {
+      try {
+        this.loading = true
+        const { data } = await axios.get(
+          `${
+            process.env.DANCE_FESTIVAL_API
+          }/festival/menu?filter=${this.currentTab.label?.toLowerCase()}&per_page=1000`
+        )
+
+        this.mealItems = [...data.data.data]
+
+        this.visibleMealItems = [
+          ...this.mealItems?.slice(
+            0,
+            this.mealItems.length > 12 ? 12 : this.mealItems.length
+          ),
+        ]
+        this.loading = false
+      } catch (error) {
+        console.log(error)
+      } finally {
+        this.loading = false
+      }
+    },
+  },
+  mounted() {
+    this.getMealItems()
+  },
+  watch: {
+    currentTab(newV, oldV) {
+      if (newV !== oldV) this.getMealItems()
     },
   },
 }
@@ -160,6 +236,14 @@ export default {
 @import '~/assets/scss/greenhouse/main.scss';
 
 .w-100 {
+  width: 100%;
+}
+
+.menu__loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
@@ -184,6 +268,10 @@ export default {
       font-weight: 500;
     }
   }
+}
+
+.see-more {
+  color: color(eden-green-primary);
 }
 
 .pickup-info {
@@ -248,7 +336,8 @@ export default {
         font-size: 1.5rem;
         @include respond(md) {
           width: 60%;
-          line-height: 45px;
+          line-height: 35px;
+          margin-bottom: 10px;
         }
       }
 

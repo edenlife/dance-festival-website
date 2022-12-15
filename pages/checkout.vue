@@ -1,12 +1,18 @@
 <template>
   <div class="checkout">
-    <span class="pointer" @click="$router.go(-1)"
-      ><i class="el-icon-arrow-left" /> Back</span
-    >
-    <el-row class="sections" :gutter="70">
-      <el-col :md="12" :lg="12" :sm="24">
+    <div class="is-flex">
+      <div class="pointer" @click="handleBack">
+        <i class="el-icon-arrow-left" /> Back
+      </div>
+    </div>
+    <el-row class="sections" justify="center" :gutter="70">
+      <el-col :md="12" :lg="12" :sm="24" class="sections__item">
         <el-tabs v-model="tab" @tab-click="updateRouteQuery">
-          <el-tab-pane label="Your Info" name="info">
+          <el-tab-pane
+            :disabled="tab === 'payment'"
+            label="Your Info"
+            name="info"
+          >
             <p class="title">Your Information</p>
             <p class="description">
               Please enter your information to create an account in other to
@@ -24,10 +30,18 @@
               :model="form"
               label-position="top"
             >
-              <el-row :gutter="20">
+              <el-row>
                 <el-col :md="24">
-                  <el-form-item label="Email address" prop="email">
-                    <el-input v-model="form.email" type="text" />
+                  <el-form-item
+                    label="Email address"
+                    prop="email"
+                    :rules="validateEmail()"
+                  >
+                    <el-input
+                      v-model="form.email"
+                      @change="handleEmail"
+                      type="text"
+                    />
                   </el-form-item>
                 </el-col>
               </el-row>
@@ -51,30 +65,52 @@
                   </el-form-item>
                 </el-col>
               </el-row>
-              <el-row :gutter="20">
+              <el-row>
                 <el-col :md="24">
-                  <el-form-item label="Phone Number" prop="phone_number">
-                    <el-input v-model="form.phone_number" type="text" />
+                  <el-form-item
+                    label="Phone Number"
+                    prop="phone_number"
+                    :rules="validatePhone()"
+                  >
+                    <el-input
+                      v-model="form.phone_number"
+                      type="number"
+                      max="11"
+                    />
                   </el-form-item>
                 </el-col>
               </el-row>
-              <el-row :gutter="20">
+              <el-row v-if="!hasUser">
                 <el-col :md="24">
-                  <el-form-item label="Password" prop="password">
-                    <el-input v-model="form.password" type="text" />
+                  <el-form-item
+                    label="Password"
+                    prop="password"
+                    :rules="validatePassword()"
+                  >
+                    <el-input v-model="form.password" type="password" />
                   </el-form-item>
                 </el-col>
               </el-row>
               <el-row>
                 <el-col :span="24">
-                  <el-button class="w-100" type="primary"
-                    >Proceed to payment</el-button
+                  <el-button
+                    :disabled="proceedDisabled"
+                    @click="tab = 'payment'"
+                    class="w-100"
+                    type="primary"
+                    >{{
+                      !checkingUser ? 'Proceed to payment' : 'Checking...'
+                    }}</el-button
                   >
                 </el-col>
               </el-row>
             </el-form>
           </el-tab-pane>
-          <el-tab-pane label="Payment" name="payment">
+          <el-tab-pane
+            :disabled="tab === 'info'"
+            label="Payment"
+            name="payment"
+          >
             <transition name="slide-fade">
               <div>
                 <div class="checkout-list__form__title">
@@ -126,32 +162,46 @@
                     type="primary"
                     :disabled="gateway === ''"
                     @click.prevent="pay"
-                    >Proceed to payment</el-button
                   >
+                    Pay
+                  </el-button>
                 </form>
               </div>
             </transition>
           </el-tab-pane>
         </el-tabs>
       </el-col>
-      <el-col :md="12" :lg="12" :sm="24">
+      <el-col :md="12" :lg="12" :sm="24" class="sections__item">
         <OrderSummary />
       </el-col>
     </el-row>
+
+    <payment-success-modal
+      :show.sync="paymentCompleted"
+      :order="completedOrder"
+      @close="$router.go(-1)"
+    />
+
     <payment-gateway
       :show.sync="openPaymentGateway"
-      :amount="subTotal"
-      :customer="customer"
+      :amount="totalPrice"
+      :customer="form"
       :recipient="recipient"
       :delivery="delivery"
       :gateway="gateway"
-      @success="paymentCompleted = true"
+      :order="cartItems"
+      @success="
+        paymentCompleted = true
+        completedOrder = $event
+      "
     />
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import OrderSummary from '@/components/dance-festival/OrderSummary.vue'
+import PaymentSuccessModal from '@/components/dance-festival/PaymentSuccessModal.vue'
 import InfoBox from '@/components/dance-festival/InfoBox.vue'
 import validations from '~/mixins/validations'
 import PaymentGateway from '@/components/PaymentGateway'
@@ -159,6 +209,7 @@ import PaymentGateway from '@/components/PaymentGateway'
 export default {
   components: {
     OrderSummary,
+    PaymentSuccessModal,
     InfoBox,
     PaymentGateway,
   },
@@ -173,18 +224,45 @@ export default {
       phone_number: '',
       password: '',
     },
-    gateway: '',
+    gateway: 'paystack',
     openPaymentGateway: false,
     paymentCompleted: false,
+    completedOrder: [],
     delivery: {
       to: 'me',
       city: '',
       address: '',
     },
+    formValid: false,
+    hasUser: false,
+    checkingUser: false,
   }),
   computed: {
-    subTotal() {
-      return 30000
+    proceedDisabled() {
+      return this.hasUser
+        ? !this.form.first_name ||
+            !this.form.last_name ||
+            !this.form.email ||
+            !this.form.phone_number ||
+            this.form.phone_number.length !== 11 ||
+            !this.form.email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
+        : !this.form.password ||
+            this.form.password.length < 6 ||
+            !this.form.first_name ||
+            !this.form.last_name ||
+            !this.form.email ||
+            !this.form.phone_number ||
+            this.form.phone_number.length !== 11 ||
+            !this.form.email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
+    },
+    cartItems() {
+      return this.$store.state.cart
+    },
+    totalPrice() {
+      return this.cartItems.reduce(
+        (acc, val) => acc + val.price * val.quantity,
+        0
+      )
     },
     recipient() {
       return {
@@ -210,7 +288,64 @@ export default {
       this.tab = currentTab
     }
   },
+  //   watch: {
+  //     form: {
+  //       handler() {
+  //         this.checkForm()
+  //       },
+  //       deep: true,
+  //     },
+  //   },
   methods: {
+    handleEmail() {
+      if (this.form.email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
+        this.checkIfUserExist()
+      }
+    },
+    checkForm() {
+      const fields = this.$refs.form_profile.fields
+      if (fields.find((f) => f.validateState === 'validating')) {
+        setTimeout(() => {
+          this.checkForm()
+        }, 100)
+      } else {
+        this.formValid = fields.every((f) => {
+          const valid = f.required && f.validateState === 'success'
+          const notErroring = !f.required && f.validateState !== 'error'
+          console.log(f, valid, notErroring)
+          return valid || notErroring
+        }, true)
+      }
+      console.log('valid:', this.formValid)
+    },
+    async checkIfUserExist() {
+      try {
+        this.checkingUser = true
+        const res = await axios.get(
+          `${process.env.DANCE_FESTIVAL_API}/festival/customer/email`,
+          {
+            params: {
+              email: this.form.email,
+            },
+          }
+        )
+
+        if (typeof res.data === 'object') {
+          this.hasUser = true
+          this.form.first_name = res.data?.first_name
+          this.form.last_name = res.data?.last_name
+          this.form.email = res.data?.email
+        } else {
+          this.hasUser = false
+        }
+
+        this.checkingUser = false
+      } catch (error) {
+        console.log(error)
+      } finally {
+        this.checkingUser = false
+      }
+    },
     updateRouteQuery(tab) {
       const currentTab = this.$route.query.tab
 
@@ -241,6 +376,14 @@ export default {
     },
     pay() {
       this.openPaymentGateway = true
+      console.log(this.gateway)
+    },
+    handleBack() {
+      if (this.tab === 'info') {
+        this.$router.go(-1)
+      } else if (this.tab === 'payment') {
+        this.tab = 'info'
+      }
     },
   },
 }
@@ -255,8 +398,13 @@ export default {
   width: 100%;
 }
 
+.is-flex {
+  display: flex;
+}
+
 .checkout {
   padding: 130px 130px;
+  max-width: 100%;
   @include respond(md) {
     padding: 150px 10px 80px 10px;
   }
@@ -268,10 +416,17 @@ export default {
   .sections {
     margin-top: 30px;
     @include respond(md) {
-      margin-left: -35px;
-      margin-right: -35px;
+      margin-right: 0px !important;
+      margin-left: 0px !important;
       padding-right: 10px;
       padding-left: 10px;
+    }
+
+    &__item {
+      @include respond(md) {
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+      }
     }
   }
 

@@ -73,12 +73,12 @@
                   >
                     <a href="https://wa.me/2348134254074"> Whatsapp</a>
                   </li>
-                  <li
+                  <!-- <li
                     class="navigation__menu-item trigger-chat"
                     @click.prevent="launchIntercom()"
                   >
                     Chat
-                  </li>
+                  </li> -->
                 </ul>
               </div>
             </transition>
@@ -87,11 +87,21 @@
         <li
           style="margin-right: 30px"
           @mouseenter.stop="showService = false"
-          @click="trackLink('Pricing')"
+          @click="trackLink('FAQ')"
         >
           <nuxt-link :to="{ path: '/faq' }" class="navigation__menu-item">
             FAQs
           </nuxt-link>
+        </li>
+        <li style="margin-right: 30px">
+          <el-input
+            @change="debounce"
+            class="nav-search"
+            v-model="search"
+            prefix-icon="el-icon-search"
+            placeholder="Search"
+            type="text"
+          ></el-input>
         </li>
         <li>
           <button
@@ -99,23 +109,105 @@
             class="expand is-flex is-align-center"
             @click.prevent="openCart"
           >
-            <CartIcon /> &nbsp; Cart
+            <CartIcon :count="cart.length" /> &nbsp; Cart
           </button>
         </li>
       </ul>
-      <button class="navigation__btn" type="button" @click="handleToggle()">
-        <CartIcon />
-      </button>
-
+      <div class="navigation__btn navigation__btn-container is-align-center">
+        <button @click="searchOpen = true" style="color: black">
+          <i class="el-icon-search" style="font-size: 1.2rem"></i>
+        </button>
+        <button
+          class="ml-3"
+          style="display: flex; color: black"
+          type="button"
+          @click="cartOpen = true"
+        >
+          <CartIcon :count="cart.length" /> &nbsp; Cart
+        </button>
+        <div>
+          <button
+            class="ml-2"
+            :class="{ toggle: showNavbar }"
+            type="button"
+            @click="showNavbar = !showNavbar"
+          >
+            <div class="line line1"></div>
+            <div class="line line2"></div>
+            <div class="line line3"></div>
+          </button>
+        </div>
+      </div>
       <transition name="slide">
         <div v-if="showNavbar" class="navigation__mobile">
-          <div class="cart__card">
-            <CartCard />
-          </div>
+          <ul class="menu">
+            <li class="menu--list" @click.prevent="handleToggle('FAQ')">
+              <nuxt-link :to="{ path: '/faq' }" class="navigation__mobile-item">
+                FAQs
+              </nuxt-link>
+            </li>
+
+            <li class="menu--list">
+              <div class="navigation__mobile-item service">
+                <div>Support</div>
+                <div class="service--icon" @click="contactToggle()">
+                  <svg
+                    class="arrow"
+                    :class="{ expanded: contactVisible }"
+                    width="10"
+                    height="6"
+                    viewBox="0 0 10 6"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 1L5 5L9 1"
+                      stroke="#21312A"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <transition name="slide-fade">
+                <ul v-if="contactVisible" class="">
+                  <li
+                    class="menu--list-item contact"
+                    @click="trackLink('Contact Us')"
+                  >
+                    <a href="tel:+2348134254074"> +2348134254074</a>
+                  </li>
+                  <li
+                    class="menu--list-item contact"
+                    @click="trackLink('Contact Us')"
+                  >
+                    <a href="https://wa.me/2348134254074"> Whatsapp</a>
+                  </li>
+                  <li
+                    class="menu--list-item contact trigger-chat"
+                    @click.prevent="
+                      handleToggle('Contact Us')
+                      launchIntercom()
+                    "
+                  >
+                    <nuxt-link :to="{ path: '/contact_us' }">
+                      Message
+                    </nuxt-link>
+                  </li>
+                </ul>
+              </transition>
+            </li>
+          </ul>
         </div>
       </transition>
     </nav>
-    <CartModal :is-open="cartOpen" @close="cartOpen = false" />
+    <div style="background: white; z-index: 999999999 !important">
+      <CartModal :is-open="cartOpen" @close="cartOpen = false" />
+    </div>
+    <div style="background: white; z-index: 999999999 !important">
+      <SearchModal :is-open="searchOpen" @close="searchOpen = false" />
+    </div>
   </div>
 </template>
 
@@ -124,17 +216,19 @@ import { scrollToApp, getNavigationColor } from '~/static/functions'
 import { mixpanelTrackEvent } from '~/plugins/mixpanel'
 import CartIcon from '~/components/dance-festival/CartIcon.vue'
 import CartModal from '~/components/dance-festival/CartModal.vue'
-import CartCard from '~/components/dance-festival/CartCard.vue'
+import SearchModal from '~/components/dance-festival/SearchModal.vue'
 
 export default {
   name: 'Navigation',
-  components: { CartIcon, CartModal, CartCard },
+  components: { CartIcon, CartModal, SearchModal },
   data() {
     return {
       service: '',
+      search: '',
       showService: false,
       switchLocation: false,
       showNavbar: false,
+      showMobileCart: true,
       showContact: false,
       visible: false,
       contactVisible: false,
@@ -150,35 +244,18 @@ export default {
       locations: '',
       lightLogo: false,
       cartOpen: false,
+      searchOpen: false,
     }
   },
   computed: {
-    serviceNav() {
-      if (
-        this.currentRoute === 'laundry' ||
-        this.currentRoute === 'cleaning' ||
-        this.currentRoute === 'food'
-      ) {
-        return false
-      } else {
-        return true
-      }
-    },
-    hideCompanies() {
-      if (this.currentRoute === 'eden_means_easy') {
-        return true
-      } else {
-        return false
-      }
-    },
     giftLanding() {
       return (
         this.currentRoute.includes('gift') ||
         this.currentRoute.includes('ramadan')
       )
     },
-    authenticated() {
-      return !!this.$store.getters.getGreenhouseToken
+    cart() {
+      return this.$store.state.cart
     },
   },
   watch: {
@@ -186,8 +263,13 @@ export default {
       this.routeUpdate = this.$nuxt.$route.path
       this.currentRoute = this.routeUpdate.replace('/', '')
     },
+    search(v) {
+      this.$store.commit('updateSearch', v)
+    },
   },
   mounted() {
+    this.$store.commit('updateSearch', '')
+
     window.addEventListener('scroll', this.handleScroll)
     window.addEventListener('resize', this.handleResize)
     const getRoute = this.$nuxt.$route.path
@@ -206,14 +288,13 @@ export default {
     // this.redirectCountry()
   },
   methods: {
-    // async redirectCountry() {
-    //   let data = await fetch(`https://ipapi.co/json/`).then((res) => res.json())
-    //   data = data
-    //   if (data.country_code === 'GB') {
-    //     console.log('Byeee')
-    //     this.$router.push({ path: this.locationRoute('KE') })
-    //   }
-    // },
+    debounce() {
+      if (this.search) {
+        if (this.$router.path !== '/search') {
+          this.$router.push('/search')
+        }
+      }
+    },
     getNavigationColor,
     openCart() {
       this.cartOpen = true
@@ -223,20 +304,6 @@ export default {
       this.window.height = window.innerHeight
       if (this.showNavbar && this.window.width > '768') {
         this.handleToggle()
-      }
-    },
-    locationRoute(country) {
-      if (country === 'NG') {
-        const pathArr = this.$nuxt.$route.path.split('/')
-        if (this.$nuxt.$route.path.includes('ke')) {
-          return `/${pathArr.slice(2).join('/')}`
-        }
-      }
-      if (country === 'KE') {
-        const pathArr = this.$nuxt.$route.path.split('/')
-        if (!this.$nuxt.$route.path.includes('ke')) {
-          return `/ke${pathArr.join('/')}`
-        }
       }
     },
     handleScroll() {
@@ -269,21 +336,7 @@ export default {
         this.scrollToSection('#eden-easy-form', 'Get Started')
       } else scrollToApp(id, `${this.currentRoute} - Navbar`)
     },
-    greenhouseSignUp() {
-      if (this.currentRoute === '') {
-        mixpanelTrackEvent(`Get Started Clicked - homepage - Navbar `)
-      } else if (this.currentRoute.includes('easy')) {
-        this.scrollToSection('#eden-easy-form', 'Get Started')
-      } else
-        mixpanelTrackEvent(
-          `Get Started clicked - ${this.currentRoute} - Navbar`
-        )
-      if (this.authenticated) {
-        this.$router.push('/home')
-      } else {
-        this.$router.push({ name: 'signup', query: this.$route.query })
-      }
-    },
+
     launchIntercom() {
       this.$intercom('show')
     },
@@ -292,9 +345,7 @@ export default {
       const scrollToElement = document.querySelector(id)
       scrollToElement.scrollIntoView()
     },
-    serviceToggle() {
-      this.visible = !this.visible
-    },
+
     contactToggle() {
       this.contactVisible = !this.contactVisible
     },
@@ -320,6 +371,25 @@ export default {
 
 .is-align-center {
   align-items: center;
+}
+
+.ml-2 {
+  margin-left: 20px;
+}
+
+.ml-3 {
+  margin-left: 25px;
+}
+
+.nav-search {
+  height: 30px;
+  ::v-deep .el-input__inner {
+    height: 30px;
+  }
+
+  ::v-deep .el-input__prefix {
+    top: -15%;
+  }
 }
 
 .cart__card {

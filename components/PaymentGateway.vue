@@ -4,14 +4,15 @@
     ref="paystack"
     :amount="amountInKobo"
     :email="customer.email"
-    :firstname="customer.firstName"
-    :lastname="customer.lastName"
+    :firstname="customer.first_name"
+    :lastname="customer.last_name"
     :metadata="paystackMeta"
     :paystackkey="paystackKey"
     :reference="reference"
     :callback="callback"
     :close="close"
     :embed="false"
+    :channels="['card', 'bank', 'bank_transfer']"
   />
   <flutterwave-pay-button
     v-else-if="gateway === 'flutterwave'"
@@ -30,13 +31,12 @@
 </template>
 
 <script type="text/javascript">
-// import Paystack from 'vue-paystack'
-import { giftingApi } from '~/request/all.api'
+import Paystack from 'vue-paystack'
 
 export default {
   name: 'PaymentGateway',
   components: {
-    // Paystack,
+    Paystack,
   },
   props: {
     show: {
@@ -63,6 +63,10 @@ export default {
       type: String,
       required: true,
     },
+    order: {
+      type: Array,
+      required: true,
+    },
   },
   data() {
     return {
@@ -85,12 +89,23 @@ export default {
     },
     paystackMeta() {
       return {
+        user_name: this.customer.first_name + ' ' + this.customer.last_name,
+        user_email: this.customer.email,
+        phone_number: this.customer.phone_number,
+        password: this.customer.password,
+        service: 'electronic-festival',
         custom_fields: [
           {
-            display_name: '',
-            service: '',
+            host_url: process.env.DANCE_FESTIVAL_SHORT_API,
           },
         ],
+        order_items: this.order.map((item) => {
+          return {
+            id: item.id,
+            price: item.price,
+            quantity: item.quantity,
+          }
+        }),
       }
     },
     raveMeta() {
@@ -104,13 +119,14 @@ export default {
     show() {
       if (this.show) {
         this.gateway === 'paystack'
-          ? this.$refs.paystack.$el.click()
-          : this.$refs.rave.$el.click()
+          ? this.$refs.paystack.$el?.click()
+          : this.$refs.rave.$el?.click()
       }
     },
   },
   created() {
     this.generateReference()
+    console.log(this.order)
   },
   methods: {
     generateReference() {
@@ -118,7 +134,9 @@ export default {
       const fullDate = `${date.getDate()}${
         date.getMonth() + 1
       }${date.getHours()}${date.getMinutes()}`
-      this.reference = `EDEN-GIFTING-PAYMENT-${fullDate}`
+      this.reference = `EDEN-DANCE-FESTIVAL-PAYMENT-${fullDate}-${Math.floor(
+        100000 + Math.random() * 900000
+      )}`
     },
     callback(response) {
       if (response.status.includes('success')) {
@@ -129,17 +147,17 @@ export default {
     close() {
       this.shouldShow = false
     },
-    async saveInformation() {
+    saveInformation() {
       try {
-        const payload = {
-          customer: this.customer,
-          recipient: this.recipient,
-          delivery: this.delivery,
-          items: JSON.stringify(this.$store.getters.cart),
-          total_amount: this.amount,
-        }
-        await giftingApi(payload)
-        this.$emit('success')
+        // const payload = {
+        //   customer: this.customer,
+        //   recipient: this.recipient,
+        //   delivery: this.delivery,
+        //   items: JSON.stringify(this.$store.getters.cart),
+        //   total_amount: this.amount,
+        // }
+        // await giftingApi(payload)
+        this.$emit('success', this.order)
         this.$store.commit('clearCart')
         this.shouldShow = false
       } catch (error) {}

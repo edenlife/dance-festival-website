@@ -1,6 +1,6 @@
 <template>
   <div class="cart-icon">
-    <div class="counter" v-if="count > 1">{{ count }}</div>
+    <div class="counter" v-if="count > 0">{{ count }}</div>
     <svg
       width="20"
       height="20"

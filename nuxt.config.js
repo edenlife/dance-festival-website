@@ -159,7 +159,10 @@ export default {
   // global env config
 
   env: {
-    PAYSTACK_KEY_TEST: 'pk_live_78ed64a0265d4e0bdea74e76e7243c577d365219',
+    // PAYSTACK_KEY_TEST: 'pk_live_78ed64a0265d4e0bdea74e76e7243c577d365219',
+    DANCE_FESTIVAL_SHORT_API: 'https://api-onetime-orders.edenlife.ng',
+    DANCE_FESTIVAL_API: 'https://api-onetime-orders.edenlife.ng/api/v2',
+    PAYSTACK_KEY_TEST: 'pk_test_510052635616385dc547e4f1790f59052cf56048',
     RAVE_KEY_TEST: 'FLWPUBK-d4dfef720154b7df12637126423b02c5-X',
     MAILCHIMP_USERID: '8d551f5341eee34aa00432838',
     MAILCHIMP_LISTID: '987fa4d39c',

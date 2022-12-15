@@ -5,61 +5,89 @@
       <div class="cart-item__wrapper" v-for="item in cartItems" :key="item.id">
         <div class="cart-item">
           <div class="cart-item__image">
-            <img :src="item.image" alt="meal name" />
+            <img :src="item.image_url" alt="meal name" />
           </div>
           <div class="cart-item__details">
-            <div class="is-flex flex-between is-align-center">
-              <div>
-                <div class="cart-item__name">{{ item.name }}</div>
-                <div class="cart-item__quantity">
-                  Quantity: {{ item.quantity }}
+            <el-row type="flex" justify="between">
+              <el-col :span="15">
+                <div>
+                  <div class="cart-item__name">{{ item.full_name }}</div>
+                  <div class="cart-item__quantity">
+                    Quantity: {{ item.quantity }}
+                  </div>
                 </div>
-              </div>
-              <div class="cart-item__price">{{ item.price }}</div>
-            </div>
+              </el-col>
+              <el-col :span="15">
+                <div class="cart-item__price">
+                  {{ 'NGN ' + currencyFormat(item.price) }}
+                </div>
+              </el-col>
+            </el-row>
           </div>
         </div>
         <info-box>
-          <span class="info__text"> Pick up time: 11:00am-1:00pm </span>
+          <span class="info__text">
+            Pick up time:
+            {{ categories.find((cat) => cat.id === item.category_id)?.from }}-{{
+              categories.find((cat) => cat.id === item.category_id)?.to
+            }}
+          </span>
         </info-box>
       </div>
     </div>
-    <div class="amount p-main">
-      <div>Subtotal</div>
-      <div>NGN 32,000.00</div>
-    </div>
+
     <div class="amount p-main">
       <div>Total</div>
-      <div>NGN 32,000.00</div>
+      <div>NGN {{ currencyFormat(totalPrice) }}</div>
     </div>
   </div>
 </template>
 
 <script>
 import InfoBox from '@/components/dance-festival/InfoBox.vue'
+import { currencyFormat } from '~/static/functions'
 
 export default {
   components: { InfoBox },
   data: () => ({
-    cartItems: [
+    categories: [
       {
+        label: 'Brunch',
+        date: 'Thur, Dec 20',
+        from: '11:00am',
+        to: '1:00pm',
         id: 1,
-        name: 'Vegetable Salad',
-        quantity: 4,
-        image:
-          'https://res.cloudinary.com/eden-life-inc/image/upload/v1670297362/dance-festival/coleslaw_gtez2c.png',
-        price: 'NGN 3,500.00',
       },
       {
+        label: 'Lunch',
+        date: 'Thur, Dec 20',
+        from: '3:00pm',
+        to: '5:00pm',
         id: 2,
-        name: 'Vegetable Salad',
-        quantity: 2,
-        image:
-          'https://res.cloudinary.com/eden-life-inc/image/upload/v1670297362/dance-festival/coleslaw_gtez2c.png',
-        price: 'NGN 3,500.00',
+      },
+      {
+        label: 'Dinner',
+        date: 'Thur, Dec 20',
+        from: '7:00pm',
+        to: '9:00pm',
+        id: 3,
       },
     ],
   }),
+  computed: {
+    cartItems() {
+      return this.$store.state.cart
+    },
+    totalPrice() {
+      return this.cartItems.reduce(
+        (acc, val) => acc + val.price * val.quantity,
+        0
+      )
+    },
+  },
+  methods: {
+    currencyFormat,
+  },
 }
 </script>
 
@@ -83,7 +111,12 @@ export default {
 }
 
 .info__text {
+  text-align: center;
+  width: 100%;
   @include font-size(sm);
+  @include respond(md) {
+    text-align: left;
+  }
 }
 
 .order-summary {
@@ -129,8 +162,12 @@ export default {
         background: #eeeeee;
         border-radius: 8px;
         margin-right: 10px;
+        overflow: hidden;
         img {
-          height: 50px;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          border-radius: 8px;
         }
       }
 
@@ -165,6 +202,7 @@ export default {
         color: color(eden-neutral-1);
         font-size: 700;
         @include font-size(sm);
+        text-align: right;
       }
     }
   }

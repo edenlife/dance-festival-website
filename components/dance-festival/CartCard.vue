@@ -42,7 +42,7 @@
     </div>
     <span v-if="cartItems.length > 0" slot="footer" class="dialog-footer">
       <div class="amount">
-        <div>Subtotal</div>
+        <div>Total</div>
         <div>NGN 32,000.00</div>
       </div>
       <el-button

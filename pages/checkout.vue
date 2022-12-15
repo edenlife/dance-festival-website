@@ -26,7 +26,6 @@
             </info-box>
             <el-form
               ref="form_profile"
-              @focusout.native="checkForm"
               v-loading="fetching"
               :model="form"
               label-position="top"
@@ -91,7 +90,7 @@
               <el-row>
                 <el-col :span="24">
                   <el-button
-                    :disabled="!formValid && proceedDisabled"
+                    :disabled="proceedDisabled"
                     @click="tab = 'payment'"
                     class="w-100"
                     type="primary"
@@ -235,7 +234,10 @@ export default {
         !this.form.last_name ||
         !this.form.email ||
         !this.form.password ||
-        !this.form.phone_number
+        !this.form.phone_number ||
+        this.form.phone_number.length !== 11 ||
+        this.form.password.length < 6 ||
+        !this.form.email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
       )
     },
     cartItems() {

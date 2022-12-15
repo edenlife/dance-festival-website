@@ -238,16 +238,21 @@ export default {
   }),
   computed: {
     proceedDisabled() {
-      return (
-        !this.form.first_name ||
-        !this.form.last_name ||
-        !this.form.email ||
-        (this.hasUser ? !this.form.password : true) ||
-        !this.form.phone_number ||
-        this.form.phone_number.length !== 11 ||
-        (this.hasUser ? this.form.password.length < 6 : true) ||
-        !this.form.email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
-      )
+      return this.hasUser
+        ? !this.form.first_name ||
+            !this.form.last_name ||
+            !this.form.email ||
+            !this.form.phone_number ||
+            this.form.phone_number.length !== 11 ||
+            !this.form.email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
+        : !this.form.password ||
+            this.form.password.length < 6 ||
+            !this.form.first_name ||
+            !this.form.last_name ||
+            !this.form.email ||
+            !this.form.phone_number ||
+            this.form.phone_number.length !== 11 ||
+            !this.form.email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
     },
     cartItems() {
       return this.$store.state.cart

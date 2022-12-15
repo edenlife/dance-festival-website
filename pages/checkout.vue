@@ -70,7 +70,7 @@
                   >
                     <el-input
                       v-model="form.phone_number"
-                      type="text"
+                      type="number"
                       max="11"
                     />
                   </el-form-item>

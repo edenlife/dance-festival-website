@@ -245,7 +245,7 @@ export default {
             !this.form.email ||
             !this.form.phone_number ||
             this.form.phone_number.length !== 11 ||
-            !this.form.email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
+            !this.form.email.match(/^[\w-\.+]+@([\w-]+\.)+[\w-]{2,4}$/g)
         : !this.form.password ||
             this.form.password.length < 6 ||
             !this.form.first_name ||
@@ -253,7 +253,7 @@ export default {
             !this.form.email ||
             !this.form.phone_number ||
             this.form.phone_number.length !== 11 ||
-            !this.form.email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
+            !this.form.email.match(/^[\w-\.+]+@([\w-]+\.)+[\w-]{2,4}$/g)
     },
     cartItems() {
       return this.$store.state.cart
@@ -298,7 +298,7 @@ export default {
   //   },
   methods: {
     handleEmail() {
-      if (this.form.email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
+      if (this.form.email.match(/^[\w-\.+]+@([\w-]+\.)+[\w-]{2,4}$/g)) {
         this.checkIfUserExist()
       }
     },

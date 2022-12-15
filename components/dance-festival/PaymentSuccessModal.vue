@@ -16,19 +16,19 @@
         <div class="spaced" v-if="brunch.length">
           <span class="period-text">Brunch pickup period:</span>
           <span class="time-text"
-            >Thur, Dec 20 at 11:00am <i class="el-icon-right"></i> 1:00pm</span
+            >Tue, Dec 20 at 11:00am <i class="el-icon-right"></i> 1:00pm</span
           >
         </div>
         <div class="top-border spaced" v-if="lunch.length">
           <span class="period-text">Lunch pickup period:</span>
           <span class="time-text"
-            >Thur, Dec 20 at 3:00pm <i class="el-icon-right"></i> 5:00pm</span
+            >Tue, Dec 20 at 3:00pm <i class="el-icon-right"></i> 5:00pm</span
           >
         </div>
         <div class="top-border spaced" v-if="dinner.length">
           <span class="period-text">Dinner pickup period:</span>
           <span class="time-text"
-            >Thur, Dec 20 at 7:00pm <i class="el-icon-right"></i> 9:00pm</span
+            >Tue, Dec 20 at 7:00pm <i class="el-icon-right"></i> 9:00pm</span
           >
         </div>
       </div>

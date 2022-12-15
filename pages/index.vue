@@ -152,21 +152,21 @@ export default {
     tabs: [
       {
         label: 'Brunch',
-        date: 'Thur, Dec 20',
+        date: 'Tue, Dec 20',
         from: '11:00am',
         to: '1:00pm',
         id: 1,
       },
       {
         label: 'Lunch',
-        date: 'Thur, Dec 20',
+        date: 'Tue, Dec 20',
         from: '3:00pm',
         to: '5:00pm',
         id: 2,
       },
       {
         label: 'Dinner',
-        date: 'Thur, Dec 20',
+        date: 'Tue, Dec 20',
         from: '7:00pm',
         to: '9:00pm',
         id: 3,
@@ -174,7 +174,7 @@ export default {
     ],
     currentTab: {
       label: 'Brunch',
-      date: 'Thur, Dec 20',
+      date: 'Tue, Dec 20',
       from: '11:00am',
       to: '1:00pm',
     },

@@ -12,6 +12,7 @@
     :callback="callback"
     :close="close"
     :embed="false"
+    :channels="['card', 'bank', 'bank_transfer']"
   />
   <flutterwave-pay-button
     v-else-if="gateway === 'flutterwave'"

@@ -184,7 +184,7 @@
                   >
                     <a href="https://wa.me/2348134254074"> Whatsapp</a>
                   </li>
-                  <li
+                  <!-- <li
                     class="menu--list-item contact trigger-chat"
                     @click.prevent="
                       handleToggle('Contact Us')
@@ -194,7 +194,7 @@
                     <nuxt-link :to="{ path: '/contact_us' }">
                       Message
                     </nuxt-link>
-                  </li>
+                  </li> -->
                 </ul>
               </transition>
             </li>

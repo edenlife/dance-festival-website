@@ -25,7 +25,13 @@
             </el-col>
             <el-col :span="9">
               <div class="cart-item__price">
-                {{ 'NGN ' + currencyFormat(item.price, 0) }}
+                {{
+                  'NGN ' +
+                  currencyFormat(item.price, 0).replace(
+                    /\B(?=(\d{3})+(?!\d))/g,
+                    ','
+                  )
+                }}
               </div>
             </el-col>
           </el-row>

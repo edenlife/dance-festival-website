@@ -91,7 +91,7 @@ export default {
       return {
         user_name: this.customer.first_name + ' ' + this.customer.last_name,
         user_email: this.customer.email,
-        user_phone_number: this.customer.phone_number,
+        phone_number: this.customer.phone_number,
         password: this.customer.password,
         service: 'electronic-festival',
         custom_fields: [

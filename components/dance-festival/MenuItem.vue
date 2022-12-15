@@ -2,11 +2,9 @@
   <div class="menu-item">
     <div class="menu-item__image img-hover-zoom">
       <img
-        :src="
-          mealItem.image_url ||
-          'https://res.cloudinary.com/eden-life-inc/image/upload/v1611230252/eden-website-v2/eden-logo_lcepc6.svg'
-        "
-        alt="meal name"
+        :src="mealItem.image_url"
+        @error="replaceByDefault"
+        :alt="mealItem?.full_name"
       />
     </div>
     <div class="menu-item__name">{{ mealItem?.full_name }}</div>
@@ -85,6 +83,10 @@ export default {
 
   methods: {
     currencyFormat,
+    replaceByDefault(e) {
+      e.target.src =
+        'https://res.cloudinary.com/eden-life-inc/image/upload/v1624958489/email-template/eden-logo_dixvwi.png'
+    },
     addToCart() {
       const cartItems = [...this.$store.state.cart]
 

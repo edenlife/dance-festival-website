@@ -91,7 +91,7 @@ export default {
       return [{ validator: validateEmail, trigger: 'blur' }]
     },
     validatePhone() {
-      return [{ validator: validatePhoneNumber, trigger: 'blur' }]
+      return [{ validator: validatePhoneNumber, trigger: ['blur', 'change'] }]
     },
     validatePhoneKE() {
       return [{ validator: validatePhoneNumberKE, trigger: 'blur' }]

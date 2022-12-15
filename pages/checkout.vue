@@ -37,7 +37,11 @@
                     prop="email"
                     :rules="validateEmail()"
                   >
-                    <el-input v-model="form.email" type="text" />
+                    <el-input
+                      v-model="form.email"
+                      @change="handleEmail"
+                      type="text"
+                    />
                   </el-form-item>
                 </el-col>
               </el-row>
@@ -76,7 +80,7 @@
                   </el-form-item>
                 </el-col>
               </el-row>
-              <el-row>
+              <el-row v-if="!hasUser">
                 <el-col :md="24">
                   <el-form-item
                     label="Password"
@@ -156,7 +160,9 @@
                     type="primary"
                     :disabled="gateway === ''"
                     @click.prevent="pay"
-                    >Proceed to payment</el-button
+                    >{{
+                      !checkingUser ? 'Proceed to payment' : 'Checking...'
+                    }}</el-button
                   >
                 </form>
               </div>
@@ -192,6 +198,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import OrderSummary from '@/components/dance-festival/OrderSummary.vue'
 import PaymentSuccessModal from '@/components/dance-festival/PaymentSuccessModal.vue'
 import InfoBox from '@/components/dance-festival/InfoBox.vue'
@@ -226,6 +233,8 @@ export default {
       address: '',
     },
     formValid: false,
+    hasUser: false,
+    checkingUser: false,
   }),
   computed: {
     proceedDisabled() {
@@ -233,10 +242,10 @@ export default {
         !this.form.first_name ||
         !this.form.last_name ||
         !this.form.email ||
-        !this.form.password ||
+        (this.hasUser ? !this.form.password : false) ||
         !this.form.phone_number ||
         this.form.phone_number.length !== 11 ||
-        this.form.password.length < 6 ||
+        (this.hasUser ? this.form.password.length < 6 : false) ||
         !this.form.email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
       )
     },
@@ -282,6 +291,11 @@ export default {
   //     },
   //   },
   methods: {
+    handleEmail() {
+      if (this.form.email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
+        this.checkIfUserExist()
+      }
+    },
     checkForm() {
       const fields = this.$refs.form_profile.fields
       if (fields.find((f) => f.validateState === 'validating')) {
@@ -297,6 +311,34 @@ export default {
         }, true)
       }
       console.log('valid:', this.formValid)
+    },
+    async checkIfUserExist() {
+      try {
+        this.checkingUser = true
+        const res = await axios.get(
+          `${process.env.DANCE_FESTIVAL_API}/festival/customer/email`,
+          {
+            params: {
+              email: this.form.email,
+            },
+          }
+        )
+
+        if (typeof res.data === 'object') {
+          this.hasUser = true
+          this.form.first_name = res.data?.first_name
+          this.form.last_name = res.data?.last_name
+          this.form.email = res.data?.email
+        } else {
+          this.hasUser = false
+        }
+
+        this.checkingUser = false
+      } catch (error) {
+        console.log(error)
+      } finally {
+        this.checkingUser = false
+      }
     },
     updateRouteQuery(tab) {
       const currentTab = this.$route.query.tab

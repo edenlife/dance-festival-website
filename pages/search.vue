@@ -105,7 +105,10 @@
           :text="'No result found'"
           adaptation
           :in-modal="isModal"
-          @close="$emit('close')"
+          @close="
+            $store.commit('updateSearch', '')
+            $emit('close')
+          "
         />
       </div>
       <div

@@ -242,10 +242,10 @@ export default {
         !this.form.first_name ||
         !this.form.last_name ||
         !this.form.email ||
-        (this.hasUser ? !this.form.password : false) ||
+        (this.hasUser ? !this.form.password : true) ||
         !this.form.phone_number ||
         this.form.phone_number.length !== 11 ||
-        (this.hasUser ? this.form.password.length < 6 : false) ||
+        (this.hasUser ? this.form.password.length < 6 : true) ||
         !this.form.email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
       )
     },

@@ -2,6 +2,12 @@
   <div class="menu-item">
     <div class="menu-item__image img-hover-zoom">
       <img
+        :class="{
+          blurred:
+            mealItem.available_quantity -
+              (cartItems.find((it) => it.id === mealItem.id)?.quantity || 0) <
+            1,
+        }"
         :src="mealItem.image_url"
         @error="replaceByDefault"
         :alt="mealItem?.full_name"
@@ -125,6 +131,11 @@ export default {
 
 ::v-deep .el-icon-minus {
   font-weight: 900;
+}
+
+.blurred {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
 }
 
 .out-of-stock {

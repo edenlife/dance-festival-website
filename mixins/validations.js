@@ -103,7 +103,7 @@ export default {
       return [{ validator: validateName, trigger: 'blur' }]
     },
     validatePassword() {
-      return [{ validator: validatePassword, trigger: 'blur' }]
+      return [{ validator: validatePassword, trigger: ['blur', 'change'] }]
     },
   },
 }

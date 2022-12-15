@@ -26,6 +26,7 @@
             </info-box>
             <el-form
               ref="form_profile"
+              @focusout.native="checkForm"
               v-loading="fetching"
               :model="form"
               label-position="top"
@@ -90,7 +91,7 @@
               <el-row>
                 <el-col :span="24">
                   <el-button
-                    :disabled="proceedDisabled"
+                    :disabled="!formValid && proceedDisabled"
                     @click="tab = 'payment'"
                     class="w-100"
                     type="primary"
@@ -216,7 +217,7 @@ export default {
       phone_number: '',
       password: '',
     },
-    gateway: '',
+    gateway: 'paystack',
     openPaymentGateway: false,
     paymentCompleted: false,
     completedOrder: [],
@@ -225,6 +226,7 @@ export default {
       city: '',
       address: '',
     },
+    formValid: false,
   }),
   computed: {
     proceedDisabled() {
@@ -269,7 +271,31 @@ export default {
       this.tab = currentTab
     }
   },
+  //   watch: {
+  //     form: {
+  //       handler() {
+  //         this.checkForm()
+  //       },
+  //       deep: true,
+  //     },
+  //   },
   methods: {
+    checkForm() {
+      const fields = this.$refs.form_profile.fields
+      if (fields.find((f) => f.validateState === 'validating')) {
+        setTimeout(() => {
+          this.checkForm()
+        }, 100)
+      } else {
+        this.formValid = fields.every((f) => {
+          const valid = f.required && f.validateState === 'success'
+          const notErroring = !f.required && f.validateState !== 'error'
+          console.log(f, valid, notErroring)
+          return valid || notErroring
+        }, true)
+      }
+      console.log('valid:', this.formValid)
+    },
     updateRouteQuery(tab) {
       const currentTab = this.$route.query.tab
 

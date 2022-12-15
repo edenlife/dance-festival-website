@@ -194,7 +194,9 @@ export default {
       try {
         this.loading = true
         const { data } = await axios.get(
-          `https://api-onetime-orders.edenlife.ng/api/v2/festival/menu/search?search=${this.search?.toLowerCase()}`,
+          `${
+            process.env.DANCE_FESTIVAL_API
+          }/festival/menu/search?search=${this.search?.toLowerCase()}`,
           {
             headers: {
               Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzOCIsImp0aSI6ImFkNjE1ZGYyOGU4YmMyMWYzMDdiNzZjZmRiMzg1ZmMzMmFlYjU1YzM0OWQ2OWE5MmU0MWExOTI0NjRkY2Y0NWVjNjZjOWNmNzcxYzZmMzE3IiwiaWF0IjoiMTY3MDU0NTgyNC40MDU2NTUiLCJuYmYiOiIxNjcwNTQ1ODI0LjQwNTY2MCIsImV4cCI6IjE3MDIwODE4MjQuNDAwNjc0Iiwic3ViIjoiMjgwNTAiLCJzY29wZXMiOltdfQ.N4Vz20rfsn4HxY4RJCTk50qWyIJaXg5x13tWIP93jLEgMubIwFJO5wEouOCD2QpMgBsaC_G0I5I_IX2lWZMpucCNkPbMB2Q0CqEFe0oWrz9l0Oi9G0fiSNiNlj5pXvR-J2ItpaR-0-K2amdR1dUA473Ub0YnD_Yn2z8AGlOvrutxhtxeWbJ8kL5l79Pm8D-9T-69hP9eaHbSjETLLJDn5z5alce3e6WOmsQiTCCtL1KDgu8PX9_o6X0aneT11TV8-jD0-_eKjKhOriM3pd7lJ3t20MkxvvD-xIow3BE3AqWf6tnyyaPdb_7pY-wA-mGAWs70zfcVR7FHHjwGbyiVokAqzrZJQxA04PoZeDGVUZCcFT6ae4Uz9qGxJnP6wnlFA9cVmBz1yg5Vtsu6xILh2xTpgY6Xv844C-KRltofCKvrrOUdPxArwQKYmUXiMILd8_ka7ktvMwOG3zDHPHCvZb6FZoB5TTEcp9RhDmf62zVEmI1KZ7aaomABfqT7NBGJvf9v7OOMFp9bwVZ5TszpX0GAtjoBjbHvXmRFH1SH-Op5E8MhBlGIVt_3_Ms7qaY5GErPxTZR2-QcqomCyRJAOhTIi3H7Eg7HUVdxW9JubfzJzmDtpYQTwu7AqhrINkRzGlOOr7Zv6WjISQZzELt1AoeGmAtVgVwA2PmeDeecDbw`,

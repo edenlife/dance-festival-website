@@ -92,6 +92,11 @@ export default {
         user_email: this.customer.email,
         password: this.customer.password,
         service: 'electronic-festival',
+        custom_fields: [
+          {
+            host_url: process.env.DANCE_FESTIVAL_API,
+          },
+        ],
         order_items: this.order.map((item) => {
           return {
             id: item.id,

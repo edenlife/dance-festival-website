@@ -43,7 +43,12 @@
         </div>
         <div class="menu-list mt-2" id="menu-list">
           <div
-            v-show="!loading && visibleMealItems.length === 0"
+            v-show="
+              !loading &&
+              visibleMealItems.filter(
+                (item) => item.category_id === this.currentTab.id
+              ).length === 0
+            "
             class="menu__loader"
           >
             <p>No meal items for this category</p>

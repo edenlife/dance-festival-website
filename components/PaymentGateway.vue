@@ -95,7 +95,7 @@ export default {
         service: 'electronic-festival',
         custom_fields: [
           {
-            host_url: process.env.DANCE_FESTIVAL_API,
+            host_url: process.env.DANCE_FESTIVAL_SHORT_API,
           },
         ],
         order_items: this.order.map((item) => {

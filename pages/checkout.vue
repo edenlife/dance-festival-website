@@ -98,7 +98,9 @@
                     @click="tab = 'payment'"
                     class="w-100"
                     type="primary"
-                    >Proceed to payment</el-button
+                    >{{
+                      !checkingUser ? 'Proceed to payment' : 'Checking...'
+                    }}</el-button
                   >
                 </el-col>
               </el-row>
@@ -160,10 +162,9 @@
                     type="primary"
                     :disabled="gateway === ''"
                     @click.prevent="pay"
-                    >{{
-                      !checkingUser ? 'Proceed to payment' : 'Checking...'
-                    }}</el-button
                   >
+                    Pay
+                  </el-button>
                 </form>
               </div>
             </transition>

@@ -123,7 +123,7 @@
           type="button"
           @click="cartOpen = true"
         >
-          <CartIcon :count="cart.length" /> &nbsp; Cart
+          <CartIcon :count="cart.length" />
         </button>
         <div>
           <button

@@ -36,7 +36,6 @@ export default {
 
     script: [
       // Global site tag (gtag.js) - Google Analytics
-
       {
         hid: 'gtag-script1',
         src: 'https://www.googletagmanager.com/gtag/js?id=UA-140804740-1',
@@ -56,18 +55,18 @@ export default {
 
       {
         hid: 'ga-4',
-        src: 'https://www.googletagmanager.com/gtag/js?id=G-4D4KNBN5JH',
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-G0ELDDNNJX',
         innerHTML: `window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-4D4KNBN5JH')`,
+        gtag('config', 'G-G0ELDDNNJX')`,
         type: 'text/javascript',
         charset: 'utf-8',
       },
 
       // Google tag manager
 
-      //Google ads
+      // Google ads
       {
         hid: 'google-ads',
         src: 'https://www.googletagmanager.com/gtag/js?id=AW-354367770',

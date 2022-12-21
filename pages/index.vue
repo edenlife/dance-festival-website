@@ -1,152 +1,164 @@
 <template>
-  <div style="width: 100%">
-    <div class="dance-banner">
-      <div class="title">Life Is Electric</div>
-      <div class="subtitle">
-        Eden Is Partying With 3,500 Activators at <br />
-        the Activity Fest.
-      </div>
-      <div class="showcase-mobile"></div>
-      <el-row
-        justify="space-between"
-        align="middle"
-        class="showcase"
-        :gutter="30"
-      >
-        <el-col :span="2"></el-col>
-        <el-col :span="4">
-          <div class="showcase-img-container">
-            <div class="showcase__1 showcase-image" />
-          </div>
-        </el-col>
-        <el-col :span="4">
-          <div class="showcase-img-container">
-            <div class="showcase__2 showcase-image" />
+  <div>
+    <div style="width: 100%" v-if="false">
+      <div class="dance-banner">
+        <div class="title">Life Is Electric</div>
+        <div class="subtitle">
+          Eden Is Partying With 3,500 Activators at <br />
+          the Activity Fest.
+        </div>
+        <div class="showcase-mobile"></div>
+        <el-row
+          justify="space-between"
+          align="middle"
+          class="showcase"
+          :gutter="30"
+        >
+          <el-col :span="2"></el-col>
+          <el-col :span="4">
+            <div class="showcase-img-container">
+              <div class="showcase__1 showcase-image" />
+            </div>
+          </el-col>
+          <el-col :span="4">
+            <div class="showcase-img-container">
+              <div class="showcase__2 showcase-image" />
 
-            <div class="showcase__3 showcase-image" />
-          </div>
-        </el-col>
-        <el-col :span="4">
-          <div class="showcase-img-container">
-            <div class="showcase__4 showcase-image" />
-          </div>
-        </el-col>
-        <el-col :span="4">
-          <div class="showcase-img-container">
-            <div class="showcase__5 showcase-image" />
-            <div class="showcase__6 showcase-image" />
-          </div>
-        </el-col>
-        <el-col :span="4">
-          <div class="showcase-img-container">
-            <div class="showcase__7 showcase-image" />
-          </div>
-        </el-col>
-        <el-col :span="2"></el-col>
-      </el-row>
-    </div>
-    <div class="container">
-      <div class="container__banner">
-        <div class="banner-image">
-          <div>
-            <p>Skip the lines, order ahead!</p>
-            <button
-              type="button"
-              class="hero__button-solid"
-              @click="goto('menu-list')"
-            >
-              Pre-order now
-            </button>
-          </div>
-        </div>
+              <div class="showcase__3 showcase-image" />
+            </div>
+          </el-col>
+          <el-col :span="4">
+            <div class="showcase-img-container">
+              <div class="showcase__4 showcase-image" />
+            </div>
+          </el-col>
+          <el-col :span="4">
+            <div class="showcase-img-container">
+              <div class="showcase__5 showcase-image" />
+              <div class="showcase__6 showcase-image" />
+            </div>
+          </el-col>
+          <el-col :span="4">
+            <div class="showcase-img-container">
+              <div class="showcase__7 showcase-image" />
+            </div>
+          </el-col>
+          <el-col :span="2"></el-col>
+        </el-row>
       </div>
-      <div class="text-center mt-2 explore-title">Explore Menu</div>
-      <div class="menu-tabs mt-2">
-        <el-tag
-          v-for="(tab, ix) in tabs"
-          :key="tab.label"
-          @click="currentTab = tab"
-          :type="''"
-          effect="plain"
-          class="menu-tab"
-          :class="{
-            active: currentTab.label === tab.label,
-            'mr-2': ix !== tabs.length - 1,
-          }"
-        >
-          {{ tab.label }}
-        </el-tag>
-      </div>
-      <div class="mt-2 pickup-info">
-        <info-box>
-          <span class="pickup-info__text">
-            {{ currentTab.label }} pickup window for pre-event order: &nbsp;
-            {{ currentTab.date }} at {{ currentTab.from }}
-            <i class="el-icon-right mx-2" /> {{ currentTab.to }}
-            <el-icon>
-              <arrow-right />
-            </el-icon>
-          </span>
-        </info-box>
-      </div>
-      <div class="menu-list mt-2" id="menu-list">
-        <div
-          v-show="!loading && visibleMealItems.length === 0"
-          class="menu__loader"
-        >
-          <p>No meal items for this category</p>
-        </div>
-        <div v-show="loading" class="menu__loader">
-          <Loader />
-          <p>Loading menu...</p>
-        </div>
-        <div v-show="!loading && visibleMealItems.length > 0">
-          <el-row :gutter="70">
-            <el-col
-              v-for="(mealItem, i) in visibleMealItems"
-              :key="`${mealItem.id}-${i}`"
-              :xs="24"
-              :sm="24"
-              :md="8"
-              :lg="6"
-              :xl="4"
-            >
-              <menu-item :key="`${mealItem.id}-${i}`" :meal-item="mealItem" />
-            </el-col>
-          </el-row>
-          <el-row
-            type="flex"
-            justify="center"
-            v-show="
-              itemsToAdd.length > 0 && !loading && visibleMealItems.length > 0
-            "
-          >
-            <el-col :xs="12" :sm="12" :md="4" :lg="4" :xl="4">
-              <el-button
-                class="w-100 see-more"
-                type="plain"
-                @click="
-                  seeMore()
-                  page++
-                "
+      <div class="container">
+        <div class="container__banner">
+          <div class="banner-image">
+            <div>
+              <p>Skip the lines, order ahead!</p>
+              <button
+                type="button"
+                class="hero__button-solid"
+                @click="goto('menu-list')"
               >
-                See More
-              </el-button>
-            </el-col>
-          </el-row>
+                Pre-order now
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-2 explore-title">Explore Menu</div>
+        <div class="menu-tabs mt-2">
+          <el-tag
+            v-for="(tab, ix) in tabs"
+            :key="tab.label"
+            @click="currentTab = tab"
+            :type="''"
+            effect="plain"
+            class="menu-tab"
+            :class="{
+              active: currentTab.label === tab.label,
+              'mr-2': ix !== tabs.length - 1,
+            }"
+          >
+            {{ tab.label }}
+          </el-tag>
+        </div>
+        <div class="mt-2 pickup-info">
+          <info-box>
+            <span class="pickup-info__text">
+              {{ currentTab.label }} pickup window for pre-event order: &nbsp;
+              {{ currentTab.date }} at {{ currentTab.from }}
+              <i class="el-icon-right mx-2" /> {{ currentTab.to }}
+              <el-icon>
+                <arrow-right />
+              </el-icon>
+            </span>
+          </info-box>
+        </div>
+        <div class="menu-list mt-2" id="menu-list">
+          <div
+            v-show="!loading && visibleMealItems.length === 0"
+            class="menu__loader"
+          >
+            <p>No meal items for this category</p>
+          </div>
+          <div v-show="loading" class="menu__loader">
+            <Loader />
+            <p>Loading menu...</p>
+          </div>
+          <div v-show="!loading && visibleMealItems.length > 0">
+            <el-row :gutter="70">
+              <el-col
+                v-for="(mealItem, i) in visibleMealItems"
+                :key="`${mealItem.id}-${i}`"
+                :xs="24"
+                :sm="24"
+                :md="8"
+                :lg="6"
+                :xl="4"
+              >
+                <menu-item :key="`${mealItem.id}-${i}`" :meal-item="mealItem" />
+              </el-col>
+            </el-row>
+            <el-row
+              type="flex"
+              justify="center"
+              v-show="
+                itemsToAdd.length > 0 && !loading && visibleMealItems.length > 0
+              "
+            >
+              <el-col :xs="12" :sm="12" :md="4" :lg="4" :xl="4">
+                <el-button
+                  class="w-100 see-more"
+                  type="plain"
+                  @click="
+                    seeMore()
+                    page++
+                  "
+                >
+                  See More
+                </el-button>
+              </el-col>
+            </el-row>
+          </div>
         </div>
       </div>
     </div>
+    <error-page
+      style="padding-top: 130px"
+      v-else
+      :show-action="false"
+      :text="'You missed the most electric party of the year! But that\'s okay, download our app for all the joy you need in your life.'"
+      adaptation
+    />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import ErrorPage from '~/pages/404.vue'
+
 export default {
   components: {
     Loader: () => import('@/components/Loader.vue'),
     MenuItem: () => import('@/components/dance-festival/MenuItem.vue'),
     InfoBox: () => import('@/components/dance-festival/InfoBox.vue'),
+    ErrorPage,
   },
   data: () => ({
     tabs: [

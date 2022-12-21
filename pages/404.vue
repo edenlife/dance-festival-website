@@ -11,6 +11,7 @@
         </div>
       </div>
       <button
+        v-if="showAction"
         class="error__message--btn"
         @click.prevent="inModal ? $emit('close') : gotoHome()"
       >
@@ -30,6 +31,10 @@ export default {
     adaptation: {
       type: Boolean,
       default: false,
+    },
+    showAction: {
+      type: Boolean,
+      default: true,
     },
     inModal: {
       type: Boolean,

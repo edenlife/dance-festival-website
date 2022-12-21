@@ -93,7 +93,7 @@
             FAQs
           </nuxt-link>
         </li>
-        <li style="margin-right: 30px">
+        <li style="margin-right: 30px" v-if="false">
           <el-input
             @change="debounce"
             class="nav-search"
@@ -103,7 +103,7 @@
             type="text"
           ></el-input>
         </li>
-        <li>
+        <li v-if="false">
           <button
             type="button"
             class="expand is-flex is-align-center"
@@ -114,10 +114,11 @@
         </li>
       </ul>
       <div class="navigation__btn navigation__btn-container is-align-center">
-        <button @click="searchOpen = true" style="color: black">
+        <button v-if="false" @click="searchOpen = true" style="color: black">
           <i class="el-icon-search" style="font-size: 1.2rem"></i>
         </button>
         <button
+          v-if="false"
           class="ml-3"
           style="display: flex; color: black"
           type="button"
